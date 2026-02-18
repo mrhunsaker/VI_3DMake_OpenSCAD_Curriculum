@@ -1,8 +1,8 @@
 [book]
-title = "JAWS Scripting Language Manual"
+title = "3D Printing Course for Blind and Visually Impaired Learners"
 authors = ["Michael Ryan Hunsaker, M.Ed., Ph.D."]
 language = "en"
-description = "Description of the JAWS Scripting Language and Brief Introduction to Creating JAWS Scripts"
+description = "An introduction to 3D printing for blind and visually impaired learners, using OpenSCAD and 3DMake to create accessible 3D models."
 src = "src"
 
 [output.html]
