@@ -1,14 +1,39 @@
-# Getting Started with PowerShell
+# Getting Started with PowerShell (Self-Paced)
 
-This guide introduces Microsoft PowerShell with a focus on practical tasks students will use to manage files, run command-line tools, and support 3D printing workflows. It emphasizes keyboard-driven, screen-reader-friendly techniques and gives reproducible examples you can try in class.
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
-## Prerequisites
 
-- Typing and basic text-editing skills
-- Basic file-system knowledge (files, folders, paths)
-- Familiarity with using a screen reader is helpful but not required
-- Basic understanding of variables and parameters
+Estimated time: 30–45 minutes
 
+**Learning Objectives**
+- Launch PowerShell and identify the prompt
+- Use `pwd`, `ls -n`, and `cd` to navigate
+- Create, open, and edit a simple file from PowerShell
+
+**Materials**
+- PowerShell (installed)
+- A text editor (Notepad or VS Code)
+
+Step-by-step Tasks
+1. Open PowerShell and confirm the prompt shows your path.
+2. Run `pwd` and `ls -n` in your home directory.
+3. Create `exercise1.txt` with `ni exercise1.txt` and open it in Notepad.
+4. Practice moving between folders with `cd` and using tab completion.
+5. Close and re-open PowerShell; confirm behavior is consistent.
+
+Quick Quiz
+1. How do you list only file/folder names?
+2. What does `pwd` do?
+3. How do you create a new file?
+4. What key is used for autocomplete?
+5. How do you open a file in Notepad from PowerShell?
+
+Extension Problems
+1. Save the output of `ls -n` to `list.txt` and open it.
+2. Create a nested folder structure and practice `cd` into it.
+3. Use `ls -n *.scad` to find SCAD files.
+4. Use `Get-Command code` to verify VS Code in PATH.
+5. Try redirecting `pwd` to a file and read it with `cat`.
 ## What is PowerShell?
 
 PowerShell is a cross-platform command-line shell and scripting language that runs on Windows, Linux, and macOS. It lets you control your computer with text commands instead of a graphical user interface (GUI). In this course we use PowerShell to run CLI tools (like OpenSCAD, slicers, or 3DMake), move files, and automate repetitive tasks.

@@ -1,25 +1,23 @@
-# Quiz 1: Power Shell Navigation ~20 minutes
-* Note to take a screen shot press the keyboard shortcut Windows key + shift + s then tab three times until you hear fullscreen snip, hit enter your screen shot will now be availble to paste (control + v).
+# Quiz 1: PowerShell Basics (Self-Paced) — ~20 minutes
 
-Complete the following tasks pasting each screen shot into the same email to send to me:
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
-1. Show me the names of the files and folder in your home directory. Take a screen shot when you are done and paste it into your email.
 
-2. Show me the names of the files and folder in your Documents folder. Take a screen shot when you are done and paste it into your email.
+Instructions: Complete the tasks below. When asked to capture output, save screenshots or copy output into a single text file to submit.
 
-3. Show me the names of the files and folders in your root directory. Take a screen shot when you are done and paste it into your email.
+Part A — Hands-on tasks (capture evidence)
+1. Run `ls -n ~` and capture the output (screenshot or copy to a file).
+2. Run `ls -n ~/Documents` and capture the output.
+3. Run `ls -n /` (or `ls -n C:\` on Windows) and capture the output.
+4. Move a downloaded file into `~/Documents/OpenSCAD_Projects/Lessons` and capture the `ls -n` output showing it.
+5. Rename that file to include your name and capture the `ls -n` output again.
 
-4. Download the email attachment and use the PowerShell to move it to your Lessons folder in the OpenSCAD directory in your Documents. Take a screen shot of the names of the listed folders and files in the Lessons folder when you are done and paste it into your email.
+Part B — Short answers (include in your submission)
+1. What is a path?
+2. How do you include spaces in a path?
+3. How do you separate command arguments from flags?
+4. What is another name for a folder?
+5. Which command lists only names and is screen-reader-friendly?
 
-5. Rename the file to your name followed by the original file name. Take a screen shot of the names of the listed folders and files in the Lessons folder when you are done and paste it into your email.
-
-Quiz Part 2 (another email)
-Answer the following in the body of your email:
-1. What is a path? 
-2. Can you have spaces in paths?
-3. How do you sperate commands and parameters or flags
-4. What is another name for a folder? 
-
-NOTES:
-* Maybe send as a text file attachment instead of in email body?
-* Roy starts at 2:20pm 1 prompts move to rename 1 prompt on path 1 prompts on spaces and quotes in path end 3:10 (still has questions to write)
+Notes
+- If screenshots are difficult, copy command output into a text file and submit that file instead.

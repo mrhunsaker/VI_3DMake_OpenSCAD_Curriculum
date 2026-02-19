@@ -1,4 +1,6 @@
-# Lesson 2.1: Parametric Design & Modules in OpenSCAD
+# Lesson 2.1 — Parametric Design & Modules (Self-Paced)
+
+**Accessibility:** Add a short walkthrough in example `.scad` files and annotate key parameters so screen-reader users can follow the example code step-by-step.
 
 **Unit:** 2 — Intermediate Skills  
 **Duration:** 1–2 class periods  
@@ -21,113 +23,41 @@ By the end of this lesson, students will be able to:
 
 When you store a dimension in a variable, you've taken your first step toward parametric design. **Parametric design** means building your model around adjustable parameters so that a single change automatically updates the whole design.
 
-**Example without parametric thinking:**
+Estimated time: 60–90 minutes
 
-```scad
-cube([70, 16, 5]);
-translate([0, 20, 0]) cube([70, 16, 5]);
-translate([0, 40, 0]) cube([70, 16, 5]);
-```
+Learning objectives:
+- Explain parametric design and why it matters
+- Define and call `module()` with parameters in OpenSCAD
+- Refactor repeated geometry into modules and default parameters
 
-If you want to change the width from 16 to 20, you must edit three places. If you have 30 of these, that's 30 edits — and you'll probably miss one.
+Materials:
+- OpenSCAD; an example `.scad` file to refactor; text editor
 
-**Example with parametric thinking:**
+Step-by-step student tasks:
+1. Open `lesson-2-1-parametric-modules.md` starter file or your Project 1 `.scad`.
+2. Identify one repeated shape or pattern and extract it into a `module` with parameters.
+3. Replace repeated code with calls to your module; use default parameter values where sensible.
+4. Create a `storage_box(length, width, height, wall)` module that produces a hollow box using `difference()`.
+5. Call `storage_box()` three times with different sizes and arrange them side-by-side using `translate()`.
 
-```scad
-w = 16;  // change this one number to update the whole design
-cube([70, w, 5]);
-translate([0, 20, 0]) cube([70, w, 5]);
-translate([0, 40, 0]) cube([70, w, 5]);
-```
+Checkpoint:
+- Upload `lesson2_1_refactor.scad` showing at least one module and three size variants, plus brief comments.
 
-Better — but there's still a lot of repetition. That's where **modules** come in.
+Quiz — Lesson 2.1 (5 items):
+1. Short answer: What is a module in OpenSCAD?
+2. Multiple choice: How do you give a parameter a default value? (A) `param = 5` inside module header (B) `module foo(x=5)` (C) `default(x=5)` ) — Answer: B
+3. Practical: Show module code that creates a cube using `length` and `width` parameters.
+4. Short answer: Why prefer modules over copy‑paste for repeated geometry?
+5. Practical: Provide the `storage_box` call that creates a 30×20×15 box.
 
----
+Extension problems (5):
+1. Refactor an entire Project 1 `.scad` file into modules and submit a small changelog of edits.
+2. Create a module with optional parameters (use defaults) and demonstrate calling it with named parameters.
+3. Write a tiny test script that generates 5 variants of a module in a row using a `for()` loop.
+4. Build a small parts library file `parts.scad` that other students can `use` or `include` in their projects.
+5. Create a README explaining how to use your `storage_box` module (include parameter meanings and example calls).
 
-## Modules
-
-A **module** is a reusable block of code. You define it once, give it a name, and then call it by name as many times as you need.
-
-### Basic Module Syntax
-
-```scad
-module my_module_name() {
-    // your shapes here
-    cube([10, 10, 10]);
-}
-
-// Call the module:
-my_module_name();
-```
-
-### Module with Parameters
-
-```scad
-module floor_marker(length, width, height) {
-    cube([length, width, height]);
-}
-
-// Call with different sizes:
-floor_marker(70, 16, 5);
-translate([0, 30, 0]) floor_marker(50, 12, 3);
-```
-
-Parameters work like variables that are local to the module. When you call `floor_marker(70, 16, 5)`, the value 70 is assigned to `length`, 16 to `width`, and 5 to `height` — but only inside that module call.
-
-### Default Parameter Values
-
-You can give parameters default values so you don't have to specify them every time:
-
-```scad
-module floor_marker(length = 70, width = 16, height = 5) {
-    cube([length, width, height]);
-}
-
-floor_marker();                  // uses all defaults: 70 x 16 x 5
-floor_marker(50);                // length=50, width=16, height=5
-floor_marker(length = 80, height = 8);  // width stays at default 16
-```
-
----
-
-## Why Modules Matter for Projects
-
-### Project 1 — Revisited
-
-Your Project 1 floor marker had specific dimensions. But what if the school needed markers in two sizes — one for desks and one for chairs? With a module:
-
-```scad
-module velcro_marker(length = 70, width = 16, height = 5, lip = 1) {
-    difference() {
-        cube([length, width, height]);
-        // Optional recess for command strip
-        translate([lip, lip, -0.1])
-            cube([length - 2*lip, width - 2*lip, height - 1]);
-    }
-}
-
-// Desk marker (original size)
-velcro_marker();
-
-// Chair marker (smaller)
-translate([0, 30, 0]) velcro_marker(length = 50, width = 12);
-```
-
-### Project 3 (Jewelry Beads) — Preview
-
-Project 3 requires **two different bead shapes** made with **parametric modules**. Here's the structure you'll build:
-
-```scad
-module round_bead(diameter = 15, hole_d = 3) {
-    // Your bead shape here
-}
-
-module faceted_bead(size = 12, hole_d = 3) {
-    // Your different bead shape here
-}
-```
-
-You'll define both modules in one file and call them to build your complete jewelry piece.
+**Accessibility:** Add comments and a short, line-by-line walkthrough in your `.scad` file so a screen-reader user can understand the structure and parameter meanings.
 
 ---
 

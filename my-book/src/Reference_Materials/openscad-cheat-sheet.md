@@ -1,4 +1,7 @@
-# OpenSCAD Quick Reference — Cheat Sheet
+# OpenSCAD Quick Reference — Cheat Sheet (Self-Paced)
+
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
+
 
 *Keep this handy during all OpenSCAD work. For full documentation: https://openscad.org/documentation.html*
 

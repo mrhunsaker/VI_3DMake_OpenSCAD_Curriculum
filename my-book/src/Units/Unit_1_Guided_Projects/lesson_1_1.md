@@ -1,65 +1,39 @@
-# Lesson 1.1 — Primitives
 
-## Materials
+# Lesson 1.1 — Primitives (Self-Paced)
 
-- Computer with OpenSCAD installed
-- 3D-printed primitive models (optional tactile examples)
+Estimated time: 30–45 minutes
 
-## Overview
+Learning objectives:
+- Create `cube()`, `sphere()`, and `cylinder()` primitives.
+- Use `center` and `$fn` effectively for positioning and resolution.
 
-This lesson covers the three basic 3D primitives in OpenSCAD: `cube()`, `sphere()`, and `cylinder()`. Students will learn parameter syntax, centering, and the `$fn` variable for controlling curve resolution.
+Materials:
+- Computer with OpenSCAD
+- Optional tactile examples of primitives
 
-## Sequence & Notes
+Step-by-step instructions:
+1. Open a new file `lesson1_1.scad`. Add a short header with your name and date.
+2. Create a cube using literal values: `cube([20,20,20]);` Preview (`F5`).
+3. Convert literals to variables (`size = [20,20,20]; cube(size);`). Re-preview.
+4. Create a sphere with `sphere(d=20);` then set `$fn = 24` and compare with `$fn = 80`.
+5. Create a cylinder: `cylinder(h=20, d=10);` then make a tapered cone using `r1`/`r2`.
 
-- Warm-up: quick terminology review and header metadata (author, date, description) in the file.
-- Syntax rules: statements end with a semicolon; whitespace is ignored; comments are allowed.
-- `cube([x, y, z])`: vector parameters. Explain `center=true` and how centering affects translation.
-- `sphere(r = value)` or `sphere(d = value)`: radius or diameter. Introduce `$fn` (a special variable controlling the number of fragments used to approximate curves) — use small values for fast preview, larger values for final export.
-- `cylinder(h = height, r = radius)` or `cylinder(h = height, d = diameter)`. Show `r1`/`r2` for cones.
+Checkpoint tasks:
+- Show a centered 10 mm cube and confirm its coordinates.
+- Show a sphere rendered at `$fn = 80` and note the render time.
 
-## Classroom Activities
+Quiz — Lesson 1.1 (5 items):
+1. Short answer: Example code to center a 10 mm cube.
+2. Multiple choice: `$fn` affects (A) color (B) curve smoothness (C) position.
+3. True/False: `sphere(d = 20);` uses diameter.
+4. Practical: Code for cone with bottom radius 6 mm, top radius 2 mm, height 20 mm.
+5. Short answer: One advantage of named variables.
 
-1. Type a `cube()` using literal numbers and preview.
-2. Rewrite the cube using named variables and `center=true` to see how the object shifts.
-3. Create a sphere and experiment with `$fn = 20` vs `$fn = 80`.
-4. Create a cylinder and then a tapered cone using `r1` and `r2`.
+Extension problems (5):
+1. Build a compound object made of one cube and one cylinder; align them so the cylinder sits on the cube center.
+2. Create three spheres with increasing `$fn` values and export screenshots (or notes on render time).
+3. Make a centered cube and rotate it by 45 degrees about Z, explain how centering changes the result.
+4. Write a short module `module stud(size, height) { ... }` and create an array of studs with different sizes.
+5. Design a small tactile token using only primitives and variables; list the variables you used.
 
-## Common Pitfalls
-
-- Forgetting the semicolon will cause a syntax error.
-- Using `center=true` will reposition shapes relative to the origin; be explicit about where you want the object.
-
-### Quiz — Lesson 1.1
-
-1. Short answer: How do you make a cube centered at the origin? (Example answer: `cube([10,10,10], center=true);`)
-2. Multiple choice: `$fn` affects: (A) color (B) curve smoothness (C) position — Answer: B
-3. True/False: `sphere(d = 20);` creates a sphere 20 mm in diameter. — Answer: True
-4. Practical: Write OpenSCAD code for a cone using `cylinder()` where bottom radius = 6 mm, top radius = 2 mm, height = 20 mm.
-5. Short answer: Why use named variables instead of raw numbers?
-# Lesson 1_1: Primitives
-## Materials
-- computer with openSCAD installed
-- 3D printed primatives (scale as needed in 3d printer slicer program but keep porportions locked for at least the cylinder and sphere)
-- 3D printed 1_1 models
-
-## Sequence
-- Warm up review terminology 
-- Header Author, date, description fill it out or make one always!
-- shape commands parameters and ending with a semi-colon
-  - can have any amount of space in the code since all shape commands end with a semi-colon
-- cheat sheet for syntax
-  - layout of cheat sheet (headings)
-  - | or symbol
-- the cube continued
-  - vectors
-  - the center flag (ABC- always be centering!)
-- the sphere
-  - introduce the $fn code (call it a command for now but explain its actually something else, a reserved variable will learn more about in lesson 1_3 and lesson 2)
-- cylinder
-  - cones
-  
-## Check for understanding
-- What are parameters?
-- Where are each shapes centered
-- How do you make a pointed cone facing down?
-- Practice problems
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.

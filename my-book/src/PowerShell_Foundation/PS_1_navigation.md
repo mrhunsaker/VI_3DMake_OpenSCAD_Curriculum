@@ -1,5 +1,8 @@
 # PS-1: Navigation — Moving Around Your File System
 
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
+
+
 **Duration:** 1 class period
 **Prerequisite:** PS-0 (Getting Started)
 
@@ -47,147 +50,40 @@ Use this whenever you are unsure where you are.
 `cd` stands for "change directory."
 
 ```powershell
-# Go to a folder by name (relative path — from where you are now)
-cd Documents
+# PS-1: Navigation — Moving Around Your File System (Self-Paced)
 
-# Go to a folder by full path (absolute path)
-cd C:\Users\YourName\Documents
+Estimated time: 25–40 minutes
 
-# Go to your home directory
-cd ~
+**Learning Objectives**
+- Use `pwd` to confirm location
+- Use `cd` to move through relative and absolute paths
+- Use `ls -n` and wildcards to find files
 
-# Go up one level
-cd ../
+**Materials**
+- PowerShell
+- Editor
 
-# Go up two levels
-cd ../../
-```
+Step-by-step Tasks
+1. Run `pwd` and read the returned path aloud.
+2. Move to `Documents` with `cd Documents`, confirm with `pwd`.
+3. Use `ls -n` and `ls -n -af` to list files only and directories only.
+4. Practice using `*` and `?` wildcards to list matching files.
+5. Return home with `cd ~`.
 
-**Relative vs. absolute paths:**
-- A **relative path** starts from where you currently are: `cd Documents`
-- An **absolute path** starts from the root or home: `cd ~/Documents`
+Checkpoints
+- After task 2 you can state the path printed by `pwd`.
 
-Both reach the same place if you are currently in your home folder. Relative paths are shorter to type; absolute paths work from anywhere.
+Quick Quiz
+1. What does `pwd` show?
+2. How do you list directories only with `ls`?
+3. What wildcard matches any number of characters?
+4. How do you list files with the `.scad` extension?
+5. Give an example of an absolute path and a relative path.
 
-### Practice sequence:
-```powershell
-cd ~
-cd Documents
-pwd
-cd ../
-pwd
-cd ~
-```
-
-Listen to the output of each `pwd` to confirm where you are.
-
----
-
+Extension Problems
+1. Write a one-line script that lists `.scad` files and saves to `scad_list.txt`.
+2. Use `ls -n ~/Documents | more` to page through long listings.
+3. Combine `ls` with `Select-String` to search for a filename pattern.
+4. Create a shortcut alias in the session for a long path and test it.
+5. Practice tab-completion in a directory with many similarly named files.
 ## `ls` — Listing Files and Folders
-
-`ls` shows the contents of your current directory. By default it shows a table with attributes, dates, sizes, and names — a lot of output.
-
-```powershell
-ls
-```
-
-### Screen Reader Friendly: `ls -n`
-
-The `-n` flag tells `ls` to show **names only**. This is much easier to navigate with a screen reader.
-
-```powershell
-ls -n
-```
-
-### Filtering: Files Only or Folders Only
-
-```powershell
-ls -n -af   # show only files (not folders)
-ls -n -ad   # show only directories (not files)
-```
-
-### Listing a Specific Path
-
-You can `ls` a path without being in it:
-
-```powershell
-ls -n ~/Documents
-ls -n ~/Desktop
-```
-
----
-
-## Relative and Absolute Paths — Summary
-
-```powershell
-# You are currently in C:\Users\YourName
-
-# Relative — starts from current location
-cd Documents             # goes to C:\Users\YourName\Documents
-ls -n ./Documents        # lists Documents without moving
-
-# Absolute — starts from root or home
-cd ~/Documents           # same as above, from anywhere
-cd C:\Users\YourName\Documents   # same, fully explicit
-```
-
----
-
-## Wildcards
-
-Wildcards let you match multiple files at once without knowing their exact names.
-
-| Wildcard | Matches |
-|---------|---------|
-| `*` | Zero or more characters |
-| `?` | Exactly one character |
-
-**Examples:**
-```powershell
-# List all .scad files in current directory
-ls -n *.scad
-
-# List all files starting with "project"
-ls -n project*
-
-# List all files with exactly one character before .txt
-ls -n ?.txt
-```
-
----
-
-## Practice
-
-Complete these tasks:
-
-```powershell
-# 1. Print your current location
-pwd
-
-# 2. List the names of everything in your home directory
-ls -n ~
-
-# 3. Navigate to your Documents folder and confirm you are there
-cd ~/Documents
-pwd
-
-# 4. List only the folders in Documents
-ls -n -ad
-
-# 5. Go up one level and confirm
-cd ../
-pwd
-
-# 6. Return home
-cd ~
-```
-
----
-
-## Check for Understanding
-
-1. What command shows you where you are?
-2. What is the difference between `cd Documents` and `cd ~/Documents`?
-3. What flag makes `ls` show only names?
-4. How would you list only the `.scad` files in your current folder?
-5. If you are in `~/Documents/OpenSCAD_Projects` and you type `cd ../../`, where do you end up?

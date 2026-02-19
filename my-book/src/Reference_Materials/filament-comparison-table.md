@@ -1,4 +1,7 @@
-# Filament Comparison Table
+# Filament Comparison Table (Self-Paced)
+
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
+
 
 *Quick reference for choosing the right filament. All temperature values are typical ranges — always check the label on your specific spool.*
 

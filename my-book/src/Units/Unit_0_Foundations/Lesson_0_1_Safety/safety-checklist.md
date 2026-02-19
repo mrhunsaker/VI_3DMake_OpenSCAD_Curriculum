@@ -1,62 +1,39 @@
-# Safety Checklist — 3D Printing Classroom
 
-**Student Name:** ___________________________________  
-**Date:** ___________________________________  
-**Instructor:** ___________________________________
+# Safety Checklist — 3D Printing Classroom (Self-Paced)
 
----
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
 
-## Section 1: I Know the Hazards
+Use this checklist to confirm you understand classroom safety. Submit a scanned or photographed signed copy if required by your instructor.
 
-Check each box after your instructor has explained and you understand:
+Student Name: _______________________  Date: _______________
 
-- [ ] I understand that the nozzle and print bed reach temperatures that cause serious burns
-- [ ] I understand that I must never touch the hot end or bed while the printer is on or recently used
-- [ ] I understand that moving printer parts can cause injury if I reach into an operating machine
-- [ ] I understand that 3D printing releases airborne particles and I should not stand over the printer
-- [ ] I understand that the printer should never be left running unattended overnight
-- [ ] I understand that food and drink are not allowed near the printer area
+Section 1 — Hazards (check after you read and understand):
+- [ ] I understand the nozzle and bed can burn skin; I will not touch them when hot.
+- [ ] I understand moving parts can injure; I will not reach into a running printer.
+- [ ] I understand printing releases particles; I will avoid breathing directly over printers and ensure ventilation.
+- [ ] I understand to report burning smells or smoke immediately.
+- [ ] I understand not to leave long prints running unattended without instructor approval.
 
----
+Section 2 — Equipment and Location (check after locating items):
+- [ ] I can identify the nozzle/hot end.
+- [ ] I can identify the build plate.
+- [ ] I can identify where filament is loaded.
+- [ ] I know where the power switch is.
+- [ ] I know where the fire extinguisher and first aid kit are located.
 
-## Section 2: I Know the Equipment
+Section 3 — Rules Agreement (check to confirm):
+- [ ] I will not start or stop prints unless authorized.
+- [ ] I will wear any required PPE and follow local lab rules.
+- [ ] I will dispose of filament scraps and failed prints properly.
+- [ ] I will wash my hands after handling filament or printed parts.
 
-Check each box after you have physically located each item:
+Signatures:
 
-- [ ] I can identify the nozzle / hot end on our classroom printer
-- [ ] I can identify the print bed / build plate
-- [ ] I can identify where the filament feeds in
-- [ ] I know where the power switch is
-- [ ] I know where the fire extinguisher is located (mark the location on a diagram if provided)
-- [ ] I know where the first aid kit is located
-- [ ] I know where the eyewash station is (if applicable)
+Student signature: ___________________________  Date: ___________
 
----
+Instructor signature: _________________________  Date: ___________
 
-## Section 3: I Know the Rules
+Notes (instructor): _______________________________________________________
 
-Check each box to confirm you have read and agree to follow each rule:
 
-- [ ] I will not touch hot printer components
-- [ ] I will not reach into the printer while it is operating
-- [ ] I will not start or stop a print without instructor authorization (until authorized to do so)
-- [ ] I will wash my hands after handling filament or printed objects
-- [ ] I will report any damage, unusual sounds, or burning smells to the instructor immediately
-- [ ] I will not eat or drink in the printer area
-- [ ] I will follow all additional safety guidelines communicated by my instructor
-
----
-
-## Section 4: Signatures
-
-By signing below, I confirm that I have read the safety lesson, attended the printer orientation walkthrough, and agree to follow all safety rules.
-
-**Student Signature:** ___________________________________ **Date:** ____________
-
-**Parent/Guardian Signature** *(if required by school):* ___________________________________ **Date:** ____________
-
-**Instructor Signature:** ___________________________________ **Date:** ____________
-
----
-
-*Keep this form on file. Students without a completed form may not work with the printer.*
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.

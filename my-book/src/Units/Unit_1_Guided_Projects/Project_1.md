@@ -1,45 +1,55 @@
-# Project 1 — Tactile Floor Markers
+# Project 1 — Tactile Floor Markers (Guided Self-Paced)
+
+Estimated time: 1–2 weeks (self-paced milestones suggested)
+# Project 1 — Tactile Floor Markers (Self-Paced)
+
+**Accessibility:** Provide alt-text for images and a short comment-based walkthrough in `.scad` files so screen-reader users can follow steps.
 
 ## Materials
 
-- Failed 3D printed prototypes for examples
-- Example project documentation and briefing files
-- Calipers
-- An environment (real or simulated) for placing floor markers
+- Calipers, classroom printer, example prototypes, project documentation template
 
 ## Objectives
 
-- Design and iterate on a tactile floor marker that meets functional requirements
-- Produce technical documentation and measurement data
-- Test prototypes and refine designs across iterations
+- Translate functional requirements into measurable acceptance tests
+- Produce parametric OpenSCAD models that support rapid prototyping
 
 ## Sequence (approx. 2 weeks)
 
-1. Read the design briefing and clarify functional requirements.
-2. Sketch concepts and take measurements of target surfaces.
-3. Implement a chosen design in OpenSCAD using variables for major dimensions.
-4. Print prototypes, evaluate against acceptance criteria, and iterate.
-5. Finalize documentation, take at least one photo of the physical device, and submit deliverables.
+1. Read the briefing and write five functional requirements; for each, state a single testable acceptance criterion.
+2. Measure the target surface and record constraints (dimensions, surface material, and access).
+3. Sketch three concept variations and pick one to implement in `project1.scad` using top-level variables.
+4. Print a low-resolution tactile prototype (print only a small section if necessary) and evaluate feel and placement.
+5. Iterate: update parameters and print a second prototype; measure and document changes.
+6. Finalize the marker and produce assembly/installation notes and a short reflection on accessibility testing.
 
 ## Instructor notes
 
-- Encourage multiple quick iterations with low `SHELL` settings for faster printing when testing fit.
-- Emphasize documentation: students should include measured values, code, print settings, and reflections.
-# Project 1 Tactile Floor Markers
+- Assessment checklist:
+- Model meets acceptance tests for at least three functional requirements
+- Iteration documented with measurable changes
+- Clear reflection on what changed and why
 
-## Materials
-- Failed 3d printed prototype
-- Example Project doc file
-- Project briefing file
-- Callipers
-- A room with furniture that can be moved and needs to be put back in place (this can be made up, but its helpful if its a real life example or use for students)
+Probing Questions
+1. Which functional requirement is hardest to verify non-visually and how will you test it?
+2. How does surface texture affect tactile recognition for your marker design?
 
-## Objectives
-- 3D printing 
-- Designing a solution based on functional requirements and constraints
-- Preparing technical notes
-- Meauring using calipers
-- Testing multiple iterations
+Extension problems (5):
+1. Design a removable attachment for the marker that requires no tools and document tolerance choices.
+2. Create three tactile variants and run blind tests with two participants; summarize results.
+3. Add embossed labels and measure how text depth influences tactile recognition.
+4. Model and test mounting on a curved surface and report fit adjustments.
+5. Produce a short guide for non-visual users to test and validate tactile markers.
+
+
+
+**Assessment checklist (instructor)**
+
+- Model meets at least three acceptance tests
+- Two iterations documented with measurable changes
+- Reflection includes concrete next-step adjustments and accessibility outcomes
+
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
 
 ## Sequence
 *Project should take around 2 weeks*
@@ -50,3 +60,5 @@
 5. Have students reiterate on their prototype. 
 6. Have students finish their documentation file and take atleast one product photo. 
 7. Have students send all virutal deliverables via email and present the physical device in class.
+
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.

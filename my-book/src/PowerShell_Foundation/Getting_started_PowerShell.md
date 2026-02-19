@@ -1,14 +1,48 @@
-# Getting Started with PowerShell
+# Getting Started with PowerShell (Self-Paced)
 
-This guide introduces Microsoft PowerShell with a focus on practical tasks students will use to manage files, run command-line tools, and support 3D printing workflows. It emphasizes keyboard-driven, screen-reader-friendly techniques and gives reproducible examples you can try in class.
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
-## Prerequisites
 
-*   Typing and basic text-editing skills
-*   Basic file-system knowledge (files, folders, paths)
-*   Familiarity with using a screen reader (helpful but not required)
-*   Basic understanding of variables and parameters
+Estimated time: 30–45 minutes
 
+**Learning Objectives**
+- Launch PowerShell and identify the prompt
+- Understand and use basic path notation (`~`, `./`, `../`)
+- Use `pwd`, `ls -n`, and `cd` to navigate the filesystem
+- Open files in an external editor and run simple commands
+
+**Materials**
+- A computer with PowerShell installed
+- Access to a text editor (Notepad, VS Code)
+
+---
+
+Step-by-step Tasks
+1. Open PowerShell. Listen for the prompt and current path.
+2. Run `pwd` to confirm your location.
+3. Run `ls -n` in your home directory and note the output.
+4. Practice `cd Documents`, `cd ../`, and `cd ~` to move between folders.
+5. Use `ni example.txt` then `notepad.exe example.txt` to create and open a file.
+
+Checkpoints
+- After step 3 you should be able to state your current directory.
+- After step 5 you should be able to create and open a text file from PowerShell.
+
+---
+
+Quick Quiz (5 questions)
+1. What command prints your current directory?
+2. What does `~` represent?
+3. How do you list only names with `ls`?
+4. How do you go up one directory level?
+5. How would you open `notes.txt` in Notepad from PowerShell?
+
+Extension Problems (5)
+1. Create a folder `OpenSCAD_Projects` in Documents and verify its contents.
+2. Create three files named `a.scad`, `b.scad`, `c.scad` and list them with a wildcard.
+3. Use `ls -n ~/Documents` and save the output to `doc_list.txt`.
+4. Try tab-completion in a deeply nested folder and note behavior.
+5. Capture `pwd` output into a file and open it in your editor.
 ## What is PowerShell?
 
 PowerShell is a cross-platform command-line shell and scripting language that runs on Windows, Linux, and macOS. It lets you control your computer with text commands instead of a graphical UI. In this course we use PowerShell to run CLI tools (like OpenSCAD, slicers, or 3DMake), move files, and automate repetitive tasks.

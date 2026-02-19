@@ -1,4 +1,7 @@
-# Measurement Worksheet
+# Measurement Worksheet (Self-Paced)
+
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
+
 
 **Student Name:** ___________________________________
 **Date:** ___________________________________

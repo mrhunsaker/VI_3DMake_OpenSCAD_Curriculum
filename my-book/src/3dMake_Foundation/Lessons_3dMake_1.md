@@ -1,72 +1,49 @@
-# **Lesson 1: Environmental Configuration and the Developer Workflow**
 
-The first instructional unit focuses on the transition from a consumer-grade user experience to a developer-grade environment. High school juniors must first master the command-line interface, which 3DMake uses to orchestrate its sub-processes.1 The installation process involves extracting the 3DMake binaries and executing the ./3dm setup command. During this phase, the student configures the tool to recognize local installations of OpenSCAD and their preferred slicing engine, such as PrusaSlicer or Cura.1  
-A critical concept introduced in this lesson is the "3DMake Project Structure." Unlike a solitary .scad file, a 3DMake project is a formalized directory that maintains a separation of concerns.1
+# Lesson 1: Environmental Configuration and the Developer Workflow (Self-Paced)
 
-| Project Component    | Function                                      | File Location      |
-| :------------------- | :-------------------------------------------- | :----------------- |
-| **Source Directory** | Contains all OpenSCAD logic and modules.      | src/main.scad      |
-| **Build Directory**  | Storage for generated STLs, 3MFs, and G-code. | build/             |
-| **Configuration**    | Project-specific settings and AI parameters.  | 3dmake.toml        |
-| **G-code Template**  | Defines printer-specific slicing parameters.  | template.gcode.3mf |
-
-Students learn to initialize this structure using the 3dm new. command, which generates the necessary boilerplate.1 The lesson emphasizes the use of an external text editor—such as Visual Studio Code or Notepad++—rather than the built-in OpenSCAD editor. By configuring the editor path in the 3DMake configuration, students can use the 3dm edit-model command to launch their coding environment directly, fostering a professional development cycle.1  
-The technical insight for this unit is the automation of the "pre-flight" check. Students are taught to run 3dm build frequently to verify that their code compiles. 3DMake handles the background execution of the OpenSCAD renderer, producing an STL file in the build/ directory without the student needing to leave their editor.1 This encourages a "small-step" iterative process, where changes are immediately validated against the renderer.
-
-## Lesson steps
-
-1. Install and verify tools
-	- Open a terminal and run the `./3dm setup` command following your instructor's installation notes.
-	- Confirm `openscad` and your chosen slicer (e.g., PrusaSlicer, Cura) are on the PATH by running `which openscad` and `which prusaslicer` (or the slicer executable for your environment).
-	- Run `3dm doctor` (or equivalent diagnostic) to verify configuration; record any errors in your lab notebook.
-
-2. Initialize a 3DMake project
-	- In your workspace, run `3dm new` to create the project scaffold.
-	- Open the generated `src/main.scad` in Visual Studio Code (or your preferred editor) using `3dm edit-model` if configured.
-	- Inspect `3dmake.toml` and confirm the `build/` and `src/` paths match the project conventions.
-
-3. Create a minimal, parametric model
-	- In `src/main.scad`, define three top-level parameters (e.g., `width`, `height`, `thickness`) and document them with inline comments.
-	- Build a simple assembly using primitives and transforms (for example, a rectangular housing with a recessed pocket).
-	- Save and run `3dm build` to render an STL; confirm `build/main.stl` appears and note the render time.
-
-4. Verify geometry and fix common issues
-	- Load the STL into your slicer and inspect for non-manifold edges, missing faces, or unexpectedly thin walls.
-	- If errors appear, return to `main.scad`, reduce `$fn` if necessary for testing, and simplify boolean operations to isolate the problem.
-	- Re-run `3dm build` after each fix until the STL loads cleanly in the slicer.
-
-5. Slice and preview G-code (no print yet)
-	- Use your slicer to generate G-code with the classroom-approved profile; export to `build/` as `main.gcode`.
-	- Run a layer-preview and check overhangs, first-layer adhesion parameters, and estimated print time.
-	- Ask a peer or instructor to review the preview for obvious issues.
-
-6. Post-processing and documentation
-	- Add a short entry to the project README describing parameter meanings, material chosen, and any known limitations.
-	- Commit `src/main.scad`, `3dmake.toml`, and a copy of the final STL to the project repository.
-
-7. Optional: Automate a variant
-	- Modify a parameter (for example, increase `width` by 20%) and run `3dm build` to produce a variant.
-	- Compare the two STLs and document dimensional differences with caliper measurements.
-
-8. Safety checklist before printing (instructor sign-off required)
-	- Verify enclosure/ventilation is operational, filament type is approved, and the printer bed is prepped.
-	- Confirm temperatures and retraction settings are correct for the filament.
-	- Obtain instructor permission before starting the physical print.
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
 
+Estimated time: 60–90 minutes
 
-## **References**
+**Learning Objectives**
+- Install and verify `3dm`, `openscad`, and a slicer are discoverable in the terminal
+- Initialize a 3dMake project and understand the project scaffold (`src/`, `build/`, `3dmake.toml`)
+- Edit `src/main.scad`, run `3dm build`, and inspect the generated `build/main.stl`
 
-Deck, T. (2025). *3DMake: A command-line tool for 3D printing workflows*. GitHub. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)  
-Gohde, J., & Kintel, M. (2021). *Programming with OpenSCAD: A beginner's guide to coding 3D-printable objects*. No Starch Press.  
-Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). *Understanding the challenges of OpenSCAD users for 3D printing*. Proceedings of the ACM Symposium on User Interface Software and Technology.  
-Google. (2025). *Vertex AI Gemini 3 Pro Preview: Getting started with generative AI*. [https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/get-started-with-gemini-3](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/get-started-with-gemini-3)  
-National Institute for Occupational Safety and Health (NIOSH). (2024). *Approaches to safe 3D printing: A guide for makerspace users, schools, libraries, and small businesses*. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html)  
-Ohio State University Environmental Health and Safety. (2026). *3D printer safety concerns and ventilation*. [https://ehs.osu.edu/kb/3d-printer-safety](https://ehs.osu.edu/kb/3d-printer-safety)  
-Salt Lake City Public Library. (2026). *Creative Lab: Available hardware and 3D printing procedures*. [https://services.slcpl.org/creativelab](https://services.slcpl.org/creativelab)  
-Salt Lake County Library. (2026). *Create Spaces: Hardware specifications and filament fees*. [https://www.slcolibrary.org/what-we-have/create](https://www.slcolibrary.org/what-we-have/create)  
-University of Utah. (2026). *Marriott Library ProtoSpace and MakerSpaces*. [https://lib.utah.edu/protospace.php](https://lib.utah.edu/protospace.php)  
-Washington State Department of Health. (2026). *3D printer and filament selection for safe school environments*. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)
+**Materials**
+- Terminal with 3dMake installed
+- Editor (VS Code or Notepad)
+- Example scaffold or classroom repository
+
+---
+
+Step-by-step Tasks
+1. Run `./3dm setup` or follow instructor's installation notes; confirm tools with `which 3dm` and `which openscad`.
+2. Create a project scaffold with `3dm new` and open `src/main.scad` using `3dm edit-model`.
+3. Add three top-level parameters (e.g., `width`, `height`, `thickness`) and a minimal model (`cube([width, height, thickness]);`).
+4. Run `3dm build` and verify `build/main.stl` exists.
+5. Open the STL in your slicer to check for thin walls or non-manifold geometry; if issues appear, iterate on `main.scad` and rebuild.
+
+Checkpoints
+- After step 2 you can locate `3dmake.toml` and the `build/` directory.
+- After step 4 the `build/` folder contains a valid `main.stl`.
+
+---
+
+Quick Quiz (5)
+1. What command initializes a 3dMake project?
+2. What folder holds generated STLs?
+3. How do you open the main model editor from the CLI?
+4. Why is it useful to run `3dm build` frequently during development?
+5. Give one reason to prefer an external editor over editing inline.
+
+Extension Problems (5)
+1. Add a README entry explaining your top-level parameters and expected units.
+2. Create a parameter variant by changing `width` by 20% and build both variants; compare dimensions with calipers.
+3. Script a `3dm` command sequence that automates new → edit → build for the scaffold.
+4. Intentionally create a thin-wall error and document the steps you took to find and fix it.
+5. Prepare a short instructor sign-off checklist describing safety checks before printing.
 
 ## **Works cited**
 

@@ -1,4 +1,6 @@
-# Stakeholder Interview Worksheet
+# Stakeholder Interview Worksheet (Self-Paced)
+
+**Accessibility:** Provide a brief text-based walkthrough of the worksheet steps and allow answers to be submitted as text or short audio transcripts for non-visual participants.
 
 **Student (Designer) Name:** ___________________________________
 **Stakeholder Name:** ___________________________________
@@ -212,3 +214,23 @@ ___________________________________________________________________________
 **Stakeholder signature (if available):** ___________________________________
 
 *If a written signature is not possible, note the method of confirmation (verbal, email, etc.) and attach any written evidence.*
+ 
+---
+
+## Quick Quiz (worksheet review)
+
+1. What is one measurable way to test a functional requirement?
+2. Give an example of a follow-up question you could ask if a stakeholder mentions "it's hard to find items."
+3. Why is it important to capture specific measurements during an interview?
+4. What is a clear sign that a statement is a "want" rather than a "need"?
+5. When should you seek stakeholder sign-off?
+
+## Extension Problems
+
+1. Rewrite two of your planned questions to be more open-ended and explain why your changes are better.
+2. Create a one-page empathy map from your interview notes.
+3. Draft three functional requirements from your interview and write a one-line pass/fail test for each.
+4. Propose a low-fidelity prototype to test one high-priority requirement and sketch the test plan.
+5. Convert the worksheet into a short remote interview script suitable for a 7-minute phone call.
+
+**Accessibility:** If you record audio, provide a short transcript. For images or diagrams, add alt-text and include comment-based walkthroughs for any example `.scad` files.

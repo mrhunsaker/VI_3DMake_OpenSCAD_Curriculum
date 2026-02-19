@@ -1,45 +1,44 @@
 
-# **Lesson 2: Geometric Primitives and the Mathematics of Constructive Solid Geometry**
 
-Lesson 2 moves from the tooling environment into the core logic of programmatic modeling. OpenSCAD is rooted in Constructive Solid Geometry (CSG), a paradigm that composes complex solids by combining simple primitives through boolean operations.3 For students this is an applied exercise in 3D analytic geometry (working in $\\mathbb{R}^3$): coordinates, vectors, and transforms become the language for describing form. Emphasize that modeling in OpenSCAD is declarative—students describe *what* the geometry is, not *how* to draw it step-by-step.
+# Lesson 2: Geometric Primitives and Constructive Solid Geometry (Self-Paced)
 
-The lesson surveys the fundamental primitives (`cube()`, `sphere()`, `cylinder()`, `polyhedron()`) and their use as building blocks. Equally important are transforms (`translate()`, `rotate()`, `scale()`), which modify coordinate frames for subsequent primitives. A core conceptual hurdle is that transforms apply to the objects that follow them; teaching a nested, block-structured approach (grouping transforms with braces) helps students reason about local vs. global coordinates and avoids common placement errors.
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
-Boolean operations form the algebra of shape construction. Students practice with the three canonical CSG operators:
 
-1. **Union:** $A \\cup B$ — merges volumes into a single manifold.
-2. **Difference:** $A \setminus B$ — subtracts the second volume from the first.
-3. **Intersection:** $A \\cap B$ — keeps only shared volume.3
+Estimated time: 60 minutes
 
-A practical emphasis in this lesson is numerical robustness. CSG operations are sensitive to coincident faces, near-zero-thickness walls, and poorly conditioned coordinate values. The so-called "0.001 rule" is introduced as a pragmatic technique: when performing `difference()` operations, offset or slightly enlarge the subtractor (for example, use $h+0.002$ and a tiny translation like $z-0.001$) to avoid coincident-face artifacts that lead to non-manifold meshes.9 Students are also shown how to reduce `$fn` for quick diagnostic renders and then increase it for final exports to balance speed and fidelity.
+**Learning Objectives**
+- Use OpenSCAD primitives (`cube()`, `sphere()`, `cylinder()`) and transforms (`translate()`, `rotate()`, `scale()`)
+- Apply CSG operators (`union`, `difference`, `intersection`) safely and diagnose common numerical issues
+- Use quick diagnostic renders and validate geometry in a slicer
 
-The lesson closes by connecting these geometric principles to digital fabrication constraints: thin walls, tiny bridging spans, and intersecting coplanar faces often render correctly in OpenSCAD's preview but fail in slicers or produce fragile prints. Students learn to interpret render warnings, run lightweight mesh checks, and iterate with small, testable changes so that mathematical intent maps reliably to manufactured results.
+**Materials**
+- 3dMake project scaffold with `src/main.scad`
+- Example primitive snippets (provided in assets)
 
-## Lesson steps
+Step-by-step Tasks
+1. Open `src/main.scad`; identify and run simple examples using `cube()`, `sphere()`, and `cylinder()`.
+2. Create three short examples demonstrating `union()`, `difference()`, and `intersection()` and render with reduced `$fn`.
+3. Reproduce a failing `difference()` case and apply the 0.001 offset strategy to the subtractor; re-render and confirm fix.
+4. Build an STL with `3dm build` and open it in your slicer to check for thin walls or islands.
+5. Document any fixes in the project README and commit the working `main.scad` and STL.
 
-1. Review primitives and transforms
-	- Open `src/main.scad` and identify examples of `cube()`, `cylinder()`, and `sphere()`.
-	- Experiment with `translate()` and `rotate()` lines: add a small translation and observe the object's position in the preview.
+Checkpoints
+- After task 3 the problematic boolean should render without non-manifold warnings.
 
-2. Practice basic CSG operations
-	- Create three small example blocks demonstrating `union()`, `difference()`, and `intersection()`.
-	- Render each example with a low `$fn` and note any warnings or errors produced by the renderer.
+Quick Quiz (5)
+1. Name three primitive functions in OpenSCAD.
+2. What does `difference()` accomplish?
+3. Why might two coincident faces cause a render failure?
+4. What is the 0.001 rule and why is it useful?
+5. How does lowering `$fn` help during debugging?
 
-3. Apply the 0.001 rule and numerical workarounds
-	- Reproduce a failing `difference()` example and apply a tiny offset to the subtracting shape (for example, increase one dimension by 0.002 and shift by -0.001 on the coincident axis).
-	- Re-render and confirm the boolean operation completes without producing non-manifold warnings.
-
-4. Diagnostic rendering strategy
-	- Use reduced `$fn` for rapid checks, then increase `$fn` or resolution before exporting STL.
-	- Use `3dm build` to create an STL, then open it in the slicer to inspect for thin walls or unexpected islands.
-
-5. Mesh validation and remediation
-	- If slicer reports problems, simplify boolean chains (split complex booleans into stepwise operations), or use analysis primitives to isolate the problematic sub-shape.
-	- Re-run `3dm build` after each incremental fix until the STL loads cleanly.
-
-6. Reflection and documentation
-	- Add comments near tricky boolean code explaining why offsets were used and what geometric invariants are expected.
-	- Record a short note in the project README about the `$fn` and offset strategy used for this model.
+Extension Problems (5)
+1. Create a small assembly using `union()` of three primitives and export the STL.
+2. Intentionally create a failing boolean and fix it using offsets; explain your approach.
+3. Write a short test script that generates three variants with varying `$fn` values and compare render times.
+4. Use `3dm info` (if available) to generate a report on your model and document any recommendations.
+5. Explore using a library module (e.g., a fillet helper) to fix a sharp corner and note the difference in final STL.
 
 
 

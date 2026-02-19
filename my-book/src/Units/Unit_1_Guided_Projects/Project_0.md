@@ -1,62 +1,49 @@
-# Project 0 — Your First 3D Print
 
-## Materials
 
-- Calipers
-- 3D print of Project 0 (example) and student models
-- Project 0 briefing and student documentation template
-- Computer with a slicer (e.g., PrusaSlicer, Cura) — recommend a slicer with accessible CLI or UI features
 
-## Objectives
+# Project 0 — Your First 3D Print (Guided Self-Paced)
 
-- Measure an object with calipers and record dimensions
-- Model a simple object in OpenSCAD using measured parameters
-- Render and slice the model for 3D printing
-- Convert between inches and millimeters when necessary
+Estimated time: 2–4 hours (including test prints)
 
-## Sequence
+**Learning Objectives**
+- Measure physical objects and convert measurements into parametric OpenSCAD variables
+- Produce an STL from parametric code and verify printability in a slicer
+- Compare printed results to expected dimensions and document corrective actions
 
-1. Present the project briefing and distribute the physical object for measurement.
-2. Students measure the object with calipers and log dimensions in the documentation template.
-3. Students model the object in OpenSCAD using variables for key dimensions.
-4. After previewing and rendering, students slice the STL and prepare G-code for printing.
-5. Optional: If available, use OctoPrint or a similar tool for wireless printing.
-6. Reflect: Compare measured dimensions vs printed result and document any discrepancies.
+**Materials**
+- Calipers, computer with OpenSCAD and slicer, access to a classroom printer
+- Project documentation template (fillable)
 
-## Instructor notes
+Step-by-step Tasks
+1. Select a small object and list three key measurable features (length, width, height).
+2. Use calipers to take three measurements for each feature; record averages in the documentation template.
+3. Create `project0.scad` with top-level variables for your averaged measurements.
+4. Build the model using primitives and `translate()`/`rotate()`; preview (`F5`) frequently and render (`F6`) once satisfied.
+5. Export STL, slice with the classroom profile, and note estimated print time and filament usage.
+6. Print a test piece, measure critical dimensions after cooling, and log deviations.
+7. Write a 1‑page reflection including cause hypotheses and a corrective parameter adjustment you would apply next.
 
-- Double-check student slicing profiles before printing. Encourage students to preview the G-code layers if the slicer supports it.
-- Provide a troubleshooting checklist for common print problems (bed adhesion, under-extrusion, over-extrusion).
+Probing Questions
+- Which measurement showed the largest deviation and what do you suspect caused it?
+- How does your chosen layer height influence both accuracy and print time?
 
-# Project 0 Your First 3D Print
+Quick Quiz (5)
+1. What is the purpose of defining top-level variables in your `.scad` file? (short answer)
+2. How many times should you measure a feature to get a reliable average? (short answer)
+3. Name one cause of dimensional mismatch between model and print. (short answer)
+4. What command previews your OpenSCAD model without rendering? (one-word answer)
+5. Where do you record filament and print-time metadata for reproducibility? (short answer)
 
-## Materials
+Extension Problems (5)
+1. Create two scaled variants for different nozzle sizes and document the parameter changes.
+2. Add a snap-fit feature and test assembly tolerance with a small print.
+3. Parameterize a tolerance variable and test three values, reporting fit outcomes.
+4. Write a short automation script to produce multiple STL variants from the same SCAD file.
+5. Produce a troubleshooting checklist focused on adhesion and dimensional errors.
 
-- Calipers
-- 3D print of project 0
-- a 3D model of one of the practice problems you solved or are working on 
-- Project 0 briefing
-- Project 0 student (technical documentation template)
-- Student computer loaded with a slicer program we recommend slic3r as it is command line based and thus more accessible
-- **How to 3D Print: Slicing**
-- (optional) **How to 3D print: Octoprint**
+Deliverables
+- `project0.scad` with variables and comments
+- Exported STL and slicer profile settings
+- Completed documentation template with measurements, test logs, and reflection
 
-## Objectives
-
-- Measuring using calipers
-- 3D printing and slicing
-- Writing technical notes
-- Converting between inches and millimeters
-
-## Sequence
-
-1. Introduce the project briefing to studnets give students the 3D model and callipers teach them how to measure using the callipers and have them measure and document the measured dimensions of the object.
-2. Have students model the object in openSCAD
-3. Have students render the model or render a model they coded and either email it to you or compelete steps 4-6
-
-The next steps are optional but highly suggested to improve studnets indepednence 
-4. Go through the "how to 3D print: slicing" document with students ** NEEDS DOC **
-5. Have students slice their object and either export their GCODE to an SD card or email it to you to 3D print (Make sure to double check models with students to make sure there slicing configuration profiles are correct) ** NEEDS DOC **
-6. Instead of step five set up octoprint and have students independently print wirelessly. ** NEEDS DOC **
-
-7. Reflect on the 3D printed object with students did it turn out how they expected does it measure the same as the parameters they coded? Were their any issues with teh print process? Have them write their reflections in their technical documentation.
+**Accessibility:** Provide alt-text for images and a short comment-based walkthrough in `.scad` files so screen-reader users can follow step-by-step.

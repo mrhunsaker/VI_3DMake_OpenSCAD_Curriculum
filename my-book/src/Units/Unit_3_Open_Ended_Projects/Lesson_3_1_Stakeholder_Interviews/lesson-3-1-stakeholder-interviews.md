@@ -1,19 +1,56 @@
-# Lesson 3.1: Stakeholder Interviews & Functional Requirements
+# Lesson 3.1: Stakeholder Interviews & Functional Requirements (Self-Paced)
 
-**Unit:** 3 — Open-Ended Projects  
-**Duration:** 1–2 class periods  
-**Prerequisite:** All of Unit 0 and Unit 1; taught immediately before Project 2
+**Accessibility:** If you record audio, provide a short transcript. For images or diagrams, add alt-text and include comment-based walkthroughs for any example `.scad` files so screen-reader users can follow step-by-step.
+
+**Unit:** 3 — Open-Ended Projects
+**Duration:** 1–2 class periods (self-paced: ~90 minutes total)
+**Prerequisite:** Unit 0 & Unit 1 fundamentals
 
 ---
 
 ## Learning Objectives
 
-By the end of this lesson, students will be able to:
-- Define what a stakeholder is in the context of design
-- Explain the difference between wants, needs, and constraints
-- Convert stakeholder feedback into written functional requirements
-- Conduct a basic stakeholder interview using open-ended questions
-- Document interview results in a structured format
+By the end of this self-paced lesson you will be able to:
+- Identify relevant stakeholders and their roles
+- Write 5–8 open-ended interview questions tailored to a stakeholder
+- Conduct and record a short stakeholder interview using ethical consent
+- Convert interview findings into 4–8 testable functional requirements
+-- Use those requirements to evaluate an early prototype
+
+---
+
+## Materials
+
+- Interview worksheet (provided)
+- Notebook or laptop for notes (optionally a recorder with consent)
+- Sample stakeholder scenarios (below)
+
+---
+
+## Step‑by‑Step Activities
+
+1) Prepare (15–20 min)
+   - Read the short definition of "stakeholder" and the Wants/Needs/Constraints table.
+   - Select or be assigned a stakeholder scenario (see Practice Activity below) or find a real stakeholder.
+   - Draft 5–8 open-ended questions using the worksheet.
+
+2) Conduct the interview (10–15 min)
+   - Introduce yourself, state the purpose, and ask for permission to record or take notes.
+   - Ask your planned questions and follow-up with "why" and silence when appropriate.
+   - Capture specific details, numbers, and stories.
+
+3) Immediate synthesis (15–20 min)
+   - Within 30 minutes, fill in the After-the-Interview section on the worksheet.
+   - Identify Wants, Needs, and Constraints and write a 2–3 sentence problem statement.
+
+4) Write functional requirements (20–30 min)
+   - Convert each Need into a testable functional requirement using the template.
+   - Aim for 4–8 requirements that collectively define success for the stakeholder.
+
+5) Peer review or instructor check (optional)
+   - Exchange requirements with a classmate and attempt to write a short pass/fail test for each requirement.
+
+Checkpoint: You are done with this lesson when you have a completed worksheet with interview notes, a clear problem statement, and 4–8 functional requirements.
 
 ---
 
@@ -132,6 +169,50 @@ In pairs, one person plays a "stakeholder" with one of the following scenarios (
 **After the interview:** Write 4 functional requirements based on what you learned.
 
 **Debrief:** Switch roles and repeat with a different scenario.
+
+---
+
+## Quiz (5 questions — short answers)
+
+1. What is the primary purpose of a stakeholder interview? (one sentence)
+2. Give one example of a "constraint."
+3. Rewrite this vague need into a testable functional requirement: "It should be easy to remove items."
+4. Name two interviewing techniques that encourage more useful responses.
+5. What should you do within 30 minutes after an interview, and why?
+
+Answer key (instructor use):
+1. To discover the real problem and user needs through listening.
+2. Example: Maximum width 15 cm / Budget under $10 / Must fit in a locker.
+3. Example: "The organizer must allow a user to remove items with one hand within 2 seconds."
+4. Let silence; ask "why"; avoid suggesting solutions.
+5. Write a one-page summary while details are fresh, to preserve specifics and measurable constraints.
+
+---
+
+## Extension Problems (apply skills independently)
+
+1. Adapt your interview plan to a remote interview (phone or video). List 5 changes you would make and why.
+2. From a previous interview, create an empathy map (what they say, think, do, feel) and derive two additional requirements.
+3. Design a 3-question follow-up survey to validate one high-priority requirement with 20 users.
+4. Convert a "want" from an interview into an optional feature and propose a low-cost prototype to test it.
+5. Choose a new stakeholder group (e.g., custodial staff) and write three interview questions tailored to their constraints.
+
+---
+
+## Practice Scoring Rubric (informal)
+
+- Completed worksheet and problem statement: 3 points
+- 4–8 clear functional requirements, testable: 4 points
+- Evidence of ethical interviewing (consent noted, respectful behavior): 1 point
+- Peer review or instructor check completed: 1 point
+
+Total: 9 points
+
+---
+
+## Accessibility
+
+When including example images or audio, add short alt-text descriptions and provide text transcripts or comment-based walkthroughs for any `.scad` files so screen-reader users can follow step-by-step.
 
 ---
 

@@ -1,5 +1,8 @@
 # PS-3: Input, Output, and Piping
 
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
+
+
 **Duration:** 1 class period
 **Prerequisite:** PS-2 (File and Folder Manipulation)
 
@@ -128,57 +131,40 @@ notepad.exe ~/Documents/OpenSCAD_Projects/project0.scad
 
 # Create a new file and open it
 ni new_notes.txt
-notepad.exe new_notes.txt
-```
+# PS-3: Input, Output, and Piping (Self-Paced)
 
----
+Estimated time: 25–40 minutes
 
-## Suppressing Output
+**Learning Objectives**
+- Use `echo`, `cat`, `>` and `>>` for basic IO
+- Use `|` to pipe outputs between commands
+- Copy command output to the clipboard with `clip`
 
-Sometimes a command produces output you don't want to see. Use `> $null` to suppress it:
+**Materials**
+- PowerShell
+- Example text files for practice
 
-```powershell
-# Run a command silently (no output shown)
-some_command > $null
-```
+Step-by-step Tasks
+1. Create `practice.txt` with three lines using `echo` and `>`/`>>`.
+2. Read the file with `cat practice.txt`.
+3. Pipe the file into `Select-String` to search for a word.
+4. Copy the file contents to clipboard with `cat practice.txt | clip`.
+5. Redirect `ls -n` into `list.txt` and open it in Notepad.
 
----
+Checkpoints
+- After step 3 you should be able to find a keyword using piping.
 
-## Practice
-
-```powershell
-# 1. Create a folder and navigate into it
-mkdir ~/Documents/PS3_Practice
-cd ~/Documents/PS3_Practice
-
-# 2. Create a simple text file using echo and >
-echo "Line 1: This is my first line" > practice.txt
-echo "Line 2: This is my second line" >> practice.txt
-echo "Line 3: This is my third line" >> practice.txt
-
-# 3. Read the file
-cat practice.txt
-
-# 4. Copy the file contents to the clipboard
-cat practice.txt | clip
-
-# 5. Open the file in Notepad, add a line, save and close
-notepad.exe practice.txt
-
-# 6. Read it again to confirm your addition
-cat practice.txt
-
-# 7. Clean up
-cd ~/Documents
-rm -r PS3_Practice
-```
-
----
-
-## Check for Understanding
-
+Quick Quiz
 1. What is the difference between `>` and `>>`?
 2. What does the pipe `|` do?
-3. How would you copy the output of `ls -n` to your clipboard?
-4. How would you search for the word "cylinder" in an OpenSCAD file using `cat` and `Select-String`?
-5. What would happen to a file that already has content if you used `>` to write to it?
+3. How do you copy output to the clipboard?
+4. How would you page through long output?
+5. How do you suppress output to nowhere?
+
+Extension Problems
+1. Use piping to count lines in a file (hint: `Select-String -Pattern '.' | Measure-Object`).
+2. Save a long `ls -n` output and search it with `Select-String`.
+3. Chain multiple pipes to filter and then save results.
+4. Practice copying different command outputs to clipboard and pasting.
+5. Create a small script that generates a report (counts of files by extension).
+

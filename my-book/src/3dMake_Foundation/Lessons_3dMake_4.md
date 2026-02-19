@@ -1,61 +1,44 @@
 
-# **Lesson 4: AI-Enhanced Verification and Multimodal Feedback**
 
-Lesson 4 explores how Large Language Models (LLMs) augment the designer’s workflow by providing multimodal verification and diagnostic feedback. 3DMake integrates with services such as Google's Gemini through the `3dm info` command.1 When configured with an API key, `3dm info` renders the model from multiple viewpoints, packages image captures and metadata, and submits them to the AI for analysis. The response commonly includes both textual diagnostics (warnings, suggested tolerances, and potential failure modes) and human-readable recommendations for code or parameter changes.
+# Lesson 4: AI-Enhanced Verification and Multimodal Feedback (Self-Paced)
 
-The AI functions as an "AI Design Partner": it can surface problems that are difficult to perceive in a single 2D preview, including thin walls, floating geometry, tiny connective ribs, and potential overhangs that lack support.1 Crucially, students are taught to validate the AI’s findings against deterministic tools: the OpenSCAD renderer and the slicer. LLMs do not possess innate three-dimensional reasoning; they infer structure from images and must be treated as probabilistic assistants that can hallucinate features or misinterpret scale when contextual cues are absent.1
-
-Instruction in this lesson centers on practical prompt engineering and disciplined verification. Students learn to craft prompts in `3dmake.toml` or via CLI overrides that include precise technical primitives (material, target printer, intended use, dimensional tolerances), and to request chain-of-thought style explanations to reveal the AI’s reasoning. Examples include asking the AI to enumerate the top three structural risks, provide suggested parameter ranges, and generate minimal OpenSCAD snippets for remedial fixes. The existing table of prompt techniques remains a concise reference for these strategies.
-
-Beyond technical prompts, the lesson covers operational safeguards and data governance: sending images and model metadata to third-party APIs may have privacy, cost, and licensing implications. Students are taught to sanitize uploads (remove personally identifying filenames), understand API usage quotas, and to fall back to local verification techniques when network access is restricted or when sensitive designs are involved. The pedagogical aim is to produce designers who use AI to amplify human inspection rather than replace it.
-
-| Prompt Technique         | Description                                              | Impact on Design                                  |
-| :----------------------- | :------------------------------------------------------- | :------------------------------------------------ |
-| **Technical Primitives** | Specifying exact dimensions and shape types.             | Higher accuracy in AI-generated code snippets.8   |
-| **Chain of Thought**     | Asking the AI to explain its reasoning step-by-step.     | Better debugging of complex boolean operations.10 |
-| **Multimodal Upload**    | Using the 3dm image generation to show the AI the model. | Improved identification of non-manifold edges.11  |
-
-The student learns that AI is a verification tool, not a replacement for fundamental engineering knowledge. They are encouraged to use the `3dm info` output as a "pre-qualifier" before committing to a multi-hour print job, and to always cross-check AI findings with rendered geometry and slicer previews.1
-
-## Lesson steps
-
-1. Verify configuration and API access
-	- Confirm the Gemini (or configured LLM) API key is set in `3dmake.toml` and that network access is permitted by your school's policy.
-	- Run a quick smoke test: `3dm info --dry-run` or view `3dm status` to confirm the image-render pipeline functions.
-
-2. Run `3dm info` and collect outputs
-	- Execute `3dm info` for your current project; note where `3dm` stores rendered images and the textual report.
-	- Save the AI output alongside the render images in the project `build/` directory for reproducibility.
-
-3. Interpret diagnostics and verify deterministically
-	- Compare AI-reported issues with OpenSCAD render warnings and slicer layer-previews; prioritize deterministic failures (render or slice errors) over ambiguous AI suggestions.
-	- If the AI highlights thin walls or islands, inspect the relevant module in `src/` and use `echo()` or targeted renders to isolate the geometry.
-
-4. Prompt engineering iteration
-	- Modify the prompt (either in `3dmake.toml` or with the CLI `--prompt` flag) to include technical primitives and request chain-of-thought reasoning.
-	- Re-run `3dm info` and track changes in the AI recommendations.
-
-5. Produce remedial code and re-run the pipeline
-	- Implement minimal OpenSCAD fixes (e.g., increase wall thickness, add fillets or chamfers, merge floating islands) and run `3dm build`.
-	- Re-export renders and re-submit to `3dm info` to confirm mitigation of the flagged issues.
-
-6. Document decisions and maintain reproducibility
-	- Add a short `AI-notes.md` in the project that records prompts used, AI outputs, and why you accepted or rejected each suggestion.
-	- Commit the final `src/` and `build/` artifacts to version control with descriptive commit messages.
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
 
-## **References**
+Estimated time: 45–60 minutes
 
-Deck, T. (2025). *3DMake: A command-line tool for 3D printing workflows*. GitHub. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)  
-Gohde, J., & Kintel, M. (2021). *Programming with OpenSCAD: A beginner's guide to coding 3D-printable objects*. No Starch Press.  
-Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). *Understanding the challenges of OpenSCAD users for 3D printing*. Proceedings of the ACM Symposium on User Interface Software and Technology.  
-Google. (2025). *Vertex AI Gemini 3 Pro Preview: Getting started with generative AI*. [https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/get-started-with-gemini-3](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/get-started-with-gemini-3)  
-National Institute for Occupational Safety and Health (NIOSH). (2024). *Approaches to safe 3D printing: A guide for makerspace users, schools, libraries, and small businesses*. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html)  
-Ohio State University Environmental Health and Safety. (2026). *3D printer safety concerns and ventilation*. [https://ehs.osu.edu/kb/3d-printer-safety](https://ehs.osu.edu/kb/3d-printer-safety)  
-Salt Lake City Public Library. (2026). *Creative Lab: Available hardware and 3D printing procedures*. [https://services.slcpl.org/creativelab](https://services.slcpl.org/creativelab)  
-Salt Lake County Library. (2026). *Create Spaces: Hardware specifications and filament fees*. [https://www.slcolibrary.org/what-we-have/create](https://www.slcolibrary.org/what-we-have/create)  
-University of Utah. (2026). *Marriott Library ProtoSpace and Maker hubs*. [https://lib.utah.edu/protospace.php](https://lib.utah.edu/protospace.php)  
-Washington State Department of Health. (2026). *3D printer and filament selection for safe school environments*. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)
+**Learning Objectives**
+- Run `3dm info` to collect deterministic renders and AI diagnostics (if configured)
+- Compare AI suggestions with renderer and slicer outputs and prioritize deterministic fixes
+- Record and sanitize AI prompts and outputs for reproducibility and data governance
+
+**Materials**
+- 3dMake configured with an LLM API key (optional)
+- Example project with renderable geometry
+
+Step-by-step Tasks
+1. Verify API configuration (if used) or run `3dm info --dry-run` to confirm render pipeline works locally.
+2. Run `3dm info` and save the produced images and textual report to `build/`.
+3. Inspect deterministic outputs (render warnings, slicer preview) and compare them to AI recommendations; prioritize deterministic issues.
+4. Iterate prompt engineering (in `3dmake.toml` or via `--prompt`) with precise technical primitives and re-run `3dm info` to examine changes.
+5. Document all prompts, AI outputs, and deterministic validation steps in `AI-notes.md` within the project.
+
+Checkpoints
+- After step 2 you have stored render images and the AI report in `build/`.
+
+Quick Quiz (5)
+1. What command generates AI diagnostics and model renders?
+2. Why must AI outputs be validated against renderer/slicer results?
+3. Name one privacy or governance concern when sending models/images to an API.
+4. What is an example of a technical primitive to include in a prompt?
+5. Where should you record prompts and AI outputs in the project?
+
+Extension Problems (5)
+1. Create an `AI-notes.md` documenting three prompts and the AI’s responses; indicate which suggestions you acted on.
+2. Simulate a false-positive AI warning: describe how you validated and rejected it using deterministic checks.
+3. Generate a short prompt that requests the top three structural risks and record the results.
+4. Create a short checklist for sanitizing uploads before sending to an API.
+5. Re-run `3dm info` after a code fix and compare the differences in the AI report.
 
 ## **Works cited**
 

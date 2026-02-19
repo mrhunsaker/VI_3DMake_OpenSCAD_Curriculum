@@ -1,44 +1,48 @@
-## Lesson 1.0 — OpenSCAD Basics
 
-### Materials
+## Lesson 1.0 — OpenSCAD Basics (Self-Paced)
 
-- Ruler / calipers
-- Computer with OpenSCAD installed
-- (Optional) Braille display or other assistive hardware
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
 
-### Overview
+Estimated time: 20–40 minutes
 
-This lesson introduces the OpenSCAD workflow and the editor environment. Students will create their first shape (`cube()`), learn how to add comments, and understand the difference between previewing and fully rendering a model for export.
+Learning objectives:
 
-### Sequence & Notes
+Materials:
 
-- What is OpenSCAD: code-driven 3D modelling, parametric design, advantages for reproducibility and accessibility.
-- OpenSCAD terminology: module, primitive, variable, parameter, preview vs render.
-- Comments: single-line (`// comment`) and block (`/* comment */`) comments for documenting code.
-- Helpful editor features: syntax highlighting, find/replace, indentation — recommend using VSCode or Notepad++ for larger projects.
-- The OpenSCAD editor layout: code editor (left), 3D preview (right), console (bottom).
-- Your first shape: `cube([length, width, height]);` — practice creating and previewing a cube.
-- Preview vs Render: `F5` for preview (fast), `F6` for full render (required before export).
-- Export: File → Export → Export as STL after a full render.
-- Units: OpenSCAD treats numeric values as unit-less; treat them as millimeters for 3D printing projects.
+Step-by-step instructions:
+1. Open OpenSCAD and create a new file. Save it as `lesson1_0.scad`.
+2. Type the minimal example below and press `F5` to preview:
 
-### Classroom Activities
+	cube([40,20,10]);
 
-1. Open OpenSCAD, create a new file, and type the example cube code. Press `F5` to preview.
-2. Change the cube dimensions using named variables and re-preview.
-3. Save the file and perform a full render (`F6`) and export to STL.
+3. Replace the numbers with named variables at the top of the file:
 
-### Check for understanding
+	length = 40;
+	width = 20;
+	height = 10;
+	cube([length, width, height]);
 
-- What is a comment and how do you add one in OpenSCAD?
-- What is the difference between `F5` and `F6`?
-- Why do we treat numbers as millimeters in these lessons?
+4. Add a single-line comment explaining the variables. Re-preview.
+5. Press `F6` to do a full render, then `File → Export → Export as STL` to save an STL.
 
-### Quiz — Lesson 1.0
+Checkpoint (do this before continuing):
 
-1. Short answer: How do you write a single-line comment in OpenSCAD? (Answer: `// comment`)
-2. Multiple choice: Which key performs a fast preview? (A) F5  (B) F6  (C) Ctrl+S  — Answer: A
-3. True/False: You must do a full render before exporting an STL. — Answer: True
-4. Short answer: Give one reason why OpenSCAD is useful for reproducible designs.
-5. Practical: Write code for a cube that is 40 mm × 20 mm × 10 mm and render it.
+Mini exercise:
+- Modify `width` to `30` and preview. Note how the shape changes.
 
+Quiz — Lesson 1.0 (skills this lesson teaches):
+1. Short answer: How do you write a single-line comment in OpenSCAD?
+2. Multiple choice: Which key performs a fast preview? (A) F5 (B) F6 (C) Ctrl+S
+3. True/False: You must do a full render before exporting an STL.
+4. Short answer: Why use named variables instead of literal numbers?
+5. Practical: Provide the OpenSCAD code for a 40×20×10 mm cube using named variables and center it at the origin.
+
+Extension problems (apply skills independently — 5 problems):
+1. Change the cube to be centered (`center=true`) and translate it up by half its height so it sits on Z=0.
+2. Create a second, smaller cube and place it on top of the first cube with a 2 mm gap.
+3. Add comments explaining each transformation and save two versions (one preview-quality, one render-quality).
+4. Export both versions as separate STLs and note the file sizes.
+5. Write a one-paragraph reflection: what did changing variables feel like compared to editing raw numbers?
+
+
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.

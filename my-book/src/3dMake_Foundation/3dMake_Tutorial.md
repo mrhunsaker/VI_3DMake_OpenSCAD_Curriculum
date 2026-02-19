@@ -1,404 +1,52 @@
-# 3dmake: Non-Visual 3D Printing Tutorial
+# 3dmake: Non-Visual 3D Printing Tutorial (Self-Paced)
 
-*A step-by-step guide for blind and low-vision users*
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
----
 
-## 1. What is 3dmake?
+Estimated time: 45–75 minutes
 
-3dmake is a command-line tool designed specifically for blind and visually impaired users to design, inspect, and print 3D models using a non-visual workflow.
+**Learning Objectives**
+- Describe the 3dMake command-line workflow and project structure
+- Create a new 3dMake project, edit `src/main.scad`, and run `3dm build`
+- Slice a model and produce a tactile preview or full G-code
 
-It combines:
-
-* Text-based modeling with OpenSCAD
-* Model description tools
-* STL generation
-* Slicing to G-code
-* Automatic orientation
-* Tactile preview generation
-* Direct printing support
-
-All functions are accessible from a single command-line interface.
+**Materials**
+- Computer with 3dMake installed
+- Screen reader (NVDA, JAWS, Orca) configured
+- Example project files in `assets/` or classroom repo
 
 ---
 
-## 2. Requirements
+Step-by-step Tasks
+1. Verify prerequisites: confirm `3dm`, `openscad`, and your slicer are discoverable in the terminal (`which 3dm`, `which openscad`).
+2. Create a new project: `3dm new` → open `src/main.scad` with `3dm edit-model` and add a simple cube: `cube([20,20,20]);`.
+3. Build the project: `3dm build` and confirm `build/main.stl` exists.
+4. Slice a preview: `3dm preview slice` then `3dm preview print` (or export preview STL) to test tactile output.
+5. Slice for full print: `3dm build slice` → inspect `build/main.gcode` with a layer-preview option in your slicer.
 
-You will need:
-
-* A Windows or Linux computer
-* A screen reader such as NVDA, JAWS, or Orca
-* A terminal or command prompt
-* A 3D printer (optional for first steps)
-
----
-
-## 3. Installing 3dmake
-
-### Step 1: Download the program
-
-Go to:
-
-[http://github.com/tdeck/3dmake](http://github.com/tdeck/3dmake)
-
-Download the latest release for your operating system.
+Checkpoints
+- After step 2 you can open and edit `src/main.scad` from the terminal.
+- After step 3 the `build/` folder contains `main.stl`.
 
 ---
 
-### Step 2: Extract the program
+Quick Quiz (5)
+1. What command creates a new 3dMake project?
+2. Where does 3dMake put compiled STLs by default?
+3. How do you open the model editor from the CLI?
+4. What command slices a preview for tactile testing?
+5. Why is it useful to run a preview before a full print?
 
-1. Extract the downloaded file.
-2. Open a terminal.
-3. Navigate to the extracted folder.
-
-Example:
-
-```pwsh
-cd ~\Downloads\3dmak
-```
-
----
-
-### Step 3: Run the setup command
-
-```pwsh
-.\3dm setup
-```
-
-Follow the prompts to:
-
-* Choose a printer profile
-* Configure AI features (optional)
-* Set default options
-
-After setup, the `3dm` command should work globally.
+Extension Problems (5)
+1. Create two variants of a parameterized cube (different sizes) and export both STLs; compare their file sizes and estimated print times.
+2. Add a `3dmake.toml` overlay that changes layer height and document the visible effect on the preview.
+3. Build and slice a small object, then import the STL into a second slicer and report any differences in estimated time.
+4. Create a short shell script that automates new → edit → build for a classroom scaffold.
+5. Describe three safety checks you will perform before starting a multi-hour print.
 
 ---
 
-## 4. Understanding the 3dmake workflow
-
-A typical workflow:
-
-1. Create a project
-2. Edit a model
-3. Build the model
-4. Slice into G-code
-5. Print or preview
-
----
-
-## 5. Creating a new project
-
-Open a terminal and go to the folder where you want the project.
-
-Example:
-
-```pwsh
-cd ~\3dprojects
-```
-
-Create a new project:
-
-```pwsh
-3dm new
-```
-
-This creates a project structure:
-
-```bwsh
-project\
- ├── src\
- │    └── main.scad
- ├── build\
- └── 3dmake.toml
-```
-
-Meaning:
-
-* `src\` contains the model code
-* `build\` contains output files
-* `3dmake.toml` contains settings
-
----
-
-## 6. Editing your first model
-
-3dmake uses OpenSCAD, a text-based 3D modeling language.
-
-Open the main model:
-
-```pwsh
-3dm edit-model
-```
-
-Replace the contents with this simple cube:
-
-```scad
-cube([20, 20, 20]);
-```
-
-Save and close the editor.
-
----
-
-## 7. Building a 3D model
-
-Build the model into an STL file:
-
-```pwsh
-3dm build
-```
-
-This creates:
-
-```
-build\main.stl
-```
-
-STL is the standard format for 3D printing.
-
----
-
-## 8. Getting a description of the model
-
-You can get information about the model:
-
-```pwsh
-3dm info
-```
-
-Without AI:
-
-* Shows size and bounding box
-
-With AI configured:
-
-* Provides a natural language description
-* May identify possible print issues
-
----
-
-## 9. Slicing the model for printing
-
-Slicing converts the STL into G-code.
-
-Run:
-
-```pwsh
-3dm build slice
-```
-
-This produces:
-
-```
-build\main.stl
-build\main.gcode
-```
-
----
-
-## 10. Printing the model
-
-If your printer is configured:
-
-```pwsh
-3dm build print
-```
-
-This will:
-
-1. Build the model
-2. Slice it
-3. Send it to the printer
-
----
-
-## 11. Using tactile previews
-
-Previews are small, fast prints showing the outline of the object.
-
-They:
-
-* Print quickly
-* Use less filament
-* Help you feel the shape before printing the full object
-
-Slice a preview:
-
-```pwsh
-3dm preview slice
-```
-
-Print a preview:
-
-```pwsh
-3dm preview print
-```
-
-By default, previews include:
-
-* Front view
-* Left view
-* Bottom view
-
----
-
-## 12. Auto-orienting a model
-
-Correct orientation can:
-
-* Reduce support material
-* Improve surface quality
-* Shorten print time
-
-Run:
-
-```pwsh
-3dm build orient print
-```
-
-This:
-
-1. Builds the model
-2. Chooses the best orientation
-3. Slices it
-4. Prints it
-
----
-
-## 13. Changing slicer settings with overlays
-
-3dmake uses text-based configuration.
-
-There are two types:
-
-### Profiles
-
-Full printer configurations.
-
-List them:
-
-```pwsh
-3dm list-profiles
-```
-
----
-
-### Overlays
-
-Small changes to slicer settings, such as supports or materials.
-
-List overlays:
-
-```pwsh
-3dm list-overlays
-```
-
-Use an overlay:
-
-```pwsh
-3dm build slice -o supports
-```
-
----
-
-## 14. Installing OpenSCAD libraries
-
-Libraries provide reusable shapes.
-
-Open the file:
-
-```pwsh
-3dmake.toml
-```
-
-Add a library:
-
-```toml
-libraries = ["bosl"]
-```
-
-Install the libraries:
-
-```pwsh
-3dm install-libraries
-```
-
----
-
-## 15. Typical beginner workflow
-
-Create a project:
-
-```pwsh
-3dm new
-```
-
-Edit the model:
-
-```pwsh
-3dm edit-model
-```
-
-Build the model:
-
-```pwsh
-3dm build
-```
-
-Print a preview:
-
-```pwsh
-3dm preview print
-```
-
-Print the full model:
-
-```pwsh
-3dm build print
-```
-
----
-
-# CLI Cheat Sheet
-
-## Project commands
-
-```pwsh
-3dm new
-3dm edit-model
-3dm info
-```
-
----
-
-## Build and print
-
-```pwsh
-3dm build
-3dm build slice
-3dm build print
-3dm build orient print
-```
-
----
-
-## Preview commands
-
-```pwsh
-3dm preview slice
-3dm preview print
-```
-
----
-
-## Slicer configuration
-
-```pwsh
-3dm list-profiles
-3dm list-overlays
-3dm build -o supports
-```
+Notes: This lesson is intended to be hands-on. If networked AI features are not configured, skip the AI verification steps and focus on deterministic renders and slicer previews.
 
 ---
 

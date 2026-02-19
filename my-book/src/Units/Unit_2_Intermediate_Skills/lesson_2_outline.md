@@ -1,4 +1,5 @@
-# Unit 2: Problem Finding and Stakeholder Design
+# Unit 2 — Problem Finding & Stakeholder Design (Self-Paced)
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
 **Duration:** 3 weeks  
 **Driving Question:** How do you design something for someone else's needs, not your own assumptions?
 
@@ -27,90 +28,32 @@ Unit 2 introduces students to the human side of design. Up to this point student
 
 ---
 
-### Lesson 2.2 — Loops and Arrays in OpenSCAD
-**Objective:** Students can use `for()` loops in OpenSCAD to generate repeated or patterned geometry.
+**Unit 2 — Problem Finding & Stakeholder Design (Self-Paced Unit Overview)**
 
-**Topics:**
-- Why loops matter: generating 10 identical features without copy-paste
-- `for` loop syntax in OpenSCAD: `for(i = [0:step:end]) { ... }`
-- Using `i` to drive `translate()` for evenly spaced repetition
-- Nested loops for 2D grids of features
-- Application: rows of bumps, holes, fins, or other repeated elements
+Estimated total time: 3 weeks (self-paced pacing — break into 4–6 shorter work blocks)
 
-**Activity:** Students create two objects using loops: (1) a flat tile with a 4×4 grid of raised dots, and (2) a cylinder with evenly spaced notches around the perimeter. These are building blocks for tactile or functional designs.
+How to complete this unit (student checklist):
+1. Read the Unit Overview and review the driving question.
+2. Complete Lesson 2.1 (stakeholder interviewing) and submit interview notes and functional requirements.
+3. Complete Lesson 2.2 (parametric loops) and submit a refactored `.scad` using modules.
+4. Complete Lessons 2.3 and 2.4 (constraints, iteration) and run the Project 2 stakeholder check-ins and iterations.
+5. Submit Project 2 deliverables: stakeholder notes, at least two printed iterations, code, and final reflection.
 
-**Vocabulary:** loop, iteration variable, array, pattern, step
+Checkpoint (before Project 2):
+- Upload your stakeholder interview notes and a short design brief (1 paragraph) summarizing the user's needs and constraints.
 
----
+Unit quiz (5 items):
+1. Short answer: What is the difference between a stakeholder's 'ask' and their real 'need'?
+2. Multiple choice: Why use loops in OpenSCAD? (A) To make models look nicer (B) To repeat geometry without copy‑paste (C) To export STL) — Answer: B
+3. Short answer: Name two environmental constraints that might affect a design.
+4. Practical: Provide a one‑sentence design brief for the sample stakeholder: "I need something to hold my earbuds so I don't lose them on my desk." Include two functional requirements.
+5. Reflection: Describe what 'sign-off' from a stakeholder means in one sentence.
 
-### Lesson 2.3 — Designing for Someone Else: Constraints and Context
-**Objective:** Students can identify constraints that come from a stakeholder's environment and build those into their design.
+Extension activities (5):
+1. Draft three alternative interview questions that are open‑ended and nonleading for the earbuds stakeholder.
+2. Create a parametric module for a small storage box and publish three size variants with a short README explaining the parameters.
+3. Run a user observation (5 minutes) on a classmate performing a related task and record one hidden need you observed.
+4. Take one prototype, iterate it twice based on mock stakeholder feedback, and attach photos or STL files of each iteration.
+5. Produce a one‑page accessibility checklist for your Project 2 design (how would a blind user interact with your object?).
 
-**Topics:**
-- Environmental constraints: where will it live? What will touch it? What forces will it experience?
-- User constraints: accessibility, reach, grip strength, visual impairment
-- Material constraints: does it need to be flexible? Waterproof? Lightweight?
-- How to document constraints alongside functional requirements
-
-**Activity:** Present a case study — the Project 1 floor marker designed for BVI (blind/visually impaired) students. Analyze it together: what constraints came from the environment? From the users? From the velcro strip? Students then map the constraints to specific design decisions in the existing scad file.
-
----
-
-### Lesson 2.4 — Iterating with a Stakeholder
-**Objective:** Students can present a prototype to a stakeholder, collect feedback, and translate it into design revisions.
-
-**Topics:**
-- How to present a prototype: explain what it does, ask functional questions, not "do you like it?"
-- Documenting feedback: what the stakeholder said vs. what it means for the design
-- Deciding what feedback to act on and what to defer
-- Sign-off: what does it mean for a stakeholder to approve a design?
-
-**Activity:** Students bring their first Project 2 prototype (printed or mockup) to a brief stakeholder check-in (with the teacher playing stakeholder if the real one is unavailable). They practice asking feedback questions and write up a revision plan.
-
----
-
-### Project 2 — External Stakeholder Project
-*See `Projects/Project_2/project_2_briefing.txt`*
-
-Students choose between the sock holder or model rocket project (or a project with an external stakeholder of their own). They conduct a stakeholder meeting, define functional requirements, produce at least two printed iterations, and obtain stakeholder sign-off on the final prototype.
-
-**Assessment:** 0–9 point rubric (see rubric section below).
-
----
-
-## Rubric
-
-| Category | 3 pts | 2 pts | 1 pt | 0 pts |
-|---|---|---|---|---|
-| **Function** | Prototype meets all stakeholder-defined requirements; stakeholder sign-off obtained | Meets most requirements; sign-off obtained with noted reservations | Meets some requirements; sign-off not obtained | Does not meet requirements or was not tested with stakeholder |
-| **Design Quality** | Two or more clear iterations documented; code is clean and parametric; print quality is high | Two iterations present but one is not meaningfully different; minor code/print issues | Only one iteration or iterations are not meaningfully different | Single undocumented attempt |
-| **Documentation** | Stakeholder meeting notes, functional requirements, iteration notes, construction notes, and reflection all present and specific | Most sections present; some are brief or vague | Several sections missing | Documentation not submitted |
-
----
-
-## Materials Needed
-- Prusa Mini+ printer
-- PLA filament (and optionally flex filament for relevant projects)
-- Digital calipers
-- Stakeholder scenario cards (for Lesson 2.1 role-play)
-- Computers with OpenSCAD and PrusaSlicer
-
----
-
-## Key Vocabulary for the Unit
-| Term | Definition |
-|---|---|
-| Stakeholder | A person who will use, be affected by, or has a vested interest in the design |
-| Need-finding | The process of discovering what a stakeholder actually needs through observation and interview |
-| Design brief | A written summary of the problem, stakeholder needs, constraints, and requirements |
-| Loop | A programming structure that repeats a block of code a set number of times |
-| Sign-off | Formal approval by a stakeholder that a prototype meets their needs |
-| Environmental constraint | A limit imposed by the physical context where the object will be used |
-
----
-
-## Teacher Notes
-- The role-play in Lesson 2.1 is most effective when scenario cards are specific and contain hidden needs. For example: "I need a holder for my earbuds" — but the hidden need is that the student is left-handed and the cord always tangles on the right side of the desk.
-- For Lesson 2.2, make sure students understand that the loop variable `i` is a number they can use mathematically, not just a counter — `translate([i*20, 0, 0])` is the key insight.
-- If real external stakeholders are not available for Project 2, teachers can play the stakeholder role, but make sure to give genuine feedback rather than simply approving everything. The friction of real feedback is the point.
-- The model rocket project may require additional safety review depending on your institution's policies. Confirm with administration before assigning it.
+**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.

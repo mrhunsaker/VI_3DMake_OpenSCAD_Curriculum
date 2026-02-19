@@ -1,34 +1,45 @@
-# Project 1.1: My First 3D Print
-<br><br>
+# Your First Print — Guided Extension (Self-Paced)
 
-## Briefing:
-Welcome to your first hands-on project in 3D printing! In this project, you'll be using the Prusa Mini+ 3D printer and a model of your choice from an online repository. You'll learn about the process of downloading, setting up, and finally printing a 3D model. This project will help you understand the basics of 3D printing technology, and give you the confidence to progress to more complex prints in the future.
-<br><br>
-
-## Online Repository:
-Below is a list of webpages you can use to download 3D model files:
-- [Thingiverse](https://www.thingiverse.com/)
-- [Printables](https://www.printables.com/)
+**Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any .scad examples so screen-reader users can follow the design steps.
 
 
-## Constraints: 
-- For this project, choose a relatively simple model from the online repository. You're just getting started, so we don't want to dive into the deep end too quickly. The model should not exceed a printing time of 2 hours.
-- As you gain confidence with the 3D printer, we will move onto designing your own models in openSCAD, but for now, focus on understanding the printing process.
-- Your printed model is due in 2 weeks.
-<br><br>
+Estimated time: 2–4 hours (including setup and print monitoring)
 
-## Functional Requirements:
-- The 3D model must be downloaded from an online repository.
-- The 3D print should be done using the Prusa Mini+ printer.
-- The print settings should be correctly configured for the chosen model.
-- The model should be printed without any significant printing errors.
-<br><br>
+**Learning Objectives**
+- Select a simple ready-made model and evaluate its printability for a classroom printer
+- Configure slicer settings for a short-duration print and prepare the printer safely
+- Document print parameters and reflect on the physical outcome
 
-## Deliverables (via email and physically turn in 3D print):
-- A technical document detailing your experience with this project. Include sections on: ideas, measurements (dimensions of the model, amount of filament used, etc.), object notes (what the object is, where you found it, why you chose it), construction notes (any assembly needed post-printing), use notes (what is the printed object used for), and reflections on your first 3D printing experience. Also, include at least one photo of your final prototype.
-- Your 3D printed prototype.
-- Though not mandatory for this project, if you feel adventurous, you can try tweaking your model in openSCAD and provide the '.scad' code file for your object.
-<br><br>
+**Materials**
+- Computer with slicer and access to the online repository
+- Prusa Mini+ or classroom-approved printer, filament spool
 
-## Rubric:
-Projects are graded on a 0 to 9 point scale as determined by the class project rubric. Emphasis will be placed on correct use of the 3D printer, successful completion of the print, and the detail and reflection demonstrated in your technical documentation.
+Step-by-step Tasks
+1. Choose a simple model (<2 hours print) from Thingiverse or Printables and save the STL.
+2. Inspect the model: note overhangs, thin features, and dimensions; write two short reasons why this model is appropriate for a first print.
+3. Load the model in your slicer, select the classroom profile, and adjust settings only if necessary (layer height, infill, supports). Record the final print time and filament estimate.
+4. Perform safety checks, start the print, and monitor the first 10 minutes for adhesion and extrusion problems.
+5. After cooling, measure three critical dimensions and compare to the model’s stated dimensions; record deviations.
+
+Probing Questions
+- Why did you select this model? What risks did you anticipate and how did you mitigate them?
+- Which slicer setting most affects print time for this model and why?
+- If a thin feature failed, what minimal change would you make to ensure success next time?
+
+Quick Quiz (5)
+1. What is the first-check you do after loading filament? (short answer)
+2. Name two slicer settings that affect strength. (short answer)
+3. Why monitor the first layers of a print? (one sentence)
+4. How do you document filament used for reproducibility? (short answer)
+5. What is one sign of poor bed adhesion? (one sentence)
+
+Extension Problems (5)
+1. Re-slice the model with a finer layer height and compare surface finish and print time; document differences.
+2. Modify the model in OpenSCAD to thicken a failing feature and reprint a small test piece.
+3. Create a short checklist script (or text checklist) that verifies spool metadata and bed temperature before printing.
+4. Produce a one-page reflection that includes three lessons learned and one parameter you will change next time.
+5. Share your measurements and photos in the class folder and give feedback on two peers’ prints.
+
+**Deliverables**
+- Short report: model chosen, key slicer settings, measured deviations, and answers to probing questions.
+- Photos of the final print and the measured values table.
