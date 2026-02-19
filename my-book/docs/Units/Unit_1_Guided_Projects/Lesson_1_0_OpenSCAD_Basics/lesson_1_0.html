@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light sidebar-visible" dir="ltr">
+<html lang="en" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -7,62 +7,6 @@
 
 
         <!-- Custom HTML head -->
-
-        <!-- Highlight.js CSS -->
-        <link rel="stylesheet"
-              href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-        
-        <!-- Highlight.js Core -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-        
-        <!-- Load your custom JAWSScript syntax (loaded via JS so path works on GitHub Pages) -->
-        <script>
-          (function(){
-            function computeBase() {
-              try {
-                const link = Array.from(document.getElementsByTagName('link')).find(l => l.href && l.href.match(/\/css\/variables-.*\.css$/));
-                if (link) {
-                  const u = new URL(link.href, window.location.href);
-                  const basePath = u.pathname.replace(/\/css\/.*$/,'');
-                  return u.origin + basePath + (basePath.endsWith('/') ? '' : '/');
-                }
-              } catch (e) {}
-              return (window.location.origin || '') + '/';
-            }
-            const root = computeBase();
-            const s = document.createElement('script');
-            s.src = root + 'assets/jaws.js';
-            s.defer = true;
-            document.head.appendChild(s);
-          })();
-        </script>
-        
-        <script>
-          // Register the custom language
-          hljs.registerLanguage("jaws", window.hljsJaws);
-        
-          // Activate highlighting
-          document.addEventListener("DOMContentLoaded", () => {
-            hljs.highlightAll();
-          });
-        </script>
-        
-        <style>
-        /* Terminal-style output with a black left bar */
-        .leftbar {
-          display: block;
-          background: #f6f8fa;
-          border-left: 6px solid #000;
-          padding: 0.6em 1em;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Courier New", monospace;
-          white-space: pre;
-          color: #111;
-          margin: 0.5em 0;
-          font-size: 0.95em;
-          overflow: auto;
-        }
-        </style>
-        
         <script>
           (function(){
             // Load Atkinson Hyperlegible fonts from the book assets (injected at runtime so paths are correct on GitHub Pages)
@@ -129,13 +73,13 @@
         <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../../ayu-highlight-3fdfc3ac.css">
 
         <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../../../src/assets/custom-8fad8bec.css">
+        <link rel="stylesheet" href="../../../src/assets/custom-4663f5e7.css">
 
 
         <!-- Provide site root and default themes to javascript -->
         <script>
             const path_to_root = "../../../";
-            const default_light_theme = "light";
+            const default_light_theme = "rust";
             const default_dark_theme = "navy";
             window.path_to_searchindex_js = "../../../searchindex-a10a2d60.js";
         </script>
@@ -178,7 +122,7 @@
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
-            html.classList.remove('light')
+            html.classList.remove('rust')
             html.classList.add(theme);
             html.classList.add("js");
         </script>
@@ -379,7 +323,6 @@ Extension problems (apply skills independently — 5 problems):
         <script src="../../../book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="../../../src/assets/jaws-08240bd2.js"></script>
 
 
 
