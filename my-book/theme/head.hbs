@@ -29,32 +29,6 @@
 </script>
 
 <script>
-  // Register the custom language
-  hljs.registerLanguage("jaws", window.hljsJaws);
-
-  // Activate highlighting
-  document.addEventListener("DOMContentLoaded", () => {
-    hljs.highlightAll();
-  });
-</script>
-
-<style>
-/* Terminal-style output with a black left bar */
-.leftbar {
-  display: block;
-  background: #f6f8fa;
-  border-left: 6px solid #000;
-  padding: 0.6em 1em;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Courier New", monospace;
-  white-space: pre;
-  color: #111;
-  margin: 0.5em 0;
-  font-size: 0.95em;
-  overflow: auto;
-}
-</style>
-
-<script>
   (function(){
     // Load Atkinson Hyperlegible fonts from the book assets (injected at runtime so paths are correct on GitHub Pages)
     try {
