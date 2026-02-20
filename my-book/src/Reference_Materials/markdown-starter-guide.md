@@ -9,7 +9,7 @@ Markdown is a simple, plain-text way to create beautifully formatted documents. 
 ### Why Use Markdown?
 
 | Advantage | Benefit |
-|-----------|---------|
+| ----------- | --------- |
 | **Plain text** | Works on any computer, any device |
 | **Version control friendly** | Easy to track changes with Git |
 | **Fast to write** | No menu-clicking required |
@@ -113,16 +113,19 @@ This is the second paragraph.
 ### Text Formatting
 
 **Bold text:**
+
 ```markdown
 **This is bold** or __this is also bold__
 ```
 
 *Italic text:*
+
 ```markdown
 *This is italic* or _this is also italic_
 ```
 
 ***Bold and italic:***
+
 ```markdown
 ***This is bold and italic***
 ```
@@ -182,7 +185,7 @@ Creates a separator line.
 
 ```markdown
 | Header 1 | Header 2 | Header 3 |
-|----------|----------|----------|
+| ---------- | ---------- | ---------- |
 | Cell 1   | Cell 2   | Cell 3   |
 | Cell 4   | Cell 5   | Cell 6   |
 ```
@@ -211,7 +214,7 @@ Make tables simple and clear:
 
 ```markdown
 | Feature | Requirement |
-|---------|------------|
+| --------- | ------------ |
 | RAM | 8 GB minimum |
 | Storage | 50 GB free space |
 | Processor | 4 cores recommended |
@@ -345,6 +348,7 @@ This is text with a footnote[^1].
 ```
 
 **Output:**
+
 - [x] Completed task
 - [ ] Incomplete task
 - [x] Another done task
@@ -394,7 +398,7 @@ Save a screenshot showing your terminal output.
 ### Grading Rubric
 
 | Criterion | Points | Notes |
-|-----------|--------|-------|
+| ----------- | -------- | ------- |
 | Folder created | 2 | Must use correct name |
 | Files created | 3 | All three required |
 | File copied | 2 | Original and copy both exist |
@@ -421,7 +425,7 @@ This project creates a parametric storage box for my desk.
 ## Specifications
 
 | Feature | Value |
-|---------|-------|
+| --------- | ------- |
 | Dimensions | 10cm × 10cm × 5cm |
 | Material | PLA |
 | Color | Red |
@@ -490,7 +494,6 @@ Get-ChildItem         # List files (PowerShell)
 1. What's the difference between absolute and relative paths?
 2. When would you use `cd ..`?
 3. How do you see what folder you're in?
-```
 
 ---
 
@@ -502,7 +505,7 @@ Pandoc is a document converter that works with Markdown.
 
 **Install Pandoc:**
 
-- Windows: https://pandoc.org/installing.html
+- Windows: <https://pandoc.org/installing.html>
 - Mac: `brew install pandoc`
 - Linux: `apt-get install pandoc`
 
@@ -528,8 +531,8 @@ pandoc myfile.md -o myfile.html
 
 No installation needed:
 
-- Pandoc Online: https://pandoc.org/try/
-- Markdown to PDF: https://markdown2pdf.com
+- Pandoc Online: <https://pandoc.org/try/>
+- Markdown to PDF: <https://markdown2pdf.com>
 - GitHub: Upload .md file to see it rendered
 
 ---
@@ -547,12 +550,14 @@ No installation needed:
 ### Writing for Clarity
 
 **Do:**
+
 - Use short paragraphs (3-4 sentences max)
 - Start sections with a summary
 - Use lists for multiple items
 - Number steps in order
 
 **Avoid:**
+
 - Wall-of-text paragraphs
 - Complex nested structures
 - Unusual special characters
@@ -561,11 +566,13 @@ No installation needed:
 ### Example: Bad vs. Good
 
 **Bad (hard to read):**
+
 ```markdown
 This doc contains info about setup and stuff. You need to do some things first before starting. Like make a folder. Also you need PowerShell. And files. Lots of files. Read the guide below for all the details about everything.
 ```
 
 **Good (clear structure):**
+
 ```markdown
 ## Prerequisites
 
@@ -662,7 +669,7 @@ This is text.
 ![Alt text](image.jpg)
 
 | Header | Header |
-|--------|--------|
+| -------- | -------- |
 | Cell   | Cell   |
 
 > Quote
@@ -684,10 +691,12 @@ Horizontal line
 ### Screen Reader Commands
 
 **In VS Code:**
+
 - `Ctrl + Shift + P` → Type "Preview" → View Markdown preview
 - `Ctrl + K V` → Open preview side-by-side
 
 **In Terminal:**
+
 - `cat myfile.md` → View content
 - `less myfile.md` → Scroll through file
 
@@ -719,10 +728,10 @@ Horizontal line
 
 ### Learning Resources
 
-- **Official Markdown Guide:** https://www.markdownguide.org/
-- **GitHub Markdown:** https://github.github.com/gfm/
-- **Pandoc Documentation:** https://pandoc.org/
-- **VS Code Markdown:** https://code.visualstudio.com/Docs/languages/markdown
+- **Official Markdown Guide:** <https://www.markdownguide.org/>
+- **GitHub Markdown:** <https://github.github.com/gfm/>
+- **Pandoc Documentation:** <https://pandoc.org/>
+- **VS Code Markdown:** <https://code.visualstudio.com/Docs/languages/markdown>
 
 ---
 
@@ -731,6 +740,7 @@ Horizontal line
 ### Problem: Markdown won't format
 
 **Solution:** Check that:
+
 - File has `.md` extension
 - Headings have space after `#`
 - Syntax is correct (see cheat sheet)
@@ -739,6 +749,7 @@ Horizontal line
 ### Problem: Links don't work
 
 **Solution:**
+
 ```markdown
 # Wrong
 [Link](http://example.com)
@@ -786,7 +797,7 @@ You now know:
 
 ## Sources
 
-Markdown Guide. (2025). *The comprehensive Markdown reference*. https://www.markdownguide.org/  
-GitHub Flavored Markdown. (2025). *Specification and documentation*. https://github.github.com/gfm/  
-Pandoc. (2025). *Universal document converter*. https://pandoc.org/  
-Web Accessibility Guidelines. (2025). *Creating accessible technical documentation*. https://www.w3.org/WAI/
+Markdown Guide. (2025). *The comprehensive Markdown reference*. <https://www.markdownguide.org/>  
+GitHub Flavored Markdown. (2025). *Specification and documentation*. <https://github.github.com/gfm/>  
+Pandoc. (2025). *Universal document converter*. <https://pandoc.org/>  
+Web Accessibility Guidelines. (2025). *Creating accessible technical documentation*. <https://www.w3.org/WAI/>

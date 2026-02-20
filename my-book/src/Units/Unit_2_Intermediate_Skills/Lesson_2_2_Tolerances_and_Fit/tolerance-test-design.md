@@ -17,7 +17,7 @@ You printed a set of test blocks, each with a cylindrical hole at a different di
 Measure the reference peg with your calipers:
 
 | Trial | Peg Diameter (mm) |
-|-------|------------------|
+| ------- | ------------------ |
 | 1 | |
 | 2 | |
 | 3 | |
@@ -36,7 +36,7 @@ This difference tells you something about your printer's dimensional accuracy on
 For each test block, try to insert the peg. Record what happens.
 
 | Block | Designed Hole Diameter | Does It Fit? | Fit Description |
-|-------|----------------------|-------------|----------------|
+| ------- | ---------------------- | ------------- | ---------------- |
 # Tolerance Test Worksheet — Self-Paced Companion
 
 Use this worksheet while you print and evaluate the tolerance test. Keep your filled worksheet in your project folder for future reference.
@@ -48,7 +48,7 @@ Before testing:
 Test results (fill these during hands-on work):
 
 | Block | Designed Hole (mm) | Measured Hole (mm) | Fits? (Y/N) | Fit Notes |
-|-------|--------------------|--------------------|-------------|----------|
+| ------- | -------------------- | -------------------- | ------------- | ---------- |
 | 0.0 mm | 5.0 | | | |
 | 0.1 mm | 5.1 | | | |
 | 0.2 mm | 5.2 | | | |

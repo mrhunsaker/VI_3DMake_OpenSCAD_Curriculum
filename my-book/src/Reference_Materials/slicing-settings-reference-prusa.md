@@ -1,11 +1,11 @@
-# Slicing Settings Quick Reference — PrusaSlicer 
+# Slicing Settings Quick Reference — PrusaSlicer
 
 ---
 
 ## Recommended Settings by Use Case
 
 | Use Case | Layer Height | Infill | Supports | Notes |
-|----------|------------|--------|----------|-------|
+| ---------- | ------------ | -------- | ---------- | ------- |
 | Quick test / prototype | 0.30 mm | 10% | As needed | "Draft" — fastest, roughest |
 | Standard project | 0.20 mm | 15–20% | As needed | Best all-around starting point |
 | Functional part | 0.20 mm | 30–40% | As needed | Use for parts under stress |
@@ -17,7 +17,7 @@
 ## Filament Temperature Settings
 
 | Filament | Nozzle Temp | Bed Temp | Notes |
-|---------|------------|---------|-------|
+| --------- | ------------ | --------- | ------- |
 | PLA | 200–215°C | 50–60°C | Easiest to print; default choice |
 | PETG | 230–250°C | 70–85°C | Use glue stick on PEI bed |
 | TPU | 220–240°C | 30–60°C | Print at 20–30 mm/s max; direct drive only |
@@ -30,7 +30,7 @@
 ## Support Settings Guide
 
 | Overhang Angle | Supports Needed? | Recommended Setting |
-|---------------|-----------------|-------------------|
+| --------------- | ----------------- | ------------------- |
 | < 45° | No | None |
 | 45°–60° | Maybe | Preview first; add if sagging |
 | > 60° | Yes | Support on build plate only |
@@ -42,7 +42,7 @@
 ## Common Print Problems & Quick Fixes
 
 | Problem | Likely Cause | Fix |
-|---------|-------------|-----|
+| --------- | ------------- | ----- |
 | Print lifts off bed | Poor adhesion / warping | Add brim; use glue stick; level bed |
 | Stringing between parts | Temperature too high / retraction | Lower temp 5°C; check retraction settings |
 | Layer lines very visible | Layer height too thick | Use 0.15mm or 0.20mm |
@@ -70,6 +70,6 @@ Before exporting, confirm:
 
 ## Sources
 
-Prusa Research. (2023). *PrusaSlicer knowledge base*. https://help.prusa3d.com/category/prusaslicer_204  
-Hubs. (2023). *What is FDM 3D printing?* https://www.hubs.com/knowledge-base/what-is-fdm-3d-printing/  
-ThePrusaSlicer.net. (2025). *How to use PrusaSlicer*. https://theprusaslicer.net/how-to-use-prusaslicer/
+Prusa Research. (2023). *PrusaSlicer knowledge base*. <https://help.prusa3d.com/category/prusaslicer_204>  
+Hubs. (2023). *What is FDM 3D printing?* <https://www.hubs.com/knowledge-base/what-is-fdm-3d-printing/>  
+ThePrusaSlicer.net. (2025). *How to use PrusaSlicer*. <https://theprusaslicer.net/how-to-use-prusaslicer/>

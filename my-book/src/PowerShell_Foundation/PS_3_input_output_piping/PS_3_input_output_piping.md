@@ -1,7 +1,5 @@
 # PS-3: Input, Output, and Piping
 
-
-
 **Duration:** 1 class period
 **Prerequisite:** PS-2 (File and Folder Manipulation)
 
@@ -10,6 +8,7 @@
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
+
 - Use `echo` to print text to the screen
 - Use `cat` to read file contents
 - Use `>` to redirect output into a file
@@ -22,7 +21,7 @@ By the end of this lesson, you will be able to:
 ## Commands Covered
 
 | Command | What It Does |
-|---------|-------------|
+| --------- | ------------- |
 | `echo "text"` | Print text to the screen |
 | `cat filename` | Print the contents of a file |
 | `> filename` | Redirect output into a file (overwrites) |

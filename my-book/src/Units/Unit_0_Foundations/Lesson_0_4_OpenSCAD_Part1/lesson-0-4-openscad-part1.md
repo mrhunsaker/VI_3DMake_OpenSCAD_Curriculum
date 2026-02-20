@@ -68,7 +68,7 @@ When you open OpenSCAD, you will see three panels:
 ### Key Keyboard Shortcuts
 
 | Key | Action |
-|-----|--------|
+| ----- | -------- |
 | `F5` | Preview (fast, good for working) |
 | `F6` | Full render (slower, needed for export) |
 box_height = 10;

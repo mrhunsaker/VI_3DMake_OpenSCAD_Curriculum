@@ -93,7 +93,7 @@ Sort what the stakeholder told you into the three categories:
 **NEEDS** — Must-have. The design fails without these.
 
 | # | Need |
-|---|------|
+| --- | ------ |
 | 1 | |
 | 2 | |
 | 3 | |
@@ -102,7 +102,7 @@ Sort what the stakeholder told you into the three categories:
 **WANTS** — Nice-to-have. Would improve the design but not essential.
 
 | # | Want |
-|---|------|
+| --- | ------ |
 | 1 | |
 | 2 | |
 | 3 | |
@@ -110,7 +110,7 @@ Sort what the stakeholder told you into the three categories:
 **CONSTRAINTS** — Fixed limits you must work within (size, location, cost, etc.)
 
 | # | Constraint |
-|---|-----------|
+| --- | ----------- |
 | 1 | |
 | 2 | |
 | 3 | |
@@ -127,7 +127,7 @@ Transform your Needs into formal functional requirements. Each requirement shoul
 **Template:** "The [object] must [action / behavior] [measurable condition]."
 
 | # | Functional Requirement | How I Would Test It |
-|---|----------------------|-------------------|
+| --- | ---------------------- | ------------------- |
 | 1 | | |
 | 2 | | |
 | 3 | | |
@@ -192,7 +192,7 @@ ___________________________________________________________________________
 **Specific changes requested:**
 
 | Change | Priority (High / Medium / Low) | Will you make it? Why / why not? |
-|--------|-------------------------------|----------------------------------|
+| -------- | ------------------------------- | ---------------------------------- |
 | | | |
 | | | |
 | | | |

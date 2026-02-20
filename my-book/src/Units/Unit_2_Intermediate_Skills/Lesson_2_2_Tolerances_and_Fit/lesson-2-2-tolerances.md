@@ -41,7 +41,7 @@ A 0.2 mm error is invisible to your eye. But if you're trying to fit a peg into 
 **Types of Fit:**
 
 | Fit Type | Description | Gap | Example Use |
-|----------|-------------|-----|-------------|
+| ---------- | ------------- | ----- | ------------- |
 | **Interference fit** (press fit) | Part is slightly larger than the hole; must be forced in | Negative clearance | Permanent assembly |
 | **Transition fit** | May be tight or may slide depending on print variation | Near zero | Light press or snug slip |
 | **Clearance fit** | Definite space between parts; moves freely | Positive clearance | Sliding drawer, loose hinge |
@@ -49,7 +49,7 @@ A 0.2 mm error is invisible to your eye. But if you're trying to fit a peg into 
 ### Practical Clearance Values for FDM
 
 | Desired Fit | Clearance to Add | Notes |
-|------------|----------------|-------|
+| ------------ | ---------------- | ------- |
 | Tight / press fit | 0.00–0.05 mm | Requires force; semi-permanent |
 | Snug (hand-tight) | 0.10–0.15 mm | Firm but removable |
 | Normal / loose | 0.20–0.30 mm | Fits easily by hand |

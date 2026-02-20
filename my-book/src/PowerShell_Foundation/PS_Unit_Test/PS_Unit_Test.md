@@ -1,4 +1,4 @@
-# PowerShell Unit Test — Comprehensive Assessment 
+# PowerShell Unit Test — Comprehensive Assessment
 
 Estimated time: 60–90 minutes
 
@@ -193,7 +193,7 @@ Complete each task and capture evidence (screenshots, output files, or command t
 ## Grading Rubric
 
 | Section | Questions | Points Each | Total |
-|---------|-----------|-------------|-------|
+| --------- | ----------- | ------------- | ------- |
 | Multiple Choice | 20 | 1 | 20 |
 | Short Answer | 10 | 2 | 20 |
 | Hands-On Tasks | 10 | 3 | 30 |
@@ -226,6 +226,7 @@ Complete each task and capture evidence (screenshots, output files, or command t
 ## Key Learning Outcomes Assessed
 
 By completing this unit test, you will demonstrate:
+
 1. Understanding of file system navigation and path concepts
 2. Proficiency with file and folder manipulation commands
 3. Ability to redirect and pipe command output

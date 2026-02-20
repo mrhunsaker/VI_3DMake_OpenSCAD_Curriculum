@@ -20,10 +20,12 @@ Before installing 3dMake, ensure you have:
 #### Step 1: Open Your Terminal
 
 **PowerShell (Windows):**
+
 - Press `Win + X` and select "Windows PowerShell" or "Terminal"
 - For screen reader users: Use `Alt + F2` and type `powershell` if needed
 
 **Linux/Mac:**
+
 - Open your terminal application (Terminal, Konsole, etc.)
 
 #### Step 2: Verify Python Installation
@@ -32,7 +34,7 @@ Before installing 3dMake, ensure you have:
 python --version
 ```
 
-If you see a version number (e.g., `Python 3.9.13`), proceed to Step 3. If not, install Python from https://python.org.
+If you see a version number (e.g., `Python 3.9.13`), proceed to Step 3. If not, install Python from [https://python.org](https://python.org).
 
 #### Step 3: Install 3dMake via pip
 
@@ -81,7 +83,7 @@ A 3dMake project is a folder structure that organizes:
 
 Decide where you want your project. Examples:
 
-```
+```powershell
 C:\Users\YourName\Documents\MyProjects\
 /home/username/3d-projects/
 ~/Desktop/MyPrinter/
@@ -90,11 +92,13 @@ C:\Users\YourName\Documents\MyProjects\
 Create the directory if it doesn't exist:
 
 **PowerShell:**
+
 ```powershell
 mkdir C:\Users\YourName\Documents\3d-projects\FirstProject
 ```
 
 **Linux/Mac:**
+
 ```bash
 mkdir -p ~/3d-projects/FirstProject
 ```
@@ -102,11 +106,13 @@ mkdir -p ~/3d-projects/FirstProject
 #### Step 2: Navigate Into Your Project Directory
 
 **PowerShell:**
+
 ```powershell
 cd C:\Users\YourName\Documents\3d-projects\FirstProject
 ```
 
 **Linux/Mac:**
+
 ```bash
 cd ~/3d-projects/FirstProject
 ```
@@ -116,12 +122,12 @@ For screen reader users: Use `pwd` (print working directory) to confirm you're i
 #### Step 3: Initialize a 3dMake Project
 
 ```bash
-3dmake init
+3dmake new
 ```
 
 This creates the project structure:
 
-```
+```bash
 FirstProject/
 ├── models/           (stores your .scad files)
 ├── exports/          (stores exported .stl files)
@@ -153,13 +159,13 @@ You should see the project files listed.
 
 Place your .scad files in the `models/` folder. You can create them in two ways:
 
-**Option A: Create in OpenSCAD editor, then move file**
+##### **Option A: Create in OpenSCAD editor, then move file**
 
 1. Open OpenSCAD
 2. Write your code
 3. Save as `models/mymodel.scad`
 
-**Option B: Create directly in the models folder**
+##### **Option B: Create directly in the models folder**
 
 ```bash
 # Navigate to models folder
@@ -221,6 +227,7 @@ Your `mymodel.stl` should be listed.
 ```
 
 Output includes:
+
 - **Face count** — total triangles in the mesh
 - **Volume** — cubic millimeters of material
 - **Bounding box** — dimensions (X, Y, Z)
@@ -228,7 +235,7 @@ Output includes:
 
 #### Example Output
 
-```
+```powershell
 === Model Info: mymodel.scad ===
 Volume: 1234.56 mm³
 Faces: 2048
@@ -243,6 +250,7 @@ Manifold: Yes ✓
 ```
 
 This checks for:
+
 - Non-manifold geometry
 - Intersecting faces
 - Thin walls
@@ -279,7 +287,7 @@ For screen reader users, always use `pwd` after navigating to confirm your locat
 
 Create a central folder for all projects:
 
-```
+```bash
 3d-projects/
 ├── FirstProject/
 │   ├── models/
@@ -322,6 +330,7 @@ Create a `README.md` in your `3d-projects/` folder:
 To batch-export STLs from all projects:
 
 **PowerShell:**
+
 ```powershell
 Get-ChildItem -Directory | ForEach-Object {
     cd $_.FullName
@@ -331,6 +340,7 @@ Get-ChildItem -Directory | ForEach-Object {
 ```
 
 **Bash:**
+
 ```bash
 for project in */; do
     cd "$project"
@@ -348,11 +358,13 @@ done
 Use clear, descriptive names:
 
 **Good:**
+
 - `cube_5cm.scad`
 - `parametric_box_v2.scad`
 - `bracket_for_motor.scad`
 
 **Avoid:**
+
 - `test.scad`
 - `model1.scad`
 - `final_final_FINAL.scad`
@@ -361,7 +373,7 @@ Use clear, descriptive names:
 
 If you're using Git, add a `.gitignore` to avoid committing large export files:
 
-```
+```bash
 # .gitignore
 exports/
 *.stl
@@ -382,11 +394,13 @@ git commit -m "Initial project setup"
 Regularly backup your `models/` folder:
 
 **PowerShell:**
+
 ```powershell
 Copy-Item -Path "models" -Destination "backups/models_$(Get-Date -Format 'yyyy-MM-dd')" -Recurse
 ```
 
 **Bash:**
+
 ```bash
 cp -r models backups/models_$(date +%Y-%m-%d)
 ```
@@ -420,6 +434,7 @@ Keep a `models/README.md` describing each model:
 #### "3dmake command not found"
 
 **Solution:**
+
 ```bash
 pip install --upgrade 3dmake
 ```
@@ -453,6 +468,7 @@ This logs each step, making it easier for screen readers to follow.
 #### OpenSCAD model won't render in 3dMake
 
 **Checklist:**
+
 - [ ] File is named with `.scad` extension
 - [ ] File is in the `models/` folder
 - [ ] File has valid OpenSCAD syntax
@@ -465,7 +481,7 @@ This logs each step, making it easier for screen readers to follow.
 ### Essential Commands
 
 | Command | Purpose |
-|---------|---------|
+| --------- | --------- |
 | `3dmake --version` | Show installed version |
 | `3dmake --help` | Display all commands |
 | `3dmake init` | Initialize new project |
@@ -477,7 +493,7 @@ This logs each step, making it easier for screen readers to follow.
 
 ### Directory Structure Reference
 
-```
+```bash
 YourProject/
 ├── models/              ← Place .scad files here
 ├── exports/             ← STL files auto-save here
@@ -499,6 +515,7 @@ Once you're comfortable with basic projects:
 5. **Collaborate** — Use Git to share projects with classmates
 
 For advanced topics, see:
+
 - [OpenSCAD Cheat Sheet](openscad-cheat-sheet.md)
 - [Slicing Settings by Printer](Reference_Materials/slicing-settings-reference-prusa.md)
 
@@ -506,6 +523,6 @@ For advanced topics, see:
 
 ## Sources
 
-3dMake Official Documentation. (2025). *3dMake — 3D modeling automation*. https://3dmake.org/docs/  
-OpenSCAD Community. (2025). *OpenSCAD user manual*. https://openscad.org/manual/  
-Teaching Tech. (2024). *3D printing workflow optimization*. https://www.youtube.com/@TeachingTech
+3dMake Official Documentation. (2025). *3dMake — 3D modeling automation*. [https://3dmake.org/docs/](https://3dmake.org/docs/)  
+OpenSCAD Community. (2025). *OpenSCAD user manual*. [https://openscad.org/manual/](https://openscad.org/manual/)  
+Teaching Tech. (2024). *3D printing workflow optimization*. [https://www.youtube.com/@TeachingTech](https://www.youtube.com/@TeachingTech)

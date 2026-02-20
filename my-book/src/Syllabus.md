@@ -19,7 +19,7 @@ Finally, this curriculum emphasizes inclusion and real-world problem solving. Lo
 Students move through four roles across the curriculum:
 
 | Phase | Role | Focus |
-|-------|------|-------|
+| ------- | ------ | ------- |
 | PowerShell Foundation | **Observer/Learner** | Command Line Interfacce (CLI) Usage|
 | Make3D Foundation |  **Observer/Learner**| Use of CLI-based Assistive Tool|
 | Unit 0 | **Observer/Learner** | Concepts, tools, safety |
@@ -32,7 +32,7 @@ Students move through four roles across the curriculum:
 ## Prerequisites by Unit
 
 | Unit | Prerequisites |
-|------|--------------|
+| ------ | -------------- |
 | Powershell Foundation | None — start here |
 | Make3D Foundation | Basic knowledge of Powershell and Command Line Interface Usage |
 | Unit 0 | Completion of the Make 3D Foundation Unit|
@@ -47,7 +47,7 @@ Students move through four roles across the curriculum:
 This project is graded on a 0–9 point scale:
 
 | Category | Points | Description |
-|----------|--------|-------------|
+| ---------- | -------- | ------------- |
 | **Stakeholder process** | 0–3 | Quality of interviews, stakeholder involvement, and co-developed functional requirements |
 | **Design & iteration** | 0–3 | Evidence of genuine iteration (Prototype 2 is meaningfully better than Prototype 1); quality of OpenSCAD design |
 | **Final prototype** | 0–3 | How well the final print meets the functional requirements; build quality |

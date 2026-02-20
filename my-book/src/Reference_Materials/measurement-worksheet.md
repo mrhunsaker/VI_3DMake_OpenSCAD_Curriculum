@@ -1,4 +1,4 @@
-# Measurement Worksheet 
+# Measurement Worksheet
 
 **Student Name:** ___________________________________
 **Date:** ___________________________________
@@ -22,7 +22,7 @@
 **Object description:** ___________________________________
 
 | Feature | What You're Measuring | M1 (mm) | M2 (mm) | M3 (mm) | Average (mm) |
-|---------|----------------------|---------|---------|---------|-------------|
+| --------- | ---------------------- | --------- | --------- | --------- | ------------- |
 | Length (X) | | | | | |
 | Width (Y) | | | | | |
 | Height (Z) | | | | | |
@@ -31,7 +31,7 @@
 
 **Notes / sketches:**
 
-```
+```text
 (describe the object here — label which direction is X, Y, Z)
 
 
@@ -46,7 +46,7 @@
 **Object description:** ___________________________________
 
 | Feature | What You're Measuring | M1 (mm) | M2 (mm) | M3 (mm) | Average (mm) |
-|---------|----------------------|---------|---------|---------|-------------|
+| --------- | ---------------------- | --------- | --------- | --------- | ------------- |
 | Length (X) | | | | | |
 | Width (Y) | | | | | |
 | Height (Z) | | | | | |
@@ -55,7 +55,7 @@
 
 **Notes / sketches:**
 
-```
+```text
 (describe the object here)
 
 
@@ -70,7 +70,7 @@
 **Object description:** ___________________________________
 
 | Feature | What You're Measuring | M1 (mm) | M2 (mm) | M3 (mm) | Average (mm) |
-|---------|----------------------|---------|---------|---------|-------------|
+| --------- | ---------------------- | --------- | --------- | --------- | ------------- |
 | Length (X) | | | | | |
 | Width (Y) | | | | | |
 | Height (Z) | | | | | |
@@ -79,7 +79,7 @@
 
 **Notes / sketches:**
 
-```
+```text
 (describe the object here)
 
 
@@ -94,7 +94,7 @@
 **Object description:** ___________________________________
 
 | Feature | What You're Measuring | M1 (mm) | M2 (mm) | M3 (mm) | Average (mm) |
-|---------|----------------------|---------|---------|---------|-------------|
+| --------- | ---------------------- | --------- | --------- | --------- | ------------- |
 | Length (X) | | | | | |
 | Width (Y) | | | | | |
 | Height (Z) | | | | | |
@@ -103,7 +103,7 @@
 
 **Notes / sketches:**
 
-```
+```text
 (describe the object here)
 
 
@@ -118,7 +118,7 @@
 **Object description:** ___________________________________
 
 | Feature | What You're Measuring | M1 (mm) | M2 (mm) | M3 (mm) | Average (mm) |
-|---------|----------------------|---------|---------|---------|-------------|
+| --------- | ---------------------- | --------- | --------- | --------- | ------------- |
 | Length (X) | | | | | |
 | Width (Y) | | | | | |
 | Height (Z) | | | | | |
@@ -127,7 +127,7 @@
 
 **Notes / sketches:**
 
-```
+```text
 (describe the object here)
 
 
@@ -142,7 +142,7 @@
 After completing all measurements, compare your averages with a partner who measured the same objects.
 
 | Object | My Average (mm) | Partner's Average (mm) | Difference (mm) | Within 1 mm? |
-|--------|----------------|----------------------|----------------|-------------|
+| -------- | ---------------- | ---------------------- | ---------------- | ------------- |
 | 1 | | | | |
 | 2 | | | | |
 | 3 | | | | |
@@ -160,7 +160,7 @@ If your instructor provides the "true" dimension of an object (measured with a r
 **Formula:** `% error = (|your average − true value| ÷ true value) × 100`
 
 | Object | Your Average | True Value | Difference | % Error |
-|--------|-------------|-----------|-----------|---------|
+| -------- | ------------- | ----------- | ----------- | --------- |
 | | | | | |
 | | | | | |
 

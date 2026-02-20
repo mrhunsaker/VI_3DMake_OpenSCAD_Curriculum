@@ -1,7 +1,5 @@
 # PS-1: Navigation — Moving Around Your File System
 
-
-
 **Duration:** 1 class period
 **Prerequisite:** PS-0 (Getting Started)
 
@@ -10,6 +8,7 @@
 ## Learning Objectives
 
 By the end of this lesson, you will be able to:
+
 - Use `pwd` to print your current location
 - Use `cd` to move between directories
 - Use `ls` (and its flags) to list files and folders
@@ -21,7 +20,7 @@ By the end of this lesson, you will be able to:
 ## Commands Covered in This Lesson
 
 | Command | What It Does |
-|---------|-------------|
+| --------- | ------------- |
 | `pwd` | Print Working Directory — shows where you are |
 | `cd path` | Change Directory — move to a new location |
 | `ls` | List — shows files and folders in current location |

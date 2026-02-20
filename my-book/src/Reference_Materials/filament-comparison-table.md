@@ -1,7 +1,4 @@
-# Filament Comparison Table 
-
-
-
+# Filament Comparison Table
 
 *Quick reference for choosing the right filament. All temperature values are typical ranges — always check the label on your specific spool.*
 
@@ -10,7 +7,7 @@
 ## Side-by-Side Comparison
 
 | Property | PLA | PETG | TPU (Flex) | ABS |
-|----------|-----|------|-----------|-----|
+| ---------- | ----- | ------ | ----------- | ----- |
 | **Difficulty** | ⭐ Easiest | ⭐⭐ Moderate | ⭐⭐⭐ Hard | ⭐⭐⭐⭐ Very Hard |
 | **Nozzle temp** | 190–220°C | 230–250°C | 220–240°C | 230–250°C |
 | **Bed temp** | 50–60°C | 70–85°C | 30–60°C | 90–110°C |
@@ -31,52 +28,60 @@
 
 ## When to Use Each Material
 
-### PLA — Use for:
+### PLA — Use for
+
 - Prototypes and test prints
 - Classroom projects
 - Decorative objects
 - Tactile models and markers
 - Anything that won't be exposed to heat or heavy stress
 
-### PLA — Avoid for:
+### PLA — Avoid for
+
 - Objects left in a hot car or direct sun
 - Parts that need to flex or bend without breaking
 - High-impact applications
 
 ---
 
-### PETG — Use for:
+### PETG — Use for
+
 - Functional parts that need to be tougher than PLA
 - Parts exposed to mild heat or moisture
 - Mechanical components (brackets, clips, mounts)
 - Food-contact applications (check your specific brand's food-safe certification)
 
-### PETG — Avoid for:
+### PETG — Avoid for
+
 - Very fine detail (it strings more than PLA)
 - Projects where you need the easiest possible print
 
 ---
 
-### TPU / Flexible — Use for:
+### TPU / Flexible — Use for
+
 - Wearable objects (wristbands, phone cases)
 - Bumpers and shock absorbers
 - Grips and handles
 - Objects that must deform and return to shape
 - Tactile objects that need to feel soft
 
-### TPU — Avoid for:
+### TPU — Avoid for
+
 - Fine detail
 - Printing on Bowden extruder setups (the flex causes jams — direct drive only)
 - Your first few prints while still learning
 
 ---
 
-### ABS — Use for:
+### ABS — Use for
+
 - High heat environments
 - Parts requiring post-processing (ABS sands and glues easily)
 - Professional/industrial contexts with proper ventilation
 
-### ABS — Avoid for:
+### ABS — Avoid for
+
 - Classroom settings without dedicated ventilation
 - Beginners
 - Any print where warping would be a problem
@@ -86,7 +91,7 @@
 ## Slicer Profile Quick Reference
 
 | Filament | PrusaSlicer Profile Name | Key Changes from PLA Default |
-|---------|------------------------|------------------------------|
+| --------- | ------------------------ | ------------------------------ |
 | PLA | Generic PLA | — (baseline) |
 | PETG | Generic PETG | Higher temps; slower cooling; use glue stick on PEI |
 | TPU | Generic Flex | Lower speed (20–30 mm/s); reduced retraction |
@@ -99,7 +104,7 @@
 All filament absorbs moisture from the air over time, which causes poor print quality (bubbling, stringing, weak layer bonds).
 
 | Filament | Moisture Sensitivity | Storage Recommendation |
-|---------|---------------------|----------------------|
+| --------- | --------------------- | ---------------------- |
 | PLA | Low | Sealed bag with desiccant when not in use |
 | PETG | Medium | Sealed bag with desiccant; dry before use if stored open |
 | TPU | High | Always store sealed; dry in oven (65°C for 4–6 hrs) if it has absorbed moisture |
@@ -111,8 +116,8 @@ Signs of wet filament: popping or crackling sounds during printing, bubbles in e
 
 ## Sources
 
-All3DP. (2025). *All 3D printing filament types explained*. https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/
+All3DP. (2025). *All 3D printing filament types explained*. <https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/>
 
-MatterHackers. (n.d.). *3D printer filament compare*. https://www.matterhackers.com/3d-printer-filament-compare
+MatterHackers. (n.d.). *3D printer filament compare*. <https://www.matterhackers.com/3d-printer-filament-compare>
 
-Prusa Research. (2023). *Materials guide*. https://help.prusa3d.com/materials
+Prusa Research. (2023). *Materials guide*. <https://help.prusa3d.com/materials>

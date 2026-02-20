@@ -39,7 +39,7 @@ Extension problems (5):
 ### Common Features That Require Supports
 
 | Feature | Usually Needs Supports? | Notes |
-|---------|------------------------|-------|
+| --------- | ------------------------ | ------- |
 | Overhang >45° from vertical | Yes | Standard rule |
 | Bridge (horizontal gap) | Sometimes | Short bridges (<20 mm) often print fine |
 | Curved ceiling | Sometimes | Depends on span |
@@ -78,7 +78,7 @@ For this activity, your instructor will provide a simple hook or bracket `.stl` 
 Slice it in **three different orientations** and record:
 
 | Orientation | Print Time | Support Volume | Where Would It Be Weakest? |
-|-------------|-----------|----------------|--------------------------|
+| ------------- | ----------- | ---------------- | -------------------------- |
 | Flat (lying down) | | | |
 | Standing upright | | | |
 | On its side | | | |
@@ -124,7 +124,7 @@ After clicking **Slice now**, always use the layer preview before printing:
 ### Color Key in Preview
 
 | Color | What It Represents |
-|-------|-------------------|
+| ------- | ------------------- |
 | Yellow/orange | Perimeters (outer walls) |
 | Red | Infill |
 | Green | Bridges |

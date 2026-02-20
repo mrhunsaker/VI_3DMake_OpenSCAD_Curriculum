@@ -1,6 +1,6 @@
-# OpenSCAD Quick Reference — Cheat Sheet 
+# OpenSCAD Quick Reference — Cheat Sheet
 
-*Keep this handy during all OpenSCAD work. For full documentation: https://openscad.org/documentation.html*
+*Keep this handy during all OpenSCAD work. For full documentation: <https://openscad.org/documentation.html>*
 
 ---
 
@@ -141,7 +141,7 @@ max(3, 5, 1)           // returns 5
 ## Keyboard Shortcuts
 
 | Key | Action |
-|-----|--------|
+| ----- | -------- |
 | F5 | Preview (fast) |
 | F6 | Full render (for export) |
 | Ctrl+S | Save |
@@ -161,6 +161,6 @@ max(3, 5, 1)           // returns 5
 
 ## Sources
 
-OpenSCAD. (n.d.). *OpenSCAD cheatsheet*. https://openscad.org/cheatsheet/  
-OpenSCAD. (n.d.). *OpenSCAD documentation*. https://openscad.org/documentation.html  
-Gohde, J., & Kintel, M. (2021). *Programming with OpenSCAD*. No Starch Press. https://nostarch.com/programmingopenscad
+OpenSCAD. (n.d.). *OpenSCAD cheatsheet*. <https://openscad.org/cheatsheet/>  
+OpenSCAD. (n.d.). *OpenSCAD documentation*. <https://openscad.org/documentation.html>  
+Gohde, J., & Kintel, M. (2021). *Programming with OpenSCAD*. No Starch Press. <https://nostarch.com/programmingopenscad>

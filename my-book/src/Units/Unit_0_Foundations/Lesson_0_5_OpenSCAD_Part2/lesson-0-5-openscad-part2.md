@@ -29,7 +29,7 @@ Think of it like working with **clay** — you start with basic blocks and eithe
 The three Boolean operations in OpenSCAD:
 
 | Operation | What It Does | Analogy |
-|-----------|-------------|---------|
+| ----------- | ------------- | --------- |
 | `union()` | Combines two or more shapes into one | Gluing pieces together |
 | `difference()` | Subtracts one shape from another | Carving a hole |
 | `intersection()` | Keeps only the overlapping region | Cookie-cutter through two shapes |
@@ -121,7 +121,7 @@ difference() {
 ## Common Mistakes and Fixes
 
 | Mistake | Symptom | Fix |
-|---------|---------|-----|
+| --------- | --------- | ----- |
 | Forgetting `;` at end of line | Red error in console | Add semicolons to every statement |
 | Forgetting `{` `}` around a Boolean operation | Shapes don't combine correctly | Always wrap multiple shapes in `{ }` |
 | Subtracting shape doesn't extend through the base | Thin "skin" remains at top/bottom of hole | Extend the subtracting shape 1 mm above and below |

@@ -86,7 +86,7 @@ Consider this scenario: A person says they need a "better way to organize their 
 Before you design anything, you need to sort stakeholder input into three categories:
 
 | Category | Definition | Example |
-|----------|-----------|---------|
+| ---------- | ----------- | --------- |
 | **Need** | Must-have; the design fails without it | "It has to hold the socks flat so they don't bunch" |
 | **Want** | Nice-to-have; improves the design but not essential | "I'd love it if it came in blue" |
 | **Constraint** | A limitation you must work within | "It has to fit on a shelf that's 15 cm deep" |
@@ -99,7 +99,7 @@ When you write **functional requirements**, you are turning needs into testable 
 **Examples:**
 
 | Bad (assumes solution) | Good (testable behavior) |
-|----------------------|------------------------|
+| ---------------------- | ------------------------ |
 | "Must have velcro" | "Must be removable and re-attachable without tools" |
 | "Should be made of PLA" | "Must withstand foot traffic from furniture" |
 | "Needs to look nice" | "Must be unobtrusive enough that visitors don't notice it" |

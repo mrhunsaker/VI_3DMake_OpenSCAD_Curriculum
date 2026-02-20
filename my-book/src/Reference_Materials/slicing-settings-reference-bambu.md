@@ -1,11 +1,11 @@
-# Slicing Settings Quick Reference — Bambu Studio / X1 Series 
+# Slicing Settings Quick Reference — Bambu Studio / X1 Series
 
 ---
 
 ## Recommended Settings by Use Case
 
 | Use Case | Layer Height | Infill | Supports | Notes |
-|----------|------------|--------|----------|-------|
+| ---------- | ------------ | -------- | ---------- | ------- |
 | Quick test / prototype | 0.30 mm | 10% | As needed | "Draft" — fastest; use standard mode |
 | Standard project | 0.20 mm | 15–20% | As needed | Best all-around; Bambu default-optimized |
 | Functional part | 0.20 mm | 30–40% | As needed | Use for load-bearing parts |
@@ -17,7 +17,7 @@
 ## Filament Temperature Settings
 
 | Filament | Nozzle Temp | Bed Temp | Notes |
-|---------|------------|---------|-------|
+| --------- | ------------ | --------- | ------- |
 | PLA (standard) | 200–210°C | 50–60°C | Fastest print times; Bambu-optimized profiles |
 | PETG | 230–250°C | 70–80°C | Slight cooling fan reduction for layer adhesion |
 | TPU | 220–240°C | 20–30°C | Best quality with Bambu's tuned retraction |
@@ -30,7 +30,7 @@
 ## Support Settings Guide
 
 | Overhang Angle | Supports Needed? | Recommended Setting |
-|---------------|-----------------|-------------------|
+| --------------- | ----------------- | ------------------- |
 | < 45° | No | None |
 | 45°–60° | Maybe | Auto-supports may activate; accept defaults |
 | > 60° | Yes | Bambu auto-tree supports; minimal removal |
@@ -42,7 +42,7 @@
 ## Common Print Problems & Quick Fixes
 
 | Problem | Likely Cause | Fix |
-|---------|-------------|-----|
+| --------- | ------------- | ----- |
 | Nozzle clogging mid-print | Thermal runaway / wet filament | Dry filament in AMS; check nozzle temp |
 | Layer splitting or separation | Wrong material in AMS slot | Verify correct material in Bambu Studio |
 | Stringing / blobbing | Cooling fan reduced too much | Increase cooling; adjust material profile |
@@ -71,6 +71,6 @@ Before starting print, confirm:
 
 ## Sources
 
-Bambu Lab. (2024). *Bambu Studio documentation & material profiles*. https://bambulab.com/en/download  
-Bambu Lab Community. (2024). *Forum & troubleshooting guides*. https://community.bambulab.com/  
-Luke's Lab. (2024). *Bambu Lab deep-dives & calibration tutorials*. https://www.youtube.com/@LukesBlab
+Bambu Lab. (2024). *Bambu Studio documentation & material profiles*. <https://bambulab.com/en/download>  
+Bambu Lab Community. (2024). *Forum & troubleshooting guides*. <https://community.bambulab.com/>  
+Luke's Lab. (2024). *Bambu Lab deep-dives & calibration tutorials*. <https://www.youtube.com/@LukesBlab>

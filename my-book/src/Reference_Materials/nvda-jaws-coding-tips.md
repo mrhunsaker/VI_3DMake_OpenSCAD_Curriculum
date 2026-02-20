@@ -1,7 +1,4 @@
-# Screen Reader Coding Tips — NVDA & JAWS 
-
-
-
+# Screen Reader Coding Tips — NVDA & JAWS
 
 *A consolidated reference for using NVDA or JAWS while writing OpenSCAD code in VSCode or Notepad++. Tips that were previously scattered across lesson files are collected here.*
 
@@ -20,6 +17,7 @@
 ## NVDA Quick Reference
 
 ### Setting Punctuation Level
+
 `NVDA + P` — cycles through: None → Some → Most → All
 
 For code: set to **Most** or **All**.
@@ -30,7 +28,7 @@ You can also set a permanent default:
 ### Essential Reading Commands
 
 | Action | Keys |
-|--------|------|
+| -------- | ------ |
 | Read current line | `NVDA + Up Arrow` |
 | Spell current line | `NVDA + Up Arrow` (twice quickly) |
 | Read from cursor to end | `NVDA + Down Arrow` |
@@ -42,7 +40,7 @@ You can also set a permanent default:
 ### Navigation in VSCode with NVDA
 
 | Action | Keys |
-|--------|------|
+| -------- | ------ |
 | Move by character | `Left / Right Arrow` |
 | Move by word | `Ctrl + Left / Right Arrow` |
 | Move by line | `Up / Down Arrow` |
@@ -62,6 +60,7 @@ You can also set a permanent default:
 ## JAWS Quick Reference
 
 ### Setting Punctuation Level
+
 `JAWS Key + Shift + 2` — cycles through punctuation levels
 
 For code: set to **All**.
@@ -69,7 +68,7 @@ For code: set to **All**.
 ### Essential Reading Commands
 
 | Action | Keys |
-|--------|------|
+| -------- | ------ |
 | Read current line | `JAWS Key + Up Arrow` |
 | Spell current line | `JAWS Key + Up Arrow` (twice quickly) |
 | Read from cursor | `JAWS Key + A` |
@@ -81,14 +80,14 @@ For code: set to **All**.
 ### Adjusting Speech Rate
 
 | Action | Keys |
-|--------|------|
+| -------- | ------ |
 | Increase rate | `Alt + Ctrl + Page Up` (or `Fn + Up Arrow` on laptops) |
 | Decrease rate | `Alt + Ctrl + Page Down` (or `Fn + Down Arrow` on laptops) |
 
 ### Navigation in VSCode with JAWS
 
 | Action | Keys |
-|--------|------|
+| -------- | ------ |
 | Move by character | `Left / Right Arrow` |
 | Move by word | `Ctrl + Left / Right Arrow` |
 | Move by line | `Up / Down Arrow` |
@@ -118,13 +117,14 @@ When you launch OpenSCAD from VSCode (via the task runner), focus stays in VSCod
 ### Reading Errors
 
 When OpenSCAD can't render your code, it outputs an error. The error message always includes:
+
 - **Line number** — use `Ctrl + G` in VSCode to jump there
 - **Error type** — usually a missing semicolon, a typo in a command name, or mismatched brackets
 
 Common errors and what they sound like:
 
 | Error message | What it usually means |
-|--------------|----------------------|
+| -------------- | ---------------------- |
 | "Expected ';' ..." | You forgot a semicolon at the end of a statement |
 | "Expected ',' or ')' ..." | Missing comma between parameters, or unclosed parenthesis |
 | "Identifier ... is undefined" | You typed a variable name wrong, or used a variable before declaring it |
@@ -133,6 +133,7 @@ Common errors and what they sound like:
 ### Bracket Matching
 
 All OpenSCAD shapes and operations use brackets and braces:
+
 - Parentheses `()` — hold parameters: `cube([10, 10, 10])`
 - Square brackets `[]` — hold vectors (lists of numbers): `[10, 10, 10]`
 - Curly braces `{}` — hold groups of shapes for boolean operations
@@ -154,6 +155,7 @@ To uncomment: select the commented lines, press `Ctrl + /` again.
 ### Navigating Large Files
 
 Use `Ctrl + F` (Find) to locate sections of your code:
+
 - Search for your module names to jump to them: e.g., `module round_bead`
 - Search for comments you wrote: e.g., `// Step 2`
 - Search for line numbers in error messages
@@ -165,6 +167,7 @@ Use `Ctrl + F` (Find) to locate sections of your code:
 When measuring an object and entering it into OpenSCAD, say the measurement aloud before typing it to reduce transcription errors. Then read the number back after typing it to confirm.
 
 Recommended sequence:
+
 1. Measure → say "seventy point three millimeters"
 2. Type `70.3` in OpenSCAD
 3. Read back: "seven zero point three" to confirm
@@ -201,16 +204,15 @@ If you are reading this curriculum through the web version (mdBook), here are ti
 
 ## References
 
-NV Access. (2024). *NVDA user guide*. https://www.nvaccess.org/files/nvda/documentation/userGuide.html
+NV Access. (2024). *NVDA user guide*. <https://www.nvaccess.org/files/nvda/documentation/userGuide.html>
 
-Freedom Scientific. (2024). *JAWS for Windows help*. https://support.freedomscientific.com/Content/Documents/Manuals/JAWS/JAWS-Screen-Reader-Help.pdf
+Freedom Scientific. (2024). *JAWS for Windows help*. <https://support.freedomscientific.com/Content/Documents/Manuals/JAWS/JAWS-Screen-Reader-Help.pdf>
 
-Microsoft. (2024). *Visual Studio Code accessibility*. https://code.visualstudio.com/docs/editor/accessibility
+Microsoft. (2024). *Visual Studio Code accessibility*. <https://code.visualstudio.com/docs/editor/accessibility>
 
 ---
 
 ### More on mdBook navigation
 
-- **mdBook (general / keyboard navigation):** https://rust-lang.github.io/mdBook/ — includes documentation and basic navigation/usage for the mdBook web UI.
+- **mdBook (general / keyboard navigation):** <https://rust-lang.github.io/mdBook/> — includes documentation and basic navigation/usage for the mdBook web UI.
 - **Curriculum mdBook navigation (with accessibility tips):** [mdBook Navigation Guide](mdbook-navigation-guide.md) - local guide in this curriculum with notes for using mdBook with and without screen readers.
-

@@ -1,4 +1,4 @@
-# Navigating This Curriculum — mdBook Guide 
+# Navigating This Curriculum — mdBook Guide
 
 *This curriculum is published as a web book using mdBook. This page explains how to find what you need, navigate between chapters, and use the book with a screen reader.*
 
@@ -40,7 +40,7 @@ The mdBook search feature indexes all content across all chapters.
 ### Other Keyboard Shortcuts
 
 | Key | Action |
-|-----|--------|
+| ----- | -------- |
 | `S` | Focus the search box |
 | `Escape` | Close search results |
 | `Left Arrow` | Previous chapter |
@@ -54,20 +54,24 @@ The mdBook search feature indexes all content across all chapters.
 ### With NVDA (Chrome, Firefox, or Edge recommended)
 
 **Reading the page:**
+
 - Use `Up / Down Arrow` to read line by line
 - Use `H` to jump between headings — this is the fastest way to skim a long lesson
 - Use `Ctrl + F` (browser Find) or `S` (mdBook search) to find specific content
 
 **Table of contents:**
+
 - The sidebar is a navigation landmark. Press `D` to move between landmark regions, or use `NVDA + F7` to open the Elements List and select "Landmarks" to navigate to the sidebar directly.
 - Within the sidebar, arrow through the list of links and press `Enter` to follow one.
 
 **Code blocks:**
+
 - Code examples are marked up as `<code>` elements. NVDA will read them inline.
 - Punctuation level should be set to **Most** or **All** to hear semicolons, brackets, and other syntax characters in code examples.
 - To copy a code block: navigate to the code, press `Ctrl + A` to select all, or use the copy button if present.
 
 **Tips:**
+
 - `NVDA + P` to cycle punctuation level — do this before reading code blocks
 - `NVDA + F7` → Links list — useful for navigating between major sections quickly
 - `H` key (headings navigation) is your best friend on lesson pages with many sections
@@ -77,19 +81,23 @@ The mdBook search feature indexes all content across all chapters.
 ### With JAWS (Chrome or Edge recommended)
 
 **Reading the page:**
+
 - Use `Up / Down Arrow` in virtual cursor mode to read line by line
 - Press `H` to jump between headings
 - Press `JAWS Key + F6` to get a list of all headings on the page
 
 **Table of contents:**
+
 - Press `R` to move between landmark regions to reach the sidebar
 - Within the sidebar, `Tab` through the links or use `Up / Down Arrow`
 
 **Code blocks:**
+
 - Set punctuation to **All** before reading code: `JAWS Key + Shift + 2`
 - JAWS reads code blocks as regular text — navigate through them line by line
 
 **Tips:**
+
 - `JAWS Key + F5` — links list
 - `JAWS Key + F6` — headings list
 - `Ctrl + F` — browser find, works alongside mdBook search
@@ -99,11 +107,13 @@ The mdBook search feature indexes all content across all chapters.
 ### With VoiceOver (Mac / iOS)
 
 **Mac:**
+
 - `VO + U` to open the rotor — select Headings to navigate by heading
 - `VO + Command + F` to search the page
 - `H` (with Quick Nav on) to move between headings
 
 **iOS:**
+
 - Swipe left/right to navigate elements
 - Use the rotor (`two-finger rotate`) to set navigation mode to Headings
 - Double-tap to activate links
@@ -112,8 +122,10 @@ The mdBook search feature indexes all content across all chapters.
 
 ## Finding What You Need
 
-### If you know which unit or project you need:
+### If you know which unit or project you need
+
 Open the table of contents and look for the unit or project name. The structure follows this pattern:
+
 - **Unit 0** — Foundation lessons (safety, how printing works, calipers, OpenSCAD basics, slicing)
 - **Unit 1** — Guided projects (Project 0 and Project 1)
 - **Unit 2** — Intermediate skills (parametric design, tolerances, advanced slicing, materials)
@@ -121,14 +133,18 @@ Open the table of contents and look for the unit or project name. The structure 
 - **Reference Materials** — Quick-reference sheets you can keep open while working
 - **PowerShell Foundation** — Command-line navigation guide
 
-### If you are looking for a specific term or command:
+### If you are looking for a specific term or command
+
 Use the **Search** function (`S`). Search for:
+
 - An OpenSCAD command (e.g., `difference`, `translate`, `module`)
 - A vocabulary word (e.g., `infill`, `tolerance`, `stakeholder`)
 - A project name (e.g., `floor marker`, `jewelry`, `assistive technology`)
 
-### If you are looking for reference material while working:
+### If you are looking for reference material while working
+
 Keep a second browser tab open to the Reference Materials section. Useful pages to bookmark:
+
 - OpenSCAD Cheat Sheet
 - Slicing Settings Quick Reference
 - Filament Comparison Table
@@ -139,6 +155,7 @@ Keep a second browser tab open to the Reference Materials section. Useful pages 
 ## Printing or Saving Pages
 
 To save or print any page for offline use:
+
 - `Ctrl + P` opens the print dialog in any browser
 - Use "Save as PDF" to save a local copy
 - For the whole book: if your instructor has provided a PDF version, use that — it contains all chapters in one file
@@ -148,6 +165,7 @@ To save or print any page for offline use:
 ## Reporting a Problem
 
 If a page is missing content, has a broken link, or is difficult to navigate with your screen reader, let your instructor know:
+
 - Which page (chapter title)
 - What you were trying to do
 - What happened instead

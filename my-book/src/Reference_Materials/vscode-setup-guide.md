@@ -1,6 +1,6 @@
-# VSCode Setup Guide — Accessible OpenSCAD Development 
+# VSCode Setup Guide — Accessible OpenSCAD Development
 
-**For use with NVDA or JAWS on Windows**
+## **For use with NVDA or JAWS on Windows**
 
 This guide walks you through setting up Visual Studio Code (VSCode) as an accessible code editor for writing OpenSCAD files, with a task runner that automatically previews your `.scad` code in OpenSCAD whenever you save.
 
@@ -18,15 +18,16 @@ You write your code in VSCode. OpenSCAD runs in the background (or in a separate
 
 ### 1.1 Install VSCode
 
-Download from: https://code.visualstudio.com/
+Download from: <https://code.visualstudio.com/>
 
 During installation:
+
 - Check **"Add to PATH"** — this is important for running VSCode from PowerShell
 - Check **"Register Code as an editor for supported file types"**
 
 ### 1.2 Install OpenSCAD
 
-Download from: https://openscad.org/downloads.html
+Download from: <https://openscad.org/downloads.html>
 
 Use the installer version (not the portable version). After installing, confirm OpenSCAD is in your PATH by opening PowerShell and typing:
 
@@ -119,6 +120,7 @@ With any `.scad` file open and focused:
 - Switch back to VSCode with `Alt + Tab` to keep editing
 
 To export an STL:
+
 1. Press `Ctrl + Shift + P`
 2. Type `Tasks: Run Task`
 3. Select **"Export STL"**
@@ -133,15 +135,17 @@ To export an STL:
 Open NVDA Menu (`NVDA + N`) → Preferences → Settings:
 
 **Speech category:**
+
 - Symbol level: **Most** (so you hear brackets, semicolons, and other syntax characters)
 
 **Browse Mode category:**
+
 - Uncheck "Use browse mode on page load in web content" — not needed for VSCode
 
 ### 3.2 Useful NVDA + VSCode Keyboard Shortcuts
 
 | Action | Keys |
-|--------|------|
+| -------- | ------ |
 | Read current line | `NVDA + Up Arrow` |
 | Read from cursor | `NVDA + Down Arrow` |
 | Spell current word | `NVDA + Numpad 2` (twice quickly) |
@@ -180,7 +184,7 @@ JAWS may try to activate Virtual/Browse mode in VSCode. If VSCode stops respondi
 ### 4.3 Useful JAWS + VSCode Keyboard Shortcuts
 
 | Action | Keys |
-|--------|------|
+| -------- | ------ |
 | Read current line | `JAWS Key + Up Arrow` |
 | Read from cursor | `JAWS Key + Down Arrow` |
 | Read current character | `JAWS Key + Numpad 5` |
@@ -198,7 +202,7 @@ If VSCode is too complex to set up, **Notepad++** is a simpler screen-reader-fri
 
 ### Setup
 
-1. Download from: https://notepad-plus-plus.org/
+1. Download from: <https://notepad-plus-plus.org/>
 2. Install the **OpenSCAD syntax highlighting** plugin:
    - Go to Plugins → Plugin Admin
    - Search for "OpenSCAD" — install if available
@@ -208,7 +212,7 @@ If VSCode is too complex to set up, **Notepad++** is a simpler screen-reader-fri
 
 Use the Run menu (`F5`) to configure a custom command:
 
-```
+```openscad
 openscad "$(FULL_CURRENT_PATH)"
 ```
 
@@ -227,7 +231,6 @@ Name it "Preview in OpenSCAD" and assign it a shortcut key (e.g., `Ctrl + F5`).
 
 Here is the complete workflow from writing code to printing:
 
-```
 1. Open VSCode (or Notepad++)
    code ~/Documents/OpenSCAD_Projects
 
@@ -247,26 +250,29 @@ Here is the complete workflow from writing code to printing:
 6. Open PrusaSlicer, import the STL, slice, export G-code
 
 7. Load G-code onto SD card or USB and print
-```
 
 ---
 
 ## Troubleshooting
 
-**OpenSCAD doesn't open when I run the task**
+### **OpenSCAD doesn't open when I run the task**
+
 - Confirm OpenSCAD is installed and in your PATH: `openscad --version` in PowerShell
 - If not found, add the OpenSCAD install folder to your PATH (see PowerShell Foundation guide)
 
-**VSCode isn't being read by my screen reader**
+### **VSCode isn't being read by my screen reader**
+
 - For JAWS: Press `JAWS Key + Z` to toggle out of Virtual mode
 - For NVDA: Make sure you are focused inside the editor panel, not a sidebar
 - Try clicking directly in the editor area with the mouse once to confirm focus
 
-**I hear "unlabeled" for some VSCode elements**
+### **I hear "unlabeled" for some VSCode elements**
+
 - This is a known VSCode accessibility limitation for some UI panels
 - Use keyboard shortcuts rather than trying to navigate by element — the editor itself reads well
 
-**My .scad file has an error but I can't find it**
+### **My .scad file has an error but I can't find it**
+
 - OpenSCAD will display an error in its console — use `Alt + Tab` to switch to OpenSCAD and arrow through the console to read the error
 - Errors always include a line number — use `Ctrl + G` in VSCode to jump to that line
 
@@ -274,8 +280,8 @@ Here is the complete workflow from writing code to printing:
 
 ## References
 
-Microsoft. (2024). *Visual Studio Code accessibility*. https://code.visualstudio.com/docs/editor/accessibility
+Microsoft. (2024). *Visual Studio Code accessibility*. <https://code.visualstudio.com/docs/editor/accessibility>
 
-NV Access. (2024). *NVDA user guide*. https://www.nvaccess.org/files/nvda/documentation/userGuide.html
+NV Access. (2024). *NVDA user guide*. <https://www.nvaccess.org/files/nvda/documentation/userGuide.html>
 
-OpenSCAD. (n.d.). *OpenSCAD documentation*. https://openscad.org/documentation.html
+OpenSCAD. (n.d.). *OpenSCAD documentation*. <https://openscad.org/documentation.html>

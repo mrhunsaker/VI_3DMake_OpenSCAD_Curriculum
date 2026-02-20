@@ -20,7 +20,7 @@ A well-structured course folder ensures:
 
 By the end of this guide, you'll have:
 
-```
+```bash
 CourseFolder/
 ├── 00_COURSE_INDEX.md          ← START HERE
 ├── 01_PowerShell_Foundation/
@@ -340,7 +340,7 @@ Each assignment has its own folder with instructions and a place for your work.
 ### Assignments:
 
 | Assignment | Topic | Deadline | Folder |
-|-----------|-------|----------|--------|
+| ----------- | ------- | ---------- | -------- |
 | 1 | PowerShell Basics | Week 1 | `Assignment_01_PowerShell_Basics/` |
 | 2 | 3dMake Installation | Week 2 | `Assignment_02_3DMake_Setup/` |
 | 3 | Your First Model | Week 3 | `Assignment_03_First_Model/` |
@@ -397,7 +397,7 @@ Get-ChildItem -Recurse | Select-Object FullName
 ## Course Timeline (Suggested Pace)
 
 | Week | Topic | Time | Deliverable |
-|-----|-------|------|------------|
+| ----- | ------- | ------ | ------------ |
 | 1 | PowerShell Basics (Section 1: Subsections 1-2) | 2-3 hrs | Quiz answers |
 | 2 | PowerShell Advanced (Section 1: Subsections 3-5) + 3dMake Install | 4-5 hrs | Assignment 2 |
 | 3 | 3dMake Foundation (Section 2: Subsections 1-3) + First Print Project | 4-5 hrs | Printed cube |
@@ -410,20 +410,22 @@ Get-ChildItem -Recurse | Select-Object FullName
 ## Getting Help
 
 **In this course:**
+
 - Ask your instructor (name and email)
 - Check the relevant Reference Material
 - Review the Cheat Sheet for your topic
 
 **Online resources:**
-- OpenSCAD forums: https://forum.openscad.org/
-- 3dMake documentation: https://3dmake.org/
-- PowerShell docs: https://learn.microsoft.com/powershell/
+
+- OpenSCAD forums: <https://forum.openscad.org/>
+- 3dMake documentation: <https://3dmake.org/>
+- PowerShell docs: <https://learn.microsoft.com/powershell/>
 
 ---
 
 ## File Paths Quick Reference
 
-```
+```bash
 VI_Friendly_3D_Printing_Course/
 │
 ├── 00_COURSE_INDEX.md                    ← YOU ARE HERE
@@ -489,8 +491,7 @@ VI_Friendly_3D_Printing_Course/
 
 ---
 
-Good luck with your course! You've got this! 🎯
-```
+Good luck with your course! You've got this!
 
 ### Step 4: Save the File
 
@@ -643,11 +644,13 @@ Get-ChildItem
 ### File Naming Best Practices
 
 **Do:**
+
 - Use numbers at the start (01_basics, 02_navigation)
 - Use underscores instead of spaces
 - Be specific (01_PowerShell_Basics, not 01_PS)
 
 **Avoid:**
+
 - Spaces in filenames (harder for screen readers)
 - Numbers only (confusing)
 - Special characters (!@#$%)
@@ -717,25 +720,12 @@ Rename-Item "01_basics" "01_PowerShell_Basics_Foundation"
 
 ## Next Steps
 
-1. ✅ Created your main course folder
-2. ✅ Set up subfolders for each section
-3. ✅ Created 00_COURSE_INDEX.md
-4. ✅ Read the index file
-5. ▶️ Next: Copy course materials into each folder
-6. ▶️ Next: Start with PowerShell Foundation (Section 1)
-
----
-
-## Sources
-
-Microsoft. (2025). *PowerShell documentation*. https://learn.microsoft.com/powershell/  
-Accessibility Guidelines. (2025). *Screen reader best practices for command line*. https://www.w3.org/WAI/  
-Course Design for Accessibility. (2024). *Organizing materials for VI students*. https://www.accessibility.org/
-```
-
-### Step 4: Save the File
-
-Press `Ctrl + S` and confirm.
+1. Creat your main course folder
+2. Set up subfolders for each section
+3. Created 00_COURSE_INDEX.md
+4. Read the index file
+5. Next: Copy course materials into each folder
+6. Next: Start with PowerShell Foundation (Section 1)
 
 ---
 
@@ -812,6 +802,6 @@ Start with the `00_COURSE_INDEX.md` and follow the course timeline!
 
 ## Sources
 
-Microsoft. (2025). *PowerShell documentation & tutorials*. https://learn.microsoft.com/powershell/  
-Web Accessibility in Mind. (2025). *Creating accessible digital content*. https://www.webacm.org/  
-Course Design Best Practices. (2024). *Organizing materials for accessibility*. https://www.eddesign.org/
+Microsoft. (2025). *PowerShell documentation & tutorials*. <https://learn.microsoft.com/powershell/>  
+Web Accessibility in Mind. (2025). *Creating accessible digital content*. <https://www.webacm.org/>  
+Course Design Best Practices. (2024). *Organizing materials for accessibility*. <https://www.eddesign.org/>

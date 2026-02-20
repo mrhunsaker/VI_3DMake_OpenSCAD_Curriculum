@@ -1,4 +1,4 @@
-# Lesson 2.4: Material Properties — PLA, PETG, and TPU 
+# Lesson 2.4: Material Properties — PLA, PETG, and TPU
 
 **Unit:** 2 — Intermediate Skills  
 **Duration:** 1 class period (50–60 min)  
@@ -9,6 +9,7 @@
 ## Learning Objectives
 
 By the end of this lesson, students will be able to:
+
 - Compare the physical properties of PLA, PETG, and TPU
 - Choose an appropriate filament material for a given design application
 - Explain how printing settings change when switching materials
@@ -33,7 +34,7 @@ Most projects in this class use **PLA** — and for good reason. It's the easies
 PLA is the standard starting point for FDM printing. It is bio-derived (from corn starch or sugarcane) and relatively low-emission.
 
 | Property | Value |
-|---------|-------|
+| --------- | ------- |
 | Print temperature | 190–220°C |
 | Bed temperature | 50–60°C (often not required) |
 | Strength | High rigidity; brittle under impact |
@@ -54,7 +55,7 @@ PLA is the standard starting point for FDM printing. It is bio-derived (from cor
 PETG is described as combining the ease of PLA with the toughness of ABS. It's more durable and heat-resistant than PLA, with less emission concern than ABS.
 
 | Property | Value |
-|---------|-------|
+| --------- | ------- |
 | Print temperature | 230–250°C |
 | Bed temperature | 70–85°C |
 | Strength | High; more impact-resistant than PLA |
@@ -75,7 +76,7 @@ PETG is described as combining the ease of PLA with the toughness of ABS. It's m
 TPU is a **flexible filament** — it bends, stretches, and returns to its shape like rubber. It's used for phone cases, wearables, gaskets, and anything that needs to absorb impacts.
 
 | Property | Value |
-|---------|-------|
+| --------- | ------- |
 | Print temperature | 220–240°C |
 | Bed temperature | 30–60°C |
 | Strength | Excellent elasticity; resists tearing |
@@ -96,7 +97,7 @@ TPU is a **flexible filament** — it bends, stretches, and returns to its shape
 ## Side-by-Side Comparison
 
 | Property | PLA | PETG | TPU |
-|---------|-----|------|-----|
+| --------- | ----- | ------ | ----- |
 | Difficulty | Easy | Moderate | Hard |
 | Rigidity | High | Medium | None (flexible) |
 | Impact resistance | Low | Medium | High |
@@ -126,7 +127,7 @@ If your instructor has sample prints in PLA, PETG, and TPU:
 3. Describe the surface texture (matte, glossy, rubbery).
 
 | Material | Flexibility | Surface | Notes |
-|---------|------------|---------|-------|
+| --------- | ------------ | --------- | ------- |
 | PLA | | | |
 | PETG | | | |
 | TPU | | | |

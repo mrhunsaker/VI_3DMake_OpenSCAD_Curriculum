@@ -1,4 +1,4 @@
-# Master Project Rubric — 0–9 Point Scale 
+# Master Project Rubric — 0–9 Point Scale
 
 *This rubric applies to all Unit 1, 2, and 3 projects unless otherwise noted in the project briefing. Project 0 is complete/incomplete only.*
 
@@ -9,7 +9,7 @@
 Projects are scored from 0–9 across three categories worth 3 points each:
 
 | Category | Max Points | What Is Evaluated |
-|----------|-----------|-------------------|
+| ---------- | ----------- | ------------------- |
 | **Problem & Solution** | 3 | How well the prototype meets the identified problem or functional requirements |
 | **Design Quality** | 3 | Complexity, originality, technical quality of the design; evidence of iteration |
 | **Documentation** | 3 | Completeness, accuracy, and thoughtfulness of all written deliverables |
@@ -19,7 +19,7 @@ Projects are scored from 0–9 across three categories worth 3 points each:
 ## Category 1: Problem & Solution (0–3 points)
 
 | Score | Description |
-|-------|-------------|
+| ------- | ------------- |
 | **3** | The prototype clearly and effectively solves the stated problem. All functional requirements are met. The solution shows evidence of testing against the requirements. |
 | **2** | The prototype mostly meets the problem. Most functional requirements are met. Minor gaps between the design and the requirements. |
 | **1** | The prototype partially addresses the problem. Several functional requirements are not met or were not clearly tested. |
@@ -30,7 +30,7 @@ Projects are scored from 0–9 across three categories worth 3 points each:
 ## Category 2: Design Quality (0–3 points)
 
 | Score | Description |
-|-------|-------------|
+| ------- | ------------- |
 | **3** | The design is original, well-considered, and technically executed. Code (if applicable) is clean, uses variables/modules appropriately, and is well-commented. The print is clean and well-made. Evidence of at least one meaningful revision or iteration. |
 | **2** | The design is functional and shows thought. Code works but may lack structure (few comments, raw numbers instead of variables). Print quality is acceptable. Some iteration evident. |
 | **1** | The design is basic or primarily borrowed from another source without modification. Code has issues. Print quality has significant defects that were not addressed. |
@@ -41,19 +41,18 @@ Projects are scored from 0–9 across three categories worth 3 points each:
 ## Category 3: Documentation (0–3 points)
 
 | Score | Description |
-|-------|-------------|
+| ------- | ------------- |
 | **3** | All required sections are present, complete, and specific. Reflections are thoughtful and reference specific decisions, problems encountered, and learning. Photos are included. Measurements are recorded. |
 | **2** | Most required sections are present. Some sections are vague or missing detail. Reflections show some thought but are brief or generic. |
 | **1** | Documentation is incomplete. Major sections are missing or consist of one-line responses. Reflections are minimal. |
 | **0** | Documentation is not submitted or is essentially empty. |
-
 
 ---
 
 ## Score Interpretation
 
 | Total Score | Interpretation | Next Step |
-|------------|---------------|-----------|
+| ------------ | --------------- | ----------- |
 | 8–9 | Excellent work | Move on to next project |
 | 6–7 | Good work with room for improvement | Move on; instructor may suggest revisiting one element |
 | 4–5 | Meets basic expectations | Resubmission of specific weak areas recommended |
@@ -65,6 +64,7 @@ Projects are scored from 0–9 across three categories worth 3 points each:
 ## Resubmission Policy
 
 Students may resubmit any project as many times as they need to improve their score. Resubmissions must include:
+
 1. A one-paragraph explanation of what was changed and why
 
 The resubmission score **replaces** the original score.
