@@ -1,14 +1,14 @@
-# 3D Design & Printing Curriculum — Non-Visual Toolchain Edition
+# 3D Design & Printing Curriculum - Non-Visual Toolchain Edition
 
 **Author:** Michael Ryan Hunsaker, M.Ed., Ph.D.   
 **Last Updated:** 2026-02-20   
-**Target Audience:** Blind and visually impaired high school students; anyone learning 3D design and printing through screen reader–accessible workflows.    
+**Target Audience:** Blind and visually impaired high school students; anyone learning 3D design and printing through screen reader-accessible workflows.    
 
 ---
 
 ## Overview
 
-This curriculum teaches 3D design and digital fabrication using a fully accessible, command-line–driven toolchain centered on **OpenSCAD** (text-based CAD), **3DMake** (non-visual build automation), and accessible editors (VS Code, Notepad++, command-line editors) with screen reader support. Students progress from foundational command-line skills through guided projects to real-world, stakeholder-driven design challenges.
+This curriculum teaches 3D design and digital fabrication using a fully accessible, command-line-driven toolchain centered on **OpenSCAD** (text-based CAD), **3DMake** (non-visual build automation), and accessible editors (VS Code, Notepad++, command-line editors) with screen reader support. Students progress from foundational command-line skills through guided projects to real-world, stakeholder-driven design challenges.
 
 ### Who This Course Is For
 
@@ -18,7 +18,7 @@ This course is explicitly designed for blind and visually impaired learners who 
 
 ### Core Philosophy
 
-1. **Text-First Design**: All core work happens in text editors and command-line interfaces—no graphical CAD previews, no mouse-dependent menu navigation.
+1. **Text-First Design**: All core work happens in text editors and command-line interfaces-no graphical CAD previews, no mouse-dependent menu navigation.
 
 2. **Parametric Thinking**: Students learn to express geometry as code using OpenSCAD, enabling precise, reproducible, and iterable designs without visual feedback.
 
@@ -32,23 +32,23 @@ This course is explicitly designed for blind and visually impaired learners who 
 
 ## Curriculum Structure & Scope/Sequence
 
-### Part 1: PowerShell Foundation (Prerequisite — 6–8 hours)
+### Part 1: PowerShell Foundation (Prerequisite - 6-8 hours)
 
 **Start here:** [PowerShell Introduction](PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md)
 
 Students who have never opened a terminal begin with foundational command-line skills:
 
-| Component | Duration | Content |
-|-----------|----------|---------|
-| **PowerShell Introduction** | 45 min | What is a terminal, opening PowerShell, first 5 commands, screen reader tricks |
-| **Screen Reader Accessibility Guide** | 1–2 hours | NVDA/JAWS reference, navigation sequences, handling output, keyboard shortcuts |
-| **PS.0: Basic Commands** | 1 hour | pwd, ls, cd, echo, cat, file operations |
-| **PS.1: Navigation & Files** | 1 hour | File system navigation, creating/editing files, organizing work |
-| **PS.2: Variables & Scripting** | 1 hour | Variables, simple scripts, basic logic |
-| **PS.3: Loops & Iteration** | 1 hour | For loops, foreach, batch operations |
-| **PS.4: Functions & Modules** | 1 hour | Functions, parameters, reusable code blocks |
-| **PS.5: Error Handling** | 1 hour | Try-catch, debugging, troubleshooting |
-| **PowerShell Curriculum Overview** | 30 min | Study guide, practice strategies, learning paths |
+| Component                             | Duration  | Content                                                                        |
+|---------------------------------------|-----------|--------------------------------------------------------------------------------|
+| **PowerShell Introduction**           | 45 min    | What is a terminal, opening PowerShell, first 5 commands, screen reader tricks |
+| **Screen Reader Accessibility Guide** | 1-2 hours | NVDA/JAWS reference, navigation sequences, handling output, keyboard shortcuts |
+| **PS.0: Basic Commands**              | 1 hour    | `pwd`, `ls`, `cd`, `echo`, `cat`, file operations                              |
+| **PS.1: Navigation & Files**          | 1 hour    | File system navigation, creating/editing files, organizing work                |
+| **PS.2: Variables & Scripting**       | 1 hour    | Variables, simple scripts, basic logic                                         |
+| **PS.3: Loops & Iteration**           | 1 hour    | `For` loops, `foreach`, batch operations                                       |
+| **PS.4: Functions & Modules**         | 1 hour    | Functions, parameters, reusable code blocks                                    |
+| **PS.5: Error Handling**              | 1 hour    | Try-catch, debugging, troubleshooting                                          |
+| **PowerShell Curriculum Overview**    | 30 min    | Study guide, practice strategies, learning paths                               |
 
 **Outcomes:**
 - Comfort with terminal/command-line interface
@@ -57,53 +57,53 @@ Students who have never opened a terminal begin with foundational command-line s
 - Screen reader optimization for terminal work
 - Foundation for 3DMake automation tasks
 
-**Note:** Students should complete PowerShell Foundation before starting 3dMake Lesson 9 (Automation). Lessons 1–8 can begin without PowerShell, but Lesson 9+ requires command-line fluency.
+**Note:** Students should complete PowerShell Foundation before starting 3dMake Lesson 9 (Automation). Lessons 1-8 can begin without PowerShell, but Lesson 9+ requires command-line fluency.
 
 ---
 
-### Part 2: 3dMake Foundation (Main Curriculum — 14–18 hours)
+### Part 2: 3dMake Foundation (Main Curriculum - 14-18 hours)
 
 **Start here:** [3dMake Introduction](3dMake_Foundation/3dMake_Intro/3dMake_Intro.md)
 
 11 progressive lessons building from foundational concepts to leadership-level design thinking, organized in 5 parts:
 
-#### **Part 1: Foundations** (Lessons 1–3 | ~3 hours)
+#### **Part 1: Foundations** (Lessons 1-3 | ~3 hours)
 
-| Lesson | Focus | Duration | Project |
-|--------|-------|----------|---------|
-| **[Lesson 1](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md)** | Environmental Configuration + How 3D Printing Works | 60–90 min | None |
-| **[Lesson 2](3dMake_Foundation/Lessons_3dMake_2/Lessons_3dMake_2.md)** | Primitives & Boolean Operations + Debugging | 60 min | None |
-| **[Lesson 3](3dMake_Foundation/Lessons_3dMake_3/Lessons_3dMake_3.md)** | Parametric Architecture & Modules | 60 min | None |
+| Lesson                                                                 | Focus                                               | Duration  | Project |
+|------------------------------------------------------------------------|-----------------------------------------------------|-----------|---------|
+| **[Lesson 1](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md)** | Environmental Configuration + How 3D Printing Works | 60-90 min | None    |
+| **[Lesson 2](3dMake_Foundation/Lessons_3dMake_2/Lessons_3dMake_2.md)** | Primitives & Boolean Operations + Debugging         | 60 min    | None    |
+| **[Lesson 3](3dMake_Foundation/Lessons_3dMake_3/Lessons_3dMake_3.md)** | Parametric Architecture & Modules                   | 60 min    | None    |
 
-#### **Part 2: Verification & Safety** (Lessons 4–5 | ~2 hours)
+#### **Part 2: Verification & Safety** (Lessons 4-5 | ~2 hours)
 
-| Lesson | Focus | Duration | Project |
-|--------|-------|----------|---------|
-| **[Lesson 4](3dMake_Foundation/Lessons_3dMake_4/Lessons_3dMake_4.md)** | AI-Enhanced Verification & Feedback | 45–60 min | None |
-| **[Lesson 5](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md)** | Safety Protocols & Material Introduction | 60–90 min | None |
+| Lesson                                                                 | Focus                                    | Duration  | Project |
+|------------------------------------------------------------------------|------------------------------------------|-----------|---------|
+| **[Lesson 4](3dMake_Foundation/Lessons_3dMake_4/Lessons_3dMake_4.md)** | AI-Enhanced Verification & Feedback      | 45-60 min | None    |
+| **[Lesson 5](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md)** | Safety Protocols & Material Introduction | 60-90 min | None    |
 
-#### **Part 3: Applied Projects** (Lessons 6–8 | ~4 hours)
+#### **Part 3: Applied Projects** (Lessons 6-8 | ~4 hours)
 
-| Lesson | Focus | Duration | Project |
-|--------|-------|----------|---------|
-| **[Lesson 6](3dMake_Foundation/Lessons_3dMake_6/Lessons_3dMake_6.md)** | Practical 3dm Commands & Text Embossing | 60–90 min | 🎮 Customizable Keycap |
-| **[Lesson 7](3dMake_Foundation/Lessons_3dMake_7/Lessons_3dMake_7.md)** | Parametric Transforms & Assembly | 75–90 min | 📱 Phone Stand |
-| **[Lesson 8](3dMake_Foundation/Lessons_3dMake_8/Lessons_3dMake_8.md)** | Advanced Parametric Design & Interlocking | 90–120 min | 🎁 Stackable Bins |
+| Lesson                                                                 | Focus                                     | Duration   | Project             |
+|------------------------------------------------------------------------|-------------------------------------------|------------|---------------------|
+| **[Lesson 6](3dMake_Foundation/Lessons_3dMake_6/Lessons_3dMake_6.md)** | Practical 3dm Commands & Text Embossing   | 60-90 min  | Customizable Keycap |
+| **[Lesson 7](3dMake_Foundation/Lessons_3dMake_7/Lessons_3dMake_7.md)** | Parametric Transforms & Assembly          | 75-90 min  | Phone Stand         |
+| **[Lesson 8](3dMake_Foundation/Lessons_3dMake_8/Lessons_3dMake_8.md)** | Advanced Parametric Design & Interlocking | 90-120 min | Stackable Bins      |
 
-#### **Part 4: Advanced Topics** (Lessons 9–10 | ~3 hours)
+#### **Part 4: Advanced Topics** (Lessons 9-10 | ~3 hours)
 
-| Lesson | Focus | Duration | Project |
-|--------|-------|----------|---------|
-| **[Lesson 9](3dMake_Foundation/Lessons_3dMake_9/Lessons_3dMake_9.md)** | Automation & 3dm Workflows (requires PS Foundation) | 60–90 min | 🔑 Batch Processing Automation |
-| **[Lesson 10](3dMake_Foundation/Lessons_3dMake_10/Lessons_3dMake_10.md)** | Troubleshooting & Mastery with Measurement | 120–150 min | 🎲 QA Testing + 🔍 Accessibility Audit |
+| Lesson                                                                    | Focus                                               | Duration    | Project                          |
+|---------------------------------------------------------------------------|-----------------------------------------------------|-------------|----------------------------------|
+| **[Lesson 9](3dMake_Foundation/Lessons_3dMake_9/Lessons_3dMake_9.md)**    | Automation & 3dm Workflows (requires PS Foundation) | 60-90 min   | Batch Processing Automation      |
+| **[Lesson 10](3dMake_Foundation/Lessons_3dMake_10/Lessons_3dMake_10.md)** | Troubleshooting & Mastery with Measurement          | 120-150 min | QA Testing + Accessibility Audit |
 
 #### **Part 5: Leadership** (Lesson 11 | ~2 hours)
 
-| Lesson | Focus | Duration | Project |
-|--------|-------|----------|---------|
-| **[Lesson 11](3dMake_Foundation/Lessons_3dMake_11/Lessons_3dMake_11.md)** | Stakeholder-Centric Design & Design Thinking | 90–120 min | 📿 Beaded Jewelry Holder |
+| Lesson                                                                    | Focus                                        | Duration   | Project               |
+|---------------------------------------------------------------------------|----------------------------------------------|------------|-----------------------|
+| **[Lesson 11](3dMake_Foundation/Lessons_3dMake_11/Lessons_3dMake_11.md)** | Stakeholder-Centric Design & Design Thinking | 90-120 min | Beaded Jewelry Holder |
 
-**Total:** 14–18 hours of instruction + projects
+**Total:** 14-18 hours of instruction + projects
 
 ---
 
@@ -145,19 +145,19 @@ Complete automation guide for PowerShell + 3dMake:
 
 Students move through roles across the curriculum:
 
-| Phase | Role | Core Tools | Focus |
-| ------- | ------ | ----------- | ------- |
-| **PowerShell Foundation** | Observer/Learner | Terminal, command line | CLI fundamentals and keyboard navigation |
-| **3dMake Lessons 1–5** | Observer/Learner | OpenSCAD, 3DMake, editor | Using CLI tools, safety, concepts, measurement |
-| **3dMake Lessons 6–8** | Operator | Editor, OpenSCAD, 3DMake, slicer | Hands-on practice with structured projects |
-| **3dMake Lessons 9–10** | Designer | Full toolchain | Parametric design, automation, troubleshooting |
-| **3dMake Lesson 11** | Problem-Solver | Full toolchain + documentation | Stakeholder design, real-world impact |
+| Phase                     | Role             | Core Tools                       | Focus                                          |
+|---------------------------|------------------|----------------------------------|------------------------------------------------|
+| **PowerShell Foundation** | Observer/Learner | Terminal, command line           | CLI fundamentals and keyboard navigation       |
+| **3dMake Lessons 1-5**    | Observer/Learner | OpenSCAD, 3DMake, editor         | Using CLI tools, safety, concepts, measurement |
+| **3dMake Lessons 6-8**    | Operator         | Editor, OpenSCAD, 3DMake, slicer | Hands-on practice with structured projects     |
+| **3dMake Lessons 9-10**   | Designer         | Full toolchain                   | Parametric design, automation, troubleshooting |
+| **3dMake Lesson 11**      | Problem-Solver   | Full toolchain + documentation   | Stakeholder design, real-world impact          |
 
 ---
 
 ## The Accessible Toolchain: How It Works
 
-### OpenSCAD — Text-Based 3D Design
+### OpenSCAD - Text-Based 3D Design
 
 **OpenSCAD** is a free, open-source CAD tool that uses a programming language to describe 3D geometry. Students write code that defines shapes, transforms them, and combines them using Boolean operations.
 
@@ -167,14 +167,14 @@ Students move through roles across the curriculum:
 - **Parametric**: Variables allow students to design once and generate variations by changing numbers.
 - **No visual dependency**: Students reason about geometry through code structure and testing.
 
-### 3DMake — The Non-Visual Build Bridge
+### 3DMake - The Non-Visual Build Bridge
 
 **3DMake** is a command-line tool that automates the journey from OpenSCAD code to a printable file:
 
 ```bash
-3dm build        → Compiles main.scad to main.stl
-3dm info         → Validates geometry and runs diagnostics
-3dm slice        → Prepares the model for printing
+3dm build        
+3dm info         
+3dm slice        
 ```
 
 **Why 3DMake?**
@@ -185,7 +185,7 @@ Students move through roles across the curriculum:
 
 ### Accessible Editors
 
-Students write OpenSCAD code using **screen reader–accessible editors**:
+Students write OpenSCAD code using **screen reader-accessible editors**:
 
 - **VS Code** (Windows, macOS, Linux): Industry-standard with built-in screen reader support
 - **Notepad++** (Windows): Lightweight, keyboard-driven, excellent screen reader support
@@ -195,64 +195,64 @@ Students write OpenSCAD code using **screen reader–accessible editors**:
 
 ## Prerequisites by Section
 
-| Section | Prerequisites | What You'll Learn |
-| ------ | -------------- | ------------------- |
-| **PowerShell Foundation** | None — start here | Terminal basics, keyboard navigation, file operations, basic scripting |
-| **3dMake Lessons 1–5** | PowerShell Foundation | 3D printing concepts, safety, measurement, OpenSCAD basics, debugging |
-| **3dMake Lessons 6–8** | Lessons 1–5 | Building projects, parametric design, transforms, tolerances |
-| **3dMake Lessons 9–10** | Lessons 6–8 (Lesson 9 requires PS Foundation) | Automation, troubleshooting, advanced measurement and QA |
-| **3dMake Lesson 11** | Lessons 9–10 | Stakeholder design, real-world prototyping, leadership |
+| Section                   | Prerequisites                                 | What You'll Learn                                                      |
+|---------------------------|-----------------------------------------------|------------------------------------------------------------------------|
+| **PowerShell Foundation** | None - start here                             | Terminal basics, keyboard navigation, file operations, basic scripting |
+| **3dMake Lessons 1-5**    | PowerShell Foundation                         | 3D printing concepts, safety, measurement, OpenSCAD basics, debugging  |
+| **3dMake Lessons 6-8**    | Lessons 1-5                                   | Building projects, parametric design, transforms, tolerances           |
+| **3dMake Lessons 9-10**   | Lessons 6-8 (Lesson 9 requires PS Foundation) | Automation, troubleshooting, advanced measurement and QA               |
+| **3dMake Lesson 11**      | Lessons 9-10                                  | Stakeholder design, real-world prototyping, leadership                 |
 
 ---
 
 ## Grading Rubric
 
-All projects are scored on a 0–9 scale across three equally weighted categories (3 points each):
+All projects are scored on a 0-9 scale across three equally weighted categories (3 points each):
 
-| Category | Points | What We Measure |
-| ---------- | ------- | ------------------- |
-| **Problem & Solution** | 0–3 | Does the design solve the stated problem? Are all functional requirements met? |
-| **Design & Code Quality** | 0–3 | Is the OpenSCAD code clean, well-commented, and well-structured? Does the print work well? Is there evidence of iteration? |
-| **Documentation** | 0–3 | Are all sections complete? Are reflections thoughtful and specific? Are measurements recorded? |
+| Category                  | Points | What We Measure                                                                                                            |
+|---------------------------|--------|----------------------------------------------------------------------------------------------------------------------------|
+| **Problem & Solution**    | 0-3    | Does the design solve the stated problem? Are all functional requirements met?                                             |
+| **Design & Code Quality** | 0-3    | Is the OpenSCAD code clean, well-commented, and well-structured? Does the print work well? Is there evidence of iteration? |
+| **Documentation**         | 0-3    | Are all sections complete? Are reflections thoughtful and specific? Are measurements recorded?                             |
 
-### Category 1: Problem & Solution (0–3 points)
+### Category 1: Problem & Solution (0-3 points)
 
-| Score | Description |
-| ------- | ------------- |
+| Score | Description                                                                                                                                                            |
+|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **3** | The prototype clearly and effectively solves the stated problem. All functional requirements are met. The solution shows evidence of testing against the requirements. |
-| **2** | The prototype mostly meets the problem. Most functional requirements are met. Minor gaps between the design and the requirements. |
-| **1** | The prototype partially addresses the problem. Several functional requirements are not met or were not clearly tested. |
-| **0** | The prototype does not address the stated problem, or no functional requirements were established. |
+| **2** | The prototype mostly meets the problem. Most functional requirements are met. Minor gaps between the design and the requirements.                                      |
+| **1** | The prototype partially addresses the problem. Several functional requirements are not met or were not clearly tested.                                                 |
+| **0** | The prototype does not address the stated problem, or no functional requirements were established.                                                                     |
 
-### Category 2: Design & Code Quality (0–3 points)
+### Category 2: Design & Code Quality (0-3 points)
 
 **OpenSCAD code is central to this course.** We evaluate the clarity, structure, and documentation of your code as much as the print quality.
 
-| Score | Description |
-| ------- | ------------- |
+| Score | Description                                                                                                                                                                                          |
+|-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **3** | Code is clean, well-organized, and thoroughly commented. Variables/modules are used appropriately. Print quality is excellent. Design shows original thinking and at least one meaningful iteration. |
-| **2** | Code works but lacks clear structure or comments. Variables are used but could be better named. Print quality is acceptable. Some iteration evident. |
-| **1** | Code is functional but poorly organized. Comments are minimal or missing. Print quality has defects. Little or no iteration. |
-| **0** | Code does not work, is not submitted, or shows no original thinking. Print is not functional. |
+| **2** | Code works but lacks clear structure or comments. Variables are used but could be better named. Print quality is acceptable. Some iteration evident.                                                 |
+| **1** | Code is functional but poorly organized. Comments are minimal or missing. Print quality has defects. Little or no iteration.                                                                         |
+| **0** | Code does not work, is not submitted, or shows no original thinking. Print is not functional.                                                                                                        |
 
-### Category 3: Documentation (0–3 points)
+### Category 3: Documentation (0-3 points)
 
-| Score | Description |
-| ------- | ------------- |
+| Score | Description                                                                                                                                                                                   |
+|-------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **3** | All required sections are present, complete, and specific. Reflections are thoughtful and reference specific decisions, problems encountered, and learning. Photos/measurements are included. |
-| **2** | Most required sections are present. Some sections are vague or missing detail. Reflections show some thought but are brief or generic. |
-| **1** | Documentation is incomplete. Major sections are missing or consist of one-line responses. Reflections are minimal. |
-| **0** | Documentation is not submitted or is essentially empty. |
+| **2** | Most required sections are present. Some sections are vague or missing detail. Reflections show some thought but are brief or generic.                                                        |
+| **1** | Documentation is incomplete. Major sections are missing or consist of one-line responses. Reflections are minimal.                                                                            |
+| **0** | Documentation is not submitted or is essentially empty.                                                                                                                                       |
 
 ### Score Interpretation
 
-| Total Score | Interpretation | Next Step |
-| ------------ | --------------- | ----------- |
-| 8–9 | Excellent work | Move on to next project |
-| 6–7 | Good work with room for improvement | Move on; instructor may suggest revisiting one element |
-| 4–5 | Meets basic expectations | Resubmission of specific weak areas recommended |
-| 2–3 | Does not meet expectations | Resubmission required |
-| 0–1 | Missing major deliverables | Meet with instructor; create a completion plan |
+| Total Score | Interpretation                      | Next Step                                              |
+|-------------|-------------------------------------|--------------------------------------------------------|
+| 8-9         | Excellent work                      | Move on to next project                                |
+| 6-7         | Good work with room for improvement | Move on; instructor may suggest revisiting one element |
+| 4-5         | Meets basic expectations            | Resubmission of specific weak areas recommended        |
+| 2-3         | Does not meet expectations          | Resubmission required                                  |
+| 0-1         | Missing major deliverables          | Meet with instructor; create a completion plan         |
 
 ### Resubmission Policy
 
@@ -263,37 +263,244 @@ Students may resubmit any project as many times as they need to improve their sc
 ## Quick Links to Essential Tools & Setup
 
 ### Core Design Toolchain
-- [OpenSCAD Download](https://openscad.org/downloads.html) — Free, cross-platform CAD (all major OS)
-- [3DMake Documentation & Installation](https://github.com/tdeck/3dmake) — Command-line build tool for OpenSCAD
-- [VS Code Download](https://code.visualstudio.com/) — Free, screen-reader-accessible code editor
-- [Notepad++ Download](https://notepad-plus-plus.org/) — Free, lightweight Windows editor
+
+**OpenSCAD:**
+- [OpenSCAD Download](https://openscad.org/downloads.html) - Free, cross-platform CAD (all major OS)
+- [OpenSCAD Documentation](https://openscad.org/documentation.html) - Official reference
+- [OpenSCAD Cheat Sheet](Reference_Materials/openscad-cheat-sheet.md) - Quick syntax reference
+- [OpenSCAD on GitHub](https://github.com/openscad/openscad) - Source code and issue tracking
+
+**3DMake:**
+- [3DMake Documentation & Installation](https://github.com/tdeck/3dmake) - Command-line build tool for OpenSCAD
+- [3dMake Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md) - Command and workflow reference
+- [3DMake Terminal Quick Start](https://github.com/tdeck/3dmake/blob/main/docs/terminal_quick_start.md) - CLI basics for new users
+
+**Editors:**
+- [VS Code Download](https://code.visualstudio.com/) - Free, screen-reader-accessible code editor
+- [VS Code OpenSCAD Extension](https://marketplace.visualstudio.com/items?itemName=Anio.openscad) - Syntax highlighting for OpenSCAD
+- [Notepad++ Download](https://notepad-plus-plus.org/) - Free, lightweight Windows editor with OpenSCAD syntax support
+- [Vim/Neovim](https://www.vim.org/) - Terminal-based editor with full keyboard control
 
 ### Screen Reader & Accessibility
-- [NVDA Download](https://www.nvaccess.org/) — Free, open-source screen reader (Windows)
-- [Screen Reader Coding Tips (NVDA & JAWS)](Reference_Materials/nvda-jaws-coding-tips.md) — Keyboard shortcuts and configuration
-- [VSCode Setup Guide](Reference_Materials/vscode-setup-guide.md) — Accessibility-focused editor configuration
-- [PowerShell & Command Line Fundamentals](PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md) — Terminal navigation for screen reader users
+
+**Screen Readers:**
+- [NVDA Download](https://www.nvaccess.org/) - Free, open-source screen reader (Windows)
+- [JAWS Screen Reader](https://www.freedomscientific.com/products/software/jaws/) - Commercial screen reader (Windows, macOS)
+- [VoiceOver (macOS/iOS)](https://www.apple.com/accessibility/voiceover/) - Built-in Apple screen reader
+- [NVDA User Guide](https://www.nvaccess.org/documentation/) - Complete NVDA documentation
+
+**Accessibility Configuration:**
+- [Screen Reader Coding Tips (NVDA & JAWS)](Reference_Materials/nvda-jaws-coding-tips.md) - Keyboard shortcuts and configuration
+- [VSCode Setup Guide](Reference_Materials/vscode-setup-guide.md) - Accessibility-focused editor configuration
+- [Accessibility in VS Code](https://code.visualstudio.com/docs/editor/accessibility) - Official VS Code accessibility guide
+- [JAWS Script Repository](https://github.com/jsa2/jaws-scripts-for-vscode) - Custom JAWS scripts for developers
+
+**Terminal & Command Line:**
+- [PowerShell & Command Line Fundamentals](PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md) - Terminal navigation for screen reader users
+- [Windows Terminal Accessibility](https://learn.microsoft.com/en-us/windows/terminal/panes) - Official accessibility guide
+- [Screen Reader Tips for Linux](https://www.linux-magazine.com/Issues/2018/214/Screen-Reader-Tips-for-Linux) - Linux-specific guidance
 
 ### Slicing & Printing
-- [PrusaSlicer Download](https://www.prusa3d.com/page/prusaslicer_424/) — Free slicer for Prusa printers
-- [Slic3r Documentation](https://slic3r.org/) — Open-source command-line slicer
-- [Appendix A: Comprehensive Slicing Guide](3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md) — 7 slicer reference
+
+**Slicer Software & Documentation:**
+
+- [PrusaSlicer Documentation](https://help.prusa3d.com/en/category/prusaslicer_424/) - Official Prusa slicer
+- [PrusaSlicer Download](https://www.prusa3d.com/page/prusaslicer_424/) - Free slicer optimized for Prusa printers
+- [Cura Slicer Documentation](https://ultimaker.com/en/resources/documentation) - Official UltiMaker Cura documentation
+- [Cura Slicer Download](https://ultimaker.com/software/ultimaker-cura) - Free, open-source slicer for most printers
+- [OrcaSlicer Documentation](https://github.com/SoftFever/OrcaSlicer/wiki) - Community wiki for OrcaSlicer
+- [OrcaSlicer Download](https://github.com/SoftFever/OrcaSlicer/releases) - Free, open-source slicer fork with advanced features
+- [Bambu Studio Documentation](https://wiki.bambulab.com/en/software/bambu-studio) - Official Bambu Lab slicer documentation
+- [Bambu Studio Download](https://bambulab.com/en/download/studio) - Free slicer optimized for Bambu Lab printers
+- [SuperSlicer Documentation](https://github.com/supermerill/SuperSlicer/wiki) - Community wiki for SuperSlicer
+- [SuperSlicer Download](https://github.com/supermerill/SuperSlicer/releases) - Free, open-source advanced slicer
+- [IdeaMaker Documentation](https://www.raise3d.com/ideamaker/) - Anycubic/Raise3D slicer documentation
+- [IdeaMaker Download](https://www.raise3d.com/ideamaker) - Free slicer for Anycubic and other printers
+- [Slic3r Documentation](https://slic3r.org/) - Original open-source command-line slicer
+- [Fusion 360 Slicer](https://www.autodesk.com/products/fusion-360/overview) - Integrated slicer in Fusion 360 CAD
+- [Repetier-Host Documentation](https://www.repetier.com/documentation/) - Host software with integrated slicing
+- [Appendix A: Comprehensive Slicing Guide](3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md) - Detailed comparison and setup guides for all major slicers
 
 ### OpenSCAD Learning
-- [OpenSCAD Documentation](https://openscad.org/documentation.html) — Official reference
-- [OpenSCAD Cheat Sheet](Reference_Materials/openscad-cheat-sheet.md) — Quick syntax reference
-- [3dMake Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md) — Command and workflow reference
+
+**Tutorials & Documentation:**
+- [OpenSCAD Official Tutorials](https://openscad.org/documentation.html#tutorials) - Step-by-step guides from the OpenSCAD project
+- [OpenSCAD User Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual) - Community-maintained comprehensive reference
+- [OpenSCAD by Example](https://openhome.cc/Codes/OpenSCAD/) - Practical examples with code
+- [CadHub OpenSCAD Guide](https://learn.cadhub.xyz/blog/openscad-review/) - Real-world applications and best practices
+
+**Advanced Resources:**
+- [BOSL2 Library Documentation](https://github.com/revarbat/BOSL2/wiki) - Advanced shapes and transforms
+- [OpenSCAD Libraries](https://openscad.org/libraries.html) - Complete library ecosystem
+- [Dotscad](https://github.com/dotscad/dotscad) - Parametric design patterns library
+- [OpenSCAD Performance Optimization](https://github.com/openscad/openscad/wiki/Performance) - Tips for faster rendering
 
 ### Supplemental Textbooks
-- [Programming with OpenSCAD: A Beginner's Guide to Coding 3D-Printable Objects](assets/Programming_with_OpenSCAD.epub) — Complete reference textbook (EPUB format)
-- [Simplifying 3D Printing with OpenSCAD](assets/Simplifying_3D_Printing_with_OpenSCAD.epub) — Practical workflows and applications (EPUB format)
-- [Programming with OpenSCAD Companion Resources](https://programmingwithopenscad.github.io/learning.html) — Practice worksheets and teaching materials
-- [Visual Quick Reference Guides](https://programmingwithopenscad.github.io/quick-reference.html) — Command syntax and geometry reference
-- [Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) — Working examples for all exercises
+
+**EPUB Textbooks:**
+- [Programming with OpenSCAD: A Beginner's Guide to Coding 3D-Printable Objects](assets/Programming_with_OpenSCAD.epub) - Complete reference textbook (EPUB format)
+- [Simplifying 3D Printing with OpenSCAD](assets/Simplifying_3D_Printing_with_OpenSCAD.epub) - Practical workflows and applications (EPUB format)
+
+**Online Companion Resources:**
+- [Programming with OpenSCAD Companion Resources](https://programmingwithopenscad.github.io/learning.html) - Practice worksheets and teaching materials
+- [Visual Quick Reference Guides](https://programmingwithopenscad.github.io/quick-reference.html) - Command syntax and geometry reference
+- [Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) - Working examples for all exercises
+- [Teaching Tech 3D Printing Guide](https://www.youtube.com/c/TeachingTech/playlists) - Video tutorials and workflows
 
 ### Assistive Technology Design & Research
-- [e-NABLE Community Foundation](https://enablingthefuture.org/) — 3D printed hand/arm devices
-- [Makers Making Change](https://www.makersmakingchange.com/) — Open-source assistive designs
-- [NIH 3D Print Exchange](https://3dprint.nih.gov/) — Medical and assistive models
-- [Printables — Assistive Technology](https://www.printables.com/search/assistive) — Community models
-- [Thingiverse — Adaptive/Accessibility](https://www.thingiverse.com/search?q=adaptive) — Model repository
+
+**Organizations & Communities:**
+- [e-NABLE Community Foundation](https://enablingthefuture.org/) - 3D printed hand/arm devices
+- [Makers Making Change](https://www.makersmakingchange.com/) - Open-source assistive designs
+- [NIH 3D Print Exchange](https://3dprint.nih.gov/) - Medical and assistive models
+- [Printables - Assistive Technology](https://www.printables.com/search/assistive) - Community models
+- [Thingiverse - Adaptive/Accessibility](https://www.thingiverse.com/search?q=adaptive) - Model repository
+- [YouMagine](https://www.youmagine.com/) - Open-source design platform
+
+**Research & Resources:**
+- [MIT D-Lab](https://d-lab.mit.edu/) - Design for development and assistive technology
+- [Design for All Institute](https://www.designforall.org/) - Universal design principles
+- [Inclusive Design Toolkit](https://www.inclusivedesigntoolkit.org/) - Design resources for disability
+
+### Community & Forums
+
+**OpenSCAD Community:**
+- [OpenSCAD Discord](https://discord.gg/F2Nx2VxTB7) - Real-time chat and support
+- [OpenSCAD Reddit](https://www.reddit.com/r/openscad/) - Discussion forum for OpenSCAD users
+- [OpenSCAD Google Group](https://groups.google.com/forum/#!forum/openscad) - Email-based discussion list
+- [CadHub Community](https://cadhub.xyz/community) - Collaborative 3D design community
+
+**3D Printing Community:**
+- [Reddit r/3Dprinting](https://www.reddit.com/r/3Dprinting/) - General 3D printing community
+- [Prusa Community](https://www.prusaprinters.org/community) - Prusa-specific forum
+- [Bambu Lab Forum](https://forum.bambulab.com/) - Bambu printer community
+- [3DPrinting Stack Exchange](https://3dprinting.stackexchange.com/) - Q&A platform for 3D printing
+
+### Troubleshooting Resources
+
+**Common Issues:**
+- [Common Issues and Solutions](3dMake_Foundation/Lessons_3dMake_10/common_issues_and_solutions.md) - Course-specific troubleshooting guide
+- [Diagnostic Checklist](3dMake_Foundation/Lessons_3dMake_10/diagnostic_checklist.md) - Step-by-step diagnostics
+- [OpenSCAD FAQ](https://openscad.org/faq.html) - Frequently asked questions
+- [PrusaSlicer Troubleshooting](https://help.prusa3d.com/en/article/troubleshooting_3) - Prusa-specific solutions
+
+**Tools for Debugging:**
+- [Netfabb Online](https://www.autodesk.com/products/netfabb/overview) - Free online mesh repair tool
+- [Meshmixer](https://www.meshmixer.com/) - Advanced mesh editing and repair
+- [MeshLab](https://www.meshlab.net/) - Open-source mesh processing
+- [STL Viewer Online](https://www.viewstl.com/) - Quick STL preview without installing software
+
+### Printer-Specific Guides
+
+**Prusa Printers:**
+- [Prusa Knowledge Base](https://help.prusa3d.com/en) - Official documentation and troubleshooting
+- [Prusa Assembly Guides](https://www.prusa3d.com/en/print-safety-manual/) - Setup and calibration
+
+**Bambu Lab Printers:**
+- [Bambu Lab Wiki](https://wiki.bambulab.com/en/home) - Complete documentation
+- [Bambu Lab Support](https://support.bambulab.com/) - Customer support resources
+
+**Anycubic Printers:**
+- [Anycubic Support](https://www.anycubic.com/pages/support-services) - Official support
+- [Anycubic Community](https://www.anycubicforums.com/) - User forum
+
+**Creality Printers:**
+- [Creality Documentation](https://www.creality.com/pages/download-guides) - Official guides
+- [Creality Support](https://www.creality.com/pages/service) - Customer service
+
+---
+
+## Local Resources: Utah Makerspaces & Community Printing
+
+### Public Library Make Spaces
+
+**Salt Lake City Public Library:**
+- [SLC Public Creative Lab](https://services.slcpl.org/creativelab) - Main Library (Level 1)
+  - Hardware: Prusa i3 MK3, LulzBot Taz 5, Elegoo Mars 2 (resin)
+  - Pricing: Free for prints under 6 hours; $0.50/hr + material cost otherwise
+  - Website: https://services.slcpl.org/creativelab
+
+**Salt Lake County Library System:**
+- [County Library "Create" Spaces](https://www.slcolibrary.org/what-we-have/create) - Locations: Daybreak, Granite, Kearns, Syracuse, Tooele, and more
+  - Hardware: Flashforge Adventurer 5M Pro, LulzBot Workhorse, laser cutters
+  - Pricing: $0.06 per gram of filament used
+  - Website: https://www.slcolibrary.org/what-we-have/create
+
+### Makerspaces & Community Centers
+
+**Make Salt Lake:**
+- Location: 663 W 100 S, Salt Lake City, UT 84101
+- Website: https://makesaltlake.org/
+- Equipment: Full metal shop, CNC machines, large-scale FDM and resin printing
+- Membership: Required; offers certification classes for advanced tools
+- Community: Active maker community with regular workshops
+
+**University of Utah Maker Spaces:**
+- [Lassonde Studios](https://www.theblackbookofinnovation.com/lassonde-studios) - Entrepreneurship and innovation hub
+- [Marriott Library ProtoSpace](https://lib.utah.edu/protospace.php) - 3D printing and fabrication
+- [Eccles Health Sciences Library Technology Hub](https://lib.utah.edu/services/) - Biomedical device development
+
+**Utah Valley University:**
+- [UVU Maker Hub](https://www.uvu.edu/maker/) - Open to community members
+- Equipment: Large format 3D printers, laser cutters, CNC machines
+
+### School & Educational Programs
+
+**Salt Lake City Schools:**
+- STEM Lab programs in select elementary and secondary schools
+- Advanced manufacturing pathways in Career and Technical Education (CTE)
+- Contact: Salt Lake City School District STEM Coordinator
+
+**Weber School District:**
+- Advanced Manufacturing Programs
+- 3D Design and Fabrication courses in multiple high schools
+
+### Online Printing Services (When Local Access Unavailable)
+
+**National & International Services:**
+- [Shapeways](https://www.shapeways.com/) - Professional print service with multiple materials
+- [Sculpteo](https://www.sculpteo.com/) - Online 3D printing platform
+- [Ponoko](https://www.ponoko.com/) - Custom manufacturing platform
+- [3D Hubs](https://www.3dhubs.com/) - Community-based distributed manufacturing
+- [Local Motors](https://localmotors.com/) - Custom manufacturing and consulting
+
+### Material Suppliers (Utah & Regional)
+
+**Local Filament Suppliers:**
+- [MatterHackers](https://www.matterhackers.com/) - Online with local Utah roots; wide material selection
+- [Hatchbox](https://www.hatchbox3d.com/) - Reliable filament available at local retailers
+- [Prusament](https://shop.prusa3d.com/en/prusament) - Premium Prusa filament
+
+**Regional Retailers:**
+- Local Best Buy, Micro Center, and Fry's Electronics locations carry common filaments
+- Amazon Prime for next-day delivery on most materials
+- Local makerspaces often sell filament at cost
+
+### Recycling & Sustainability
+
+**3D Printing Waste:**
+- [Fused Filament Fab](https://www.fused3d.com/) - Filament recycling programs
+- Salt Lake City Recycling Center: Accepts PLA and PETG at select locations
+- Local makerspaces: Often have filament recycling programs
+
+### Professional Development & Certifications
+
+**Organizations Offering Training:**
+- [Make Salt Lake Workshops](https://makesaltlake.org/classes/) - Regular classes and certifications
+- [University of Utah Continuing Education](https://continue.utah.edu/) - Professional development courses
+- [Weber State University](https://www.weber.edu/cepe/) - Continuing education programs
+
+---
+
+## Troubleshooting & Getting Help
+
+**If you're stuck:**
+1. Check [Common Issues and Solutions](3dMake_Foundation/Lessons_3dMake_10/common_issues_and_solutions.md)
+2. Post in [OpenSCAD Discord](https://discord.gg/F2Nx2VxTB7) or [Reddit](https://www.reddit.com/r/openscad/)
+3. Visit your local makerspace for hands-on support
+4. Check printer-specific forums (Prusa, Bambu Lab, Anycubic, etc.)
+
+**For accessibility support:**
+- Contact your NVDA/JAWS vendor directly for technical assistance
+- Post accessibility-specific questions in [OpenSCAD community](https://www.reddit.com/r/openscad/)
+- This course's GitHub Issues page for curriculum-specific questions

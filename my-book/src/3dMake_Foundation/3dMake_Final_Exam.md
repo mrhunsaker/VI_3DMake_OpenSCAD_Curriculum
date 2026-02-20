@@ -14,7 +14,7 @@
 
 ---
 
-## Section 1: Error Detection & Code Analysis (Problems 1–10)
+## Section 1: Error Detection & Code Analysis (Problems 1-10)
 
 For each code block, identify any errors. If there is an error, explain what's wrong and how to fix it. If the code is correct, state "No error" and explain what the code does.
 
@@ -195,7 +195,7 @@ ________________________________________________________________
 
 ---
 
-## Section 2: Code Behavior & Theory (Problems 11–17)
+## Section 2: Code Behavior & Theory (Problems 11-17)
 
 For each question, show your reasoning. You may draw diagrams if helpful.
 
@@ -338,7 +338,7 @@ ________________________________________________________________
 
 ---
 
-## Section 3: Design & Problem-Solving (Problems 18–25)
+## Section 3: Design & Problem-Solving (Problems 18-25)
 
 These problems test your ability to design solutions, debug real-world issues, and think creatively.
 
@@ -473,7 +473,7 @@ ________________________________________________________________
 
 **Question:** You've created a single keycap module. Now you need to create a keyboard with 5 keys arranged in a row. Keys are spaced 15mm apart.
 
-Write code using a loop that creates 5 keycaps with letters A–E, properly spaced.
+Write code using a loop that creates 5 keycaps with letters A-E, properly spaced.
 
 **Answer:**
 
@@ -563,4 +563,4 @@ ________________________________________________________________
 4. Submit as a PDF with your name and date
 5. Scoring will be based on correctness, clarity, and depth of understanding
 
-Good luck! 🎉
+Good luck! [celebration]

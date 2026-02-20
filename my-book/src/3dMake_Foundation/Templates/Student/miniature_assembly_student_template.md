@@ -1,4 +1,4 @@
-# Miniature Assembly — Student Documentation Template (Extension Project)
+# Miniature Assembly - Student Documentation Template (Extension Project)
 
 - Author:
 - Date:
@@ -29,9 +29,9 @@
 ## Assembly Sequence
 
 1. Part preparation:
-2. Step 1 — Assemble _____:
-3. Step 2 — Join _____:
-4. Step 3 — Connect _____:
+2. Step 1 - Assemble _____:
+3. Step 2 - Join _____:
+4. Step 3 - Connect _____:
 5. Final assembly:
 
 ### Tolerance Management at Interfaces
@@ -76,7 +76,7 @@
 
 | Category | Score | Notes |
 | ---------- | ------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |

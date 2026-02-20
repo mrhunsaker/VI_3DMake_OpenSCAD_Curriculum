@@ -11,8 +11,8 @@ Printed dimensions often deviate from designed dimensions due to:
 - Slicer interpretation differences
 - Material-specific shrinkage (ABS can shrink 0.3-1%)
 
-**Typical tolerances without calibration:** ±0.3-0.5mm
-**Typical tolerances with calibration:** ±0.1-0.2mm
+**Typical tolerances without calibration:** +/-0.3-0.5mm
+**Typical tolerances with calibration:** +/-0.1-0.2mm
 
 ---
 
@@ -23,7 +23,7 @@ Printed dimensions often deviate from designed dimensions due to:
 **What to verify:** Is your nozzle actually 0.4mm?
 
 **Test:**
-1. Create a simple box in OpenSCAD: 10mm × 10mm × 5mm, solid
+1. Create a simple box in OpenSCAD: 10mm x 10mm x 5mm, solid
 2. Slice with default 0.4mm line width
 3. Print using 100% flow rate
 4. Measure printed box
@@ -46,14 +46,14 @@ Printed dimensions often deviate from designed dimensions due to:
 
 **Formula:**
 ```
-New E-steps = Current E-steps × (100mm / Actual distance moved)
+New E-steps = Current E-steps x (100mm / Actual distance moved)
 ```
 
 **Example:**
 - Current setting: 93 steps/mm
 - Commanded: 100mm
 - Actual: 92mm moved
-- New: 93 × (100/92) = **101 steps/mm**
+- New: 93 x (100/92) = **101 steps/mm**
 
 **How to apply (varies by printer):**
 - Marlin: `M92 E101` then `M500` to save
@@ -107,16 +107,16 @@ difference() {
 **Measurement Procedure:**
 1. Measure internal dimensions (hollow part) in 3 locations each axis
 2. Calculate average internal width: `avg_internal`
-3. Expected internal: `20 - 2×wall_thickness = 16mm`
+3. Expected internal: `20 - 2xwall_thickness = 16mm`
 
 **Calibration Formula:**
 ```
-Flow rate adjustment = Expected internal / Actual internal × 100%
+Flow rate adjustment = Expected internal / Actual internal x 100%
 
 Example:
 - Expected: 16.00mm
 - Actual: 15.75mm
-- Adjustment: (16.00 / 15.75) × 100% = 101.6%
+- Adjustment: (16.00 / 15.75) x 100% = 101.6%
 - Set flow to: 101.6% in slicer
 ```
 
@@ -127,7 +127,7 @@ Example:
 **Test:** Print calibration tower with varying layer heights
 
 **Tower Specifications:**
-- 20mm × 20mm square base
+- 20mm x 20mm square base
 - Height: 40mm
 - Layers: Print at 0.2mm nominal
 
@@ -155,11 +155,11 @@ Example:
 
 | Measurement | Method | Tolerance | Frequency |
 |------------|--------|-----------|-----------|
-| Wall thickness | Calipers (multiple spots) | ±0.1mm | Every print |
-| Hole diameter | Calipers or gauge | ±0.1-0.2mm | Every print |
-| Overall dimensions | Ruler/calipers | ±0.2mm | Monthly |
-| Layer height | Stack on calipers | ±0.02mm | Monthly |
-| Vertical dimensions | Measure sides | ±0.1mm | Every print |
+| Wall thickness | Calipers (multiple spots) | +/-0.1mm | Every print |
+| Hole diameter | Calipers or gauge | +/-0.1-0.2mm | Every print |
+| Overall dimensions | Ruler/calipers | +/-0.2mm | Monthly |
+| Layer height | Stack on calipers | +/-0.02mm | Monthly |
+| Vertical dimensions | Measure sides | +/-0.1mm | Every print |
 
 ---
 
@@ -188,7 +188,7 @@ designed_size = final_size * material_shrinkage;
 
 Different bed temperatures affect final dimensions:
 
-**ABS on cold bed (50°C) vs warm bed (100°C):**
+**ABS on cold bed (50C) vs warm bed (100C):**
 - Cold bed: Faster cooling, less shrinkage (but poor adhesion)
 - Warm bed: Slower cooling, more shrinkage (better adhesion)
 - Difference: Can be 0.2-0.3% in dimensions
@@ -199,7 +199,7 @@ Different bed temperatures affect final dimensions:
 
 | Factor | Effect | Mitigation |
 |--------|--------|-----------|
-| Room temperature | Affects cooling rate | Maintain 20-22°C |
+| Room temperature | Affects cooling rate | Maintain 20-22C |
 | Humidity | Affects material properties | Keep 40-60% RH |
 | Air flow | Inconsistent cooling | Avoid drafts near printer |
 | Time of day | Material temperature varies | Print at consistent times |
@@ -228,10 +228,10 @@ Different bed temperatures affect final dimensions:
 - [ ] Re-printed and verified
 
 ### After Any Changes
-- [ ] Nozzle replacement → Re-verify nozzle diameter
-- [ ] Bed leveling → Re-verify first layer
-- [ ] Temperature changes → Test print required
-- [ ] Material change → Full calibration recommended
+- [ ] Nozzle replacement -> Re-verify nozzle diameter
+- [ ] Bed leveling -> Re-verify first layer
+- [ ] Temperature changes -> Test print required
+- [ ] Material change -> Full calibration recommended
 
 ---
 
@@ -239,11 +239,11 @@ Different bed temperatures affect final dimensions:
 
 | Tool | Cost | Accuracy | Use |
 |------|------|----------|-----|
-| Digital Calipers | $5-15 | ±0.05mm | Primary measurements |
-| Steel Ruler | $3-10 | ±1mm | Quick rough checks |
-| Vernier Calipers | $10-30 | ±0.05mm | Precision work |
-| Micrometer | $20-50 | ±0.01mm | Critical tolerances |
-| Layer Height Gauge | DIY or $5-10 | ±0.05mm | Layer verification |
+| Digital Calipers | $5-15 | +/-0.05mm | Primary measurements |
+| Steel Ruler | $3-10 | +/-1mm | Quick rough checks |
+| Vernier Calipers | $10-30 | +/-0.05mm | Precision work |
+| Micrometer | $20-50 | +/-0.01mm | Critical tolerances |
+| Layer Height Gauge | DIY or $5-10 | +/-0.05mm | Layer verification |
 
 **Recommendation:** Start with digital calipers (most versatile and affordable)
 

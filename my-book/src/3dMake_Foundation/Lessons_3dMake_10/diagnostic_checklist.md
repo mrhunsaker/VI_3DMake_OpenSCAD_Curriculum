@@ -6,26 +6,26 @@ Use this comprehensive checklist to systematically diagnose and troubleshoot pri
 
 ```
 Print Problem?
-│
-├─ [Before Print] Issues?
-│  ├─ Filament won't load → CHECK: Temperature, drive gear, nozzle
-│  ├─ Printer won't heat → CHECK: Power, temperature sensor, firmware
-│  └─ Bed not level → CHECK: Leveling routine, bed surface
-│
-├─ [First Layer] Issues?
-│  ├─ Won't stick → CHECK: Bed temperature, cleanliness, nozzle height
-│  ├─ Too squished → CHECK: Nozzle height, bed temperature
-│  └─ Gaps/uneven → CHECK: Bed levelness, hot end alignment
-│
-├─ [Mid-Print] Issues?
-│  ├─ Stops extruding → CHECK: Clog, temperature drop, jam
-│  ├─ Layers shift → CHECK: Loose belts, mechanical bind
-│  └─ Print wobbles → CHECK: Build plate, print stability
-│
-└─ [Print Quality] Issues?
-   ├─ Weak/brittle → CHECK: Temperature, flow rate, layer adhesion
-   ├─ Rough surface → CHECK: Flow rate, speed, temperature
-   └─ Warped → CHECK: Bed temperature, cooling rate, material
+|
++---- [Before Print] Issues?
+|  +---- Filament won't load -> CHECK: Temperature, drive gear, nozzle
+|  +---- Printer won't heat -> CHECK: Power, temperature sensor, firmware
+|  +---- Bed not level -> CHECK: Leveling routine, bed surface
+|
++---- [First Layer] Issues?
+|  +---- Won't stick -> CHECK: Bed temperature, cleanliness, nozzle height
+|  +---- Too squished -> CHECK: Nozzle height, bed temperature
+|  +---- Gaps/uneven -> CHECK: Bed levelness, hot end alignment
+|
++---- [Mid-Print] Issues?
+|  +---- Stops extruding -> CHECK: Clog, temperature drop, jam
+|  +---- Layers shift -> CHECK: Loose belts, mechanical bind
+|  +---- Print wobbles -> CHECK: Build plate, print stability
+|
++---- [Print Quality] Issues?
+   +---- Weak/brittle -> CHECK: Temperature, flow rate, layer adhesion
+   +---- Rough surface -> CHECK: Flow rate, speed, temperature
+   +---- Warped -> CHECK: Bed temperature, cooling rate, material
 ```
 
 ---
@@ -55,19 +55,19 @@ Print Problem?
 **Heating Element Status:**
 - [ ] Hot end temperature rises when heating commanded
 - [ ] Bed temperature rises when heating commanded
-- [ ] Temperature readings stable (not fluctuating 5°C+)
+- [ ] Temperature readings stable (not fluctuating 5C+)
 - [ ] No error messages during heating
 
 **Measurement Method:**
 ```
-1. Set hot end to 200°C, observe rise
+1. Set hot end to 200C, observe rise
    - Expected time to reach: 2-4 minutes
-   - Steady rise without plateau: ✓ Good
-   - Plateau before reaching: ✗ Problem (see below)
+   - Steady rise without plateau:  Good
+   - Plateau before reaching:  Problem (see below)
 
-2. Set bed to 60°C, observe rise
+2. Set bed to 60C, observe rise
    - Expected time to reach: 5-10 minutes
-   - Stable at target: ✓ Good
+   - Stable at target:  Good
 ```
 
 **If heating slow/incomplete:**
@@ -85,10 +85,10 @@ Print Problem?
 4. Calculate range (max - min)
 
 Results:
-- ±2°C range: ✓ Excellent
-- ±5°C range: ✓ Acceptable  
-- ±10°C range: ⚠ Marginal
-- >±10°C range: ✗ Problem
+- +/-2C range:  Excellent
+- +/-5C range:  Acceptable  
+- +/-10C range:  Marginal
+- >+/-10C range:  Problem
 ```
 
 ---
@@ -145,8 +145,8 @@ Target: Consistent slight paper drag all points
 ```
 
 **Leveling Validation:**
-- [ ] Level at 4 corners ✓
-- [ ] Level at bed center ✓
+- [ ] Level at 4 corners 
+- [ ] Level at bed center 
 - [ ] No high/low points
 - [ ] Nozzle doesn't hit bed at any point
 - [ ] Consistent first-layer appearance across bed
@@ -190,7 +190,7 @@ Timeline:
 - >60 sec: Possible partial clog
 
 If fails:
-→ See "Filament Won't Load" troubleshooting
+-> See "Filament Won't Load" troubleshooting
 ```
 
 ---
@@ -207,7 +207,7 @@ If fails:
 | Gaps between lines | Nozzle too high | Lower Z-offset |
 | Completely squished | Nozzle too low | Raise Z-offset |
 | Partial adhesion | Bed too cool or dirty | Clean bed, increase temp |
-| Consistent squish/lines | ✓ Correct | Continue print |
+| Consistent squish/lines |  Correct | Continue print |
 
 ---
 
@@ -227,14 +227,14 @@ If fails:
 
 ```
 Is filament stuck in extruder?
-├─ YES → Nozzle clog likely
-│        → See Nozzle Clog section (common_issues_and_solutions.md)
-│        → Try: Cold pull, retract, clean
-│
-└─ NO → Filament loading issue
-         → Is spool binding? → Fix spool rotation
-         → Is path blocked? → Clear obstruction
-         → Is drive gear slipping? → Clean/tension drive gear
++---- YES -> Nozzle clog likely
+|        -> See Nozzle Clog section (common_issues_and_solutions.md)
+|        -> Try: Cold pull, retract, clean
+|
++---- NO -> Filament loading issue
+         -> Is spool binding? -> Fix spool rotation
+         -> Is path blocked? -> Clear obstruction
+         -> Is drive gear slipping? -> Clean/tension drive gear
 ```
 
 ---
@@ -254,7 +254,7 @@ Is filament stuck in extruder?
 1. Pause print
 2. Manually move suspected axis
 3. Record resistance type:
-   - Smooth: ✓ Normal
+   - Smooth:  Normal
    - Rough: Bearing/alignment problem
    - Stuck: Mechanical bind
 4. Visually inspect that axis
@@ -286,7 +286,7 @@ Is filament stuck in extruder?
 ### Precision Measurement
 
 **Materials Needed:**
-- Digital calipers (±0.05mm accuracy)
+- Digital calipers (+/-0.05mm accuracy)
 - Ruler (for larger dimensions)
 - Notepad for recording
 
@@ -298,21 +298,21 @@ Is filament stuck in extruder?
 4. Calculate deviation percentage
 
 Formula:
-Deviation % = ((Measured - Design) / Design) × 100%
+Deviation % = ((Measured - Design) / Design) x 100%
 
 Example:
 - Design: 20.0mm
 - Measured: 19.8mm
-- Deviation: ((19.8 - 20.0) / 20.0) × 100% = -1%
+- Deviation: ((19.8 - 20.0) / 20.0) x 100% = -1%
 ```
 
 ### Tolerance Evaluation
 
 | Tolerance | Pass/Fail | Action |
 |-----------|-----------|--------|
-| ±0.5mm or better | PASS | No adjustment needed |
-| ±0.5-1mm | MARGINAL | Document and monitor |
-| >±1mm | FAIL | Adjust flow/calibration |
+| +/-0.5mm or better | PASS | No adjustment needed |
+| +/-0.5-1mm | MARGINAL | Document and monitor |
+| >+/-1mm | FAIL | Adjust flow/calibration |
 
 ---
 
@@ -321,7 +321,7 @@ Example:
 **When quality varies between prints:**
 
 **Check Conditions:**
-- [ ] Room temperature stable (±5°C?)
+- [ ] Room temperature stable (+/-5C?)
 - [ ] Humidity reasonable (30-60%?)
 - [ ] No drafts from windows/AC near printer
 - [ ] Consistent vibration level (no external impact)
@@ -330,7 +330,7 @@ Example:
 
 **Environmental Log:**
 ```
-Date: _____    Time: _____    Temp: ___°C    Humidity: ___%
+Date: _____    Time: _____    Temp: ___C    Humidity: ___%
 Print Duration: ______    Result Quality: Poor/Fair/Good/Excellent
 Notes: ________________________________________________________
 ```
@@ -342,34 +342,34 @@ Notes: ________________________________________________________
 **Start here for systematic diagnosis:**
 
 ```
-┌─ Printer won't start?
-│  └─ Check: Power, connections, firmware
-│
-├─ Heating won't work?
-│  └─ Check: Temperature sensor, firmware, heater element
-│
-├─ Won't home/move?
-│  └─ Check: Endstops, mechanical bind, motors, belts
-│
-├─ First layer fails?
-│  └─ Check: Bed level, nozzle height, cleanliness, temperature
-│
-├─ Filament won't feed?
-│  └─ Check: Temperature, nozzle, drive gear, clog
-│
-├─ Extrusion stops mid-print?
-│  ├─ Extruder grinding? → Clog (cold pull or replace nozzle)
-│  ├─ Filament slack? → Drive gear or load issue
-│  └─ No sounds? → Temperature drop or firmware issue
-│
-├─ Print quality poor?
-│  ├─ Weak/thin? → Increase flow/temp/slow down
-│  ├─ Rough/bloated? → Decrease flow/temp/speed up
-│  ├─ Warped? → Lower bed temp, faster cooling
-│  └─ Strings? → Increase retraction, lower temp
-│
-└─ Dimensions wrong?
-   └─ Check: Flow rate calibration, printer accuracy limits
++---- Printer won't start?
+|  +---- Check: Power, connections, firmware
+|
++---- Heating won't work?
+|  +---- Check: Temperature sensor, firmware, heater element
+|
++---- Won't home/move?
+|  +---- Check: Endstops, mechanical bind, motors, belts
+|
++---- First layer fails?
+|  +---- Check: Bed level, nozzle height, cleanliness, temperature
+|
++---- Filament won't feed?
+|  +---- Check: Temperature, nozzle, drive gear, clog
+|
++---- Extrusion stops mid-print?
+|  +---- Extruder grinding? -> Clog (cold pull or replace nozzle)
+|  +---- Filament slack? -> Drive gear or load issue
+|  +---- No sounds? -> Temperature drop or firmware issue
+|
++---- Print quality poor?
+|  +---- Weak/thin? -> Increase flow/temp/slow down
+|  +---- Rough/bloated? -> Decrease flow/temp/speed up
+|  +---- Warped? -> Lower bed temp, faster cooling
+|  +---- Strings? -> Increase retraction, lower temp
+|
++---- Dimensions wrong?
+   +---- Check: Flow rate calibration, printer accuracy limits
 ```
 
 ---

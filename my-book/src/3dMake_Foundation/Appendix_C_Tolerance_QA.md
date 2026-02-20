@@ -1,8 +1,8 @@
 # Appendix C: Tolerance Testing & Quality Assurance Matrix
 
-This appendix provides **measurement-based testing methodology** for verifying that 3D-printed parts meet design specifications. It's designed to be used **non-visually**—focusing on calipers, scales, and functional tests rather than visual inspection.
+This appendix provides **measurement-based testing methodology** for verifying that 3D-printed parts meet design specifications. It's designed to be used **non-visually**-focusing on calipers, scales, and functional tests rather than visual inspection.
 
-**Referenced in:** Lessons 8–10 (Complex Design, Troubleshooting, Mastery)
+**Referenced in:** Lessons 8-10 (Complex Design, Troubleshooting, Mastery)
 
 ---
 
@@ -12,10 +12,10 @@ This appendix provides **measurement-based testing methodology** for verifying t
 
 ```
 Design spec:  Hole diameter = 6mm
-Tolerance:    ±0.5mm
+Tolerance:    +/-0.5mm
 Acceptable range:  5.5mm to 6.5mm
-Actual print:  5.8mm ✅ (within tolerance)
-or            7.2mm ❌ (exceeds tolerance)
+Actual print:  5.8mm [YES] (within tolerance)
+or            7.2mm [NO] (exceeds tolerance)
 ```
 
 ### Why Tolerance Matters
@@ -46,7 +46,7 @@ or            7.2mm ❌ (exceeds tolerance)
 5. Average the three measurements
 ```
 
-**Accuracy:** ±0.05mm (very precise for 3D printing)
+**Accuracy:** +/-0.05mm (very precise for 3D printing)
 
 ### 2. Digital Scale (Kitchen Scale)
 
@@ -57,12 +57,12 @@ or            7.2mm ❌ (exceeds tolerance)
 
 ```
 1. Place part on scale
-2. Wait for reading to stabilize (1–2 seconds)
+2. Wait for reading to stabilize (1-2 seconds)
 3. Read digital display (in grams)
 4. Compare to expected weight
 ```
 
-**Accuracy:** ±1g (good enough for verification)
+**Accuracy:** +/-1g (good enough for verification)
 
 **Why it matters:**
 - Too light = infill too low or void inside part
@@ -102,8 +102,8 @@ union() {
 ```
 
 **Use non-visually:**
-- Try inserting peg into go-gauge → Should slide easily
-- Try inserting peg into no-go-gauge → Should NOT fit
+- Try inserting peg into go-gauge -> Should slide easily
+- Try inserting peg into no-go-gauge -> Should NOT fit
 - If both tests pass = tolerance correct
 
 ---
@@ -116,12 +116,12 @@ Create a **Test Plan** before printing:
 
 | Part | Dimension | Spec | Tolerance | How to Test |
 |---|---|---|---|---|
-| **Bracelet Holder** | Base width | 127mm | ±2mm | Measure with calipers (multiple points) |
-| | Peg diameter | 6mm | ±0.5mm | Test fit with go/no-go gauge |
-| | Peg spacing | 8mm | ±1mm | Measure distance between pegs |
-| | Back wall height | 120mm | ±2mm | Measure with calipers |
-| **Phone Stand** | Slope angle | 20° | ±3° | Calculate from height/depth ratio |
-| | Weight capacity | 200g | 150–250g | Load test (see below) |
+| **Bracelet Holder** | Base width | 127mm | +/-2mm | Measure with calipers (multiple points) |
+| | Peg diameter | 6mm | +/-0.5mm | Test fit with go/no-go gauge |
+| | Peg spacing | 8mm | +/-1mm | Measure distance between pegs |
+| | Back wall height | 120mm | +/-2mm | Measure with calipers |
+| **Phone Stand** | Slope angle | 20 | +/-3 | Calculate from height/depth ratio |
+| | Weight capacity | 200g | 150-250g | Load test (see below) |
 | | Stability | N/A | Pass/fail | 1-hour load test without tipping |
 
 ### Pre-Print Planning
@@ -136,12 +136,12 @@ Before slicing, define:
 **Example Plan for Phone Stand:**
 
 ```markdown
-# Phone Stand — Quality Assurance Plan
+# Phone Stand - Quality Assurance Plan
 
 ## Critical Dimensions
-1. Slope angle: 20° ±3°
-2. Base width: 80mm ±1mm
-3. Stand height: 60mm ±2mm
+1. Slope angle: 20 +/-3
+2. Base width: 80mm +/-1mm
+3. Stand height: 60mm +/-2mm
 
 ## Functional Tests
 1. Stability: Hold 200g for 1 hour without tipping
@@ -149,12 +149,12 @@ Before slicing, define:
 3. Assembly: Back brace attaches without force
 
 ## Pass/Fail Criteria
-✅ PASS if:
+[YES] PASS if:
 - All dimensions within tolerance
 - Phone holds weight for 1 hour
 - No cracks or layer separation
 
-❌ FAIL if:
+[NO] FAIL if:
 - Any dimension >2mm off spec
 - Phone slides or part tips
 - Visible cracks
@@ -179,20 +179,20 @@ Before slicing, define:
 6. Record measurement
 7. Repeat at 3 different locations
 8. Average the three readings
-9. Compare to design spec ± tolerance
+9. Compare to design spec +/- tolerance
 ```
 
 **Example:**
 
 ```
 Design spec: 127mm (bracelet holder width)
-Tolerance:   ±2mm (acceptable: 125–129mm)
+Tolerance:   +/-2mm (acceptable: 125-129mm)
 
 Measurements:
   Location 1: 126.8mm
   Location 2: 127.1mm
   Location 3: 126.5mm
-  Average: 126.8mm ✅ (within tolerance)
+  Average: 126.8mm [YES] (within tolerance)
 ```
 
 ### Procedure 2: Hole or Peg Diameter
@@ -215,27 +215,27 @@ Measurements:
 ```
 1. Print test jigs (go & no-go gauges)
 2. Attempt to insert peg/hole into go-gauge
-   → Should slide through easily with light resistance
+   -> Should slide through easily with light resistance
 3. Attempt to insert peg/hole into no-go-gauge
-   → Should NOT fit or fit with visible resistance
-4. If both pass → dimension is acceptable
+   -> Should NOT fit or fit with visible resistance
+4. If both pass -> dimension is acceptable
 ```
 
 **Example: Peg Diameter**
 
 ```
 Design spec: 6.0mm
-Tolerance:   ±0.5mm (acceptable: 5.5–6.5mm)
+Tolerance:   +/-0.5mm (acceptable: 5.5-6.5mm)
 
 Method A (Direct):
   Measurement 1: 5.9mm
   Measurement 2: 6.0mm
   Measurement 3: 5.8mm
-  Average: 5.9mm ✅
+  Average: 5.9mm [YES]
 
 Method B (Go/No-Go):
-  Slides through go-gauge (5.5mm) → ✅
-  Doesn't fit no-go-gauge (6.5mm) → ✅
+  Slides through go-gauge (5.5mm) -> [YES]
+  Doesn't fit no-go-gauge (6.5mm) -> [YES]
   Result: PASS
 ```
 
@@ -247,18 +247,18 @@ Method B (Go/No-Go):
 
 ```
 Run fingers/hand over surface:
-  ✅ Smooth → Good quality
-  ⚠️ Slightly rough → Acceptable
-  ❌ Very rough/bumpy → Quality issue
+  [YES] Smooth -> Good quality
+   Slightly rough -> Acceptable
+  [NO] Very rough/bumpy -> Quality issue
 ```
 
 **Step 2: Layer Line Visibility**
 
 ```
 Feel horizontal ridges (layer lines):
-  ✅ Barely perceptible → Good (0.2mm layers)
-  ⚠️ Noticeable but even → OK (0.25mm layers)
-  ❌ Very pronounced → Quality issue
+  [YES] Barely perceptible -> Good (0.2mm layers)
+   Noticeable but even -> OK (0.25mm layers)
+  [NO] Very pronounced -> Quality issue
 ```
 
 **Step 3: Dimensional Consistency**
@@ -268,7 +268,7 @@ Measure thickness at multiple points:
   Design spec: 3mm wall thickness
   Measure at 5 locations
   Record all measurements
-  All should be within ±0.2mm of each other
+  All should be within +/-0.2mm of each other
   
   Example:
     Pt 1: 3.0mm
@@ -276,7 +276,7 @@ Measure thickness at multiple points:
     Pt 3: 3.0mm
     Pt 4: 2.9mm
     Pt 5: 3.1mm
-  Std Dev: 0.08mm ✅ (very consistent)
+  Std Dev: 0.08mm [YES] (very consistent)
 ```
 
 ### Procedure 4: Weight Verification (Confirms Infill)
@@ -286,24 +286,24 @@ Measure thickness at multiple points:
 **Step 1: Calculate Expected Weight**
 
 ```
-Expected weight = Volume × Density × Infill%
+Expected weight = Volume x Density x Infill%
 
 For bracelet holder (PLA):
-Volume = 127mm × 80mm × 120mm = 1,219,200 mm³
-       = 1,219.2 cm³
-PLA density = 1.24 g/cm³
+Volume = 127mm x 80mm x 120mm = 1,219,200 mm
+       = 1,219.2 cm
+PLA density = 1.24 g/cm
 Infill = 20%
 
-Expected weight = 1,219.2 × 1.24 × 0.20 = 302.4g
+Expected weight = 1,219.2 x 1.24 x 0.20 = 302.4g
 
-Acceptable range: 290–315g (±5%)
+Acceptable range: 290-315g (+/-5%)
 ```
 
 **Step 2: Measure Actual Weight**
 
 ```
 1. Place part on digital scale
-2. Wait for reading to stabilize (1–2 seconds)
+2. Wait for reading to stabilize (1-2 seconds)
 3. Read display in grams
 4. Compare to expected weight
 ```
@@ -312,9 +312,9 @@ Acceptable range: 290–315g (±5%)
 
 | Actual Weight | Interpretation |
 |---|---|
-| 290–315g | ✅ Correct infill, no internal voids |
-| <280g | ⚠️ Infill too low or significant voids |
-| >320g | ⚠️ Infill too high (was it supposed to be 20%?) |
+| 290-315g | [YES] Correct infill, no internal voids |
+| <280g |  Infill too low or significant voids |
+| >320g |  Infill too high (was it supposed to be 20%?) |
 
 ---
 
@@ -345,13 +345,13 @@ Acceptable range: 290–315g (±5%)
    Deflection: 0.2mm (acceptable)
 
 5. Observe for cracks (visual or tactile)
-   No cracks: ✅
+   No cracks: [YES]
 
 6. Remove weight and wait 5 minutes
 
 7. Measure dimensions again (should return to baseline)
    Height after unload: 60.0mm
-   Recovery: Complete ✅
+   Recovery: Complete [YES]
 
 Result: PASS (part handles load without permanent deformation)
 ```
@@ -359,12 +359,12 @@ Result: PASS (part handles load without permanent deformation)
 **Acceptance Criteria for Phone Stand:**
 
 ```
-✅ PASS if:
+[YES] PASS if:
   - Deflection <0.5mm under 200g load
   - No cracks visible/felt
   - Full recovery after load removed
 
-❌ FAIL if:
+[NO] FAIL if:
   - Deflection >1mm
   - Visible cracks
   - Permanent deformation after unload
@@ -382,22 +382,22 @@ Result: PASS (part handles load without permanent deformation)
 
 ```
 Part A (Bin body) dimensions:
-  - Top opening: 50mm × 50mm ±1mm
-  - Wall thickness: 2mm ±0.2mm
+  - Top opening: 50mm x 50mm +/-1mm
+  - Wall thickness: 2mm +/-0.2mm
 
 Part B (Stacking rim) dimensions:
-  - Base diameter: 50mm ±0.5mm
+  - Base diameter: 50mm +/-0.5mm
   - Should nest inside Part A
 
 Test procedure:
-1. Measure Part A opening: 50.1mm ✅
-2. Measure Part B base: 49.8mm ✅
+1. Measure Part A opening: 50.1mm [YES]
+2. Measure Part B base: 49.8mm [YES]
 3. Attempt to nest Part B into Part A
-   → Should fit with light resistance
-   → Feel for smooth insertion (no catching)
+   -> Should fit with light resistance
+   -> Feel for smooth insertion (no catching)
 4. Check for rocking (part should sit stable)
 5. Apply 500g load (simulate stacking)
-   → Should hold without slipping
+   -> Should hold without slipping
 ```
 
 ### Test 3: Durability Testing (Repeated Use)
@@ -414,7 +414,7 @@ Test procedure:
 5. Measure dimensions again
 6. Compare to baseline: Should be <0.1mm change
 
-If no damage after 10 cycles → Durable ✅
+If no damage after 10 cycles -> Durable [YES]
 ```
 
 ---
@@ -425,18 +425,18 @@ When multiple parts are assembled, tolerances add:
 
 ```
 Design:
-  Part A opening: 50mm ±0.5mm
-  Part B base: 50mm ±0.5mm
+  Part A opening: 50mm +/-0.5mm
+  Part B base: 50mm +/-0.5mm
 
 Worst-case fit:
   Part A minimum: 49.5mm
   Part B maximum: 50.5mm
   Difference: 1.0mm (VERY TIGHT or won't fit!)
 
-Solution: Increase tolerance on Part B to ±0.3mm
+Solution: Increase tolerance on Part B to +/-0.3mm
   Part B minimum: 49.7mm
   Part B maximum: 50.3mm
-  Now fits inside Part A: 49.5–50.5mm ✅
+  Now fits inside Part A: 49.5-50.5mm [YES]
 ```
 
 ### Tolerance Stack-Up Calculation
@@ -444,11 +444,11 @@ Solution: Increase tolerance on Part B to ±0.3mm
 For N parts in assembly:
 
 ```
-Total tolerance = √(tolerance₁² + tolerance₂² + ... + toleranceₙ²)
+Total tolerance = (tolerance + tolerance + ... + tolerance)
 
-Example with 3 parts (each ±0.5mm):
-Total = √(0.5² + 0.5² + 0.5²)
-      = √0.75
+Example with 3 parts (each +/-0.5mm):
+Total = (0.5 + 0.5 + 0.5)
+      = 0.75
       = 0.87mm
 ```
 
@@ -461,7 +461,7 @@ Total = √(0.5² + 0.5² + 0.5²)
 | **Part too small (all dimensions off)** | Scale wrong in slicer | Scale STL up in CAD or slicer | Verify scale before slicing |
 | **Holes too small** | Compensation shrinkage | Increase hole diameter +0.5mm | Add shrinkage factor to design |
 | **Walls too thin** | Layer squishing | Check first layer height; may need recalibration | Measure first layer thickness |
-| **Infill showing through (loose fill)** | Infill too low | Increase infill % to 25–30% | Recalculate for part type |
+| **Infill showing through (loose fill)** | Infill too low | Increase infill % to 25-30% | Recalculate for part type |
 | **Inconsistent across print** | Nozzle clogging mid-print | Clean nozzle; check filament quality | Use quality filament; monitor print |
 | **Z-axis dimensions off | Z-axis uncalibrated | Run Z-calibration procedure | Calibrate before critical prints |
 | **Dimensions change between prints** | Thermal drift | Print in stable temperature | Use enclosed printer if possible |
@@ -476,9 +476,9 @@ Print this checklist **before starting a new project**:
 # Quality Assurance Checklist: [Project Name]
 
 ## Design Specs
-- [ ] Part A width: ___ mm ± ___ mm
-- [ ] Part B height: ___ mm ± ___ mm
-- [ ] Hole diameter: ___ mm ± ___ mm
+- [ ] Part A width: ___ mm +/- ___ mm
+- [ ] Part B height: ___ mm +/- ___ mm
+- [ ] Hole diameter: ___ mm +/- ___ mm
 - [ ] Assembly fit tolerance: ___ mm
 
 ## Pre-Print
@@ -493,7 +493,7 @@ Print this checklist **before starting a new project**:
 - [ ] Part B height measured (3 points): ___mm, ___mm, ___mm
   - [ ] Within tolerance? YES/NO
 - [ ] Hole diameter measured (go/no-go): PASS/FAIL
-- [ ] Part weight measured: ___g (expected: ___g ±___g)
+- [ ] Part weight measured: ___g (expected: ___g +/-___g)
   - [ ] Within expected weight? YES/NO
 
 ## Post-Print (Functional)
@@ -562,14 +562,14 @@ Traditional visual QA (looking at surface finish, checking dimensions by eye) is
 When documenting QA results:
 
 ```
-✅ GOOD: "Bracket width measured 49.8mm (spec 50±1mm)"
-❌ AVOID: "Bracket looks good" (not measurable)
+[YES] GOOD: "Bracket width measured 49.8mm (spec 50+/-1mm)"
+[NO] AVOID: "Bracket looks good" (not measurable)
 
-✅ GOOD: "Part weighs 298g (spec 300±10g)"
-❌ AVOID: "Feels about right" (subjective)
+[YES] GOOD: "Part weighs 298g (spec 300+/-10g)"
+[NO] AVOID: "Feels about right" (subjective)
 
-✅ GOOD: "Slides through go-gauge, blocks no-go-gauge"
-❌ AVOID: "Hole looks the right size" (visual only)
+[YES] GOOD: "Slides through go-gauge, blocks no-go-gauge"
+[NO] AVOID: "Hole looks the right size" (visual only)
 ```
 
 ### Documentation Template (Accessible)
@@ -580,8 +580,8 @@ When documenting QA results:
 ### Dimensional Verification
 | Dimension | Specification | Measurement 1 | Measurement 2 | Measurement 3 | Average | Result |
 |-----------|---|---|---|---|---|---|
-| Peg Diameter | 6.0 ± 0.5mm | 5.9mm | 6.0mm | 5.8mm | 5.9mm | ✅ PASS |
-| Peg Length | 25.0 ± 0.5mm | 25.1mm | 25.0mm | 25.0mm | 25.03mm | ✅ PASS |
+| Peg Diameter | 6.0 +/- 0.5mm | 5.9mm | 6.0mm | 5.8mm | 5.9mm | [YES] PASS |
+| Peg Length | 25.0 +/- 0.5mm | 25.1mm | 25.0mm | 25.0mm | 25.03mm | [YES] PASS |
 
 ### Functional Test
 - [x] Slides into bracelet loop easily (no forcing)
@@ -590,7 +590,7 @@ When documenting QA results:
 - [x] No permanent deformation after load removed
 
 ### Overall Result
-✅ **PASS** — All dimensions within tolerance; functionally sound
+[YES] **PASS** - All dimensions within tolerance; functionally sound
 ```
 
 ---
@@ -617,4 +617,4 @@ When documenting QA results:
 
 **Accessibility Reminder:**
 
-All QA testing in this appendix is **measurement-based and non-visual**, making it equally accessible to all users. The goal is objective, quantifiable verification—not subjective assessment.
+All QA testing in this appendix is **measurement-based and non-visual**, making it equally accessible to all users. The goal is objective, quantifiable verification-not subjective assessment.

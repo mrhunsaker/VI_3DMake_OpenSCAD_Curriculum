@@ -1,4 +1,4 @@
-# Your Second Print — Teacher Template (Extension Project)
+# Your Second Print - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -34,15 +34,15 @@ Building on the first successful print, students now adapt an existing model to 
 
 ## Rubric
 
-All projects are scored on a 0–9 scale across three equally weighted categories (3 points each):
+All projects are scored on a 0-9 scale across three equally weighted categories (3 points each):
 
 | Category | Points | What We Measure |
 | ---------- | ------- | ------------------- |
-| **Problem & Solution** | 0–3 | Is the adapted design functional? Does it solve the stated adaptation goal? |
-| **Design & Code Quality** | 0–3 | Are modifications clear and well-documented? Is iteration evident? Does the part work well? |
-| **Documentation** | 0–3 | Is the iteration cycle documented? Are design decisions explained? Is reflection thorough? |
+| **Problem & Solution** | 0-3 | Is the adapted design functional? Does it solve the stated adaptation goal? |
+| **Design & Code Quality** | 0-3 | Are modifications clear and well-documented? Is iteration evident? Does the part work well? |
+| **Documentation** | 0-3 | Is the iteration cycle documented? Are design decisions explained? Is reflection thorough? |
 
-### Category 1: Problem & Solution (0–3 points)
+### Category 1: Problem & Solution (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -51,7 +51,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Adaptation partially addresses goal. Print has functional limitations. |
 | **0** | Adaptation does not work or is not attempted. |
 
-### Category 2: Design & Code Quality (0–3 points)
+### Category 2: Design & Code Quality (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -60,7 +60,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Minimal modification documentation. Little iteration. Print quality acceptable but lacks refinement. |
 | **0** | Modifications not documented or design not functional. |
 
-### Category 3: Documentation (0–3 points)
+### Category 3: Documentation (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -73,11 +73,11 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 
 | Total Score | Interpretation | Next Step |
 | ------------ | --------------- | ----------- |
-| 8–9 | Excellent adaptation | Student demonstrates design maturity |
-| 6–7 | Good iteration and adaptation | Encourage further design work |
-| 4–5 | Meets basics; improve iteration | Resubmit iteration documentation |
-| 2–3 | Does not meet expectations | Resubmission or coaching |
-| 0–1 | Missing components | Meet with instructor |
+| 8-9 | Excellent adaptation | Student demonstrates design maturity |
+| 6-7 | Good iteration and adaptation | Encourage further design work |
+| 4-5 | Meets basics; improve iteration | Resubmit iteration documentation |
+| 2-3 | Does not meet expectations | Resubmission or coaching |
+| 0-1 | Missing components | Meet with instructor |
 
 ---
 

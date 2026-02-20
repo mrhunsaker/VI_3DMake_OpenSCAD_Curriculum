@@ -1,8 +1,8 @@
-# PS-5: Filling in the Gaps — Control Flow, Profiles, and Useful Tricks 
+# PS-5: Filling in the Gaps - Control Flow, Profiles, and Useful Tricks 
 
 
 
-Estimated time: 30–45 minutes
+Estimated time: 30-45 minutes
 
 **Learning Objectives**
 - Use history and abort commands (`history`, `Ctrl+C`)
@@ -24,7 +24,7 @@ Checkpoints
 - After step 2 you can re-run a recent command by history number.
 - After step 5 your alias should persist across sessions.
 
-## Quiz — Lesson PS.5
+## Quiz - Lesson PS.5
 
 1. How do you view the command history?
 2. Which key combination aborts a running command?

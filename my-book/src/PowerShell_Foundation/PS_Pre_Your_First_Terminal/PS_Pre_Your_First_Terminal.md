@@ -1,7 +1,7 @@
-# PS-Pre: Your First Terminal — Screen Reader Navigation Fundamentals
+# PS-Pre: Your First Terminal - Screen Reader Navigation Fundamentals
 
 **Duration:** 30-45 minutes  
-**Prerequisites:** None — this is the starting point  
+**Prerequisites:** None - this is the starting point  
 **Accessibility Note:** This lesson is designed specifically for screen reader users (NVDA, JAWS)
 
 ---
@@ -38,7 +38,7 @@ A terminal (also called a command line or shell) is a text-based interface where
 **Method 3: From File Explorer**
 1. Open File Explorer
 2. Navigate to any folder
-3. In the menu bar, select "File" → "Open Windows PowerShell here"
+3. In the menu bar, select "File" -> "Open Windows PowerShell here"
 4. PowerShell opens in that folder location
 
 ### First Connection: Understanding the Prompt
@@ -61,7 +61,7 @@ PS C:\Users\YourName>
 
 ## Part 2: Your First Commands (Screen Reader Edition)
 
-### Command 1: "Where Am I?" — `pwd`
+### Command 1: "Where Am I?" - `pwd`
 
 **What it does:** Tells you your current location
 
@@ -81,9 +81,9 @@ C:\Users\YourName
 **Understanding paths:**
 - Paths show your location in the file system (like a mailing address)
 - Windows paths use backslashes: `C:\Users\YourName\Documents`
-- Think of it like folders inside folders: `C:\` (main drive) → `Users` → `YourName` → `Documents`
+- Think of it like folders inside folders: `C:\` (main drive) -> `Users` -> `YourName` -> `Documents`
 
-### Command 2: "What's Here?" — `ls -n`
+### Command 2: "What's Here?" - `ls -n`
 
 **What it does:** Lists all files and folders in your current location. The `-n` flag makes it screen-reader friendly (names only, one per line)
 
@@ -109,7 +109,7 @@ Pictures
 - Without `-n`, PowerShell shows files in columns (hard to read with a screen reader)
 - With `-n`, each file/folder is on its own line (perfect for screen readers)
 
-### Command 3: "Go There" — `cd Documents`
+### Command 3: "Go There" - `cd Documents`
 
 **What it does:** Changes your location (navigates to a folder)
 

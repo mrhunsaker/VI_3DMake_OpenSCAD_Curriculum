@@ -1,4 +1,4 @@
-# Snap-Fit Clip — Teacher Template (Extension Project)
+# Snap-Fit Clip - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -29,13 +29,13 @@ Students design a snap-fit connector that joins two 3D-printed parts without fas
 
 ## Rubric
 
-### Category 1: Problem & Solution (0–3)
+### Category 1: Problem & Solution (0-3)
 Snap-fit works reliably; parts assemble and disassemble as designed.
 
-### Category 2: Design & Code Quality (0–3)
+### Category 2: Design & Code Quality (0-3)
 Code shows tolerance thinking. Design is mechanically sound.
 
-### Category 3: Documentation (0–3)
+### Category 3: Documentation (0-3)
 Assembly testing documented. Tolerance rationale explained.
 
 ---

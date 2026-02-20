@@ -74,9 +74,9 @@ Structured approach to gathering and analyzing feedback from users and stakehold
 
 | Feature/Function | Works Well | Works OK | Doesn't Work | Needed But Missing |
 |---|---|---|---|---|
-| | ✓ | △ | ✗ | - |
-| | ✓ | △ | ✗ | - |
-| | ✓ | △ | ✗ | - |
+| |  |  |  | - |
+| |  |  |  | - |
+| |  |  |  | - |
 
 **Critical Functions:**
 - Most important for your use: ________________________________________
@@ -223,10 +223,10 @@ ___________________________________________________________
 
 | Metric | Average | Range | Status |
 |--------|---------|-------|--------|
-| Overall Satisfaction | ___/5 | _-_ | ✓/△/✗ |
-| Likelihood to Recommend | ___/5 | _-_ | ✓/△/✗ |
-| Meets Needs | ___/5 | _-_ | ✓/△/✗ |
-| Usability Rating | ___/5 | _-_ | ✓/△/✗ |
+| Overall Satisfaction | ___/5 | _-_ | // |
+| Likelihood to Recommend | ___/5 | _-_ | // |
+| Meets Needs | ___/5 | _-_ | // |
+| Usability Rating | ___/5 | _-_ | // |
 
 ---
 
@@ -312,10 +312,10 @@ ___________________________________________________________
 **Reviewed By:** ____________________
 
 **Status:**
-- [ ] ✓ Feedback incorporated into design
-- [ ] ⚠ Partial incorporation (note: __________________________)
-- [ ] △ Under review (decision pending)
-- [ ] ✗ Declined (reason: _______________________________________)
+- [ ]  Feedback incorporated into design
+- [ ]  Partial incorporation (note: __________________________)
+- [ ]  Under review (decision pending)
+- [ ]  Declined (reason: _______________________________________)
 
 ---
 

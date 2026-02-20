@@ -6,16 +6,16 @@ This directory contains all OpenSCAD code examples and supporting materials for 
 
 ```
 assets/3dMake_Foundation/
-├── README.md (this file)
-├── Lessons_3dMake_6/
-│   ├── README.md
-│   └── cube_keycap.scad
-├── Lessons_3dMake_7/
-│   ├── README.md
-│   └── phone_stand.scad
-└── Lessons_3dMake_8/
-    ├── README.md
-    └── stackable_bins.scad
++------ README.md (this file)
++------ Lessons_3dMake_6/
+|   +------ README.md
+|   +------ cube_keycap.scad
++------ Lessons_3dMake_7/
+|   +------ README.md
+|   +------ phone_stand.scad
++------ Lessons_3dMake_8/
+    +------ README.md
+    +------ stackable_bins.scad
 ```
 
 ## Code Examples by Lesson
@@ -234,4 +234,4 @@ After learning each pattern:
 ---
 
 **Last Updated**: February 20, 2026  
-**Status**: Complete — All code examples integrated and documented
+**Status**: Complete - All code examples integrated and documented

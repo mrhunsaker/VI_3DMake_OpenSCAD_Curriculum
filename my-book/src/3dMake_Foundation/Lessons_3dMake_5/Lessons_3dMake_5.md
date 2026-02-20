@@ -1,6 +1,6 @@
 # Lesson 5: Safety Protocols and the Physical Fabrication Interface 
 
-Estimated time: 60–90 minutes
+Estimated time: 60-90 minutes
 
 **Learning Objectives**
 - Describe the Hierarchy of Controls and apply it to a classroom maker-space[^5][^6]
@@ -28,7 +28,7 @@ Before your part goes to print, it's important to understand how material choice
 
 #### **Why Material Choice Matters**
 
-Most projects in this class use **PLA** — and for good reason. It's the easiest, cheapest, and lowest-emission option. But as you advance, you'll encounter projects that require different materials:
+Most projects in this class use **PLA** - and for good reason. It's the easiest, cheapest, and lowest-emission option. But as you advance, you'll encounter projects that require different materials:
 
 - A **flexible phone case** needs TPU (thermoplastic polyurethane)
 - A **functional bracket** that will be outdoors might use PETG (polyethylene terephthalate)
@@ -40,16 +40,16 @@ Each material has different print temperatures, strength properties, and difficu
 
 | Material | Print Temp | Difficulty | Best Uses | Cautions |
 |----------|-----------|-----------|-----------|----------|
-| **PLA** | 190–220°C | Easy | Prototypes, classroom projects, decorative models | Brittle; low heat resistance; low emission |
-| **PETG** | 230–250°C | Moderate | Functional parts, mechanical components, water resistance | Stringing issues; requires bed heat; more emission than PLA |
-| **TPU** | 220–240°C | Hard | Flexible parts, phone cases, gaskets, wearables | Requires slow speeds; produces more fumes; needs ventilation |
+| **PLA** | 190-220C | Easy | Prototypes, classroom projects, decorative models | Brittle; low heat resistance; low emission |
+| **PETG** | 230-250C | Moderate | Functional parts, mechanical components, water resistance | Stringing issues; requires bed heat; more emission than PLA |
+| **TPU** | 220-240C | Hard | Flexible parts, phone cases, gaskets, wearables | Requires slow speeds; produces more fumes; needs ventilation |
 
 #### **How Material Choice Affects Your Slicer Settings**
 
 When you switch materials, you must adjust:
 - **Nozzle Temperature:** Too cold and plastic won't extrude; too hot and it burns
 - **Bed Temperature:** Helps adhesion; critical for PETG, optional for PLA
-- **Print Speed:** TPU requires very slow speeds (20–30 mm/s) to prevent extrusion problems
+- **Print Speed:** TPU requires very slow speeds (20-30 mm/s) to prevent extrusion problems
 - **Cooling:** PLA benefits from active cooling; TPU does not
 
 Most slicers (like PrusaSlicer) have **material profiles** that automatically set these values. Always verify the temperatures match your filament's specifications (check the spool label).
@@ -74,7 +74,7 @@ By understanding material properties now, you'll be prepared to make informed de
 
 ---
 
-## Quiz — Lesson 3dMake.5 (10 questions)
+## Quiz - Lesson 3dMake.5 (10 questions)
 
 1. What are the four levels of the Hierarchy of Controls[^5]?
 2. Name two engineering controls useful for reducing emissions[^5][^6].

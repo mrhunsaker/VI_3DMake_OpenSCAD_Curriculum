@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,12 +220,12 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="vscode-setup-guide--accessible-openscad-development"><a class="header" href="#vscode-setup-guide--accessible-openscad-development">VSCode Setup Guide — Accessible OpenSCAD Development</a></h1>
+                        <h1 id="vscode-setup-guide---accessible-openscad-development"><a class="header" href="#vscode-setup-guide---accessible-openscad-development">VSCode Setup Guide - Accessible OpenSCAD Development</a></h1>
 <h2 id="for-use-with-nvda-or-jaws-on-windows"><a class="header" href="#for-use-with-nvda-or-jaws-on-windows"><strong>For use with NVDA or JAWS on Windows</strong></a></h2>
 <p>This guide walks you through setting up Visual Studio Code (VSCode) as an accessible code editor for writing OpenSCAD files, with a task runner that automatically previews your <code>.scad</code> code in OpenSCAD whenever you save.</p>
 <hr>
 <h2 id="why-vscode-instead-of-the-openscad-editor"><a class="header" href="#why-vscode-instead-of-the-openscad-editor">Why VSCode Instead of the OpenSCAD Editor?</a></h2>
-<p>The built-in OpenSCAD editor has inconsistent behavior with screen readers — focus can jump unexpectedly, and the editor sometimes stops being read after certain actions. VSCode is a mainstream code editor with strong, well-tested accessibility support for both NVDA and JAWS.</p>
+<p>The built-in OpenSCAD editor has inconsistent behavior with screen readers - focus can jump unexpectedly, and the editor sometimes stops being read after certain actions. VSCode is a mainstream code editor with strong, well-tested accessibility support for both NVDA and JAWS.</p>
 <p>You write your code in VSCode. OpenSCAD runs in the background (or in a separate window) to render the preview. You never have to interact with the OpenSCAD editor itself.</p>
 <hr>
 <h2 id="part-1-install-required-software"><a class="header" href="#part-1-install-required-software">Part 1: Install Required Software</a></h2>
@@ -233,7 +233,7 @@
 <p>Download from: <a href="https://code.visualstudio.com/">https://code.visualstudio.com/</a></p>
 <p>During installation:</p>
 <ul>
-<li>Check <strong>“Add to PATH”</strong> — this is important for running VSCode from PowerShell</li>
+<li>Check <strong>“Add to PATH”</strong> - this is important for running VSCode from PowerShell</li>
 <li>Check <strong>“Register Code as an editor for supported file types”</strong></li>
 </ul>
 <h3 id="12-install-openscad"><a class="header" href="#12-install-openscad">1.2 Install OpenSCAD</a></h3>
@@ -247,7 +247,7 @@
 <li>Open VSCode</li>
 <li>Press <code>Ctrl + Shift + X</code> to open the Extensions panel</li>
 <li>Type <code>openscad</code> in the search box</li>
-<li>Install <strong>“OpenSCAD Language Support”</strong> — this adds syntax highlighting and keyword completion for <code>.scad</code> files</li>
+<li>Install <strong>“OpenSCAD Language Support”</strong> - this adds syntax highlighting and keyword completion for <code>.scad</code> files</li>
 </ol>
 <hr>
 <h2 id="part-2-configure-the-task-runner"><a class="header" href="#part-2-configure-the-task-runner">Part 2: Configure the Task Runner</a></h2>
@@ -321,14 +321,14 @@ code .
 <hr>
 <h2 id="part-3-nvda-settings-for-vscode"><a class="header" href="#part-3-nvda-settings-for-vscode">Part 3: NVDA Settings for VSCode</a></h2>
 <h3 id="31-recommended-nvda-settings"><a class="header" href="#31-recommended-nvda-settings">3.1 Recommended NVDA Settings</a></h3>
-<p>Open NVDA Menu (<code>NVDA + N</code>) → Preferences → Settings:</p>
+<p>Open NVDA Menu (<code>NVDA + N</code>) -&gt; Preferences -&gt; Settings:</p>
 <p><strong>Speech category:</strong></p>
 <ul>
 <li>Symbol level: <strong>Most</strong> (so you hear brackets, semicolons, and other syntax characters)</li>
 </ul>
 <p><strong>Browse Mode category:</strong></p>
 <ul>
-<li>Uncheck “Use browse mode on page load in web content” — not needed for VSCode</li>
+<li>Uncheck “Use browse mode on page load in web content” - not needed for VSCode</li>
 </ul>
 <h3 id="32-useful-nvda--vscode-keyboard-shortcuts"><a class="header" href="#32-useful-nvda--vscode-keyboard-shortcuts">3.2 Useful NVDA + VSCode Keyboard Shortcuts</a></h3>
 <div class="table-wrapper">
@@ -353,8 +353,8 @@ code .
 </table>
 </div>
 <h3 id="33-punctuation-level"><a class="header" href="#33-punctuation-level">3.3 Punctuation Level</a></h3>
-<p>When reading code, you need to hear all punctuation — semicolons, brackets, parentheses, and commas are all part of OpenSCAD syntax.</p>
-<p>In NVDA: <code>NVDA + N</code> → Preferences → Settings → Speech → <strong>Symbol level: Most</strong></p>
+<p>When reading code, you need to hear all punctuation - semicolons, brackets, parentheses, and commas are all part of OpenSCAD syntax.</p>
+<p>In NVDA: <code>NVDA + N</code> -&gt; Preferences -&gt; Settings -&gt; Speech -&gt; <strong>Symbol level: Most</strong></p>
 <p>You can also toggle punctuation level on the fly: <code>NVDA + P</code> cycles through None, Some, Most, All.</p>
 <hr>
 <h2 id="part-4-jaws-settings-for-vscode"><a class="header" href="#part-4-jaws-settings-for-vscode">Part 4: JAWS Settings for VSCode</a></h2>
@@ -362,7 +362,7 @@ code .
 <p>JAWS may try to activate Virtual/Browse mode in VSCode. If VSCode stops responding to arrow keys for navigation and starts reading the page as HTML, press <code>JAWS Key + Z</code> to toggle Virtual mode off. You want to be in <strong>Application mode</strong> (not Virtual mode) when using VSCode.</p>
 <h3 id="42-recommended-jaws-settings"><a class="header" href="#42-recommended-jaws-settings">4.2 Recommended JAWS Settings</a></h3>
 <ul>
-<li><strong>Punctuation level:</strong> All — <code>JAWS Key + Shift + 2</code> cycles through levels. Set to <strong>All</strong> for code editing.</li>
+<li><strong>Punctuation level:</strong> All - <code>JAWS Key + Shift + 2</code> cycles through levels. Set to <strong>All</strong> for code editing.</li>
 <li><strong>Reading rate:</strong> Adjust with <code>Alt + Ctrl + Page Up / Page Down</code></li>
 <li><strong>Spell current line:</strong> <code>JAWS Key + Up Arrow</code> twice quickly</li>
 </ul>
@@ -392,9 +392,9 @@ code .
 <li>Download from: <a href="https://notepad-plus-plus.org/">https://notepad-plus-plus.org/</a></li>
 <li>Install the <strong>OpenSCAD syntax highlighting</strong> plugin:
 <ul>
-<li>Go to Plugins → Plugin Admin</li>
-<li>Search for “OpenSCAD” — install if available</li>
-<li>Alternatively, download a UDL (User Defined Language) file from the OpenSCAD community and import it via Language → User Defined Language → Import</li>
+<li>Go to Plugins -&gt; Plugin Admin</li>
+<li>Search for “OpenSCAD” - install if available</li>
+<li>Alternatively, download a UDL (User Defined Language) file from the OpenSCAD community and import it via Language -&gt; User Defined Language -&gt; Import</li>
 </ul>
 </li>
 </ol>
@@ -408,7 +408,7 @@ code .
 <li>Punctuation level: set to <strong>Most</strong> or <strong>All</strong></li>
 <li>Use <code>Ctrl + G</code> to go to a specific line</li>
 <li>Use <code>Ctrl + F</code> to find text</li>
-<li>The status bar at the bottom of Notepad++ announces line and column numbers — useful for finding where errors are</li>
+<li>The status bar at the bottom of Notepad++ announces line and column numbers - useful for finding where errors are</li>
 </ul>
 <hr>
 <h2 id="part-6-workflow-summary"><a class="header" href="#part-6-workflow-summary">Part 6: Workflow Summary</a></h2>
@@ -420,7 +420,7 @@ code ~/Documents/OpenSCAD_Projects</p>
 </li>
 <li>
 <p>Open or create a .scad file
-Ctrl + P → type filename</p>
+Ctrl + P -&gt; type filename</p>
 </li>
 <li>
 <p>Write your OpenSCAD code</p>
@@ -458,12 +458,12 @@ OR: In OpenSCAD, press F6 then File &gt; Export &gt; Export as STL</p>
 <h3 id="i-hear-unlabeled-for-some-vscode-elements"><a class="header" href="#i-hear-unlabeled-for-some-vscode-elements"><strong>I hear “unlabeled” for some VSCode elements</strong></a></h3>
 <ul>
 <li>This is a known VSCode accessibility limitation for some UI panels</li>
-<li>Use keyboard shortcuts rather than trying to navigate by element — the editor itself reads well</li>
+<li>Use keyboard shortcuts rather than trying to navigate by element - the editor itself reads well</li>
 </ul>
 <h3 id="my-scad-file-has-an-error-but-i-cant-find-it"><a class="header" href="#my-scad-file-has-an-error-but-i-cant-find-it"><strong>My .scad file has an error but I can’t find it</strong></a></h3>
 <ul>
-<li>OpenSCAD will display an error in its console — use <code>Alt + Tab</code> to switch to OpenSCAD and arrow through the console to read the error</li>
-<li>Errors always include a line number — use <code>Ctrl + G</code> in VSCode to jump to that line</li>
+<li>OpenSCAD will display an error in its console - use <code>Alt + Tab</code> to switch to OpenSCAD and arrow through the console to read the error</li>
+<li>Errors always include a line number - use <code>Ctrl + G</code> in VSCode to jump to that line</li>
 </ul>
 <hr>
 <h2 id="references"><a class="header" href="#references">References</a></h2>

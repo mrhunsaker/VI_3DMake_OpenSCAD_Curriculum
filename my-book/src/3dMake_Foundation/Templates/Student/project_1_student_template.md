@@ -1,4 +1,4 @@
-# Project 1: Tactile Floor Markers — Student Documentation Template
+# Project 1: Tactile Floor Markers - Student Documentation Template
 
 - Author:
 - Date:
@@ -127,10 +127,10 @@
 
 | Category | Score | Notes |
 | ---------- | ------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |
 
 **Feedback:**
 
@@ -145,7 +145,7 @@
 
 | Category | Revised Score | Notes |
 | ---------- | --------------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |

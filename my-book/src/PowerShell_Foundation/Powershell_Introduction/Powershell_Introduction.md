@@ -1,6 +1,6 @@
-# PowerShell Introduction — Screen-reader friendly (JAWS/NVDA)
+# PowerShell Introduction - Screen-reader friendly (JAWS/NVDA)
 
-Estimated time: 20–30 minutes
+Estimated time: 20-30 minutes
 
 **Target audience:** Users who are new to the command line and use screen readers.
 
@@ -22,14 +22,14 @@ macOS / Linux
 
 When PowerShell starts you will hear the prompt and usually your current path. The default prompt often includes `PS` followed by the path, e.g., `PS C:\Users\YourName>`.
 
-## Essential commands — short list
+## Essential commands - short list
 
-- `pwd` — print working directory (where you are now)
-- `ls -n` — list file and folder names only (recommended for screen readers)
-- `cd <path>` — change directory
-- `ni <filename>` — create a file (alias for New-Item)
-- `cat <file>` — show file contents
-- `echo <text>` — print text
+- `pwd` - print working directory (where you are now)
+- `ls -n` - list file and folder names only (recommended for screen readers)
+- `cd <path>` - change directory
+- `ni <filename>` - create a file (alias for New-Item)
+- `cat <file>` - show file contents
+- `echo <text>` - print text
 
 Quick examples:
 

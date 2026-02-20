@@ -1,4 +1,4 @@
-# Bonus Print — Teacher Template (Extension Project)
+# Bonus Print - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -29,15 +29,15 @@ Students design scaled variants of a 3D-printable object to explore parametric d
 - Reflection on design scalability
 
 ## Rubric
-(Same three-category 0–9 scale as other projects)
+(Same three-category 0-9 scale as other projects)
 
-### Category 1: Problem & Solution (0–3)
+### Category 1: Problem & Solution (0-3)
 All variants print successfully and meet comparison criteria.
 
-### Category 2: Design & Code Quality (0–3)
+### Category 2: Design & Code Quality (0-3)
 Code is parametric and well-commented. Variants show thoughtful design thinking.
 
-### Category 3: Documentation (0–3)
+### Category 3: Documentation (0-3)
 Comparison matrix complete. Reflection specific and insightful.
 
 ---

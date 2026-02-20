@@ -1,4 +1,4 @@
-# VSCode Setup Guide — Accessible OpenSCAD Development
+# VSCode Setup Guide - Accessible OpenSCAD Development
 
 ## **For use with NVDA or JAWS on Windows**
 
@@ -8,7 +8,7 @@ This guide walks you through setting up Visual Studio Code (VSCode) as an access
 
 ## Why VSCode Instead of the OpenSCAD Editor?
 
-The built-in OpenSCAD editor has inconsistent behavior with screen readers — focus can jump unexpectedly, and the editor sometimes stops being read after certain actions. VSCode is a mainstream code editor with strong, well-tested accessibility support for both NVDA and JAWS.
+The built-in OpenSCAD editor has inconsistent behavior with screen readers - focus can jump unexpectedly, and the editor sometimes stops being read after certain actions. VSCode is a mainstream code editor with strong, well-tested accessibility support for both NVDA and JAWS.
 
 You write your code in VSCode. OpenSCAD runs in the background (or in a separate window) to render the preview. You never have to interact with the OpenSCAD editor itself.
 
@@ -22,7 +22,7 @@ Download from: [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 During installation:
 
-- Check **"Add to PATH"** — this is important for running VSCode from PowerShell
+- Check **"Add to PATH"** - this is important for running VSCode from PowerShell
 - Check **"Register Code as an editor for supported file types"**
 
 ### 1.2 Install OpenSCAD
@@ -42,7 +42,7 @@ You should hear a version number. If you get an error, see the PATH setup sectio
 1. Open VSCode
 2. Press `Ctrl + Shift + X` to open the Extensions panel
 3. Type `openscad` in the search box
-4. Install **"OpenSCAD Language Support"** — this adds syntax highlighting and keyword completion for `.scad` files
+4. Install **"OpenSCAD Language Support"** - this adds syntax highlighting and keyword completion for `.scad` files
 
 ---
 
@@ -132,7 +132,7 @@ To export an STL:
 
 ### 3.1 Recommended NVDA Settings
 
-Open NVDA Menu (`NVDA + N`) → Preferences → Settings:
+Open NVDA Menu (`NVDA + N`) -> Preferences -> Settings:
 
 **Speech category:**
 
@@ -140,7 +140,7 @@ Open NVDA Menu (`NVDA + N`) → Preferences → Settings:
 
 **Browse Mode category:**
 
-- Uncheck "Use browse mode on page load in web content" — not needed for VSCode
+- Uncheck "Use browse mode on page load in web content" - not needed for VSCode
 
 ### 3.2 Useful NVDA + VSCode Keyboard Shortcuts
 
@@ -161,9 +161,9 @@ Open NVDA Menu (`NVDA + N`) → Preferences → Settings:
 
 ### 3.3 Punctuation Level
 
-When reading code, you need to hear all punctuation — semicolons, brackets, parentheses, and commas are all part of OpenSCAD syntax.
+When reading code, you need to hear all punctuation - semicolons, brackets, parentheses, and commas are all part of OpenSCAD syntax.
 
-In NVDA: `NVDA + N` → Preferences → Settings → Speech → **Symbol level: Most**
+In NVDA: `NVDA + N` -> Preferences -> Settings -> Speech -> **Symbol level: Most**
 
 You can also toggle punctuation level on the fly: `NVDA + P` cycles through None, Some, Most, All.
 
@@ -177,7 +177,7 @@ JAWS may try to activate Virtual/Browse mode in VSCode. If VSCode stops respondi
 
 ### 4.2 Recommended JAWS Settings
 
-- **Punctuation level:** All — `JAWS Key + Shift + 2` cycles through levels. Set to **All** for code editing.
+- **Punctuation level:** All - `JAWS Key + Shift + 2` cycles through levels. Set to **All** for code editing.
 - **Reading rate:** Adjust with `Alt + Ctrl + Page Up / Page Down`
 - **Spell current line:** `JAWS Key + Up Arrow` twice quickly
 
@@ -204,9 +204,9 @@ If VSCode is too complex to set up, **Notepad++** is a simpler screen-reader-fri
 
 1. Download from: [https://notepad-plus-plus.org/](https://notepad-plus-plus.org/)
 2. Install the **OpenSCAD syntax highlighting** plugin:
-   - Go to Plugins → Plugin Admin
-   - Search for "OpenSCAD" — install if available
-   - Alternatively, download a UDL (User Defined Language) file from the OpenSCAD community and import it via Language → User Defined Language → Import
+   - Go to Plugins -> Plugin Admin
+   - Search for "OpenSCAD" - install if available
+   - Alternatively, download a UDL (User Defined Language) file from the OpenSCAD community and import it via Language -> User Defined Language -> Import
 
 ### Running OpenSCAD from Notepad++
 
@@ -223,7 +223,7 @@ Name it "Preview in OpenSCAD" and assign it a shortcut key (e.g., `Ctrl + F5`).
 - Punctuation level: set to **Most** or **All**
 - Use `Ctrl + G` to go to a specific line
 - Use `Ctrl + F` to find text
-- The status bar at the bottom of Notepad++ announces line and column numbers — useful for finding where errors are
+- The status bar at the bottom of Notepad++ announces line and column numbers - useful for finding where errors are
 
 ---
 
@@ -235,7 +235,7 @@ Here is the complete workflow from writing code to printing:
    code ~/Documents/OpenSCAD_Projects
 
 2. Open or create a .scad file
-   Ctrl + P → type filename
+   Ctrl + P -> type filename
 
 3. Write your OpenSCAD code
 
@@ -269,12 +269,12 @@ Here is the complete workflow from writing code to printing:
 ### **I hear "unlabeled" for some VSCode elements**
 
 - This is a known VSCode accessibility limitation for some UI panels
-- Use keyboard shortcuts rather than trying to navigate by element — the editor itself reads well
+- Use keyboard shortcuts rather than trying to navigate by element - the editor itself reads well
 
 ### **My .scad file has an error but I can't find it**
 
-- OpenSCAD will display an error in its console — use `Alt + Tab` to switch to OpenSCAD and arrow through the console to read the error
-- Errors always include a line number — use `Ctrl + G` in VSCode to jump to that line
+- OpenSCAD will display an error in its console - use `Alt + Tab` to switch to OpenSCAD and arrow through the console to read the error
+- Errors always include a line number - use `Ctrl + G` in VSCode to jump to that line
 
 ---
 

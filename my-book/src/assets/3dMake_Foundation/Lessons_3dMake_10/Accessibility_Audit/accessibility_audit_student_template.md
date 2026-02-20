@@ -1,4 +1,4 @@
-# Accessibility Audit — Student Documentation Template (Extension Project)
+# Accessibility Audit - Student Documentation Template (Extension Project)
 
 - Author:
 - Date:
@@ -105,9 +105,9 @@ If implementing improvements, describe your plan:
 
 | Category | Score | Notes |
 | ---------- | ------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |
 
 **Feedback:**

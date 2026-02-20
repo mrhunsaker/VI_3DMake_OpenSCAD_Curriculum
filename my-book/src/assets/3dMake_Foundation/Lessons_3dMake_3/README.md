@@ -25,8 +25,8 @@ This folder contains supporting materials for Lesson 3:
 
 ## Starter Templates in This Folder
 
-- `parametric_template.scad` — Basic parametric structure with top-level parameters
-- `module_template.scad` — Reusable module pattern with documentation
+- `parametric_template.scad` - Basic parametric structure with top-level parameters
+- `module_template.scad` - Reusable module pattern with documentation
 
 ---
 

@@ -1,6 +1,6 @@
 # Lesson 10: Hands-On Practice Exercises and Troubleshooting
 
-Estimated time: 120–150 minutes (multiple activities)
+Estimated time: 120-150 minutes (multiple activities)
 
 **Learning Objectives**
 
@@ -50,7 +50,7 @@ Object: 3D-printed cube
 Trial 1: 24.5 mm
 Trial 2: 24.2 mm
 Trial 3: 24.6 mm
-Average: (24.5 + 24.2 + 24.6) / 3 = 24.43 mm ≈ 24.4 mm
+Average: (24.5 + 24.2 + 24.6) / 3 = 24.43 mm  24.4 mm
 
 Interpretation: Designed as 25.0 mm, printed as 24.4 mm
 Deviation: -0.6 mm (0.24% shrinkage, acceptable for PLA)
@@ -112,7 +112,7 @@ Trial 2: 59.8 mm
 Trial 3: 59.9 mm
 Average: 59.8 mm
 Deviation: -0.2 mm
-Status: ✓ Acceptable (within ±0.5 mm tolerance)
+Status:  Acceptable (within +/-0.5 mm tolerance)
 
 Part: Base (wide variant, 120 mm)
 Design dimension: 120.0 mm width
@@ -121,16 +121,16 @@ Trial 2: 119.6 mm
 Trial 3: 119.8 mm
 Average: 119.6 mm
 Deviation: -0.4 mm
-Status: ✓ Acceptable
+Status:  Acceptable
 
 Part: Lip (lip_height parameter: 15 mm)
 Design dimension: 15.0 mm
 Trial 1: 14.8 mm
 Trial 2: 14.9 mm
 Trial 3: 14.9 mm
-Average: 14.87 mm ≈ 14.9 mm
+Average: 14.87 mm  14.9 mm
 Deviation: -0.1 mm
-Status: ✓ Excellent
+Status:  Excellent
 ```
 
 ### Reference: Appendix C
@@ -151,8 +151,8 @@ For comprehensive QA procedures, assembly testing, and durability validation, se
 
 **Requirements:**
 - Base must support 300g weight
-- Angle must be adjustable (45°–75°)
-- Width must accommodate phones 60–90mm wide
+- Angle must be adjustable (45-75)
+- Width must accommodate phones 60-90mm wide
 - All parameters at top of file
 
 **Starter Code:**
@@ -210,7 +210,7 @@ union() {
 **Objective:** Design a family of keycaps for a custom keyboard with text, icons, and different profiles.
 
 **Requirements:**
-- 5+ keycap sizes (mm 12–28)
+- 5+ keycap sizes (mm 12-28)
 - Support embossed text and numbers
 - Optional: icon cutouts
 - All printable without supports
@@ -256,7 +256,7 @@ union() {
 **Tasks:**
 1. Create variants with `cap_size` = 12, 16, 18, 20, 24 mm
 2. Build each variant and verify emboss quality
-3. Test printability: print 2–3 variants
+3. Test printability: print 2-3 variants
 4. Measure final dimensions and compare to design
 
 **Documentation Required:**
@@ -336,7 +336,7 @@ union() {
 
 **Tasks:**
 1. Print 2 identical bins and test stacking
-2. Create 3 configurations: Small (60×80×40), Medium (80×120×60), Large (120×160×80)
+2. Create 3 configurations: Small (60x80x40), Medium (80x120x60), Large (120x160x80)
 3. Test with different `stack_clearance` values: 0.4, 0.6, 0.8mm
 4. Document which clearance works best in practice[^1]
 5. Print a large bin with 3 dividers and test storage capacity
@@ -441,7 +441,7 @@ echo "=== Ready to print? ==="
 
 ### B3: Dimensional Inaccuracy
 
-**Problem:** Printed part measures 0.5–2mm different from design
+**Problem:** Printed part measures 0.5-2mm different from design
 
 **Cause:** Printer calibration, shrinkage, or design tolerance issues[^1]
 
@@ -487,7 +487,7 @@ After completing any design, validate using this checklist:
 ## Geometry Validation
 - [ ] Model builds without errors (`3dm build`)
 - [ ] No non-manifold edges (`3dm describe` shows no warnings)
-- [ ] All walls ≥ 1.5mm thick
+- [ ] All walls  1.5mm thick
 - [ ] No floating parts or disconnected geometry
 - [ ] All features clearly serve a purpose
 
@@ -498,7 +498,7 @@ After completing any design, validate using this checklist:
 - [ ] Derived values calculated from parameters (e.g., `inner = outer - 2*wall`)
 
 ## Printability
-- [ ] Overhangs ≤ 45° or have support strategy
+- [ ] Overhangs  45 or have support strategy
 - [ ] No fine details < 0.5mm
 - [ ] Assembly features tested (snap-fits, interlocks)
 - [ ] Post-processing needs documented
@@ -560,7 +560,7 @@ After solving any issue, document it:
 
 ---
 
-## Quiz — Lesson 3dMake.10 (10 questions)
+## Quiz - Lesson 3dMake.10 (10 questions)
 
 1. What is the first diagnostic step when a model fails to slice[^2]?
 2. Explain the 0.001 offset rule and when to apply it[^2].

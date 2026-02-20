@@ -1,20 +1,20 @@
 # Lesson 1: Environmental Configuration and the Developer Workflow
 
-**Estimated time:** 60–90 minutes
+**Estimated time:** 60-90 minutes
 
 ## Folder Contents
 
 This folder contains supporting materials for Lesson 1:
 
 - **Starter Files:** Project scaffold templates and setup scripts
-- **Extension Projects:** Your_First_Print — Low-friction introduction to the complete printing workflow
+- **Extension Projects:** Your_First_Print - Low-friction introduction to the complete printing workflow
 - **Reference Materials:** Setup guides, checklists, and documentation templates
 
 ## Learning Objectives
 
 - Install and verify `3dm`, `openscad`, and a slicer
 - Initialize a 3dMake project scaffold
-- Understand the developer workflow (edit → build → validate)
+- Understand the developer workflow (edit -> build -> validate)
 
 ## Key Materials
 
@@ -28,7 +28,7 @@ This folder contains supporting materials for Lesson 1:
 
 **Purpose:** Low-friction introduction to the printing workflow and slicer checks
 
-**Time:** 2–4 hours (including setup and print monitoring)
+**Time:** 2-4 hours (including setup and print monitoring)
 
 **Skills Developed:**
 - Printer setup and safety checks

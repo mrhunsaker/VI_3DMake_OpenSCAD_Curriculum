@@ -1,4 +1,4 @@
-# Your First Print — Student Documentation Template (Extension Project)
+# Your First Print - Student Documentation Template (Extension Project)
 
 - Author:
 - Date:
@@ -110,10 +110,10 @@
 
 | Category | Score | Notes |
 | ---------- | ------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |
 
 **Feedback:**
 
@@ -128,7 +128,7 @@
 
 | Category | Revised Score | Notes |
 | ---------- | --------------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |

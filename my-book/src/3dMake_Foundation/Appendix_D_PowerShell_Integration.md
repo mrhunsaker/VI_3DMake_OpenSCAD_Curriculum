@@ -4,7 +4,7 @@ This appendix shows how **PowerShell (command-line scripting)** streamlines 3D d
 
 **Referenced in:** Lessons 9 (Automation), 10 (Mastery), and any lesson requiring batch operations
 
-**Prerequisites:** Completion of PowerShell_Foundation (Lessons 1–6)
+**Prerequisites:** Completion of PowerShell_Foundation (Lessons 1-6)
 
 ---
 
@@ -13,13 +13,13 @@ This appendix shows how **PowerShell (command-line scripting)** streamlines 3D d
 ### Manual Workflow (Time-Consuming)
 
 ```
-1. Open SCAD manually → Edit parameters → Save → Export STL
-2. Open Slicer manually → Load STL → Adjust settings → Slice → Export G-code
+1. Open SCAD manually -> Edit parameters -> Save -> Export STL
+2. Open Slicer manually -> Load STL -> Adjust settings -> Slice -> Export G-code
 3. Transfer G-code to printer via USB
 4. Record results in notebook
 5. Repeat for next variation (variant 2, variant 3, etc.)
 
-Time: ~20–30 minutes per design iteration
+Time: ~20-30 minutes per design iteration
 ```
 
 ### Automated Workflow (Fast & Reproducible)
@@ -35,17 +35,17 @@ Time: ~20–30 minutes per design iteration
 3. Run script once, walk away
 4. Check results later
 
-Time: 2–3 minutes per iteration (plus print time)
+Time: 2-3 minutes per iteration (plus print time)
 ```
 
 ### Benefits of Automation
 
-- ✅ **Speed:** 10× faster for batch operations
-- ✅ **Consistency:** No manual errors
-- ✅ **Reproducibility:** Same settings every time
-- ✅ **Scalability:** Test 5, 10, or 100 variations easily
-- ✅ **Logging:** Automatic documentation
-- ✅ **Accessibility:** Screen reader captures script output (not UI clicks)
+- [YES] **Speed:** 10x faster for batch operations
+- [YES] **Consistency:** No manual errors
+- [YES] **Reproducibility:** Same settings every time
+- [YES] **Scalability:** Test 5, 10, or 100 variations easily
+- [YES] **Logging:** Automatic documentation
+- [YES] **Accessibility:** Screen reader captures script output (not UI clicks)
 
 ---
 
@@ -66,25 +66,25 @@ Create a project directory:
 
 ```
 C:\Projects\3dMake\
-├── src/
-│   ├── bracelet_holder.scad
-│   ├── phone_stand.scad
-│   └── stackable_bins.scad
-├── stl/
-│   ├── bracelet_holder.stl
-│   ├── phone_stand.stl
-│   └── stackable_bins.stl
-├── gcode/
-│   ├── bracelet_holder.gcode
-│   ├── phone_stand.gcode
-│   └── stackable_bins.gcode
-├── logs/
-│   ├── batch_2024-01-15.log
-│   └── print_history.csv
-└── scripts/
-    ├── build.ps1      (main build script)
-    ├── batch_test.ps1 (test variations)
-    └── monitor.ps1    (monitor printer)
++------ src/
+|   +------ bracelet_holder.scad
+|   +------ phone_stand.scad
+|   +------ stackable_bins.scad
++------ stl/
+|   +------ bracelet_holder.stl
+|   +------ phone_stand.stl
+|   +------ stackable_bins.stl
++------ gcode/
+|   +------ bracelet_holder.gcode
+|   +------ phone_stand.gcode
+|   +------ stackable_bins.gcode
++------ logs/
+|   +------ batch_2024-01-15.log
+|   +------ print_history.csv
++------ scripts/
+    +------ build.ps1      (main build script)
+    +------ batch_test.ps1 (test variations)
+    +------ monitor.ps1    (monitor printer)
 ```
 
 ### PowerShell Execution Policy
@@ -109,7 +109,7 @@ Get-ExecutionPolicy
 This script takes a SCAD file and converts it through the entire workflow:
 
 ```powershell
-# build.ps1 - Convert SCAD → STL → G-code
+# build.ps1 - Convert SCAD -> STL -> G-code
 
 param(
     [string]$ScadFile,          # Input: bracelet_holder.scad
@@ -144,11 +144,11 @@ $startTime = Get-Date
     "$ScadFile"
 
 $duration = (Get-Date) - $startTime
-Write-Log "✓ STL exported in $($duration.TotalSeconds) seconds: $StlFile"
+Write-Log " STL exported in $($duration.TotalSeconds) seconds: $StlFile"
 
 # Verify STL exists
 if (-not (Test-Path $StlFile)) {
-    Write-Log "❌ ERROR: STL file not created"
+    Write-Log "[NO] ERROR: STL file not created"
     exit 1
 }
 
@@ -162,11 +162,11 @@ $startTime = Get-Date
     "$StlFile"
 
 $duration = (Get-Date) - $startTime
-Write-Log "✓ G-code generated in $($duration.TotalSeconds) seconds: $GcodeFile"
+Write-Log " G-code generated in $($duration.TotalSeconds) seconds: $GcodeFile"
 
 # Verify G-code exists
 if (-not (Test-Path $GcodeFile)) {
-    Write-Log "❌ ERROR: G-code file not created"
+    Write-Log "[NO] ERROR: G-code file not created"
     exit 1
 }
 
@@ -175,7 +175,7 @@ $stlSize = (Get-Item $StlFile).Length / 1MB
 $gcodeSize = (Get-Item $GcodeFile).Length / 1MB
 Write-Log "File sizes: STL=$([math]::Round($stlSize, 2))MB, G-code=$([math]::Round($gcodeSize, 2))MB"
 
-Write-Log "✓ BUILD COMPLETE"
+Write-Log " BUILD COMPLETE"
 Write-Log "Ready to print: $GcodeFile"
 ```
 
@@ -188,10 +188,10 @@ Write-Log "Ready to print: $GcodeFile"
 # Output example:
 # [2024-01-15 14:30:22] Starting build for bracelet_holder.scad
 # [2024-01-15 14:30:23] Step 1: Exporting SCAD to STL...
-# [2024-01-15 14:30:25] ✓ STL exported in 2.41 seconds: ...
+# [2024-01-15 14:30:25]  STL exported in 2.41 seconds: ...
 # [2024-01-15 14:30:26] Step 2: Slicing STL to G-code...
-# [2024-01-15 14:30:28] ✓ G-code generated in 2.31 seconds: ...
-# [2024-01-15 14:30:28] ✓ BUILD COMPLETE
+# [2024-01-15 14:30:28]  G-code generated in 2.31 seconds: ...
+# [2024-01-15 14:30:28]  BUILD COMPLETE
 ```
 
 ### Script 2: Batch Build (Multiple Files)
@@ -343,7 +343,7 @@ foreach ($dia in $ParameterRanges["peg_diameter"]) {
             Timestamp = Get-Date
         }
         
-        Write-Host "  ✓ Built in $($duration.TotalSeconds) seconds"
+        Write-Host "   Built in $($duration.TotalSeconds) seconds"
     }
 }
 
@@ -369,7 +369,7 @@ $ranges = @{
 
 .\parametric_sweep.ps1 -TemplateScad "bracelet_holder.scad" -ParameterRanges $ranges
 
-# Generates 15 variants automatically (5 × 3)
+# Generates 15 variants automatically (5 x 3)
 ```
 
 **Output CSV:**
@@ -491,7 +491,7 @@ $printerDrive = "${PrinterUSBLetter}:\"
 
 # Check if USB drive connected
 if (-not (Test-Path $printerDrive)) {
-    Write-Host "❌ ERROR: Printer USB not found at $PrinterUSBLetter"
+    Write-Host "[NO] ERROR: Printer USB not found at $PrinterUSBLetter"
     Write-Host "Available drives:"
     Get-PSDrive -PSProvider FileSystem | Where-Object Name -Like "[D-Z]" | Select-Object Name
     exit 1
@@ -503,7 +503,7 @@ $destination = Join-Path $printerDrive $filename
 
 Copy-Item -Path $GcodeFile -Destination $destination -Force
 
-Write-Host "✓ G-code copied to printer USB:"
+Write-Host " G-code copied to printer USB:"
 Write-Host "  From: $GcodeFile"
 Write-Host "  To: $destination"
 Write-Host "`nNext steps:"
@@ -551,7 +551,7 @@ while ($checksPerformed -lt $MaxChecks) {
         
         # If print completed, exit loop
         if ($state -eq "Operational") {
-            Write-Host "`n✓ Print complete!"
+            Write-Host "`n Print complete!"
             break
         }
         
@@ -578,7 +578,7 @@ if ($checksPerformed -ge $MaxChecks) {
 
 ## Part 5: Complete Workflow Integration
 
-### Master Script: Design → Print → Log
+### Master Script: Design -> Print -> Log
 
 ```powershell
 # full_workflow.ps1 - Complete automation from design to printing
@@ -598,7 +598,7 @@ Write-Host "=== 3dMake Full Workflow Automation ==="
 Write-Host "Project: $ProjectName"
 Write-Host ""
 
-# Step 1: Build (SCAD → STL → G-code)
+# Step 1: Build (SCAD -> STL -> G-code)
 Write-Host "Step 1: Building..."
 & "$ProjectRoot\scripts\build.ps1" -ScadFile $ScadFile
 if ($LASTEXITCODE -ne 0) { exit 1 }
@@ -620,7 +620,7 @@ if ($SendToPrinter) {
         -PrinterUSBLetter $PrinterUSBLetter
 }
 
-Write-Host "`n✓ Workflow complete!"
+Write-Host "`n Workflow complete!"
 ```
 
 **Usage:**
@@ -640,11 +640,11 @@ Write-Host "`n✓ Workflow complete!"
 
 ## Part 6: PowerShell Skills Applied to SCAD
 
-### Lesson Mapping: PowerShell → SCAD Workflows
+### Lesson Mapping: PowerShell -> SCAD Workflows
 
 | PowerShell Lesson | SCAD Application | Example |
 |---|---|---|
-| **PS 1: Navigation** | Working with project directories | Using `cd` to navigate src/ → stl/ → gcode/ |
+| **PS 1: Navigation** | Working with project directories | Using `cd` to navigate src/ -> stl/ -> gcode/ |
 | **PS 2: File Manipulation** | Copying, organizing SCAD files | Copy design files, organize variants by date |
 | **PS 3: Piping & Objects** | Pass data between scripts | `$results \| Export-Csv` exports analysis |
 | **PS 4: Variables & Aliases** | Parameterize SCAD workflows | Variables store file paths, material types, etc. |
@@ -704,16 +704,16 @@ Get-ChildItem -Path "$ProjectRoot\src" -Filter "*.scad" |
 ```
 [2024-01-15 14:30:22] Starting build for bracelet_holder.scad
 [2024-01-15 14:30:23] Step 1: Exporting SCAD to STL...
-[2024-01-15 14:30:25] ✓ STL exported in 2.41 seconds
+[2024-01-15 14:30:25]  STL exported in 2.41 seconds
 [2024-01-15 14:30:26] Step 2: Slicing STL to G-code...
-[2024-01-15 14:30:28] ✓ G-code generated in 2.31 seconds
+[2024-01-15 14:30:28]  G-code generated in 2.31 seconds
 [2024-01-15 14:30:28] File sizes: STL=2.15MB, G-code=4.32MB
-[2024-01-15 14:30:28] ✓ BUILD COMPLETE
+[2024-01-15 14:30:28]  BUILD COMPLETE
 
 Ready to print: C:\Projects\3dMake\gcode\bracelet_holder.gcode
 ```
 
-All information is **text-based and sequential**—perfectly accessible to screen readers.
+All information is **text-based and sequential**-perfectly accessible to screen readers.
 
 ---
 
@@ -738,7 +738,7 @@ function Write-Log {
 ### 2. Verify Steps Succeed Before Continuing
 
 ```powershell
-# Don't just run commands—check they worked
+# Don't just run commands-check they worked
 & "C:\Program Files\OpenSCAD\openscad.exe" -o "$StlFile" "$ScadFile"
 
 if (-not (Test-Path $StlFile)) {
@@ -746,7 +746,7 @@ if (-not (Test-Path $StlFile)) {
     exit 1
 }
 
-Write-Log "✓ STL created successfully"
+Write-Log " STL created successfully"
 ```
 
 ### 3. Make Scripts Reusable
@@ -809,21 +809,21 @@ $Config = @{
 
 ### Consistency
 
-- ✅ Same process every time (no missed steps)
-- ✅ Reproducible results (exact same settings)
-- ✅ Comprehensive logging (documentation automatic)
+- [YES] Same process every time (no missed steps)
+- [YES] Reproducible results (exact same settings)
+- [YES] Comprehensive logging (documentation automatic)
 
 ### Scalability
 
-- ✅ 1 design or 1,000 designs = same time commitment
-- ✅ Run overnight for batch operations
-- ✅ Easy to expand with new features
+- [YES] 1 design or 1,000 designs = same time commitment
+- [YES] Run overnight for batch operations
+- [YES] Easy to expand with new features
 
 ### Accessibility
 
-- ✅ All interaction is text-based (screen reader friendly)
-- ✅ Results logged in CSV (machine-readable, sortable)
-- ✅ Repeatable (can verify steps later)
+- [YES] All interaction is text-based (screen reader friendly)
+- [YES] Results logged in CSV (machine-readable, sortable)
+- [YES] Repeatable (can verify steps later)
 
 ---
 

@@ -1,6 +1,6 @@
 # Lesson 11: Stakeholder-Centric Design and the Beaded Jewelry Project
 
-Estimated time: 90–120 minutes | **Level:** Advanced
+Estimated time: 90-120 minutes | **Level:** Advanced
 
 **Learning Objectives**
 
@@ -36,21 +36,21 @@ This lesson flips the process: **Listen First, Design Second**[^1].
 
 ```
 1. Empathize (Listen to stakeholder)
-   ↓
+   v
 2. Define (Extract functional requirements)
-   ↓
+   v
 3. Ideate (Sketch/prototype solutions)
-   ↓
+   v
 4. Prototype (Build in CAD)
-   ↓
+   v
 5. Test (Get feedback)
-   ↓
+   v
 6. Iterate (Refine based on feedback)
 ```
 
 ---
 
-## Part 1: Stakeholder Interviews (20–30 minutes)
+## Part 1: Stakeholder Interviews (20-30 minutes)
 
 ### What is a Stakeholder?
 
@@ -63,15 +63,15 @@ A stakeholder is anyone who will use, interact with, or be affected by your desi
 ### Open-Ended Interview Questions
 
 Good interview questions:
-- ✅ Start with "What," "How," "Why"
-- ✅ Don't suggest answers
-- ✅ Follow up with "Tell me more..."
-- ✅ Listen for numbers, specific stories, pain points
+- [YES] Start with "What," "How," "Why"
+- [YES] Don't suggest answers
+- [YES] Follow up with "Tell me more..."
+- [YES] Listen for numbers, specific stories, pain points
 
 Bad interview questions:
-- ❌ "Do you like...?" (Yes/No — no detail)
-- ❌ "Would you prefer A or B?" (Forced choice)
-- ❌ "Don't you think...?" (Leading question)
+- [NO] "Do you like...?" (Yes/No - no detail)
+- [NO] "Would you prefer A or B?" (Forced choice)
+- [NO] "Don't you think...?" (Leading question)
 
 ### Sample Interview Script (Beaded Jewelry)
 
@@ -109,7 +109,7 @@ and come back with a prototype for feedback."
 
 1. **Prepare (5 min):**
    - Choose your stakeholder or use the scenario below
-   - Write 4–6 questions using the template above
+   - Write 4-6 questions using the template above
    - Explain the project and get permission to take notes
 
 2. **Conduct (10 min):**
@@ -119,8 +119,8 @@ and come back with a prototype for feedback."
    - Ask "Why?" when you hear interesting responses
 
 3. **Document (Immediately after):**
-   - Write a 2–3 sentence summary
-   - Extract 3–5 key needs/constraints
+   - Write a 2-3 sentence summary
+   - Extract 3-5 key needs/constraints
    - Identify any questions that still need answers
 
 ### Scenario: If You Don't Have a Real Stakeholder
@@ -135,28 +135,28 @@ Sarah has 15+ beaded bracelets but they're tangled in a drawer. She wants to:
 
 Constraints:
 - Budget: $15 materials cost
-- Space: 6" × 6" footprint maximum
+- Space: 6" x 6" footprint maximum
 - Aesthetic: Minimalist, natural wood preferred
 - Timeline: Needs it within 2 weeks
 
 ---
 
-## Part 2: Extract Functional Requirements (20–30 minutes)
+## Part 2: Extract Functional Requirements (20-30 minutes)
 
 ### From Interview to Requirements
 
 A functional requirement is specific, measurable, and testable:
 
-| Interview Data | ❌ Bad Requirement | ✅ Good Requirement |
+| Interview Data | [NO] Bad Requirement | [YES] Good Requirement |
 |---|---|---|
-| "I have 15 bracelets" | Lots of storage | Hold 15–20 bracelets without damage |
+| "I have 15 bracelets" | Lots of storage | Hold 15-20 bracelets without damage |
 | "They're tangled in my drawer" | Keep organized | Vertical hanging system to prevent tangling |
 | "I want to see them" | Display feature | Visible from above (no lid) |
-| "Minimalist, natural wood" | Nice looking | Wood construction, ≤ 2 colors, clean lines |
+| "Minimalist, natural wood" | Nice looking | Wood construction,  2 colors, clean lines |
 
 ### Functional Requirements Template
 
-For your beaded jewelry holder, extract 5–8 requirements:
+For your beaded jewelry holder, extract 5-8 requirements:
 
 ```
 Functional Requirements:
@@ -184,7 +184,7 @@ For each requirement, define how you'll TEST it:
 
 ---
 
-## Part 3: Design the Bracelet Holder (30–40 minutes)
+## Part 3: Design the Bracelet Holder (30-40 minutes)
 
 ### Design Strategy
 
@@ -265,7 +265,7 @@ peg_spacing = holder_width / (num_pegs + 1);
 # - 15 hanging pegs arranged horizontally
 # - Base plate for stability
 # - Back wall for support
-# - Dimensions approximately 127mm × 80mm × 120mm
+# - Dimensions approximately 127mm x 80mm x 120mm
 
 # Generate preview for tactile inspection
 3dm preview src/main.scad
@@ -273,7 +273,7 @@ peg_spacing = holder_width / (num_pegs + 1);
 
 ---
 
-## Part 4: Iterate Based on Feedback (20–30 minutes)
+## Part 4: Iterate Based on Feedback (20-30 minutes)
 
 ### Feedback Loop
 
@@ -296,14 +296,14 @@ After printing a test version:
 3. **Document feedback:**
    ```markdown
    Test Results:
-   - ✅ Holds 15 bracelets comfortably
-   - ⚠️ Pegs slightly too thin (bracelets slip)
-   - ✅ No tangling observed
-   - ⚠️ Wobbles slightly - needs wider base
+   - [YES] Holds 15 bracelets comfortably
+   -  Pegs slightly too thin (bracelets slip)
+   - [YES] No tangling observed
+   -  Wobbles slightly - needs wider base
    
    Adjustments for v2:
-   - Increase peg_diameter: 6mm → 8mm
-   - Increase base_depth: 80mm → 100mm
+   - Increase peg_diameter: 6mm -> 8mm
+   - Increase base_depth: 80mm -> 100mm
    ```
 
 4. **Iterate:**
@@ -325,9 +325,9 @@ Document all iterations in a spreadsheet or text file:
 ```
 Version | Peg Size | Base Depth | Fits Bracelets | Stable | Notes
 --------|----------|------------|----------------|--------|------
-v1      | 6mm      | 80mm       | ✅ (14/15)     | ⚠️     | Wobbles, pegs thin
-v2      | 8mm      | 100mm      | ✅ (15/15)     | ✅     | Perfect fit, stable
-v3      | 8mm      | 100mm      | ✅ (15/15)     | ✅     | With wood stain
+v1      | 6mm      | 80mm       | [YES] (14/15)     |      | Wobbles, pegs thin
+v2      | 8mm      | 100mm      | [YES] (15/15)     | [YES]     | Perfect fit, stable
+v3      | 8mm      | 100mm      | [YES] (15/15)     | [YES]     | With wood stain
 ```
 
 ---
@@ -340,9 +340,9 @@ v3      | 8mm      | 100mm      | ✅ (15/15)     | ✅     | With wood stain
 
 **Deliverables:**
 
-1. **Interview Documentation** (1–2 pages)
-   - 4–6 interview questions asked
-   - Stakeholder's 3–5 key needs
+1. **Interview Documentation** (1-2 pages)
+   - 4-6 interview questions asked
+   - Stakeholder's 3-5 key needs
    - Extracted functional requirements
    - Acceptance criteria for each requirement
 
@@ -352,7 +352,7 @@ v3      | 8mm      | 100mm      | ✅ (15/15)     | ✅     | With wood stain
    - Well-commented modules
    - Matches stakeholder dimensions
 
-3. **Iteration Log** (2–3 pages)
+3. **Iteration Log** (2-3 pages)
    - Version 1 test results
    - Feedback from stakeholder
    - Changes made for v2
@@ -363,25 +363,25 @@ v3      | 8mm      | 100mm      | ✅ (15/15)     | ✅     | With wood stain
    - Holds actual bracelets from stakeholder
    - Passes all acceptance criteria
 
-5. **Final Documentation** (1–2 pages)
+5. **Final Documentation** (1-2 pages)
    - Design process summary
    - Stakeholder feedback quotes
    - Design decisions justified
    - Lessons learned
 
-### Assessment Rubric (0–9 scale)
+### Assessment Rubric (0-9 scale)
 
-**Problem & Solution (0–3 points)**
+**Problem & Solution (0-3 points)**
 - Stakeholder clearly identified and interviewed
 - Requirements extracted from interview (not assumptions)
 - Functional requirements are specific and measurable
 
-**Design & Code Quality (0–3 points)**
+**Design & Code Quality (0-3 points)**
 - SCAD code is parametric and well-organized
 - Design meets all extracted requirements
 - Iterations show thoughtful refinement based on feedback
 
-**Documentation (0–3 points)**
+**Documentation (0-3 points)**
 - Interview process clearly documented
 - Design decisions justified with stakeholder feedback
 - Iteration log shows testing methodology
@@ -389,7 +389,7 @@ v3      | 8mm      | 100mm      | ✅ (15/15)     | ✅     | With wood stain
 
 ---
 
-## Quiz — Lesson 3dMake.11 (10 questions)
+## Quiz - Lesson 3dMake.11 (10 questions)
 
 1. What is the primary purpose of conducting stakeholder interviews before design[^1]?
 2. Give one example of an open-ended interview question and one bad (leading) question[^1].
@@ -423,9 +423,9 @@ The 11 lessons have taken you from beginner to advanced designer. This final les
 
 ### The Full Journey
 
-1. **Lessons 1–3:** Foundation (setup, primitives, parametric code)
-2. **Lessons 4–5:** Verification & Safety (AI checking, physical safety)
-3. **Lessons 6–7:** Applied Projects (keycap, phone stand)
+1. **Lessons 1-3:** Foundation (setup, primitives, parametric code)
+2. **Lessons 4-5:** Verification & Safety (AI checking, physical safety)
+3. **Lessons 6-7:** Applied Projects (keycap, phone stand)
 4. **Lesson 8:** Advanced Design (tolerance, interlocking, complex assemblies)
 5. **Lesson 9:** Automation (batch processing, scripting)
 6. **Lesson 10:** Mastery (troubleshooting, QA, testing)
@@ -434,11 +434,11 @@ The 11 lessons have taken you from beginner to advanced designer. This final les
 ### Next Steps After This Lesson
 
 You're now ready for:
-- ✅ Professional product design workflows
-- ✅ Customer-driven development
-- ✅ Small-batch manufacturing
-- ✅ Open-source design contributions
-- ✅ Teaching others these skills
+- [YES] Professional product design workflows
+- [YES] Customer-driven development
+- [YES] Small-batch manufacturing
+- [YES] Open-source design contributions
+- [YES] Teaching others these skills
 
 ---
 

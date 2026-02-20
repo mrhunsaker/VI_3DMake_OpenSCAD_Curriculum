@@ -1,4 +1,4 @@
-# PowerShell for Screen Reader Users — Complete Curriculum Overview
+# PowerShell for Screen Reader Users - Complete Curriculum Overview
 
 **Welcome!** This curriculum teaches you how to use PowerShell (Windows Terminal) as a screen reader user, starting from zero experience and building to professional-level skills.
 
@@ -32,7 +32,7 @@
 
 ## Curriculum Structure
 
-### Phase 1: Absolute Beginner → Comfortable User
+### Phase 1: Absolute Beginner -> Comfortable User
 
 | Lesson | Duration | What You'll Learn |
 |--------|----------|-------------------|
@@ -43,7 +43,7 @@
 
 **Goal:** You can navigate to any folder and see what's in it with your screen reader.
 
-### Phase 2: Intermediate User → Power User
+### Phase 2: Intermediate User -> Power User
 
 | Lesson | Duration | What You'll Learn |
 |--------|----------|-------------------|
@@ -78,7 +78,7 @@ These topics extend beyond this curriculum but are natural next steps:
 2. Do **PS-Pre: Your First Terminal** exercises
 3. Continue with PS-0, PS-1, etc.
 
-**Don't skip steps** — each builds on the previous one.
+**Don't skip steps** - each builds on the previous one.
 
 ### If You've Used a Terminal Before (But Not with a Screen Reader)
 
@@ -102,12 +102,12 @@ These topics extend beyond this curriculum but are natural next steps:
 
 ### Every Lesson Contains:
 
-1. **Learning Objectives** — What you'll be able to do
-2. **Key Commands** — The important ones to memorize
-3. **Step-by-Step Examples** — How to actually do it
-4. **Practice Exercises** — Hands-on work
-5. **Quiz Questions** — Check your understanding
-6. **Extension Problems** — Go deeper if interested
+1. **Learning Objectives** - What you'll be able to do
+2. **Key Commands** - The important ones to memorize
+3. **Step-by-Step Examples** - How to actually do it
+4. **Practice Exercises** - Hands-on work
+5. **Quiz Questions** - Check your understanding
+6. **Extension Problems** - Go deeper if interested
 
 ### How to Get Through Each Lesson:
 
@@ -126,7 +126,7 @@ These topics extend beyond this curriculum but are natural next steps:
 
 ### Every Lesson Includes:
 
-- **[SR]** symbols marking screen reader–specific sections
+- **[SR]** symbols marking screen reader-specific sections
 - Tips for NVDA and JAWS users separately
 - Solutions for common accessibility issues
 - Workarounds for long outputs
@@ -148,7 +148,7 @@ This is your **companion resource** used throughout:
 
 ### If You Have 15 Minutes Right Now:
 
-1. **Open PowerShell** (Windows key → type PowerShell → Enter)
+1. **Open PowerShell** (Windows key -> type PowerShell -> Enter)
 2. **Run these commands:**
    ```powershell
    pwd
@@ -193,7 +193,7 @@ Most screen readers have these features.
 
 ### Q: I'm intimidated. Is this really for me?
 
-**A:** YES. This curriculum is specifically designed for people with no terminal experience AND with screen readers. You'll start with absolute basics. There's nothing to be afraid of — we've written this specifically to make it accessible.
+**A:** YES. This curriculum is specifically designed for people with no terminal experience AND with screen readers. You'll start with absolute basics. There's nothing to be afraid of - we've written this specifically to make it accessible.
 
 ### Q: How long will this take?
 
@@ -451,19 +451,19 @@ Welcome to the PowerShell community!
 ## Curriculum Map (For Reference)
 
 ```
-START HERE ↓
-├─ Screen Reader Accessibility Guide (reference throughout)
-├─ PS-Pre: Your First Terminal (absolute beginner entry point)
-├─ PS-0: Getting Started (paths & navigation foundations)
-├─ PS-1: Navigation (comfortable moving around)
-├─ PS-2: File & Folder Manipulation (create/move/delete)
-├─ PS-3: Input, Output & Piping (chain commands)
-├─ PS-4: Environment Variables & Aliases (automation)
-├─ PS-5: Filling in the Gaps (profiles & history)
-└─ PS_Unit_Test (comprehensive practice & assessment)
-        ↓
+START HERE v
++---- Screen Reader Accessibility Guide (reference throughout)
++---- PS-Pre: Your First Terminal (absolute beginner entry point)
++---- PS-0: Getting Started (paths & navigation foundations)
++---- PS-1: Navigation (comfortable moving around)
++---- PS-2: File & Folder Manipulation (create/move/delete)
++---- PS-3: Input, Output & Piping (chain commands)
++---- PS-4: Environment Variables & Aliases (automation)
++---- PS-5: Filling in the Gaps (profiles & history)
++---- PS_Unit_Test (comprehensive practice & assessment)
+        v
     NEXT: 3D Printing Integration Lessons
-        ↓
+        v
     ADVANCED: PowerShell Scripting
 ```
 

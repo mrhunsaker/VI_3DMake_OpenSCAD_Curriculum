@@ -1,6 +1,6 @@
-# PowerShell Unit Test — Comprehensive Assessment
+# PowerShell Unit Test - Comprehensive Assessment
 
-Estimated time: 60–90 minutes
+Estimated time: 60-90 minutes
 
 ## Key Learning Outcomes Assessed
 
@@ -179,7 +179,7 @@ Answer each question in one to two sentences. Each question is worth 2 points.
 
 Complete each task and capture evidence (screenshots, output files, or command transcripts). Each task is worth 3 points.
 
-### Tasks 1–5: File System and Navigation
+### Tasks 1-5: File System and Navigation
 
 1. Create a folder structure `~/Documents/PowerShell_Assessment/Projects` using a single command. Capture the `ls -n` output showing the creation.
 
@@ -191,7 +191,7 @@ Complete each task and capture evidence (screenshots, output files, or command t
 
 5. Delete `notes_1.txt` and `notes_2.txt` using a single `rm` command with wildcards. Capture the final `ls -n` output.
 
-### Tasks 6–10: Advanced Operations and Scripting
+### Tasks 6-10: Advanced Operations and Scripting
 
 6. Create a file called `my_data.txt` with at least four lines using `echo` and `>>`. Then read it with `cat my_data.txt` and capture the output.
 
@@ -212,7 +212,7 @@ Complete each task and capture evidence (screenshots, output files, or command t
 | Multiple Choice | 20 | 1 | 20 |
 | Short Answer | 10 | 2 | 20 |
 | Hands-On Tasks | 10 | 3 | 30 |
-| **Total** | **40** | — | **70** |
+| **Total** | **40** | - | **70** |
 
 **Passing Score:** 49 points (70%)
 
@@ -231,7 +231,7 @@ Complete each task and capture evidence (screenshots, output files, or command t
 ## Submission Checklist
 
 - [ ] All 20 multiple choice questions answered
-- [ ] All 10 short answer questions answered (1–2 sentences each)
+- [ ] All 10 short answer questions answered (1-2 sentences each)
 - [ ] All 10 hands-on tasks completed with evidence captured
 - [ ] Files/screenshots organized and labeled clearly
 - [ ] Submission includes this checklist

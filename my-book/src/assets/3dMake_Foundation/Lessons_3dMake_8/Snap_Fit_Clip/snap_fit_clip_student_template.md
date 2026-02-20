@@ -1,4 +1,4 @@
-# Snap-Fit Clip — Student Documentation Template (Extension Project)
+# Snap-Fit Clip - Student Documentation Template (Extension Project)
 
 - Author:
 - Date:
@@ -33,7 +33,7 @@
 - Snap strength (resistance to pulling apart):
 - Visual inspection (any deformation?):
 
-### Test 2–5: Reusability Testing
+### Test 2-5: Reusability Testing
 - Cycle 2: (date, observations)
 - Cycle 3: (date, observations)
 - Cycle 4: (date, observations)
@@ -77,7 +77,7 @@
 
 | Category | Score | Notes |
 | ---------- | ------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |

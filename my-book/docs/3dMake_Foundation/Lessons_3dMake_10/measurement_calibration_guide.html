@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -231,15 +231,15 @@
 <li>Slicer interpretation differences</li>
 <li>Material-specific shrinkage (ABS can shrink 0.3-1%)</li>
 </ul>
-<p><strong>Typical tolerances without calibration:</strong> ±0.3-0.5mm
-<strong>Typical tolerances with calibration:</strong> ±0.1-0.2mm</p>
+<p><strong>Typical tolerances without calibration:</strong> +/-0.3-0.5mm
+<strong>Typical tolerances with calibration:</strong> +/-0.1-0.2mm</p>
 <hr>
 <h2 id="pre-print-calibration"><a class="header" href="#pre-print-calibration">Pre-Print Calibration</a></h2>
 <h3 id="1-nozzle-diameter-verification"><a class="header" href="#1-nozzle-diameter-verification">1. Nozzle Diameter Verification</a></h3>
 <p><strong>What to verify:</strong> Is your nozzle actually 0.4mm?</p>
 <p><strong>Test:</strong></p>
 <ol>
-<li>Create a simple box in OpenSCAD: 10mm × 10mm × 5mm, solid</li>
+<li>Create a simple box in OpenSCAD: 10mm x 10mm x 5mm, solid</li>
 <li>Slice with default 0.4mm line width</li>
 <li>Print using 100% flow rate</li>
 <li>Measure printed box</li>
@@ -260,14 +260,14 @@
 <li>Measure actual distance filament moved</li>
 </ol>
 <p><strong>Formula:</strong></p>
-<pre><code>New E-steps = Current E-steps × (100mm / Actual distance moved)
+<pre><code>New E-steps = Current E-steps x (100mm / Actual distance moved)
 </code></pre>
 <p><strong>Example:</strong></p>
 <ul>
 <li>Current setting: 93 steps/mm</li>
 <li>Commanded: 100mm</li>
 <li>Actual: 92mm moved</li>
-<li>New: 93 × (100/92) = <strong>101 steps/mm</strong></li>
+<li>New: 93 x (100/92) = <strong>101 steps/mm</strong></li>
 </ul>
 <p><strong>How to apply (varies by printer):</strong></p>
 <ul>
@@ -316,15 +316,15 @@ difference() {
 <ol>
 <li>Measure internal dimensions (hollow part) in 3 locations each axis</li>
 <li>Calculate average internal width: <code>avg_internal</code></li>
-<li>Expected internal: <code>20 - 2×wall_thickness = 16mm</code></li>
+<li>Expected internal: <code>20 - 2xwall_thickness = 16mm</code></li>
 </ol>
 <p><strong>Calibration Formula:</strong></p>
-<pre><code>Flow rate adjustment = Expected internal / Actual internal × 100%
+<pre><code>Flow rate adjustment = Expected internal / Actual internal x 100%
 
 Example:
 - Expected: 16.00mm
 - Actual: 15.75mm
-- Adjustment: (16.00 / 15.75) × 100% = 101.6%
+- Adjustment: (16.00 / 15.75) x 100% = 101.6%
 - Set flow to: 101.6% in slicer
 </code></pre>
 <h3 id="z-height-calibration"><a class="header" href="#z-height-calibration">Z-Height Calibration</a></h3>
@@ -332,7 +332,7 @@ Example:
 <p><strong>Test:</strong> Print calibration tower with varying layer heights</p>
 <p><strong>Tower Specifications:</strong></p>
 <ul>
-<li>20mm × 20mm square base</li>
+<li>20mm x 20mm square base</li>
 <li>Height: 40mm</li>
 <li>Layers: Print at 0.2mm nominal</li>
 </ul>
@@ -360,11 +360,11 @@ Example:
 <tr><th>Measurement</th><th>Method</th><th>Tolerance</th><th>Frequency</th></tr>
 </thead>
 <tbody>
-<tr><td>Wall thickness</td><td>Calipers (multiple spots)</td><td>±0.1mm</td><td>Every print</td></tr>
-<tr><td>Hole diameter</td><td>Calipers or gauge</td><td>±0.1-0.2mm</td><td>Every print</td></tr>
-<tr><td>Overall dimensions</td><td>Ruler/calipers</td><td>±0.2mm</td><td>Monthly</td></tr>
-<tr><td>Layer height</td><td>Stack on calipers</td><td>±0.02mm</td><td>Monthly</td></tr>
-<tr><td>Vertical dimensions</td><td>Measure sides</td><td>±0.1mm</td><td>Every print</td></tr>
+<tr><td>Wall thickness</td><td>Calipers (multiple spots)</td><td>+/-0.1mm</td><td>Every print</td></tr>
+<tr><td>Hole diameter</td><td>Calipers or gauge</td><td>+/-0.1-0.2mm</td><td>Every print</td></tr>
+<tr><td>Overall dimensions</td><td>Ruler/calipers</td><td>+/-0.2mm</td><td>Monthly</td></tr>
+<tr><td>Layer height</td><td>Stack on calipers</td><td>+/-0.02mm</td><td>Monthly</td></tr>
+<tr><td>Vertical dimensions</td><td>Measure sides</td><td>+/-0.1mm</td><td>Every print</td></tr>
 </tbody>
 </table>
 </div>
@@ -393,7 +393,7 @@ designed_size = final_size * material_shrinkage;
 </code></pre>
 <h3 id="bed-temperature-compensation"><a class="header" href="#bed-temperature-compensation">Bed Temperature Compensation</a></h3>
 <p>Different bed temperatures affect final dimensions:</p>
-<p><strong>ABS on cold bed (50°C) vs warm bed (100°C):</strong></p>
+<p><strong>ABS on cold bed (50C) vs warm bed (100C):</strong></p>
 <ul>
 <li>Cold bed: Faster cooling, less shrinkage (but poor adhesion)</li>
 <li>Warm bed: Slower cooling, more shrinkage (better adhesion)</li>
@@ -407,7 +407,7 @@ designed_size = final_size * material_shrinkage;
 <tr><th>Factor</th><th>Effect</th><th>Mitigation</th></tr>
 </thead>
 <tbody>
-<tr><td>Room temperature</td><td>Affects cooling rate</td><td>Maintain 20-22°C</td></tr>
+<tr><td>Room temperature</td><td>Affects cooling rate</td><td>Maintain 20-22C</td></tr>
 <tr><td>Humidity</td><td>Affects material properties</td><td>Keep 40-60% RH</td></tr>
 <tr><td>Air flow</td><td>Inconsistent cooling</td><td>Avoid drafts near printer</td></tr>
 <tr><td>Time of day</td><td>Material temperature varies</td><td>Print at consistent times</td></tr>
@@ -440,10 +440,10 @@ designed_size = final_size * material_shrinkage;
 </ul>
 <h3 id="after-any-changes"><a class="header" href="#after-any-changes">After Any Changes</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"> Nozzle replacement → Re-verify nozzle diameter</li>
-<li><input disabled="" type="checkbox"> Bed leveling → Re-verify first layer</li>
-<li><input disabled="" type="checkbox"> Temperature changes → Test print required</li>
-<li><input disabled="" type="checkbox"> Material change → Full calibration recommended</li>
+<li><input disabled="" type="checkbox"> Nozzle replacement -&gt; Re-verify nozzle diameter</li>
+<li><input disabled="" type="checkbox"> Bed leveling -&gt; Re-verify first layer</li>
+<li><input disabled="" type="checkbox"> Temperature changes -&gt; Test print required</li>
+<li><input disabled="" type="checkbox"> Material change -&gt; Full calibration recommended</li>
 </ul>
 <hr>
 <h2 id="measurement-tools-needed"><a class="header" href="#measurement-tools-needed">Measurement Tools Needed</a></h2>
@@ -453,11 +453,11 @@ designed_size = final_size * material_shrinkage;
 <tr><th>Tool</th><th>Cost</th><th>Accuracy</th><th>Use</th></tr>
 </thead>
 <tbody>
-<tr><td>Digital Calipers</td><td>$5-15</td><td>±0.05mm</td><td>Primary measurements</td></tr>
-<tr><td>Steel Ruler</td><td>$3-10</td><td>±1mm</td><td>Quick rough checks</td></tr>
-<tr><td>Vernier Calipers</td><td>$10-30</td><td>±0.05mm</td><td>Precision work</td></tr>
-<tr><td>Micrometer</td><td>$20-50</td><td>±0.01mm</td><td>Critical tolerances</td></tr>
-<tr><td>Layer Height Gauge</td><td>DIY or $5-10</td><td>±0.05mm</td><td>Layer verification</td></tr>
+<tr><td>Digital Calipers</td><td>$5-15</td><td>+/-0.05mm</td><td>Primary measurements</td></tr>
+<tr><td>Steel Ruler</td><td>$3-10</td><td>+/-1mm</td><td>Quick rough checks</td></tr>
+<tr><td>Vernier Calipers</td><td>$10-30</td><td>+/-0.05mm</td><td>Precision work</td></tr>
+<tr><td>Micrometer</td><td>$20-50</td><td>+/-0.01mm</td><td>Critical tolerances</td></tr>
+<tr><td>Layer Height Gauge</td><td>DIY or $5-10</td><td>+/-0.05mm</td><td>Layer verification</td></tr>
 </tbody>
 </table>
 </div>

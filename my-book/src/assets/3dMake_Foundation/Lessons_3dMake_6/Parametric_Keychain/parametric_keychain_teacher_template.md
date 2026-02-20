@@ -1,4 +1,4 @@
-# Parametric Keychain — Teacher Template (Extension Project)
+# Parametric Keychain - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -29,13 +29,13 @@ Students design a personalized keychain using fully parametric OpenSCAD code. Th
 
 ## Rubric
 
-### Category 1: Problem & Solution (0–3)
+### Category 1: Problem & Solution (0-3)
 Keychains print successfully and are functional/customizable.
 
-### Category 2: Design & Code Quality (0–3)
+### Category 2: Design & Code Quality (0-3)
 Code is fully parametric and well-organized. Variants work well.
 
-### Category 3: Documentation (0–3)
+### Category 3: Documentation (0-3)
 Variant table complete. Customization guide clear and detailed.
 
 ---

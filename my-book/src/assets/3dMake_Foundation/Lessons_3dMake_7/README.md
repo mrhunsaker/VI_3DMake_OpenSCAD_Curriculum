@@ -1,4 +1,4 @@
-# Lesson 7 Code Examples — Parametric Transforms and the Phone Stand Project
+# Lesson 7 Code Examples - Parametric Transforms and the Phone Stand Project
 
 ## Files
 
@@ -17,10 +17,10 @@
 2. Open in OpenSCAD (or use `3dm edit-model phone_stand.scad`)
 3. Press F5 to preview; F6 for full render
 4. Modify the top-level parameters:
-   - `angle` — Adjust stand tilt (degrees)
-   - `width` / `depth` — Change platform size
-   - `fillet_r` — Adjust edge rounding radius
-   - `lip_height` — Control phone lip height
+   - `angle` - Adjust stand tilt (degrees)
+   - `width` / `depth` - Change platform size
+   - `fillet_r` - Adjust edge rounding radius
+   - `lip_height` - Control phone lip height
 5. Run `3dm build` to generate STL
 6. Test print to ensure phone fits securely
 

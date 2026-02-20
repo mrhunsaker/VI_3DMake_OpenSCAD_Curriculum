@@ -1,6 +1,6 @@
 # Lesson 6: Practical 3dm Commands and Text Embossing
 
-Estimated time: 60–90 minutes
+Estimated time: 60-90 minutes
 
 **Learning Objectives**
 
@@ -23,12 +23,12 @@ Estimated time: 60–90 minutes
 
 The 3dMake CLI provides a systematic workflow for model management. Each command serves a specific phase of the design-to-print pipeline.
 
-| Command | Purpose | Example |
-|---------|---------|---------|
-| `3dm describe <file>` | Generates text and AI analysis of geometry | `3dm describe src/main.scad` |
-| `3dm preview <file>` | Creates a 2D tactile printout (ASCII/braille/SVG) | `3dm preview src/main.scad` |
-| `3dm orient <file>` | Analyzes and suggests optimal print orientation | `3dm orient src/main.scad` |
-| `3dm slice <file>` | Generates G-code (machine instructions) | `3dm slice src/main.scad` |
+| Command               | Purpose                                           | Example                      |
+|-----------------------|---------------------------------------------------|------------------------------|
+| `3dm describe <file>` | Generates text and AI analysis of geometry        | `3dm describe src/main.scad` |
+| `3dm preview <file>`  | Creates a 2D tactile printout (ASCII/braille/SVG) | `3dm preview src/main.scad`  |
+| `3dm orient <file>`   | Analyzes and suggests optimal print orientation   | `3dm orient src/main.scad`   |
+| `3dm slice <file>`    | Generates G-code (machine instructions)           | `3dm slice src/main.scad`    |
 
 ---
 
@@ -36,7 +36,7 @@ The 3dMake CLI provides a systematic workflow for model management. Each command
 
 1. **Create a parametric keycap model** with top-level parameters for customization[^2]:
 
-   ```openscad
+   ```scad
    // Cube Keycap - Parametric Design
    // A customizable keycap with embossed text
    
@@ -93,7 +93,7 @@ The 3dMake CLI provides a systematic workflow for model management. Each command
    3dm orient src/main.scad
    ```
 
-   This command suggests the optimal orientation for printing—minimizing support material and maximizing surface quality.
+   This command suggests the optimal orientation for printing-minimizing support material and maximizing surface quality.
 
 5. **Prepare for printing** by slicing your model:
 
@@ -117,17 +117,17 @@ The 3dMake CLI provides a systematic workflow for model management. Each command
 
 Modify the keycap by changing these parameters and observing the results:
 
-| Parameter | Original | Try This | Effect |
-|-----------|----------|----------|--------|
-| `key_size` | 18 | 25 | Larger keycap |
-| `key_height` | 12 | 8 | Shorter, lower-profile key |
-| `letter` | "A" | "YOUR_INITIAL" | Different character |
-| `wall` | 1.2 | 1.5 | Thicker walls (stronger) |
-| `letter_raise` | 0.8 | 1.5 | Deeper emboss |
+| Parameter      | Original | Try This       | Effect                     |
+|----------------|----------|----------------|----------------------------|
+| `key_size`     | 18       | 25             | Larger keycap              |
+| `key_height`   | 12       | 8              | Shorter, lower-profile key |
+| `letter`       | "A"      | "YOUR_INITIAL" | Different character        |
+| `wall`         | 1.2      | 1.5            | Thicker walls (stronger)   |
+| `letter_raise` | 0.8      | 1.5            | Deeper emboss              |
 
 ---
 
-## Quiz — Lesson 3dMake.6 (10 questions)
+## Quiz - Lesson 3dMake.6 (10 questions)
 
 1. What does `3dm describe` provide that `3dm preview` does not[^1]?
 2. Why is `3dm preview` useful for accessibility[^1]?

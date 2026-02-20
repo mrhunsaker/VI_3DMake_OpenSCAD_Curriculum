@@ -1,4 +1,4 @@
-# Dice, Dice, Dice — Teacher Template (Extension Project)
+# Dice, Dice, Dice - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -29,13 +29,13 @@ Students design and test fair 3D-printed dice to explore geometry, symmetry, man
 
 ## Rubric
 
-### Category 1: Problem & Solution (0–3)
+### Category 1: Problem & Solution (0-3)
 Dice print successfully and fairness testing conducted rigorously.
 
-### Category 2: Design & Code Quality (0–3)
+### Category 2: Design & Code Quality (0-3)
 Code is parametric and thoughtful. Dice design shows understanding of symmetry and balance.
 
-### Category 3: Documentation (0–3)
+### Category 3: Documentation (0-3)
 Testing data complete and organized. Statistical analysis accurate and insightful.
 
 ---

@@ -84,11 +84,11 @@ When you press **F5** to preview or **F6** to render your model, OpenSCAD displa
 ERROR: Unexpected token 'sphere' at line 15, column 5
   Expected one of: } ) ]
 ```
-This tells you that line 15 has a syntax issue—likely a missing closing bracket on the previous line.
+This tells you that line 15 has a syntax issue-likely a missing closing bracket on the previous line.
 
 #### **The 0.001 Offset Strategy (Revisited)**
 
-One of the most common issues with CSG operations is **coincident faces**—when two shapes touch exactly at their boundaries. This creates a non-manifold geometry that slicer tools flag as unprintable.
+One of the most common issues with CSG operations is **coincident faces**-when two shapes touch exactly at their boundaries. This creates a non-manifold geometry that slicer tools flag as unprintable.
 
 **The Fix:** Add a tiny offset (0.001 mm or smaller) to move one surface slightly:
 
@@ -112,9 +112,9 @@ This 0.001 mm offset is invisible to the human eye but fixes the non-manifold wa
 
 The `$fn` parameter controls the resolution of curved surfaces (spheres, cylinders, etc.). It represents the number of polygonal faces used to approximate the curve:
 
-- **`$fn = 12`** — Very fast preview, coarse geometry (useful for quick testing)
-- **`$fn = 32`** — Good balance for most designs (default for many situations)
-- **`$fn = 100+`** — High quality but slow to render; use only for final export
+- **`$fn = 12`** - Very fast preview, coarse geometry (useful for quick testing)
+- **`$fn = 32`** - Good balance for most designs (default for many situations)
+- **`$fn = 100+`** - High quality but slow to render; use only for final export
 
 **Debugging Workflow:**
 1. During design iteration: Use `$fn = 12` or `$fn = 20` for quick feedback
@@ -133,10 +133,10 @@ This workflow catches errors early and saves you from spending 10 minutes render
 
 A model might render in OpenSCAD but still be unprintable. The slicer will report errors like "non-manifold edges" or "holes in surface." Common causes:
 
-1. **Coincident Faces** → Use small offsets (0.001 mm)
-2. **Zero-Thickness Walls** → Ensure all walls are at least 0.8–1.0 mm
-3. **Gaps Between Shapes** → Check that boolean operations have no small gaps; use `minkowski()` for rounded edges if needed
-4. **Inside-Out Geometry** → A shape might be flipped; use `scale([1, 1, -1])` to flip normals if needed
+1. **Coincident Faces** -> Use small offsets (0.001 mm)
+2. **Zero-Thickness Walls** -> Ensure all walls are at least 0.8-1.0 mm
+3. **Gaps Between Shapes** -> Check that boolean operations have no small gaps; use `minkowski()` for rounded edges if needed
+4. **Inside-Out Geometry** -> A shape might be flipped; use `scale([1, 1, -1])` to flip normals if needed
 
 When your slicer reports non-manifold issues, use the slicer's visualization to locate the problem, then reference the line numbers in your OpenSCAD code and test fixes incrementally using F5/F6.
 
@@ -144,7 +144,7 @@ Checkpoints
 - After task 3 the problematic boolean should render without non-manifold warnings[^4].
 - After this section, you should be able to interpret at least three common console error messages and apply appropriate fixes.
 
-## Quiz — Lesson 3dMake.2 (10 questions)
+## Quiz - Lesson 3dMake.2 (10 questions)
 
 1. Name three primitive functions in OpenSCAD[^2].
 2. What does `difference()` accomplish[^3]?
@@ -163,9 +163,9 @@ Checkpoints
 
 Your Lesson 2 assets are located in the centralized assets folder:
 
-- **Lesson 2 Asset Overview** ([assets/Lessons_3dMake_2/README.md](../../assets/3dMake_Foundation/Lessons_3dMake_2/README.md)) — Folder contents and learning resources
-- **Your Second Print Project** ([assets/Lessons_3dMake_2/Your_Second_Print/](../../assets/3dMake_Foundation/Lessons_3dMake_2/Your_Second_Print/)) — Adapt models to real-world needs
-- **Bonus Print Project** ([assets/Lessons_3dMake_2/Bonus_Print/](../../assets/3dMake_Foundation/Lessons_3dMake_2/Bonus_Print/)) — Practice resizing and parametric variation
+- **Lesson 2 Asset Overview** ([assets/Lessons_3dMake_2/README.md](../../assets/3dMake_Foundation/Lessons_3dMake_2/README.md)) - Folder contents and learning resources
+- **Your Second Print Project** ([assets/Lessons_3dMake_2/Your_Second_Print/](../../assets/3dMake_Foundation/Lessons_3dMake_2/Your_Second_Print/)) - Adapt models to real-world needs
+- **Bonus Print Project** ([assets/Lessons_3dMake_2/Bonus_Print/](../../assets/3dMake_Foundation/Lessons_3dMake_2/Bonus_Print/)) - Practice resizing and parametric variation
 
 These projects reinforce the boolean operations and CSG concepts you learned in this lesson.
 
@@ -185,10 +185,10 @@ Extension Problems (10)
 
 For additional examples and practice with 3D primitives and boolean operations, explore these resources:
 
-- **[Programming with OpenSCAD EPUB Textbook](../../assets/Programming_with_OpenSCAD.epub)** — Comprehensive guide to primitives, boolean operations, and CSG fundamentals
-- **[CodeSolutions: 3D Primitives](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/1_3D-Shapes)** — Working examples of cube, sphere, cylinder, and other 3D shapes
-- **[CodeSolutions: Combining Shapes](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/AppendixB_OpenSCAD-Visual-Reference)** — Examples of union, difference, intersection, and hull operations
-- **[Practice Worksheets: 3D Shapes](https://programmingwithopenscad.github.io/learning.html)** — Visualization and decomposition exercises
+- **[Programming with OpenSCAD EPUB Textbook](../../assets/Programming_with_OpenSCAD.epub)** - Comprehensive guide to primitives, boolean operations, and CSG fundamentals
+- **[CodeSolutions: 3D Primitives](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/1_3D-Shapes)** - Working examples of cube, sphere, cylinder, and other 3D shapes
+- **[CodeSolutions: Combining Shapes](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/AppendixB_OpenSCAD-Visual-Reference)** - Examples of union, difference, intersection, and hull operations
+- **[Practice Worksheets: 3D Shapes](https://programmingwithopenscad.github.io/learning.html)** - Visualization and decomposition exercises
 
 [^1]: Slicer Validation - PrusaSlicer Documentation - https://docs.prusa3d.com/en/guide/39012-validation-tools/
 

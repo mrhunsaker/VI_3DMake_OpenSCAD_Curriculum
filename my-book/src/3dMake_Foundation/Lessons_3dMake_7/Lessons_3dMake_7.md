@@ -1,6 +1,6 @@
 # Lesson 7: Parametric Transforms and the Phone Stand Project
 
-Estimated time: 75–90 minutes
+Estimated time: 75-90 minutes
 
 **Learning Objectives**
 
@@ -21,16 +21,16 @@ Estimated time: 75–90 minutes
 
 ## Understanding Parametric Transforms
 
-Transforms are the foundation of positioning objects in 3D space. Unlike drag-and-drop interfaces, OpenSCAD requires you to explicitly specify every position and rotation. This precision is what enables parametric design—once defined mathematically, a model can be infinitely reconfigured.
+Transforms are the foundation of positioning objects in 3D space. Unlike drag-and-drop interfaces, OpenSCAD requires you to explicitly specify every position and rotation. This precision is what enables parametric design-once defined mathematically, a model can be infinitely reconfigured.
 
 ### Core Transform Operations
 
-| Operation | Syntax | Example |
-| ----------- | -------- | --------- |
-| **Translate** (move) | `translate([x, y, z]) { ... }` | `translate([10, 0, 0]) cube([5, 5, 5]);` |
-| **Rotate** | `rotate([x_deg, y_deg, z_deg]) { ... }` | `rotate([45, 0, 0]) cube([5, 5, 5]);` |
-| **Scale** | `scale([x, y, z]) { ... }` | `scale([2, 1, 1]) cube([5, 5, 5]);` |
-| **Minkowski** (fillets/rounding) | `minkowski() { shape; fillet; }` | `minkowski(){ cube([10,10,10]); cylinder(r=2, h=0.01); }` |
+| Operation                        | Syntax                                  | Example                                                   |
+|----------------------------------|-----------------------------------------|-----------------------------------------------------------|
+| **Translate** (move)             | `translate([x, y, z]) { ... }`          | `translate([10, 0, 0]) cube([5, 5, 5]);`                  |
+| **Rotate**                       | `rotate([x_deg, y_deg, z_deg]) { ... }` | `rotate([45, 0, 0]) cube([5, 5, 5]);`                     |
+| **Scale**                        | `scale([x, y, z]) { ... }`              | `scale([2, 1, 1]) cube([5, 5, 5]);`                       |
+| **Minkowski** (fillets/rounding) | `minkowski() { shape; fillet; }`        | `minkowski(){ cube([10,10,10]); cylinder(r=2, h=0.01); }` |
 
 ### Translating Objects: Moving in 3D Space
 
@@ -76,13 +76,13 @@ module phone_stand() {
 `rotate([x_deg, y_deg, z_deg])` rotates an object around the X, Y, and Z axes (in degrees):
 
 ```openscad
-// Rotate 45° around X axis (tilts forward/back)
+// Rotate 45 around X axis (tilts forward/back)
 rotate([45, 0, 0]) cube([10, 10, 10]);
 
-// Rotate 90° around Y axis (rotates left/right)
+// Rotate 90 around Y axis (rotates left/right)
 rotate([0, 90, 0]) cube([10, 10, 10]);
 
-// Rotate 45° around Z axis (spins in place)
+// Rotate 45 around Z axis (spins in place)
 rotate([0, 0, 45]) cube([10, 10, 10]);
 
 // Rotate around all three axes
@@ -220,11 +220,11 @@ Save your file and test each variant by modifying the parameters and running `3d
 
 Document the impact:
 
-| Parameter | Value | Use Case | Print Time |
-|-----------|-------|----------|-----------|
-| `angle` | 45° | Shallow viewing (documents, web browsing) | ~1.5 hrs |
-| `angle` | 65° | Comfortable video watching | ~1.5 hrs |
-| `angle` | 75° | Steep vertical viewing | ~1.5 hrs |
+| Parameter | Value | Use Case                                  | Print Time |
+|-----------|-------|-------------------------------------------|------------|
+| `angle`   | 45    | Shallow viewing (documents, web browsing) | ~1.5 hrs   |
+| `angle`   | 65    | Comfortable video watching                | ~1.5 hrs   |
+| `angle`   | 75    | Steep vertical viewing                    | ~1.5 hrs   |
 
 ### Task 3: Run `3dm orient` to Optimize Orientation
 
@@ -301,7 +301,7 @@ module back_tab() {
 
 ---
 
-## Quiz — Lesson 3dMake.7 (10 questions)
+## Quiz - Lesson 3dMake.7 (10 questions)
 
 1. What does the `rotate()` function do, and how does it differ from physical rotation[^1]?
 2. Why is parametric positioning important for design iteration[^1]?

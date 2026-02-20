@@ -1,4 +1,4 @@
-# Bonus Print — Student Documentation Template (Extension Project)
+# Bonus Print - Student Documentation Template (Extension Project)
 
 - Author:
 - Date:
@@ -56,7 +56,7 @@
 
 | Category | Score | Notes |
 | ---------- | ------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |

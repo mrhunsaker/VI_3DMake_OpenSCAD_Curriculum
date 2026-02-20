@@ -1,6 +1,6 @@
 # Lesson 5: Safety Protocols and the Physical Fabrication Interface
 
-**Estimated time:** 60–75 minutes
+**Estimated time:** 60-75 minutes
 
 ## Folder Contents
 
@@ -27,9 +27,9 @@ This folder contains supporting materials for Lesson 5:
 
 ## Supporting Files in This Folder
 
-- `safety_checklist.md` — Pre-print and operation safety verification
-- `maintenance_log.md` — Printer maintenance tracking template
-- `material_properties_quick_reference.md` — Quick-access material data
+- `safety_checklist.md` - Pre-print and operation safety verification
+- `maintenance_log.md` - Printer maintenance tracking template
+- `material_properties_quick_reference.md` - Quick-access material data
 
 ---
 

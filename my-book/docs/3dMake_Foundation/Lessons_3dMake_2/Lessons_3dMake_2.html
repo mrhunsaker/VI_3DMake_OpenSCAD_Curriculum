@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -304,9 +304,9 @@ difference(){
 <pre><code>ERROR: Unexpected token 'sphere' at line 15, column 5
   Expected one of: } ) ]
 </code></pre>
-<p>This tells you that line 15 has a syntax issue—likely a missing closing bracket on the previous line.</p>
+<p>This tells you that line 15 has a syntax issue-likely a missing closing bracket on the previous line.</p>
 <h4 id="the-0001-offset-strategy-revisited"><a class="header" href="#the-0001-offset-strategy-revisited"><strong>The 0.001 Offset Strategy (Revisited)</strong></a></h4>
-<p>One of the most common issues with CSG operations is <strong>coincident faces</strong>—when two shapes touch exactly at their boundaries. This creates a non-manifold geometry that slicer tools flag as unprintable.</p>
+<p>One of the most common issues with CSG operations is <strong>coincident faces</strong>-when two shapes touch exactly at their boundaries. This creates a non-manifold geometry that slicer tools flag as unprintable.</p>
 <p><strong>The Fix:</strong> Add a tiny offset (0.001 mm or smaller) to move one surface slightly:</p>
 <pre><code class="language-openscad">// BEFORE (problematic):
 difference(){
@@ -324,9 +324,9 @@ difference(){
 <h4 id="using-fn-to-balance-speed-and-quality"><a class="header" href="#using-fn-to-balance-speed-and-quality"><strong>Using <code>$fn</code> to Balance Speed and Quality</strong></a></h4>
 <p>The <code>$fn</code> parameter controls the resolution of curved surfaces (spheres, cylinders, etc.). It represents the number of polygonal faces used to approximate the curve:</p>
 <ul>
-<li><strong><code>$fn = 12</code></strong> — Very fast preview, coarse geometry (useful for quick testing)</li>
-<li><strong><code>$fn = 32</code></strong> — Good balance for most designs (default for many situations)</li>
-<li><strong><code>$fn = 100+</code></strong> — High quality but slow to render; use only for final export</li>
+<li><strong><code>$fn = 12</code></strong> - Very fast preview, coarse geometry (useful for quick testing)</li>
+<li><strong><code>$fn = 32</code></strong> - Good balance for most designs (default for many situations)</li>
+<li><strong><code>$fn = 100+</code></strong> - High quality but slow to render; use only for final export</li>
 </ul>
 <p><strong>Debugging Workflow:</strong></p>
 <ol>
@@ -344,10 +344,10 @@ difference(){
 <h4 id="diagnosing-non-manifold-geometry"><a class="header" href="#diagnosing-non-manifold-geometry"><strong>Diagnosing Non-Manifold Geometry</strong></a></h4>
 <p>A model might render in OpenSCAD but still be unprintable. The slicer will report errors like “non-manifold edges” or “holes in surface.” Common causes:</p>
 <ol>
-<li><strong>Coincident Faces</strong> → Use small offsets (0.001 mm)</li>
-<li><strong>Zero-Thickness Walls</strong> → Ensure all walls are at least 0.8–1.0 mm</li>
-<li><strong>Gaps Between Shapes</strong> → Check that boolean operations have no small gaps; use <code>minkowski()</code> for rounded edges if needed</li>
-<li><strong>Inside-Out Geometry</strong> → A shape might be flipped; use <code>scale([1, 1, -1])</code> to flip normals if needed</li>
+<li><strong>Coincident Faces</strong> -&gt; Use small offsets (0.001 mm)</li>
+<li><strong>Zero-Thickness Walls</strong> -&gt; Ensure all walls are at least 0.8-1.0 mm</li>
+<li><strong>Gaps Between Shapes</strong> -&gt; Check that boolean operations have no small gaps; use <code>minkowski()</code> for rounded edges if needed</li>
+<li><strong>Inside-Out Geometry</strong> -&gt; A shape might be flipped; use <code>scale([1, 1, -1])</code> to flip normals if needed</li>
 </ol>
 <p>When your slicer reports non-manifold issues, use the slicer’s visualization to locate the problem, then reference the line numbers in your OpenSCAD code and test fixes incrementally using F5/F6.</p>
 <p>Checkpoints</p>
@@ -355,7 +355,7 @@ difference(){
 <li>After task 3 the problematic boolean should render without non-manifold warnings<sup class="footnote-reference" id="fr-4-2"><a href="#footnote-4">4</a></sup>.</li>
 <li>After this section, you should be able to interpret at least three common console error messages and apply appropriate fixes.</li>
 </ul>
-<h2 id="quiz--lesson-3dmake2-10-questions"><a class="header" href="#quiz--lesson-3dmake2-10-questions">Quiz — Lesson 3dMake.2 (10 questions)</a></h2>
+<h2 id="quiz---lesson-3dmake2-10-questions"><a class="header" href="#quiz---lesson-3dmake2-10-questions">Quiz - Lesson 3dMake.2 (10 questions)</a></h2>
 <ol>
 <li>Name three primitive functions in OpenSCAD<sup class="footnote-reference" id="fr-2-3"><a href="#footnote-2">1</a></sup>.</li>
 <li>What does <code>difference()</code> accomplish<sup class="footnote-reference" id="fr-3-3"><a href="#footnote-3">2</a></sup>?</li>
@@ -372,9 +372,9 @@ difference(){
 <h2 id="lesson-2-assets--projects"><a class="header" href="#lesson-2-assets--projects">Lesson 2 Assets &amp; Projects</a></h2>
 <p>Your Lesson 2 assets are located in the centralized assets folder:</p>
 <ul>
-<li><strong>Lesson 2 Asset Overview</strong> (<a href="../../assets/3dMake_Foundation/Lessons_3dMake_2/README.html">assets/Lessons_3dMake_2/README.md</a>) — Folder contents and learning resources</li>
-<li><strong>Your Second Print Project</strong> (<a href="../../assets/3dMake_Foundation/Lessons_3dMake_2/Your_Second_Print/">assets/Lessons_3dMake_2/Your_Second_Print/</a>) — Adapt models to real-world needs</li>
-<li><strong>Bonus Print Project</strong> (<a href="../../assets/3dMake_Foundation/Lessons_3dMake_2/Bonus_Print/">assets/Lessons_3dMake_2/Bonus_Print/</a>) — Practice resizing and parametric variation</li>
+<li><strong>Lesson 2 Asset Overview</strong> (<a href="../../assets/3dMake_Foundation/Lessons_3dMake_2/README.html">assets/Lessons_3dMake_2/README.md</a>) - Folder contents and learning resources</li>
+<li><strong>Your Second Print Project</strong> (<a href="../../assets/3dMake_Foundation/Lessons_3dMake_2/Your_Second_Print/">assets/Lessons_3dMake_2/Your_Second_Print/</a>) - Adapt models to real-world needs</li>
+<li><strong>Bonus Print Project</strong> (<a href="../../assets/3dMake_Foundation/Lessons_3dMake_2/Bonus_Print/">assets/Lessons_3dMake_2/Bonus_Print/</a>) - Practice resizing and parametric variation</li>
 </ul>
 <p>These projects reinforce the boolean operations and CSG concepts you learned in this lesson.</p>
 <p>Extension Problems (10)</p>
@@ -393,10 +393,10 @@ difference(){
 <h2 id="supplemental-resources"><a class="header" href="#supplemental-resources">Supplemental Resources</a></h2>
 <p>For additional examples and practice with 3D primitives and boolean operations, explore these resources:</p>
 <ul>
-<li><strong><a href="../../assets/Programming_with_OpenSCAD.epub">Programming with OpenSCAD EPUB Textbook</a></strong> — Comprehensive guide to primitives, boolean operations, and CSG fundamentals</li>
-<li><strong><a href="https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/1_3D-Shapes">CodeSolutions: 3D Primitives</a></strong> — Working examples of cube, sphere, cylinder, and other 3D shapes</li>
-<li><strong><a href="https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/AppendixB_OpenSCAD-Visual-Reference">CodeSolutions: Combining Shapes</a></strong> — Examples of union, difference, intersection, and hull operations</li>
-<li><strong><a href="https://programmingwithopenscad.github.io/learning.html">Practice Worksheets: 3D Shapes</a></strong> — Visualization and decomposition exercises</li>
+<li><strong><a href="../../assets/Programming_with_OpenSCAD.epub">Programming with OpenSCAD EPUB Textbook</a></strong> - Comprehensive guide to primitives, boolean operations, and CSG fundamentals</li>
+<li><strong><a href="https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/1_3D-Shapes">CodeSolutions: 3D Primitives</a></strong> - Working examples of cube, sphere, cylinder, and other 3D shapes</li>
+<li><strong><a href="https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/AppendixB_OpenSCAD-Visual-Reference">CodeSolutions: Combining Shapes</a></strong> - Examples of union, difference, intersection, and hull operations</li>
+<li><strong><a href="https://programmingwithopenscad.github.io/learning.html">Practice Worksheets: 3D Shapes</a></strong> - Visualization and decomposition exercises</li>
 </ul>
 <hr>
 <ol class="footnote-definition">
@@ -418,7 +418,7 @@ difference(){
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../assets/3dMake_Foundation/Lessons_3dMake_1/basic_project_scaffold.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../3dMake_Foundation/Lessons_3dMake_1/basic_project_scaffold.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -432,7 +432,7 @@ difference(){
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../assets/3dMake_Foundation/Lessons_3dMake_1/basic_project_scaffold.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../3dMake_Foundation/Lessons_3dMake_1/basic_project_scaffold.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 

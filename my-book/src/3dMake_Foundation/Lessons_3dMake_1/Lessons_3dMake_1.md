@@ -1,6 +1,6 @@
 # Lesson 1: Environmental Configuration and the Developer Workflow 
 
-Estimated time: 60–90 minutes
+Estimated time: 60-90 minutes
 
 ## **Learning Objectives**
 - Install and verify `3dm`[^1], `openscad`[^2], and a slicer are discoverable in the terminal
@@ -48,32 +48,32 @@ Before you send your first print, it's important to understand how 3D printers w
 
 FDM printing builds objects layer by layer, where each layer is a thin horizontal slice of your STL file. Here's the complete pipeline:
 
-1. **STL File** → Your 3dMake model exported as an STL geometry file
-2. **Slicer Analysis** → Software like PrusaSlicer reads the STL and divides it into layers
-3. **G-code Generation** → The slicer converts layers into machine instructions (coordinates, temperature, speed)
-4. **Printing** → The printer reads G-code, heats the nozzle to ~200–230°C, and extrudes plastic one layer at a time
-5. **Cooling & Solidification** → Each layer cools and bonds to the layer below
+1. **STL File** -> Your 3dMake model exported as an STL geometry file
+2. **Slicer Analysis** -> Software like PrusaSlicer reads the STL and divides it into layers
+3. **G-code Generation** -> The slicer converts layers into machine instructions (coordinates, temperature, speed)
+4. **Printing** -> The printer reads G-code, heats the nozzle to ~200-230C, and extrudes plastic one layer at a time
+5. **Cooling & Solidification** -> Each layer cools and bonds to the layer below
 
 ### Critical Settings That Affect Your Print
 
 When you open your STL in a slicer, you'll encounter several parameters that directly impact quality, time, and strength:
 
 #### **Layer Height**
-- **Definition:** The thickness of each printed layer (typically 0.15–0.30 mm)
+- **Definition:** The thickness of each printed layer (typically 0.15-0.30 mm)
 - **Effect on Time:** Smaller layers = more detail but longer print time. A layer height of 0.15 mm prints slower than 0.30 mm because more layers must be printed
 - **Effect on Quality:** Smaller layers produce smoother surfaces; larger layers print faster but appear more "stepped"
 - **Common Choice:** 0.20 mm is a good balance for classroom projects
 
 #### **Infill**
-- **Definition:** The interior solid percentage of your model (0–100%)
+- **Definition:** The interior solid percentage of your model (0-100%)
 - **Purpose:** Infill provides internal strength without using solid material throughout (which would be wasteful and heavy)
-- **Common Values for Classroom:** 15–20% infill is typical; 10% for very light parts, 50% for functional parts
+- **Common Values for Classroom:** 15-20% infill is typical; 10% for very light parts, 50% for functional parts
 - **Infill Patterns:** Grid, gyroid, or honeycomb patterns determine how the internal structure looks. Grid is simple and fast; gyroid is strong but more complex
 - **Rule of Thumb:** Higher infill = stronger, heavier, and longer print time
 
 #### **Supports**
 - **Definition:** Temporary structures the printer creates to hold overhanging geometry during printing
-- **When Needed:** Any geometry that "hangs" at a steep angle (typically > 45° from vertical) requires supports
+- **When Needed:** Any geometry that "hangs" at a steep angle (typically > 45 from vertical) requires supports
 - **Post-Processing:** Supports must be removed after printing (breaking them off, dissolving them, or picking them away)
 - **Cost:** Supports increase print time and waste material, so good STL design minimizes them
 
@@ -106,13 +106,13 @@ Once you've completed this lesson, you're ready to work on hands-on projects. Th
 
 These projects are located in the Lesson 1 assets folder and are designed to reinforce your skills in practical contexts:
 
-- **Your First Print** ([Lesson 1 Assets — Your First Print](../../assets/3dMake_Foundation/Lessons_3dMake_1/Your_First_Print/your-first-print.md))
+- **Your First Print** ([Lesson 1 Assets - Your First Print](../../assets/3dMake_Foundation/Lessons_3dMake_1/Your_First_Print/your-first-print.md))
   - Goal: Low-friction introduction to the complete printing workflow
   - Skills: Setup, basic slicing, first-time print validation
   - Best for: After completing Lesson 1
   - Asset folder: [assets/Lessons_3dMake_1/Your_First_Print/](../../assets/3dMake_Foundation/Lessons_3dMake_1/Your_First_Print/)
 
-- **Basic Project Scaffold Template** ([Lesson 1 Assets — SCAD Template](../../assets/3dMake_Foundation/Lessons_3dMake_1/basic_project_scaffold.scad))
+- **Basic Project Scaffold Template** ([Lesson 1 Assets - SCAD Template](../../assets/3dMake_Foundation/Lessons_3dMake_1/basic_project_scaffold.scad))
   - A starter template for your own 3D printing projects
   - Includes parameter configuration and TODO sections
   
@@ -136,7 +136,7 @@ Quick-reference guides are available in `Reference_Materials/`:
 
 ---
 
-## Quiz — Lesson 3dMake.1 (10 questions)
+## Quiz - Lesson 3dMake.1 (10 questions)
 
 1. What command initializes a 3dMake project?
 2. What folder holds generated STLs?
@@ -152,7 +152,7 @@ Quick-reference guides are available in `Reference_Materials/`:
 ## Extension Problems (10)
 1. Add a README entry explaining your top-level parameters and expected units. Reference best practices from the OpenSCAD documentation[^2].
 2. Create a parameter variant by changing `width` by 20% and build both variants; compare dimensions with calipers. This demonstrates the power of parametric design discussed in programming resources[^3].
-3. Script a `3dm` command sequence that automates new → edit → build for the scaffold. Review the 3dMake test suite for inspiration[^6].
+3. Script a `3dm` command sequence that automates new -> edit -> build for the scaffold. Review the 3dMake test suite for inspiration[^6].
 4. Intentionally create a thin-wall error and document the steps you took to find and fix it. Consult slicing guides[^7] for identifying common geometry issues.
 5. Prepare a short instructor sign-off checklist describing safety checks before printing.
 6. Build a variant testing suite: create 5+ parameter combinations, export STLs, and compare file sizes and estimated print times.
@@ -165,9 +165,9 @@ Quick-reference guides are available in `Reference_Materials/`:
 
 For deeper exploration of OpenSCAD and parametric design, consult these resources:
 
-- **[Programming with OpenSCAD EPUB Textbook](../../assets/Programming_with_OpenSCAD.epub)** — Comprehensive reference with examples of parametric design, transformations, and modules
-- **[CodeSolutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions)** — Working OpenSCAD code organized by topic, including 3D primitives and parametric examples relevant to Lesson 1
-- **[OpenSCAD Quick Reference](https://programmingwithopenscad.github.io/quick-reference.html)** — Visual syntax guide and command reference
+- **[Programming with OpenSCAD EPUB Textbook](../../assets/Programming_with_OpenSCAD.epub)** - Comprehensive reference with examples of parametric design, transformations, and modules
+- **[CodeSolutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions)** - Working OpenSCAD code organized by topic, including 3D primitives and parametric examples relevant to Lesson 1
+- **[OpenSCAD Quick Reference](https://programmingwithopenscad.github.io/quick-reference.html)** - Visual syntax guide and command reference
 
 [^1]: 3DMake GitHub Repository - https://github.com/tdeck/3dmake
 

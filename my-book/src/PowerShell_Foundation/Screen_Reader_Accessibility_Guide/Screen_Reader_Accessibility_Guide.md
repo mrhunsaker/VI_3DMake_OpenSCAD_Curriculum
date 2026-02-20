@@ -76,7 +76,7 @@ NVDA is free and available from https://www.nvaccess.org/
 
 **Enable verbosity for better feedback:**
 1. Press **NVDA+Ctrl+V** to open NVDA menu
-2. Go to Preferences → Settings
+2. Go to Preferences -> Settings
 3. Under "Speech", increase verbosity
 4. Look for "Report font changes" and enable it (helps with code)
 
@@ -114,7 +114,7 @@ JAWS is a commercial screen reader available from https://www.freedomscientific.
 
 **Enable specific settings for terminals:**
 1. Press **Insert+F3** to open JAWS menu
-2. Go to "Options" → "Settings Manager"
+2. Go to "Options" -> "Settings Manager"
 3. Search for "terminal" or "console"
 4. Enable "Announce output" and "Speak when program speaks"
 
@@ -294,7 +294,7 @@ ls -n | findstr "\.scad"
 
 1. **Need admin rights**
    - Close PowerShell
-   - Right-click PowerShell → Run as administrator
+   - Right-click PowerShell -> Run as administrator
    - Confirm the UAC prompt
 
 2. **File is in use**
@@ -338,7 +338,7 @@ ls -n | findstr "\.scad"
 
 1. **NVDA verbosity too high**
    - Press **NVDA+Ctrl+V** to open menu
-   - Go to Settings → Speech
+   - Go to Settings -> Speech
    - Lower the verbosity level
 
 2. **Multiple applications speaking**
@@ -425,18 +425,18 @@ EVERY COMMAND STARTS WITH:
 3. cd path (go there)
 
 LONG OUTPUT?
-→ command > file.txt
-→ notepad.exe file.txt
+-> command > file.txt
+-> notepad.exe file.txt
 
 STUCK?
-→ Ctrl+C
+-> Ctrl+C
 
 WANT TO REPEAT?
-→ Up Arrow
-→ History
+-> Up Arrow
+-> History
 
 NEED HELP?
-→ Get-Help command-name
+-> Get-Help command-name
 ```
 
 ---

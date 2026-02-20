@@ -20,7 +20,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 **Solutions:**
 1. **Increase nozzle temperature** (too cold = harder extrusion)
 2. **Clean extruder drive gear** - brush with wire brush to restore grip
-3. **Check filament diameter** - should be 1.75mm (±0.03mm)
+3. **Check filament diameter** - should be 1.75mm (+/-0.03mm)
 4. **Verify extruder tension** - should grip firmly but not crush filament
 5. **Inspect nozzle** - may be partially clogged (see nozzle clog section)
 
@@ -40,7 +40,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 
 **Solutions:**
 1. **Discard damaged section** - cut off ~30cm if kinked
-2. **Increase humidity** - try drying filament in low oven (50°C for 2 hours PLA)
+2. **Increase humidity** - try drying filament in low oven (50C for 2 hours PLA)
 3. **Check storage** - PLA especially absorbs moisture
 4. **Replace spool** - if damage is extensive
 
@@ -65,7 +65,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 1. **Re-level build plate** - cold plate adjustment for accuracy
 2. **Clean build plate** - wipe with isopropyl alcohol
 3. **Lower nozzle** (if too high) - reduce Z by 0.05-0.1mm
-4. **Increase bed temperature** - add 5-10°C
+4. **Increase bed temperature** - add 5-10C
 5. **Use adhesion aids:**
    - PLA: Painter's tape, glue stick, or bare clean plastic
    - PETG: Textured bed or thin glue layer
@@ -91,7 +91,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 **Solutions (Increasing Intensity):**
 
 1. **Immediate - Cold Pull:**
-   - Heat nozzle to 200°C
+   - Heat nozzle to 200C
    - Grab filament and give firm pull while cooling
    - Repeat 5-10 times
    - May extract filament with debris
@@ -133,7 +133,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 **Solutions:**
 1. **Check extruder steps/mm** - calibrate e-steps if possible
 2. **Increase flow rate** - try 105-110% in slicer
-3. **Raise temperature** - add 5-10°C
+3. **Raise temperature** - add 5-10C
 4. **Slow down print speed** - reduce 10-20%
 5. **Check filament quality** - test with different brand/batch
 6. **Clean drive gear** - remove plastic buildup
@@ -156,7 +156,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 
 **Solutions:**
 1. **Reduce flow rate** - try 95% in slicer
-2. **Lower temperature** - reduce 5-10°C
+2. **Lower temperature** - reduce 5-10C
 3. **Check line width** - should be ~1.2x nozzle diameter (0.4mm nozzle = 0.48mm width)
 4. **Speed up print** - higher speeds reduce oozing
 5. **Check nozzle size** - confirm you're using correct setting
@@ -195,7 +195,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
    - Ensure solid perimeters around shift point
 
 4. **Firmware:**
-   - Check acceleration settings (try 1000 mm/s²)
+   - Check acceleration settings (try 1000 mm/s)
    - Verify step/mm calibration
    - Update firmware if outdated
 
@@ -208,7 +208,7 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 **Cause:** Nozzle oozes while traveling between print sections
 
 **Solutions:**
-1. Reduce temperature by 5-10°C
+1. Reduce temperature by 5-10C
 2. Increase retraction distance (0.5-1.5mm more)
 3. Increase retraction speed
 4. Enable wipe on retract (slicer setting)
@@ -244,16 +244,16 @@ Comprehensive troubleshooting guide for diagnosing and fixing common 3D printing
 
 ```
 Print fails?
-├─ No extrusion → Check nozzle temperature → Clog? → Cold pull/poke/replace
-├─ Lifts off bed → Clean bed → Level bed → Adjust height → Increase temp
-├─ Breaks mid-print → Layer shift? → Check mechanics, speed
-│                    → Under-extrusion? → Increase flow/temp/speed
-│                    → Over-extrusion? → Decrease flow/temp
-├─ Bad surface quality → Stringing? → Reduce temp/increase retraction
-│                      → Blobs? → Check flow rate, temperature
-│                      → Warping? → Adjust bed temp, enclosed space
-└─ Print weak → Under-extrusion → Increase flow rate, temperature
-              → Poor layer bonding → Increase bed temp, first layer height
++---- No extrusion -> Check nozzle temperature -> Clog? -> Cold pull/poke/replace
++---- Lifts off bed -> Clean bed -> Level bed -> Adjust height -> Increase temp
++---- Breaks mid-print -> Layer shift? -> Check mechanics, speed
+|                    -> Under-extrusion? -> Increase flow/temp/speed
+|                    -> Over-extrusion? -> Decrease flow/temp
++---- Bad surface quality -> Stringing? -> Reduce temp/increase retraction
+|                      -> Blobs? -> Check flow rate, temperature
+|                      -> Warping? -> Adjust bed temp, enclosed space
++---- Print weak -> Under-extrusion -> Increase flow rate, temperature
+              -> Poor layer bonding -> Increase bed temp, first layer height
 ```
 
 ---

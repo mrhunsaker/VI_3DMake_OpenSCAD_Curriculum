@@ -1,4 +1,4 @@
-# PS-1: Navigation — Moving Around Your File System
+# PS-1: Navigation - Moving Around Your File System
 
 **Duration:** 1 class period  
 **Prerequisite:** PS-0 (Getting Started)
@@ -23,9 +23,9 @@ By the end of this lesson, you will be able to:
 
 | Command | What It Does |
 | --------- | ------------- |
-| `pwd` | Print Working Directory — shows where you are |
-| `cd path` | Change Directory — move to a new location |
-| `ls` | List — shows files and folders in current location |
+| `pwd` | Print Working Directory - shows where you are |
+| `cd path` | Change Directory - move to a new location |
+| `ls` | List - shows files and folders in current location |
 | `ls -n` | List names only (screen reader friendly) |
 | `ls -n -af` | List names of files only |
 | `ls -n -ad` | List names of directories only |
@@ -33,7 +33,7 @@ By the end of this lesson, you will be able to:
 
 ---
 
-## `pwd` — Where Am I?
+## `pwd` - Where Am I?
 
 Type `pwd` and press `Enter`. PowerShell prints the full path to your current location.
 
@@ -46,7 +46,7 @@ pwd
 
 ---
 
-## `cd` — Changing Directories
+## `cd` - Changing Directories
 
 `cd` stands for "change directory."
 
@@ -66,7 +66,7 @@ cd C:\Users\YourName\Documents\3D_Projects
 
 ---
 
-## `ls` — Listing Files and Folders
+## `ls` - Listing Files and Folders
 
 Use `ls -n` for screen reader compatibility.
 
@@ -83,7 +83,7 @@ ls -n -ad
 
 ---
 
-## Wildcards — Finding Files by Pattern
+## Wildcards - Finding Files by Pattern
 
 Wildcards help you find files without typing the full name.
 
@@ -128,7 +128,7 @@ After this lesson, you should be able to:
 - [ ] Use wildcards to find files by pattern
 - [ ] Move between absolute and relative paths confidently
 
-## Quiz — Lesson PS.1
+## Quiz - Lesson PS.1
 
 1. What does `pwd` show?
 2. How do you list directories only with `ls`?

@@ -1,4 +1,4 @@
-# Miniature Assembly — Teacher Template (Extension Project)
+# Miniature Assembly - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -30,13 +30,13 @@ Students design and assemble a complex multi-part object with tight tolerances. 
 
 ## Rubric
 
-### Category 1: Problem & Solution (0–3)
+### Category 1: Problem & Solution (0-3)
 Assembly completes successfully; parts function together.
 
-### Category 2: Design & Code Quality (0–3)
+### Category 2: Design & Code Quality (0-3)
 Code is well-organized. Design shows tolerance awareness.
 
-### Category 3: Documentation (0–3)
+### Category 3: Documentation (0-3)
 Assembly instructions clear. Tolerance analysis complete.
 
 ---

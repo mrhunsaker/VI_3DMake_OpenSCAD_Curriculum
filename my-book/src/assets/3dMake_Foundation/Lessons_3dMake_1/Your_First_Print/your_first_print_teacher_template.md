@@ -1,4 +1,4 @@
-# Your First Print — Teacher Template (Extension Project)
+# Your First Print - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -9,7 +9,7 @@ A foundational extension project where students select a ready-made 3D model fro
 **Real-world Connection:** Production environments rely on safe print setup and quality verification. This project establishes habits that transfer to any 3D printing context.
 
 ## Constraints
-- Model must be ≤ 2 hours print time
+- Model must be  2 hours print time
 - No or minimal support requirements recommended
 - Student must document printer configuration and safety checks
 - Student must compare printed dimensions to model specifications
@@ -33,15 +33,15 @@ A foundational extension project where students select a ready-made 3D model fro
 
 ## Rubric
 
-All projects are scored on a 0–9 scale across three equally weighted categories (3 points each):
+All projects are scored on a 0-9 scale across three equally weighted categories (3 points each):
 
 | Category | Points | What We Measure |
 | ---------- | ------- | ------------------- |
-| **Problem & Solution** | 0–3 | Did the student select an appropriate model? Did the print succeed? |
-| **Design & Code Quality** | 0–3 | Is documentation of printer setup thorough? Is print quality good? |
-| **Documentation** | 0–3 | Is all documentation complete? Are measurements recorded? Is reflection thoughtful? |
+| **Problem & Solution** | 0-3 | Did the student select an appropriate model? Did the print succeed? |
+| **Design & Code Quality** | 0-3 | Is documentation of printer setup thorough? Is print quality good? |
+| **Documentation** | 0-3 | Is all documentation complete? Are measurements recorded? Is reflection thoughtful? |
 
-### Category 1: Problem & Solution (0–3 points)
+### Category 1: Problem & Solution (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -50,7 +50,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Model had some difficulties; print partially successful or required intervention. |
 | **0** | Print failed or model was inappropriate. |
 
-### Category 2: Design & Code Quality (0–3 points)
+### Category 2: Design & Code Quality (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -59,7 +59,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Minimal documentation of setup. Print quality has defects. |
 | **0** | Setup not documented or print failed to start. |
 
-### Category 3: Documentation (0–3 points)
+### Category 3: Documentation (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -72,11 +72,11 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 
 | Total Score | Interpretation | Next Step |
 | ------------ | --------------- | ----------- |
-| 8–9 | Excellent work | Student ready for independent printing projects |
-| 6–7 | Good execution | Encourage documentation habit |
-| 4–5 | Meets basics | Discuss printer setup and safety |
-| 2–3 | Does not meet expectations | Resubmission or additional practice |
-| 0–1 | Missing major components | Meet with instructor |
+| 8-9 | Excellent work | Student ready for independent printing projects |
+| 6-7 | Good execution | Encourage documentation habit |
+| 4-5 | Meets basics | Discuss printer setup and safety |
+| 2-3 | Does not meet expectations | Resubmission or additional practice |
+| 0-1 | Missing major components | Meet with instructor |
 
 ---
 

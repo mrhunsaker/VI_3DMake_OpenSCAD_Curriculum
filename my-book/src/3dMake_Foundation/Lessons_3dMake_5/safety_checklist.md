@@ -22,7 +22,7 @@ Complete this checklist before each printing session to maintain a safe workspac
   - New filament loaded correctly
 
 - [ ] **Environmental Conditions**
-  - Room temperature adequate (18-25°C ideal)
+  - Room temperature adequate (18-25C ideal)
   - No direct drafts from windows/AC on printer
   - Humidity levels reasonable (not extremely dry)
   - Adequate lighting to see printer clearly
@@ -85,8 +85,8 @@ Complete this checklist before each printing session to maintain a safe workspac
 ## Hazard Awareness
 
 **Hot Surfaces:**
-- Nozzle reaches 200-250°C
-- Bed reaches 60-100°C
+- Nozzle reaches 200-250C
+- Bed reaches 60-100C
 - Allow adequate cooling time before touching
 
 **Filament Hazards:**

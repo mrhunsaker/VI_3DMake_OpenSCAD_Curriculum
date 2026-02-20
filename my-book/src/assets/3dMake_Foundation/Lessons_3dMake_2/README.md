@@ -29,7 +29,7 @@ This folder contains supporting materials for Lesson 2:
 
 **Purpose:** Adapt existing models to meet real-world needs; practice iteration and documentation
 
-**Time:** 4–8 hours (design, adapt, print, document)
+**Time:** 4-8 hours (design, adapt, print, document)
 
 **Skills Developed:**
 - Model evaluation and adaptation
@@ -41,7 +41,7 @@ This folder contains supporting materials for Lesson 2:
 
 **Purpose:** Scaling and simple modifications; multi-part printing and documentation
 
-**Time:** 2–3 hours
+**Time:** 2-3 hours
 
 **Skills Developed:**
 - Model scaling and resizing

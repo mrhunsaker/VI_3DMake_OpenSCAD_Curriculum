@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -241,7 +241,7 @@
 <ol>
 <li><strong>Increase nozzle temperature</strong> (too cold = harder extrusion)</li>
 <li><strong>Clean extruder drive gear</strong> - brush with wire brush to restore grip</li>
-<li><strong>Check filament diameter</strong> - should be 1.75mm (±0.03mm)</li>
+<li><strong>Check filament diameter</strong> - should be 1.75mm (+/-0.03mm)</li>
 <li><strong>Verify extruder tension</strong> - should grip firmly but not crush filament</li>
 <li><strong>Inspect nozzle</strong> - may be partially clogged (see nozzle clog section)</li>
 </ol>
@@ -262,7 +262,7 @@
 <p><strong>Solutions:</strong></p>
 <ol>
 <li><strong>Discard damaged section</strong> - cut off ~30cm if kinked</li>
-<li><strong>Increase humidity</strong> - try drying filament in low oven (50°C for 2 hours PLA)</li>
+<li><strong>Increase humidity</strong> - try drying filament in low oven (50C for 2 hours PLA)</li>
 <li><strong>Check storage</strong> - PLA especially absorbs moisture</li>
 <li><strong>Replace spool</strong> - if damage is extensive</li>
 </ol>
@@ -287,7 +287,7 @@
 <li><strong>Re-level build plate</strong> - cold plate adjustment for accuracy</li>
 <li><strong>Clean build plate</strong> - wipe with isopropyl alcohol</li>
 <li><strong>Lower nozzle</strong> (if too high) - reduce Z by 0.05-0.1mm</li>
-<li><strong>Increase bed temperature</strong> - add 5-10°C</li>
+<li><strong>Increase bed temperature</strong> - add 5-10C</li>
 <li><strong>Use adhesion aids:</strong>
 <ul>
 <li>PLA: Painter’s tape, glue stick, or bare clean plastic</li>
@@ -318,7 +318,7 @@
 <li>
 <p><strong>Immediate - Cold Pull:</strong></p>
 <ul>
-<li>Heat nozzle to 200°C</li>
+<li>Heat nozzle to 200C</li>
 <li>Grab filament and give firm pull while cooling</li>
 <li>Repeat 5-10 times</li>
 <li>May extract filament with debris</li>
@@ -372,7 +372,7 @@
 <ol>
 <li><strong>Check extruder steps/mm</strong> - calibrate e-steps if possible</li>
 <li><strong>Increase flow rate</strong> - try 105-110% in slicer</li>
-<li><strong>Raise temperature</strong> - add 5-10°C</li>
+<li><strong>Raise temperature</strong> - add 5-10C</li>
 <li><strong>Slow down print speed</strong> - reduce 10-20%</li>
 <li><strong>Check filament quality</strong> - test with different brand/batch</li>
 <li><strong>Clean drive gear</strong> - remove plastic buildup</li>
@@ -396,7 +396,7 @@
 <p><strong>Solutions:</strong></p>
 <ol>
 <li><strong>Reduce flow rate</strong> - try 95% in slicer</li>
-<li><strong>Lower temperature</strong> - reduce 5-10°C</li>
+<li><strong>Lower temperature</strong> - reduce 5-10C</li>
 <li><strong>Check line width</strong> - should be ~1.2x nozzle diameter (0.4mm nozzle = 0.48mm width)</li>
 <li><strong>Speed up print</strong> - higher speeds reduce oozing</li>
 <li><strong>Check nozzle size</strong> - confirm you’re using correct setting</li>
@@ -447,7 +447,7 @@
 <li>
 <p><strong>Firmware:</strong></p>
 <ul>
-<li>Check acceleration settings (try 1000 mm/s²)</li>
+<li>Check acceleration settings (try 1000 mm/s)</li>
 <li>Verify step/mm calibration</li>
 <li>Update firmware if outdated</li>
 </ul>
@@ -459,7 +459,7 @@
 <p><strong>Cause:</strong> Nozzle oozes while traveling between print sections</p>
 <p><strong>Solutions:</strong></p>
 <ol>
-<li>Reduce temperature by 5-10°C</li>
+<li>Reduce temperature by 5-10C</li>
 <li>Increase retraction distance (0.5-1.5mm more)</li>
 <li>Increase retraction speed</li>
 <li>Enable wipe on retract (slicer setting)</li>
@@ -488,16 +488,16 @@
 <hr>
 <h2 id="diagnosis-decision-tree"><a class="header" href="#diagnosis-decision-tree">Diagnosis Decision Tree</a></h2>
 <pre><code>Print fails?
-├─ No extrusion → Check nozzle temperature → Clog? → Cold pull/poke/replace
-├─ Lifts off bed → Clean bed → Level bed → Adjust height → Increase temp
-├─ Breaks mid-print → Layer shift? → Check mechanics, speed
-│                    → Under-extrusion? → Increase flow/temp/speed
-│                    → Over-extrusion? → Decrease flow/temp
-├─ Bad surface quality → Stringing? → Reduce temp/increase retraction
-│                      → Blobs? → Check flow rate, temperature
-│                      → Warping? → Adjust bed temp, enclosed space
-└─ Print weak → Under-extrusion → Increase flow rate, temperature
-              → Poor layer bonding → Increase bed temp, first layer height
++---- No extrusion -&gt; Check nozzle temperature -&gt; Clog? -&gt; Cold pull/poke/replace
++---- Lifts off bed -&gt; Clean bed -&gt; Level bed -&gt; Adjust height -&gt; Increase temp
++---- Breaks mid-print -&gt; Layer shift? -&gt; Check mechanics, speed
+|                    -&gt; Under-extrusion? -&gt; Increase flow/temp/speed
+|                    -&gt; Over-extrusion? -&gt; Decrease flow/temp
++---- Bad surface quality -&gt; Stringing? -&gt; Reduce temp/increase retraction
+|                      -&gt; Blobs? -&gt; Check flow rate, temperature
+|                      -&gt; Warping? -&gt; Adjust bed temp, enclosed space
++---- Print weak -&gt; Under-extrusion -&gt; Increase flow rate, temperature
+              -&gt; Poor layer bonding -&gt; Increase bed temp, first layer height
 </code></pre>
 <hr>
 <h2 id="maintenance-to-prevent-issues"><a class="header" href="#maintenance-to-prevent-issues">Maintenance to Prevent Issues</a></h2>

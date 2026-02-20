@@ -1,6 +1,6 @@
 # Filament Comparison Table
 
-*Quick reference for choosing the right filament. All temperature values are typical ranges — always check the label on your specific spool.*
+*Quick reference for choosing the right filament. All temperature values are typical ranges - always check the label on your specific spool.*
 
 ---
 
@@ -8,27 +8,27 @@
 
 | Property | PLA | PETG | TPU (Flex) | ABS |
 | ---------- | ----- | ------ | ----------- | ----- |
-| **Difficulty** | ⭐ Easiest | ⭐⭐ Moderate | ⭐⭐⭐ Hard | ⭐⭐⭐⭐ Very Hard |
-| **Nozzle temp** | 190–220°C | 230–250°C | 220–240°C | 230–250°C |
-| **Bed temp** | 50–60°C | 70–85°C | 30–60°C | 90–110°C |
+| **Difficulty** |  Easiest |  Moderate |  Hard |  Very Hard |
+| **Nozzle temp** | 190-220C | 230-250C | 220-240C | 230-250C |
+| **Bed temp** | 50-60C | 70-85C | 30-60C | 90-110C |
 | **Enclosure needed?** | No | No | No | Yes |
-| **Rigidity** | High | Medium | None — flexible | High |
+| **Rigidity** | High | Medium | None - flexible | High |
 | **Impact resistance** | Low (brittle) | Medium | Very high | Medium |
-| **Heat resistance** | Low (~60°C) | Medium (~80°C) | Medium | High (~100°C) |
+| **Heat resistance** | Low (~60C) | Medium (~80C) | Medium | High (~100C) |
 | **Flexibility** | None | Slight | Rubber-like | None |
 | **Moisture sensitivity** | Low | Medium | High | Medium |
 | **Fume concern** | Lowest | Low | Moderate | High |
 | **Bed adhesion** | Easy | Use glue stick on PEI | Easy | Requires enclosure + glue |
-| **Print speed** | Normal | Normal | Slow (20–30 mm/s) | Normal |
+| **Print speed** | Normal | Normal | Slow (20-30 mm/s) | Normal |
 | **Stringing tendency** | Low | Medium-High | High | Low |
-| **Approximate cost** | $15–25/kg | $15–30/kg | $20–40/kg | $15–25/kg |
-| **Recommended for beginners?** | ✅ Yes | After PLA | After experience | ❌ No |
+| **Approximate cost** | $15-25/kg | $15-30/kg | $20-40/kg | $15-25/kg |
+| **Recommended for beginners?** | [YES] Yes | After PLA | After experience | [NO] No |
 
 ---
 
 ## When to Use Each Material
 
-### PLA — Use for
+### PLA - Use for
 
 - Prototypes and test prints
 - Classroom projects
@@ -36,7 +36,7 @@
 - Tactile models and markers
 - Anything that won't be exposed to heat or heavy stress
 
-### PLA — Avoid for
+### PLA - Avoid for
 
 - Objects left in a hot car or direct sun
 - Parts that need to flex or bend without breaking
@@ -44,21 +44,21 @@
 
 ---
 
-### PETG — Use for
+### PETG - Use for
 
 - Functional parts that need to be tougher than PLA
 - Parts exposed to mild heat or moisture
 - Mechanical components (brackets, clips, mounts)
 - Food-contact applications (check your specific brand's food-safe certification)
 
-### PETG — Avoid for
+### PETG - Avoid for
 
 - Very fine detail (it strings more than PLA)
 - Projects where you need the easiest possible print
 
 ---
 
-### TPU / Flexible — Use for
+### TPU / Flexible - Use for
 
 - Wearable objects (wristbands, phone cases)
 - Bumpers and shock absorbers
@@ -66,21 +66,21 @@
 - Objects that must deform and return to shape
 - Tactile objects that need to feel soft
 
-### TPU — Avoid for
+### TPU - Avoid for
 
 - Fine detail
-- Printing on Bowden extruder setups (the flex causes jams — direct drive only)
+- Printing on Bowden extruder setups (the flex causes jams - direct drive only)
 - Your first few prints while still learning
 
 ---
 
-### ABS — Use for
+### ABS - Use for
 
 - High heat environments
 - Parts requiring post-processing (ABS sands and glues easily)
 - Professional/industrial contexts with proper ventilation
 
-### ABS — Avoid for
+### ABS - Avoid for
 
 - Classroom settings without dedicated ventilation
 - Beginners
@@ -92,9 +92,9 @@
 
 | Filament | PrusaSlicer Profile Name | Key Changes from PLA Default |
 | --------- | ------------------------ | ------------------------------ |
-| PLA | Generic PLA | — (baseline) |
+| PLA | Generic PLA | - (baseline) |
 | PETG | Generic PETG | Higher temps; slower cooling; use glue stick on PEI |
-| TPU | Generic Flex | Lower speed (20–30 mm/s); reduced retraction |
+| TPU | Generic Flex | Lower speed (20-30 mm/s); reduced retraction |
 | ABS | Generic ABS | Higher temps; enclosure; disable cooling fan |
 
 ---
@@ -107,7 +107,7 @@ All filament absorbs moisture from the air over time, which causes poor print qu
 | --------- | --------------------- | ---------------------- |
 | PLA | Low | Sealed bag with desiccant when not in use |
 | PETG | Medium | Sealed bag with desiccant; dry before use if stored open |
-| TPU | High | Always store sealed; dry in oven (65°C for 4–6 hrs) if it has absorbed moisture |
+| TPU | High | Always store sealed; dry in oven (65C for 4-6 hrs) if it has absorbed moisture |
 | ABS | Medium | Sealed bag with desiccant |
 
 Signs of wet filament: popping or crackling sounds during printing, bubbles in extruded plastic, excessive stringing, weak or brittle prints.

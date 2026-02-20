@@ -1,6 +1,6 @@
 # 3dmake: Non-Visual 3D Printing Tutorial
 
-## Estimated time: 45–75 minutes
+## Estimated time: 45-75 minutes
 
 ### **Learning Objectives**
 - Describe the 3dMake command-line workflow and project structure
@@ -16,10 +16,10 @@
 
 ### Step-by-step Tasks
 1. Verify prerequisites: confirm `3dm`, `openscad`, and your slicer are discoverable in the terminal (`which 3dm`, `which openscad`).
-2. Create a new project: `3dm new` → open `src/main.scad` with `3dm edit-model` and add a simple cube: `cube([20,20,20]);`.
+2. Create a new project: `3dm new` -> open `src/main.scad` with `3dm edit-model` and add a simple cube: `cube([20,20,20]);`.
 3. Build the project: `3dm build` and confirm `build/main.stl` exists.
 4. Slice a preview: `3dm preview slice` then `3dm preview print` (or export preview STL) to test tactile output.
-5. Slice for full print: `3dm build slice` → inspect `build/main.gcode` with a layer-preview option in your slicer.
+5. Slice for full print: `3dm build slice` -> inspect `build/main.gcode` with a layer-preview option in your slicer.
 
 ### Checkpoints
 - After step 2 you can open and edit `src/main.scad` from the terminal.
@@ -38,7 +38,7 @@
 1. Create two variants of a parameterized cube (different sizes) and export both STLs; compare their file sizes and estimated print times.
 2. Add a `3dmake.toml` overlay that changes layer height and document the visible effect on the preview.
 3. Build and slice a small object, then import the STL into a second slicer and report any differences in estimated time.
-4. Create a short shell script that automates new → edit → build for a classroom scaffold.
+4. Create a short shell script that automates new -> edit -> build for a classroom scaffold.
 5. Describe three safety checks you will perform before starting a multi-hour print.
 6. Develop an accessibility audit of 3DMake's web interface and CLI tools; test keyboard navigation, screen-reader compatibility, and error message clarity.
 7. Build a 3DMake workflow automation script: integrates model creation, parameter validation, and batch STL generation.

@@ -2,7 +2,7 @@
 
 
 
-Estimated time: 30–45 minutes
+Estimated time: 30-45 minutes
 
 **Learning Objectives**
 - Read environment variables with `$env:VARNAME`
@@ -22,7 +22,7 @@ Step-by-step Tasks
 Checkpoints
 - After step 3 you can determine whether a program will be found by `PATH`.
 
-## Quiz — Lesson PS.4
+## Quiz - Lesson PS.4
 
 1. How do you print an environment variable?
 2. What is the purpose of `PATH`?

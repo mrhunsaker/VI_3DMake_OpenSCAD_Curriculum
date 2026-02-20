@@ -8,19 +8,19 @@
 
 ### All 11 Lessons at a Glance
 
-| # | Title | Duration | Level | Main Topics | Key Project |
-|---|-------|----------|-------|------------|------------|
-| 1 | Environmental Configuration | 60–90m | Beginner | Setup, project structure, `3dm build` | None |
-| 2 | Geometric Primitives & CSG | 60m | Beginner | Primitives, CSG operations, debugging | None |
-| 3 | Parametric Architecture | 60m | Beginner+ | Modules, libraries, parameters | None |
-| 4 | AI Verification | 45–60m | Intermediate | `3dm info`, validation, design documentation | None |
-| 5 | Safety & Physical Interface | 60–90m | Intermediate | Safety protocols, materials, pre-print checks | None |
-| 6 | 3dm Commands & Text | 60–90m | Intermediate | `3dm describe/preview/orient/slice`, embossing | 🎮 Keycap |
-| 7 | Parametric Transforms | 75–90m | Intermediate+ | Transforms, multi-part design, assembly | 📱 Phone Stand |
-| 8 | Advanced Parametric Design | 90–120m | Advanced | Tolerance, interlocking features, snap-fits | 🎁 Stackable Bins |
-| 9 | Automation & Workflows | 60–90m | Advanced | PowerShell scripting, batch processing, CI/CD | 🔑 Batch Automation |
-| 10 | Troubleshooting & Mastery | 120–150m | Advanced | Measurement, QA testing, diagnostics | 🎲 QA + 🔍 Audit |
-| 11 | Stakeholder-Centric Design | 90–120m | Advanced+ | Design thinking, user research, iteration | 📿 Jewelry Holder |
+| #  | Title                       | Duration | Level         | Main Topics                                    | Key Project         |
+|----|-----------------------------|----------|---------------|------------------------------------------------|---------------------|
+| 1  | Environmental Configuration | 60-90m   | Beginner      | Setup, project structure, `3dm build`          | None                |
+| 2  | Geometric Primitives & CSG  | 60m      | Beginner      | Primitives, CSG operations, debugging          | None                |
+| 3  | Parametric Architecture     | 60m      | Beginner+     | Modules, libraries, parameters                 | None                |
+| 4  | AI Verification             | 45-60m   | Intermediate  | `3dm info`, validation, design documentation   | None                |
+| 5  | Safety & Physical Interface | 60-90m   | Intermediate  | Safety protocols, materials, pre-print checks  | None                |
+| 6  | 3dm Commands & Text         | 60-90m   | Intermediate  | `3dm describe/preview/orient/slice`, embossing | Keycap              |
+| 7  | Parametric Transforms       | 75-90m   | Intermediate+ | Transforms, multi-part design, assembly        | Phone Stand         |
+| 8  | Advanced Parametric Design  | 90-120m  | Advanced      | Tolerance, interlocking features, snap-fits    | Stackable Bins      |
+| 9  | Automation & Workflows      | 60-90m   | Advanced      | PowerShell scripting, batch processing, CI/CD  | [key] Batch Automation |
+| 10 | Troubleshooting & Mastery   | 120-150m | Advanced      | Measurement, QA testing, diagnostics           | [dice] QA +  Audit    |
+| 11 | Stakeholder-Centric Design  | 90-120m  | Advanced+     | Design thinking, user research, iteration      | [beads] Jewelry Holder   |
 
 ---
 
@@ -28,34 +28,34 @@
 
 Quick links to comprehensive reference materials:
 
-| Appendix | Focus | Size | Use When |
-|----------|-------|------|----------|
-| **[A: Comprehensive Slicing Guide](Appendix_A_Comprehensive_Slicing_Guide.md)** | 7 major slicers | 1,500+ lines | Slicing questions, slicer reference |
-| **[B: Material Properties](Appendix_B_Material_Properties.md)** | 6 materials | 1,200+ lines | Choosing material, troubleshooting prints |
-| **[C: Tolerance & QA](Appendix_C_Tolerance_QA.md)** | Measurement procedures | 1,200+ lines | Quality verification, measurement techniques |
-| **[D: PowerShell Integration](Appendix_D_PowerShell_Integration.md)** | 5 automation scripts | 1,100+ lines | Building automation, batch processing |
+| Appendix                                                                        | Focus                  | Size         | Use When                                     |
+|---------------------------------------------------------------------------------|------------------------|--------------|----------------------------------------------|
+| **[A: Comprehensive Slicing Guide](Appendix_A_Comprehensive_Slicing_Guide.md)** | 7 major slicers        | 1,500+ lines | Slicing questions, slicer reference          |
+| **[B: Material Properties](Appendix_B_Material_Properties.md)**                 | 6 materials            | 1,200+ lines | Choosing material, troubleshooting prints    |
+| **[C: Tolerance & QA](Appendix_C_Tolerance_QA.md)**                             | Measurement procedures | 1,200+ lines | Quality verification, measurement techniques |
+| **[D: PowerShell Integration](Appendix_D_PowerShell_Integration.md)**           | 5 automation scripts   | 1,100+ lines | Building automation, batch processing        |
 
 ---
 
 ## Learning Paths
 
-### Path 1: Complete Mastery (18–22 hours)
-→ **Lessons 1–11 + All Appendices**
+### Path 1: Complete Mastery (18-22 hours)
+-> **Lessons 1-11 + All Appendices**
 
 Best for: Complete skill development, comprehensive understanding
 
-### Path 2: Design Focus (12–15 hours)
-→ **Lessons 1–3, 6–8, 11 + Appendices A, B, C**
+### Path 2: Design Focus (12-15 hours)
+-> **Lessons 1-3, 6-8, 11 + Appendices A, B, C**
 
 Best for: Experienced makers new to programmatic CAD
 
-### Path 3: Project-Based (14–18 hours)
-→ **Lessons 1–5 (Foundations) → 6 (Keycap) → 7 (Stand) → 8 (Bins) → 9 (Automation) → 10 (Troubleshooting) → 11 (Leadership)**
+### Path 3: Project-Based (14-18 hours)
+-> **Lessons 1-5 (Foundations) -> 6 (Keycap) -> 7 (Stand) -> 8 (Bins) -> 9 (Automation) -> 10 (Troubleshooting) -> 11 (Leadership)**
 
 Best for: Learning through building
 
-### Path 4: Safety & Printing (10–12 hours)
-→ **Lessons 1, 2, 5, 6, 10 + Appendices A, B, C**
+### Path 4: Safety & Printing (10-12 hours)
+-> **Lessons 1, 2, 5, 6, 10 + Appendices A, B, C**
 
 Best for: Focus on practical printing and quality
 
@@ -181,11 +181,11 @@ lip_height = 15;    // mm
 ```
 
 **Configurations:**
-| Phone | Width | Angle | Result |
-|-------|-------|-------|--------|
-| iPhone | 60mm | 60° | Portrait viewing |
-| iPad | 100mm | 40° | Landscape viewing |
-| Tablet | 150mm | 35° | Document viewing |
+| Phone  | Width | Angle | Result            |
+|--------|-------|-------|-------------------|
+| iPhone | 60mm  | 60   | Portrait viewing  |
+| iPad   | 100mm | 40   | Landscape viewing |
+| Tablet | 150mm | 35   | Document viewing  |
 
 **Files:**
 - Code: Lesson 7 (Phone Stand section)
@@ -201,14 +201,14 @@ bin_w = 80;         // width (mm)
 bin_d = 120;        // depth (mm)
 bin_h = 60;         // height (mm)
 wall = 2;           // thickness (mm)
-stack_clear = 0.6;  // tolerance (mm) — CRITICAL
+stack_clear = 0.6;  // tolerance (mm) - CRITICAL
 ```
 
 **Tolerance Testing:**
 ```
-stack_clear = 0.4mm  → Too tight (hard to stack)
-stack_clear = 0.6mm  → Ideal (smooth fit)
-stack_clear = 0.8mm  → Too loose (unstable)
+stack_clear = 0.4mm  -> Too tight (hard to stack)
+stack_clear = 0.6mm  -> Ideal (smooth fit)
+stack_clear = 0.8mm  -> Too loose (unstable)
 ```
 
 **Files:**
@@ -370,7 +370,7 @@ done
 ## Tips & Tricks
 
 ### Debugging
-- Lower `$fn` to 8–12 for faster renders during development
+- Lower `$fn` to 8-12 for faster renders during development
 - Use `3dm describe` frequently to catch issues early
 - Test components individually before assembling
 - Generate `3dm preview` for 2D tactile verification
@@ -379,7 +379,7 @@ done
 - Keep parameters at the top of file for easy modification
 - Use descriptive names (not `w`, use `width`)
 - Include units in comments
-- Document parameter ranges (e.g., `// 0–100 mm`)
+- Document parameter ranges (e.g., `// 0-100 mm`)
 
 ### Organization
 - Use `src/` for SCAD files, `lib/` for modules, `build/` for outputs
@@ -397,17 +397,17 @@ done
 
 ## Glossary
 
-| Term | Definition |
-|------|-----------|
-| **CSG** | Constructive Solid Geometry — combining shapes using union/difference |
-| **Manifold** | Water-tight geometry with clear inside/outside |
-| **Parametric** | Driven by variables; changing parameters updates design |
-| **Tolerance** | Acceptable variation in dimensions |
-| **Stack-up** | Cumulative error from multiple tolerances |
-| **Module** | Reusable code block in OpenSCAD |
-| **$fn** | Resolution parameter (higher = more detail but slower) |
-| **G-code** | Machine instructions for 3D printer |
-| **STL** | 3D model file format for printing |
+| Term           | Definition                                                            |
+|----------------|-----------------------------------------------------------------------|
+| **CSG**        | Constructive Solid Geometry - combining shapes using union/difference |
+| **Manifold**   | Water-tight geometry with clear inside/outside                        |
+| **Parametric** | Driven by variables; changing parameters updates design               |
+| **Tolerance**  | Acceptable variation in dimensions                                    |
+| **Stack-up**   | Cumulative error from multiple tolerances                             |
+| **Module**     | Reusable code block in OpenSCAD                                       |
+| **$fn**        | Resolution parameter (higher = more detail but slower)                |
+| **G-code**     | Machine instructions for 3D printer                                   |
+| **STL**        | 3D model file format for printing                                     |
 
 ---
 

@@ -26,13 +26,13 @@ By the end of this lesson, you will be able to:
 | `cat filename` | Print the contents of a file |
 | `> filename` | Redirect output into a file (overwrites) |
 | `>> filename` | Append output to a file (adds to end) |
-| `\|` | Pipe — send output from one command to the next |
+| `\|` | Pipe - send output from one command to the next |
 | `clip` | Copy piped input to the Windows clipboard |
 | `notepad.exe filename` | Open a file in Notepad |
 
 ---
 
-## `echo` — Printing Text
+## `echo` - Printing Text
 
 `echo` prints text to the screen. It is useful for testing, for writing text into files, and for understanding how piping works.
 
@@ -43,7 +43,7 @@ echo "This is a test"
 
 ---
 
-## `cat` — Reading Files
+## `cat` - Reading Files
 
 `cat` prints the contents of a file to the screen.
 
@@ -59,7 +59,7 @@ With a long file, use `cat filename | more` to read it page by page (press `Spac
 
 ---
 
-## `>` — Redirecting Output to a File
+## `>` - Redirecting Output to a File
 
 The `>` symbol redirects output from the screen into a file instead.
 
@@ -81,7 +81,7 @@ cat header.txt
 
 ---
 
-## `|` — Piping
+## `|` - Piping
 
 The pipe symbol `|` sends the output of one command to the input of the next. This lets you chain commands together.
 
@@ -99,7 +99,7 @@ cat project0.scad | Select-String "cube"
 
 ---
 
-## `clip` — Copying to Clipboard
+## `clip` - Copying to Clipboard
 
 `clip` takes whatever is piped to it and puts it on the Windows clipboard.
 
@@ -131,7 +131,7 @@ notepad.exe ~/Documents/OpenSCAD_Projects/project0.scad
 ni new_notes.txt
 # PS-3: Input, Output, and Piping 
 
-Estimated time: 25–40 minutes
+Estimated time: 25-40 minutes
 
 **Learning Objectives**
 - Use `echo`, `cat`, `>` and `>>` for basic IO
@@ -152,7 +152,7 @@ Step-by-step Tasks
 Checkpoints
 - After step 3 you should be able to find a keyword using piping.
 
-## Quiz — Lesson PS.3
+## Quiz - Lesson PS.3
 
 1. What is the difference between `>` and `>>`?
 2. What does the pipe `|` do?
@@ -185,7 +185,7 @@ Checkpoints
 12. Create an interactive piping tool: build a script that accepts user input for a search term, pipes through multiple filters, and displays paginated results.
 13. Develop a performance analysis tool: use piping to combine file listing, metadata extraction, and statistical reporting; export results to a dated report file.
 14. Implement a comprehensive error-handling pipeline: read output, catch errors, log them separately, and generate a summary of successes vs failures.
-15. Design and execute a real-world project backup workflow: use piping to verify file integrity, count files by type, generate a backup manifest, and create audit logs—all in one integrated command pipeline.
+15. Design and execute a real-world project backup workflow: use piping to verify file integrity, count files by type, generate a backup manifest, and create audit logs-all in one integrated command pipeline.
 
 ## References
 

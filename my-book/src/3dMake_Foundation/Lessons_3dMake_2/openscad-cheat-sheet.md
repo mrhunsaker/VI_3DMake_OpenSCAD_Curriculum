@@ -1,4 +1,4 @@
-# OpenSCAD Quick Reference — Cheat Sheet
+# OpenSCAD Quick Reference - Cheat Sheet
 
 *Keep this handy during all OpenSCAD work. For full documentation: [https://openscad.org/documentation.html](https://openscad.org/documentation.html)*
 
@@ -44,7 +44,7 @@ intersection() { shape1; shape2; }     // keep only overlapping region
 **Tip for difference():** Always make the subtracting shape 1 mm taller on both ends than the base shape to avoid zero-thickness artifacts.
 
 ```scad
-// Example — box with a hole:
+// Example - box with a hole:
 difference() {
     cube([30, 30, 10]);
     translate([15, 15, -1]) cylinder(h = 12, r = 5);  // extends -1 to +11
@@ -153,7 +153,7 @@ max(3, 5, 1)           // returns 5
 
 ## Export Workflow
 
-1. Press **F6** (full render — wait for it to complete)
+1. Press **F6** (full render - wait for it to complete)
 2. **File > Export > Export as STL**
 3. Save with a descriptive filename: `projectname_v2.stl`
 

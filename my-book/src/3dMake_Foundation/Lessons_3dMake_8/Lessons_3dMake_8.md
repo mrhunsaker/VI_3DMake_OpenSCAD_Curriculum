@@ -1,6 +1,6 @@
 # Lesson 8: Advanced Parametric Design and Interlocking Features
 
-Estimated time: 90–120 minutes
+Estimated time: 90-120 minutes
 
 **Learning Objectives**
 
@@ -23,8 +23,8 @@ Estimated time: 90–120 minutes
 
 In 3D printing, tolerance refers to the acceptable variation in printed dimensions. When designing parts that must fit together, you must account for:
 
-- **Printer accuracy** (~0.1–0.3 mm typical)
-- **Material shrinkage** (PLA: ~0.3–0.5%)
+- **Printer accuracy** (~0.1-0.3 mm typical)
+- **Material shrinkage** (PLA: ~0.3-0.5%)
 - **Cumulative tolerance** when multiple parts fit together
 
 For stackable bins with interlocking rims:
@@ -245,7 +245,7 @@ union() {
 ```
 
 **Key parameters to test:**
-- `thickness` (1.0–2.0 mm): Thicker = stronger but harder to flex
+- `thickness` (1.0-2.0 mm): Thicker = stronger but harder to flex
 - Arm length: Longer = more flexible but weaker
 - Catch geometry: Size and shape determine how securely parts lock
 
@@ -255,8 +255,8 @@ Unlike stackable bins, snap-fit parts need tighter tolerances because they must 
 
 ```
 Recommended tolerances for snap-fit:
-- Arm thickness tolerance: ±0.2 mm (tighter than bins)
-- Catch gap (clearance): 0.3–0.5 mm (smaller than stacking clearance)
+- Arm thickness tolerance: +/-0.2 mm (tighter than bins)
+- Catch gap (clearance): 0.3-0.5 mm (smaller than stacking clearance)
 - Insertion force: Should be noticeable but not require tools
 
 If too loose: Parts fall apart
@@ -336,10 +336,10 @@ For any multi-part project, create a simple assembly guide:
 Miniature Furniture Assembly Guide
 
 Parts:
-- Base (60 × 40 × 5 mm, prints in ~20 min)
-- Support Left (3 × 40 × 25 mm, prints in ~5 min)
-- Support Right (3 × 40 × 25 mm, prints in ~5 min)
-- Shelf (44 × 30 × 2 mm, prints in ~15 min)
+- Base (60 x 40 x 5 mm, prints in ~20 min)
+- Support Left (3 x 40 x 25 mm, prints in ~5 min)
+- Support Right (3 x 40 x 25 mm, prints in ~5 min)
+- Shelf (44 x 30 x 2 mm, prints in ~15 min)
 
 Assembly Steps:
 1. Prepare all four parts and test fit manually
@@ -384,7 +384,7 @@ module chamfer_corner(size, radius) {
 
 ---
 
-## Quiz — Lesson 3dMake.8 (10 questions)
+## Quiz - Lesson 3dMake.8 (10 questions)
 
 1. What is the purpose of the `stack_clear` parameter in stackable bin design[^1]?
 2. Why is wall thickness a critical parameter in structural parts[^1]?

@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -221,7 +221,7 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="lesson-9-automation-and-3dm-workflows"><a class="header" href="#lesson-9-automation-and-3dm-workflows">Lesson 9: Automation and 3dm Workflows</a></h1>
-<p>Estimated time: 60–90 minutes</p>
+<p>Estimated time: 60-90 minutes</p>
 <p><strong>Learning Objectives</strong></p>
 <ul>
 <li>Chain 3dm commands to automate the design-to-print pipeline<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup></li>
@@ -252,11 +252,11 @@
 <h3 id="task-1-create-a-multi-variant-project"><a class="header" href="#task-1-create-a-multi-variant-project">Task 1: Create a Multi-Variant Project</a></h3>
 <p>Organize your project with multiple model files:</p>
 <pre><code>src/
-├── main.scad              # Base model
-├── keycap_small.scad      # Variant 1
-├── keycap_medium.scad     # Variant 2
-├── keycap_large.scad      # Variant 3
-└── stand_test.scad        # Experimental model
++------ main.scad              # Base model
++------ keycap_small.scad      # Variant 1
++------ keycap_medium.scad     # Variant 2
++------ keycap_large.scad      # Variant 3
++------ stand_test.scad        # Experimental model
 </code></pre>
 <p>Each file should be independent and buildable:</p>
 <pre><code class="language-openscad">// keycap_small.scad
@@ -296,7 +296,7 @@ for scad_file in src/*.scad; do
     mv "build/main.gcode" "build/${base_name}.gcode"
   fi
   
-  echo "  ✓ Done: $base_name"
+  echo "   Done: $base_name"
 done
 
 echo "=== All models processed ==="
@@ -353,7 +353,7 @@ EOF
   stl_file="build/temp_keycap.stl"
   file_size=$(stat -f%z "$stl_file" 2&gt;/dev/null || stat -c%s "$stl_file" 2&gt;/dev/null)
   
-  echo "  → STL size: $(numfmt --to=iec-i --suffix=B "$file_size" 2&gt;/dev/null || echo "$file_size bytes")"
+  echo "  -&gt; STL size: $(numfmt --to=iec-i --suffix=B "$file_size" 2&gt;/dev/null || echo "$file_size bytes")"
   
   # Save for comparison
   cp "$stl_file" "build/keycap_${size}mm.stl"
@@ -413,7 +413,7 @@ while true; do
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Change detected: $file"
     
     # Rebuild
-    3dm build "$file" &amp;&amp; echo "  ✓ Build successful"
+    3dm build "$file" &amp;&amp; echo "   Build successful"
   done
   
   sleep 5  # Check every 5 seconds
@@ -472,7 +472,7 @@ echo "Archive: ${OUTPUT_DIR}.tar.gz"
 <li>After task 5, you understand continuous integration concepts</li>
 </ul>
 <hr>
-<h2 id="quiz--lesson-3dmake9-10-questions"><a class="header" href="#quiz--lesson-3dmake9-10-questions">Quiz — Lesson 3dMake.9 (10 questions)</a></h2>
+<h2 id="quiz---lesson-3dmake9-10-questions"><a class="header" href="#quiz---lesson-3dmake9-10-questions">Quiz - Lesson 3dMake.9 (10 questions)</a></h2>
 <ol>
 <li>What does the <code>&amp;&amp;</code> operator do in a command chain<sup class="footnote-reference" id="fr-1-4"><a href="#footnote-1">1</a></sup>?</li>
 <li>Why would you use a batch build script instead of running commands manually<sup class="footnote-reference" id="fr-1-5"><a href="#footnote-1">1</a></sup>?</li>
@@ -488,7 +488,7 @@ echo "Archive: ${OUTPUT_DIR}.tar.gz"
 <h2 id="extension-problems-10"><a class="header" href="#extension-problems-10">Extension Problems (10)</a></h2>
 <ol>
 <li>Create a batch build script that processes 5+ model variants and generates a comparison report<sup class="footnote-reference" id="fr-1-12"><a href="#footnote-1">1</a></sup>.</li>
-<li>Design a parameter testing matrix: test 3 dimensions × 3 wall thicknesses and compare results<sup class="footnote-reference" id="fr-1-13"><a href="#footnote-1">1</a></sup>.</li>
+<li>Design a parameter testing matrix: test 3 dimensions x 3 wall thicknesses and compare results<sup class="footnote-reference" id="fr-1-13"><a href="#footnote-1">1</a></sup>.</li>
 <li>Build a library module for common features (brackets, connectors, fasteners); use in multiple projects<sup class="footnote-reference" id="fr-2-3"><a href="#footnote-2">2</a></sup>.</li>
 <li>Create a “watch and rebuild” script that automatically regenerates designs when code changes<sup class="footnote-reference" id="fr-1-14"><a href="#footnote-1">1</a></sup>.</li>
 <li>Develop a production workflow script that generates timestamped builds with complete documentation<sup class="footnote-reference" id="fr-1-15"><a href="#footnote-1">1</a></sup>.</li>
@@ -533,7 +533,7 @@ echo "Archive: ${OUTPUT_DIR}.tar.gz"
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../../assets/3dMake_Foundation/Lessons_3dMake_8/Snap_Fit_Clip/snap-fit-clip.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../../3dMake_Foundation/Lessons_3dMake_8/snap_fit_clip_teacher_template.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
@@ -547,7 +547,7 @@ echo "Archive: ${OUTPUT_DIR}.tar.gz"
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../../assets/3dMake_Foundation/Lessons_3dMake_8/Snap_Fit_Clip/snap-fit-clip.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../../3dMake_Foundation/Lessons_3dMake_8/snap_fit_clip_teacher_template.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 

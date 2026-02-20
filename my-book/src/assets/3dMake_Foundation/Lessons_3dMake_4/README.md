@@ -1,6 +1,6 @@
 # Lesson 4: AI-Enhanced Verification and Multimodal Feedback
 
-**Estimated time:** 60–90 minutes
+**Estimated time:** 60-90 minutes
 
 ## Folder Contents
 
@@ -20,7 +20,7 @@ This folder contains supporting materials for Lesson 4:
 ## Key Materials
 
 - [Lesson 4 Main Content](../../3dMake_Foundation/Lessons_3dMake_4/Lessons_3dMake_4.md)
-- [Master Rubric](../../../Reference_Materials/master-rubric.md) — Design quality evaluation criteria
+- [Master Rubric](../../../Reference_Materials/master-rubric.md) - Design quality evaluation criteria
 
 ## Extension Projects in This Folder
 
@@ -28,7 +28,7 @@ This folder contains supporting materials for Lesson 4:
 
 **Purpose:** Parametric design with testing and validation; introduces experimental methodology
 
-**Time:** 4–6 hours
+**Time:** 4-6 hours
 
 **Skills Developed:**
 - Parametric design for variants

@@ -1,4 +1,4 @@
-# Project 0: Your First 3D Print — Teacher Template
+# Project 0: Your First 3D Print - Teacher Template
 
 ## Briefing
 
@@ -10,7 +10,7 @@ Students select a small real-world object, measure it with calipers, translate m
 
 ## Constraints
 - Design must use parametric OpenSCAD variables for all key dimensions
-- Object must be printable within 2–4 hours at classroom settings
+- Object must be printable within 2-4 hours at classroom settings
 - Must include at least three key measurements (length, width, height)
 - Prototype must be tested and documented with physical measurements
 
@@ -32,15 +32,15 @@ Students select a small real-world object, measure it with calipers, translate m
 
 ## Rubric
 
-All projects are scored on a 0–9 scale across three equally weighted categories (3 points each):
+All projects are scored on a 0-9 scale across three equally weighted categories (3 points each):
 
 | Category | Points | What We Measure |
 | ---------- | ------- | ------------------- |
-| **Problem & Solution** | 0–3 | Does the design solve the stated problem? Are all functional requirements met? |
-| **Design & Code Quality** | 0–3 | Is the OpenSCAD code clean, well-commented, and well-structured? Does the print work well? Is there evidence of iteration? |
-| **Documentation** | 0–3 | Are all sections complete? Are reflections thoughtful and specific? Are measurements recorded? |
+| **Problem & Solution** | 0-3 | Does the design solve the stated problem? Are all functional requirements met? |
+| **Design & Code Quality** | 0-3 | Is the OpenSCAD code clean, well-commented, and well-structured? Does the print work well? Is there evidence of iteration? |
+| **Documentation** | 0-3 | Are all sections complete? Are reflections thoughtful and specific? Are measurements recorded? |
 
-### Category 1: Problem & Solution (0–3 points)
+### Category 1: Problem & Solution (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -49,7 +49,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Student attempts measurement and modeling. Model prints but shows significant dimensional errors or missing requirements. |
 | **0** | No working model submitted or measurements incomplete. |
 
-### Category 2: Design & Code Quality (0–3 points)
+### Category 2: Design & Code Quality (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -58,7 +58,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Code is minimal or poorly organized. Few comments. Print has defects. Little iteration. |
 | **0** | Code does not work or is not submitted. |
 
-### Category 3: Documentation (0–3 points)
+### Category 3: Documentation (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -71,11 +71,11 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 
 | Total Score | Interpretation | Next Step |
 | ------------ | --------------- | ----------- |
-| 8–9 | Excellent work | Move to Project 1 |
-| 6–7 | Good work; strong foundation | Move to Project 1; review iteration |
-| 4–5 | Meets basics; needs revision | Resubmit one weak area |
-| 2–3 | Does not meet expectations | Resubmission required |
-| 0–1 | Missing major work | Meet with instructor |
+| 8-9 | Excellent work | Move to Project 1 |
+| 6-7 | Good work; strong foundation | Move to Project 1; review iteration |
+| 4-5 | Meets basics; needs revision | Resubmit one weak area |
+| 2-3 | Does not meet expectations | Resubmission required |
+| 0-1 | Missing major work | Meet with instructor |
 
 ---
 

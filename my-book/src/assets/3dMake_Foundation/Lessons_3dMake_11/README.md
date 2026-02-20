@@ -1,6 +1,6 @@
 # Lesson 11: Stakeholder-Centric Design and the Beaded Jewelry Project
 
-**Estimated time:** 90–120 minutes | **Level:** Advanced
+**Estimated time:** 90-120 minutes | **Level:** Advanced
 
 ## Folder Contents
 
@@ -21,7 +21,7 @@ This folder contains supporting materials for Lesson 11:
 ## Key Materials
 
 - [Lesson 11 Main Content](../../3dMake_Foundation/Lessons_3dMake_11/Lessons_3dMake_11.md)
-- [Master Rubric](../../../Reference_Materials/master-rubric.md) — Design documentation standards
+- [Master Rubric](../../../Reference_Materials/master-rubric.md) - Design documentation standards
 - [Markdown Starter Guide](../../../Reference_Materials/markdown-starter-guide.md)
 
 ## Extension Projects in This Folder
@@ -30,7 +30,7 @@ This folder contains supporting materials for Lesson 11:
 
 **Purpose:** Full stakeholder-centric design project with interviews, requirements, prototyping, and iteration
 
-**Time:** 6–10 hours (interviews, design, printing, testing, iteration)
+**Time:** 6-10 hours (interviews, design, printing, testing, iteration)
 
 **Skills Developed:**
 - Stakeholder interview techniques
@@ -50,10 +50,10 @@ This folder contains supporting materials for Lesson 11:
 
 ## Interview & Requirements Templates
 
-- `stakeholder_interview_template.md` — Guided interview questions
-- `functional_requirements_template.md` — Converting interview data to requirements
-- `design_specification_template.md` — Complete design documentation
-- `feedback_collection_template.md` — Gathering and documenting stakeholder feedback
+- `stakeholder_interview_template.md` - Guided interview questions
+- `functional_requirements_template.md` - Converting interview data to requirements
+- `design_specification_template.md` - Complete design documentation
+- `feedback_collection_template.md` - Gathering and documenting stakeholder feedback
 
 ---
 

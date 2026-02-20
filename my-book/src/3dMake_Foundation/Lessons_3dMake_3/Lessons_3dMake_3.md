@@ -161,7 +161,7 @@ translate([100, 0, 0]) bracket();
 
 #### **Scope and Reusability**
 
-Parameters are **scoped** to their module, meaning you can't access a module's parameters from outside it. This is intentional—it prevents naming conflicts and makes modules truly reusable:
+Parameters are **scoped** to their module, meaning you can't access a module's parameters from outside it. This is intentional-it prevents naming conflicts and makes modules truly reusable:
 
 ```openscad
 module box(size = 10) {
@@ -206,7 +206,7 @@ Checkpoints
 - After step 2 you have a parametric module you can call with different arguments[^3].
 - After this section, you should understand how to create modules with default parameters and why that matters for reusability.
 
-## Quiz — Lesson 3dMake.3 (10 questions)
+## Quiz - Lesson 3dMake.3 (10 questions)
 
 1. What is a parametric module and why is it useful[^3]?
 2. How do you include an external library in OpenSCAD[^2]?
@@ -235,9 +235,9 @@ Extension Problems (10)
 
 For deeper exploration of parametric design and module creation, explore these resources:
 
-- **[Programming with OpenSCAD EPUB Textbook](../../assets/Programming_with_OpenSCAD.epub)** — Comprehensive guide to modules, parametric design, and library creation
-- **[CodeSolutions: Modules](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/5_Modules)** — Working examples of module definition, parameter passing, and reusable components
-- **[BOSL2 Library](https://github.com/BelfrySCAD/BOSL2)** — Professional OpenSCAD library with hundreds of reusable modules for common operations
+- **[Programming with OpenSCAD EPUB Textbook](../../assets/Programming_with_OpenSCAD.epub)** - Comprehensive guide to modules, parametric design, and library creation
+- **[CodeSolutions: Modules](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions/tree/main/5_Modules)** - Working examples of module definition, parameter passing, and reusable components
+- **[BOSL2 Library](https://github.com/BelfrySCAD/BOSL2)** - Professional OpenSCAD library with hundreds of reusable modules for common operations
 
 [^1]: 3DMake GitHub - https://github.com/tdeck/3dmake
 

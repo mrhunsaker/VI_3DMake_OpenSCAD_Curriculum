@@ -254,7 +254,7 @@ ___________________________________________________________
 | | | | |
 
 **Requirements Baseline Approved:**
-Date: ____________  Status: ✓ Approved / ⚠ Pending / ✗ Rejected
+Date: ____________  Status:  Approved /  Pending /  Rejected
 
 ---
 

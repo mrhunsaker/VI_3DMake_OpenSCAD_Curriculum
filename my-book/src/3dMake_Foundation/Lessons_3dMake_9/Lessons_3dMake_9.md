@@ -1,6 +1,6 @@
 # Lesson 9: Automation and 3dm Workflows
 
-Estimated time: 60–90 minutes
+Estimated time: 60-90 minutes
 
 **Learning Objectives**
 
@@ -43,11 +43,11 @@ Organize your project with multiple model files:
 
 ```
 src/
-├── main.scad              # Base model
-├── keycap_small.scad      # Variant 1
-├── keycap_medium.scad     # Variant 2
-├── keycap_large.scad      # Variant 3
-└── stand_test.scad        # Experimental model
++------ main.scad              # Base model
++------ keycap_small.scad      # Variant 1
++------ keycap_medium.scad     # Variant 2
++------ keycap_large.scad      # Variant 3
++------ stand_test.scad        # Experimental model
 ```
 
 Each file should be independent and buildable:
@@ -94,7 +94,7 @@ for scad_file in src/*.scad; do
     mv "build/main.gcode" "build/${base_name}.gcode"
   fi
   
-  echo "  ✓ Done: $base_name"
+  echo "   Done: $base_name"
 done
 
 echo "=== All models processed ==="
@@ -158,7 +158,7 @@ EOF
   stl_file="build/temp_keycap.stl"
   file_size=$(stat -f%z "$stl_file" 2>/dev/null || stat -c%s "$stl_file" 2>/dev/null)
   
-  echo "  → STL size: $(numfmt --to=iec-i --suffix=B "$file_size" 2>/dev/null || echo "$file_size bytes")"
+  echo "  -> STL size: $(numfmt --to=iec-i --suffix=B "$file_size" 2>/dev/null || echo "$file_size bytes")"
   
   # Save for comparison
   cp "$stl_file" "build/keycap_${size}mm.stl"
@@ -229,7 +229,7 @@ while true; do
     echo "$(date '+%Y-%m-%d %H:%M:%S') - Change detected: $file"
     
     # Rebuild
-    3dm build "$file" && echo "  ✓ Build successful"
+    3dm build "$file" && echo "   Build successful"
   done
   
   sleep 5  # Check every 5 seconds
@@ -296,7 +296,7 @@ echo "Archive: ${OUTPUT_DIR}.tar.gz"
 
 ---
 
-## Quiz — Lesson 3dMake.9 (10 questions)
+## Quiz - Lesson 3dMake.9 (10 questions)
 
 1. What does the `&&` operator do in a command chain[^1]?
 2. Why would you use a batch build script instead of running commands manually[^1]?
@@ -312,7 +312,7 @@ echo "Archive: ${OUTPUT_DIR}.tar.gz"
 ## Extension Problems (10)
 
 1. Create a batch build script that processes 5+ model variants and generates a comparison report[^1].
-2. Design a parameter testing matrix: test 3 dimensions × 3 wall thicknesses and compare results[^1].
+2. Design a parameter testing matrix: test 3 dimensions x 3 wall thicknesses and compare results[^1].
 3. Build a library module for common features (brackets, connectors, fasteners); use in multiple projects[^2].
 4. Create a "watch and rebuild" script that automatically regenerates designs when code changes[^1].
 5. Develop a production workflow script that generates timestamped builds with complete documentation[^1].

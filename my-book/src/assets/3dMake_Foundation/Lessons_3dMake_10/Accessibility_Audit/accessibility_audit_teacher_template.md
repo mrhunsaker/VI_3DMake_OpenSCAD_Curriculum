@@ -1,4 +1,4 @@
-# Accessibility Audit — Teacher Template (Extension Project)
+# Accessibility Audit - Teacher Template (Extension Project)
 
 ## Briefing
 
@@ -30,13 +30,13 @@ Students conduct a comprehensive accessibility audit of 3D printing workflows an
 
 ## Rubric
 
-### Category 1: Problem & Solution (0–3)
+### Category 1: Problem & Solution (0-3)
 Audit is thorough and identifies real barriers. Recommendations are actionable.
 
-### Category 2: Design & Code Quality (0–3)
+### Category 2: Design & Code Quality (0-3)
 Testing methodology is rigorous. Findings are specific and well-documented.
 
-### Category 3: Documentation (0–3)
+### Category 3: Documentation (0-3)
 Audit template complete. Recommendations prioritized. Action plan clear.
 
 ---

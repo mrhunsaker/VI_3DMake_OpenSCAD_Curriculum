@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -224,26 +224,26 @@
 <p>Use this comprehensive checklist to systematically diagnose and troubleshoot printing issues.</p>
 <h2 id="quick-diagnosis-flowchart"><a class="header" href="#quick-diagnosis-flowchart">Quick Diagnosis Flowchart</a></h2>
 <pre><code>Print Problem?
-│
-├─ [Before Print] Issues?
-│  ├─ Filament won't load → CHECK: Temperature, drive gear, nozzle
-│  ├─ Printer won't heat → CHECK: Power, temperature sensor, firmware
-│  └─ Bed not level → CHECK: Leveling routine, bed surface
-│
-├─ [First Layer] Issues?
-│  ├─ Won't stick → CHECK: Bed temperature, cleanliness, nozzle height
-│  ├─ Too squished → CHECK: Nozzle height, bed temperature
-│  └─ Gaps/uneven → CHECK: Bed levelness, hot end alignment
-│
-├─ [Mid-Print] Issues?
-│  ├─ Stops extruding → CHECK: Clog, temperature drop, jam
-│  ├─ Layers shift → CHECK: Loose belts, mechanical bind
-│  └─ Print wobbles → CHECK: Build plate, print stability
-│
-└─ [Print Quality] Issues?
-   ├─ Weak/brittle → CHECK: Temperature, flow rate, layer adhesion
-   ├─ Rough surface → CHECK: Flow rate, speed, temperature
-   └─ Warped → CHECK: Bed temperature, cooling rate, material
+|
++---- [Before Print] Issues?
+|  +---- Filament won't load -&gt; CHECK: Temperature, drive gear, nozzle
+|  +---- Printer won't heat -&gt; CHECK: Power, temperature sensor, firmware
+|  +---- Bed not level -&gt; CHECK: Leveling routine, bed surface
+|
++---- [First Layer] Issues?
+|  +---- Won't stick -&gt; CHECK: Bed temperature, cleanliness, nozzle height
+|  +---- Too squished -&gt; CHECK: Nozzle height, bed temperature
+|  +---- Gaps/uneven -&gt; CHECK: Bed levelness, hot end alignment
+|
++---- [Mid-Print] Issues?
+|  +---- Stops extruding -&gt; CHECK: Clog, temperature drop, jam
+|  +---- Layers shift -&gt; CHECK: Loose belts, mechanical bind
+|  +---- Print wobbles -&gt; CHECK: Build plate, print stability
+|
++---- [Print Quality] Issues?
+   +---- Weak/brittle -&gt; CHECK: Temperature, flow rate, layer adhesion
+   +---- Rough surface -&gt; CHECK: Flow rate, speed, temperature
+   +---- Warped -&gt; CHECK: Bed temperature, cooling rate, material
 </code></pre>
 <hr>
 <h2 id="pre-print-diagnostics"><a class="header" href="#pre-print-diagnostics">Pre-Print Diagnostics</a></h2>
@@ -270,18 +270,18 @@
 <ul>
 <li><input disabled="" type="checkbox"> Hot end temperature rises when heating commanded</li>
 <li><input disabled="" type="checkbox"> Bed temperature rises when heating commanded</li>
-<li><input disabled="" type="checkbox"> Temperature readings stable (not fluctuating 5°C+)</li>
+<li><input disabled="" type="checkbox"> Temperature readings stable (not fluctuating 5C+)</li>
 <li><input disabled="" type="checkbox"> No error messages during heating</li>
 </ul>
 <p><strong>Measurement Method:</strong></p>
-<pre><code>1. Set hot end to 200°C, observe rise
+<pre><code>1. Set hot end to 200C, observe rise
    - Expected time to reach: 2-4 minutes
-   - Steady rise without plateau: ✓ Good
-   - Plateau before reaching: ✗ Problem (see below)
+   - Steady rise without plateau:  Good
+   - Plateau before reaching:  Problem (see below)
 
-2. Set bed to 60°C, observe rise
+2. Set bed to 60C, observe rise
    - Expected time to reach: 5-10 minutes
-   - Stable at target: ✓ Good
+   - Stable at target:  Good
 </code></pre>
 <p><strong>If heating slow/incomplete:</strong></p>
 <ul>
@@ -298,10 +298,10 @@
 4. Calculate range (max - min)
 
 Results:
-- ±2°C range: ✓ Excellent
-- ±5°C range: ✓ Acceptable  
-- ±10°C range: ⚠ Marginal
-- &gt;±10°C range: ✗ Problem
+- +/-2C range:  Excellent
+- +/-5C range:  Acceptable  
+- +/-10C range:  Marginal
+- &gt;+/-10C range:  Problem
 </code></pre>
 <hr>
 <h3 id="category-c-mechanical-systems"><a class="header" href="#category-c-mechanical-systems">Category C: Mechanical Systems</a></h3>
@@ -346,8 +346,8 @@ Target: Consistent slight paper drag all points
 </code></pre>
 <p><strong>Leveling Validation:</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> Level at 4 corners ✓</li>
-<li><input disabled="" type="checkbox"> Level at bed center ✓</li>
+<li><input disabled="" type="checkbox"> Level at 4 corners</li>
+<li><input disabled="" type="checkbox"> Level at bed center</li>
 <li><input disabled="" type="checkbox"> No high/low points</li>
 <li><input disabled="" type="checkbox"> Nozzle doesn’t hit bed at any point</li>
 <li><input disabled="" type="checkbox"> Consistent first-layer appearance across bed</li>
@@ -385,7 +385,7 @@ Timeline:
 - &gt;60 sec: Possible partial clog
 
 If fails:
-→ See "Filament Won't Load" troubleshooting
+-&gt; See "Filament Won't Load" troubleshooting
 </code></pre>
 <hr>
 <h2 id="first-layer-diagnostics"><a class="header" href="#first-layer-diagnostics">First Layer Diagnostics</a></h2>
@@ -401,7 +401,7 @@ If fails:
 <tr><td>Gaps between lines</td><td>Nozzle too high</td><td>Lower Z-offset</td></tr>
 <tr><td>Completely squished</td><td>Nozzle too low</td><td>Raise Z-offset</td></tr>
 <tr><td>Partial adhesion</td><td>Bed too cool or dirty</td><td>Clean bed, increase temp</td></tr>
-<tr><td>Consistent squish/lines</td><td>✓ Correct</td><td>Continue print</td></tr>
+<tr><td>Consistent squish/lines</td><td>Correct</td><td>Continue print</td></tr>
 </tbody>
 </table>
 </div>
@@ -418,14 +418,14 @@ If fails:
 </ul>
 <p><strong>Diagnostic Decision:</strong></p>
 <pre><code>Is filament stuck in extruder?
-├─ YES → Nozzle clog likely
-│        → See Nozzle Clog section (common_issues_and_solutions.md)
-│        → Try: Cold pull, retract, clean
-│
-└─ NO → Filament loading issue
-         → Is spool binding? → Fix spool rotation
-         → Is path blocked? → Clear obstruction
-         → Is drive gear slipping? → Clean/tension drive gear
++---- YES -&gt; Nozzle clog likely
+|        -&gt; See Nozzle Clog section (common_issues_and_solutions.md)
+|        -&gt; Try: Cold pull, retract, clean
+|
++---- NO -&gt; Filament loading issue
+         -&gt; Is spool binding? -&gt; Fix spool rotation
+         -&gt; Is path blocked? -&gt; Clear obstruction
+         -&gt; Is drive gear slipping? -&gt; Clean/tension drive gear
 </code></pre>
 <hr>
 <h3 id="mechanical-issue-diagnostics"><a class="header" href="#mechanical-issue-diagnostics">Mechanical Issue Diagnostics</a></h3>
@@ -441,7 +441,7 @@ If fails:
 <pre><code>1. Pause print
 2. Manually move suspected axis
 3. Record resistance type:
-   - Smooth: ✓ Normal
+   - Smooth:  Normal
    - Rough: Bearing/alignment problem
    - Stuck: Mechanical bind
 4. Visually inspect that axis
@@ -463,7 +463,7 @@ If fails:
 <h3 id="precision-measurement"><a class="header" href="#precision-measurement">Precision Measurement</a></h3>
 <p><strong>Materials Needed:</strong></p>
 <ul>
-<li>Digital calipers (±0.05mm accuracy)</li>
+<li>Digital calipers (+/-0.05mm accuracy)</li>
 <li>Ruler (for larger dimensions)</li>
 <li>Notepad for recording</li>
 </ul>
@@ -474,12 +474,12 @@ If fails:
 4. Calculate deviation percentage
 
 Formula:
-Deviation % = ((Measured - Design) / Design) × 100%
+Deviation % = ((Measured - Design) / Design) x 100%
 
 Example:
 - Design: 20.0mm
 - Measured: 19.8mm
-- Deviation: ((19.8 - 20.0) / 20.0) × 100% = -1%
+- Deviation: ((19.8 - 20.0) / 20.0) x 100% = -1%
 </code></pre>
 <h3 id="tolerance-evaluation"><a class="header" href="#tolerance-evaluation">Tolerance Evaluation</a></h3>
 <div class="table-wrapper">
@@ -488,9 +488,9 @@ Example:
 <tr><th>Tolerance</th><th>Pass/Fail</th><th>Action</th></tr>
 </thead>
 <tbody>
-<tr><td>±0.5mm or better</td><td>PASS</td><td>No adjustment needed</td></tr>
-<tr><td>±0.5-1mm</td><td>MARGINAL</td><td>Document and monitor</td></tr>
-<tr><td>&gt;±1mm</td><td>FAIL</td><td>Adjust flow/calibration</td></tr>
+<tr><td>+/-0.5mm or better</td><td>PASS</td><td>No adjustment needed</td></tr>
+<tr><td>+/-0.5-1mm</td><td>MARGINAL</td><td>Document and monitor</td></tr>
+<tr><td>&gt;+/-1mm</td><td>FAIL</td><td>Adjust flow/calibration</td></tr>
 </tbody>
 </table>
 </div>
@@ -499,7 +499,7 @@ Example:
 <p><strong>When quality varies between prints:</strong></p>
 <p><strong>Check Conditions:</strong></p>
 <ul>
-<li><input disabled="" type="checkbox"> Room temperature stable (±5°C?)</li>
+<li><input disabled="" type="checkbox"> Room temperature stable (+/-5C?)</li>
 <li><input disabled="" type="checkbox"> Humidity reasonable (30-60%?)</li>
 <li><input disabled="" type="checkbox"> No drafts from windows/AC near printer</li>
 <li><input disabled="" type="checkbox"> Consistent vibration level (no external impact)</li>
@@ -507,41 +507,41 @@ Example:
 <li><input disabled="" type="checkbox"> Same slicer settings applied</li>
 </ul>
 <p><strong>Environmental Log:</strong></p>
-<pre><code>Date: _____    Time: _____    Temp: ___°C    Humidity: ___%
+<pre><code>Date: _____    Time: _____    Temp: ___C    Humidity: ___%
 Print Duration: ______    Result Quality: Poor/Fair/Good/Excellent
 Notes: ________________________________________________________
 </code></pre>
 <hr>
 <h2 id="troubleshooting-decision-tree"><a class="header" href="#troubleshooting-decision-tree">Troubleshooting Decision Tree</a></h2>
 <p><strong>Start here for systematic diagnosis:</strong></p>
-<pre><code>┌─ Printer won't start?
-│  └─ Check: Power, connections, firmware
-│
-├─ Heating won't work?
-│  └─ Check: Temperature sensor, firmware, heater element
-│
-├─ Won't home/move?
-│  └─ Check: Endstops, mechanical bind, motors, belts
-│
-├─ First layer fails?
-│  └─ Check: Bed level, nozzle height, cleanliness, temperature
-│
-├─ Filament won't feed?
-│  └─ Check: Temperature, nozzle, drive gear, clog
-│
-├─ Extrusion stops mid-print?
-│  ├─ Extruder grinding? → Clog (cold pull or replace nozzle)
-│  ├─ Filament slack? → Drive gear or load issue
-│  └─ No sounds? → Temperature drop or firmware issue
-│
-├─ Print quality poor?
-│  ├─ Weak/thin? → Increase flow/temp/slow down
-│  ├─ Rough/bloated? → Decrease flow/temp/speed up
-│  ├─ Warped? → Lower bed temp, faster cooling
-│  └─ Strings? → Increase retraction, lower temp
-│
-└─ Dimensions wrong?
-   └─ Check: Flow rate calibration, printer accuracy limits
+<pre><code>+---- Printer won't start?
+|  +---- Check: Power, connections, firmware
+|
++---- Heating won't work?
+|  +---- Check: Temperature sensor, firmware, heater element
+|
++---- Won't home/move?
+|  +---- Check: Endstops, mechanical bind, motors, belts
+|
++---- First layer fails?
+|  +---- Check: Bed level, nozzle height, cleanliness, temperature
+|
++---- Filament won't feed?
+|  +---- Check: Temperature, nozzle, drive gear, clog
+|
++---- Extrusion stops mid-print?
+|  +---- Extruder grinding? -&gt; Clog (cold pull or replace nozzle)
+|  +---- Filament slack? -&gt; Drive gear or load issue
+|  +---- No sounds? -&gt; Temperature drop or firmware issue
+|
++---- Print quality poor?
+|  +---- Weak/thin? -&gt; Increase flow/temp/slow down
+|  +---- Rough/bloated? -&gt; Decrease flow/temp/speed up
+|  +---- Warped? -&gt; Lower bed temp, faster cooling
+|  +---- Strings? -&gt; Increase retraction, lower temp
+|
++---- Dimensions wrong?
+   +---- Check: Flow rate calibration, printer accuracy limits
 </code></pre>
 <hr>
 <h2 id="diagnostic-report-template"><a class="header" href="#diagnostic-report-template">Diagnostic Report Template</a></h2>

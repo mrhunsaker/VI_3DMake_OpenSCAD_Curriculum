@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -240,7 +240,7 @@
 </ul>
 <p><strong>Not Supported:</strong></p>
 <ul>
-<li><strong>macOS</strong> — Currently no macOS version is available</li>
+<li><strong>macOS</strong> - Currently no macOS version is available</li>
 </ul>
 <h3 id="step-by-step-installation"><a class="header" href="#step-by-step-installation">Step-by-Step Installation</a></h3>
 <h4 id="step-1-download-3dmake-for-your-operating-system"><a class="header" href="#step-1-download-3dmake-for-your-operating-system">Step 1: Download 3dMake for Your Operating System</a></h4>
@@ -314,10 +314,10 @@
 <h3 id="what-is-a-3dmake-project"><a class="header" href="#what-is-a-3dmake-project">What Is a 3dMake Project?</a></h3>
 <p>A 3dMake project is a folder structure that organizes:</p>
 <ul>
-<li><strong>src/</strong> folder — contains your OpenSCAD (.scad) files</li>
-<li><strong>build/</strong> folder — stores outputs that 3dMake generates (STL files, sliced GCODE, etc.)</li>
-<li><strong>3dmake.toml</strong> file — project configuration and settings</li>
-<li><strong>README.md</strong> — project documentation</li>
+<li><strong>src/</strong> folder - contains your OpenSCAD (.scad) files</li>
+<li><strong>build/</strong> folder - stores outputs that 3dMake generates (STL files, sliced GCODE, etc.)</li>
+<li><strong>3dmake.toml</strong> file - project configuration and settings</li>
+<li><strong>README.md</strong> - project documentation</li>
 </ul>
 <h3 id="creating-your-first-project"><a class="header" href="#creating-your-first-project">Creating Your First Project</a></h3>
 <h4 id="step-1-choose-or-create-a-project-directory"><a class="header" href="#step-1-choose-or-create-a-project-directory">Step 1: Choose or Create a Project Directory</a></h4>
@@ -350,10 +350,10 @@ C:\Users\YourName\Desktop\MyProject\
 </code></pre>
 <p>This creates the project structure:</p>
 <pre><code class="language-powershell">FirstProject/
-├── src/              (stores your .scad files)
-├── build/            (stores generated files: STL, GCODE, etc.)
-├── 3dmake.toml       (project configuration)
-└── README.md         (project documentation)
++------ src/              (stores your .scad files)
++------ build/            (stores generated files: STL, GCODE, etc.)
++------ 3dmake.toml       (project configuration)
++------ README.md         (project documentation)
 </code></pre>
 <p>The <code>src/main.scad</code> file is created as a starting template.</p>
 <h4 id="step-4-verify-project-creation"><a class="header" href="#step-4-verify-project-creation">Step 4: Verify Project Creation</a></h4>
@@ -399,16 +399,16 @@ C:\Users\YourName\Desktop\MyProject\
 </code></pre>
 <p>Output includes:</p>
 <ul>
-<li><strong>Bounding box</strong> — dimensions (X, Y, Z in millimeters)</li>
-<li><strong>Volume</strong> — cubic millimeters of material</li>
-<li><strong>Face count</strong> — total triangles in the mesh</li>
-<li><strong>Manifold status</strong> — whether model is watertight (printable)</li>
+<li><strong>Bounding box</strong> - dimensions (X, Y, Z in millimeters)</li>
+<li><strong>Volume</strong> - cubic millimeters of material</li>
+<li><strong>Face count</strong> - total triangles in the mesh</li>
+<li><strong>Manifold status</strong> - whether model is watertight (printable)</li>
 </ul>
 <p><strong>Example output:</strong></p>
-<pre><code>Volume: 1234.56 mm³
-Bounding Box: 50.0 × 40.0 × 30.0 mm
+<pre><code>Volume: 1234.56 mm
+Bounding Box: 50.0 x 40.0 x 30.0 mm
 Faces: 2048
-Manifold: Yes ✓
+Manifold: Yes 
 </code></pre>
 <h4 id="step-4-previewing-your-model"><a class="header" href="#step-4-previewing-your-model">Step 4: Previewing Your Model</a></h4>
 <p>3dMake can create flat “tactile previews” of your model (fast-printing 2D silhouettes):</p>
@@ -420,9 +420,9 @@ Manifold: Yes ✓
 </code></pre>
 <p>Available preview types:</p>
 <ul>
-<li><code>3sil</code> — Three silhouettes (front, left, top) — <strong>default</strong></li>
-<li><code>frontsil</code> — Front-facing silhouette only</li>
-<li><code>topsil</code> — Top-down silhouette only</li>
+<li><code>3sil</code> - Three silhouettes (front, left, top) - <strong>default</strong></li>
+<li><code>frontsil</code> - Front-facing silhouette only</li>
+<li><code>topsil</code> - Top-down silhouette only</li>
 </ul>
 <p>Change preview type:</p>
 <pre><code class="language-bash">3dm preview -v topsil print
@@ -433,8 +433,8 @@ Manifold: Yes ✓
 </code></pre>
 <p>This creates both:</p>
 <ul>
-<li><code>build/main.stl</code> — the 3D model</li>
-<li><code>build/main.gcode</code> — sliced for your printer</li>
+<li><code>build/main.stl</code> - the 3D model</li>
+<li><code>build/main.gcode</code> - sliced for your printer</li>
 </ul>
 <h4 id="step-6-printing-directly-from-3dmake"><a class="header" href="#step-6-printing-directly-from-3dmake">Step 6: Printing Directly from 3dMake</a></h4>
 <p>If your printer is connected via OctoPrint or Bambu Labs (LAN mode):</p>
@@ -460,15 +460,15 @@ pwd  # Verify you're in the right place
 <h4 id="method-2-create-a-projects-directory-structure"><a class="header" href="#method-2-create-a-projects-directory-structure">Method 2: Create a Projects Directory Structure</a></h4>
 <p>Create a central folder for all projects:</p>
 <pre><code>3d-projects/
-├── FirstProject/
-│   ├── src/
-│   ├── build/
-│   └── 3dmake.toml
-├── SecondProject/
-│   ├── src/
-│   ├── build/
-│   └── 3dmake.toml
-└── README.md (project index)
++------ FirstProject/
+|   +------ src/
+|   +------ build/
+|   +------ 3dmake.toml
++------ SecondProject/
+|   +------ src/
+|   +------ build/
+|   +------ 3dmake.toml
++------ README.md (project index)
 </code></pre>
 <h4 id="method-3-use-a-project-index"><a class="header" href="#method-3-use-a-project-index">Method 3: Use a Project Index</a></h4>
 <p>Create a <code>README.md</code> in your <code>3d-projects/</code> folder to track all projects:</p>
@@ -476,17 +476,17 @@ pwd  # Verify you're in the right place
 
 ## Project List
 
-1. **FirstProject** — My initial test models
+1. **FirstProject** - My initial test models
    - Location: `./FirstProject/src/`
    - Status: In progress
    - Latest model: `main.scad`
 
-2. **SecondProject** — Parametric keychain designs
+2. **SecondProject** - Parametric keychain designs
    - Location: `./SecondProject/src/`
    - Status: Complete
    - Latest model: `keychain.scad`
 
-3. **ThirdProject** — Functional brackets for printing
+3. **ThirdProject** - Functional brackets for printing
    - Location: `./ThirdProject/src/`
    - Status: In progress
    - Latest model: `bracket_assembly.scad`
@@ -530,39 +530,39 @@ done
 <p><strong>Basic TOML Formatting Rules:</strong></p>
 <ol>
 <li>
-<p><strong>Key-value pairs</strong> — Each setting has a name and value separated by an equals sign:</p>
+<p><strong>Key-value pairs</strong> - Each setting has a name and value separated by an equals sign:</p>
 <pre><code class="language-toml">project_name = "My Project"
 </code></pre>
 </li>
 <li>
-<p><strong>Strings use quotes</strong> — Text values must be wrapped in double quotes:</p>
+<p><strong>Strings use quotes</strong> - Text values must be wrapped in double quotes:</p>
 <pre><code class="language-toml">editor = "code"
 printer_profile = "prusa_MK4"
 </code></pre>
 </li>
 <li>
-<p><strong>Numbers don’t need quotes</strong> — Numeric values stand alone:</p>
+<p><strong>Numbers don’t need quotes</strong> - Numeric values stand alone:</p>
 <pre><code class="language-toml">scale = 1.05
 copies = 3
 </code></pre>
 </li>
 <li>
-<p><strong>Boolean values are true or false</strong> — Lowercase, no quotes:</p>
+<p><strong>Boolean values are true or false</strong> - Lowercase, no quotes:</p>
 <pre><code class="language-toml">auto_start_prints = true
 edit_in_background = false
 </code></pre>
 </li>
 <li>
-<p><strong>Arrays use square brackets</strong> — Lists of values separated by commas:</p>
+<p><strong>Arrays use square brackets</strong> - Lists of values separated by commas:</p>
 <pre><code class="language-toml">overlays = ["supports", "PETG"]
 libraries = ["bosl", "braille-chars"]
 </code></pre>
 </li>
 <li>
-<p><strong>One setting per line</strong> — Each configuration on its own line</p>
+<p><strong>One setting per line</strong> - Each configuration on its own line</p>
 </li>
 <li>
-<p><strong>Comments start with #</strong> — Use for notes (not processed):</p>
+<p><strong>Comments start with #</strong> - Use for notes (not processed):</p>
 <pre><code class="language-toml"># This is my default printer
 printer_profile = "prusa_MK4"
 </code></pre>
@@ -571,8 +571,8 @@ printer_profile = "prusa_MK4"
 <p><strong>How 3dMake Uses TOML:</strong></p>
 <p>3dMake has two TOML configuration files:</p>
 <ul>
-<li><strong>Global config</strong> (<code>defaults.toml</code>) — Settings for all your projects (run <code>3dm edit-global-config</code> to edit)</li>
-<li><strong>Project config</strong> (<code>3dmake.toml</code>) — Settings specific to one project (located in your project root)</li>
+<li><strong>Global config</strong> (<code>defaults.toml</code>) - Settings for all your projects (run <code>3dm edit-global-config</code> to edit)</li>
+<li><strong>Project config</strong> (<code>3dmake.toml</code>) - Settings specific to one project (located in your project root)</li>
 </ul>
 <p>Project settings override global settings. For example, if your global config says <code>printer_profile = "prusa_MK4"</code> but your project’s <code>3dmake.toml</code> says <code>printer_profile = "bambu"</code>, the project setting wins.</p>
 <h3 id="project-configuration-3dmaketoml"><a class="header" href="#project-configuration-3dmaketoml">Project Configuration (3dmake.toml)</a></h3>
@@ -710,9 +710,9 @@ ls -la
 <li>Edit configuration: <code>3dm edit-global-config</code></li>
 <li>Check these settings:
 <ul>
-<li><code>octoprint_host</code> — correct IP/URL</li>
-<li><code>octoprint_key</code> — valid API key</li>
-<li><code>print_mode</code> — set to “octoprint” or “bambu_lan”</li>
+<li><code>octoprint_host</code> - correct IP/URL</li>
+<li><code>octoprint_key</code> - valid API key</li>
+<li><code>print_mode</code> - set to “octoprint” or “bambu_lan”</li>
 </ul>
 </li>
 <li>Test connection: <code>3dm build print</code> (without actually printing first)</li>
@@ -746,10 +746,10 @@ ls -la
 </div>
 <h3 id="directory-structure-reference"><a class="header" href="#directory-structure-reference">Directory Structure Reference</a></h3>
 <pre><code>YourProject/
-├── src/                 ← Place .scad files here
-├── build/               ← Built STL, GCODE auto-save here
-├── 3dmake.toml          ← Project settings
-└── README.md            ← Project documentation
++------ src/                 &lt;- Place .scad files here
++------ build/               &lt;- Built STL, GCODE auto-save here
++------ 3dmake.toml          &lt;- Project settings
++------ README.md            &lt;- Project documentation
 </code></pre>
 <h3 id="configuration-options-3dmaketoml"><a class="header" href="#configuration-options-3dmaketoml">Configuration Options (3dmake.toml)</a></h3>
 <p>Common settings you can modify:</p>
@@ -764,12 +764,12 @@ editor = "code"                  # Text editor to use
 <h2 id="part-8-next-steps"><a class="header" href="#part-8-next-steps">Part 8: Next Steps</a></h2>
 <p>Once you’re comfortable with basic projects:</p>
 <ol>
-<li><strong>Learn parametric design</strong> — Make reusable models with variables</li>
-<li><strong>Explore modules</strong> — Organize code into reusable functions</li>
-<li><strong>Add libraries</strong> — Use pre-built OpenSCAD libraries (BOSL, etc.)</li>
-<li><strong>Optimize workflows</strong> — Chain commands (<code>3dm build slice print</code>)</li>
-<li><strong>Automate models</strong> — Use loops and conditionals in OpenSCAD</li>
-<li><strong>Collaborate</strong> — Use Git to share projects with others</li>
+<li><strong>Learn parametric design</strong> - Make reusable models with variables</li>
+<li><strong>Explore modules</strong> - Organize code into reusable functions</li>
+<li><strong>Add libraries</strong> - Use pre-built OpenSCAD libraries (BOSL, etc.)</li>
+<li><strong>Optimize workflows</strong> - Chain commands (<code>3dm build slice print</code>)</li>
+<li><strong>Automate models</strong> - Use loops and conditionals in OpenSCAD</li>
+<li><strong>Collaborate</strong> - Use Git to share projects with others</li>
 </ol>
 <p>For advanced topics, see:</p>
 <ul>
@@ -779,10 +779,10 @@ editor = "code"                  # Text editor to use
 </ul>
 <hr>
 <h2 id="sources"><a class="header" href="#sources">Sources</a></h2>
-<p>3dMake GitHub Repository. (2026). <em>3dMake — Non-visual 3D design and printing</em>. Retrieved from https://github.com/tdeck/3dmake</p>
+<p>3dMake GitHub Repository. (2026). <em>3dMake - Non-visual 3D design and printing</em>. Retrieved from https://github.com/tdeck/3dmake</p>
 <p>3dMake Documentation. (2026). <em>Terminal quick start guide</em>. Retrieved from https://github.com/tdeck/3dmake/blob/main/docs/terminal_quick_start.md</p>
 <p>OpenSCAD Community. (2025). <em>OpenSCAD user manual</em>. Retrieved from https://en.wikibooks.org/wiki/OpenSCAD_User_Manual</p>
-<p>Revarbat (Ed.). (2024). <em>BOSL — Belfry OpenSCAD Library</em>. Retrieved from https://github.com/revarbat/BOSL/wiki</p>
+<p>Revarbat (Ed.). (2024). <em>BOSL - Belfry OpenSCAD Library</em>. Retrieved from https://github.com/revarbat/BOSL/wiki</p>
 
                     </main>
 

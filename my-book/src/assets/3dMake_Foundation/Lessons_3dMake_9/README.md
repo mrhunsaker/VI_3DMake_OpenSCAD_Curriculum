@@ -1,6 +1,6 @@
 # Lesson 9: Automation and 3dm Workflows
 
-**Estimated time:** 60–90 minutes
+**Estimated time:** 60-90 minutes
 
 ## Folder Contents
 
@@ -25,9 +25,9 @@ This folder contains supporting materials for Lesson 9:
 
 ## Script Templates in This Folder
 
-- `build_all.sh` — Batch build all models in a project
-- `test_variants.sh` — Build and test parameter variations
-- `export_batch.ps1` — PowerShell export automation
+- `build_all.sh` - Batch build all models in a project
+- `test_variants.sh` - Build and test parameter variations
+- `export_batch.ps1` - PowerShell export automation
 
 ---
 

@@ -22,7 +22,7 @@ Before installing 3dMake, ensure you have:
 - **Linux** (x86-64 architecture)
 
 **Not Supported:**
-- **macOS** — Currently no macOS version is available
+- **macOS** - Currently no macOS version is available
 
 ### Step-by-Step Installation
 
@@ -126,10 +126,10 @@ This displays all available 3dMake commands.
 
 A 3dMake project is a folder structure that organizes:
 
-- **src/** folder — contains your OpenSCAD (.scad) files
-- **build/** folder — stores outputs that 3dMake generates (STL files, sliced GCODE, etc.)
-- **3dmake.toml** file — project configuration and settings
-- **README.md** — project documentation
+- **src/** folder - contains your OpenSCAD (.scad) files
+- **build/** folder - stores outputs that 3dMake generates (STL files, sliced GCODE, etc.)
+- **3dmake.toml** file - project configuration and settings
+- **README.md** - project documentation
 
 ### Creating Your First Project
 
@@ -189,10 +189,10 @@ This creates the project structure:
 
 ```powershell
 FirstProject/
-├── src/              (stores your .scad files)
-├── build/            (stores generated files: STL, GCODE, etc.)
-├── 3dmake.toml       (project configuration)
-└── README.md         (project documentation)
++------ src/              (stores your .scad files)
++------ build/            (stores generated files: STL, GCODE, etc.)
++------ 3dmake.toml       (project configuration)
++------ README.md         (project documentation)
 ```
 
 The `src/main.scad` file is created as a starting template.
@@ -272,18 +272,18 @@ To see statistics about your model:
 ```
 
 Output includes:
-- **Bounding box** — dimensions (X, Y, Z in millimeters)
-- **Volume** — cubic millimeters of material
-- **Face count** — total triangles in the mesh
-- **Manifold status** — whether model is watertight (printable)
+- **Bounding box** - dimensions (X, Y, Z in millimeters)
+- **Volume** - cubic millimeters of material
+- **Face count** - total triangles in the mesh
+- **Manifold status** - whether model is watertight (printable)
 
 **Example output:**
 
 ```
-Volume: 1234.56 mm³
-Bounding Box: 50.0 × 40.0 × 30.0 mm
+Volume: 1234.56 mm
+Bounding Box: 50.0 x 40.0 x 30.0 mm
 Faces: 2048
-Manifold: Yes ✓
+Manifold: Yes 
 ```
 
 #### Step 4: Previewing Your Model
@@ -303,9 +303,9 @@ To print the preview directly:
 ```
 
 Available preview types:
-- `3sil` — Three silhouettes (front, left, top) — **default**
-- `frontsil` — Front-facing silhouette only
-- `topsil` — Top-down silhouette only
+- `3sil` - Three silhouettes (front, left, top) - **default**
+- `frontsil` - Front-facing silhouette only
+- `topsil` - Top-down silhouette only
 
 Change preview type:
 
@@ -322,8 +322,8 @@ To slice your model (convert STL to GCODE for your printer):
 ```
 
 This creates both:
-- `build/main.stl` — the 3D model
-- `build/main.gcode` — sliced for your printer
+- `build/main.stl` - the 3D model
+- `build/main.gcode` - sliced for your printer
 
 #### Step 6: Printing Directly from 3dMake
 
@@ -368,15 +368,15 @@ Create a central folder for all projects:
 
 ```
 3d-projects/
-├── FirstProject/
-│   ├── src/
-│   ├── build/
-│   └── 3dmake.toml
-├── SecondProject/
-│   ├── src/
-│   ├── build/
-│   └── 3dmake.toml
-└── README.md (project index)
++------ FirstProject/
+|   +------ src/
+|   +------ build/
+|   +------ 3dmake.toml
++------ SecondProject/
+|   +------ src/
+|   +------ build/
+|   +------ 3dmake.toml
++------ README.md (project index)
 ```
 
 #### Method 3: Use a Project Index
@@ -388,17 +388,17 @@ Create a `README.md` in your `3d-projects/` folder to track all projects:
 
 ## Project List
 
-1. **FirstProject** — My initial test models
+1. **FirstProject** - My initial test models
    - Location: `./FirstProject/src/`
    - Status: In progress
    - Latest model: `main.scad`
 
-2. **SecondProject** — Parametric keychain designs
+2. **SecondProject** - Parametric keychain designs
    - Location: `./SecondProject/src/`
    - Status: Complete
    - Latest model: `keychain.scad`
 
-3. **ThirdProject** — Functional brackets for printing
+3. **ThirdProject** - Functional brackets for printing
    - Location: `./ThirdProject/src/`
    - Status: In progress
    - Latest model: `bracket_assembly.scad`
@@ -457,37 +457,37 @@ TOML (Tom's Obvious, Minimal Language) is a human-readable configuration file fo
 
 **Basic TOML Formatting Rules:**
 
-1. **Key-value pairs** — Each setting has a name and value separated by an equals sign:
+1. **Key-value pairs** - Each setting has a name and value separated by an equals sign:
    ```toml
    project_name = "My Project"
    ```
 
-2. **Strings use quotes** — Text values must be wrapped in double quotes:
+2. **Strings use quotes** - Text values must be wrapped in double quotes:
    ```toml
    editor = "code"
    printer_profile = "prusa_MK4"
    ```
 
-3. **Numbers don't need quotes** — Numeric values stand alone:
+3. **Numbers don't need quotes** - Numeric values stand alone:
    ```toml
    scale = 1.05
    copies = 3
    ```
 
-4. **Boolean values are true or false** — Lowercase, no quotes:
+4. **Boolean values are true or false** - Lowercase, no quotes:
    ```toml
    auto_start_prints = true
    edit_in_background = false
    ```
 
-5. **Arrays use square brackets** — Lists of values separated by commas:
+5. **Arrays use square brackets** - Lists of values separated by commas:
    ```toml
    overlays = ["supports", "PETG"]
    libraries = ["bosl", "braille-chars"]
    ```
 
-6. **One setting per line** — Each configuration on its own line
-7. **Comments start with #** — Use for notes (not processed):
+6. **One setting per line** - Each configuration on its own line
+7. **Comments start with #** - Use for notes (not processed):
    ```toml
    # This is my default printer
    printer_profile = "prusa_MK4"
@@ -496,8 +496,8 @@ TOML (Tom's Obvious, Minimal Language) is a human-readable configuration file fo
 **How 3dMake Uses TOML:**
 
 3dMake has two TOML configuration files:
-- **Global config** (`defaults.toml`) — Settings for all your projects (run `3dm edit-global-config` to edit)
-- **Project config** (`3dmake.toml`) — Settings specific to one project (located in your project root)
+- **Global config** (`defaults.toml`) - Settings for all your projects (run `3dm edit-global-config` to edit)
+- **Project config** (`3dmake.toml`) - Settings specific to one project (located in your project root)
 
 Project settings override global settings. For example, if your global config says `printer_profile = "prusa_MK4"` but your project's `3dmake.toml` says `printer_profile = "bambu"`, the project setting wins.
 
@@ -708,9 +708,9 @@ chmod +x 3dm
 1. Verify printer is running and connected to network
 2. Edit configuration: `3dm edit-global-config`
 3. Check these settings:
-   - `octoprint_host` — correct IP/URL
-   - `octoprint_key` — valid API key
-   - `print_mode` — set to "octoprint" or "bambu_lan"
+   - `octoprint_host` - correct IP/URL
+   - `octoprint_key` - valid API key
+   - `print_mode` - set to "octoprint" or "bambu_lan"
 4. Test connection: `3dm build print` (without actually printing first)
 
 ---
@@ -741,10 +741,10 @@ chmod +x 3dm
 
 ```
 YourProject/
-├── src/                 ← Place .scad files here
-├── build/               ← Built STL, GCODE auto-save here
-├── 3dmake.toml          ← Project settings
-└── README.md            ← Project documentation
++------ src/                 <- Place .scad files here
++------ build/               <- Built STL, GCODE auto-save here
++------ 3dmake.toml          <- Project settings
++------ README.md            <- Project documentation
 ```
 
 ### Configuration Options (3dmake.toml)
@@ -767,12 +767,12 @@ For full configuration options, see the GitHub repository: https://github.com/td
 
 Once you're comfortable with basic projects:
 
-1. **Learn parametric design** — Make reusable models with variables
-2. **Explore modules** — Organize code into reusable functions
-3. **Add libraries** — Use pre-built OpenSCAD libraries (BOSL, etc.)
-4. **Optimize workflows** — Chain commands (`3dm build slice print`)
-5. **Automate models** — Use loops and conditionals in OpenSCAD
-6. **Collaborate** — Use Git to share projects with others
+1. **Learn parametric design** - Make reusable models with variables
+2. **Explore modules** - Organize code into reusable functions
+3. **Add libraries** - Use pre-built OpenSCAD libraries (BOSL, etc.)
+4. **Optimize workflows** - Chain commands (`3dm build slice print`)
+5. **Automate models** - Use loops and conditionals in OpenSCAD
+6. **Collaborate** - Use Git to share projects with others
 
 For advanced topics, see:
 
@@ -784,10 +784,10 @@ For advanced topics, see:
 
 ## Sources
 
-3dMake GitHub Repository. (2026). *3dMake — Non-visual 3D design and printing*. Retrieved from https://github.com/tdeck/3dmake
+3dMake GitHub Repository. (2026). *3dMake - Non-visual 3D design and printing*. Retrieved from https://github.com/tdeck/3dmake
 
 3dMake Documentation. (2026). *Terminal quick start guide*. Retrieved from https://github.com/tdeck/3dmake/blob/main/docs/terminal_quick_start.md
 
 OpenSCAD Community. (2025). *OpenSCAD user manual*. Retrieved from https://en.wikibooks.org/wiki/OpenSCAD_User_Manual
 
-Revarbat (Ed.). (2024). *BOSL — Belfry OpenSCAD Library*. Retrieved from https://github.com/revarbat/BOSL/wiki
+Revarbat (Ed.). (2024). *BOSL - Belfry OpenSCAD Library*. Retrieved from https://github.com/revarbat/BOSL/wiki

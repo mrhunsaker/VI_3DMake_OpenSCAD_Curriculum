@@ -1,4 +1,4 @@
-# Appendix A: Comprehensive Slicing Guide — All Major Slicers
+# Appendix A: Comprehensive Slicing Guide - All Major Slicers
 
 This appendix covers settings, workflows, and troubleshooting for **7 major 3D printer slicers**. Each slicer is represented with:
 - Recommended settings for beginners
@@ -17,17 +17,17 @@ This appendix covers settings, workflows, and troubleshooting for **7 major 3D p
 
 ```
 SCAD Design (bracelet_holder.scad)
-   ↓
+   v
 Export to STL (3D shape file)
-   ↓
+   v
 Load into Slicer
-   ↓
+   v
 Apply settings (temperature, speed, supports, etc.)
-   ↓
+   v
 Generate G-code (printer instructions)
-   ↓
+   v
 Send to Printer
-   ↓
+   v
 Physical part
 ```
 
@@ -35,12 +35,12 @@ Physical part
 
 | Parameter | What It Does | Typical Range | Impact |
 |---|---|---|---|
-| **Nozzle Temp** | Filament melting heat | 200–250°C | Too cold → weak; too hot → oozing |
-| **Bed Temp** | Build plate heat | 50–110°C | Helps adhesion; prevents warping |
-| **Layer Height** | Z-axis precision | 0.1–0.4mm | Finer = slower, better detail |
-| **Print Speed** | Movement velocity | 30–150 mm/s | Faster = worse quality; slower = stronger |
-| **Infill %** | Interior density | 10–100% | Higher = stronger + heavier |
-| **Support** | Temporary scaffolding | On/Off | Required for overhangs >45° |
+| **Nozzle Temp** | Filament melting heat | 200-250C | Too cold -> weak; too hot -> oozing |
+| **Bed Temp** | Build plate heat | 50-110C | Helps adhesion; prevents warping |
+| **Layer Height** | Z-axis precision | 0.1-0.4mm | Finer = slower, better detail |
+| **Print Speed** | Movement velocity | 30-150 mm/s | Faster = worse quality; slower = stronger |
+| **Infill %** | Interior density | 10-100% | Higher = stronger + heavier |
+| **Support** | Temporary scaffolding | On/Off | Required for overhangs >45 |
 | **Bed Adhesion** | First layer stickiness | Brim/Raft/Skirt | Prevents parts lifting mid-print |
 
 ---
@@ -60,7 +60,7 @@ Physical part
 
 ```
 1. Open PrusaSlicer
-2. Go to "Help" → "Check for Updates"
+2. Go to "Help" -> "Check for Updates"
 3. When prompted, select your printer model
 4. Choose default profile (matches printer exactly)
 ```
@@ -68,7 +68,7 @@ Physical part
 **Step 2: Load Your STL**
 
 ```
-1. Click "File" → "Open STL Model"
+1. Click "File" -> "Open STL Model"
 2. Select your bracelet_holder.stl
 3. Model appears in 3D view
 ```
@@ -81,9 +81,9 @@ These are the most important adjustments:
 |---|---|---|---|
 | **Layer Height** | Print Settings | 0.15mm | Balance speed & quality |
 | **Infill** | Print Settings | 20% | Enough strength; fast print |
-| **Support** | Print Settings | Yes (if needed) | For overhangs >45° |
-| **Nozzle Temp** | Filament Settings | 210°C | Default for PLA |
-| **Bed Temp** | Filament Settings | 60°C | Standard PLA adhesion |
+| **Support** | Print Settings | Yes (if needed) | For overhangs >45 |
+| **Nozzle Temp** | Filament Settings | 210C | Default for PLA |
+| **Bed Temp** | Filament Settings | 60C | Standard PLA adhesion |
 | **Print Speed** | Print Settings | 150 mm/s | Balanced quality |
 
 **Step 4: Preview & Export**
@@ -93,7 +93,7 @@ These are the most important adjustments:
 2. Left panel shows preview of each layer
 3. Look for issues:
    - Supports covering entire model? (OK)
-   - Model floating in air? (Not OK—likely error)
+   - Model floating in air? (Not OK-likely error)
    - Top surface quality acceptable?
 4. If satisfied, click "Export G-code"
 5. Save to USB or send to printer
@@ -103,12 +103,12 @@ These are the most important adjustments:
 
 When adjusting settings, use these descriptions to understand what each does:
 
-**Layer Height (0.1–0.4mm)**
+**Layer Height (0.1-0.4mm)**
 - **Lower (0.1mm):** Smoother surface, more layers, slower (best for detail)
 - **Higher (0.4mm):** Faster, rougher surface (best for speed)
 - **Recommendation:** 0.15mm for balanced quality
 
-**Infill Percentage (10–100%)**
+**Infill Percentage (10-100%)**
 - **10%:** Fast, uses less filament, weaker (good for prototypes)
 - **20%:** Good balance (recommended for most prints)
 - **50%:** Stronger, slower, heavier
@@ -116,7 +116,7 @@ When adjusting settings, use these descriptions to understand what each does:
 
 **Support Type**
 - **None:** Fast, good surface finish, but risky if overhangs exist
-- **Linear (Default):** Good balance—easy to remove, provides support
+- **Linear (Default):** Good balance-easy to remove, provides support
 - **Grid:** Extra strong support, takes longer to remove
 
 **First Layer**
@@ -148,7 +148,7 @@ Write-Host "Slicing complete: $output"
 | First layer not sticking | Bed not level | Bed leveling procedure in printer manual |
 | Supports everywhere | No support type selected | Change to "Linear" or "Grid" |
 | Nozzle drags through model | Z-offset too low | Raise Z-offset +0.1mm |
-| Oozing strings between parts | Temp too high | Lower nozzle temp 5–10°C |
+| Oozing strings between parts | Temp too high | Lower nozzle temp 5-10C |
 | Print breaks mid-way | Adhesion problem | Add brim; check bed level |
 
 ---
@@ -186,10 +186,10 @@ Write-Host "Slicing complete: $output"
 | Setting | Default | Adjustment | Why |
 |---|---|---|---|
 | **AMS Multi-Color** | Off | On (if AMS attached) | Auto-switch filament |
-| **Auto-Leveling** | Enabled | Keep On | Bambu feature—very reliable |
-| **Nozzle Temp** | 220°C | Keep unless specified | Bambu-optimized |
+| **Auto-Leveling** | Enabled | Keep On | Bambu feature-very reliable |
+| **Nozzle Temp** | 220C | Keep unless specified | Bambu-optimized |
 | **Layer Height** | 0.2mm | 0.15mm for detail | Balance speed/quality |
-| **Bed Temp** | 65°C | 60°C for PLA | Standard adhesion |
+| **Bed Temp** | 65C | 60C for PLA | Standard adhesion |
 
 **Step 4: Send to Printer**
 
@@ -234,7 +234,7 @@ $output = "C:\GCode\bracelet_holder.3mf"  # Bambu uses .3mf format
 Write-Host "Slice saved: $output"
 
 # Send to printer directly
-# (Requires API key—see Bambu documentation)
+# (Requires API key-see Bambu documentation)
 ```
 
 ### Troubleshooting
@@ -264,7 +264,7 @@ Write-Host "Slice saved: $output"
 ```
 1. Launch Cura
 2. Go to "Settings" (top-right)
-3. Click "Printers" → "Add Printer"
+3. Click "Printers" -> "Add Printer"
 4. Select your printer model from list
 5. Confirm network connection
 ```
@@ -274,7 +274,7 @@ Write-Host "Slice saved: $output"
 ```
 1. Drag STL into workspace
 2. Model auto-scales if needed (confirm size)
-3. Right-click → "Support" (if overhangs need support)
+3. Right-click -> "Support" (if overhangs need support)
 ```
 
 **Step 3: Recommended Settings**
@@ -284,10 +284,10 @@ Write-Host "Slice saved: $output"
 | **Profile** | Standard | Good balance for most prints |
 | **Layer Height** | 0.2mm | Default; change to 0.15mm for detail |
 | **Infill** | 20% | 100% waste for solid parts |
-| **Support Angle** | 50° | Auto-generates support for overhangs |
+| **Support Angle** | 50 | Auto-generates support for overhangs |
 | **Build Plate Adhesion** | Brim | Helps first layer stick |
-| **Nozzle Temp** | 200°C | Standard PLA |
-| **Bed Temp** | 60°C | Standard PLA |
+| **Nozzle Temp** | 200C | Standard PLA |
+| **Bed Temp** | 60C | Standard PLA |
 
 **Step 4: Print**
 
@@ -308,9 +308,9 @@ Write-Host "Slice saved: $output"
 
 **Z-Offset (Z Clearance)**
 - Adjusts first-layer distance
-- Too low → nozzle scrapes bed (bad)
-- Too high → filament doesn't stick (bad)
-- Correct → thin line of plastic sticks to bed
+- Too low -> nozzle scrapes bed (bad)
+- Too high -> filament doesn't stick (bad)
+- Correct -> thin line of plastic sticks to bed
 
 **Gradual Infill**
 - Automatically reduces infill strength away from surface
@@ -338,7 +338,7 @@ Write-Host "Sliced: $output"
 
 | Problem | Cause | Solution |
 |---|---|---|
-| Model appears too small on bed | Scale wrong | Right-click → Scale to fit |
+| Model appears too small on bed | Scale wrong | Right-click -> Scale to fit |
 | Stringing between parts | Retraction disabled | Enable retraction in settings |
 | Support doesn't generate | Auto-support off | Enable "Generate Support" |
 | Printer not found | Network/USB issue | Check connection; restart Cura |
@@ -358,10 +358,10 @@ Write-Host "Sliced: $output"
 
 | Feature | PrusaSlicer | SuperSlicer |
 |---|---|---|
-| **Arachne Engine** | No | Yes—better edges |
+| **Arachne Engine** | No | Yes-better edges |
 | **Seam Position** | Limited options | Full control |
-| **Pressure Equalization** | No | Yes—better bridging |
-| **Stealth Mode** | No | Yes—quieter/higher quality |
+| **Pressure Equalization** | No | Yes-better bridging |
+| **Stealth Mode** | No | Yes-quieter/higher quality |
 
 ### When to Use SuperSlicer
 
@@ -420,7 +420,7 @@ OrcaSlicer brings Bambu Studio's best features to **any printer**:
 1. Download OrcaSlicer
 2. Select your printer (not just Bambu models)
 3. Load STL
-4. Uses good defaults—usually ready to print
+4. Uses good defaults-usually ready to print
 ```
 
 ### Key Settings
@@ -504,12 +504,12 @@ OrcaSlicer brings Bambu Studio's best features to **any printer**:
 
 Traditional workflow:
 ```
-Design in CAD → Export to STL → Open in Slicer → Slice → Print
+Design in CAD -> Export to STL -> Open in Slicer -> Slice -> Print
 ```
 
 Fusion 360 workflow:
 ```
-Design in Fusion → Run Print Preparation → Slice → Print
+Design in Fusion -> Run Print Preparation -> Slice -> Print
 ```
 
 **Advantage:** Stay in one program; no format conversion
@@ -544,20 +544,20 @@ If using Fusion 360 for CAD:
 
 | Problem | Diagnosis | Solution |
 |---|---|---|
-| **Print won't stick to bed** | Bed temperature too low | Raise bed temp +5°C; check bed level |
+| **Print won't stick to bed** | Bed temperature too low | Raise bed temp +5C; check bed level |
 | | Bed not level | Manual leveling procedure (printer manual) |
 | | Build plate dirty | Clean with isopropyl alcohol |
 | **Nozzle hits model mid-print** | Z-offset wrong | Adjust Z-offset; re-level bed |
 | | Model placed too low on bed | Use "Arrange on Bed" tool in slicer |
 | **Supports won't remove** | Too much support generated | Reduce support density or angle |
 | | Support too strong | Reduce support material percentage |
-| **Stringy/Oozing** | Nozzle too hot | Reduce temp by 5–10°C |
+| **Stringy/Oozing** | Nozzle too hot | Reduce temp by 5-10C |
 | | Retraction disabled | Enable retraction in settings |
 | | Travel speed too fast | Reduce travel speed |
 | **Layer shifting (X/Y)** | Belt tension off | Check belt tension (printer manual) |
-| | Stepper motor power issue | Firmware issue—check printer logs |
+| | Stepper motor power issue | Firmware issue-check printer logs |
 | **Model prints poorly but slices look good** | Filament quality issue | Try different filament batch |
-| | Nozzle clogged | Unclog nozzle (heat → purge → clean) |
+| | Nozzle clogged | Unclog nozzle (heat -> purge -> clean) |
 
 ---
 
@@ -614,7 +614,7 @@ Write-Host "Batch slicing finished."
 
 ```powershell
 # Connect to printer API and monitor print status
-# (Requires printer to support API—check documentation)
+# (Requires printer to support API-check documentation)
 
 $printerIP = "192.168.1.100"  # Your printer's IP
 $printerPort = 8080            # Typical API port
@@ -669,12 +669,12 @@ Write-Host "Time remaining: $($status.progress.printTimeLeft) seconds"
 ## Summary
 
 This appendix provides:
-- ✅ 7 slicer workflows, settings, and troubleshooting
-- ✅ Accessible parameter explanations
-- ✅ Command-line integration for PowerShell
-- ✅ Comparison table for choosing a slicer
-- ✅ Batch processing automation examples
-- ✅ Accessibility best practices
+- [YES] 7 slicer workflows, settings, and troubleshooting
+- [YES] Accessible parameter explanations
+- [YES] Command-line integration for PowerShell
+- [YES] Comparison table for choosing a slicer
+- [YES] Batch processing automation examples
+- [YES] Accessibility best practices
 
 **Use this guide whenever you:**
 - Start a new print

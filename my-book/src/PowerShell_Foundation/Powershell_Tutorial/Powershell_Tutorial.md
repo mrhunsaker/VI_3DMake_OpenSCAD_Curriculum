@@ -1,6 +1,6 @@
 # PowerShell Tutorial 
 
-Estimated time: 30–45 minutes
+Estimated time: 30-45 minutes
 
 **Learning Objectives**
 - Launch PowerShell and identify the prompt
@@ -23,17 +23,17 @@ PowerShell is a cross-platform command-line shell and scripting language that ru
 
 ## What we'll do and why
 
-You'll use PowerShell to run CLI programs, navigate the filesystem, and manipulate files — tasks that are especially efficient when using a keyboard or a screen reader.
+You'll use PowerShell to run CLI programs, navigate the filesystem, and manipulate files - tasks that are especially efficient when using a keyboard or a screen reader.
 
 ## Quick tutorial & core concepts
 
 ### Paths and navigation
 
-* `~` — home directory
-* `.` — current directory
-* `..` — parent directory
-* `./` — current directory shortcut
-* `../` — parent directory shortcut
+* `~` - home directory
+* `.` - current directory
+* `..` - parent directory
+* `./` - current directory shortcut
+* `../` - parent directory shortcut
 * Use **Tab** to autocomplete files and folders (try typing `~/D` then press Tab)
 
 Paths typically use `\` on Windows and `/` on Unix-like systems; PowerShell accepts `/` in most contexts.

@@ -1,4 +1,4 @@
-# Screen Reader Coding Tips — NVDA & JAWS
+# Screen Reader Coding Tips - NVDA & JAWS
 
 *A consolidated reference for using NVDA or JAWS while writing OpenSCAD code in VSCode or Notepad++. Tips that were previously scattered across lesson files are collected here.*
 
@@ -6,9 +6,9 @@
 
 ## General Principles for Coding with a Screen Reader
 
-- **Turn punctuation up.** All OpenSCAD syntax — semicolons, brackets, parentheses, commas — is meaningful. If your screen reader skips punctuation, you will miss syntax errors. Set punctuation to **Most** or **All** before coding.
+- **Turn punctuation up.** All OpenSCAD syntax - semicolons, brackets, parentheses, commas - is meaningful. If your screen reader skips punctuation, you will miss syntax errors. Set punctuation to **Most** or **All** before coding.
 - **Navigate by line.** Arrow up and down to move through code one line at a time. Use `Ctrl + Left/Right` to move word by word within a line.
-- **Use go-to-line.** Both VSCode and Notepad++ let you jump to a specific line number with `Ctrl + G`. OpenSCAD errors always give a line number — use this to find them fast.
+- **Use go-to-line.** Both VSCode and Notepad++ let you jump to a specific line number with `Ctrl + G`. OpenSCAD errors always give a line number - use this to find them fast.
 - **Spell when uncertain.** If you are not sure what a character is, spell the line character by character using your screen reader's spell command.
 - **Comment as you go.** Adding a short comment after a block of code lets you navigate by searching for recognizable words with `Ctrl + F`.
 
@@ -18,12 +18,12 @@
 
 ### Setting Punctuation Level
 
-`NVDA + P` — cycles through: None → Some → Most → All
+`NVDA + P` - cycles through: None -> Some -> Most -> All
 
 For code: set to **Most** or **All**.
 
 You can also set a permanent default:
-`NVDA + N` → Preferences → Settings → Speech → Symbol level
+`NVDA + N` -> Preferences -> Settings -> Speech -> Symbol level
 
 ### Essential Reading Commands
 
@@ -53,7 +53,7 @@ You can also set a permanent default:
 ### If NVDA Stops Reading the Editor
 
 1. Click in the editor area once with the mouse (or press `Escape` and then click)
-2. Press `NVDA + Space` to toggle between Browse and Application mode — for code editors, you want Application mode
+2. Press `NVDA + Space` to toggle between Browse and Application mode - for code editors, you want Application mode
 
 ---
 
@@ -61,7 +61,7 @@ You can also set a permanent default:
 
 ### Setting Punctuation Level
 
-`JAWS Key + Shift + 2` — cycles through punctuation levels
+`JAWS Key + Shift + 2` - cycles through punctuation levels
 
 For code: set to **All**.
 
@@ -99,7 +99,7 @@ For code: set to **All**.
 
 ### If JAWS Stops Reading the Editor
 
-1. Press `JAWS Key + Z` to toggle Virtual/Browse mode off — for VSCode you want Virtual mode **off**
+1. Press `JAWS Key + Z` to toggle Virtual/Browse mode off - for VSCode you want Virtual mode **off**
 2. Focus the menu bar with `Alt`, then press `Escape` to return to the editor
 3. If still not working, press `Alt + F4` to close VSCode and reopen it
 
@@ -118,8 +118,8 @@ When you launch OpenSCAD from VSCode (via the task runner), focus stays in VSCod
 
 When OpenSCAD can't render your code, it outputs an error. The error message always includes:
 
-- **Line number** — use `Ctrl + G` in VSCode to jump there
-- **Error type** — usually a missing semicolon, a typo in a command name, or mismatched brackets
+- **Line number** - use `Ctrl + G` in VSCode to jump there
+- **Error type** - usually a missing semicolon, a typo in a command name, or mismatched brackets
 
 Common errors and what they sound like:
 
@@ -134,9 +134,9 @@ Common errors and what they sound like:
 
 All OpenSCAD shapes and operations use brackets and braces:
 
-- Parentheses `()` — hold parameters: `cube([10, 10, 10])`
-- Square brackets `[]` — hold vectors (lists of numbers): `[10, 10, 10]`
-- Curly braces `{}` — hold groups of shapes for boolean operations
+- Parentheses `()` - hold parameters: `cube([10, 10, 10])`
+- Square brackets `[]` - hold vectors (lists of numbers): `[10, 10, 10]`
+- Curly braces `{}` - hold groups of shapes for boolean operations
 
 Every opening bracket must have a closing bracket. If you are missing one, OpenSCAD will report an error somewhere near (but not always exactly at) the problem.
 
@@ -168,7 +168,7 @@ When measuring an object and entering it into OpenSCAD, say the measurement alou
 
 Recommended sequence:
 
-1. Measure → say "seventy point three millimeters"
+1. Measure -> say "seventy point three millimeters"
 2. Type `70.3` in OpenSCAD
 3. Read back: "seven zero point three" to confirm
 
@@ -182,7 +182,7 @@ If you are reading this curriculum through the web version (mdBook), here are ti
 
 - `H` to jump between headings (chapter navigation)
 - `Ctrl + F` to search within the current page
-- The sidebar table of contents is a navigation landmark — use `NVDA + F7` to list landmarks, or press `D` to jump between landmark regions
+- The sidebar table of contents is a navigation landmark - use `NVDA + F7` to list landmarks, or press `D` to jump between landmark regions
 - Previous/Next chapter links are at the bottom of each page
 
 ### JAWS + Browser
@@ -195,10 +195,10 @@ If you are reading this curriculum through the web version (mdBook), here are ti
 
 ### Keyboard Navigation (No Screen Reader)
 
-- `Left Arrow / Right Arrow` — previous/next chapter
-- `S` — focus the search box
-- `Escape` — close search results
-- `T` — toggle the table of contents sidebar
+- `Left Arrow / Right Arrow` - previous/next chapter
+- `S` - focus the search box
+- `Escape` - close search results
+- `T` - toggle the table of contents sidebar
 
 ---
 
@@ -214,5 +214,5 @@ Microsoft. (2024). *Visual Studio Code accessibility*. [https://code.visualstudi
 
 ### More on mdBook navigation
 
-- **mdBook (general / keyboard navigation):** [https://rust-lang.github.io/mdBook/](https://rust-lang.github.io/mdBook/) — includes documentation and basic navigation/usage for the mdBook web UI.
+- **mdBook (general / keyboard navigation):** [https://rust-lang.github.io/mdBook/](https://rust-lang.github.io/mdBook/) - includes documentation and basic navigation/usage for the mdBook web UI.
 - **Curriculum mdBook navigation (with accessibility tips):** [mdBook Navigation Guide](mdbook-navigation-guide.md) - local guide in this curriculum with notes for using mdBook with and without screen readers.

@@ -1,6 +1,6 @@
-# PS-0: Getting Started — Layout, Paths, and the Shell 
+# PS-0: Getting Started - Layout, Paths, and the Shell 
 
-Estimated time: 20–30 minutes
+Estimated time: 20-30 minutes
 
 **Learning Objectives**
 - Launch PowerShell and locate the prompt
@@ -21,7 +21,7 @@ Step-by-step Tasks
 Checkpoints
 - Confirm you can state your current path and move to `Documents`.
 
-## Quiz — Lesson PS.0
+## Quiz - Lesson PS.0
 
 1. What is a path?
 2. What does `~` mean?

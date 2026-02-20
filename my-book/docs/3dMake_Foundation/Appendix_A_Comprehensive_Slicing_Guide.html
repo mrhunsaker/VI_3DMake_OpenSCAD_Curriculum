@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Appendix A: Comprehensive Slicing Guide — All Major Slicers - 3D Printing Course for Blind and Visually Impaired Learners</title>
+        <title>Appendix A: Comprehensive Slicing Guide - All Major Slicers - 3D Printing Course for Blind and Visually Impaired Learners</title>
 
 
         <!-- Custom HTML head -->
@@ -81,10 +81,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-13636583.js"></script>
+        <script src="../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,7 +220,7 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="appendix-a-comprehensive-slicing-guide--all-major-slicers"><a class="header" href="#appendix-a-comprehensive-slicing-guide--all-major-slicers">Appendix A: Comprehensive Slicing Guide — All Major Slicers</a></h1>
+                        <h1 id="appendix-a-comprehensive-slicing-guide---all-major-slicers"><a class="header" href="#appendix-a-comprehensive-slicing-guide---all-major-slicers">Appendix A: Comprehensive Slicing Guide - All Major Slicers</a></h1>
 <p>This appendix covers settings, workflows, and troubleshooting for <strong>7 major 3D printer slicers</strong>. Each slicer is represented with:</p>
 <ul>
 <li>Recommended settings for beginners</li>
@@ -234,17 +234,17 @@
 <h2 id="overview-what-is-slicing"><a class="header" href="#overview-what-is-slicing">Overview: What is Slicing?</a></h2>
 <p><strong>Slicing</strong> converts a 3D model into printer instructions:</p>
 <pre><code>SCAD Design (bracelet_holder.scad)
-   ↓
+   v
 Export to STL (3D shape file)
-   ↓
+   v
 Load into Slicer
-   ↓
+   v
 Apply settings (temperature, speed, supports, etc.)
-   ↓
+   v
 Generate G-code (printer instructions)
-   ↓
+   v
 Send to Printer
-   ↓
+   v
 Physical part
 </code></pre>
 <h3 id="core-slicing-parameters-all-slicers-share-these"><a class="header" href="#core-slicing-parameters-all-slicers-share-these">Core Slicing Parameters (All Slicers Share These)</a></h3>
@@ -254,12 +254,12 @@ Physical part
 <tr><th>Parameter</th><th>What It Does</th><th>Typical Range</th><th>Impact</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>Nozzle Temp</strong></td><td>Filament melting heat</td><td>200–250°C</td><td>Too cold → weak; too hot → oozing</td></tr>
-<tr><td><strong>Bed Temp</strong></td><td>Build plate heat</td><td>50–110°C</td><td>Helps adhesion; prevents warping</td></tr>
-<tr><td><strong>Layer Height</strong></td><td>Z-axis precision</td><td>0.1–0.4mm</td><td>Finer = slower, better detail</td></tr>
-<tr><td><strong>Print Speed</strong></td><td>Movement velocity</td><td>30–150 mm/s</td><td>Faster = worse quality; slower = stronger</td></tr>
-<tr><td><strong>Infill %</strong></td><td>Interior density</td><td>10–100%</td><td>Higher = stronger + heavier</td></tr>
-<tr><td><strong>Support</strong></td><td>Temporary scaffolding</td><td>On/Off</td><td>Required for overhangs &gt;45°</td></tr>
+<tr><td><strong>Nozzle Temp</strong></td><td>Filament melting heat</td><td>200-250C</td><td>Too cold -&gt; weak; too hot -&gt; oozing</td></tr>
+<tr><td><strong>Bed Temp</strong></td><td>Build plate heat</td><td>50-110C</td><td>Helps adhesion; prevents warping</td></tr>
+<tr><td><strong>Layer Height</strong></td><td>Z-axis precision</td><td>0.1-0.4mm</td><td>Finer = slower, better detail</td></tr>
+<tr><td><strong>Print Speed</strong></td><td>Movement velocity</td><td>30-150 mm/s</td><td>Faster = worse quality; slower = stronger</td></tr>
+<tr><td><strong>Infill %</strong></td><td>Interior density</td><td>10-100%</td><td>Higher = stronger + heavier</td></tr>
+<tr><td><strong>Support</strong></td><td>Temporary scaffolding</td><td>On/Off</td><td>Required for overhangs &gt;45</td></tr>
 <tr><td><strong>Bed Adhesion</strong></td><td>First layer stickiness</td><td>Brim/Raft/Skirt</td><td>Prevents parts lifting mid-print</td></tr>
 </tbody>
 </table>
@@ -277,12 +277,12 @@ Physical part
 <h3 id="quick-setup-for-beginners"><a class="header" href="#quick-setup-for-beginners">Quick Setup for Beginners</a></h3>
 <p><strong>Step 1: Install &amp; Select Your Printer</strong></p>
 <pre><code>1. Open PrusaSlicer
-2. Go to "Help" → "Check for Updates"
+2. Go to "Help" -&gt; "Check for Updates"
 3. When prompted, select your printer model
 4. Choose default profile (matches printer exactly)
 </code></pre>
 <p><strong>Step 2: Load Your STL</strong></p>
-<pre><code>1. Click "File" → "Open STL Model"
+<pre><code>1. Click "File" -&gt; "Open STL Model"
 2. Select your bracelet_holder.stl
 3. Model appears in 3D view
 </code></pre>
@@ -296,9 +296,9 @@ Physical part
 <tbody>
 <tr><td><strong>Layer Height</strong></td><td>Print Settings</td><td>0.15mm</td><td>Balance speed &amp; quality</td></tr>
 <tr><td><strong>Infill</strong></td><td>Print Settings</td><td>20%</td><td>Enough strength; fast print</td></tr>
-<tr><td><strong>Support</strong></td><td>Print Settings</td><td>Yes (if needed)</td><td>For overhangs &gt;45°</td></tr>
-<tr><td><strong>Nozzle Temp</strong></td><td>Filament Settings</td><td>210°C</td><td>Default for PLA</td></tr>
-<tr><td><strong>Bed Temp</strong></td><td>Filament Settings</td><td>60°C</td><td>Standard PLA adhesion</td></tr>
+<tr><td><strong>Support</strong></td><td>Print Settings</td><td>Yes (if needed)</td><td>For overhangs &gt;45</td></tr>
+<tr><td><strong>Nozzle Temp</strong></td><td>Filament Settings</td><td>210C</td><td>Default for PLA</td></tr>
+<tr><td><strong>Bed Temp</strong></td><td>Filament Settings</td><td>60C</td><td>Standard PLA adhesion</td></tr>
 <tr><td><strong>Print Speed</strong></td><td>Print Settings</td><td>150 mm/s</td><td>Balanced quality</td></tr>
 </tbody>
 </table>
@@ -308,20 +308,20 @@ Physical part
 2. Left panel shows preview of each layer
 3. Look for issues:
    - Supports covering entire model? (OK)
-   - Model floating in air? (Not OK—likely error)
+   - Model floating in air? (Not OK-likely error)
    - Top surface quality acceptable?
 4. If satisfied, click "Export G-code"
 5. Save to USB or send to printer
 </code></pre>
 <h3 id="accessible-parameter-explanations"><a class="header" href="#accessible-parameter-explanations">Accessible Parameter Explanations</a></h3>
 <p>When adjusting settings, use these descriptions to understand what each does:</p>
-<p><strong>Layer Height (0.1–0.4mm)</strong></p>
+<p><strong>Layer Height (0.1-0.4mm)</strong></p>
 <ul>
 <li><strong>Lower (0.1mm):</strong> Smoother surface, more layers, slower (best for detail)</li>
 <li><strong>Higher (0.4mm):</strong> Faster, rougher surface (best for speed)</li>
 <li><strong>Recommendation:</strong> 0.15mm for balanced quality</li>
 </ul>
-<p><strong>Infill Percentage (10–100%)</strong></p>
+<p><strong>Infill Percentage (10-100%)</strong></p>
 <ul>
 <li><strong>10%:</strong> Fast, uses less filament, weaker (good for prototypes)</li>
 <li><strong>20%:</strong> Good balance (recommended for most prints)</li>
@@ -331,7 +331,7 @@ Physical part
 <p><strong>Support Type</strong></p>
 <ul>
 <li><strong>None:</strong> Fast, good surface finish, but risky if overhangs exist</li>
-<li><strong>Linear (Default):</strong> Good balance—easy to remove, provides support</li>
+<li><strong>Linear (Default):</strong> Good balance-easy to remove, provides support</li>
 <li><strong>Grid:</strong> Extra strong support, takes longer to remove</li>
 </ul>
 <p><strong>First Layer</strong></p>
@@ -364,7 +364,7 @@ Write-Host "Slicing complete: $output"
 <tr><td>First layer not sticking</td><td>Bed not level</td><td>Bed leveling procedure in printer manual</td></tr>
 <tr><td>Supports everywhere</td><td>No support type selected</td><td>Change to “Linear” or “Grid”</td></tr>
 <tr><td>Nozzle drags through model</td><td>Z-offset too low</td><td>Raise Z-offset +0.1mm</td></tr>
-<tr><td>Oozing strings between parts</td><td>Temp too high</td><td>Lower nozzle temp 5–10°C</td></tr>
+<tr><td>Oozing strings between parts</td><td>Temp too high</td><td>Lower nozzle temp 5-10C</td></tr>
 <tr><td>Print breaks mid-way</td><td>Adhesion problem</td><td>Add brim; check bed level</td></tr>
 </tbody>
 </table>
@@ -399,10 +399,10 @@ Write-Host "Slicing complete: $output"
 </thead>
 <tbody>
 <tr><td><strong>AMS Multi-Color</strong></td><td>Off</td><td>On (if AMS attached)</td><td>Auto-switch filament</td></tr>
-<tr><td><strong>Auto-Leveling</strong></td><td>Enabled</td><td>Keep On</td><td>Bambu feature—very reliable</td></tr>
-<tr><td><strong>Nozzle Temp</strong></td><td>220°C</td><td>Keep unless specified</td><td>Bambu-optimized</td></tr>
+<tr><td><strong>Auto-Leveling</strong></td><td>Enabled</td><td>Keep On</td><td>Bambu feature-very reliable</td></tr>
+<tr><td><strong>Nozzle Temp</strong></td><td>220C</td><td>Keep unless specified</td><td>Bambu-optimized</td></tr>
 <tr><td><strong>Layer Height</strong></td><td>0.2mm</td><td>0.15mm for detail</td><td>Balance speed/quality</td></tr>
-<tr><td><strong>Bed Temp</strong></td><td>65°C</td><td>60°C for PLA</td><td>Standard adhesion</td></tr>
+<tr><td><strong>Bed Temp</strong></td><td>65C</td><td>60C for PLA</td><td>Standard adhesion</td></tr>
 </tbody>
 </table>
 </div>
@@ -449,7 +449,7 @@ $output = "C:\GCode\bracelet_holder.3mf"  # Bambu uses .3mf format
 Write-Host "Slice saved: $output"
 
 # Send to printer directly
-# (Requires API key—see Bambu documentation)
+# (Requires API key-see Bambu documentation)
 </code></pre>
 <h3 id="troubleshooting-1"><a class="header" href="#troubleshooting-1">Troubleshooting</a></h3>
 <div class="table-wrapper">
@@ -479,14 +479,14 @@ Write-Host "Slice saved: $output"
 <p><strong>Step 1: Add Your Printer</strong></p>
 <pre><code>1. Launch Cura
 2. Go to "Settings" (top-right)
-3. Click "Printers" → "Add Printer"
+3. Click "Printers" -&gt; "Add Printer"
 4. Select your printer model from list
 5. Confirm network connection
 </code></pre>
 <p><strong>Step 2: Load &amp; Prepare Model</strong></p>
 <pre><code>1. Drag STL into workspace
 2. Model auto-scales if needed (confirm size)
-3. Right-click → "Support" (if overhangs need support)
+3. Right-click -&gt; "Support" (if overhangs need support)
 </code></pre>
 <p><strong>Step 3: Recommended Settings</strong></p>
 <div class="table-wrapper">
@@ -498,10 +498,10 @@ Write-Host "Slice saved: $output"
 <tr><td><strong>Profile</strong></td><td>Standard</td><td>Good balance for most prints</td></tr>
 <tr><td><strong>Layer Height</strong></td><td>0.2mm</td><td>Default; change to 0.15mm for detail</td></tr>
 <tr><td><strong>Infill</strong></td><td>20%</td><td>100% waste for solid parts</td></tr>
-<tr><td><strong>Support Angle</strong></td><td>50°</td><td>Auto-generates support for overhangs</td></tr>
+<tr><td><strong>Support Angle</strong></td><td>50</td><td>Auto-generates support for overhangs</td></tr>
 <tr><td><strong>Build Plate Adhesion</strong></td><td>Brim</td><td>Helps first layer stick</td></tr>
-<tr><td><strong>Nozzle Temp</strong></td><td>200°C</td><td>Standard PLA</td></tr>
-<tr><td><strong>Bed Temp</strong></td><td>60°C</td><td>Standard PLA</td></tr>
+<tr><td><strong>Nozzle Temp</strong></td><td>200C</td><td>Standard PLA</td></tr>
+<tr><td><strong>Bed Temp</strong></td><td>60C</td><td>Standard PLA</td></tr>
 </tbody>
 </table>
 </div>
@@ -522,9 +522,9 @@ Write-Host "Slice saved: $output"
 <p><strong>Z-Offset (Z Clearance)</strong></p>
 <ul>
 <li>Adjusts first-layer distance</li>
-<li>Too low → nozzle scrapes bed (bad)</li>
-<li>Too high → filament doesn’t stick (bad)</li>
-<li>Correct → thin line of plastic sticks to bed</li>
+<li>Too low -&gt; nozzle scrapes bed (bad)</li>
+<li>Too high -&gt; filament doesn’t stick (bad)</li>
+<li>Correct -&gt; thin line of plastic sticks to bed</li>
 </ul>
 <p><strong>Gradual Infill</strong></p>
 <ul>
@@ -553,7 +553,7 @@ Write-Host "Sliced: $output"
 <tr><th>Problem</th><th>Cause</th><th>Solution</th></tr>
 </thead>
 <tbody>
-<tr><td>Model appears too small on bed</td><td>Scale wrong</td><td>Right-click → Scale to fit</td></tr>
+<tr><td>Model appears too small on bed</td><td>Scale wrong</td><td>Right-click -&gt; Scale to fit</td></tr>
 <tr><td>Stringing between parts</td><td>Retraction disabled</td><td>Enable retraction in settings</td></tr>
 <tr><td>Support doesn’t generate</td><td>Auto-support off</td><td>Enable “Generate Support”</td></tr>
 <tr><td>Printer not found</td><td>Network/USB issue</td><td>Check connection; restart Cura</td></tr>
@@ -577,10 +577,10 @@ Write-Host "Sliced: $output"
 <tr><th>Feature</th><th>PrusaSlicer</th><th>SuperSlicer</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>Arachne Engine</strong></td><td>No</td><td>Yes—better edges</td></tr>
+<tr><td><strong>Arachne Engine</strong></td><td>No</td><td>Yes-better edges</td></tr>
 <tr><td><strong>Seam Position</strong></td><td>Limited options</td><td>Full control</td></tr>
-<tr><td><strong>Pressure Equalization</strong></td><td>No</td><td>Yes—better bridging</td></tr>
-<tr><td><strong>Stealth Mode</strong></td><td>No</td><td>Yes—quieter/higher quality</td></tr>
+<tr><td><strong>Pressure Equalization</strong></td><td>No</td><td>Yes-better bridging</td></tr>
+<tr><td><strong>Stealth Mode</strong></td><td>No</td><td>Yes-quieter/higher quality</td></tr>
 </tbody>
 </table>
 </div>
@@ -637,7 +637,7 @@ Write-Host "Sliced: $output"
 <pre><code>1. Download OrcaSlicer
 2. Select your printer (not just Bambu models)
 3. Load STL
-4. Uses good defaults—usually ready to print
+4. Uses good defaults-usually ready to print
 </code></pre>
 <h3 id="key-settings"><a class="header" href="#key-settings">Key Settings</a></h3>
 <div class="table-wrapper">
@@ -722,10 +722,10 @@ Write-Host "Sliced: $output"
 </ul>
 <h3 id="why-integrate-cad--slicing"><a class="header" href="#why-integrate-cad--slicing">Why Integrate CAD + Slicing?</a></h3>
 <p>Traditional workflow:</p>
-<pre><code>Design in CAD → Export to STL → Open in Slicer → Slice → Print
+<pre><code>Design in CAD -&gt; Export to STL -&gt; Open in Slicer -&gt; Slice -&gt; Print
 </code></pre>
 <p>Fusion 360 workflow:</p>
-<pre><code>Design in Fusion → Run Print Preparation → Slice → Print
+<pre><code>Design in Fusion -&gt; Run Print Preparation -&gt; Slice -&gt; Print
 </code></pre>
 <p><strong>Advantage:</strong> Stay in one program; no format conversion</p>
 <h3 id="quick-start-2"><a class="header" href="#quick-start-2">Quick Start</a></h3>
@@ -753,20 +753,20 @@ Write-Host "Sliced: $output"
 <tr><th>Problem</th><th>Diagnosis</th><th>Solution</th></tr>
 </thead>
 <tbody>
-<tr><td><strong>Print won’t stick to bed</strong></td><td>Bed temperature too low</td><td>Raise bed temp +5°C; check bed level</td></tr>
+<tr><td><strong>Print won’t stick to bed</strong></td><td>Bed temperature too low</td><td>Raise bed temp +5C; check bed level</td></tr>
 <tr><td></td><td>Bed not level</td><td>Manual leveling procedure (printer manual)</td></tr>
 <tr><td></td><td>Build plate dirty</td><td>Clean with isopropyl alcohol</td></tr>
 <tr><td><strong>Nozzle hits model mid-print</strong></td><td>Z-offset wrong</td><td>Adjust Z-offset; re-level bed</td></tr>
 <tr><td></td><td>Model placed too low on bed</td><td>Use “Arrange on Bed” tool in slicer</td></tr>
 <tr><td><strong>Supports won’t remove</strong></td><td>Too much support generated</td><td>Reduce support density or angle</td></tr>
 <tr><td></td><td>Support too strong</td><td>Reduce support material percentage</td></tr>
-<tr><td><strong>Stringy/Oozing</strong></td><td>Nozzle too hot</td><td>Reduce temp by 5–10°C</td></tr>
+<tr><td><strong>Stringy/Oozing</strong></td><td>Nozzle too hot</td><td>Reduce temp by 5-10C</td></tr>
 <tr><td></td><td>Retraction disabled</td><td>Enable retraction in settings</td></tr>
 <tr><td></td><td>Travel speed too fast</td><td>Reduce travel speed</td></tr>
 <tr><td><strong>Layer shifting (X/Y)</strong></td><td>Belt tension off</td><td>Check belt tension (printer manual)</td></tr>
-<tr><td></td><td>Stepper motor power issue</td><td>Firmware issue—check printer logs</td></tr>
+<tr><td></td><td>Stepper motor power issue</td><td>Firmware issue-check printer logs</td></tr>
 <tr><td><strong>Model prints poorly but slices look good</strong></td><td>Filament quality issue</td><td>Try different filament batch</td></tr>
-<tr><td></td><td>Nozzle clogged</td><td>Unclog nozzle (heat → purge → clean)</td></tr>
+<tr><td></td><td>Nozzle clogged</td><td>Unclog nozzle (heat -&gt; purge -&gt; clean)</td></tr>
 </tbody>
 </table>
 </div>
@@ -822,7 +822,7 @@ Write-Host "Batch slicing finished."
 </code></pre>
 <h3 id="monitor-printing-progress"><a class="header" href="#monitor-printing-progress">Monitor Printing Progress</a></h3>
 <pre><code class="language-powershell"># Connect to printer API and monitor print status
-# (Requires printer to support API—check documentation)
+# (Requires printer to support API-check documentation)
 
 $printerIP = "192.168.1.100"  # Your printer's IP
 $printerPort = 8080            # Typical API port
@@ -880,12 +880,12 @@ Write-Host "Time remaining: $($status.progress.printTimeLeft) seconds"
 <h2 id="summary"><a class="header" href="#summary">Summary</a></h2>
 <p>This appendix provides:</p>
 <ul>
-<li>✅ 7 slicer workflows, settings, and troubleshooting</li>
-<li>✅ Accessible parameter explanations</li>
-<li>✅ Command-line integration for PowerShell</li>
-<li>✅ Comparison table for choosing a slicer</li>
-<li>✅ Batch processing automation examples</li>
-<li>✅ Accessibility best practices</li>
+<li>[YES] 7 slicer workflows, settings, and troubleshooting</li>
+<li>[YES] Accessible parameter explanations</li>
+<li>[YES] Command-line integration for PowerShell</li>
+<li>[YES] Comparison table for choosing a slicer</li>
+<li>[YES] Batch processing automation examples</li>
+<li>[YES] Accessibility best practices</li>
 </ul>
 <p><strong>Use this guide whenever you:</strong></p>
 <ul>

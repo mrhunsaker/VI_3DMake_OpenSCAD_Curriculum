@@ -1,6 +1,6 @@
 # Lesson 4: AI-Enhanced Verification and Multimodal Feedback
 
-Estimated time: 45–60 minutes
+Estimated time: 45-60 minutes
 
 **Learning Objectives**
 
@@ -25,7 +25,7 @@ Checkpoints
 
 - After step 2 you have stored render images and the AI report in `build/`[^1].
 
-## Quiz — Lesson 3dMake.4 (10 questions)
+## Quiz - Lesson 3dMake.4 (10 questions)
 
 1. What command generates AI diagnostics and model renders[^1]?
 2. Why must AI outputs be validated against renderer/slicer results[^8][^10]?

@@ -10,12 +10,12 @@ This **11-lesson curriculum + 4 reference appendices** teaches non-visual 3D mod
 
 **Target Audience:** High school and early undergraduate students, makers, and anyone interested in programmatic CAD and 3D printing
 
-**Estimated Total Time:** 18–22 hours (11 lessons + 4 appendices + projects)
+**Estimated Total Time:** 18-22 hours (11 lessons + 4 appendices + projects)
 
 **Contents:**
-- 11 progressive lessons (Foundations → Leadership)
+- 11 progressive lessons (Foundations -> Leadership)
 - 9 hands-on projects (integrated into lessons)
-- 4 comprehensive reference appendices (1,200–1,500 lines each)
+- 4 comprehensive reference appendices (1,200-1,500 lines each)
 - Complete learning paths for different skill levels
 
 ---
@@ -23,7 +23,7 @@ This **11-lesson curriculum + 4 reference appendices** teaches non-visual 3D mod
 ## Lesson Structure
 
 ### Lesson 1: Environmental Configuration and the Developer Workflow
-**Duration:** 60–90 minutes | **Level:** Beginner
+**Duration:** 60-90 minutes | **Level:** Beginner
 
 Learn to install and configure 3dMake, create a project scaffold, and run your first build. This lesson establishes the foundation for all subsequent work.
 
@@ -84,7 +84,7 @@ Learn to create reusable modules and organize code into libraries. This lesson i
 ---
 
 ### Lesson 4: AI-Enhanced Verification and Multimodal Feedback
-**Duration:** 45–60 minutes | **Level:** Intermediate
+**Duration:** 45-60 minutes | **Level:** Intermediate
 
 Use `3dm info` to generate AI diagnostics and validate designs. This lesson covers verification workflows and the strengths/limitations of AI in design.
 
@@ -105,7 +105,7 @@ Use `3dm info` to generate AI diagnostics and validate designs. This lesson cove
 ---
 
 ### Lesson 5: Safety Protocols and the Physical Fabrication Interface
-**Duration:** 60–90 minutes | **Level:** Intermediate
+**Duration:** 60-90 minutes | **Level:** Intermediate
 
 Transition from digital design to physical printing. Learn safety procedures, environmental controls, and the complete print workflow.
 
@@ -127,9 +127,9 @@ Transition from digital design to physical printing. Learn safety procedures, en
 ---
 
 ### Lesson 6: Practical 3dm Commands and Text Embossing
-**Duration:** 60–90 minutes | **Level:** Intermediate
+**Duration:** 60-90 minutes | **Level:** Intermediate
 
-Master the key 3dm commands by building a practical project—a customizable keycap with embossed text. This lesson ties together design and verification.
+Master the key 3dm commands by building a practical project-a customizable keycap with embossed text. This lesson ties together design and verification.
 
 **Key Topics:**
 - `3dm describe`: Text-based model analysis
@@ -148,7 +148,7 @@ Master the key 3dm commands by building a practical project—a customizable key
 ---
 
 ### Lesson 7: Parametric Transforms and the Phone Stand Project
-**Duration:** 75–90 minutes | **Level:** Intermediate+
+**Duration:** 75-90 minutes | **Level:** Intermediate+
 
 Apply transforms (translate, rotate, scale) to build a multi-part assembly. This lesson covers spatial positioning and practical product design.
 
@@ -170,7 +170,7 @@ Apply transforms (translate, rotate, scale) to build a multi-part assembly. This
 ---
 
 ### Lesson 8: Advanced Parametric Design and Interlocking Features
-**Duration:** 90–120 minutes | **Level:** Advanced
+**Duration:** 90-120 minutes | **Level:** Advanced
 
 Design tolerance-critical assemblies where parts snap together. This lesson covers precision manufacturing principles.
 
@@ -193,7 +193,7 @@ Design tolerance-critical assemblies where parts snap together. This lesson cove
 ---
 
 ### Lesson 9: Automation and 3dm Workflows
-**Duration:** 60–90 minutes | **Level:** Advanced
+**Duration:** 60-90 minutes | **Level:** Advanced
 
 Automate design workflows using shell scripts. This lesson teaches batch processing and continuous integration concepts.
 
@@ -215,7 +215,7 @@ Automate design workflows using shell scripts. This lesson teaches batch process
 ---
 
 ### Lesson 10: Hands-On Practice Exercises and Troubleshooting
-**Duration:** 120–150 minutes | **Level:** Advanced
+**Duration:** 120-150 minutes | **Level:** Advanced
 
 Complete integrated projects and learn to diagnose and fix common issues. This capstone lesson synthesizes all prior learning.
 
@@ -244,24 +244,24 @@ Complete integrated projects and learn to diagnose and fix common issues. This c
 
 ### By Skill Level
 
-**Beginner Track** (Lessons 1–3):
+**Beginner Track** (Lessons 1-3):
 - Learn tools and project structure
 - Understand geometric primitives and boolean operations
 - Create your first parametric modules
 
-**Intermediate Track** (Lessons 4–6):
+**Intermediate Track** (Lessons 4-6):
 - Explore verification and safety
 - Master 3dm commands
 - Build your first complete project (keycap)
 
-**Advanced Track** (Lessons 7–10):
+**Advanced Track** (Lessons 7-10):
 - Design complex assemblies
 - Manage tolerances precisely
 - Automate workflows and troubleshoot professionally
 
 ### By Project Focus
 
-**Design & Modeling:** Lessons 1–3, 7–8
+**Design & Modeling:** Lessons 1-3, 7-8
 **Verification & Validation:** Lessons 4, 6, 10
 **Safety & Printing:** Lesson 5, 10
 **Automation:** Lesson 9
@@ -272,18 +272,18 @@ Complete integrated projects and learn to diagnose and fix common issues. This c
 
 ### Structured Exercises by Lesson
 
-| Lesson | Exercise Type | Deliverable |
-|--------|---------------|-------------|
-| 1 | Setup & Configuration | Working project scaffold |
-| 2 | Geometry Construction | 3 CSG examples + fixes |
-| 3 | Modular Design | Parametric bracket module |
-| 4 | AI Verification | `AI-notes.md` with findings |
-| 5 | Safety & Printing | Pre-print checklist + measurements |
-| 6 | Command Mastery | 3+ keycap variants |
-| 7 | Multi-Part Assembly | Phone stand for 3+ devices |
-| 8 | Tolerance Design | Stackable bins + tolerance matrix |
-| 9 | Automation | Batch build script + variants |
-| 10 | Integration | 3 complete projects + documentation |
+| Lesson | Exercise Type         | Deliverable                         |
+|--------|-----------------------|-------------------------------------|
+| 1      | Setup & Configuration | Working project scaffold            |
+| 2      | Geometry Construction | 3 CSG examples + fixes              |
+| 3      | Modular Design        | Parametric bracket module           |
+| 4      | AI Verification       | `AI-notes.md` with findings         |
+| 5      | Safety & Printing     | Pre-print checklist + measurements  |
+| 6      | Command Mastery       | 3+ keycap variants                  |
+| 7      | Multi-Part Assembly   | Phone stand for 3+ devices          |
+| 8      | Tolerance Design      | Stackable bins + tolerance matrix   |
+| 9      | Automation            | Batch build script + variants       |
+| 10     | Integration           | 3 complete projects + documentation |
 
 ---
 
@@ -301,29 +301,29 @@ All code examples from lessons are provided as:
 
 This curriculum is designed for non-visual learners:
 
-- ✓ Text descriptions of all models (`3dm describe`)
-- ✓ Tactile 2D previews (`3dm preview`)
-- ✓ Structured written documentation
-- ✓ Command-line based (no graphical interface required)
-- ✓ Parametric organization for clear understanding
-- ✓ Measurement-based validation without visual inspection
+-  Text descriptions of all models (`3dm describe`)
+-  Tactile 2D previews (`3dm preview`)
+-  Structured written documentation
+-  Command-line based (no graphical interface required)
+-  Parametric organization for clear understanding
+-  Measurement-based validation without visual inspection
 
 ---
 
 ## Recommended Reading Order
 
 ### Option 1: Linear (Complete Foundation)
-Lesson 1 → 2 → 3 → 4 → 5 → 6 → 7 → 8 → 9 → 10
+Lesson 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
 
 **Best for:** First-time learners wanting comprehensive understanding
 
 ### Option 2: Fast Track (Design Focus)
-Lesson 1 → 2 → 3 → 6 → 7 → 8 → 9
+Lesson 1 -> 2 -> 3 -> 6 -> 7 -> 8 -> 9
 
 **Best for:** Experienced designers new to programmatic CAD
 
 ### Option 3: Project-Based
-Lesson 1 → 2 → 3 → 6 (Keycap Project)
+Lesson 1 -> 2 -> 3 -> 6 (Keycap Project)
 Then: Lesson 7 (Phone Stand)
 Then: Lesson 8 (Storage Bins)
 Then: Lesson 9 (Automation)
@@ -345,11 +345,11 @@ Each lesson includes:
 
 ### Project Completion Tracking
 
-| Project | Lessons | Output Files | Est. Print Time |
-|---------|---------|--------------|-----------------|
-| Keycap Set | 1-6 | 5+ SCAD files, 3+ STL files | 15–30 min total |
-| Phone Stand | 1-7 | 1 SCAD with 3+ variants | 30–60 min total |
-| Storage Bins | 1-8 | 1 parametric SCAD, 3 sizes | 60–90 min total |
+| Project      | Lessons | Output Files                | Est. Print Time |
+|--------------|---------|-----------------------------|-----------------|
+| Keycap Set   | 1-6     | 5+ SCAD files, 3+ STL files | 15-30 min total |
+| Phone Stand  | 1-7     | 1 SCAD with 3+ variants     | 30-60 min total |
+| Storage Bins | 1-8     | 1 parametric SCAD, 3 sizes  | 60-90 min total |
 
 ---
 
@@ -357,14 +357,14 @@ Each lesson includes:
 
 ### Common Issues and References
 
-| Issue | Related Lesson | Solution |
-|-------|----------------|----------|
-| Model won't build | Lesson 2 | Check for non-manifold geometry with `3dm describe` |
-| Parts don't fit | Lesson 8 | Use tolerance testing matrix to find correct `stack_clear` |
-| Print fails | Lesson 5 | Verify pre-print checklist and slicer settings |
-| Dimensions off | Lesson 10 | Conduct tolerance sensitivity study and apply correction factor |
-| Slow renders | Lesson 3 | Lower `$fn` for faster debugging |
-| Script errors | Lesson 9 | Use `&&` to chain commands properly; check file paths |
+| Issue             | Related Lesson | Solution                                                        |
+|-------------------|----------------|-----------------------------------------------------------------|
+| Model won't build | Lesson 2       | Check for non-manifold geometry with `3dm describe`             |
+| Parts don't fit   | Lesson 8       | Use tolerance testing matrix to find correct `stack_clear`      |
+| Print fails       | Lesson 5       | Verify pre-print checklist and slicer settings                  |
+| Dimensions off    | Lesson 10      | Conduct tolerance sensitivity study and apply correction factor |
+| Slow renders      | Lesson 3       | Lower `$fn` for faster debugging                                |
+| Script errors     | Lesson 9       | Use `&&` to chain commands properly; check file paths           |
 
 ---
 
@@ -405,7 +405,7 @@ Upon completing this curriculum, you're ready for:
 
 ## Lesson 11: Stakeholder-Centric Design and the Beaded Jewelry Project
 
-**Duration:** 90–120 minutes | **Level:** Advanced/Leadership
+**Duration:** 90-120 minutes | **Level:** Advanced/Leadership
 
 The final lesson teaches you to design for real users, not just yourself. You'll learn to conduct stakeholder interviews, extract functional requirements, and iterate based on real feedback. This bridges the gap between maker and design professional.
 
@@ -430,7 +430,7 @@ The final lesson teaches you to design for real users, not just yourself. You'll
 
 ## 3D Make Foundation Appendices
 
-### Appendix A: Comprehensive Slicing Guide — All Major Slicers
+### Appendix A: Comprehensive Slicing Guide - All Major Slicers
 
 A complete reference covering 7 major slicers (PrusaSlicer, Bambu Studio, Cura, SuperSlicer, OrcaSlicer, IdeaMaker, Fusion 360).
 
@@ -481,10 +481,10 @@ Measurement-based QA methodology designed to be used non-visually (with calipers
 
 ### Appendix D: PowerShell Integration for SCAD Workflows
 
-Shows how to automate 3D design workflows using PowerShell scripts (from PowerShell_Foundation Lessons 1–6).
+Shows how to automate 3D design workflows using PowerShell scripts (from PowerShell_Foundation Lessons 1-6).
 
 **What You'll Find:**
-- Basic workflow automation (SCAD → STL → G-code)
+- Basic workflow automation (SCAD -> STL -> G-code)
 - Parametric sweep (test 5, 10, or 100 design variations automatically)
 - Batch build for multiple files
 - Print logging and quality tracking
@@ -499,10 +499,10 @@ Shows how to automate 3D design workflows using PowerShell scripts (from PowerSh
 
 ## Curriculum Revision History
 
-| Version | Date | Changes |
-|---------|------|---------|
-| 2.0 | Feb 2026 | Added Lesson 11 (Stakeholder Design) + 4 Appendices; Consolidated Units 0-3 content |
-| 1.0 | Feb 2026 | Initial comprehensive curriculum with 10 lessons + 5 projects |
+| Version | Date     | Changes                                                                             |
+|---------|----------|-------------------------------------------------------------------------------------|
+| 2.0     | Feb 2026 | Added Lesson 11 (Stakeholder Design) + 4 Appendices; Consolidated Units 0-3 content |
+| 1.0     | Feb 2026 | Initial comprehensive curriculum with 10 lessons + 5 projects                       |
 
 ---
 
@@ -517,4 +517,4 @@ Please reach out with:
 
 ---
 
-**Happy designing! 🎨🖨️**
+**Happy designing! **

@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -246,20 +246,20 @@
 <tr><td><code>cat filename</code></td><td>Print the contents of a file</td></tr>
 <tr><td><code>&gt; filename</code></td><td>Redirect output into a file (overwrites)</td></tr>
 <tr><td><code>&gt;&gt; filename</code></td><td>Append output to a file (adds to end)</td></tr>
-<tr><td><code>|</code></td><td>Pipe — send output from one command to the next</td></tr>
+<tr><td><code>|</code></td><td>Pipe - send output from one command to the next</td></tr>
 <tr><td><code>clip</code></td><td>Copy piped input to the Windows clipboard</td></tr>
 <tr><td><code>notepad.exe filename</code></td><td>Open a file in Notepad</td></tr>
 </tbody>
 </table>
 </div>
 <hr>
-<h2 id="echo--printing-text"><a class="header" href="#echo--printing-text"><code>echo</code> — Printing Text</a></h2>
+<h2 id="echo---printing-text"><a class="header" href="#echo---printing-text"><code>echo</code> - Printing Text</a></h2>
 <p><code>echo</code> prints text to the screen. It is useful for testing, for writing text into files, and for understanding how piping works.</p>
 <pre><code class="language-powershell">echo "Hello, World"
 echo "This is a test"
 </code></pre>
 <hr>
-<h2 id="cat--reading-files"><a class="header" href="#cat--reading-files"><code>cat</code> — Reading Files</a></h2>
+<h2 id="cat---reading-files"><a class="header" href="#cat---reading-files"><code>cat</code> - Reading Files</a></h2>
 <p><code>cat</code> prints the contents of a file to the screen.</p>
 <pre><code class="language-powershell"># Read a text file
 cat ~/Documents/notes.txt
@@ -269,7 +269,7 @@ cat ~/Documents/OpenSCAD_Projects/project0.scad
 </code></pre>
 <p>With a long file, use <code>cat filename | more</code> to read it page by page (press <code>Space</code> to advance, <code>Q</code> to quit).</p>
 <hr>
-<h2 id="--redirecting-output-to-a-file"><a class="header" href="#--redirecting-output-to-a-file"><code>&gt;</code> — Redirecting Output to a File</a></h2>
+<h2 id="---redirecting-output-to-a-file"><a class="header" href="#---redirecting-output-to-a-file"><code>&gt;</code> - Redirecting Output to a File</a></h2>
 <p>The <code>&gt;</code> symbol redirects output from the screen into a file instead.</p>
 <pre><code class="language-powershell"># Create a file with a single line
 echo "Author: Your Name" &gt; header.txt
@@ -283,7 +283,7 @@ echo "Project: Floor Marker" &gt;&gt; header.txt
 cat header.txt
 </code></pre>
 <hr>
-<h2 id="--piping"><a class="header" href="#--piping"><code>|</code> — Piping</a></h2>
+<h2 id="---piping"><a class="header" href="#---piping"><code>|</code> - Piping</a></h2>
 <p>The pipe symbol <code>|</code> sends the output of one command to the input of the next. This lets you chain commands together.</p>
 <pre><code class="language-powershell"># List files and send the list to clip (copies to clipboard)
 ls -n | clip
@@ -294,7 +294,7 @@ ls -n | clip
 cat project0.scad | Select-String "cube"
 </code></pre>
 <hr>
-<h2 id="clip--copying-to-clipboard"><a class="header" href="#clip--copying-to-clipboard"><code>clip</code> — Copying to Clipboard</a></h2>
+<h2 id="clip---copying-to-clipboard"><a class="header" href="#clip---copying-to-clipboard"><code>clip</code> - Copying to Clipboard</a></h2>
 <p><code>clip</code> takes whatever is piped to it and puts it on the Windows clipboard.</p>
 <pre><code class="language-powershell"># Copy your current directory path to the clipboard
 pwd | clip
@@ -318,7 +318,7 @@ notepad.exe ~/Documents/OpenSCAD_Projects/project0.scad
 ni new_notes.txt
 # PS-3: Input, Output, and Piping 
 
-Estimated time: 25–40 minutes
+Estimated time: 25-40 minutes
 
 **Learning Objectives**
 - Use `echo`, `cat`, `&gt;` and `&gt;&gt;` for basic IO
@@ -339,7 +339,7 @@ Step-by-step Tasks
 Checkpoints
 - After step 3 you should be able to find a keyword using piping.
 
-## Quiz — Lesson PS.3
+## Quiz - Lesson PS.3
 
 1. What is the difference between `&gt;` and `&gt;&gt;`?
 2. What does the pipe `|` do?
@@ -372,7 +372,7 @@ Checkpoints
 12. Create an interactive piping tool: build a script that accepts user input for a search term, pipes through multiple filters, and displays paginated results.
 13. Develop a performance analysis tool: use piping to combine file listing, metadata extraction, and statistical reporting; export results to a dated report file.
 14. Implement a comprehensive error-handling pipeline: read output, catch errors, log them separately, and generate a summary of successes vs failures.
-15. Design and execute a real-world project backup workflow: use piping to verify file integrity, count files by type, generate a backup manifest, and create audit logs—all in one integrated command pipeline.
+15. Design and execute a real-world project backup workflow: use piping to verify file integrity, count files by type, generate a backup manifest, and create audit logs-all in one integrated command pipeline.
 
 ## References
 

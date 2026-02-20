@@ -1,4 +1,4 @@
-# Project 3: Beaded Jewelry — Student Documentation Template
+# Project 3: Beaded Jewelry - Student Documentation Template
 
 - Author:
 - Date:
@@ -36,19 +36,19 @@
 
 | Parameter | Value |
 | ----------- | ------- |
-| Bead A — size parameter |  |
-| Bead A — hole diameter |  |
-| Bead A — detail level |  |
-| Bead B — size parameter |  |
-| Bead B — hole diameter |  |
-| Bead B — detail level |  |
+| Bead A - size parameter |  |
+| Bead A - hole diameter |  |
+| Bead A - detail level |  |
+| Bead B - size parameter |  |
+| Bead B - hole diameter |  |
+| Bead B - detail level |  |
 | Stringing material diameter |  |
 
 ### Assembly Specifications
 
 - Number of Bead A: _____
 - Number of Bead B: _____
-- Total beads: _____ (must be ≥ 8)
+- Total beads: _____ (must be  8)
 - Stringing method: _____ (e.g., cord, wire, fishing line)
 - Clasp or closure method:
 
@@ -130,10 +130,10 @@
 
 | Category | Score | Notes |
 | ---------- | ------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |
 
 **Feedback:**
 
@@ -148,7 +148,7 @@
 
 | Category | Revised Score | Notes |
 | ---------- | --------------- | ------- |
-| Problem & Solution (0–3) |   |       |
-| Design & Code Quality (0–3) |   |       |
-| Documentation (0–3) |   |       |
-| **Total (0–9)** | **  **  |       |
+| Problem & Solution (0-3) |   |       |
+| Design & Code Quality (0-3) |   |       |
+| Documentation (0-3) |   |       |
+| **Total (0-9)** | **  **  |       |

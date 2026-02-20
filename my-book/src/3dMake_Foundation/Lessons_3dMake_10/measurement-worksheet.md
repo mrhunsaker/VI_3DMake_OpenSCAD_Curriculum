@@ -11,7 +11,7 @@
 1. Measure each feature **three times** and record all three values
 2. Calculate the average: add the three values and divide by 3
 3. Round to one decimal place (e.g., 23.4 mm)
-4. Use the average in your OpenSCAD code — not a single measurement
+4. Use the average in your OpenSCAD code - not a single measurement
 
 **Units:** All measurements in **millimeters (mm)** unless otherwise noted.
 
@@ -32,7 +32,7 @@
 **Notes / sketches:**
 
 ```text
-(describe the object here — label which direction is X, Y, Z)
+(describe the object here - label which direction is X, Y, Z)
 
 
 
@@ -157,7 +157,7 @@ If any difference is greater than 1 mm, remeasure together and find the source o
 
 If your instructor provides the "true" dimension of an object (measured with a reference instrument), you can calculate your percent error:
 
-**Formula:** `% error = (|your average − true value| ÷ true value) × 100`
+**Formula:** `% error = (|your average  true value| / true value) x 100`
 
 | Object | Your Average | True Value | Difference | % Error |
 | -------- | ------------- | ----------- | ----------- | --------- |
@@ -176,4 +176,4 @@ A percent error under 2% is excellent for caliper work at this level.
 
 2. Did your three measurements for any feature vary significantly? What might cause variation between repeated measurements?
 
-3. If you were designing an object in OpenSCAD that needed to fit over one of these objects, which measurement would you use — your smallest, your largest, or your average? Why?
+3. If you were designing an object in OpenSCAD that needed to fit over one of these objects, which measurement would you use - your smallest, your largest, or your average? Why?

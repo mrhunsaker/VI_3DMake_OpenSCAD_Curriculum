@@ -1,4 +1,4 @@
-# Lesson 6 Code Examples — Practical 3dm Commands and Text Embossing
+# Lesson 6 Code Examples - Practical 3dm Commands and Text Embossing
 
 ## Files
 
@@ -17,9 +17,9 @@
 2. Open in OpenSCAD (or use `3dm edit-model cube_keycap.scad`)
 3. Press F5 to preview; F6 for full render
 4. Modify the top-level parameters:
-   - `letter` — Change to your initial
-   - `key_size` — Adjust keycap dimensions
-   - `letter_raise` — Control emboss depth
+   - `letter` - Change to your initial
+   - `key_size` - Adjust keycap dimensions
+   - `letter_raise` - Control emboss depth
 5. Run `3dm build` to generate STL
 6. Use `3dm describe` and `3dm preview` for accessibility features
 

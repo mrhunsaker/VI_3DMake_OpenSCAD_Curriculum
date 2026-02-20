@@ -1,8 +1,8 @@
-# Project 3: Beaded Jewelry — Teacher Template
+# Project 3: Beaded Jewelry - Teacher Template
 
 ## Briefing
 
-Students design and produce a complete wearable jewelry piece using parametric OpenSCAD modules. This capstone project integrates all previous skills—parametric design, iteration, assembly—while introducing modular thinking and design documentation for reproducibility.
+Students design and produce a complete wearable jewelry piece using parametric OpenSCAD modules. This capstone project integrates all previous skills-parametric design, iteration, assembly-while introducing modular thinking and design documentation for reproducibility.
 
 **Key Learning:** Modular design; parametric thinking at scale; documentation for manufacturing.
 
@@ -35,15 +35,15 @@ Students design and produce a complete wearable jewelry piece using parametric O
 
 ## Rubric
 
-All projects are scored on a 0–9 scale across three equally weighted categories (3 points each):
+All projects are scored on a 0-9 scale across three equally weighted categories (3 points each):
 
 | Category | Points | What We Measure |
 | ---------- | ------- | ------------------- |
-| **Problem & Solution** | 0–3 | Is the assembled piece wearable and complete? Do all beads meet functional specs? |
-| **Design & Code Quality** | 0–3 | Is the code modular, parametric, and well-documented? Is iteration evident? Are beads aesthetically and functionally sound? |
-| **Documentation** | 0–3 | Are all sections complete? Is iteration documented with photos? Are reflections specific and show learning? |
+| **Problem & Solution** | 0-3 | Is the assembled piece wearable and complete? Do all beads meet functional specs? |
+| **Design & Code Quality** | 0-3 | Is the code modular, parametric, and well-documented? Is iteration evident? Are beads aesthetically and functionally sound? |
+| **Documentation** | 0-3 | Are all sections complete? Is iteration documented with photos? Are reflections specific and show learning? |
 
-### Category 1: Problem & Solution (0–3 points)
+### Category 1: Problem & Solution (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -52,7 +52,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Piece is partially wearable or incomplete. Some beads missing or non-functional. |
 | **0** | Piece is not assembled or wearable. |
 
-### Category 2: Design & Code Quality (0–3 points)
+### Category 2: Design & Code Quality (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -61,7 +61,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Code is minimal or poorly organized. Limited parametric structure. Beads print but lack refinement. |
 | **0** | Code does not work or is not submitted. |
 
-### Category 3: Documentation (0–3 points)
+### Category 3: Documentation (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -74,11 +74,11 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 
 | Total Score | Interpretation | Next Step |
 | ------------ | --------------- | ----------- |
-| 8–9 | Excellent capstone | Student is ready for advanced projects or professional applications |
-| 6–7 | Strong design and execution | Encourage portfolio development or design extensions |
-| 4–5 | Meets basics; needs refinement | Resubmit documentation or design iteration |
-| 2–3 | Does not meet expectations | Resubmission required |
-| 0–1 | Missing major work | Meet with instructor |
+| 8-9 | Excellent capstone | Student is ready for advanced projects or professional applications |
+| 6-7 | Strong design and execution | Encourage portfolio development or design extensions |
+| 4-5 | Meets basics; needs refinement | Resubmit documentation or design iteration |
+| 2-3 | Does not meet expectations | Resubmission required |
+| 0-1 | Missing major work | Meet with instructor |
 
 ---
 

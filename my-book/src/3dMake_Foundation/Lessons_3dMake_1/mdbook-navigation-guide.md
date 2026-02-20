@@ -1,4 +1,4 @@
-# Navigating This Curriculum — mdBook Guide
+# Navigating This Curriculum - mdBook Guide
 
 *This curriculum is published as a web book using mdBook. This page explains how to find what you need, navigate between chapters, and use the book with a screen reader.*
 
@@ -6,7 +6,7 @@
 
 ## What Is mdBook?
 
-mdBook is a tool that turns a collection of Markdown files into a navigable web book — similar to an online textbook. Each lesson or document is its own page (chapter), and they are organized into sections visible in the sidebar table of contents.
+mdBook is a tool that turns a collection of Markdown files into a navigable web book - similar to an online textbook. Each lesson or document is its own page (chapter), and they are organized into sections visible in the sidebar table of contents.
 
 You can access the book from any web browser on any device.
 
@@ -24,8 +24,8 @@ On a small screen (phone or tablet), the sidebar may be hidden. Look for a hambu
 
 At the bottom of every page there are **Previous** and **Next** links that take you through the chapters in order. You can also use keyboard arrow keys:
 
-- `Left Arrow` — go to the previous chapter
-- `Right Arrow` — go to the next chapter
+- `Left Arrow` - go to the previous chapter
+- `Right Arrow` - go to the next chapter
 
 ### Search
 
@@ -39,13 +39,13 @@ The mdBook search feature indexes all content across all chapters.
 
 ### Other Keyboard Shortcuts
 
-| Key | Action |
-| ----- | -------- |
-| `S` | Focus the search box |
-| `Escape` | Close search results |
-| `Left Arrow` | Previous chapter |
-| `Right Arrow` | Next chapter |
-| `T` | Toggle the table of contents sidebar |
+| Key           | Action                               |
+|---------------|--------------------------------------|
+| `S`           | Focus the search box                 |
+| `Escape`      | Close search results                 |
+| `Left Arrow`  | Previous chapter                     |
+| `Right Arrow` | Next chapter                         |
+| `T`           | Toggle the table of contents sidebar |
 
 ---
 
@@ -56,7 +56,7 @@ The mdBook search feature indexes all content across all chapters.
 **Reading the page:**
 
 - Use `Up / Down Arrow` to read line by line
-- Use `H` to jump between headings — this is the fastest way to skim a long lesson
+- Use `H` to jump between headings - this is the fastest way to skim a long lesson
 - Use `Ctrl + F` (browser Find) or `S` (mdBook search) to find specific content
 
 **Table of contents:**
@@ -72,8 +72,8 @@ The mdBook search feature indexes all content across all chapters.
 
 **Tips:**
 
-- `NVDA + P` to cycle punctuation level — do this before reading code blocks
-- `NVDA + F7` → Links list — useful for navigating between major sections quickly
+- `NVDA + P` to cycle punctuation level - do this before reading code blocks
+- `NVDA + F7` -> Links list - useful for navigating between major sections quickly
 - `H` key (headings navigation) is your best friend on lesson pages with many sections
 
 ---
@@ -94,13 +94,13 @@ The mdBook search feature indexes all content across all chapters.
 **Code blocks:**
 
 - Set punctuation to **All** before reading code: `JAWS Key + Shift + 2`
-- JAWS reads code blocks as regular text — navigate through them line by line
+- JAWS reads code blocks as regular text - navigate through them line by line
 
 **Tips:**
 
-- `JAWS Key + F5` — links list
-- `JAWS Key + F6` — headings list
-- `Ctrl + F` — browser find, works alongside mdBook search
+- `JAWS Key + F5` - links list
+- `JAWS Key + F6` - headings list
+- `Ctrl + F` - browser find, works alongside mdBook search
 
 ---
 
@@ -108,7 +108,7 @@ The mdBook search feature indexes all content across all chapters.
 
 **Mac:**
 
-- `VO + U` to open the rotor — select Headings to navigate by heading
+- `VO + U` to open the rotor - select Headings to navigate by heading
 - `VO + Command + F` to search the page
 - `H` (with Quick Nav on) to move between headings
 
@@ -126,12 +126,12 @@ The mdBook search feature indexes all content across all chapters.
 
 Open the table of contents and look for the unit or project name. The structure follows this pattern:
 
-- **Unit 0** — Foundation lessons (safety, how printing works, calipers, OpenSCAD basics, slicing)
-- **Unit 1** — Guided projects (Project 0 and Project 1)
-- **Unit 2** — Intermediate skills (parametric design, tolerances, advanced slicing, materials)
-- **Unit 3** — Open-ended projects (Project 2, 3, and 4)
-- **Reference Materials** — Quick-reference sheets you can keep open while working
-- **PowerShell Foundation** — Command-line navigation guide
+- **Unit 0** - Foundation lessons (safety, how printing works, calipers, OpenSCAD basics, slicing)
+- **Unit 1** - Guided projects (Project 0 and Project 1)
+- **Unit 2** - Intermediate skills (parametric design, tolerances, advanced slicing, materials)
+- **Unit 3** - Open-ended projects (Project 2, 3, and 4)
+- **Reference Materials** - Quick-reference sheets you can keep open while working
+- **PowerShell Foundation** - Command-line navigation guide
 
 ### If you are looking for a specific term or command
 
@@ -158,7 +158,7 @@ To save or print any page for offline use:
 
 - `Ctrl + P` opens the print dialog in any browser
 - Use "Save as PDF" to save a local copy
-- For the whole book: if your instructor has provided a PDF version, use that — it contains all chapters in one file
+- For the whole book: if your instructor has provided a PDF version, use that - it contains all chapters in one file
 
 ---
 

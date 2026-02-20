@@ -6,8 +6,8 @@ Essential material information for 3D printing with FDM/FFF printers.
 
 | Property | PLA | PETG | ABS | TPU |
 |----------|-----|------|-----|-----|
-| **Nozzle Temp (°C)** | 200-220 | 235-250 | 240-260 | 220-240 |
-| **Bed Temp (°C)** | 20-60 | 70-90 | 100-110 | 20-60 |
+| **Nozzle Temp (C)** | 200-220 | 235-250 | 240-260 | 220-240 |
+| **Bed Temp (C)** | 20-60 | 70-90 | 100-110 | 20-60 |
 | **Strength** | Moderate | High | Very High | Low (Flexible) |
 | **Flexibility** | None | Slight | Slight | High |
 | **Ease of Print** | Very Easy | Easy | Hard | Moderate |
@@ -103,11 +103,11 @@ Essential material information for 3D printing with FDM/FFF printers.
 ### Temperature Selection
 - **Too Low:** Poor layer adhesion, weak prints, under-extrusion
 - **Too High:** Filament degrades, nozzle stringing, oozing
-- **Optimal Range:** Start middle of range, adjust by 5-10°C
+- **Optimal Range:** Start middle of range, adjust by 5-10C
 
 ### First Layer Critical
 - Use bed temperature at **high end** of range
-- Reduce nozzle temperature by 5-10°C for subsequent layers
+- Reduce nozzle temperature by 5-10C for subsequent layers
 - Slow down first layer speed to 50% of normal
 
 ### Print Speed vs. Temperature
@@ -149,14 +149,14 @@ Essential material information for 3D printing with FDM/FFF printers.
 - **TPU:** Low moisture absorption
 
 **Storage Conditions:**
-- Temperature: 15-25°C
+- Temperature: 15-25C
 - Humidity: 30-50% relative humidity
 - Away from direct sunlight
 - In sealed container with desiccant packets
 
 ### Temperature Resistance (After Printing)
 
-| Material | Safe to ~°C | Softens at ~°C | Notes |
+| Material | Safe to ~C | Softens at ~C | Notes |
 |----------|-----------|---------------|-------|
 | PLA | 50-60 | 60-70 | Not suitable for hot items |
 | PETG | 80-100 | 100-110 | Can handle warm environments |
@@ -180,14 +180,14 @@ Essential material information for 3D printing with FDM/FFF printers.
 
 **Question: What should I print with?**
 
-- **First time?** → PLA
-- **Need durability?** → PETG or ABS
-- **Need flexibility?** → TPU
-- **Need high strength?** → ABS or PETG
-- **Quick test/prototype?** → PLA
-- **Outdoor use?** → PETG or ABS
-- **Food contact?** → Food-grade resin or commercial alternatives
-- **Heat resistant?** → ABS
+- **First time?** -> PLA
+- **Need durability?** -> PETG or ABS
+- **Need flexibility?** -> TPU
+- **Need high strength?** -> ABS or PETG
+- **Quick test/prototype?** -> PLA
+- **Outdoor use?** -> PETG or ABS
+- **Food contact?** -> Food-grade resin or commercial alternatives
+- **Heat resistant?** -> ABS
 
 ---
 

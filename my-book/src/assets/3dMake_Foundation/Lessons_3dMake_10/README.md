@@ -1,6 +1,6 @@
 # Lesson 10: Hands-On Practice Exercises and Troubleshooting
 
-**Estimated time:** 120–150 minutes (multiple activities)
+**Estimated time:** 120-150 minutes (multiple activities)
 
 ## Folder Contents
 
@@ -32,7 +32,7 @@ This folder contains supporting materials for Lesson 10:
 
 **Purpose:** Practical exercise in improving designs for non-visual users; assess accessibility
 
-**Time:** 4–6 hours
+**Time:** 4-6 hours
 
 **Skills Developed:**
 - Accessibility-first design thinking
@@ -49,9 +49,9 @@ This folder contains supporting materials for Lesson 10:
 
 ## Troubleshooting Resources
 
-- `common_issues_and_solutions.md` — Quick reference for typical problems
-- `measurement_calibration_guide.md` — How to verify tools and measurement accuracy
-- `diagnostic_checklist.md` — Systematic troubleshooting workflow
+- `common_issues_and_solutions.md` - Quick reference for typical problems
+- `measurement_calibration_guide.md` - How to verify tools and measurement accuracy
+- `diagnostic_checklist.md` - Systematic troubleshooting workflow
 
 ---
 

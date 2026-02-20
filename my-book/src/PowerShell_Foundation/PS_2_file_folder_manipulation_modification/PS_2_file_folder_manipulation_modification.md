@@ -2,7 +2,7 @@
 
 
 
-Estimated time: 30–45 minutes
+Estimated time: 30-45 minutes
 
 **Learning Objectives**
 - Create, copy, move, and delete files and folders from PowerShell
@@ -23,7 +23,7 @@ Step-by-step Tasks
 Checkpoints
 - After step 3 you should see both the original and the backup file.
 
-## Quiz — Lesson PS.2
+## Quiz - Lesson PS.2
 
 1. How do you create an empty file from PowerShell?
 2. What command copies a file?

@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-9554f408.js";
+            window.path_to_searchindex_js = "../../searchindex-2f002e84.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-13636583.js"></script>
+        <script src="../../toc-4f0e40ce.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -221,7 +221,7 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="3dmake-non-visual-3d-printing-tutorial"><a class="header" href="#3dmake-non-visual-3d-printing-tutorial">3dmake: Non-Visual 3D Printing Tutorial</a></h1>
-<h2 id="estimated-time-4575-minutes"><a class="header" href="#estimated-time-4575-minutes">Estimated time: 45–75 minutes</a></h2>
+<h2 id="estimated-time-45-75-minutes"><a class="header" href="#estimated-time-45-75-minutes">Estimated time: 45-75 minutes</a></h2>
 <h3 id="learning-objectives"><a class="header" href="#learning-objectives"><strong>Learning Objectives</strong></a></h3>
 <ul>
 <li>Describe the 3dMake command-line workflow and project structure</li>
@@ -238,10 +238,10 @@
 <h3 id="step-by-step-tasks"><a class="header" href="#step-by-step-tasks">Step-by-step Tasks</a></h3>
 <ol>
 <li>Verify prerequisites: confirm <code>3dm</code>, <code>openscad</code>, and your slicer are discoverable in the terminal (<code>which 3dm</code>, <code>which openscad</code>).</li>
-<li>Create a new project: <code>3dm new</code> → open <code>src/main.scad</code> with <code>3dm edit-model</code> and add a simple cube: <code>cube([20,20,20]);</code>.</li>
+<li>Create a new project: <code>3dm new</code> -&gt; open <code>src/main.scad</code> with <code>3dm edit-model</code> and add a simple cube: <code>cube([20,20,20]);</code>.</li>
 <li>Build the project: <code>3dm build</code> and confirm <code>build/main.stl</code> exists.</li>
 <li>Slice a preview: <code>3dm preview slice</code> then <code>3dm preview print</code> (or export preview STL) to test tactile output.</li>
-<li>Slice for full print: <code>3dm build slice</code> → inspect <code>build/main.gcode</code> with a layer-preview option in your slicer.</li>
+<li>Slice for full print: <code>3dm build slice</code> -&gt; inspect <code>build/main.gcode</code> with a layer-preview option in your slicer.</li>
 </ol>
 <h3 id="checkpoints"><a class="header" href="#checkpoints">Checkpoints</a></h3>
 <ul>
@@ -262,7 +262,7 @@
 <li>Create two variants of a parameterized cube (different sizes) and export both STLs; compare their file sizes and estimated print times.</li>
 <li>Add a <code>3dmake.toml</code> overlay that changes layer height and document the visible effect on the preview.</li>
 <li>Build and slice a small object, then import the STL into a second slicer and report any differences in estimated time.</li>
-<li>Create a short shell script that automates new → edit → build for a classroom scaffold.</li>
+<li>Create a short shell script that automates new -&gt; edit -&gt; build for a classroom scaffold.</li>
 <li>Describe three safety checks you will perform before starting a multi-hour print.</li>
 <li>Develop an accessibility audit of 3DMake’s web interface and CLI tools; test keyboard navigation, screen-reader compatibility, and error message clarity.</li>
 <li>Build a 3DMake workflow automation script: integrates model creation, parameter validation, and batch STL generation.</li>

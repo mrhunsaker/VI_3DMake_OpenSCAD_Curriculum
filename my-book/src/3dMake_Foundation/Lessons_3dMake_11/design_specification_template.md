@@ -144,8 +144,8 @@ ___________________________________________________________
 
 | Dimension | Tolerance | Rationale | Risk |
 |-----------|-----------|-----------|------|
-| | ±_mm | | |
-| | ±_mm | | |
+| | +/-_mm | | |
+| | +/-_mm | | |
 
 **Fit Relationships:**
 - Part A to Part B: _____________________________________________________
@@ -269,7 +269,7 @@ ___________________________________________________________
 
 | Item | Part # | Quantity | Unit Cost | Notes |
 |------|--------|----------|-----------|-------|
-| 3D Printed Main Body | — | 1 | $0.XX | PLA |
+| 3D Printed Main Body | - | 1 | $0.XX | PLA |
 | | | | | |
 | | | | | |
 
@@ -312,9 +312,9 @@ Before manufacturing:
 | Stakeholder | | | |
 
 **Status:**
-- [ ] ✓ Approved - Ready for manufacturing
-- [ ] ⚠ Approved with conditions: ________________________________
-- [ ] ✗ Not approved - Revisions needed: ____________________________
+- [ ]  Approved - Ready for manufacturing
+- [ ]  Approved with conditions: ________________________________
+- [ ]  Not approved - Revisions needed: ____________________________
 
 ---
 

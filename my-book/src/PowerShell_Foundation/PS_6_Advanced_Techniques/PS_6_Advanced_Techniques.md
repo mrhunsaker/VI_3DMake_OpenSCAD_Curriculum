@@ -1,4 +1,4 @@
-# PS-6: Advanced Terminal Techniques — Scripts, Functions & Professional Workflows
+# PS-6: Advanced Terminal Techniques - Scripts, Functions & Professional Workflows
 
 **Duration:** 90 minutes  
 **Prerequisites:** Complete PS-0 through PS-5  
@@ -133,7 +133,7 @@ ListFolder -path "C:\Users\YourName\Downloads"
 
 ---
 
-## Part 3: Loops — Repeating Tasks
+## Part 3: Loops - Repeating Tasks
 
 ### Loop Over Files
 
@@ -179,7 +179,7 @@ for ($i = 1; $i -le 5; $i++) {
 
 ---
 
-## Part 4: Real-World Example — Batch Processing SCAD Files
+## Part 4: Real-World Example - Batch Processing SCAD Files
 
 ### Scenario
 
@@ -204,9 +204,9 @@ foreach ($file in $scadFiles) {
     $fullPath = Join-Path -Path $scadFolder -ChildPath $file
     
     if (Test-Path -Path $fullPath) {
-        Write-Output "✓ Found: $file"
+        Write-Output " Found: $file"
     } else {
-        Write-Output "✗ Missing: $file"
+        Write-Output " Missing: $file"
     }
 }
 
@@ -236,9 +236,9 @@ Write-Output "Batch processing complete!"
 Processing SCAD files in: C:\Users\YourName\Documents\3D_Projects
 Found 10 files
 
-✓ Found: model1.scad
-✓ Found: model2.scad
-✓ Found: model3.scad
+ Found: model1.scad
+ Found: model2.scad
+ Found: model3.scad
 [... more files ...]
 Batch processing complete!
 ```
@@ -342,7 +342,7 @@ Test-Path -Path "C:\Users\YourName\Documents"
 **Cause:** Don't have permission
 
 **Fix:** Run PowerShell as administrator
-- Right-click PowerShell → Run as administrator
+- Right-click PowerShell -> Run as administrator
 
 ### Debugging Technique: Trace Output
 
@@ -439,9 +439,9 @@ function VerifyProjectFiles {
         $path = Join-Path -Path $projectFolder -ChildPath $item
         
         if (Test-Path -Path $path) {
-            Write-Output "✓ Found: $item"
+            Write-Output " Found: $item"
         } else {
-            Write-Output "✗ Missing: $item"
+            Write-Output " Missing: $item"
             $allGood = $false
         }
     }
@@ -631,7 +631,7 @@ Write-Output "All $count files processed!"
 
 ---
 
-## Quiz — Lesson PS-6
+## Quiz - Lesson PS-6
 
 1. What is a PowerShell script?
 2. What file extension do PowerShell scripts use?
@@ -664,10 +664,10 @@ Write-Output "All $count files processed!"
 ## Important Notes
 
 - **Always test scripts on small sets of files first** before running them on important data
-- **Save your work regularly** — use version control if possible
-- **Test error handling** — make sure errors don't crash silently
-- **Document your scripts** — use comments so you remember what each part does
-- **Backup before batch operations** — if something goes wrong, you have the original
+- **Save your work regularly** - use version control if possible
+- **Test error handling** - make sure errors don't crash silently
+- **Document your scripts** - use comments so you remember what each part does
+- **Backup before batch operations** - if something goes wrong, you have the original
 
 ---
 

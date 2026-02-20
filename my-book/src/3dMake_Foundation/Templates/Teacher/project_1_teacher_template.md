@@ -1,4 +1,4 @@
-# Project 1: Tactile Floor Markers — Teacher Template
+# Project 1: Tactile Floor Markers - Teacher Template
 
 ## Briefing
 
@@ -6,7 +6,7 @@ Students design tactile floor markers that meet real accessibility needs. This p
 
 **Key Learning:** Requirements-driven design; accessibility testing; rapid iteration.
 
-**Real-world Connection:** Accessible design is a core engineering practice. Universal design benefits all users—tactile markers help people with visual impairments navigate safely.
+**Real-world Connection:** Accessible design is a core engineering practice. Universal design benefits all users-tactile markers help people with visual impairments navigate safely.
 
 ## Constraints
 - Marker must include a 3D-printed component designed in parametric OpenSCAD
@@ -19,7 +19,7 @@ Students design tactile floor markers that meet real accessibility needs. This p
 - Marker must adhere to target surface without damage
 - Marker must remain stable under typical foot traffic
 - Marker dimensions must fit within space constraints (specify per context)
-- Marker must be affordable and printable within 1–2 hours
+- Marker must be affordable and printable within 1-2 hours
 
 ## Deliverables
 - `project1.scad` with two parametric bead/marker modules
@@ -34,15 +34,15 @@ Students design tactile floor markers that meet real accessibility needs. This p
 
 ## Rubric
 
-All projects are scored on a 0–9 scale across three equally weighted categories (3 points each):
+All projects are scored on a 0-9 scale across three equally weighted categories (3 points each):
 
 | Category | Points | What We Measure |
 | ---------- | ------- | ------------------- |
-| **Problem & Solution** | 0–3 | Do all functional requirements have clear acceptance tests? Does the prototype meet at least three of them? |
-| **Design & Code Quality** | 0–3 | Is the OpenSCAD code parametric and well-commented? Is iteration evident? Does the prototype work tactilely? |
-| **Documentation** | 0–3 | Are requirements complete? Is iteration documented with measurements? Are reflections specific and thoughtful? |
+| **Problem & Solution** | 0-3 | Do all functional requirements have clear acceptance tests? Does the prototype meet at least three of them? |
+| **Design & Code Quality** | 0-3 | Is the OpenSCAD code parametric and well-commented? Is iteration evident? Does the prototype work tactilely? |
+| **Documentation** | 0-3 | Are requirements complete? Is iteration documented with measurements? Are reflections specific and thoughtful? |
 
-### Category 1: Problem & Solution (0–3 points)
+### Category 1: Problem & Solution (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -51,7 +51,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Fewer than four requirements or vague acceptance tests. Prototype meets fewer than three tests. |
 | **0** | No clear requirements or acceptance tests. |
 
-### Category 2: Design & Code Quality (0–3 points)
+### Category 2: Design & Code Quality (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -60,7 +60,7 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 | **1** | Code is minimal or poorly organized. Little iteration or validation. |
 | **0** | Code does not work or is not submitted. |
 
-### Category 3: Documentation (0–3 points)
+### Category 3: Documentation (0-3 points)
 
 | Score | Description |
 | ------- | ------------- |
@@ -73,11 +73,11 @@ All projects are scored on a 0–9 scale across three equally weighted categorie
 
 | Total Score | Interpretation | Next Step |
 | ------------ | --------------- | ----------- |
-| 8–9 | Excellent work | Move to Unit 2 or extensions |
-| 6–7 | Good work; solid iteration | Move forward; consider extension for accessibility |
-| 4–5 | Meets basics; improve iteration | Resubmit iteration evidence |
-| 2–3 | Does not meet expectations | Resubmission required |
-| 0–1 | Missing major work | Meet with instructor |
+| 8-9 | Excellent work | Move to Unit 2 or extensions |
+| 6-7 | Good work; solid iteration | Move forward; consider extension for accessibility |
+| 4-5 | Meets basics; improve iteration | Resubmit iteration evidence |
+| 2-3 | Does not meet expectations | Resubmission required |
+| 0-1 | Missing major work | Meet with instructor |
 
 ---
 

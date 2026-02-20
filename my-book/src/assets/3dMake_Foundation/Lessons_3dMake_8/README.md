@@ -1,4 +1,4 @@
-# Lesson 8 Code Examples — Advanced Parametric Design and Interlocking Features
+# Lesson 8 Code Examples - Advanced Parametric Design and Interlocking Features
 
 ## Files
 
@@ -18,11 +18,11 @@
 2. Open in OpenSCAD (or use `3dm edit-model stackable_bins.scad`)
 3. Press F5 to preview; F6 for full render
 4. Modify the top-level parameters:
-   - `bin_w`, `bin_d`, `bin_h` — Adjust bin dimensions
-   - `wall` — Wall thickness (affects strength and print time)
-   - `stack_clear` — Clearance between stacking parts (usually 0.6mm)
-   - `rim` — Height of interlocking rim
-   - `chamfer` — Edge rounding (improves printability)
+   - `bin_w`, `bin_d`, `bin_h` - Adjust bin dimensions
+   - `wall` - Wall thickness (affects strength and print time)
+   - `stack_clear` - Clearance between stacking parts (usually 0.6mm)
+   - `rim` - Height of interlocking rim
+   - `chamfer` - Edge rounding (improves printability)
 5. Run `3dm build` to generate STL
 6. Print test pieces and measure with calipers
 
