@@ -1,6 +1,4 @@
-```markdown
-
-# PS-5: Filling in the Gaps — Control Flow, Profiles, and Useful Tricks (Self-Paced)
+# PS-5: Filling in the Gaps — Control Flow, Profiles, and Useful Tricks 
 
 
 
@@ -40,4 +38,11 @@ Extension Problems (5)
 4. Practice redirecting `Get-Help` output to a file and reading it in Notepad for screen reader clarity.
 5. Document three screen reader troubleshooting steps you used and when they helped.
 
-```
+## Helpful Resources
+
+- [PowerShell History and Recall](https://learn.microsoft.com/powershell/scripting/learn/shell/using-history)
+- [Understanding Profiles](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_profiles)
+- [Invoke-History Cmdlet Reference](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/invoke-history)
+- [The Call Operator (&)](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_operators#call-operator-)
+- [Screen Reader Tips and Tricks](https://learn.microsoft.com/powershell/scripting/windows-powershell/ise/accessibility-in-windows-powershell-ise)
+

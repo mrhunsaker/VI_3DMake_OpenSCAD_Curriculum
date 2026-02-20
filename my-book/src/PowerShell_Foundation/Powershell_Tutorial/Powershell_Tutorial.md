@@ -1,5 +1,4 @@
-````markdown
-# PowerShell Tutorial (Self-Paced)
+# PowerShell Tutorial 
 
 Estimated time: 30–45 minutes
 
@@ -159,6 +158,3 @@ PowerShell provides aliases (`ls`, `cp`, `mv`) mapping to cmdlets (`Get-ChildIte
 - Environment Variables & PATH: https://poshcode.gitbook.io/powershell-faq/src/getting-started/environment-variables
 - Alias Reference: https://learn.microsoft.com/powershell/scripting/learn/shell/using-aliases
 
-
-
-````

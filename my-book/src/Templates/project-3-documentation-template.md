@@ -1,4 +1,30 @@
-# Project 3 Documentation Template (Self-Paced)
+# Project 3 Documentation Template 
+
+- Author:
+- Date:
+- Description:
+ 
+
+## Object Notes 
+### Measurements 
+- Dice 1
+- Dice 2
+- Dice 3
+ 
+
+### Construction Notes
+ 
+ 
+### Use Notes
+ 
+ 
+## Reflections
+
+ 
+
+
+
+
 
 
 

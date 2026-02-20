@@ -1,4 +1,3 @@
-```markdown
 # Project 1 — Tactile Floor Markers (Guided Self-Paced)
 
 Estimated time: 1–2 weeks (self-paced milestones suggested)
@@ -48,6 +47,4 @@ Extension problems (5):
 - Two iterations documented with measurable changes
 - Reflection includes concrete next-step adjustments and accessibility outcomes
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
 
-```

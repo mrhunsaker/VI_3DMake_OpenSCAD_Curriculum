@@ -1,4 +1,4 @@
-# Lesson 0.5: Introduction to OpenSCAD — Part 2 (Self-Paced)
+# Lesson 0.5: Introduction to OpenSCAD — Part 2 
 
 **Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
 
@@ -36,7 +36,7 @@ The three Boolean operations in OpenSCAD:
 
 ---
 
-# Lesson 0.5 — Introduction to OpenSCAD — Part 2 (Self-Paced)
+# Lesson 0.5 — Introduction to OpenSCAD — Part 2 
 
 Estimated time: 45–75 minutes
 
@@ -181,4 +181,4 @@ Wikibooks. (2019). *OpenSCAD tutorial*. https://en.wikibooks.org/wiki/OpenSCAD_T
 
 3DPrint.com. (2021). *Learn how to use OpenSCAD software with helpful i.materialise tutorial and how-to videos*. https://3dprint.com/161219/openscad-imaterialise-tutorial/
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+

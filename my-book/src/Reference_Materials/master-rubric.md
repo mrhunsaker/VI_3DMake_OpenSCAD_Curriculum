@@ -1,7 +1,4 @@
-# Master Project Rubric — 0–9 Point Scale (Self-Paced)
-
-
-
+# Master Project Rubric — 0–9 Point Scale 
 
 *This rubric applies to all Unit 1, 2, and 3 projects unless otherwise noted in the project briefing. Project 0 is complete/incomplete only.*
 
@@ -50,6 +47,7 @@ Projects are scored from 0–9 across three categories worth 3 points each:
 | **1** | Documentation is incomplete. Major sections are missing or consist of one-line responses. Reflections are minimal. |
 | **0** | Documentation is not submitted or is essentially empty. |
 
+
 ---
 
 ## Score Interpretation
@@ -64,18 +62,9 @@ Projects are scored from 0–9 across three categories worth 3 points each:
 
 ---
 
-## Notes for Specific Projects
-
-- **Project 0:** Complete / Incomplete only. No 0–9 scale.
-- **Project 2:** Stakeholder sign-off is required. A missing sign-off automatically limits the Problem & Solution score to a maximum of 2.
-- **Project 4:** Both stakeholder interviews must be documented. Missing interviews limit the Problem & Solution score to a maximum of 1.
-
----
-
 ## Resubmission Policy
 
-Students may resubmit any project once to improve their score. Resubmissions must include:
-1. The original submission
-2. A one-paragraph explanation of what was changed and why
+Students may resubmit any project as many times as they need to improve their score. Resubmissions must include:
+1. A one-paragraph explanation of what was changed and why
 
-The resubmission score replaces the original score.
+The resubmission score **replaces** the original score.

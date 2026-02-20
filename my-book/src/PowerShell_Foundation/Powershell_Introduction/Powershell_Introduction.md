@@ -1,4 +1,3 @@
-```markdown
 # PowerShell Introduction — Screen-reader friendly (JAWS/NVDA)
 
 Estimated time: 20–30 minutes
@@ -82,7 +81,7 @@ Tip: Redirect `Get-Help` into a file for easier reading: `Get-Help Get-Command |
 
 ## Extension Exercises
 
-1. Use wildcards to list only `.scad` files: `ls -n *.scad`.
+1. Use wildcards to list only `.scad` files: `ls -n *.scad`. Proceed to search for other types of files.
 2. Save a long command's output and search it with `Select-String`.
 3. Create a small script that prints a timestamp and test it with `&`.
 
@@ -98,5 +97,3 @@ Tip: Redirect `Get-Help` into a file for easier reading: `Get-Help Get-Command |
 
 - PowerShell docs: https://learn.microsoft.com/powershell/
 - Using Out-File: https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/out-file
-
-```

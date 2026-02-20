@@ -1,4 +1,4 @@
-# Lesson 2.1 — Parametric Design & Modules (Self-Paced)
+# Lesson 2.1 — Parametric Design & Modules 
 
 **Unit:** 2 — Intermediate Skills  
 **Duration:** 1–2 class periods  

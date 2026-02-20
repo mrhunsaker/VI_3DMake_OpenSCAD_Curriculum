@@ -1,4 +1,4 @@
-# Lesson 2.2 — Tolerances & Fit (Self-Paced)
+# Lesson 2.2 — Tolerances & Fit 
 
 **Accessibility:** Provide a short text description of the tolerance test layout and include annotated `.scad` comments for screen-reader users to follow measurement and comparison steps.
 

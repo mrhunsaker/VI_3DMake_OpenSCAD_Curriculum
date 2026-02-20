@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,57 +220,63 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown">
-
-# Lesson 3: Parametric Architecture and Modular Libraries (Self-Paced)
-
-
-
-Estimated time: 60 minutes
-
-**Learning Objectives**
-- Define and document top-level parameters and use them to drive model variants
-- Create reusable modules and import a library module into a project
-- Produce and test low-resolution renders and export a working STL
-
-**Materials**
-- A 3dMake project scaffold with `src/main.scad`
-- Example library (e.g., BOSL) available in `lib/` or classroom assets
-
-Step-by-step Tasks
-1. Open `src/main.scad` and add three top-level parameters (with units) at the top of the file.
-2. Implement a simple `module bracket(width, height, thickness)` that composes primitives and boolean operations.
-3. Include a library module (e.g., `include &lt;bosl/constants.scad&gt;`) and call a small helper from it; run `3dm build`.
-4. Produce a low-resolution render to confirm topology, then export an STL and inspect it in a slicer.
-5. Refactor the module into `lib/` with a short README and a usage example.
-
-Checkpoints
-- After step 2 you have a parametric module you can call with different arguments.
-
-Quick Quiz (5)
-1. What is a parametric module and why is it useful?
-2. How do you include an external library in OpenSCAD?
-3. What is one advantage of moving code into `lib/`?
-4. How can you test a module quickly without a full high-resolution render?
-5. Name one safety or documentation step to include when producing a reusable module.
-
-Extension Problems (5)
-1. Create a module for a mounting bracket with parameters for hole size and spacing; publish a usage example.
-2. Use a library module to add a fillet and compare the final STL before and after.
-3. Produce three variants by changing a parameter and record estimated print times.
-4. Move a working module into `lib/` and commit with a clear commit message.
-5. Write a short README for your module describing parameter ranges and expected units.
-Washington State Department of Health. (2026). *3D printer and filament selection for safe school environments*. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)
-
-## **Works cited**
-
-1. tdeck/3dmake: Non-visual 3D design and 3D printing tool \- GitHub, accessed February 18, 2026, [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)  
-2. Books \- OpenSCAD, accessed February 18, 2026, [https://openscad.org/documentation-books.html](https://openscad.org/documentation-books.html)  
-3. Programming with OpenSCAD, accessed February 18, 2026, [https://programmingwithopenscad.github.io/](https://programmingwithopenscad.github.io/)  
-4. OpenSCAD Review \- Worth learning? \- CadHub, accessed February 18, 2026, [https://learn.cadhub.xyz/blog/openscad-review/](https://learn.cadhub.xyz/blog/openscad-review/)  
-5. Activity · tdeck/3dmake \- GitHub, accessed February 18, 2026, [https://github.com/tdeck/3dmake/activity](https://github.com/tdeck/3dmake/activity)  
-
-</code></pre>
+                        <h1 id="lesson-3-parametric-architecture-and-modular-libraries"><a class="header" href="#lesson-3-parametric-architecture-and-modular-libraries">Lesson 3: Parametric Architecture and Modular Libraries</a></h1>
+<p>Estimated time: 60 minutes</p>
+<p><strong>Learning Objectives</strong></p>
+<ul>
+<li>Define and document top-level parameters and use them to drive model variants<sup class="footnote-reference" id="fr-3-1"><a href="#footnote-3">1</a></sup></li>
+<li>Create reusable modules and import a library module into a project<sup class="footnote-reference" id="fr-2-1"><a href="#footnote-2">2</a></sup></li>
+<li>Produce and test low-resolution renders and export a working STL<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">3</a></sup></li>
+</ul>
+<p><strong>Materials</strong></p>
+<ul>
+<li>A 3dMake project scaffold with <code>src/main.scad</code></li>
+<li>Example library (e.g., BOSL) available in <code>lib/</code> or classroom assets</li>
+</ul>
+<p>Step-by-step Tasks</p>
+<ol>
+<li>Open <code>src/main.scad</code> and add three top-level parameters (with units) at the top of the file<sup class="footnote-reference" id="fr-3-2"><a href="#footnote-3">1</a></sup>.</li>
+<li>Implement a simple <code>module bracket(width, height, thickness)</code> that composes primitives and boolean operations<sup class="footnote-reference" id="fr-2-2"><a href="#footnote-2">2</a></sup>.</li>
+<li>Include a library module (e.g., <code>include &lt;bosl/constants.scad&gt;</code>) and call a small helper from it; run <code>3dm build</code><sup class="footnote-reference" id="fr-2-3"><a href="#footnote-2">2</a></sup>.</li>
+<li>Produce a low-resolution render to confirm topology, then export an STL and inspect it in a slicer<sup class="footnote-reference" id="fr-4-1"><a href="#footnote-4">4</a></sup>.</li>
+<li>Refactor the module into <code>lib/</code> with a short README and a usage example<sup class="footnote-reference" id="fr-3-3"><a href="#footnote-3">1</a></sup>.</li>
+</ol>
+<p>Checkpoints</p>
+<ul>
+<li>After step 2 you have a parametric module you can call with different arguments<sup class="footnote-reference" id="fr-3-4"><a href="#footnote-3">1</a></sup>.</li>
+</ul>
+<p>Quick Quiz (5)</p>
+<ol>
+<li>What is a parametric module and why is it useful<sup class="footnote-reference" id="fr-3-5"><a href="#footnote-3">1</a></sup>?</li>
+<li>How do you include an external library in OpenSCAD<sup class="footnote-reference" id="fr-2-4"><a href="#footnote-2">2</a></sup>?</li>
+<li>What is one advantage of moving code into <code>lib/</code><sup class="footnote-reference" id="fr-3-6"><a href="#footnote-3">1</a></sup>?</li>
+<li>How can you test a module quickly without a full high-resolution render<sup class="footnote-reference" id="fr-4-2"><a href="#footnote-4">4</a></sup>?</li>
+<li>Name one safety or documentation step to include when producing a reusable module<sup class="footnote-reference" id="fr-3-7"><a href="#footnote-3">1</a></sup>.</li>
+</ol>
+<p>Extension Problems (5)</p>
+<ol>
+<li>Create a module for a mounting bracket with parameters for hole size and spacing; publish a usage example<sup class="footnote-reference" id="fr-3-8"><a href="#footnote-3">1</a></sup>.</li>
+<li>Use a library module to add a fillet and compare the final STL before and after<sup class="footnote-reference" id="fr-2-5"><a href="#footnote-2">2</a></sup>.</li>
+<li>Produce three variants by changing a parameter and record estimated print times<sup class="footnote-reference" id="fr-3-9"><a href="#footnote-3">1</a></sup>.</li>
+<li>Move a working module into <code>lib/</code> and commit with a clear commit message<sup class="footnote-reference" id="fr-1-2"><a href="#footnote-1">3</a></sup>.</li>
+<li>Write a short README for your module describing parameter ranges and expected units<sup class="footnote-reference" id="fr-3-10"><a href="#footnote-3">1</a></sup>.</li>
+</ol>
+<h2 id="works-cited"><a class="header" href="#works-cited"><strong>Works cited</strong></a></h2>
+<hr>
+<ol class="footnote-definition">
+<li id="footnote-3">
+<p>Programming with OpenSCAD, accessed February 18, 2026, https://programmingwithopenscad.github.io/ <a href="#fr-3-1">↩</a> <a href="#fr-3-2">↩2</a> <a href="#fr-3-3">↩3</a> <a href="#fr-3-4">↩4</a> <a href="#fr-3-5">↩5</a> <a href="#fr-3-6">↩6</a> <a href="#fr-3-7">↩7</a> <a href="#fr-3-8">↩8</a> <a href="#fr-3-9">↩9</a> <a href="#fr-3-10">↩10</a></p>
+</li>
+<li id="footnote-2">
+<p>Books - OpenSCAD, accessed February 18, 2026, https://openscad.org/documentation-books.html <a href="#fr-2-1">↩</a> <a href="#fr-2-2">↩2</a> <a href="#fr-2-3">↩3</a> <a href="#fr-2-4">↩4</a> <a href="#fr-2-5">↩5</a></p>
+</li>
+<li id="footnote-1">
+<p>tdeck/3dmake: Non-visual 3D design and 3D printing tool - GitHub, accessed February 18, 2026, https://github.com/tdeck/3dmake <a href="#fr-1-1">↩</a> <a href="#fr-1-2">↩2</a></p>
+</li>
+<li id="footnote-4">
+<p>OpenSCAD Review - Worth learning? - CadHub, accessed February 18, 2026, https://learn.cadhub.xyz/blog/openscad-review/ <a href="#fr-4-1">↩</a> <a href="#fr-4-2">↩2</a></p>
+</li>
+</ol>
 
                     </main>
 

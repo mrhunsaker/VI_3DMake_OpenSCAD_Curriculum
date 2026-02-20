@@ -1,4 +1,4 @@
-# Filament Comparison Table (Self-Paced)
+# Filament Comparison Table 
 
 
 

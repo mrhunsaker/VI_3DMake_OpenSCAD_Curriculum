@@ -1,4 +1,3 @@
-````markdown
 # PS-3: Input, Output, and Piping
 
 
@@ -131,7 +130,7 @@ notepad.exe ~/Documents/OpenSCAD_Projects/project0.scad
 
 # Create a new file and open it
 ni new_notes.txt
-# PS-3: Input, Output, and Piping (Self-Paced)
+# PS-3: Input, Output, and Piping 
 
 Estimated time: 25–40 minutes
 
@@ -168,5 +167,10 @@ Extension Problems
 4. Practice copying different command outputs to clipboard and pasting.
 5. Create a small script that generates a report (counts of files by extension).
 
+## Helpful Resources
 
-````
+- [Using Out-File for Redirection](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/out-file)
+- [Piping and Select-String](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/select-string)
+- [Get-Content Cmdlet Reference](https://learn.microsoft.com/powershell/module/microsoft.powershell.management/get-content)
+- [Measure-Object for Counting](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/measure-object)
+- [PowerShell Pipeline Concept](https://learn.microsoft.com/powershell/scripting/learn/shell/using-the-pipeline)

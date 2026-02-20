@@ -1,11 +1,11 @@
-# Snap-Fit Clip — Extension Project (Self-Paced)
+# Snap-Fit Clip — Extension Project 
 
 Estimated time: 3–6 hours
 
-Objective:
+## Objective
 This project has been moved into a named subfolder to keep `Extension_Projects` tidy.
 
-Starter files
+## Starter files
 
 - [starter.scad](../../assets/Extension_Projects/Snap_Fit_Clip/starter.scad) — minimal snap-fit test scaffold.
 

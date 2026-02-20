@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,82 +220,69 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown"># 3dmake: Non-Visual 3D Printing Tutorial (Self-Paced
-
-
-
-Estimated time: 45–75 minutes
-
-**Learning Objectives**
-- Describe the 3dMake command-line workflow and project structure
-- Create a new 3dMake project, edit `src/main.scad`, and run `3dm build`
-- Slice a model and produce a tactile preview or full G-code
-
-**Materials**
-- Computer with 3dMake installed
-- Screen reader (NVDA, JAWS, Orca) configured
-- Example project files in `assets/` or classroom repo
-
----
-
-Step-by-step Tasks
-1. Verify prerequisites: confirm `3dm`, `openscad`, and your slicer are discoverable in the terminal (`which 3dm`, `which openscad`).
-2. Create a new project: `3dm new` → open `src/main.scad` with `3dm edit-model` and add a simple cube: `cube([20,20,20]);`.
-3. Build the project: `3dm build` and confirm `build/main.stl` exists.
-4. Slice a preview: `3dm preview slice` then `3dm preview print` (or export preview STL) to test tactile output.
-5. Slice for full print: `3dm build slice` → inspect `build/main.gcode` with a layer-preview option in your slicer.
-
-Checkpoints
-- After step 2 you can open and edit `src/main.scad` from the terminal.
-- After step 3 the `build/` folder contains `main.stl`.
-
----
-
-Quick Quiz (5)
-1. What command creates a new 3dMake project?
-2. Where does 3dMake put compiled STLs by default?
-3. How do you open the model editor from the CLI?
-4. What command slices a preview for tactile testing?
-5. Why is it useful to run a preview before a full print?
-
-Extension Problems (5)
-1. Create two variants of a parameterized cube (different sizes) and export both STLs; compare their file sizes and estimated print times.
-2. Add a `3dmake.toml` overlay that changes layer height and document the visible effect on the preview.
-3. Build and slice a small object, then import the STL into a second slicer and report any differences in estimated time.
-4. Create a short shell script that automates new → edit → build for a classroom scaffold.
-5. Describe three safety checks you will perform before starting a multi-hour print.
-
----
-
-Notes: This lesson is intended to be hands-on. If networked AI features are not configured, skip the AI verification steps and focus on deterministic renders and slicer previews.
-
----
-
-## Library commands
-
-```pwsh
-3dm list-libraries
+                        <h1 id="3dmake-non-visual-3d-printing-tutorial"><a class="header" href="#3dmake-non-visual-3d-printing-tutorial">3dmake: Non-Visual 3D Printing Tutorial</a></h1>
+<h2 id="estimated-time-4575-minutes"><a class="header" href="#estimated-time-4575-minutes">Estimated time: 45–75 minutes</a></h2>
+<h3 id="learning-objectives"><a class="header" href="#learning-objectives"><strong>Learning Objectives</strong></a></h3>
+<ul>
+<li>Describe the 3dMake command-line workflow and project structure</li>
+<li>Create a new 3dMake project, edit <code>src/main.scad</code>, and run <code>3dm build</code></li>
+<li>Slice a model and produce a tactile preview or full G-code</li>
+</ul>
+<h3 id="materials"><a class="header" href="#materials"><strong>Materials</strong></a></h3>
+<ul>
+<li>Computer with 3dMake installed</li>
+<li>Screen reader (NVDA, JAWS, Orca) configured</li>
+<li>Example project files in <code>assets/</code> or classroom repo</li>
+</ul>
+<hr>
+<h3 id="step-by-step-tasks"><a class="header" href="#step-by-step-tasks">Step-by-step Tasks</a></h3>
+<ol>
+<li>Verify prerequisites: confirm <code>3dm</code>, <code>openscad</code>, and your slicer are discoverable in the terminal (<code>which 3dm</code>, <code>which openscad</code>).</li>
+<li>Create a new project: <code>3dm new</code> → open <code>src/main.scad</code> with <code>3dm edit-model</code> and add a simple cube: <code>cube([20,20,20]);</code>.</li>
+<li>Build the project: <code>3dm build</code> and confirm <code>build/main.stl</code> exists.</li>
+<li>Slice a preview: <code>3dm preview slice</code> then <code>3dm preview print</code> (or export preview STL) to test tactile output.</li>
+<li>Slice for full print: <code>3dm build slice</code> → inspect <code>build/main.gcode</code> with a layer-preview option in your slicer.</li>
+</ol>
+<h3 id="checkpoints"><a class="header" href="#checkpoints">Checkpoints</a></h3>
+<ul>
+<li>After step 2 you can open and edit <code>src/main.scad</code> from the terminal.</li>
+<li>After step 3 the <code>build/</code> folder contains <code>main.stl</code>.</li>
+</ul>
+<hr>
+<h2 id="quick-quiz-5"><a class="header" href="#quick-quiz-5">Quick Quiz (5)</a></h2>
+<ol>
+<li>What command creates a new 3dMake project?</li>
+<li>Where does 3dMake put compiled STLs by default?</li>
+<li>How do you open the model editor from the CLI?</li>
+<li>What command slices a preview for tactile testing?</li>
+<li>Why is it useful to run a preview before a full print?</li>
+</ol>
+<h2 id="extension-problems-5"><a class="header" href="#extension-problems-5">Extension Problems (5)</a></h2>
+<ol>
+<li>Create two variants of a parameterized cube (different sizes) and export both STLs; compare their file sizes and estimated print times.</li>
+<li>Add a <code>3dmake.toml</code> overlay that changes layer height and document the visible effect on the preview.</li>
+<li>Build and slice a small object, then import the STL into a second slicer and report any differences in estimated time.</li>
+<li>Create a short shell script that automates new → edit → build for a classroom scaffold.</li>
+<li>Describe three safety checks you will perform before starting a multi-hour print.</li>
+</ol>
+<hr>
+<p>Notes: This lesson is intended to be hands-on. If networked AI features are not configured, skip the AI verification steps and focus on deterministic renders and slicer previews.</p>
+<hr>
+<h2 id="helpful-commands"><a class="header" href="#helpful-commands">Helpful Commands</a></h2>
+<h3 id="library-commands"><a class="header" href="#library-commands">Library commands</a></h3>
+<pre><code class="language-pwsh">3dm list-libraries
 3dm install-libraries
-```
-
----
-
-## Help and version
-
-```pwsh
-3dm help
-3dm version
-```
-
----
-
-# References (APA)
-
-Deck, T. (n.d.). *3dmake: Non-visual 3D design and 3D printing tool*. GitHub. Retrieved February 18, 2026, from [http://github.com/tdeck/3dmake](http://github.com/tdeck/3dmake)
-
-OpenSCAD. (n.d.). *The programmers solid 3D CAD modeller*. Retrieved February 18, 2026, from [https://openscad.org](https://openscad.org)
-
 </code></pre>
+<hr>
+<h3 id="help-and-version"><a class="header" href="#help-and-version">Help and version</a></h3>
+<pre><code class="language-pwsh">3dm help
+3dm version
+</code></pre>
+<hr>
+<h1 id="references-apa"><a class="header" href="#references-apa">References (APA)</a></h1>
+<p>Deck, T. (n.d.). <em>3dmake: Non-visual 3D design and 3D printing tool</em>. GitHub. Retrieved February 18, 2026, from <a href="http://github.com/tdeck/3dmake">http://github.com/tdeck/3dmake</a></p>
+<p>OpenSCAD. (n.d.). <em>The programmers solid 3D CAD modeller</em>. Retrieved February 18, 2026, from <a href="https://openscad.org">https://openscad.org</a></p>
+<pre><code></code></pre>
 
                     </main>
 

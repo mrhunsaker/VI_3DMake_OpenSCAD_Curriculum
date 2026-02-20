@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,43 +220,39 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown"># PowerShell Introduction — Screen-reader friendly (JAWS/NVDA)
-
-Estimated time: 20–30 minutes
-
-**Target audience:** Users who are new to the command line and use screen readers.
-
-**Learning Goals**
-- Open and identify the PowerShell prompt
-- Run basic commands: `pwd`, `ls -n`, `cd`, `ni`, `cat`, `echo`
-- Redirect and page through long outputs for screen readers
-- Use `Get-Help` and `Get-Command` to learn more
-
-## Starting PowerShell
-
-Windows
-1. Press **Windows**, type `PowerShell`, then press **Enter**.
-2. If you need elevated rights, press **Windows+X** then choose **Windows PowerShell (Admin)**.
-
-macOS / Linux
-1. Open Terminal.app (macOS) or your preferred terminal (Linux).
-2. Type `pwsh` and press Enter (PowerShell Core / pwsh must be installed).
-
-When PowerShell starts you will hear the prompt and usually your current path. The default prompt often includes `PS` followed by the path, e.g., `PS C:\Users\YourName&gt;`.
-
-## Essential commands — short list
-
-- `pwd` — print working directory (where you are now)
-- `ls -n` — list file and folder names only (recommended for screen readers)
-- `cd &lt;path&gt;` — change directory
-- `ni &lt;filename&gt;` — create a file (alias for New-Item)
-- `cat &lt;file&gt;` — show file contents
-- `echo &lt;text&gt;` — print text
-
-Quick examples:
-
-```powershell
-pwd
+                        <h1 id="powershell-introduction--screen-reader-friendly-jawsnvda"><a class="header" href="#powershell-introduction--screen-reader-friendly-jawsnvda">PowerShell Introduction — Screen-reader friendly (JAWS/NVDA)</a></h1>
+<p>Estimated time: 20–30 minutes</p>
+<p><strong>Target audience:</strong> Users who are new to the command line and use screen readers.</p>
+<p><strong>Learning Goals</strong></p>
+<ul>
+<li>Open and identify the PowerShell prompt</li>
+<li>Run basic commands: <code>pwd</code>, <code>ls -n</code>, <code>cd</code>, <code>ni</code>, <code>cat</code>, <code>echo</code></li>
+<li>Redirect and page through long outputs for screen readers</li>
+<li>Use <code>Get-Help</code> and <code>Get-Command</code> to learn more</li>
+</ul>
+<h2 id="starting-powershell"><a class="header" href="#starting-powershell">Starting PowerShell</a></h2>
+<p>Windows</p>
+<ol>
+<li>Press <strong>Windows</strong>, type <code>PowerShell</code>, then press <strong>Enter</strong>.</li>
+<li>If you need elevated rights, press <strong>Windows+X</strong> then choose <strong>Windows PowerShell (Admin)</strong>.</li>
+</ol>
+<p>macOS / Linux</p>
+<ol>
+<li>Open Terminal.app (macOS) or your preferred terminal (Linux).</li>
+<li>Type <code>pwsh</code> and press Enter (PowerShell Core / pwsh must be installed).</li>
+</ol>
+<p>When PowerShell starts you will hear the prompt and usually your current path. The default prompt often includes <code>PS</code> followed by the path, e.g., <code>PS C:\Users\YourName&gt;</code>.</p>
+<h2 id="essential-commands--short-list"><a class="header" href="#essential-commands--short-list">Essential commands — short list</a></h2>
+<ul>
+<li><code>pwd</code> — print working directory (where you are now)</li>
+<li><code>ls -n</code> — list file and folder names only (recommended for screen readers)</li>
+<li><code>cd &lt;path&gt;</code> — change directory</li>
+<li><code>ni &lt;filename&gt;</code> — create a file (alias for New-Item)</li>
+<li><code>cat &lt;file&gt;</code> — show file contents</li>
+<li><code>echo &lt;text&gt;</code> — print text</li>
+</ul>
+<p>Quick examples:</p>
+<pre><code class="language-powershell">pwd
 ls -n
 cd Documents
 ni notes.txt
@@ -301,7 +297,7 @@ cat notes.txt
 </ol>
 <h2 id="extension-exercises"><a class="header" href="#extension-exercises">Extension Exercises</a></h2>
 <ol>
-<li>Use wildcards to list only <code>.scad</code> files: <code>ls -n *.scad</code>.</li>
+<li>Use wildcards to list only <code>.scad</code> files: <code>ls -n *.scad</code>. Proceed to search for other types of files.</li>
 <li>Save a long command’s output and search it with <code>Select-String</code>.</li>
 <li>Create a small script that prints a timestamp and test it with <code>&amp;</code>.</li>
 </ol>
@@ -318,7 +314,6 @@ cat notes.txt
 <li>PowerShell docs: https://learn.microsoft.com/powershell/</li>
 <li>Using Out-File: https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/out-file</li>
 </ul>
-<pre><code></code></pre>
 
                     </main>
 

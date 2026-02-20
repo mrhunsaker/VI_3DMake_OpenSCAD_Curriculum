@@ -1,11 +1,12 @@
-# Vocabulary Glossary — 3D Design & Printing (Self-Paced)
+# Vocabulary Glossary — 3D Design & Printing 
 
+## Overview
 
-
-
-*A reference for all key terms used in this curriculum. Terms are organized alphabetically.*
+A reference for all key terms used in this curriculum. Terms are organized alphabetically.
 
 ---
+
+## Terms
 
 **Additive manufacturing** — A family of processes that build objects by adding material layer by layer. 3D printing is a form of additive manufacturing.
 

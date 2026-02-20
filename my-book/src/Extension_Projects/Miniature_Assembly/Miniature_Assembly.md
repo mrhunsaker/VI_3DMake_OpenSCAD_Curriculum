@@ -1,16 +1,16 @@
-# Miniature Assembly — Extension Project (Self-Paced)
+# Miniature Assembly — Extension Project 
 
 Estimated time: 4–8 hours
 
-Objective:
+## Objective
 - Break a small object into printable sub-parts and design mating features for assembly.
 
-Tasks:
+## Tasks
 1. Select a simple object and design it as 2–4 printable parts with alignment features.
 2. Implement parametric tabs/slots or dowel-style pegs in OpenSCAD.
 3. Print parts, assemble, and document required post-processing and tolerances.
 4. Produce an assembly guide with tactile cues for non-visual users.
 
-Deliverable:
+## Deliverable
 - Source `.scad` files, STLs, assembly photos, and an assembly guide.
 

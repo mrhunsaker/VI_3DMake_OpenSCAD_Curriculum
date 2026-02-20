@@ -1,7 +1,4 @@
-# OpenSCAD Quick Reference — Cheat Sheet (Self-Paced)
-
-
-
+# OpenSCAD Quick Reference — Cheat Sheet 
 
 *Keep this handy during all OpenSCAD work. For full documentation: https://openscad.org/documentation.html*
 

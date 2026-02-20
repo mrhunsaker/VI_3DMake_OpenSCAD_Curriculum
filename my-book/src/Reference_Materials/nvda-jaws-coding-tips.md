@@ -1,4 +1,4 @@
-# Screen Reader Coding Tips — NVDA & JAWS (Self-Paced)
+# Screen Reader Coding Tips — NVDA & JAWS 
 
 
 

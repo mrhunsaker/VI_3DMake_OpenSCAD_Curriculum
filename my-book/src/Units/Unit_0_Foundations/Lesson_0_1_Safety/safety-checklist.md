@@ -1,5 +1,5 @@
 
-# Safety Checklist — 3D Printing Classroom (Self-Paced)
+# Safety Checklist — 3D Printing Classroom 
 
 **Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
 
@@ -36,4 +36,4 @@ Instructor signature: _________________________  Date: ___________
 Notes (instructor): _______________________________________________________
 
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+

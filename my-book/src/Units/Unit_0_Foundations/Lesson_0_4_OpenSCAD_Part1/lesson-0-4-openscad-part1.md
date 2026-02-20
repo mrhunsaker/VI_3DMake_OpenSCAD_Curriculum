@@ -1,4 +1,4 @@
-# Lesson 0.4: Introduction to OpenSCAD — Part 1 (Self-Paced)
+# Lesson 0.4: Introduction to OpenSCAD — Part 1 
 
 **Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
 
@@ -72,7 +72,7 @@ When you open OpenSCAD, you will see three panels:
 | `F5` | Preview (fast, good for working) |
 | `F6` | Full render (slower, needed for export) |
 box_height = 10;
-# Lesson 0.4 — Introduction to OpenSCAD — Part 1 (Self-Paced)
+# Lesson 0.4 — Introduction to OpenSCAD — Part 1 
 
 Estimated time: 45–75 minutes
 
@@ -110,4 +110,4 @@ Extension problems (5):
 4. Explore `$fn` at values 12, 40, and 120; document preview and render times and quality differences.
 5. Add a second primitive and translate it so both are visible in the preview; submit the `.scad` file.
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+

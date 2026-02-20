@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,169 +220,139 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown"># PowerShell Tutorial (Self-Paced)
-
-Estimated time: 30–45 minutes
-
-**Learning Objectives**
-- Launch PowerShell and identify the prompt
-- Understand and use basic path notation (`~`, `./`, `../`)
-- Use `pwd`, `ls -n`, and `cd` to navigate the filesystem
-- Open files in an external editor and run simple commands
-
-**Materials**
-- A computer with PowerShell installed
-- Access to a text editor (Notepad, VS Code)
-
-## Pre-Requisite Knowledge
-- Typing and basic text-editing skills
-- Familiarity with file/folder concepts and basic OS navigation
-- Basic screen-reading familiarity (if applicable)
-
-## What is PowerShell?
-
-PowerShell is a cross-platform command-line shell and scripting language that runs on Windows, Linux, and macOS. It lets you control your computer with text commands instead of a graphical user interface (GUI). In this course we use PowerShell to run CLI tools (like OpenSCAD, slicers, or 3DMake), move files, and automate repetitive tasks.
-
-## What we'll do and why
-
-You'll use PowerShell to run CLI programs, navigate the filesystem, and manipulate files — tasks that are especially efficient when using a keyboard or a screen reader.
-
-## Quick tutorial &amp; core concepts
-
-### Paths and navigation
-
-* `~` — home directory
-* `.` — current directory
-* `..` — parent directory
-* `./` — current directory shortcut
-* `../` — parent directory shortcut
-* Use **Tab** to autocomplete files and folders (try typing `~/D` then press Tab)
-
-Paths typically use `\` on Windows and `/` on Unix-like systems; PowerShell accepts `/` in most contexts.
-
-### Useful commands (examples)
-
-```powershell
-pwd                # show current directory
+                        <h1 id="powershell-tutorial"><a class="header" href="#powershell-tutorial">PowerShell Tutorial</a></h1>
+<p>Estimated time: 30–45 minutes</p>
+<p><strong>Learning Objectives</strong></p>
+<ul>
+<li>Launch PowerShell and identify the prompt</li>
+<li>Understand and use basic path notation (<code>~</code>, <code>./</code>, <code>../</code>)</li>
+<li>Use <code>pwd</code>, <code>ls -n</code>, and <code>cd</code> to navigate the filesystem</li>
+<li>Open files in an external editor and run simple commands</li>
+</ul>
+<p><strong>Materials</strong></p>
+<ul>
+<li>A computer with PowerShell installed</li>
+<li>Access to a text editor (Notepad, VS Code)</li>
+</ul>
+<h2 id="pre-requisite-knowledge"><a class="header" href="#pre-requisite-knowledge">Pre-Requisite Knowledge</a></h2>
+<ul>
+<li>Typing and basic text-editing skills</li>
+<li>Familiarity with file/folder concepts and basic OS navigation</li>
+<li>Basic screen-reading familiarity (if applicable)</li>
+</ul>
+<h2 id="what-is-powershell"><a class="header" href="#what-is-powershell">What is PowerShell?</a></h2>
+<p>PowerShell is a cross-platform command-line shell and scripting language that runs on Windows, Linux, and macOS. It lets you control your computer with text commands instead of a graphical user interface (GUI). In this course we use PowerShell to run CLI tools (like OpenSCAD, slicers, or 3DMake), move files, and automate repetitive tasks.</p>
+<h2 id="what-well-do-and-why"><a class="header" href="#what-well-do-and-why">What we’ll do and why</a></h2>
+<p>You’ll use PowerShell to run CLI programs, navigate the filesystem, and manipulate files — tasks that are especially efficient when using a keyboard or a screen reader.</p>
+<h2 id="quick-tutorial--core-concepts"><a class="header" href="#quick-tutorial--core-concepts">Quick tutorial &amp; core concepts</a></h2>
+<h3 id="paths-and-navigation"><a class="header" href="#paths-and-navigation">Paths and navigation</a></h3>
+<ul>
+<li><code>~</code> — home directory</li>
+<li><code>.</code> — current directory</li>
+<li><code>..</code> — parent directory</li>
+<li><code>./</code> — current directory shortcut</li>
+<li><code>../</code> — parent directory shortcut</li>
+<li>Use <strong>Tab</strong> to autocomplete files and folders (try typing <code>~/D</code> then press Tab)</li>
+</ul>
+<p>Paths typically use <code>\</code> on Windows and <code>/</code> on Unix-like systems; PowerShell accepts <code>/</code> in most contexts.</p>
+<h3 id="useful-commands-examples"><a class="header" href="#useful-commands-examples">Useful commands (examples)</a></h3>
+<pre><code class="language-powershell">pwd                # show current directory
 ls -n              # list names only (screen-reader friendly)
 cd path/to/dir     # change directory
 whoami             # current user
-```
-
-### Wildcards
-
-* `*` matches zero or more characters
-* `?` matches a single character
-
-Use `ls -n *.scad` to filter by extension, for example.
-
-## Common operations
-
-### File and folder manipulation
-
-```powershell
-mkdir my-folder          # create folder
+</code></pre>
+<h3 id="wildcards"><a class="header" href="#wildcards">Wildcards</a></h3>
+<ul>
+<li><code>*</code> matches zero or more characters</li>
+<li><code>?</code> matches a single character</li>
+</ul>
+<p>Use <code>ls -n *.scad</code> to filter by extension, for example.</p>
+<h2 id="common-operations"><a class="header" href="#common-operations">Common operations</a></h2>
+<h3 id="file-and-folder-manipulation"><a class="header" href="#file-and-folder-manipulation">File and folder manipulation</a></h3>
+<pre><code class="language-powershell">mkdir my-folder          # create folder
 cp -r src dest           # copy (use -r for directories)
 mv oldname newname       # rename or move
 rm file                  # remove file
 ni filename.txt          # create new file (New-Item alias)
-```
-
-### Input, output, and piping
-
-```powershell
-echo 'hello' | clip      # copy to clipboard
+</code></pre>
+<h3 id="input-output-and-piping"><a class="header" href="#input-output-and-piping">Input, output, and piping</a></h3>
+<pre><code class="language-powershell">echo 'hello' | clip      # copy to clipboard
 command &gt; output.txt     # redirect output to file
 command &gt; $null          # discard/suppress output
-```
-
-Use `|` to pipe output and `&gt;` to redirect into files.
-
-### Editing and running programs
-
-```powershell
-notepad.exe file.txt     # open in Notepad (Windows)
+</code></pre>
+<p>Use <code>|</code> to pipe output and <code>&gt;</code> to redirect into files.</p>
+<h3 id="editing-and-running-programs"><a class="header" href="#editing-and-running-programs">Editing and running programs</a></h3>
+<pre><code class="language-powershell">notepad.exe file.txt     # open in Notepad (Windows)
 code file.txt            # open in VS Code (if in PATH)
 &amp; './script.ps1'         # call operator to run a script or executable
-```
-
-On Linux/macOS, use `./myapp` for local executables where appropriate.
-
-## Screen-reader friendly tips
-
-- Prefer `ls -n` for name-only output.
-- Filter lists with `-af` (files) or `-ad` (directories): `ls -n -af ~/Documents`.
-- Redirect very long outputs to a file and open it in an editor.
-
-## Error handling and control
-
-- Abort a running command: `Ctrl+C`
-- View history: Up/Down arrows or `Get-History`
-- Clear screen: `clear`
-- If an error is long, read the first few lines for the gist and copy short snippets into an editor to examine.
-
-## Environment variables &amp; PATH
-
-Environment variables configure your session. `PATH` tells the shell where to find executables.
-
-```powershell
-echo $env:PATH
-[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:/mytools", "Machine")
-```
-
-Setting machine-level environment variables requires Administrator privileges.
-
-### Running PowerShell as Administrator
-
-1. Press **Windows+X** and choose **Windows PowerShell (Admin)**.
-2. If a UAC dialog appears, press **Alt+Y** to accept.
-
-## Running CLI applications and archives
-
-To extract ZIP archives:
-
-```powershell
-Expand-Archive -Path file.zip -DestinationPath folder
-```
-
-## Aliases and cross-platform notes
-
-PowerShell provides aliases (`ls`, `cp`, `mv`) mapping to cmdlets (`Get-ChildItem`, `Copy-Item`, `Move-Item`). They make PowerShell feel familiar but can behave differently than native Linux tools. Concepts transfer to WSL, macOS, and Linux, but watch path and permission differences.
-
-## Step-by-step Tasks (Hands-on)
-1. Open PowerShell; listen for the prompt and current path.
-2. Run `pwd` to confirm your location.
-3. Run `ls -n` in your home directory and note the output.
-4. Practice `cd Documents`, `cd ../`, and `cd ~` to move between folders.
-5. Create and open a file: `ni example.txt ; notepad.exe example.txt` (or `code example.txt`).
-
-## Checkpoints
-- After step 3 you should be able to state your current directory.
-- After step 5 you should be able to create and open a text file from PowerShell.
-
-## Quick Quiz (5 questions)
-1. What command prints your current directory?
-2. What does `~` represent?
-3. How do you list only names with `ls`?
-4. How do you go up one directory level?
-5. How would you open `notes.txt` in Notepad from PowerShell?
-
-## Extension Problems
-1. Create a folder `OpenSCAD_Projects` in Documents and verify its contents.
-2. Create three files named `a.scad`, `b.scad`, `c.scad` and list them with a wildcard.
-3. Save `ls -n ~/Documents` output to `doc_list.txt` and open it.
-4. Try tab-completion in a deeply nested folder and note behavior.
-5. Capture `pwd` output into a file and open it: `pwd &gt; cwd.txt ; notepad.exe cwd.txt`.
-
-## Helpful Resources
-- Accessibility in PowerShell ISE (Microsoft): https://learn.microsoft.com/powershell/scripting/windows-powershell/ise/accessibility-in-windows-powershell-ise
-- Learn PowerShell (Microsoft Docs): https://learn.microsoft.com/powershell/scripting/overview
-- Environment Variables &amp; PATH: https://poshcode.gitbook.io/powershell-faq/src/getting-started/environment-variables
-- Alias Reference: https://learn.microsoft.com/powershell/scripting/learn/shell/using-aliases
-
-
-
 </code></pre>
+<p>On Linux/macOS, use <code>./myapp</code> for local executables where appropriate.</p>
+<h2 id="screen-reader-friendly-tips"><a class="header" href="#screen-reader-friendly-tips">Screen-reader friendly tips</a></h2>
+<ul>
+<li>Prefer <code>ls -n</code> for name-only output.</li>
+<li>Filter lists with <code>-af</code> (files) or <code>-ad</code> (directories): <code>ls -n -af ~/Documents</code>.</li>
+<li>Redirect very long outputs to a file and open it in an editor.</li>
+</ul>
+<h2 id="error-handling-and-control"><a class="header" href="#error-handling-and-control">Error handling and control</a></h2>
+<ul>
+<li>Abort a running command: <code>Ctrl+C</code></li>
+<li>View history: Up/Down arrows or <code>Get-History</code></li>
+<li>Clear screen: <code>clear</code></li>
+<li>If an error is long, read the first few lines for the gist and copy short snippets into an editor to examine.</li>
+</ul>
+<h2 id="environment-variables--path"><a class="header" href="#environment-variables--path">Environment variables &amp; PATH</a></h2>
+<p>Environment variables configure your session. <code>PATH</code> tells the shell where to find executables.</p>
+<pre><code class="language-powershell">echo $env:PATH
+[Environment]::SetEnvironmentVariable("Path", $env:Path + ";C:/mytools", "Machine")
+</code></pre>
+<p>Setting machine-level environment variables requires Administrator privileges.</p>
+<h3 id="running-powershell-as-administrator"><a class="header" href="#running-powershell-as-administrator">Running PowerShell as Administrator</a></h3>
+<ol>
+<li>Press <strong>Windows+X</strong> and choose <strong>Windows PowerShell (Admin)</strong>.</li>
+<li>If a UAC dialog appears, press <strong>Alt+Y</strong> to accept.</li>
+</ol>
+<h2 id="running-cli-applications-and-archives"><a class="header" href="#running-cli-applications-and-archives">Running CLI applications and archives</a></h2>
+<p>To extract ZIP archives:</p>
+<pre><code class="language-powershell">Expand-Archive -Path file.zip -DestinationPath folder
+</code></pre>
+<h2 id="aliases-and-cross-platform-notes"><a class="header" href="#aliases-and-cross-platform-notes">Aliases and cross-platform notes</a></h2>
+<p>PowerShell provides aliases (<code>ls</code>, <code>cp</code>, <code>mv</code>) mapping to cmdlets (<code>Get-ChildItem</code>, <code>Copy-Item</code>, <code>Move-Item</code>). They make PowerShell feel familiar but can behave differently than native Linux tools. Concepts transfer to WSL, macOS, and Linux, but watch path and permission differences.</p>
+<h2 id="step-by-step-tasks-hands-on"><a class="header" href="#step-by-step-tasks-hands-on">Step-by-step Tasks (Hands-on)</a></h2>
+<ol>
+<li>Open PowerShell; listen for the prompt and current path.</li>
+<li>Run <code>pwd</code> to confirm your location.</li>
+<li>Run <code>ls -n</code> in your home directory and note the output.</li>
+<li>Practice <code>cd Documents</code>, <code>cd ../</code>, and <code>cd ~</code> to move between folders.</li>
+<li>Create and open a file: <code>ni example.txt ; notepad.exe example.txt</code> (or <code>code example.txt</code>).</li>
+</ol>
+<h2 id="checkpoints"><a class="header" href="#checkpoints">Checkpoints</a></h2>
+<ul>
+<li>After step 3 you should be able to state your current directory.</li>
+<li>After step 5 you should be able to create and open a text file from PowerShell.</li>
+</ul>
+<h2 id="quick-quiz-5-questions"><a class="header" href="#quick-quiz-5-questions">Quick Quiz (5 questions)</a></h2>
+<ol>
+<li>What command prints your current directory?</li>
+<li>What does <code>~</code> represent?</li>
+<li>How do you list only names with <code>ls</code>?</li>
+<li>How do you go up one directory level?</li>
+<li>How would you open <code>notes.txt</code> in Notepad from PowerShell?</li>
+</ol>
+<h2 id="extension-problems"><a class="header" href="#extension-problems">Extension Problems</a></h2>
+<ol>
+<li>Create a folder <code>OpenSCAD_Projects</code> in Documents and verify its contents.</li>
+<li>Create three files named <code>a.scad</code>, <code>b.scad</code>, <code>c.scad</code> and list them with a wildcard.</li>
+<li>Save <code>ls -n ~/Documents</code> output to <code>doc_list.txt</code> and open it.</li>
+<li>Try tab-completion in a deeply nested folder and note behavior.</li>
+<li>Capture <code>pwd</code> output into a file and open it: <code>pwd &gt; cwd.txt ; notepad.exe cwd.txt</code>.</li>
+</ol>
+<h2 id="helpful-resources"><a class="header" href="#helpful-resources">Helpful Resources</a></h2>
+<ul>
+<li>Accessibility in PowerShell ISE (Microsoft): https://learn.microsoft.com/powershell/scripting/windows-powershell/ise/accessibility-in-windows-powershell-ise</li>
+<li>Learn PowerShell (Microsoft Docs): https://learn.microsoft.com/powershell/scripting/overview</li>
+<li>Environment Variables &amp; PATH: https://poshcode.gitbook.io/powershell-faq/src/getting-started/environment-variables</li>
+<li>Alias Reference: https://learn.microsoft.com/powershell/scripting/learn/shell/using-aliases</li>
+</ul>
 
                     </main>
 

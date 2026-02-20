@@ -1,5 +1,4 @@
-```markdown
-# Project 3: Beaded Jewelry — OpenSCAD Design (Self-Paced)
+# Project 3: Beaded Jewelry — OpenSCAD Design 
 
 **Accessibility:** When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any `.scad` examples so screen-reader users can follow the design steps.
 
@@ -31,7 +30,7 @@ Design and produce a wearable beaded jewelry piece that includes at least eight 
 
 ---
 
-## Step‑by‑Step Milestones (self-paced)
+## Step‑by‑Step Milestones 
 
 1. Project setup (Day 1)
   - Read this briefing and the Unit 3 lessons.
@@ -121,5 +120,3 @@ Provide alt-text for photos and a short written walkthrough of how your `.scad` 
 ## Notes
 
 The attached asset `project_3_briefing.txt` was used as the source. If you want me to also copy the original `.txt` into a `.bak` in the same folder, I can do that — tell me and I'll create an adjacent `.bak` file.
-
-```

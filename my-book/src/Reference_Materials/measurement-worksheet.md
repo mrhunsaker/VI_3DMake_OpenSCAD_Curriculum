@@ -1,7 +1,4 @@
-# Measurement Worksheet (Self-Paced)
-
-
-
+# Measurement Worksheet 
 
 **Student Name:** ___________________________________
 **Date:** ___________________________________
@@ -35,7 +32,7 @@
 **Notes / sketches:**
 
 ```
-(draw or describe the object here — label which direction is X, Y, Z)
+(describe the object here — label which direction is X, Y, Z)
 
 
 
@@ -59,7 +56,7 @@
 **Notes / sketches:**
 
 ```
-(draw or describe the object here)
+(describe the object here)
 
 
 
@@ -83,7 +80,7 @@
 **Notes / sketches:**
 
 ```
-(draw or describe the object here)
+(describe the object here)
 
 
 
@@ -107,7 +104,7 @@
 **Notes / sketches:**
 
 ```
-(draw or describe the object here)
+(describe the object here)
 
 
 
@@ -131,7 +128,7 @@
 **Notes / sketches:**
 
 ```
-(draw or describe the object here)
+(describe the object here)
 
 
 
@@ -177,18 +174,6 @@ A percent error under 2% is excellent for caliper work at this level.
 
 1. Which measurement was most difficult to take and why?
 
-___________________________________________________________________________
-
-___________________________________________________________________________
-
 2. Did your three measurements for any feature vary significantly? What might cause variation between repeated measurements?
 
-___________________________________________________________________________
-
-___________________________________________________________________________
-
 3. If you were designing an object in OpenSCAD that needed to fit over one of these objects, which measurement would you use — your smallest, your largest, or your average? Why?
-
-___________________________________________________________________________
-
-___________________________________________________________________________

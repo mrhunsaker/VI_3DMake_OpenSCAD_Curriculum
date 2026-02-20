@@ -1,16 +1,18 @@
 
-# Caliper Practice Worksheet (Self-Paced)
+# Caliper Practice Worksheet 
 
-**Accessibility:** Add short guidance for screen-reader users: include a text-based walkthrough of each measurement step and annotate expected results so non-visual learners can follow the worksheet.
+## Accessibility
+
+Add short guidance for screen-reader users: include a text-based walkthrough of each measurement step and annotate expected results so non-visual learners can follow the worksheet.
 
 Student Name: ______________________  Date: ___________
 
-Before you begin checklist:
+## Before You Begin Checklist
 - [ ] Caliper clean and dry
 - [ ] Jaws close and display reads `0.0 mm`
 - [ ] Units set to `mm`
 
-Part A — Measure three features on Object 1 (outside length, width, height). Record three trials and compute average.
+## Part A
 
 Feature — Outside length:
 Trial 1: _____ mm
@@ -59,4 +61,4 @@ Extension problems (5):
 5. Design a short 1-page illustrated guide for first-time caliper users.
 
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+

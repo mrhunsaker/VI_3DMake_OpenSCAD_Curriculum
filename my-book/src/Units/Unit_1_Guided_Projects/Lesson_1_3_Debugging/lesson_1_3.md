@@ -1,4 +1,3 @@
-```markdown
 # Lesson 1.3 — Debugging, Resolution, and Practice
 
 **Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
@@ -19,7 +18,7 @@ This lesson covers common syntax errors, debugging workflows in OpenSCAD, and th
 3. Practical: Given a piece of code that fails to render, describe three steps you would take to find the problem.
 4. True/False: Setting `$fn` to 200 is always better. — Answer: False (renders smoother but takes longer)
 
-# Lesson 1.3 — Debugging, Resolution, and Practice (Self-Paced)
+# Lesson 1.3 — Debugging, Resolution, and Practice 
 
 Estimated time: 30–60 minutes
 
@@ -54,7 +53,3 @@ Extension problems (5):
 3. Build a small assembly that fails to align; use debug prints (comments and stepwise removal) to find the misplaced transform.
 4. Write a short troubleshooting checklist students can follow when a print fails (e.g., check model, slice settings, printer temperature).
 5. Create a reproducible bug report for an issue you experienced: include code, steps to reproduce, expected vs actual result.
-
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
-
-``` 

@@ -1,4 +1,3 @@
-
 # Unit 1: Guided Projects (Self-Paced primer)
 
 **Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
@@ -7,7 +6,7 @@ Estimated duration: 3–4 weeks (self-paced students may compress or expand)
 
 Purpose: Guide independent learners through project-driven skill application, with clear checkpoints, quizzes, and extension problems to build mastery and independence.
 
-How to use this unit (self-paced):
+How to use this unit :
 - Complete the short lessons in `Unit_1_Guided_Projects` before starting each project.
 - Follow the step-by-step project guides (`Project_0.md`, `Project_1.md`) and submit deliverables listed in each project.
 - After each milestone (measure, model, render, slice, print), complete the quick checkpoint and quiz.
@@ -29,7 +28,7 @@ Teacher / mentor guidance (if available):
 - Schedule at least one short review session per project for quick feedback on measurements and first prototype fit.
 - For students working fully independently, require that they submit the documentation template and at least one photo or STL for review.
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+
 
 ## Available .scad files for study
 

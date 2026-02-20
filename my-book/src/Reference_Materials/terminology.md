@@ -1,6 +1,4 @@
-# Terminology (Self-Paced)
-
-
+# Terminology 
 
 
 ## How to Use This Terminology File
@@ -169,4 +167,3 @@ Accessibility (a11y) - Ensuring materials and workflows work for
   keyboard navigation).
 
 ---
-

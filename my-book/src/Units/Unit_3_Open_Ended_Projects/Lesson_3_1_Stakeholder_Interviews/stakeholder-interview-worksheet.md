@@ -1,4 +1,4 @@
-# Stakeholder Interview Worksheet (Self-Paced)
+# Stakeholder Interview Worksheet 
 
 **Accessibility:** Provide a brief text-based walkthrough of the worksheet steps and allow answers to be submitted as text or short audio transcripts for non-visual participants.
 

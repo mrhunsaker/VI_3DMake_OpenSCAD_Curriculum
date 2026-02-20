@@ -81,10 +81,10 @@
             const path_to_root = "../../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../../toc-61f61fa6.js"></script>
+        <script src="../../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,46 +220,45 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown">
-
-# Lesson 1.2 — Translations (Self-Paced)
-
-Estimated time: 25–45 minutes
-
-Learning objectives:
-- Move and place primitives precisely using `translate()`.
-- Reason about dimensions when working with centered vs non-centered shapes.
-
-Materials:
-- Computer with OpenSCAD
-
-Step-by-step instructions:
-1. Open `lesson1_2.scad`. Create a 20×20×20 cube and preview it.
-2. Translate it to the right by 30 mm: `translate([30,0,0]) cube([20,20,20]);` Preview and observe coordinates.
-3. Create a centered sphere `sphere(d=20, center=true);` and compute how far to translate it up so its bottom touches Z=0.
-4. Build two cubes side-by-side with a 2 mm gap; test different translate values to place them precisely.
-
-Checkpoint (verify):
-- Write the `translate()` call that moves an object up by 10 mm and save the file.
-
-Quiz — Lesson 1.2 (5 items):
-1. Short answer: `translate()` to move up 10 mm.
-2. Multiple choice: For a centered sphere with `r=8`, translate Z by which value for bottom to touch Z=0? (A)0 (B)8 (C)16
-3. Practical: Two cubes with 2 mm gap code.
-4. Short answer: What is an octant?
-5. Short answer: Why use centering before translating in many assembly tasks?
-
-Extension problems (5):
-1. Create a 3×3 grid of 10 mm cubes with 2 mm spacing using `for()` and `translate()`.
-2. Place a cylinder so its edge is flush with a cube face; include calculations.
-3. Use nested `translate()` calls to build a stepped stack of three cubes.
-4. Combine translation and `rotate()` to place a rotated object at a precise offset; explain the order of operations.
-5. Design a small clip built from primitives placed precisely; list your translation values and rationale.
-
-
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
-
-</code></pre>
+                        <h1 id="lesson-12--translations"><a class="header" href="#lesson-12--translations">Lesson 1.2 — Translations</a></h1>
+<h2 id="estimated-time"><a class="header" href="#estimated-time">Estimated Time</a></h2>
+<p>25–45 minutes</p>
+<h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<ul>
+<li>Move and place primitives precisely using <code>translate()</code>.</li>
+<li>Reason about dimensions when working with centered vs non-centered shapes.</li>
+</ul>
+<h2 id="materials"><a class="header" href="#materials">Materials</a></h2>
+<ul>
+<li>Computer with OpenSCAD</li>
+</ul>
+<h2 id="step-by-step-instructions"><a class="header" href="#step-by-step-instructions">Step-by-Step Instructions</a></h2>
+<ol>
+<li>Open <code>lesson1_2.scad</code>. Create a 20×20×20 cube and preview it.</li>
+<li>Translate it to the right by 30 mm: <code>translate([30,0,0]) cube([20,20,20]);</code> Preview and observe coordinates.</li>
+<li>Create a centered sphere <code>sphere(d=20, center=true);</code> and compute how far to translate it up so its bottom touches Z=0.</li>
+<li>Build two cubes side-by-side with a 2 mm gap; test different translate values to place them precisely.</li>
+</ol>
+<h2 id="checkpoint"><a class="header" href="#checkpoint">Checkpoint</a></h2>
+<ul>
+<li>Write the <code>translate()</code> call that moves an object up by 10 mm and save the file.</li>
+</ul>
+<h2 id="quiz--lesson-12"><a class="header" href="#quiz--lesson-12">Quiz — Lesson 1.2</a></h2>
+<ol>
+<li>Short answer: <code>translate()</code> to move up 10 mm.</li>
+<li>Multiple choice: For a centered sphere with <code>r=8</code>, translate Z by which value for bottom to touch Z=0? (A)0 (B)8 (C)16</li>
+<li>Practical: Two cubes with 2 mm gap code.</li>
+<li>Short answer: What is an octant?</li>
+<li>Short answer: Why use centering before translating in many assembly tasks?</li>
+</ol>
+<h2 id="extension-problems"><a class="header" href="#extension-problems">Extension Problems</a></h2>
+<ol>
+<li>Create a 3×3 grid of 10 mm cubes with 2 mm spacing using <code>for()</code> and <code>translate()</code>.</li>
+<li>Place a cylinder so its edge is flush with a cube face; include calculations.</li>
+<li>Use nested <code>translate()</code> calls to build a stepped stack of three cubes.</li>
+<li>Combine translation and <code>rotate()</code> to place a rotated object at a precise offset; explain the order of operations.</li>
+<li>Design a small clip built from primitives placed precisely; list your translation values and rationale.</li>
+</ol>
 
                     </main>
 

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Slicing Settings Quick Reference - 3D Printing Course for Blind and Visually Impaired Learners</title>
+        <title>3dMake Setup &amp; Workflow Guide — Installation to Advanced Usage - 3D Printing Course for Blind and Visually Impaired Learners</title>
 
 
         <!-- Custom HTML head -->
@@ -81,10 +81,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-61f61fa6.js"></script>
+        <script src="../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,100 +220,370 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="slicing-settings-quick-reference--prusaslicer-self-paced"><a class="header" href="#slicing-settings-quick-reference--prusaslicer-self-paced">Slicing Settings Quick Reference — PrusaSlicer (Self-Paced)</a></h1>
-<p><em>Print this page and keep it next to the printer.</em></p>
+                        <h1 id="3dmake-setup--workflow-guide-comprehensive"><a class="header" href="#3dmake-setup--workflow-guide-comprehensive">3dMake Setup &amp; Workflow Guide (Comprehensive)</a></h1>
+<p>This guide walks you through installing 3dMake, creating projects, and managing your workflow efficiently.</p>
 <hr>
-<h2 id="recommended-settings-by-use-case"><a class="header" href="#recommended-settings-by-use-case">Recommended Settings by Use Case</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Use Case</th><th>Layer Height</th><th>Infill</th><th>Supports</th><th>Notes</th></tr>
-</thead>
-<tbody>
-<tr><td>Quick test / prototype</td><td>0.30 mm</td><td>10%</td><td>As needed</td><td>“Draft” — fastest, roughest</td></tr>
-<tr><td>Standard project</td><td>0.20 mm</td><td>15–20%</td><td>As needed</td><td>Best all-around starting point</td></tr>
-<tr><td>Functional part</td><td>0.20 mm</td><td>30–40%</td><td>As needed</td><td>Use for parts under stress</td></tr>
-<tr><td>Fine detail / display</td><td>0.15 mm</td><td>15%</td><td>As needed</td><td>Smoother surface; slower</td></tr>
-<tr><td>Solid reference part</td><td>0.20 mm</td><td>40–50%</td><td>Rarely</td><td>Rarely needed; long print</td></tr>
-</tbody>
-</table>
-</div>
-<hr>
-<h2 id="filament-temperature-settings"><a class="header" href="#filament-temperature-settings">Filament Temperature Settings</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Filament</th><th>Nozzle Temp</th><th>Bed Temp</th><th>Notes</th></tr>
-</thead>
-<tbody>
-<tr><td>PLA</td><td>200–215°C</td><td>50–60°C</td><td>Easiest to print; default choice</td></tr>
-<tr><td>PETG</td><td>230–250°C</td><td>70–85°C</td><td>Use glue stick on PEI bed</td></tr>
-<tr><td>TPU</td><td>220–240°C</td><td>30–60°C</td><td>Print at 20–30 mm/s max; direct drive only</td></tr>
-<tr><td>ABS</td><td>230–250°C</td><td>90–110°C</td><td>Requires enclosure; more fumes</td></tr>
-</tbody>
-</table>
-</div>
-<p><em>Always check the temperature range on your filament spool — it may vary by brand.</em></p>
-<hr>
-<h2 id="support-settings-guide"><a class="header" href="#support-settings-guide">Support Settings Guide</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Overhang Angle</th><th>Supports Needed?</th><th>Recommended Setting</th></tr>
-</thead>
-<tbody>
-<tr><td>&lt; 45°</td><td>No</td><td>None</td></tr>
-<tr><td>45°–60°</td><td>Maybe</td><td>Preview first; add if sagging</td></tr>
-<tr><td>&gt; 60°</td><td>Yes</td><td>Support on build plate only</td></tr>
-<tr><td>Bridge &lt; 20 mm</td><td>No</td><td>Bridges usually fine</td></tr>
-<tr><td>Bridge &gt; 20 mm</td><td>Maybe</td><td>Preview; consider reorienting</td></tr>
-</tbody>
-</table>
-</div>
-<hr>
-<h2 id="common-print-problems--quick-fixes"><a class="header" href="#common-print-problems--quick-fixes">Common Print Problems &amp; Quick Fixes</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Problem</th><th>Likely Cause</th><th>Fix</th></tr>
-</thead>
-<tbody>
-<tr><td>Print lifts off bed</td><td>Poor adhesion / warping</td><td>Add brim; use glue stick; level bed</td></tr>
-<tr><td>Stringing between parts</td><td>Temperature too high / retraction</td><td>Lower temp 5°C; check retraction settings</td></tr>
-<tr><td>Layer lines very visible</td><td>Layer height too thick</td><td>Use 0.15mm or 0.20mm</td></tr>
-<tr><td>Print takes too long</td><td>Layer height too thin / infill too high</td><td>Use 0.30mm draft; reduce infill</td></tr>
-<tr><td>Holes too small</td><td>FDM tolerance — always undersized</td><td>Add 0.2–0.3mm to hole diameter</td></tr>
-<tr><td>Part broke at layer boundary</td><td>Weak axis perpendicular to layers</td><td>Reorient so load is parallel to layers</td></tr>
-<tr><td>First layer not sticking</td><td>Bed not level</td><td>Run bed leveling routine</td></tr>
-<tr><td>Spaghetti / print failure</td><td>No supports on overhang</td><td>Add supports or reorient</td></tr>
-</tbody>
-</table>
-</div>
-<hr>
-<h2 id="g-code-export-checklist"><a class="header" href="#g-code-export-checklist">G-code Export Checklist</a></h2>
-<p>Before exporting, confirm:</p>
+<h2 id="part-1-installing-3dmake"><a class="header" href="#part-1-installing-3dmake">Part 1: Installing 3dMake</a></h2>
+<h3 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h3>
+<p>Before installing 3dMake, ensure you have:</p>
 <ul>
-<li><input disabled="" type="checkbox"> Correct printer profile selected</li>
-<li><input disabled="" type="checkbox"> Correct filament profile selected</li>
-<li><input disabled="" type="checkbox"> Layer height appropriate for use case</li>
-<li><input disabled="" type="checkbox"> Infill percentage set</li>
-<li><input disabled="" type="checkbox"> Supports enabled if needed</li>
-<li><input disabled="" type="checkbox"> Layer preview reviewed (no floating parts, supports where needed)</li>
-<li><input disabled="" type="checkbox"> Print time and filament weight noted for your records</li>
+<li>Python 3.8+ installed on your system</li>
+<li>pip (Python package manager) available in your PATH</li>
+<li>Terminal or PowerShell access</li>
+<li>Internet connection to download packages</li>
+</ul>
+<h3 id="step-by-step-installation"><a class="header" href="#step-by-step-installation">Step-by-Step Installation</a></h3>
+<h4 id="step-1-open-your-terminal"><a class="header" href="#step-1-open-your-terminal">Step 1: Open Your Terminal</a></h4>
+<p><strong>PowerShell (Windows):</strong></p>
+<ul>
+<li>Press <code>Win + X</code> and select “Windows PowerShell” or “Terminal”</li>
+<li>For screen reader users: Use <code>Alt + F2</code> and type <code>powershell</code> if needed</li>
+</ul>
+<p><strong>Linux/Mac:</strong></p>
+<ul>
+<li>Open your terminal application (Terminal, Konsole, etc.)</li>
+</ul>
+<h4 id="step-2-verify-python-installation"><a class="header" href="#step-2-verify-python-installation">Step 2: Verify Python Installation</a></h4>
+<pre><code class="language-bash">python --version
+</code></pre>
+<p>If you see a version number (e.g., <code>Python 3.9.13</code>), proceed to Step 3. If not, install Python from https://python.org.</p>
+<h4 id="step-3-install-3dmake-via-pip"><a class="header" href="#step-3-install-3dmake-via-pip">Step 3: Install 3dMake via pip</a></h4>
+<pre><code class="language-bash">pip install 3dmake
+</code></pre>
+<p>This downloads and installs 3dMake and all dependencies.</p>
+<h4 id="step-4-verify-installation"><a class="header" href="#step-4-verify-installation">Step 4: Verify Installation</a></h4>
+<pre><code class="language-bash">3dmake --version
+</code></pre>
+<p>You should see the installed version number. If you see an error, troubleshoot by running:</p>
+<pre><code class="language-bash">pip install --upgrade 3dmake
+</code></pre>
+<h4 id="step-5-get-help"><a class="header" href="#step-5-get-help">Step 5: Get Help</a></h4>
+<pre><code class="language-bash">3dmake --help
+</code></pre>
+<p>This displays all available 3dMake commands.</p>
+<hr>
+<h2 id="part-2-creating-and-managing-projects"><a class="header" href="#part-2-creating-and-managing-projects">Part 2: Creating and Managing Projects</a></h2>
+<h3 id="what-is-a-3dmake-project"><a class="header" href="#what-is-a-3dmake-project">What Is a 3dMake Project?</a></h3>
+<p>A 3dMake project is a folder structure that organizes:</p>
+<ul>
+<li><strong>OpenSCAD files</strong> (.scad) — your 3D models</li>
+<li><strong>STL exports</strong> (.stl) — ready-to-print files</li>
+<li><strong>Configuration files</strong> — project settings</li>
+<li><strong>Metadata</strong> — project information and logs</li>
+</ul>
+<h3 id="creating-your-first-project"><a class="header" href="#creating-your-first-project">Creating Your First Project</a></h3>
+<h4 id="step-1-choose-or-create-a-project-directory"><a class="header" href="#step-1-choose-or-create-a-project-directory">Step 1: Choose or Create a Project Directory</a></h4>
+<p>Decide where you want your project. Examples:</p>
+<pre><code>C:\Users\YourName\Documents\MyProjects\
+/home/username/3d-projects/
+~/Desktop/MyPrinter/
+</code></pre>
+<p>Create the directory if it doesn’t exist:</p>
+<p><strong>PowerShell:</strong></p>
+<pre><code class="language-powershell">mkdir C:\Users\YourName\Documents\3d-projects\FirstProject
+</code></pre>
+<p><strong>Linux/Mac:</strong></p>
+<pre><code class="language-bash">mkdir -p ~/3d-projects/FirstProject
+</code></pre>
+<h4 id="step-2-navigate-into-your-project-directory"><a class="header" href="#step-2-navigate-into-your-project-directory">Step 2: Navigate Into Your Project Directory</a></h4>
+<p><strong>PowerShell:</strong></p>
+<pre><code class="language-powershell">cd C:\Users\YourName\Documents\3d-projects\FirstProject
+</code></pre>
+<p><strong>Linux/Mac:</strong></p>
+<pre><code class="language-bash">cd ~/3d-projects/FirstProject
+</code></pre>
+<p>For screen reader users: Use <code>pwd</code> (print working directory) to confirm you’re in the right folder.</p>
+<h4 id="step-3-initialize-a-3dmake-project"><a class="header" href="#step-3-initialize-a-3dmake-project">Step 3: Initialize a 3dMake Project</a></h4>
+<pre><code class="language-bash">3dmake init
+</code></pre>
+<p>This creates the project structure:</p>
+<pre><code>FirstProject/
+├── models/           (stores your .scad files)
+├── exports/          (stores exported .stl files)
+├── 3dmake.config     (project settings)
+└── README.md         (project documentation)
+</code></pre>
+<h4 id="step-4-verify-project-creation"><a class="header" href="#step-4-verify-project-creation">Step 4: Verify Project Creation</a></h4>
+<pre><code class="language-bash">ls -la
+</code></pre>
+<p>or in PowerShell:</p>
+<pre><code class="language-powershell">Get-ChildItem -Force
+</code></pre>
+<p>You should see the project files listed.</p>
+<hr>
+<h2 id="part-3-working-with-your-project"><a class="header" href="#part-3-working-with-your-project">Part 3: Working With Your Project</a></h2>
+<h3 id="creating-openscad-models"><a class="header" href="#creating-openscad-models">Creating OpenSCAD Models</a></h3>
+<h4 id="step-1-create-a-new-openscad-file"><a class="header" href="#step-1-create-a-new-openscad-file">Step 1: Create a New OpenSCAD File</a></h4>
+<p>Place your .scad files in the <code>models/</code> folder. You can create them in two ways:</p>
+<p><strong>Option A: Create in OpenSCAD editor, then move file</strong></p>
+<ol>
+<li>Open OpenSCAD</li>
+<li>Write your code</li>
+<li>Save as <code>models/mymodel.scad</code></li>
+</ol>
+<p><strong>Option B: Create directly in the models folder</strong></p>
+<pre><code class="language-bash"># Navigate to models folder
+cd models
+
+# Create and edit a new file (use your preferred editor)
+# nano, vim, or open in VS Code:
+code mymodel.scad
+</code></pre>
+<h4 id="step-2-verify-your-model"><a class="header" href="#step-2-verify-your-model">Step 2: Verify Your Model</a></h4>
+<p>Before exporting, check that your model renders without errors in OpenSCAD.</p>
+<h3 id="rendering-and-exporting-models"><a class="header" href="#rendering-and-exporting-models">Rendering and Exporting Models</a></h3>
+<h4 id="step-1-list-available-models"><a class="header" href="#step-1-list-available-models">Step 1: List Available Models</a></h4>
+<p>From your project root directory:</p>
+<pre><code class="language-bash">3dmake list
+</code></pre>
+<p>This shows all .scad files in the <code>models/</code> folder.</p>
+<h4 id="step-2-render-a-specific-model"><a class="header" href="#step-2-render-a-specific-model">Step 2: Render a Specific Model</a></h4>
+<pre><code class="language-bash">3dmake render models/mymodel.scad
+</code></pre>
+<p>This generates the mesh from your OpenSCAD code.</p>
+<h4 id="step-3-export-to-stl"><a class="header" href="#step-3-export-to-stl">Step 3: Export to STL</a></h4>
+<pre><code class="language-bash">3dmake export models/mymodel.scad --format stl
+</code></pre>
+<p>The STL file automatically goes into the <code>exports/</code> folder.</p>
+<h4 id="step-4-verify-the-export"><a class="header" href="#step-4-verify-the-export">Step 4: Verify the Export</a></h4>
+<pre><code class="language-bash">ls exports/
+</code></pre>
+<p>Your <code>mymodel.stl</code> should be listed.</p>
+<h3 id="using-3dmakes-analysis-tools"><a class="header" href="#using-3dmakes-analysis-tools">Using 3dMake’s Analysis Tools</a></h3>
+<p>3dMake includes built-in analysis for quality checks:</p>
+<h4 id="check-model-statistics"><a class="header" href="#check-model-statistics">Check Model Statistics</a></h4>
+<pre><code class="language-bash">3dmake info models/mymodel.scad
+</code></pre>
+<p>Output includes:</p>
+<ul>
+<li><strong>Face count</strong> — total triangles in the mesh</li>
+<li><strong>Volume</strong> — cubic millimeters of material</li>
+<li><strong>Bounding box</strong> — dimensions (X, Y, Z)</li>
+<li><strong>Manifold status</strong> — whether model is watertight</li>
+</ul>
+<h4 id="example-output"><a class="header" href="#example-output">Example Output</a></h4>
+<pre><code>=== Model Info: mymodel.scad ===
+Volume: 1234.56 mm³
+Faces: 2048
+Bounding Box: 50.0 × 40.0 × 30.0 mm
+Manifold: Yes ✓
+</code></pre>
+<h4 id="generate-a-quality-report"><a class="header" href="#generate-a-quality-report">Generate a Quality Report</a></h4>
+<pre><code class="language-bash">3dmake validate models/mymodel.scad
+</code></pre>
+<p>This checks for:</p>
+<ul>
+<li>Non-manifold geometry</li>
+<li>Intersecting faces</li>
+<li>Thin walls</li>
+<li>Isolated vertices</li>
+</ul>
+<h4 id="fix-common-issues"><a class="header" href="#fix-common-issues">Fix Common Issues</a></h4>
+<p>If validation finds issues:</p>
+<ol>
+<li><strong>Non-manifold edges:</strong> Ensure all faces form a closed solid</li>
+<li><strong>Thin walls:</strong> Check wall thickness (minimum 0.8–1.0 mm recommended)</li>
+<li><strong>Intersecting faces:</strong> Fix overlapping geometry in your OpenSCAD code</li>
+</ol>
+<hr>
+<h2 id="part-4-managing-multiple-projects"><a class="header" href="#part-4-managing-multiple-projects">Part 4: Managing Multiple Projects</a></h2>
+<h3 id="switching-between-projects"><a class="header" href="#switching-between-projects">Switching Between Projects</a></h3>
+<h4 id="method-1-navigate-via-terminal"><a class="header" href="#method-1-navigate-via-terminal">Method 1: Navigate via Terminal</a></h4>
+<pre><code class="language-bash"># Leave current project
+cd ..
+
+# Enter a different project
+cd ../SecondProject
+pwd  # Verify you're in the right place
+</code></pre>
+<p>For screen reader users, always use <code>pwd</code> after navigating to confirm your location.</p>
+<h4 id="method-2-create-a-projects-directory-structure"><a class="header" href="#method-2-create-a-projects-directory-structure">Method 2: Create a Projects Directory Structure</a></h4>
+<p>Create a central folder for all projects:</p>
+<pre><code>3d-projects/
+├── FirstProject/
+│   ├── models/
+│   ├── exports/
+│   └── 3dmake.config
+├── SecondProject/
+│   ├── models/
+│   ├── exports/
+│   └── 3dmake.config
+└── README.md (project index)
+</code></pre>
+<h4 id="method-3-use-a-project-index"><a class="header" href="#method-3-use-a-project-index">Method 3: Use a Project Index</a></h4>
+<p>Create a <code>README.md</code> in your <code>3d-projects/</code> folder:</p>
+<pre><code class="language-markdown"># My 3D Projects
+
+## Project List
+
+1. **FirstProject** — My initial test models
+   - Location: `./FirstProject/models/`
+   - Status: In progress
+   - Latest model: `cube_test.scad`
+
+2. **SecondProject** — Parametric keychain designs
+   - Location: `./SecondProject/models/`
+   - Status: Complete
+   - Latest model: `keychain_v3.scad`
+
+3. **ThirdProject** — Functional brackets for printing
+   - Location: `./ThirdProject/models/`
+   - Status: In progress
+   - Latest model: `bracket_assembly.scad`
+</code></pre>
+<h3 id="exporting-from-all-projects"><a class="header" href="#exporting-from-all-projects">Exporting from All Projects</a></h3>
+<p>To batch-export STLs from all projects:</p>
+<p><strong>PowerShell:</strong></p>
+<pre><code class="language-powershell">Get-ChildItem -Directory | ForEach-Object {
+    cd $_.FullName
+    3dmake export models/*.scad --format stl
+    cd ..
+}
+</code></pre>
+<p><strong>Bash:</strong></p>
+<pre><code class="language-bash">for project in */; do
+    cd "$project"
+    3dmake export models/*.scad --format stl
+    cd ..
+done
+</code></pre>
+<hr>
+<h2 id="part-5-workflow-best-practices"><a class="header" href="#part-5-workflow-best-practices">Part 5: Workflow Best Practices</a></h2>
+<h3 id="file-naming-conventions"><a class="header" href="#file-naming-conventions">File Naming Conventions</a></h3>
+<p>Use clear, descriptive names:</p>
+<p><strong>Good:</strong></p>
+<ul>
+<li><code>cube_5cm.scad</code></li>
+<li><code>parametric_box_v2.scad</code></li>
+<li><code>bracket_for_motor.scad</code></li>
+</ul>
+<p><strong>Avoid:</strong></p>
+<ul>
+<li><code>test.scad</code></li>
+<li><code>model1.scad</code></li>
+<li><code>final_final_FINAL.scad</code></li>
+</ul>
+<h3 id="version-control-optional"><a class="header" href="#version-control-optional">Version Control (Optional)</a></h3>
+<p>If you’re using Git, add a <code>.gitignore</code> to avoid committing large export files:</p>
+<pre><code># .gitignore
+exports/
+*.stl
+.DS_Store
+__pycache__/
+</code></pre>
+<p>Then initialize Git:</p>
+<pre><code class="language-bash">git init
+git add .
+git commit -m "Initial project setup"
+</code></pre>
+<h3 id="backup-strategy"><a class="header" href="#backup-strategy">Backup Strategy</a></h3>
+<p>Regularly backup your <code>models/</code> folder:</p>
+<p><strong>PowerShell:</strong></p>
+<pre><code class="language-powershell">Copy-Item -Path "models" -Destination "backups/models_$(Get-Date -Format 'yyyy-MM-dd')" -Recurse
+</code></pre>
+<p><strong>Bash:</strong></p>
+<pre><code class="language-bash">cp -r models backups/models_$(date +%Y-%m-%d)
+</code></pre>
+<h3 id="documentation"><a class="header" href="#documentation">Documentation</a></h3>
+<p>Keep a <code>models/README.md</code> describing each model:</p>
+<pre><code class="language-markdown"># Models in This Project
+
+## cube_5cm.scad
+- **Purpose:** Basic cube test
+- **Parameters:** width=50, height=50, depth=50
+- **Last modified:** 2025-02-20
+- **Notes:** Used for adhesion testing on new printer
+
+## parametric_box_v2.scad
+- **Purpose:** Customizable storage box
+- **Parameters:** length, width, height, wall_thickness
+- **Last modified:** 2025-02-18
+- **Notes:** Includes snap-fit lid
+</code></pre>
+<hr>
+<h2 id="part-6-troubleshooting"><a class="header" href="#part-6-troubleshooting">Part 6: Troubleshooting</a></h2>
+<h3 id="common-issues"><a class="header" href="#common-issues">Common Issues</a></h3>
+<h4 id="3dmake-command-not-found"><a class="header" href="#3dmake-command-not-found">“3dmake command not found”</a></h4>
+<p><strong>Solution:</strong></p>
+<pre><code class="language-bash">pip install --upgrade 3dmake
+</code></pre>
+<p>Then restart your terminal.</p>
+<h4 id="model-exports-to-wrong-folder"><a class="header" href="#model-exports-to-wrong-folder">Model exports to wrong folder</a></h4>
+<p><strong>Solution:</strong> Always verify you’re in the correct project directory:</p>
+<pre><code class="language-bash">pwd
+</code></pre>
+<p>Make sure you see your project path, then verify <code>exports/</code> exists:</p>
+<pre><code class="language-bash">ls -la exports/
+</code></pre>
+<h4 id="screen-reader-doesnt-read-3dmake-output-clearly"><a class="header" href="#screen-reader-doesnt-read-3dmake-output-clearly">Screen reader doesn’t read 3dMake output clearly</a></h4>
+<p><strong>Solution:</strong> Use the <code>--verbose</code> flag for more detailed output:</p>
+<pre><code class="language-bash">3dmake export models/mymodel.scad --verbose
+</code></pre>
+<p>This logs each step, making it easier for screen readers to follow.</p>
+<h4 id="openscad-model-wont-render-in-3dmake"><a class="header" href="#openscad-model-wont-render-in-3dmake">OpenSCAD model won’t render in 3dMake</a></h4>
+<p><strong>Checklist:</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> File is named with <code>.scad</code> extension</li>
+<li><input disabled="" type="checkbox"> File is in the <code>models/</code> folder</li>
+<li><input disabled="" type="checkbox"> File has valid OpenSCAD syntax</li>
+<li><input disabled="" type="checkbox"> Run <code>3dmake validate</code> to check for errors</li>
+</ul>
+<hr>
+<h2 id="part-7-quick-reference"><a class="header" href="#part-7-quick-reference">Part 7: Quick Reference</a></h2>
+<h3 id="essential-commands"><a class="header" href="#essential-commands">Essential Commands</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Command</th><th>Purpose</th></tr>
+</thead>
+<tbody>
+<tr><td><code>3dmake --version</code></td><td>Show installed version</td></tr>
+<tr><td><code>3dmake --help</code></td><td>Display all commands</td></tr>
+<tr><td><code>3dmake init</code></td><td>Initialize new project</td></tr>
+<tr><td><code>3dmake list</code></td><td>List all models in project</td></tr>
+<tr><td><code>3dmake render &lt;file&gt;</code></td><td>Render a model</td></tr>
+<tr><td><code>3dmake export &lt;file&gt;</code></td><td>Export to STL format</td></tr>
+<tr><td><code>3dmake info &lt;file&gt;</code></td><td>Show model statistics</td></tr>
+<tr><td><code>3dmake validate &lt;file&gt;</code></td><td>Check for geometry issues</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="directory-structure-reference"><a class="header" href="#directory-structure-reference">Directory Structure Reference</a></h3>
+<pre><code>YourProject/
+├── models/              ← Place .scad files here
+├── exports/             ← STL files auto-save here
+├── 3dmake.config        ← Project settings
+├── README.md            ← Project documentation
+└── backups/             ← Optional: backup folder
+</code></pre>
+<hr>
+<h2 id="part-8-next-steps"><a class="header" href="#part-8-next-steps">Part 8: Next Steps</a></h2>
+<p>Once you’re comfortable with basic projects:</p>
+<ol>
+<li><strong>Learn parametric design</strong> — Make reusable models with variables</li>
+<li><strong>Explore modules</strong> — Organize code into reusable functions</li>
+<li><strong>Integrate with slicing</strong> — Export directly to Bambu/Prusa/Anycubic</li>
+<li><strong>Automate workflows</strong> — Write scripts to batch-process models</li>
+<li><strong>Collaborate</strong> — Use Git to share projects with classmates</li>
+</ol>
+<p>For advanced topics, see:</p>
+<ul>
+<li><a href="openscad-cheat-sheet.html">OpenSCAD Cheat Sheet</a></li>
+<li><a href="Reference_Materials/slicing-settings-reference-prusa.html">Slicing Settings by Printer</a></li>
 </ul>
 <hr>
 <h2 id="sources"><a class="header" href="#sources">Sources</a></h2>
-<p>Prusa Research. (2023). <em>PrusaSlicer knowledge base</em>. https://help.prusa3d.com/category/prusaslicer_204<br>Hubs. (2023). <em>What is FDM 3D printing?</em> https://www.hubs.com/knowledge-base/what-is-fdm-3d-printing/<br>ThePrusaSlicer.net. (2025). <em>How to use PrusaSlicer</em>. https://theprusaslicer.net/how-to-use-prusaslicer/</p>
+<p>3dMake Official Documentation. (2025). <em>3dMake — 3D modeling automation</em>. https://3dmake.org/docs/<br>OpenSCAD Community. (2025). <em>OpenSCAD user manual</em>. https://openscad.org/manual/<br>Teaching Tech. (2024). <em>3D printing workflow optimization</em>. https://www.youtube.com/@TeachingTech</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../Reference_Materials/openscad-cheat-sheet.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../Reference_Materials/course-setup-guide.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../Reference_Materials/filament-comparison-table.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../Reference_Materials/markdown-starter-guide.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -323,11 +593,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../Reference_Materials/openscad-cheat-sheet.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../Reference_Materials/course-setup-guide.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../Reference_Materials/filament-comparison-table.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../Reference_Materials/markdown-starter-guide.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

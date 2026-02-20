@@ -79,4 +79,4 @@ Free sliding:   _______ mm
 Holes print approx _______ mm SMALLER than designed.
 ```
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+

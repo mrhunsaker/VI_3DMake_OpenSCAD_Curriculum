@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,114 +220,83 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown"># PS-3: Input, Output, and Piping
-
-
-
-**Duration:** 1 class period
-**Prerequisite:** PS-2 (File and Folder Manipulation)
-
----
-
-## Learning Objectives
-
-By the end of this lesson, you will be able to:
-- Use `echo` to print text to the screen
-- Use `cat` to read file contents
-- Use `&gt;` to redirect output into a file
-- Use `|` (pipe) to send one command's output to another
-- Copy output to the clipboard with `clip`
-- Open files with a text editor from the command line
-
----
-
-## Commands Covered
-
-| Command | What It Does |
-|---------|-------------|
-| `echo "text"` | Print text to the screen |
-| `cat filename` | Print the contents of a file |
-| `&gt; filename` | Redirect output into a file (overwrites) |
-| `&gt;&gt; filename` | Append output to a file (adds to end) |
-| `\|` | Pipe — send output from one command to the next |
-| `clip` | Copy piped input to the Windows clipboard |
-| `notepad.exe filename` | Open a file in Notepad |
-
----
-
-## `echo` — Printing Text
-
-`echo` prints text to the screen. It is useful for testing, for writing text into files, and for understanding how piping works.
-
-```powershell
-echo "Hello, World"
+                        <h1 id="ps-3-input-output-and-piping"><a class="header" href="#ps-3-input-output-and-piping">PS-3: Input, Output, and Piping</a></h1>
+<p><strong>Duration:</strong> 1 class period
+<strong>Prerequisite:</strong> PS-2 (File and Folder Manipulation)</p>
+<hr>
+<h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<p>By the end of this lesson, you will be able to:</p>
+<ul>
+<li>Use <code>echo</code> to print text to the screen</li>
+<li>Use <code>cat</code> to read file contents</li>
+<li>Use <code>&gt;</code> to redirect output into a file</li>
+<li>Use <code>|</code> (pipe) to send one command’s output to another</li>
+<li>Copy output to the clipboard with <code>clip</code></li>
+<li>Open files with a text editor from the command line</li>
+</ul>
+<hr>
+<h2 id="commands-covered"><a class="header" href="#commands-covered">Commands Covered</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Command</th><th>What It Does</th></tr>
+</thead>
+<tbody>
+<tr><td><code>echo "text"</code></td><td>Print text to the screen</td></tr>
+<tr><td><code>cat filename</code></td><td>Print the contents of a file</td></tr>
+<tr><td><code>&gt; filename</code></td><td>Redirect output into a file (overwrites)</td></tr>
+<tr><td><code>&gt;&gt; filename</code></td><td>Append output to a file (adds to end)</td></tr>
+<tr><td><code>|</code></td><td>Pipe — send output from one command to the next</td></tr>
+<tr><td><code>clip</code></td><td>Copy piped input to the Windows clipboard</td></tr>
+<tr><td><code>notepad.exe filename</code></td><td>Open a file in Notepad</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="echo--printing-text"><a class="header" href="#echo--printing-text"><code>echo</code> — Printing Text</a></h2>
+<p><code>echo</code> prints text to the screen. It is useful for testing, for writing text into files, and for understanding how piping works.</p>
+<pre><code class="language-powershell">echo "Hello, World"
 echo "This is a test"
-```
-
----
-
-## `cat` — Reading Files
-
-`cat` prints the contents of a file to the screen.
-
-```powershell
-# Read a text file
+</code></pre>
+<hr>
+<h2 id="cat--reading-files"><a class="header" href="#cat--reading-files"><code>cat</code> — Reading Files</a></h2>
+<p><code>cat</code> prints the contents of a file to the screen.</p>
+<pre><code class="language-powershell"># Read a text file
 cat ~/Documents/notes.txt
 
 # Read an OpenSCAD file
 cat ~/Documents/OpenSCAD_Projects/project0.scad
-```
-
-With a long file, use `cat filename | more` to read it page by page (press `Space` to advance, `Q` to quit).
-
----
-
-## `&gt;` — Redirecting Output to a File
-
-The `&gt;` symbol redirects output from the screen into a file instead.
-
-```powershell
-# Create a file with a single line
+</code></pre>
+<p>With a long file, use <code>cat filename | more</code> to read it page by page (press <code>Space</code> to advance, <code>Q</code> to quit).</p>
+<hr>
+<h2 id="--redirecting-output-to-a-file"><a class="header" href="#--redirecting-output-to-a-file"><code>&gt;</code> — Redirecting Output to a File</a></h2>
+<p>The <code>&gt;</code> symbol redirects output from the screen into a file instead.</p>
+<pre><code class="language-powershell"># Create a file with a single line
 echo "Author: Your Name" &gt; header.txt
 
 # Confirm the file was created and has content
 cat header.txt
-```
-
-**Warning:** `&gt;` overwrites the file if it already exists. Use `&gt;&gt;` to append instead:
-
-```powershell
-echo "Date: 2025" &gt;&gt; header.txt
+</code></pre>
+<p><strong>Warning:</strong> <code>&gt;</code> overwrites the file if it already exists. Use <code>&gt;&gt;</code> to append instead:</p>
+<pre><code class="language-powershell">echo "Date: 2025" &gt;&gt; header.txt
 echo "Project: Floor Marker" &gt;&gt; header.txt
 cat header.txt
-```
-
----
-
-## `|` — Piping
-
-The pipe symbol `|` sends the output of one command to the input of the next. This lets you chain commands together.
-
-```powershell
-# List files and send the list to clip (copies to clipboard)
+</code></pre>
+<hr>
+<h2 id="--piping"><a class="header" href="#--piping"><code>|</code> — Piping</a></h2>
+<p>The pipe symbol <code>|</code> sends the output of one command to the input of the next. This lets you chain commands together.</p>
+<pre><code class="language-powershell"># List files and send the list to clip (copies to clipboard)
 ls -n | clip
 
 # Now paste with Ctrl + V anywhere
-```
-
-```powershell
-# Search within a file's contents using Select-String (like grep)
+</code></pre>
+<pre><code class="language-powershell"># Search within a file's contents using Select-String (like grep)
 cat project0.scad | Select-String "cube"
-```
-
----
-
-## `clip` — Copying to Clipboard
-
-`clip` takes whatever is piped to it and puts it on the Windows clipboard.
-
-```powershell
-# Copy your current directory path to the clipboard
+</code></pre>
+<hr>
+<h2 id="clip--copying-to-clipboard"><a class="header" href="#clip--copying-to-clipboard"><code>clip</code> — Copying to Clipboard</a></h2>
+<p><code>clip</code> takes whatever is piped to it and puts it on the Windows clipboard.</p>
+<pre><code class="language-powershell"># Copy your current directory path to the clipboard
 pwd | clip
 
 # Copy a file listing to clipboard
@@ -335,16 +304,11 @@ ls -n | clip
 
 # Copy the contents of a file to clipboard
 cat notes.txt | clip
-```
-
-After any of these, press `Ctrl + V` in any application to paste.
-
----
-
-## Opening Files in Notepad
-
-```powershell
-# Open a file in Notepad
+</code></pre>
+<p>After any of these, press <code>Ctrl + V</code> in any application to paste.</p>
+<hr>
+<h2 id="opening-files-in-notepad"><a class="header" href="#opening-files-in-notepad">Opening Files in Notepad</a></h2>
+<pre><code class="language-powershell"># Open a file in Notepad
 notepad.exe ~/Documents/notes.txt
 
 # Open a .scad file
@@ -352,7 +316,7 @@ notepad.exe ~/Documents/OpenSCAD_Projects/project0.scad
 
 # Create a new file and open it
 ni new_notes.txt
-# PS-3: Input, Output, and Piping (Self-Paced)
+# PS-3: Input, Output, and Piping 
 
 Estimated time: 25–40 minutes
 
@@ -389,7 +353,13 @@ Extension Problems
 4. Practice copying different command outputs to clipboard and pasting.
 5. Create a small script that generates a report (counts of files by extension).
 
+## Helpful Resources
 
+- [Using Out-File for Redirection](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/out-file)
+- [Piping and Select-String](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/select-string)
+- [Get-Content Cmdlet Reference](https://learn.microsoft.com/powershell/module/microsoft.powershell.management/get-content)
+- [Measure-Object for Counting](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/measure-object)
+- [PowerShell Pipeline Concept](https://learn.microsoft.com/powershell/scripting/learn/shell/using-the-pipeline)
 </code></pre>
 
                     </main>

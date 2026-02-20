@@ -1,7 +1,4 @@
-# Navigating This Curriculum — mdBook Guide (Self-Paced)
-
-
-
+# Navigating This Curriculum — mdBook Guide 
 
 *This curriculum is published as a web book using mdBook. This page explains how to find what you need, navigate between chapters, and use the book with a screen reader.*
 

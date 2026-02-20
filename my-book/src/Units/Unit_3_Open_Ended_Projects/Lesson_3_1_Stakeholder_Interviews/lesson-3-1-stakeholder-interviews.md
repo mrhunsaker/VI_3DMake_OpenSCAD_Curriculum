@@ -1,4 +1,4 @@
-# Lesson 3.1: Stakeholder Interviews & Functional Requirements (Self-Paced)
+# Lesson 3.1: Stakeholder Interviews & Functional Requirements 
 
 **Accessibility:** If you record audio, provide a short transcript. For images or diagrams, add alt-text and include comment-based walkthroughs for any example `.scad` files so screen-reader users can follow step-by-step.
 

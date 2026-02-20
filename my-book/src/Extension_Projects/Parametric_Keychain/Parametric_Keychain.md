@@ -1,18 +1,18 @@
-# Parametric Keychain — Extension Project (Self-Paced)
+# Parametric Keychain — Extension Project 
 
 Estimated time: 2–4 hours
 
-Objective:
+## Objective
 
-Tasks:
+## Tasks
 1. Create `keychain.scad` with top-level parameters: `width`, `height`, `thickness`, and `text`.
 2. Implement embossed or debossed text using `linear_extrude()` of a 2D text shape (or simulate with simple geometry if system lacks text support).
 3. Produce three size variants and export STLs; record print settings.
 4. Test attachment point for common key rings and report fit.
 
-Deliverable:
+## Deliverable
 
-Starter files
+## Starter files
 
 ```
 - [starter.scad](../../assets/Extension_Projects/Parametric_Keychain/starter.scad) — minimal parametric scaffold to begin.

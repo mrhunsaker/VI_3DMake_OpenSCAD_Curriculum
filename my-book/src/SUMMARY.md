@@ -21,7 +21,7 @@
  - [Lesson PS.3: Input, Output, and Piping](PowerShell_Foundation/PS_3_input_output_piping/PS_3_input_output_piping.md)
  - [Lesson PS.4: Environment Variables and Aliases](PowerShell_Foundation/PS_4_environment_variables_aliases/PS_4_environment_variables_aliases.md)
  - [Lesson PS.5: Filling in the Gaps](PowerShell_Foundation/PS_5_filling_in_the_gaps/PS_5_filling_in_the_gaps.md)
- - [Quiz 1: Navigation](PowerShell_Foundation/PS_Quiz_1/PS_Quiz_1.md)
+ - [PowerShell Unit Test — Comprehensive Assessment](PowerShell_Foundation/PS_Unit_Test/PS_Unit_Test.md)
 
 # Foundations of 3D Make
 
@@ -44,6 +44,13 @@
 - [Lesson 0.4: OpenSCAD Part 1  6 Primitives & Variables](Units/Unit_0_Foundations/Lesson_0_4_OpenSCAD_Part1/lesson-0-4-openscad-part1.md)
 - [Lesson 0.5: OpenSCAD Part 2  6 Transforms & Booleans](Units/Unit_0_Foundations/Lesson_0_5_OpenSCAD_Part2/lesson-0-5-openscad-part2.md)
 - [Lesson 0.6: Introduction to Slicing](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing.md)
+  - [Lesson 0.6a: Slicing with PrusaSlicer](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing-prusa.md)
+  - [Lesson 0.6b: Slicing with OrcaSlicer](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing-orca.md)
+  - [Lesson 0.6c: Slicing with Bambu Studio](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing-bambu.md)
+  - [Lesson 0.6d: Slicing with Simplify3D](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing-simplify3d.md)
+  - [Lesson 0.6e: Slicing with Slic3r](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing-slic3r.md)
+  - [Lesson 0.6f: Slicing with OctoPrint](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing-octoprint.md)
+  - [Lesson 0.6g: Slicing with 3DMake](Units/Unit_0_Foundations/Lesson_0_6_Intro_to_Slicing/lesson-0-6-slicing-3dmake.md)
 - [Unit 0 Quiz](Units/Unit_0_Foundations/quiz-unit-0.md)
 - [First Print Project](Extension_Projects/Your_First_Print/your-first-print.md)
 - [Practice Resizing](Extension_Projects/Bonus_Print/bonus-print.md)
@@ -85,8 +92,24 @@
 
 # Reference Materials and Cheat Sheets
 
+## Setup Guides
+
+- [Course Setup Guide — Folder Organization with PowerShell & Screen Reader](Reference_Materials/course-setup-guide.md)
+- [3dMake Setup & Workflow Guide — Installation to Advanced Usage](Reference_Materials/3dmake-setup-guide.md)
+- [Getting Started with Markdown — Easy Formatted Text Without Office Suites](Reference_Materials/markdown-starter-guide.md)
+
+## Quick References
+
 - [OpenSCAD Cheat Sheet](Reference_Materials/openscad-cheat-sheet.md)
-- [Slicing Settings Quick Reference](Reference_Materials/slicing-settings-reference.md)
+
+## Slicing Settings by Printer
+
+- [PrusaSlicer — Prusa Printers](Reference_Materials/slicing-settings-reference-prusa.md)
+- [Cura — Anycubic i3 Mega](Reference_Materials/slicing-settings-reference-anycubic.md)
+- [Bambu Studio — Bambu X1 Series](Reference_Materials/slicing-settings-reference-bambu.md)
+
+## Reference Tables
+
 - [Filament Comparison Table](Reference_Materials/filament-comparison-table.md)
 - [Measurement Worksheet](Reference_Materials/measurement-worksheet.md)
 - [Vocabulary Glossary](Reference_Materials/vocabulary-glossary.md)

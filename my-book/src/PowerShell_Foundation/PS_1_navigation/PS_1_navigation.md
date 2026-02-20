@@ -1,4 +1,3 @@
-````markdown
 # PS-1: Navigation — Moving Around Your File System
 
 
@@ -50,7 +49,7 @@ Use this whenever you are unsure where you are.
 `cd` stands for "change directory."
 
 ```powershell
-# PS-1: Navigation — Moving Around Your File System (Self-Paced)
+# PS-1: Navigation — Moving Around Your File System 
 
 Estimated time: 25–40 minutes
 
@@ -86,6 +85,11 @@ Extension Problems
 3. Combine `ls` with `Select-String` to search for a filename pattern.
 4. Create a shortcut alias in the session for a long path and test it.
 5. Practice tab-completion in a directory with many similarly named files.
-## `ls` — Listing Files and Folders
 
-````
+## Helpful Resources
+
+- [Get-ChildItem Cmdlet Reference](https://learn.microsoft.com/powershell/module/microsoft.powershell.management/get-childitem)
+- [PowerShell Wildcards and Filtering](https://learn.microsoft.com/powershell/scripting/learn/shell/using-wildcards)
+- [Navigation Best Practices](https://learn.microsoft.com/powershell/scripting/learn/shell/navigate-the-filesystem)
+- [Relative and Absolute Paths](https://poshcode.gitbook.io/powershell-faq/src/getting-started/filesystem-navigation)
+- [Screen Reader Tips for PowerShell](https://learn.microsoft.com/powershell/scripting/windows-powershell/ise/accessibility-in-windows-powershell-ise)

@@ -1,5 +1,4 @@
-```markdown
-# PS-0: Getting Started — Layout, Paths, and the Shell (Self-Paced)
+# PS-0: Getting Started — Layout, Paths, and the Shell 
 
 Estimated time: 20–30 minutes
 
@@ -45,4 +44,10 @@ Answer these before moving on:
 3. What key do you press to autocomplete a path?
 4. If you are in `C:\Users\YourName\Documents` and you type `cd ../`, where do you end up?
 
-```
+## Helpful Resources
+
+- [PowerShell Basics - Microsoft Learn](https://learn.microsoft.com/powershell/scripting/overview)
+- [Filesystem Navigation Guide](https://learn.microsoft.com/powershell/scripting/learn/shell/navigate-the-filesystem)
+- [Understanding Path Notation](https://poshcode.gitbook.io/powershell-faq/src/getting-started/filesystem-navigation)
+- [Tab Completion Reference](https://learn.microsoft.com/powershell/module/psreadline/about/about_psreadline_functions)
+- [Accessibility in PowerShell ISE](https://learn.microsoft.com/powershell/scripting/windows-powershell/ise/accessibility-in-windows-powershell-ise)

@@ -1,4 +1,4 @@
-# Unit 2 — Problem Finding & Stakeholder Design (Self-Paced)
+# Unit 2 — Problem Finding & Stakeholder Design 
 **Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
 **Duration:** 3 weeks  
 **Driving Question:** How do you design something for someone else's needs, not your own assumptions?
@@ -56,7 +56,7 @@ Extension activities (5):
 4. Take one prototype, iterate it twice based on mock stakeholder feedback, and attach photos or STL files of each iteration.
 5. Produce a one‑page accessibility checklist for your Project 2 design (how would a blind user interact with your object?).
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+
 
 ## Available .scad files for study
 

@@ -1,6 +1,4 @@
-# Project X.X: ___ (Self-Paced)
-
-
+# Project X.X: ___ 
 
 <br><br>
 

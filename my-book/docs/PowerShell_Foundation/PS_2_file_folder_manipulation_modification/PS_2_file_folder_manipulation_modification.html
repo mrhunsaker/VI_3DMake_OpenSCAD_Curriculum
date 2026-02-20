@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,47 +220,55 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown"># PS-2: File and Folder Manipulation (Self-Paced)
-
-
-
-Estimated time: 30–45 minutes
-
-**Learning Objectives**
-- Create, copy, move, and delete files and folders from PowerShell
-- Use `ni`, `mkdir`, `cp`, `mv`, `rm`, and `rmdir` safely
-- Understand when operations are permanent and how to confirm results
-
-**Materials**
-- PowerShell
-- Small practice folder for exercises
-
-Step-by-step Tasks
-1. Create a practice directory: `mkdir ~/Documents/PS_Practice` and `cd` into it.
-2. Create two files: `ni file1.txt` and `ni file2.txt`.
-3. Copy `file1.txt` to `file1_backup.txt` with `cp` and confirm with `ls -n`.
-4. Rename `file2.txt` to `notes.txt` using `mv` and confirm.
-5. Delete `file1.txt` with `rm` and verify the backup remains.
-
-Checkpoints
-- After step 3 you should see both the original and the backup file.
-
-Quick Quiz
-1. How do you create an empty file from PowerShell?
-2. What command copies a file?
-3. How do you rename a file?
-4. What does `rm -r` do?
-5. Why is `rm` potentially dangerous?
-
-Extension Problems
-1. Create a folder tree and copy it to a new location with `cp -r`.
-2. Write a one-line command that creates three files named `a b c` and lists them.
-3. Move a file into a new folder and confirm the move.
-4. Use wildcards to delete files matching a pattern in a safe test folder.
-5. Export a listing of the practice folder to `practice_listing.txt`.
-
-
-</code></pre>
+                        <h1 id="ps-2-file-and-folder-manipulation"><a class="header" href="#ps-2-file-and-folder-manipulation">PS-2: File and Folder Manipulation</a></h1>
+<p>Estimated time: 30–45 minutes</p>
+<p><strong>Learning Objectives</strong></p>
+<ul>
+<li>Create, copy, move, and delete files and folders from PowerShell</li>
+<li>Use <code>ni</code>, <code>mkdir</code>, <code>cp</code>, <code>mv</code>, <code>rm</code>, and <code>rmdir</code> safely</li>
+<li>Understand when operations are permanent and how to confirm results</li>
+</ul>
+<p><strong>Materials</strong></p>
+<ul>
+<li>PowerShell</li>
+<li>Small practice folder for exercises</li>
+</ul>
+<p>Step-by-step Tasks</p>
+<ol>
+<li>Create a practice directory: <code>mkdir ~/Documents/PS_Practice</code> and <code>cd</code> into it.</li>
+<li>Create two files: <code>ni file1.txt</code> and <code>ni file2.txt</code>.</li>
+<li>Copy <code>file1.txt</code> to <code>file1_backup.txt</code> with <code>cp</code> and confirm with <code>ls -n</code>.</li>
+<li>Rename <code>file2.txt</code> to <code>notes.txt</code> using <code>mv</code> and confirm.</li>
+<li>Delete <code>file1.txt</code> with <code>rm</code> and verify the backup remains.</li>
+</ol>
+<p>Checkpoints</p>
+<ul>
+<li>After step 3 you should see both the original and the backup file.</li>
+</ul>
+<p>Quick Quiz</p>
+<ol>
+<li>How do you create an empty file from PowerShell?</li>
+<li>What command copies a file?</li>
+<li>How do you rename a file?</li>
+<li>What does <code>rm -r</code> do?</li>
+<li>Why is <code>rm</code> potentially dangerous?</li>
+</ol>
+<p>Extension Problems</p>
+<ol>
+<li>Create a folder tree and copy it to a new location with <code>cp -r</code>.</li>
+<li>Write a one-line command that creates three files named <code>a b c</code> and lists them.</li>
+<li>Move a file into a new folder and confirm the move.</li>
+<li>Use wildcards to delete files matching a pattern in a safe test folder.</li>
+<li>Export a listing of the practice folder to <code>practice_listing.txt</code>.</li>
+</ol>
+<h2 id="helpful-resources"><a class="header" href="#helpful-resources">Helpful Resources</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.management/new-item">New-Item Cmdlet Reference</a></li>
+<li><a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.management/copy-item">Copy-Item and Move-Item</a></li>
+<li><a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.management/remove-item">Remove-Item Cmdlet Reference</a></li>
+<li><a href="https://learn.microsoft.com/powershell/scripting/learn/shell/manipulating-items">File System Operations Guide</a></li>
+<li><a href="https://poshcode.gitbook.io/powershell-faq/src/getting-started/file-management">Safe Deletion Practices</a></li>
+</ul>
 
                     </main>
 

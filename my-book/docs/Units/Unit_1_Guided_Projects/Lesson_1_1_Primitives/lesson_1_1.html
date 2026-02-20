@@ -81,10 +81,10 @@
             const path_to_root = "../../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../../toc-61f61fa6.js"></script>
+        <script src="../../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,48 +220,48 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown">
-
-# Lesson 1.1 — Primitives (Self-Paced)
-
-Estimated time: 30–45 minutes
-
-Learning objectives:
-- Create `cube()`, `sphere()`, and `cylinder()` primitives.
-- Use `center` and `$fn` effectively for positioning and resolution.
-
-Materials:
-- Computer with OpenSCAD
-- Optional tactile examples of primitives
-
-Step-by-step instructions:
-1. Open a new file `lesson1_1.scad`. Add a short header with your name and date.
-2. Create a cube using literal values: `cube([20,20,20]);` Preview (`F5`).
-3. Convert literals to variables (`size = [20,20,20]; cube(size);`). Re-preview.
-4. Create a sphere with `sphere(d=20);` then set `$fn = 24` and compare with `$fn = 80`.
-5. Create a cylinder: `cylinder(h=20, d=10);` then make a tapered cone using `r1`/`r2`.
-
-Checkpoint tasks:
-- Show a centered 10 mm cube and confirm its coordinates.
-- Show a sphere rendered at `$fn = 80` and note the render time.
-
-Quiz — Lesson 1.1 (5 items):
-1. Short answer: Example code to center a 10 mm cube.
-2. Multiple choice: `$fn` affects (A) color (B) curve smoothness (C) position.
-3. True/False: `sphere(d = 20);` uses diameter.
-4. Practical: Code for cone with bottom radius 6 mm, top radius 2 mm, height 20 mm.
-5. Short answer: One advantage of named variables.
-
-Extension problems (5):
-1. Build a compound object made of one cube and one cylinder; align them so the cylinder sits on the cube center.
-2. Create three spheres with increasing `$fn` values and export screenshots (or notes on render time).
-3. Make a centered cube and rotate it by 45 degrees about Z, explain how centering changes the result.
-4. Write a short module `module stud(size, height) { ... }` and create an array of studs with different sizes.
-5. Design a small tactile token using only primitives and variables; list the variables you used.
-
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
-
-</code></pre>
+                        <h1 id="lesson-11--primitives"><a class="header" href="#lesson-11--primitives">Lesson 1.1 — Primitives</a></h1>
+<h2 id="estimated-time"><a class="header" href="#estimated-time">Estimated Time</a></h2>
+<p>30–45 minutes</p>
+<h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<ul>
+<li>Create <code>cube()</code>, <code>sphere()</code>, and <code>cylinder()</code> primitives.</li>
+<li>Use <code>center</code> and <code>$fn</code> effectively for positioning and resolution.</li>
+</ul>
+<h2 id="materials"><a class="header" href="#materials">Materials</a></h2>
+<ul>
+<li>Computer with OpenSCAD</li>
+<li>Optional tactile examples of primitives</li>
+</ul>
+<h2 id="step-by-step-instructions"><a class="header" href="#step-by-step-instructions">Step-by-Step Instructions</a></h2>
+<ol>
+<li>Open a new file <code>lesson1_1.scad</code>. Add a short header with your name and date.</li>
+<li>Create a cube using literal values: <code>cube([20,20,20]);</code> Preview (<code>F5</code>).</li>
+<li>Convert literals to variables (<code>size = [20,20,20]; cube(size);</code>). Re-preview.</li>
+<li>Create a sphere with <code>sphere(d=20);</code> then set <code>$fn = 24</code> and compare with <code>$fn = 80</code>.</li>
+<li>Create a cylinder: <code>cylinder(h=20, d=10);</code> then make a tapered cone using <code>r1</code>/<code>r2</code>.</li>
+</ol>
+<h2 id="checkpoint"><a class="header" href="#checkpoint">Checkpoint</a></h2>
+<ul>
+<li>Show a centered 10 mm cube and confirm its coordinates.</li>
+<li>Show a sphere rendered at <code>$fn = 80</code> and note the render time.</li>
+</ul>
+<h2 id="quiz--lesson-11"><a class="header" href="#quiz--lesson-11">Quiz — Lesson 1.1</a></h2>
+<ol>
+<li>Short answer: Example code to center a 10 mm cube.</li>
+<li>Multiple choice: <code>$fn</code> affects (A) color (B) curve smoothness (C) position.</li>
+<li>True/False: <code>sphere(d = 20);</code> uses diameter.</li>
+<li>Practical: Code for cone with bottom radius 6 mm, top radius 2 mm, height 20 mm.</li>
+<li>Short answer: One advantage of named variables.</li>
+</ol>
+<h2 id="extension-problems"><a class="header" href="#extension-problems">Extension Problems</a></h2>
+<ol>
+<li>Build a compound object made of one cube and one cylinder; align them so the cylinder sits on the cube center.</li>
+<li>Create three spheres with increasing <code>$fn</code> values and export screenshots (or notes on render time).</li>
+<li>Make a centered cube and rotate it by 45 degrees about Z, explain how centering changes the result.</li>
+<li>Write a short module <code>module stud(size, height) { ... }</code> and create an array of studs with different sizes.</li>
+<li>Design a small tactile token using only primitives and variables; list the variables you used.</li>
+</ol>
 
                     </main>
 

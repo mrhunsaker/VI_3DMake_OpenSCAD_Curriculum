@@ -1,4 +1,4 @@
-# Lesson 2.3 — Advanced Slicing (Self-Paced)
+# Lesson 2.3 — Advanced Slicing 
 
 **Accessibility:** When including slicer previews, add short alt-text descriptions and provide a text-only walkthrough of the layer-preview steps for screen-reader users.
 
@@ -181,4 +181,4 @@ Prusa Research. (2023). *PrusaSlicer knowledge base*. https://help.prusa3d.com/c
 
 UAS@UCLA. (2024). *Prusa slicer*. https://uas.seas.ucla.edu/wiki/books/3d-printing/page/prusa-slicer
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+

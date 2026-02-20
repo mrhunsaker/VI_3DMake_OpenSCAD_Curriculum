@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,48 +220,56 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown">
-# PS-5: Filling in the Gaps — Control Flow, Profiles, and Useful Tricks (Self-Paced)
-
-
-
-Estimated time: 30–45 minutes
-
-**Learning Objectives**
-- Use history and abort commands (`history`, `Ctrl+C`)
-- Inspect and edit your PowerShell profile for persistent settings
-- Run programs by full path using the `&amp;` operator
-- Handle common screen reader edge cases when using the terminal
-
-**Materials**
-- PowerShell and an editor (Notepad/ VS Code)
-
-Step-by-step Tasks
-1. Run several simple commands (e.g., `pwd`, `ls -n`, `echo hi`) then run `history` to view them.
-2. Use `Invoke-History &lt;n&gt;` to re-run a previous command (replace `&lt;n&gt;` with a history number).
-3. Practice aborting a long-running command with `Ctrl + C` (for example, `ping 8.8.8.8`).
-4. Open your profile: `notepad.exe $PROFILE`; if it doesn't exist, create it: `ni $PROFILE -Force`.
-5. Add a persistent alias line to your profile (example: `Set-Alias -Name preview -Value openscad`), save, and reopen PowerShell to verify.
-
-Checkpoints
-- After step 2 you can re-run a recent command by history number.
-- After step 5 your alias should persist across sessions.
-
-Quick Quiz (5)
-1. How do you view the command history?
-2. Which key combination aborts a running command?
-3. What does `echo $PROFILE` show?
-4. How does the `&amp;` operator help run executables?
-5. What is one strategy if terminal output stops being announced by your screen reader?
-
-Extension Problems (5)
-1. Add an alias and an environment variable change to your profile and document the behavior after reopening PowerShell.
-2. Create a short script that automates creating a project folder and an initial .scad file.
-3. Experiment with running OpenSCAD by full path using `&amp;` and by placing it in PATH; compare results.
-4. Practice redirecting `Get-Help` output to a file and reading it in Notepad for screen reader clarity.
-5. Document three screen reader troubleshooting steps you used and when they helped.
-
-</code></pre>
+                        <h1 id="ps-5-filling-in-the-gaps--control-flow-profiles-and-useful-tricks"><a class="header" href="#ps-5-filling-in-the-gaps--control-flow-profiles-and-useful-tricks">PS-5: Filling in the Gaps — Control Flow, Profiles, and Useful Tricks</a></h1>
+<p>Estimated time: 30–45 minutes</p>
+<p><strong>Learning Objectives</strong></p>
+<ul>
+<li>Use history and abort commands (<code>history</code>, <code>Ctrl+C</code>)</li>
+<li>Inspect and edit your PowerShell profile for persistent settings</li>
+<li>Run programs by full path using the <code>&amp;</code> operator</li>
+<li>Handle common screen reader edge cases when using the terminal</li>
+</ul>
+<p><strong>Materials</strong></p>
+<ul>
+<li>PowerShell and an editor (Notepad/ VS Code)</li>
+</ul>
+<p>Step-by-step Tasks</p>
+<ol>
+<li>Run several simple commands (e.g., <code>pwd</code>, <code>ls -n</code>, <code>echo hi</code>) then run <code>history</code> to view them.</li>
+<li>Use <code>Invoke-History &lt;n&gt;</code> to re-run a previous command (replace <code>&lt;n&gt;</code> with a history number).</li>
+<li>Practice aborting a long-running command with <code>Ctrl + C</code> (for example, <code>ping 8.8.8.8</code>).</li>
+<li>Open your profile: <code>notepad.exe $PROFILE</code>; if it doesn’t exist, create it: <code>ni $PROFILE -Force</code>.</li>
+<li>Add a persistent alias line to your profile (example: <code>Set-Alias -Name preview -Value openscad</code>), save, and reopen PowerShell to verify.</li>
+</ol>
+<p>Checkpoints</p>
+<ul>
+<li>After step 2 you can re-run a recent command by history number.</li>
+<li>After step 5 your alias should persist across sessions.</li>
+</ul>
+<p>Quick Quiz (5)</p>
+<ol>
+<li>How do you view the command history?</li>
+<li>Which key combination aborts a running command?</li>
+<li>What does <code>echo $PROFILE</code> show?</li>
+<li>How does the <code>&amp;</code> operator help run executables?</li>
+<li>What is one strategy if terminal output stops being announced by your screen reader?</li>
+</ol>
+<p>Extension Problems (5)</p>
+<ol>
+<li>Add an alias and an environment variable change to your profile and document the behavior after reopening PowerShell.</li>
+<li>Create a short script that automates creating a project folder and an initial .scad file.</li>
+<li>Experiment with running OpenSCAD by full path using <code>&amp;</code> and by placing it in PATH; compare results.</li>
+<li>Practice redirecting <code>Get-Help</code> output to a file and reading it in Notepad for screen reader clarity.</li>
+<li>Document three screen reader troubleshooting steps you used and when they helped.</li>
+</ol>
+<h2 id="helpful-resources"><a class="header" href="#helpful-resources">Helpful Resources</a></h2>
+<ul>
+<li><a href="https://learn.microsoft.com/powershell/scripting/learn/shell/using-history">PowerShell History and Recall</a></li>
+<li><a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_profiles">Understanding Profiles</a></li>
+<li><a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.core/invoke-history">Invoke-History Cmdlet Reference</a></li>
+<li><a href="https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_operators#call-operator-">The Call Operator (&amp;)</a></li>
+<li><a href="https://learn.microsoft.com/powershell/scripting/windows-powershell/ise/accessibility-in-windows-powershell-ise">Screen Reader Tips and Tricks</a></li>
+</ul>
 
                     </main>
 
@@ -271,7 +279,7 @@ Extension Problems (5)
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="../../PowerShell_Foundation/PS_Quiz_1/PS_Quiz_1.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../../PowerShell_Foundation/PS_Unit_Test/PS_Unit_Test.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -285,7 +293,7 @@ Extension Problems (5)
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="../../PowerShell_Foundation/PS_Quiz_1/PS_Quiz_1.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../../PowerShell_Foundation/PS_Unit_Test/PS_Unit_Test.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

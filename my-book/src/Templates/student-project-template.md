@@ -1,4 +1,4 @@
-# Project X (Self-Paced)
+# Project X 
 
 
 

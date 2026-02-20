@@ -1,4 +1,4 @@
-# 3D Design & Printing Curriculum — Enhanced Edition (Self-Paced)
+# 3D Design & Printing Curriculum — Enhanced Edition 
 
 **Author:** Michael Ryan Hunsaker, M.Ed., Ph.D.   
 **Last Updated:** 2026-02-17   

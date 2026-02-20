@@ -81,10 +81,10 @@
             const path_to_root = "../../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../../toc-61f61fa6.js"></script>
+        <script src="../../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,56 +220,57 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown">
-
-# Project 0 — Your First 3D Print (Guided Self-Paced)
-
-Estimated time: 2–4 hours (including test prints)
-
-**Learning Objectives**
-- Measure physical objects and convert measurements into parametric OpenSCAD variables
-- Produce an STL from parametric code and verify printability in a slicer
-- Compare printed results to expected dimensions and document corrective actions
-
-**Materials**
-- Calipers, computer with OpenSCAD and slicer, access to a classroom printer
-- Project documentation template (fillable)
-
-Step-by-step Tasks
-1. Select a small object and list three key measurable features (length, width, height).
-2. Use calipers to take three measurements for each feature; record averages in the documentation template.
-3. Create `project0.scad` with top-level variables for your averaged measurements.
-4. Build the model using primitives and `translate()`/`rotate()`; preview (`F5`) frequently and render (`F6`) once satisfied.
-5. Export STL, slice with the classroom profile, and note estimated print time and filament usage.
-6. Print a test piece, measure critical dimensions after cooling, and log deviations.
-7. Write a 1‑page reflection including cause hypotheses and a corrective parameter adjustment you would apply next.
-
-Probing Questions
-- Which measurement showed the largest deviation and what do you suspect caused it?
-- How does your chosen layer height influence both accuracy and print time?
-
-Quick Quiz (5)
-1. What is the purpose of defining top-level variables in your `.scad` file? (short answer)
-2. How many times should you measure a feature to get a reliable average? (short answer)
-3. Name one cause of dimensional mismatch between model and print. (short answer)
-4. What command previews your OpenSCAD model without rendering? (one-word answer)
-5. Where do you record filament and print-time metadata for reproducibility? (short answer)
-
-Extension Problems (5)
-1. Create two scaled variants for different nozzle sizes and document the parameter changes.
-2. Add a snap-fit feature and test assembly tolerance with a small print.
-3. Parameterize a tolerance variable and test three values, reporting fit outcomes.
-4. Write a short automation script to produce multiple STL variants from the same SCAD file.
-5. Produce a troubleshooting checklist focused on adhesion and dimensional errors.
-
-Deliverables
-- `project0.scad` with variables and comments
-- Exported STL and slicer profile settings
-- Completed documentation template with measurements, test logs, and reflection
-
-**Accessibility:** Provide alt-text for images and a short comment-based walkthrough in `.scad` files so screen-reader users can follow step-by-step.
-
-</code></pre>
+                        <h1 id="project-0--your-first-3d-print-guided-self-paced"><a class="header" href="#project-0--your-first-3d-print-guided-self-paced">Project 0 — Your First 3D Print (Guided Self-Paced)</a></h1>
+<h2 id="estimated-time"><a class="header" href="#estimated-time">Estimated Time</a></h2>
+<p>2–4 hours (including test prints)</p>
+<h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<ul>
+<li>Measure physical objects and convert measurements into parametric OpenSCAD variables</li>
+<li>Produce an STL from parametric code and verify printability in a slicer</li>
+<li>Compare printed results to expected dimensions and document corrective actions</li>
+</ul>
+<h2 id="materials"><a class="header" href="#materials">Materials</a></h2>
+<ul>
+<li>Calipers, computer with OpenSCAD and slicer, access to a classroom printer</li>
+<li>Project documentation template (fillable)</li>
+</ul>
+<h2 id="step-by-step-tasks"><a class="header" href="#step-by-step-tasks">Step-by-Step Tasks</a></h2>
+<ol>
+<li>Select a small object and list three key measurable features (length, width, height).</li>
+<li>Use calipers to take three measurements for each feature; record averages in the documentation template.</li>
+<li>Create <code>project0.scad</code> with top-level variables for your averaged measurements.</li>
+<li>Build the model using primitives and <code>translate()</code>/<code>rotate()</code>; preview (<code>F5</code>) frequently and render (<code>F6</code>) once satisfied.</li>
+<li>Export STL, slice with the classroom profile, and note estimated print time and filament usage.</li>
+<li>Print a test piece, measure critical dimensions after cooling, and log deviations.</li>
+<li>Write a 1‑page reflection including cause hypotheses and a corrective parameter adjustment you would apply next.</li>
+</ol>
+<h2 id="probing-questions"><a class="header" href="#probing-questions">Probing Questions</a></h2>
+<ul>
+<li>Which measurement showed the largest deviation and what do you suspect caused it?</li>
+<li>How does your chosen layer height influence both accuracy and print time?</li>
+</ul>
+<h2 id="quick-quiz"><a class="header" href="#quick-quiz">Quick Quiz</a></h2>
+<ol>
+<li>What is the purpose of defining top-level variables in your <code>.scad</code> file? (short answer)</li>
+<li>How many times should you measure a feature to get a reliable average? (short answer)</li>
+<li>Name one cause of dimensional mismatch between model and print. (short answer)</li>
+<li>What command previews your OpenSCAD model without rendering? (one-word answer)</li>
+<li>Where do you record filament and print-time metadata for reproducibility? (short answer)</li>
+</ol>
+<h2 id="extension-problems"><a class="header" href="#extension-problems">Extension Problems</a></h2>
+<ol>
+<li>Create two scaled variants for different nozzle sizes and document the parameter changes.</li>
+<li>Add a snap-fit feature and test assembly tolerance with a small print.</li>
+<li>Parameterize a tolerance variable and test three values, reporting fit outcomes.</li>
+<li>Write a short automation script to produce multiple STL variants from the same SCAD file.</li>
+<li>Produce a troubleshooting checklist focused on adhesion and dimensional errors.</li>
+</ol>
+<p>Deliverables</p>
+<ul>
+<li><code>project0.scad</code> with variables and comments</li>
+<li>Exported STL and slicer profile settings</li>
+<li>Completed documentation template with measurements, test logs, and reflection</li>
+</ul>
 
                     </main>
 

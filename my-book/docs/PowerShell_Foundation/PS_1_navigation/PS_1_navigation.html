@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-a10a2d60.js";
+            window.path_to_searchindex_js = "../../searchindex-4bc6e054.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-61f61fa6.js"></script>
+        <script src="../../toc-90c12225.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,58 +220,47 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <pre><code class="language-markdown"># PS-1: Navigation — Moving Around Your File System
-
-
-
-**Duration:** 1 class period
-**Prerequisite:** PS-0 (Getting Started)
-
----
-
-## Learning Objectives
-
-By the end of this lesson, you will be able to:
-- Use `pwd` to print your current location
-- Use `cd` to move between directories
-- Use `ls` (and its flags) to list files and folders
-- Use wildcards `*` and `?` to filter listings
-- Navigate relative vs. absolute paths
-
----
-
-## Commands Covered in This Lesson
-
-| Command | What It Does |
-|---------|-------------|
-| `pwd` | Print Working Directory — shows where you are |
-| `cd path` | Change Directory — move to a new location |
-| `ls` | List — shows files and folders in current location |
-| `ls -n` | List names only (screen reader friendly) |
-| `ls -n -af` | List names of files only |
-| `ls -n -ad` | List names of directories only |
-
----
-
-## `pwd` — Where Am I?
-
-Type `pwd` and press `Enter`. PowerShell prints the full path to your current location.
-
-```powershell
-pwd
+                        <h1 id="ps-1-navigation--moving-around-your-file-system"><a class="header" href="#ps-1-navigation--moving-around-your-file-system">PS-1: Navigation — Moving Around Your File System</a></h1>
+<p><strong>Duration:</strong> 1 class period
+<strong>Prerequisite:</strong> PS-0 (Getting Started)</p>
+<hr>
+<h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<p>By the end of this lesson, you will be able to:</p>
+<ul>
+<li>Use <code>pwd</code> to print your current location</li>
+<li>Use <code>cd</code> to move between directories</li>
+<li>Use <code>ls</code> (and its flags) to list files and folders</li>
+<li>Use wildcards <code>*</code> and <code>?</code> to filter listings</li>
+<li>Navigate relative vs. absolute paths</li>
+</ul>
+<hr>
+<h2 id="commands-covered-in-this-lesson"><a class="header" href="#commands-covered-in-this-lesson">Commands Covered in This Lesson</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Command</th><th>What It Does</th></tr>
+</thead>
+<tbody>
+<tr><td><code>pwd</code></td><td>Print Working Directory — shows where you are</td></tr>
+<tr><td><code>cd path</code></td><td>Change Directory — move to a new location</td></tr>
+<tr><td><code>ls</code></td><td>List — shows files and folders in current location</td></tr>
+<tr><td><code>ls -n</code></td><td>List names only (screen reader friendly)</td></tr>
+<tr><td><code>ls -n -af</code></td><td>List names of files only</td></tr>
+<tr><td><code>ls -n -ad</code></td><td>List names of directories only</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="pwd--where-am-i"><a class="header" href="#pwd--where-am-i"><code>pwd</code> — Where Am I?</a></h2>
+<p>Type <code>pwd</code> and press <code>Enter</code>. PowerShell prints the full path to your current location.</p>
+<pre><code class="language-powershell">pwd
 # Output: C:\Users\YourName
-```
-
-Use this whenever you are unsure where you are.
-
----
-
-## `cd` — Changing Directories
-
-`cd` stands for "change directory."
-
-```powershell
-# PS-1: Navigation — Moving Around Your File System (Self-Paced)
+</code></pre>
+<p>Use this whenever you are unsure where you are.</p>
+<hr>
+<h2 id="cd--changing-directories"><a class="header" href="#cd--changing-directories"><code>cd</code> — Changing Directories</a></h2>
+<p><code>cd</code> stands for “change directory.”</p>
+<pre><code class="language-powershell"># PS-1: Navigation — Moving Around Your File System 
 
 Estimated time: 25–40 minutes
 
@@ -307,8 +296,14 @@ Extension Problems
 3. Combine `ls` with `Select-String` to search for a filename pattern.
 4. Create a shortcut alias in the session for a long path and test it.
 5. Practice tab-completion in a directory with many similarly named files.
-## `ls` — Listing Files and Folders
 
+## Helpful Resources
+
+- [Get-ChildItem Cmdlet Reference](https://learn.microsoft.com/powershell/module/microsoft.powershell.management/get-childitem)
+- [PowerShell Wildcards and Filtering](https://learn.microsoft.com/powershell/scripting/learn/shell/using-wildcards)
+- [Navigation Best Practices](https://learn.microsoft.com/powershell/scripting/learn/shell/navigate-the-filesystem)
+- [Relative and Absolute Paths](https://poshcode.gitbook.io/powershell-faq/src/getting-started/filesystem-navigation)
+- [Screen Reader Tips for PowerShell](https://learn.microsoft.com/powershell/scripting/windows-powershell/ise/accessibility-in-windows-powershell-ise)
 </code></pre>
 
                     </main>

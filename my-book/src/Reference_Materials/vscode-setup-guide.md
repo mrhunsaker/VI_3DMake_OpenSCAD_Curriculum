@@ -1,7 +1,4 @@
-# VSCode Setup Guide — Accessible OpenSCAD Development (Self-Paced)
-
-
-
+# VSCode Setup Guide — Accessible OpenSCAD Development 
 
 **For use with NVDA or JAWS on Windows**
 

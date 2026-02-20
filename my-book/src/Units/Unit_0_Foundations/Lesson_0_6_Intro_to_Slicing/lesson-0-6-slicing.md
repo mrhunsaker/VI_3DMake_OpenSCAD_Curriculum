@@ -1,6 +1,4 @@
-# Lesson 0.6: Introduction to Slicing with PrusaSlicer (Self-Paced)
-
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example `.scad` files so screen-reader users can follow step-by-step.
+# Lesson 0.6: Introduction to Slicing with PrusaSlicer 
 
 **Unit:** 0 — Foundations  
 **Duration:** 1 class period (50–60 min)  
@@ -12,7 +10,7 @@
 
 By the end of this lesson, students will be able to:
 - Open PrusaSlicer and configure it for the classroom printer
-# Lesson 0.6 — Introduction to Slicing with PrusaSlicer (Self-Paced)
+# Lesson 0.6 — Introduction to Slicing with PrusaSlicer 
 
 Estimated time: 45–60 minutes
 
@@ -49,4 +47,4 @@ Extension problems (5):
 4. Use the slicer preview to report number of perimeters and top layers for your profile; explain why those settings matter.
 5. Write an accessible description of your preview images for a peer who is blind or low-vision.
 
-**Accessibility:** When including sample images or slicer screenshots, add a short alt-text description and provide a comment-based walkthrough for any example .scad files so screen-reader users can follow step-by-step.
+

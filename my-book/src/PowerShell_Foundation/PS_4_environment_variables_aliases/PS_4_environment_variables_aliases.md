@@ -1,5 +1,4 @@
-```markdown
-# PS-4: Environment Variables, PATH, and Aliases (Self-Paced)
+# PS-4: Environment Variables, PATH, and Aliases 
 
 
 
@@ -37,5 +36,11 @@ Extension Problems
 4. Explore `$env:TEMP` and create a file there.
 5. Save a copy of your current PATH to a text file and examine it in your editor.
 
+## Helpful Resources
 
-```
+- [Environment Variables in PowerShell](https://learn.microsoft.com/powershell/scripting/learn/shell/using-environment-variables)
+- [Understanding the PATH Variable](https://poshcode.gitbook.io/powershell-faq/src/getting-started/environment-variables)
+- [Set-Alias Cmdlet Reference](https://learn.microsoft.com/powershell/module/microsoft.powershell.utility/set-alias)
+- [Creating a PowerShell Profile](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/about/about_profiles)
+- [Get-Command for Locating Programs](https://learn.microsoft.com/powershell/module/microsoft.powershell.core/get-command)
+
