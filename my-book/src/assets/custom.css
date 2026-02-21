@@ -64,18 +64,18 @@ li {
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 80px;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: 45px;
 }
 
 h3,
 h4,
 h5,
 h6 {
-  font-size: 1.5rem;
+  font-size: 30px;
 }
 
 /* Code blocks, inline code, blockquotes use the mono font */
@@ -84,14 +84,14 @@ pre {
   font-family:
     "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     "Courier New", monospace;
-  font-size: 0.95em;
+  font-size: 21.375px;
 }
 
 blockquote {
   font-family:
     "Atkinson Hyperlegible Mono", ui-monospace, SFMono-Regular, Menlo, Monaco,
     "Courier New", monospace;
-  font-size: 1rem;
+  font-size: 20px;
 }
 
 pre {
