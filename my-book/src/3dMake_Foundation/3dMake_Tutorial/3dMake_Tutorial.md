@@ -55,7 +55,7 @@ Notes: This lesson is intended to be hands-on. If networked AI features are not 
 
 ### Library commands
 
-```pwsh
+```powershell
 3dm list-libraries
 3dm install-libraries
 ```
@@ -64,7 +64,7 @@ Notes: This lesson is intended to be hands-on. If networked AI features are not 
 
 ### Help and version
 
-```pwsh
+```powershell
 3dm help
 3dm version
 ```

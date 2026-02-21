@@ -21,15 +21,15 @@ By the end of this lesson, you will be able to:
 
 ## Commands Covered in This Lesson
 
-| Command | What It Does |
-| --------- | ------------- |
-| `pwd` | Print Working Directory - shows where you are |
-| `cd path` | Change Directory - move to a new location |
-| `ls` | List - shows files and folders in current location |
-| `ls -n` | List names only (screen reader friendly) |
-| `ls -n -af` | List names of files only |
-| `ls -n -ad` | List names of directories only |
-| `ls *.extension` | List files matching a pattern |
+| Command          | What It Does                                       |
+|------------------|----------------------------------------------------|
+| `pwd`            | Print Working Directory - shows where you are      |
+| `cd path`        | Change Directory - move to a new location          |
+| `ls`             | List - shows files and folders in current location |
+| `ls -n`          | List names only (screen reader friendly)           |
+| `ls -n -af`      | List names of files only                           |
+| `ls -n -ad`      | List names of directories only                     |
+| `ls *.extension` | List files matching a pattern                      |
 
 ---
 
