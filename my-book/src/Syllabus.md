@@ -32,32 +32,88 @@ This course is explicitly designed for blind and visually impaired learners who 
 
 ## Curriculum Structure & Scope/Sequence
 
-### Part 1: PowerShell Foundation (Prerequisite - 6-8 hours)
+### Part 1: Command-Line Foundation (Prerequisite - 20-25 hours)
 
-**Start here:** [PowerShell Introduction](PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md)
+**Start here:** [Command Line Interface Selection Guide](Command_Line_Interface_Selection.md)
 
-Students who have never opened a terminal begin with foundational command-line skills:
+Students who have never opened a terminal begin with foundational command-line skills. **Choose one of three equivalent pathways** based on your operating system and preferences. All three pathways teach the same concepts and prepare you equally well for 3dMake work.
 
-| Component                             | Duration  | Content                                                                        |
-|---------------------------------------|-----------|--------------------------------------------------------------------------------|
-| **PowerShell Introduction**           | 45 min    | What is a terminal, opening PowerShell, first 5 commands, screen reader tricks |
-| **Screen Reader Accessibility Guide** | 1-2 hours | NVDA/JAWS reference, navigation sequences, handling output, keyboard shortcuts |
-| **PS.0: Basic Commands**              | 1 hour    | `pwd`, `ls`, `cd`, `echo`, `cat`, file operations                              |
-| **PS.1: Navigation & Files**          | 1 hour    | File system navigation, creating/editing files, organizing work                |
-| **PS.2: Variables & Scripting**       | 1 hour    | Variables, simple scripts, basic logic                                         |
-| **PS.3: Loops & Iteration**           | 1 hour    | `For` loops, `foreach`, batch operations                                       |
-| **PS.4: Functions & Modules**         | 1 hour    | Functions, parameters, reusable code blocks                                    |
-| **PS.5: Error Handling**              | 1 hour    | Try-catch, debugging, troubleshooting                                          |
-| **PowerShell Curriculum Overview**    | 30 min    | Study guide, practice strategies, learning paths                               |
+#### **🔍 Step 1: Choose Your Pathway**
 
-**Outcomes:**
+**[→ Command Line Interface Selection Guide](Command_Line_Interface_Selection.md)** - Read this first to compare PowerShell, CMD, and Git Bash and choose which works best for you.
+
+---
+
+#### **Pathway A: PowerShell Foundation** (Recommended for Windows)
+
+**Total Duration:** 30-45 hours  
+**Start here:** [PowerShell Curriculum Overview](PowerShell_Foundation/PowerShell_Curriculum_Overview/PowerShell_Curriculum_Overview.md)
+
+| Component                                 | Duration    | Content                                                                        |
+|-------------------------------------------|-------------|--------------------------------------------------------------------------------|
+| **Screen Reader Accessibility Guide**     | 1.5-2 hours | NVDA/JAWS reference, navigation sequences, handling output, keyboard shortcuts |
+| **PS-Pre: Your First Terminal**           | 2-2.5 hours | Opening PowerShell, first commands, basic navigation, screen reader tricks     |
+| **PS-0: Getting Started**                 | 1.5 hours   | Paths, shortcuts, tab completion                                               |
+| **PS-1: Navigation**                      | 2-2.5 hours | Moving around the file system confidently                                      |
+| **PS-2: File & Folder Manipulation**      | 2.5-3 hours | Creating, editing, moving, copying, deleting files and directories             |
+| **PS-3: Input, Output & Piping**          | 2.5-3 hours | Redirecting output, piping commands, understanding data flow                   |
+| **PS-4: Environment Variables & Aliases** | 2-2.5 hours | Setting variables, creating shortcuts, persistent configurations               |
+| **PS-5: Filling in the Gaps**             | 2.5-3 hours | Control flow, profiles, useful tricks, scripting fundamentals                  |
+| **PS-6: Advanced Techniques**             | 3-3.5 hours | Scripts, functions, professional workflows, automation patterns                |
+| **PS Unit Test & Practice**               | 2-3 hours   | Practice exercises, assessment, reinforcement                                  |
+
+**Outcomes:** Terminal fluency, file system mastery, basic scripting, screen reader optimization, automation readiness
+
+---
+
+#### **Pathway B: Windows Command Prompt (CMD)** (Simpler alternative)
+
+**Total Duration:** 30-45 hours  
+**Start here:** [CMD Curriculum Overview](CMD_Foundation/CMD_Curriculum_Overview/CMD_Curriculum_Overview.md)
+
+| Component                                    | Duration    | Content                                                             |
+|----------------------------------------------|-------------|---------------------------------------------------------------------|
+| **CMD-Pre: Your First Terminal**             | 2-2.5 hours | Opening CMD, first commands, basic navigation, screen reader tricks |
+| **CMD-0: Getting Started**                   | 1.5 hours   | Paths, shortcuts, command basics                                    |
+| **CMD-1: Navigation**                        | 2-2.5 hours | Moving around the file system confidently                           |
+| **CMD-2: File & Folder Manipulation**        | 2.5-3 hours | Creating, editing, moving, copying, deleting files and directories  |
+| **CMD-3: Input, Output & Redirection**       | 2-2.5 hours | Redirecting output, piping commands, understanding data flow        |
+| **CMD-4: Environment Variables & Shortcuts** | 2-2.5 hours | Setting variables, creating shortcuts, persistent configurations    |
+| **CMD-5: Filling in the Gaps**               | 2.5-3 hours | Batch files, advanced techniques, scripting fundamentals            |
+| **CMD-6: Advanced Techniques**               | 3-3.5 hours | Scripts, automation patterns, professional workflows                |
+| **CMD Unit Test & Practice**                 | 2-3 hours   | Practice exercises, assessment, reinforcement                       |
+
+**Outcomes:** Terminal fluency, file system mastery, batch scripting, screen reader optimization, automation readiness
+
+---
+
+#### **Pathway C: Git Bash** (Best for macOS/Linux or cross-platform development)
+
+**Total Duration:** 20-25 hours  
+**Start here:** [Git Bash Curriculum Overview](GitBash_Foundation/GitBash_Curriculum_Overview/GitBash_Curriculum_Overview.md)
+
+| Component                             | Duration    | Content                                                                  |
+|---------------------------------------|-------------|--------------------------------------------------------------------------|
+| **GitBash-Pre: Your First Terminal**  | 2-2.5 hours | Opening Git Bash, first commands, basic navigation, screen reader tricks |
+| **GitBash-1: Navigation & Files**     | 2-2.5 hours | File system fundamentals, moving around, creating/editing files          |
+| **GitBash-2: Advanced Navigation**    | 2-2.5 hours | Advanced file operations, understanding paths, symlinks                  |
+| **GitBash-3: Text Processing**        | 2-2.5 hours | grep, sed, awk, text manipulation                                        |
+| **GitBash-4: Scripting & Automation** | 2.5-3 hours | Bash scripts, functions, loops, conditional logic                        |
+| **GitBash-5: Professional Workflows** | 2-2.5 hours | Git integration, version control, collaboration patterns                 |
+| **GitBash Unit Test & Practice**      | 2-2.5 hours | Practice exercises, assessment, reinforcement                            |
+
+**Outcomes:** Terminal fluency, file system mastery, bash scripting, version control basics, automation readiness
+
+---
+
+**Common Outcomes (All Pathways):**
 - Comfort with terminal/command-line interface
 - File system navigation and manipulation
 - Basic scripting and automation
 - Screen reader optimization for terminal work
 - Foundation for 3DMake automation tasks
 
-**Note:** Students should complete PowerShell Foundation before starting 3dMake Lesson 9 (Automation). Lessons 1-8 can begin without PowerShell, but Lesson 9+ requires command-line fluency.
+**Note:** Students should complete their chosen Command-Line Foundation pathway before starting 3dMake Lesson 9 (Automation). Lessons 1-8 can begin without CLI foundation, but Lesson 9+ requires command-line fluency.
 
 ---
 
