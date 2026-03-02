@@ -46,7 +46,6 @@ level = 1
 #include-before-body = ["src/Cover.tex"]
 #template = "src/template.tex"
 #pdf-engine = "lualatex"
-# ADDED index.lua here
 
 #[output.pandoc.profile.pdf.variables]
 #listings = true  
@@ -59,10 +58,6 @@ level = 1
 #fontsize = "11pt"
 #maketitle = false
 # Ensure these strings are correct for LaTeX
-#header-includes = [
-#    '\usepackage{url}',
-#    '\usepackage{makeidx}',
-#    '\makeindex'
 #]
 
 # --- EPUB PROFILE UPDATES ---
@@ -72,7 +67,7 @@ to = "epub"
 number-sections = false
 toc-depth = 3
 include-before-body = ["src/Cover.html"]
-filters = ["src/code-to-listings.lua", "src/index.lua", "src/pagebreak-chapters.lua"]
+filters = ["src/code-to-listings.lua", "src/pagebreak-chapters.lua"]
 
 [output.pandoc.profile.epub.variables]
 date = "2026-02-24"
@@ -84,15 +79,9 @@ number-sections = false
 toc-depth = 3
 include-before-body = ["src/Cover.tex"]
 template = "src/template.tex"
-filters = ["src/code-to-listings.lua", "src/index.lua", "src/pagebreak-chapters.lua"]
+filters = ["src/code-to-listings.lua", "src/pagebreak-chapters.lua"]
 
 [output.pandoc.profile.latex.variables]
 date = "2026-02-24"
 title-meta = "3D Printing Course for Blind and Visually Impaired Learners"
 author-meta = "Michael Ryan Hunsaker, M.Ed., Ph.D."
-# Ensure the index package is included in the raw .tex output
-header-includes = [
-    '\usepackage{url}',
-    '\usepackage{makeidx}',
-    '\makeindex'
-]

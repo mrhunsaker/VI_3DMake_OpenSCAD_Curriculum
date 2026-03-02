@@ -83,7 +83,7 @@ See `Lessons_3dMake_8/README.md` for detailed learning guide.
 1. Copy the `.scad` file into your 3dMake project's `src/` folder
 2. Use `3dm edit-model filename.scad` to open in editor
 3. Run `3dm build` to generate STL
-4. Use `3dm describe` and `3dm preview` for accessibility features
+4. Use `3dm info` and `3dm preview` for accessibility features
 5. Run `3dm slice` to generate G-code for printing
 
 ### Option 3: Reference While Learning

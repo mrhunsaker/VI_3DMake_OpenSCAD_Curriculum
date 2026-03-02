@@ -1,7 +1,7 @@
-# GitBash-6: Advanced Terminal Techniques - Shell Scripts, Functions & Professional Workflows
+# Bash Lesson 6: Advanced Terminal Techniques - Shell Scripts, Functions & Professional Workflows
 
 **Duration:** 4-4.5 hours (for screen reader users)
-**Prerequisites:** Complete GitBash-0 through GitBash-5
+**Prerequisites:** Complete Bash Lesson 0 through Bash Lesson 5
 **Skill Level:** Advanced intermediate
 
 This lesson extends Git Bash skills to professional-level workflows. You'll learn to automate complex tasks, write reusable shell scripts, and integrate tools for 3D printing workflows.

@@ -1,7 +1,7 @@
-# PS-6: Advanced Terminal Techniques - Scripts, Functions & Professional Workflows {#powershell_foundation_ps_6_advanced_techniques-ps_6_advanced_techniques}
+# Powershell Lesson 6: Advanced Terminal Techniques - Scripts, Functions & Professional Workflows {# Powershell_foundation_ps_6_advanced_techniques-ps_6_advanced_techniques}
 
 Duration: 4-4.5 hours (for screen reader users)  
-Prerequisites: Complete PS-0 through PS-5  
+Prerequisites: CompletePowershell Lesson 0 throughPowershell Lesson 5  
 Skill Level: Advanced intermediate
 
 This lesson extends PowerShell skills to professional-level workflows. You'll learn to automate complex tasks, write reusable code, and integrate tools for 3D printing workflows.
@@ -569,7 +569,7 @@ Steps:
 
 Checkpoint: Should show report of all files in the test folder.
 
-## Quiz - Lesson PS-6
+## Quiz - LessonPowershell Lesson 6
 
 1. What is a PowerShell script?
 2. What file extension do PowerShell scripts use?

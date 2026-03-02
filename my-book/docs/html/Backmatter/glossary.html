@@ -81,10 +81,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-16a773af.js";
+            window.path_to_searchindex_js = "../searchindex-bc1ab470.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-a7b67ace.js"></script>
+        <script src="../toc-47d6622c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -275,6 +275,34 @@
 <li>40%+ for structural parts</li>
 </ul>
 <hr>
+<h2 id="material-properties"><a class="header" href="#material-properties">Material Properties</a></h2>
+<h3 id="pla-polylactic-acid"><a class="header" href="#pla-polylactic-acid">PLA (Polylactic Acid)</a></h3>
+<ul>
+<li>Easy to print</li>
+<li>Low warping</li>
+<li>Biodegradable</li>
+<li>Not heat-resistant</li>
+</ul>
+<h3 id="petg"><a class="header" href="#petg">PETG</a></h3>
+<ul>
+<li>Stronger than PLA</li>
+<li>Chemical resistant</li>
+<li>Slight flexibility</li>
+</ul>
+<h3 id="tpu-thermoplastic-polyurethane"><a class="header" href="#tpu-thermoplastic-polyurethane">TPU (Thermoplastic Polyurethane)</a></h3>
+<ul>
+<li>Flexible</li>
+<li>Rubber-like</li>
+<li>Requires slow printing</li>
+</ul>
+<h3 id="abs-acrylonitrile-butadiene-styrene"><a class="header" href="#abs-acrylonitrile-butadiene-styrene">ABS (Acrylonitrile Butadiene Styrene)</a></h3>
+<ul>
+<li>Strong and durable</li>
+<li>Higher temperature</li>
+<li>Requires enclosure</li>
+<li>Prone to warping</li>
+</ul>
+<hr>
 <h2 id="tolerance"><a class="header" href="#tolerance">Tolerance</a></h2>
 <p>Intentional dimensional offset to ensure mechanical fit.</p>
 <p>Example:
@@ -306,6 +334,30 @@ sphere(5);
 cylinder(h=20, d=10);
 </code></pre>
 <hr>
+<h2 id="cone"><a class="header" href="#cone">Cone</a></h2>
+<p>A tapered cylinder created using different top and bottom diameters.</p>
+<pre><code class="language-openscad">cylinder(h=20, d1=10, d2=0);
+</code></pre>
+<hr>
+<h2 id="2d-shapes"><a class="header" href="#2d-shapes">2D Shapes</a></h2>
+<p>Flat geometry that can be extruded to 3D.</p>
+<p>Examples:</p>
+<pre><code class="language-openscad">square([10,10]);
+circle(5);
+polygon([[0,0], [10,0], [5,10]]);
+</code></pre>
+<hr>
+<h2 id="polygon"><a class="header" href="#polygon">Polygon</a></h2>
+<p>Custom 2D shape defined by vertices.</p>
+<pre><code class="language-openscad">polygon(points=[[0,0], [10,0], [10,10], [0,10]]);
+</code></pre>
+<hr>
+<h2 id="text-commands"><a class="header" href="#text-commands">Text Commands</a></h2>
+<p>Create text geometry for embossing or debossing.</p>
+<pre><code class="language-openscad">linear_extrude(height=2)
+    text("HELLO", size=10, font="Liberation Sans");
+</code></pre>
+<hr>
 <h2 id="boolean-operations"><a class="header" href="#boolean-operations">Boolean Operations</a></h2>
 <h3 id="union"><a class="header" href="#union">union()</a></h3>
 <p>Combines shapes.</p>
@@ -329,6 +381,61 @@ cylinder(h=20, d=10);
     sphere(10);
     cube([15,15,15], center=true);
 }
+</code></pre>
+<hr>
+<h2 id="transform-operations"><a class="header" href="#transform-operations">Transform Operations</a></h2>
+<h3 id="translate"><a class="header" href="#translate">Translate</a></h3>
+<p>Move geometry in 3D space.</p>
+<pre><code class="language-openscad">translate([10, 20, 30])
+    cube([10,10,10]);
+</code></pre>
+<hr>
+<h3 id="rotate"><a class="header" href="#rotate">Rotate</a></h3>
+<p>Rotate geometry around axes.</p>
+<pre><code class="language-openscad">rotate([0, 0, 45])
+    cube([10,10,10]);
+</code></pre>
+<hr>
+<h3 id="scale"><a class="header" href="#scale">Scale</a></h3>
+<p>Resize geometry by multiplier.</p>
+<pre><code class="language-openscad">scale([2, 1, 1])
+    cube([10,10,10]);
+</code></pre>
+<hr>
+<h3 id="mirror"><a class="header" href="#mirror">Mirror</a></h3>
+<p>Flip geometry across a plane.</p>
+<pre><code class="language-openscad">mirror([1, 0, 0])
+    cube([10,10,10]);
+</code></pre>
+<hr>
+<h2 id="advanced-operations"><a class="header" href="#advanced-operations">Advanced Operations</a></h2>
+<h3 id="hull"><a class="header" href="#hull">Hull</a></h3>
+<p>Creates convex hull of children objects.</p>
+<pre><code class="language-openscad">hull() {
+    sphere(5);
+    translate([20,0,0]) sphere(5);
+}
+</code></pre>
+<hr>
+<h3 id="minkowski-sum"><a class="header" href="#minkowski-sum">Minkowski Sum</a></h3>
+<p>Expands geometry by rolling one shape around another.</p>
+<pre><code class="language-openscad">minkowski() {
+    cube([10,10,10]);
+    sphere(2, $fn=12);
+}
+</code></pre>
+<p>Warning: Computationally expensive.</p>
+<hr>
+<h3 id="linear-extrude"><a class="header" href="#linear-extrude">Linear Extrude</a></h3>
+<p>Extends 2D shapes into 3D.</p>
+<pre><code class="language-openscad">linear_extrude(height=10)
+    square([10,10]);
+</code></pre>
+<hr>
+<h3 id="offset"><a class="header" href="#offset">Offset</a></h3>
+<p>Expands or contracts 2D shapes.</p>
+<pre><code class="language-openscad">offset(r=2)
+    square([10,10]);
 </code></pre>
 <hr>
 <h2 id="variable"><a class="header" href="#variable">Variable</a></h2>
@@ -355,12 +462,109 @@ cube([width,10,5]);
 peg(5, 20);
 </code></pre>
 <hr>
+<h2 id="control-structures"><a class="header" href="#control-structures">Control Structures</a></h2>
+<h3 id="for-loop"><a class="header" href="#for-loop">For Loop</a></h3>
+<p>Repeat operations.</p>
+<pre><code class="language-openscad">for (i = [0:5]) {
+    translate([i*15, 0, 0])
+        cube([10,10,10]);
+}
+</code></pre>
+<hr>
+<h3 id="if-statement"><a class="header" href="#if-statement">If Statement</a></h3>
+<p>Conditional execution.</p>
+<pre><code class="language-openscad">if (width &gt; 20) {
+    cube([width, 10, 10]);
+}
+</code></pre>
+<hr>
+<h3 id="else-and-elseif"><a class="header" href="#else-and-elseif">Else and ElseIf</a></h3>
+<p>Extended conditionals.</p>
+<pre><code class="language-openscad">if (width &gt; 20) {
+    cube([width, 10, 10]);
+} else if (width &gt; 10) {
+    cylinder(h=10, d=width);
+} else {
+    sphere(width/2);
+}
+</code></pre>
+<hr>
+<h2 id="echo-function"><a class="header" href="#echo-function">Echo Function</a></h2>
+<p>Print debug information to console.</p>
+<pre><code class="language-openscad">width = 30;
+echo("Width is:", width);
+</code></pre>
+<hr>
+<h2 id="random-numbers"><a class="header" href="#random-numbers">Random Numbers</a></h2>
+<p>Generate random values.</p>
+<pre><code class="language-openscad">rands(min, max, count, seed);
+
+// Example:
+positions = rands(0, 100, 5);
+</code></pre>
+<hr>
+<h2 id="import"><a class="header" href="#import">Import</a></h2>
+<p>Load external STL or other files.</p>
+<pre><code class="language-openscad">import("model.stl");
+</code></pre>
+<hr>
 <h2 id="fn-fragment-number"><a class="header" href="#fn-fragment-number">$fn (Fragment Number)</a></h2>
 <p>Controls circular resolution.</p>
 <pre><code class="language-openscad">$fn = 100;
 sphere(10);
 </code></pre>
 <p>Higher values increase smoothness and render time.</p>
+<hr>
+<h2 id="-hash-mark---debug-modifier"><a class="header" href="#-hash-mark---debug-modifier"># (Hash Mark - Debug Modifier)</a></h2>
+<p>Highlights geometry in transparent red during preview.</p>
+<pre><code class="language-openscad">#cube([10,10,10]);
+</code></pre>
+<p>Used for debugging geometry positions.</p>
+<hr>
+<h2 id="comments"><a class="header" href="#comments">Comments</a></h2>
+<p>Non-executable text for documentation.</p>
+<h3 id="single-line-comments"><a class="header" href="#single-line-comments">Single-line Comments</a></h3>
+<pre><code class="language-openscad">// This is a comment
+cube([10,10,10]);
+</code></pre>
+<h3 id="multiline-comments"><a class="header" href="#multiline-comments">Multiline Comments</a></h3>
+<pre><code class="language-openscad">/*
+  This is a
+  multiline comment
+*/
+cube([10,10,10]);
+</code></pre>
+<hr>
+<h2 id="logical-operators"><a class="header" href="#logical-operators">Logical Operators</a></h2>
+<h3 id="-and"><a class="header" href="#-and">&amp;&amp; (And)</a></h3>
+<p>Logical AND operator.</p>
+<pre><code class="language-openscad">if (x &gt; 5 &amp;&amp; y &lt; 10) {
+    cube([10,10,10]);
+}
+</code></pre>
+<h3 id="-or"><a class="header" href="#-or">|| (Or)</a></h3>
+<p>Logical OR operator.</p>
+<pre><code class="language-openscad">if (x &gt; 5 || y &lt; 10) {
+    cube([10,10,10]);
+}
+</code></pre>
+<hr>
+<h2 id="brackets-and-delimiters"><a class="header" href="#brackets-and-delimiters">Brackets and Delimiters</a></h2>
+<h3 id="--square-brackets"><a class="header" href="#--square-brackets">[ ] (Square Brackets)</a></h3>
+<p>Used for vectors and arrays.</p>
+<pre><code class="language-openscad">position = [10, 20, 30];
+cube([10,10,10]);
+</code></pre>
+<h3 id="--curly-brackets"><a class="header" href="#--curly-brackets">{ } (Curly Brackets)</a></h3>
+<p>Define code blocks.</p>
+<pre><code class="language-openscad">if (x &gt; 5) {
+    cube([10,10,10]);
+}
+</code></pre>
+<h3 id="--angle-brackets"><a class="header" href="#--angle-brackets">&lt; &gt; (Angle Brackets)</a></h3>
+<p>Used in some operations and comparisons.</p>
+<pre><code class="language-openscad">if (x &lt; 10 &amp;&amp; y &gt; 5) { }
+</code></pre>
 <hr>
 <h2 id="preview-vs-render"><a class="header" href="#preview-vs-render">Preview vs Render</a></h2>
 <ul>
@@ -376,6 +580,17 @@ sphere(10);
 <p>A command-line tool for automating 3D model generation and processing.</p>
 <p>Repository:
 https://github.com/tdeck/3dmake</p>
+<hr>
+<h2 id="3dm-build"><a class="header" href="#3dm-build">3dm build</a></h2>
+<p>Command to generate STL from OpenSCAD source.</p>
+<pre><code class="language-bash">3dm build
+</code></pre>
+<p>Outputs to <code>build/</code> directory.</p>
+<hr>
+<h2 id="3dm-info"><a class="header" href="#3dm-info">3dm info</a></h2>
+<p>AI-powered geometric description for non-visual validation.</p>
+<pre><code class="language-bash">3dm info --view front
+</code></pre>
 <hr>
 <h2 id="headless-rendering"><a class="header" href="#headless-rendering">Headless Rendering</a></h2>
 <p>Running OpenSCAD without GUI.</p>
@@ -528,6 +743,15 @@ git checkout feature-peg
 <pre><code class="language-bash">openscad -o model.stl model.scad
 </code></pre>
 <hr>
+<h2 id="slicer-software"><a class="header" href="#slicer-software">Slicer Software</a></h2>
+<p>Converts STL to G-code.</p>
+<h3 id="prusaslicer"><a class="header" href="#prusaslicer">PrusaSlicer</a></h3>
+<p>Open-source slicer with advanced features.</p>
+<h3 id="cura"><a class="header" href="#cura">Cura</a></h3>
+<p>User-friendly slicer by Ultimaker.</p>
+<h3 id="bambu-studio"><a class="header" href="#bambu-studio">Bambu Studio</a></h3>
+<p>Slicer for Bambu Lab printers.</p>
+<hr>
 <h2 id="g-code"><a class="header" href="#g-code">G-code</a></h2>
 <p>Machine instructions generated by slicer.</p>
 <p>Example fragment:</p>
@@ -542,6 +766,16 @@ git checkout feature-peg
 <li><code>.ps1</code></li>
 <li><code>.sh</code></li>
 <li><code>.scad</code></li>
+</ul>
+<hr>
+<h2 id="debugging"><a class="header" href="#debugging">Debugging</a></h2>
+<p>Process of finding and fixing errors in code.</p>
+<p>Techniques:</p>
+<ul>
+<li>Use <code>echo()</code> statements</li>
+<li>Use <code>#</code> modifier to highlight geometry</li>
+<li>Test modules independently</li>
+<li>Check console for warnings</li>
 </ul>
 <hr>
 <h2 id="reproducibility"><a class="header" href="#reproducibility">Reproducibility</a></h2>
@@ -569,6 +803,32 @@ git checkout feature-peg
 </code></pre>
 <p>Important for screen readers.</p>
 <hr>
+<h2 id="editor-setup"><a class="header" href="#editor-setup">Editor Setup</a></h2>
+<h3 id="vs-code"><a class="header" href="#vs-code">VS Code</a></h3>
+<p>Recommended extensions:</p>
+<ul>
+<li>OpenSCAD Language Support</li>
+<li>Bracket Pair Colorizer</li>
+</ul>
+<hr>
+<h3 id="notepad"><a class="header" href="#notepad">Notepad++</a></h3>
+<p>Lightweight editor with syntax highlighting.</p>
+<p>Configure:</p>
+<ul>
+<li>Settings → Preferences → Language</li>
+<li>Select OpenSCAD or C-style syntax</li>
+</ul>
+<hr>
+<h2 id="indentation"><a class="header" href="#indentation">Indentation</a></h2>
+<p>Proper code formatting for readability.</p>
+<pre><code class="language-openscad">module example() {
+    if (condition) {
+        cube([10,10,10]);
+    }
+}
+</code></pre>
+<p>Use consistent spacing (2 or 4 spaces per level).</p>
+<hr>
 <h2 id="screen-reader"><a class="header" href="#screen-reader">Screen Reader</a></h2>
 <p>Software that reads text aloud.</p>
 <p>Examples:</p>
@@ -586,6 +846,24 @@ git checkout feature-peg
 <p>Tight fit requiring force.</p>
 <h2 id="overhang"><a class="header" href="#overhang">Overhang</a></h2>
 <p>Unsupported geometry exceeding safe angle (≈45° for FDM).</p>
+<hr>
+<h2 id="tolerance-1"><a class="header" href="#tolerance-1">Tolerance</a></h2>
+<p>Intentional dimensional offset for mechanical fit.</p>
+<p>Example:</p>
+<ul>
+<li>Designed hole: 10.2mm</li>
+<li>Designed peg: 10.0mm</li>
+<li>Clearance: 0.2mm</li>
+</ul>
+<hr>
+<h2 id="calipers"><a class="header" href="#calipers">Calipers</a></h2>
+<p>Precision measurement tool for verifying printed dimensions.</p>
+<p>Types:</p>
+<ul>
+<li>Digital calipers (recommended)</li>
+<li>Vernier calipers</li>
+</ul>
+<p>Accuracy: ±0.01mm typical</p>
 <hr>
 <h1 id="section-x--advanced-workflow-concepts"><a class="header" href="#section-x--advanced-workflow-concepts">SECTION X — Advanced Workflow Concepts</a></h1>
 <h2 id="headless-ci-build"><a class="header" href="#headless-ci-build">Headless CI Build</a></h2>

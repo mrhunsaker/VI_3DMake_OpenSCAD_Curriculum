@@ -364,6 +364,89 @@ Fix:
 
 ---
 
+## A.4 Syntax Errors
+
+### Missing Semicolons
+
+Cause:
+```openscad
+cube([10,10,10])  // Missing semicolon
+```
+
+Fix:
+```openscad
+cube([10,10,10]);
+```
+
+---
+
+### Unmatched Brackets
+
+Common errors:
+- `{ }` curly brackets
+- `[ ]` square brackets
+- `( )` parentheses
+
+Diagnosis:
+Check error line number in console.
+
+---
+
+### Comment Syntax Errors
+
+Invalid multiline comment:
+```openscad
+/* Comment
+// Still in comment
+*/
+```
+
+Single-line comments use `//`
+Multiline comments use `/* */`
+
+---
+
+## A.5 Logical Operator Errors
+
+### && (AND) Usage
+
+```openscad
+if (x > 5 && y < 10) {
+    cube([10,10,10]);
+}
+```
+
+### || (OR) Usage
+
+```openscad
+if (x > 5 || y < 10) {
+    cube([10,10,10]);
+}
+```
+
+Missing parentheses can cause evaluation errors.
+
+---
+
+## A.6 $fn Performance Issues
+
+Cause:
+- Excessive fragment count
+
+Example:
+```openscad
+$fn = 500;  // Too high
+sphere(5);
+```
+
+Fix:
+```openscad
+$fn = 50;   // Sufficient for most cases
+sphere(5);
+```
+
+---
+
 # B. 3dMake Failures
 
 ## B.1 Command Not Found
@@ -372,6 +455,12 @@ Verify:
 
 ```cmd
 where openscad
+```
+
+Or check 3dm:
+
+```cmd
+where 3dm
 ```
 
 ---
@@ -386,7 +475,36 @@ echo %ERRORLEVEL%
 
 ---
 
-# C. CMD-Specific Failures
+## B.3 3dm build Failures
+
+Common causes:
+- Source file not found
+- Syntax errors in .scad
+- OpenSCAD not in PATH
+
+Diagnosis:
+```bash
+3dm build --verbose
+```
+
+---
+
+## B.4 3dm info Not Working
+
+Requirements:
+- Valid STL file
+- Network connection (for AI service)
+
+Check:
+```bash
+3dm info
+```
+
+If info works but describe doesn't, check network.
+
+---
+
+# C. Command Line Lesson Specific Failures
 
 ## C.1 "Access is denied"
 
@@ -490,6 +608,35 @@ Expected during full render.
 
 ---
 
+## G.3 For Loop Performance
+
+Inefficient:
+```openscad
+for (i = [0:1000]) {
+    translate([i, 0, 0])
+        minkowski() { ... }  // Very slow
+}
+```
+
+Better:
+```openscad
+for (i = [0:100]) {  // Reduce iterations
+    translate([i, 0, 0])
+        hull() { ... }   // Faster than minkowski
+}
+```
+
+---
+
+## G.4 Hull vs Minkowski Performance
+
+- `hull()` — Fast for convex shapes
+- `minkowski()` — Slow but precise
+
+Use hull() when possible.
+
+---
+
 # H. SYSTEM DIAGNOSTIC CHECKLIST
 
 1. Is OpenSCAD in PATH?
@@ -500,6 +647,214 @@ Expected during full render.
 6. Does printer firmware accept G-code?
 7. Is first layer adhering?
 8. Are dimensions within tolerance?
+9. Are all brackets matched?
+10. Are comments properly closed?
+11. Is $fn set reasonably?
+12. Are transform operations in correct order?
+
+---
+
+# J. EDITOR AND IDE TROUBLESHOOTING
+
+## J.1 VS Code OpenSCAD Extension Issues
+
+Symptom:
+- No syntax highlighting
+
+Fix:
+1. Install "OpenSCAD" extension
+2. Restart VS Code
+3. Check file extension is `.scad`
+
+---
+
+## J.2 Notepad++ Syntax Highlighting
+
+Setup:
+1. Settings → Style Configurator
+2. Select Language: C or C++
+3. Apply to `.scad` files
+
+---
+
+## J.3 Indentation Issues
+
+Mixed tabs/spaces:
+
+Fix:
+```
+Convert tabs to spaces
+Set indent to 4 spaces
+```
+
+---
+
+## J.4 Screen Reader + Editor Issues
+
+### NVDA with VS Code
+
+Settings:
+- Enable "Editor > Accessibility: Support"
+- Set "Editor > Render Whitespace": "all"
+
+### Indent Announcement
+
+NVDA:
+- Document Formatting → Report line indentation
+
+JAWS:
+- Settings Center → Reading → Report Indentation
+
+---
+
+# K. SLICER-SPECIFIC TROUBLESHOOTING
+
+## K.1 PrusaSlicer Import Failures
+
+Symptom:
+- STL won't load
+
+Causes:
+- Non-manifold geometry
+- File corruption
+- Incorrect file path
+
+Fix:
+```bash
+openscad -o model.stl model.scad --check
+```
+
+---
+
+## K.2 Cura Slicing Errors
+
+Common:
+- Model outside build volume
+- Unsupported overhangs
+
+Fix:
+- Scale model down
+- Enable supports
+
+---
+
+## K.3 Bambu Studio Issues
+
+Plate adhesion:
+- Clean build plate
+- Increase bed temperature
+- Add brim/raft
+
+---
+
+# L. MATERIAL-SPECIFIC FAILURES
+
+## L.1 PLA Printing Issues
+
+### Stringing
+
+Fix:
+- Enable retraction
+- Lower temperature by 5-10°C
+
+### Warping
+
+- Rare with PLA
+- Add brim if occurs
+
+---
+
+## L.2 PETG Challenges
+
+### Stringing
+
+Common with PETG.
+
+Fix:
+- Increase retraction distance
+- Lower temperature
+
+### Bed Adhesion
+
+Too good — may damage bed.
+
+Use:
+- Glue stick as release agent
+
+---
+
+## L.3 TPU (Flexible) Problems
+
+### Under-extrusion
+
+Cause:
+- Too fast print speed
+
+Fix:
+- Reduce to 20-30 mm/s
+
+### Stringing
+
+Minimal retraction:
+- Set to 1-2mm only
+
+---
+
+## L.4 ABS Warping
+
+Major challenge.
+
+Required:
+- Heated enclosure
+- 100°C+ bed temp
+- Large brim
+
+---
+
+# M. MEASUREMENT AND QA FAILURES
+
+## M.1 Caliper Measurement Errors
+
+### Over-tightening
+
+Cause:
+- Pressing too hard
+
+Result:
+- Part deforms
+- Inaccurate reading
+
+Fix:
+- Use gentle pressure
+
+---
+
+## M.2 Tolerance Stack-up Issues
+
+Multiple parts don't fit.
+
+Analysis:
+```
+Part A: +0.15mm error
+Part B: +0.12mm error
+Total: +0.27mm
+```
+
+Fix:
+- Adjust design tolerances
+- Print test pieces first
+
+---
+
+## M.3 Dimensional Accuracy Check
+
+Print calibration cube:
+```openscad
+cube([20,20,20]);
+```
+
+Measure all dimensions.
+Expected: 20.00 ± 0.2mm
 
 ---
 
@@ -523,3 +878,159 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo Build succeeded.
 ```
+
+---
+
+# N. TEXT EMBOSSING TROUBLESHOOTING
+
+## N.1 Font Not Found
+
+Symptom:
+```
+WARNING: No match for font family
+```
+
+Cause:
+- Font name incorrect
+- Font not installed
+
+Fix:
+
+Windows (PowerShell):
+```powershell
+[System.Drawing.Text.InstalledFontCollection]::new().Families | Select-Object Name
+```
+
+Linux:
+```bash
+fc-list | grep -i "font name"
+```
+
+---
+
+## N.2 Text Not Visible
+
+Cause:
+- Forgot `linear_extrude()`
+
+Wrong:
+```openscad
+text("HELLO");
+```
+
+Correct:
+```openscad
+linear_extrude(height=2)
+    text("HELLO");
+```
+
+---
+
+## N.3 Text Size Too Large/Small
+
+Cause:
+- Size parameter is cap height in mm
+
+Fix:
+```openscad
+text("HELLO", size=8);  // 8mm tall letters
+```
+
+---
+
+# O. TRANSFORM OPERATION ERRORS
+
+## O.1 Transform Order Confusion
+
+Transforms apply **inside-out**.
+
+Example:
+```openscad
+translate([10,0,0])    // Applied SECOND
+    rotate([0,0,45])    // Applied FIRST
+        cube([10,10,10]);
+```
+
+Order matters!
+
+---
+
+## O.2 Rotate Angles Wrong
+
+Angles in **degrees**, not radians.
+
+```openscad
+rotate([0, 0, 45]);  // 45 degrees
+```
+
+---
+
+## O.3 Scale Issues
+
+```openscad
+scale([2, 1, 1])  // 2x wider only
+    cube([10,10,10]);
+```
+
+Result: 20×10×10 cube
+
+---
+
+## O.4 Mirror Confusion
+
+Mirror plane:
+```openscad
+mirror([1, 0, 0])  // Mirror across YZ plane
+    cube([10,10,10]);
+```
+
+---
+
+# P. IMPORT AND EXPORT ERRORS
+
+## P.1 Import STL Failed
+
+Cause:
+- File path incorrect
+- File corrupted
+
+Fix:
+```openscad
+import("path/to/file.stl");
+```
+
+Use forward slashes even on Windows.
+
+---
+
+## P.2 Export Failed
+
+Check:
+1. Write permissions
+2. Sufficient disk space
+3. Valid file path
+
+---
+
+# Q. RANDOMIZATION ISSUES
+
+## Q.1 rands() Not Random
+
+Cause:
+- Same seed produces same output
+
+```openscad
+vals = rands(0, 100, 10, 42);  // Seed = 42
+```
+
+Change seed for different results.
+
+---
+
+## Q.2 Random Position Overlap
+
+Objects placed randomly may overlap.
+
+Need collision detection logic.
+
+---

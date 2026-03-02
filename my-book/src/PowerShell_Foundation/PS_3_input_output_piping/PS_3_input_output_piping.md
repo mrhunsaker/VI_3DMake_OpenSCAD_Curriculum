@@ -1,7 +1,7 @@
-# PS-3: Input, Output, and Piping {#powershell_foundation_ps_3_input_output_piping-ps_3_input_output_piping}
+# Powershell Lesson 3: Input, Output, and Piping {# Powershell_foundation_ps_3_input_output_piping-ps_3_input_output_piping}
 
 Duration: 1 class period
-Prerequisite: PS-2 (File and Folder Manipulation)
+Prerequisite:Powershell Lesson 2 (File and Folder Manipulation)
 
 ## Learning Objectives
 

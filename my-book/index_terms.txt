@@ -74,7 +74,7 @@ Command Line Interface
 Input, Output, and Piping
 Environment Variables & PATH
 3dm build
-3dm describe
+3dm info
 Geometric Primitives
 Parametric Architecture
 Safety Protocols and Ventilation

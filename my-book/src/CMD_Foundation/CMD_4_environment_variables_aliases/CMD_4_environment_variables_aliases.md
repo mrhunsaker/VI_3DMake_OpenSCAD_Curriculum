@@ -1,4 +1,4 @@
-# CMD-4: Environment Variables, PATH, and Aliases
+# Command Line Lesson 4: Environment Variables, PATH, and Aliases
 
 Estimated time: 30-45 minutes
 

@@ -1,3 +1,243 @@
+# Lesson 5 — Safety Protocols and the Physical Fabrication Interface
+*[CORRECTED — March 2026 Curriculum Revision]*
+
+---
+
+## Learning Objectives
+
+By the end of this lesson you will be able to:
+
+- Apply fire, electrical, and fume safety protocols for FDM printing
+- Select the appropriate filament material for your use case
+- Estimate print cost and material consumption before committing to a print
+- Understand material sustainability considerations and responsible disposal
+- Use pre-flight build scripts to automate safety-related checks before printing
+
+---
+
+## Step 1 — Workspace Safety Essentials
+
+**Never leave an FDM printer unattended during a print.** The most common print failures (bed adhesion failure, nozzle jam, warping) happen in the first layer and can be detected early.
+
+### Fire Safety
+- Keep a Class ABC dry-chemical extinguisher within arm's reach
+- Never run the printer while you are away from the building
+- Keep the build area clear of flammable material (paper, fabric, solvent cans)
+- Install a smoke detector above the printer — ABS fumes in high concentrations can trigger it, which is useful
+
+### Electrical Safety
+- Use a surge protector or UPS with the printer — voltage spikes can damage the mainboard or cause thermal runaway
+- Inspect power cables and bed wiring regularly — cracks or fraying in flexible wiring are a fire risk
+- **For modified or DIY printers only:** Never open the PSU enclosure, and never modify electrical components while the printer is plugged in. Printer PSUs operate at mains voltage internally and are not user-serviceable. If you observe sparking, burning smells, or discoloration on the PSU, replace it and do not repair it.
+- Thermal runaway protection must be enabled in firmware. Check: `M303` (PID autotune) and thermal runaway settings in Marlin or Klipper. Do not disable these protections.
+
+### Fume Safety
+| Material    | Fume Risk  | Mitigation                                                                                                     |
+|-------------|------------|----------------------------------------------------------------------------------------------------------------|
+| PLA         | Low        | Good room ventilation                                                                                          |
+| PETG        | Low–Medium | Ventilation; avoid in enclosed spaces                                                                          |
+| ABS         | High       | Dedicated fume enclosure with HEPA + activated carbon filter; do not print in occupied rooms without enclosure |
+| ASA         | High       | Same as ABS                                                                                                    |
+| TPU         | Medium     | Ventilation; keep nozzle temp at minimum required                                                              |
+| Resin (SLA) | Very High  | Full enclosure required; nitrile gloves; UV-safe goggles                                                       |
+
+---
+
+## Step 2 — Material Selection Guide
+
+| Filament | Strength    | Flexibility       | Temp Resistance   | Difficulty  | Best For                            |
+|----------|-------------|-------------------|-------------------|-------------|-------------------------------------|
+| PLA      | Medium      | Rigid             | Low (50–60°C)     | Easy        | Prototypes, display models, artwork |
+| PETG     | Medium-High | Slightly flexible | Medium (75–80°C)  | Easy–Medium | Functional parts, water contact     |
+| ABS      | High        | Semi-rigid        | High (85–100°C)   | Hard        | Hot environments, post-processing   |
+| TPU      | Medium      | Very flexible     | Medium            | Medium      | Gaskets, grips, phone cases         |
+| Nylon    | Very High   | Flexible          | High              | Hard        | Mechanical parts, gears             |
+| ASA      | High        | Semi-rigid        | Very High (90°C+) | Hard        | Outdoor use, UV exposure            |
+
+**Material Sustainability Considerations:**
+
+| Filament                   | Sustainability Notes                                                                                                                                                                                                                                         |
+|----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| PLA                        | Bio-based (typically corn starch), but **does NOT biodegrade in landfills or home compost** — it requires industrial composting at 58°C+ with specific microbes. Best described as "bio-derived," not "biodegradable." Consider filament recycling programs. |
+| PETG                       | Part of the PET plastic family, theoretically recyclable, but most municipal facilities do not accept 3D print scraps due to contamination. Long part lifetime reduces replacement frequency = less waste.                                                   |
+| ABS                        | Petroleum-based; difficult to recycle; emits styrene during printing. Avoid for educational settings on sustainability and safety grounds.                                                                                                                   |
+| TPU                        | Petroleum-based; however, parts printed in TPU typically outlast PLA equivalents by years, reducing total lifecycle waste.                                                                                                                                   |
+| Recycled/Regrind filaments | Available from several vendors; slightly reduced mechanical properties but significantly lower carbon footprint.                                                                                                                                             |
+
+**Reducing Print Waste:**
+- Always print a small test coupon before committing to a large part (see Lesson 8)
+- Use the minimum infill that meets mechanical requirements — 15–20% is sufficient for most non-structural parts
+- Keep a "scrap bin" for failed prints; some services (e.g., Terracycle's plastics program) accept 3D print waste
+
+---
+
+## Step 3 — Estimating Print Cost Before Printing
+
+Always estimate cost before printing. Use `3dm info` volume output as the input.
+
+### Formula
+
+```
+1. Get volume:   3dm info  →  Volume: XXXX mm³
+2. Convert:      volume_cm3 = volume_mm3 / 1000
+3. Mass:         mass_g = volume_cm3 × filament_density
+                   PLA:  1.24 g/cm³
+                   PETG: 1.27 g/cm³
+                   ABS:  1.05 g/cm³
+                   TPU:  1.20 g/cm³
+                   Nylon: 1.14 g/cm³
+4. Filament cost: cost = mass_g × (spool_price_$ / spool_weight_g)
+                   Typical: $20 / 1000g = $0.020 per gram
+5. Electricity:  ~$0.05–0.15 per print-hour (check local rates)
+6. Amortized:    ~$0.25–0.50 per print (printer wear, bed surface, etc.)
+
+TOTAL = filament_cost + electricity + amortized
+```
+
+### Worked Example
+
+```
+Volume:   14,500 mm³   (from 3dm info)
+Material: PETG
+
+mass_g    = (14500 / 1000) × 1.27  =  18.4 g
+filament  = 18.4 × $0.020           =  $0.37
+electricity = 2.5 hrs × $0.08/hr   =  $0.20
+amortized                           =  $0.35
+─────────────────────────────────────────────
+TOTAL                               ≈  $0.92
+```
+
+### Automation: Pre-Flight Cost Check Script
+
+#### Linux / macOS (bash)
+```bash
+#!/bin/bash
+# preflight.sh — check cost and dimensions before sending to printer
+
+set -e
+
+3dm build
+INFO=$(3dm info)
+echo "$INFO"
+
+# Parse volume (expects format: "Volume: XXXXX.X mm3")
+VOLUME=$(echo "$INFO" | grep -oP '(?<=Volume:\s)\d+\.?\d*')
+
+if [ -z "$VOLUME" ]; then
+  echo "ERROR: Could not parse volume from 3dm info output"
+  exit 1
+fi
+
+# Cost calculation (PLA at $0.02/g)
+DENSITY=1.24
+COST_PER_G=0.02
+MASS=$(echo "$VOLUME $DENSITY" | awk '{printf "%.1f", ($1/1000)*$2}')
+COST=$(echo "$MASS $COST_PER_G" | awk '{printf "%.2f", $1*$2}')
+
+echo ""
+echo "=== PRE-FLIGHT SUMMARY ==="
+echo "Volume:   ${VOLUME} mm³"
+echo "Mass:     ${MASS} g  (PLA @ ${DENSITY} g/cm³)"
+echo "Filament: \$${COST}  (@ \$${COST_PER_G}/g)"
+echo ""
+echo "Proceed? [y/N]"
+read CONFIRM
+if [ "$CONFIRM" != "y" ]; then
+  echo "Cancelled."
+  exit 0
+fi
+echo "Approved. Send to slicer."
+```
+
+#### Windows (PowerShell)
+```powershell
+# preflight.ps1 — pre-flight cost check
+
+3dm build
+$info = 3dm info
+Write-Host $info
+
+# Parse volume
+$volumeMatch = $info | Select-String -Pattern "Volume:\s+([\d.]+)"
+if (-not $volumeMatch) {
+    Write-Error "Could not parse volume from 3dm info"
+    exit 1
+}
+$volume = [double]$volumeMatch.Matches.Groups[1].Value
+
+# Cost calculation
+$density   = 1.24    # PLA g/cm³
+$costPerG  = 0.02    # $/g
+$mass      = ($volume / 1000) * $density
+$filamentCost = $mass * $costPerG
+
+Write-Host ""
+Write-Host "=== PRE-FLIGHT SUMMARY ==="
+Write-Host ("Volume:   {0:F0} mm3" -f $volume)
+Write-Host ("Mass:     {0:F1} g  (PLA)" -f $mass)
+Write-Host ("Filament: `${0:F2}" -f $filamentCost)
+Write-Host ""
+$confirm = Read-Host "Proceed? [y/N]"
+if ($confirm -ne "y") {
+    Write-Host "Cancelled."
+    exit 0
+}
+Write-Host "Approved. Send to slicer."
+```
+
+#### Windows (CMD)
+```cmd
+@echo off
+REM preflight.cmd — minimal pre-flight check (full calculation requires PowerShell)
+
+3dm build
+if %ERRORLEVEL% NEQ 0 (
+    echo BUILD FAILED - do not print
+    exit /b 1
+)
+
+3dm info
+echo.
+echo Review the bounding box and volume above.
+echo Use the PowerShell script (preflight.ps1) for automatic cost calculation.
+echo.
+set /p CONFIRM="Proceed to slice? [y/N]: "
+if /i not "%CONFIRM%"=="y" (
+    echo Cancelled.
+    exit /b 0
+)
+echo Approved.
+```
+
+---
+
+## Step 4 — Printer Startup Checklist
+
+Before every print session, run this checklist:
+
+```
+PRINTER STARTUP CHECKLIST
+□ Bed level verified (auto-level or manual tramming)
+□ Build plate clean (IPA wipe, no grease or fingerprints)
+□ Nozzle cleared (cold pull if returning from long idle)
+□ Filament loaded and extruding cleanly (run 50mm purge)
+□ First layer height set correctly (0.2mm typical for 0.4mm nozzle)
+□ Print fan operating (spin test or M106 S255 in console)
+□ Workspace clear of flammable material
+□ You will be present for the first 15 minutes of the print
+□ Emergency stop (power switch) is within reach
+```
+
+---
+
+## Exercises
+
+**Exercise 5.1:** Run `3dm info` on your phone stand from Lesson 3. Calculate the material cost in PLA and PETG. Which is cheaper? (PETG is typically slightly more expensive per gram.)
+
+**Exercise 5.2:** Write a preflight script (in your preferred shell: bash, PowerShell, or CMD) that builds your model, reports cost, and requires a `y` confirmation before exiting. The script must work without modification on your platform.
+
+**Exercise 5.3 (Advanced):** Modify the preflight script to accept a `--material` argument (values: `pla`, `petg`, `abs`, `tpu`) and use the appropriate density for cost calculation. Test with all four materials.
 # Lesson 5: Safety Protocols and the Physical Fabrication Interface
 
 Estimated time: 90–120 minutes
@@ -20,26 +260,26 @@ Estimated time: 90–120 minutes
 
 The Hierarchy of Controls is a standard safety framework used in occupational health to rank hazard mitigation strategies from most to least effective.[^1] Applied to 3D printing:
 
-| Control Level | Example in 3D Printing |
-|---|---|
-| **Elimination** | Don't use materials that produce hazardous fumes (e.g., choose PLA over ABS) |
-| **Substitution** | Use a low-VOC PETG instead of ABS for a part requiring heat resistance |
-| **Engineering Controls** | Install an enclosure with active filtration; use a HEPA filter |
-| **Administrative Controls** | Post material-specific operating procedures; require instructor sign-off |
-| **PPE** | Wear nitrile gloves when handling uncured resin; use respirator if enclosure is unavailable |
+| Control Level               | Example in 3D Printing                                                                      |
+|-----------------------------|---------------------------------------------------------------------------------------------|
+| **Elimination**             | Don't use materials that produce hazardous fumes (e.g., choose PLA over ABS)                |
+| **Substitution**            | Use a low-VOC PETG instead of ABS for a part requiring heat resistance                      |
+| **Engineering Controls**    | Install an enclosure with active filtration; use a HEPA filter                              |
+| **Administrative Controls** | Post material-specific operating procedures; require instructor sign-off                    |
+| **PPE**                     | Wear nitrile gloves when handling uncured resin; use respirator if enclosure is unavailable |
 
 The most effective controls reduce or eliminate the hazard at the source. PPE is the least effective because it relies on consistent human behavior.
 
 ### 2. Understand Filament-Specific Hazards
 
-| Filament | Print Temp (°C) | Bed Temp (°C) | Key Hazards | Ventilation Required? |
-|---|---|---|---|---|
-| PLA | 200–215 | 0–60 | Minimal; slight sweet smell | No (recommended) |
-| PETG | 230–250 | 70–90 | Low VOC, slight odor | Yes (moderate) |
-| TPU | 220–240 | 30–60 | Low VOC | Yes (moderate) |
-| ABS | 230–260 | 100–110 | Styrene fumes (potentially harmful) | Yes (required + enclosure) |
-| ASA | 240–260 | 100–110 | Similar to ABS | Yes (required + enclosure) |
-| Resin (SLA) | N/A | N/A | Skin/eye irritant; VOCs | Required + gloves |
+| Filament    | Print Temp (°C) | Bed Temp (°C) | Key Hazards                         | Ventilation Required?      |
+|-------------|-----------------|---------------|-------------------------------------|----------------------------|
+| PLA         | 200–215         | 0–60          | Minimal; slight sweet smell         | No (recommended)           |
+| PETG        | 230–250         | 70–90         | Low VOC, slight odor                | Yes (moderate)             |
+| TPU         | 220–240         | 30–60         | Low VOC                             | Yes (moderate)             |
+| ABS         | 230–260         | 100–110       | Styrene fumes (potentially harmful) | Yes (required + enclosure) |
+| ASA         | 240–260         | 100–110       | Similar to ABS                      | Yes (required + enclosure) |
+| Resin (SLA) | N/A             | N/A           | Skin/eye irritant; VOCs             | Required + gloves          |
 
 PLA is the safest classroom filament. ABS and resin require active ventilation and enclosures.[^2]
 

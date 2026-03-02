@@ -21,7 +21,7 @@
    - `keysize` - Adjust keycap dimensions
    - `letterraise` - Control emboss depth
 5. Run `3dm build` to generate STL
-6. Use `3dm describe` and `3dm preview` for accessibility features
+6. Use `3dm info` and `3dm preview` for accessibility features
 
 ## Key Concepts
 

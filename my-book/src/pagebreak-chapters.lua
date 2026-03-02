@@ -4,7 +4,7 @@
 -- For EPUB:  CSS page-break div (all sections)
 
 local lesson_patterns = {
-  -- PowerShell lessons: PS-0, PS-Pre, PS-1 ... PS-6
+  -- PowerShell lessons:Powershell Lesson 0,Powershell Lesson Pre,Powershell Lesson 1 ...Powershell Lesson 6
   "^PS%-%d",
   "^PS%-Pre",
   "^PS%-Unit",

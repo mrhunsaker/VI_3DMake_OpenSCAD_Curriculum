@@ -34,10 +34,51 @@ $endif$
 \ifLuaTeX
   \usepackage{fontspec}
   \usepackage[sfdefault]{atkinson}
+  \setmonofont{AtkinsonHyperlegibleMono}[
+    Extension=.otf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-RegularItalic,
+    BoldItalicFont=*-BoldItalic
+  ]
 \else\ifXeTeX
   \usepackage{fontspec}
   \usepackage[sfdefault]{atkinson}
+  \setmonofont{AtkinsonHyperlegibleMono}[
+    Extension=.otf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-RegularItalic,
+    BoldItalicFont=*-BoldItalic
+  ]
 \fi\fi
+
+% Define explicit mono font command for listings
+\newfontfamily\listingfont{AtkinsonHyperlegibleMono}[
+  Extension=.otf,
+  UprightFont=*-Regular,
+  BoldFont=*-Bold,
+  ItalicFont=*-RegularItalic,
+  BoldItalicFont=*-BoldItalic
+]
+
+% Convert footnotes to chapter endnotes
+\usepackage{endnotes}
+\let\footnote=\endnote
+\renewcommand{\notesname}{Notes}
+
+% Automatically print endnotes at the end of each chapter
+\usepackage{etoolbox}
+\preto\chapter{%
+  \ifnum\value{endnote}>0
+    \begingroup
+    \parindent 0pt
+    \parskip 2ex
+    \def\enotesize{\normalsize}
+    \theendnotes
+    \endgroup
+  \fi
+}
 \usepackage{listings}
 \usepackage{upquote}
 \usepackage{tabularray}
@@ -51,15 +92,15 @@ $endif$
 \definecolor{alabaster-identifier}{HTML}{000000}
 
 \newlength{\AlabasterTabWidth}
-\settowidth{\AlabasterTabWidth}{{\ttfamily\footnotesize\ \ \ \ }}
-\newcommand*\AlabasterTab{\makebox[\AlabasterTabWidth][c]{\color{BrickRed}\scriptsize\(\rightarrow\)}}
+\settowidth{\AlabasterTabWidth}{{\listingfont\footnotesize\ \ \ \ }}
+\newcommand*\AlabasterTab{\makebox[\AlabasterTabWidth][c]{\color{BrickRed}\scriptsize\ensuremath{\rightarrow}}}
 
 \lstset{
   numbers=left,
   numberstyle=\tiny\color{alabaster-number},
   breaklines=true,
-  prebreak=\space\mbox{\textcolor{green}{\(\rightarrow\)}},
-  postbreak=\mbox{\textcolor{green}{\(\hookrightarrow\)\space}},
+  prebreak=\space\mbox{\textcolor{green}{\ensuremath{\rightarrow}}},
+  postbreak=\mbox{\textcolor{green}{\ensuremath{\hookrightarrow}\space}},
   breakatwhitespace=false,
   tabsize=4,
   showtabs=true,
@@ -69,19 +110,18 @@ $endif$
   firstnumber=1,
   numberfirstline=true,
   stepnumber=2,
-  basicstyle=\footnotesize\ttfamily\color{alabaster-identifier},
+  basicstyle=\footnotesize\listingfont\color{alabaster-identifier},
   columns=fullflexible,
   extendedchars=true,
   inputencoding=utf8,
   aboveskip=0pt,
-  belowskip=0pt,
-  lineskip=-0.25\baselineskip
+  belowskip=0pt
 }
 
 \lstdefinestyle{Alabaster}{
   frame=lines,
   backgroundcolor=\color{alabaster-bg},
-  basicstyle=\footnotesize\ttfamily\color{alabaster-identifier},
+  basicstyle=\footnotesize\listingfont\color{alabaster-identifier},
   keywordstyle=\bfseries\color{alabaster-keyword},
   identifierstyle=\color{alabaster-identifier},
   stringstyle=\color{alabaster-string},
@@ -178,8 +218,6 @@ $endif$
 $fonts.latex()$
 $font-settings.latex()$
 $common.latex()$
-\usepackage{makeidx}
-\makeindex
 $for(header-includes)$
 $header-includes$
 $endfor$
@@ -258,6 +296,15 @@ $body$
 $if(has-frontmatter)$
 \backmatter
 $endif$
+% Print any remaining endnotes
+\ifnum\value{endnote}>0
+  \begingroup
+  \parindent 0pt
+  \parskip 2ex
+  \def\enotesize{\normalsize}
+  \theendnotes
+  \endgroup
+\fi
 $if(nocite-ids)$
 \nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
 $endif$
@@ -284,8 +331,4 @@ $endfor$
 
 \cleardoublepage
 \phantomsection
-\addcontentsline{toc}{chapter}{Index}
-\clearpage
-\printindex
-
 \end{document}

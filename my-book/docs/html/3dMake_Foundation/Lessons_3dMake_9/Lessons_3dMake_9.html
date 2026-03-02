@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-16a773af.js";
+            window.path_to_searchindex_js = "../../searchindex-bc1ab470.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-a7b67ace.js"></script>
+        <script src="../../toc-47d6622c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,196 +220,480 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="lesson-9-automation-and-3dm-workflows"><a class="header" href="#lesson-9-automation-and-3dm-workflows">Lesson 9: Automation and 3dm Workflows</a></h1>
-<p>Estimated time: 90–120 minutes</p>
+                        <h1 id="lesson-9--automation-and-3dm-workflows"><a class="header" href="#lesson-9--automation-and-3dm-workflows">Lesson 9 — Automation and 3dm Workflows</a></h1>
+<hr>
 <h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<p>By the end of this lesson you will be able to:</p>
 <ul>
-<li>Write bash scripts to automate repetitive 3dMake build tasks</li>
-<li>Use <code>import()</code>, <code>include</code>, and <code>use</code> to manage multi-file projects</li>
-<li>Automate parameter sweeps to generate STL variant sets</li>
-<li>Use file system tools to organize and archive builds</li>
-<li>Understand how to detect file changes for watch-and-rebuild loops</li>
+<li>Write robust automation scripts in bash (Linux/macOS), PowerShell (Windows), and CMD (Windows legacy)</li>
+<li>Use proper error handling, logging, and trap/exit patterns for unattended builds</li>
+<li>Pass string and numeric parameters correctly to <code>openscad -D</code> from all three shells</li>
+<li>Automate batch builds, archiving, and variant generation</li>
+<li>Integrate 3dMake automation into CI/CD pipelines</li>
 </ul>
-<h2 id="materials"><a class="header" href="#materials">Materials</a></h2>
-<ul>
-<li>3dMake project</li>
-<li>Terminal (bash)</li>
-<li>Text editor</li>
-</ul>
-<h2 id="step-by-step-tasks"><a class="header" href="#step-by-step-tasks">Step-by-step Tasks</a></h2>
-<h3 id="1-write-your-first-build-automation-script-1"><a class="header" href="#1-write-your-first-build-automation-script-1">1. Write Your First Build Automation Script <sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup></a></h3>
+<hr>
+<h2 id="step-1--the-openscad--d-flag-and-parameter-passing"><a class="header" href="#step-1--the-openscad--d-flag-and-parameter-passing">Step 1 — The OpenSCAD <code>-D</code> Flag and Parameter Passing</a></h2>
+<p>The <code>-D</code> flag overrides any variable in your <code>.scad</code> file at build time. No file editing required.</p>
+<h3 id="numeric-parameters--all-shells"><a class="header" href="#numeric-parameters--all-shells">Numeric parameters — all shells</a></h3>
+<pre><code class="language-bash"># Linux/macOS/Windows — identical syntax for numbers
+openscad -D "width=50" -D "height=15" -o output.stl src/main.scad
+openscad -D "width=50" -D "height=15" -D "wall=2.5" -o output.stl src/main.scad
+</code></pre>
+<h3 id="string-parameters--quoting-rules-differ-by-shell"><a class="header" href="#string-parameters--quoting-rules-differ-by-shell">String parameters — quoting rules differ by shell</a></h3>
+<p><strong>This is the #1 source of silent failures.</strong> Strings need quotes inside the <code>-D</code> value, but those quotes must survive shell expansion.</p>
+<h4 id="linux--macos-bash"><a class="header" href="#linux--macos-bash">Linux / macOS (bash)</a></h4>
+<pre><code class="language-bash"># CORRECT: single quotes around the whole -D value preserve the inner double quotes
+openscad -D 'label="FRONT"' -o out.stl src.main.scad
+
+# CORRECT: escaped double quotes inside double-quoted string
+openscad -D "label=\"FRONT\"" -o out.stl src.main.scad
+
+# CORRECT: use a variable and escape it
+LABEL="FRONT PANEL"
+openscad -D "label=\"${LABEL}\"" -o out.stl src.main.scad
+
+# VERIFY: always echo the command before running for debugging
+echo "openscad -D 'label=\"${LABEL}\"' -o out.stl src.main.scad"
+
+# WRONG — the string parameter will be malformed
+openscad -D "label=FRONT" -o out.stl src.main.scad    # missing quotes around value
+openscad -D 'label=FRONT' -o out.stl src.main.scad    # same problem
+</code></pre>
+<h4 id="windows-powershell"><a class="header" href="#windows-powershell">Windows (PowerShell)</a></h4>
+<pre><code class="language-powershell"># CORRECT: use escaped backtick-quotes for inner quotes in PowerShell
+openscad -D 'label="FRONT"' -o out.stl src\main.scad
+
+# CORRECT: explicit escape with backtick
+$label = "FRONT PANEL"
+openscad -D "label=`"$label`"" -o out.stl src\main.scad
+
+# CORRECT: build the argument string first, then pass it
+$dArg = 'label="' + $label + '"'
+openscad -D $dArg -o out.stl src\main.scad
+
+# VERIFY: display the argument before using it
+Write-Host "D argument: $dArg"
+</code></pre>
+<h4 id="windows-cmd"><a class="header" href="#windows-cmd">Windows (CMD)</a></h4>
+<pre><code class="language-cmd">REM CMD double-quote rule: use two double-quotes inside a quoted string to produce one
+openscad -D "label=""FRONT""" -o out.stl src\main.scad
+
+REM With a variable
+SET LABEL=FRONT
+openscad -D "label=""%LABEL%""" -o out.stl src\main.scad
+
+REM VERIFY: echo first
+echo label=""%LABEL%""
+</code></pre>
+<hr>
+<h2 id="step-2--robust-error-handling"><a class="header" href="#step-2--robust-error-handling">Step 2 — Robust Error Handling</a></h2>
+<h3 id="linux--macos-bash-1"><a class="header" href="#linux--macos-bash-1">Linux / macOS (bash)</a></h3>
 <pre><code class="language-bash">#!/bin/bash
-# build_all.sh — build project and archive the result
+# build.sh — robust build script with logging and error handling
 
-set -e  # exit on any error
+set -e    # exit immediately on any error
+set -u    # treat unset variables as errors
+set -o pipefail  # catch errors inside pipes
 
-echo "=== Building project ==="
-3dm build
+LOG_DIR="build/logs"
+LOG_FILE="$LOG_DIR/build_$(date +%Y%m%d_%H%M%S).log"
+mkdir -p "$LOG_DIR" build
 
-echo "=== Checking output ==="
-if [ -f build/main.stl ]; then
-  echo "STL created: $(stat -c%s build/main.stl) bytes"
-else
-  echo "ERROR: build/main.stl not found"
+# Logging function
+log() {
+  local level="$1"
+  shift
+  echo "[$(date +%H:%M:%S)] [$level] $*" | tee -a "$LOG_FILE"
+}
+
+# Trap: runs on any ERR signal — prints which line failed
+on_error() {
+  log "ERROR" "Build failed at line $1. Check: $LOG_FILE"
+  exit 1
+}
+trap 'on_error $LINENO' ERR
+
+log "INFO" "=== Build started ==="
+log "INFO" "Source: src/main.scad"
+
+# Build — capture stderr to log, also show on screen
+if ! openscad -o build/main.stl src/main.scad 2&gt;&amp;1 | tee -a "$LOG_FILE"; then
+  log "ERROR" "OpenSCAD exited with error"
   exit 1
 fi
 
-echo "=== Done ==="
-</code></pre>
-<p>Make it executable:</p>
-<pre><code class="language-bash">chmod +x build_all.sh
-./build_all.sh
-</code></pre>
-<h3 id="2-automate-parameter-variants-2"><a class="header" href="#2-automate-parameter-variants-2">2. Automate Parameter Variants <sup class="footnote-reference" id="fr-2-1"><a href="#footnote-2">2</a></sup></a></h3>
-<p>Generate multiple STL files with different parameter values by using <code>sed</code> or OpenSCAD’s <code>-D</code> command-line override:</p>
-<pre><code class="language-bash">#!/bin/bash
-# generate_variants.sh — build variants with different widths
+# Verify output exists and is non-trivial
+STL_PATH="build/main.stl"
+if [ ! -f "$STL_PATH" ]; then
+  log "ERROR" "STL file not created: $STL_PATH"
+  exit 1
+fi
 
-widths=(40 50 60 80)
+STL_SIZE=$(stat -c%s "$STL_PATH")
+if [ "$STL_SIZE" -lt 1000 ]; then
+  log "WARN" "STL file is suspiciously small: ${STL_SIZE} bytes — check for empty geometry"
+fi
+
+log "INFO" "Build complete: $STL_PATH (${STL_SIZE} bytes)"
+
+# Run 3dm info and log the result
+3dm info 2&gt;&amp;1 | tee -a "$LOG_FILE"
+
+log "INFO" "=== Build finished ==="
+</code></pre>
+<h3 id="windows-powershell-1"><a class="header" href="#windows-powershell-1">Windows (PowerShell)</a></h3>
+<pre><code class="language-powershell"># build.ps1 — robust build script for Windows
+
+param(
+    [string]$Source    = "src\main.scad",
+    [string]$Output    = "build\main.stl",
+    [string]$LogDir    = "build\logs"
+)
+
+# Setup
+$timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
+New-Item -ItemType Directory -Force -Path $LogDir, "build" | Out-Null
+$logFile = Join-Path $LogDir "build_$timestamp.log"
+
+function Write-Log {
+    param([string]$Level, [string]$Message)
+    $entry = "[$(Get-Date -Format 'HH:mm:ss')] [$Level] $Message"
+    Write-Host $entry
+    Add-Content -Path $logFile -Value $entry
+}
+
+Write-Log "INFO" "=== Build started ==="
+Write-Log "INFO" "Source: $Source"
+
+# Run OpenSCAD — capture output
+try {
+    $buildOutput = &amp; openscad -o $Output $Source 2&gt;&amp;1
+    $buildOutput | Tee-Object -FilePath $logFile -Append | Write-Host
+    if ($LASTEXITCODE -ne 0) { throw "OpenSCAD returned exit code $LASTEXITCODE" }
+} catch {
+    Write-Log "ERROR" "Build failed: $_"
+    exit 1
+}
+
+# Validate output
+if (-not (Test-Path $Output)) {
+    Write-Log "ERROR" "STL file not created: $Output"
+    exit 1
+}
+
+$stlSize = (Get-Item $Output).Length
+if ($stlSize -lt 1000) {
+    Write-Log "WARN" "STL suspiciously small: $stlSize bytes"
+}
+
+Write-Log "INFO" "Build complete: $Output ($stlSize bytes)"
+&amp; 3dm info 2&gt;&amp;1 | Tee-Object -FilePath $logFile -Append | Write-Host
+Write-Log "INFO" "=== Build finished ==="
+</code></pre>
+<h3 id="windows-cmd-1"><a class="header" href="#windows-cmd-1">Windows (CMD)</a></h3>
+<pre><code class="language-cmd">@echo off
+REM build.cmd — minimal build script for CMD
+REM For production use, prefer PowerShell (build.ps1)
+
+setlocal
+
+SET SOURCE=src\main.scad
+SET OUTPUT=build\main.stl
+SET LOGFILE=build\build.log
+
+echo [%TIME%] Build started &gt;&gt; %LOGFILE%
+echo [%TIME%] Source: %SOURCE% &gt;&gt; %LOGFILE%
+
+openscad -o %OUTPUT% %SOURCE% &gt;&gt; %LOGFILE% 2&gt;&amp;1
+
+IF %ERRORLEVEL% NEQ 0 (
+    echo [%TIME%] ERROR: OpenSCAD failed &gt;&gt; %LOGFILE%
+    echo Build FAILED. Check %LOGFILE%
+    exit /b 1
+)
+
+IF NOT EXIST %OUTPUT% (
+    echo [%TIME%] ERROR: STL not created &gt;&gt; %LOGFILE%
+    echo Build FAILED: STL file missing
+    exit /b 1
+)
+
+echo [%TIME%] Build complete: %OUTPUT% &gt;&gt; %LOGFILE%
+echo Build OK.
+3dm info &gt;&gt; %LOGFILE% 2&gt;&amp;1
+type %LOGFILE%
+</code></pre>
+<hr>
+<h2 id="step-3--batch-build-generate-parameter-variants"><a class="header" href="#step-3--batch-build-generate-parameter-variants">Step 3 — Batch Build: Generate Parameter Variants</a></h2>
+<h3 id="linux--macos-bash-2"><a class="header" href="#linux--macos-bash-2">Linux / macOS (bash)</a></h3>
+<pre><code class="language-bash">#!/bin/bash
+# batch_variants.sh — generate multiple STL variants from one source
+
+set -e
 
 mkdir -p build/variants
 
+# Numeric variant: different sizes
+widths=(20 30 40 50 80)
 for w in "${widths[@]}"; do
-  echo "Building width=${w}..."
-  openscad -D "width=${w}" -o "build/variants/main_w${w}.stl" src/main.scad
-  echo "  Created: build/variants/main_w${w}.stl"
+  output="build/variants/box_w${w}.stl"
+  echo "Building: width=$w → $output"
+  openscad -D "width=$w" -o "$output" src/main.scad
+  size=$(stat -c%s "$output")
+  echo "  OK: ${size} bytes"
 done
 
-echo "All variants built:"
-ls -lh build/variants/
-</code></pre>
-<h3 id="3-use-import-for-multi-file-projects"><a class="header" href="#3-use-import-for-multi-file-projects">3. Use import() for Multi-File Projects</a></h3>
-<pre><code class="language-openscad">// Import an existing STL into your OpenSCAD assembly
-// Useful for combining pre-built parts with new geometry
-import("existing_part.stl");
+# String variant: different labels
+declare -A labels=(
+  ["front"]="FRONT"
+  ["back"]="BACK"
+  ["top"]="TOP"
+)
+for key in "${!labels[@]}"; do
+  label="${labels[$key]}"
+  output="build/variants/label_${key}.stl"
+  echo "Building: label=\"$label\" → $output"
+  openscad -D "label=\"${label}\"" -o "$output" src/main.scad
+  echo "  OK"
+done
 
-// Or position it within an assembly
-translate([50, 0, 0])
-  import("../../assets/parts/bracket.stl");
+echo "Done: $(ls build/variants/*.stl | wc -l) files in build/variants/"
 </code></pre>
-<p>For OpenSCAD library files, use <code>use</code> (modules and functions only) or <code>include</code> (executes full file):</p>
-<pre><code class="language-openscad">use &lt;my_library.scad&gt;     // import modules/functions only
-include &lt;constants.scad&gt;  // also execute top-level statements
+<h3 id="windows-powershell-2"><a class="header" href="#windows-powershell-2">Windows (PowerShell)</a></h3>
+<pre><code class="language-powershell"># batch_variants.ps1 — generate parameter variants on Windows
+
+New-Item -ItemType Directory -Force -Path "build\variants" | Out-Null
+
+# Numeric variants
+$widths = @(20, 30, 40, 50, 80)
+foreach ($w in $widths) {
+    $output = "build\variants\box_w$w.stl"
+    Write-Host "Building: width=$w → $output"
+    openscad -D "width=$w" -o $output src\main.scad
+    if ($LASTEXITCODE -eq 0) {
+        $size = (Get-Item $output).Length
+        Write-Host "  OK: $size bytes"
+    } else {
+        Write-Host "  FAILED"
+    }
+}
+
+# String variants
+$labels = @{
+    "front" = "FRONT"
+    "back"  = "BACK"
+    "top"   = "TOP"
+}
+foreach ($key in $labels.Keys) {
+    $label  = $labels[$key]
+    $output = "build\variants\label_$key.stl"
+    Write-Host "Building: label=`"$label`" → $output"
+    openscad -D "label=`"$label`"" -o $output src\main.scad
+    if ($LASTEXITCODE -eq 0) { Write-Host "  OK" } else { Write-Host "  FAILED" }
+}
+
+$count = (Get-ChildItem "build\variants\*.stl").Count
+Write-Host "Done: $count files in build\variants\"
 </code></pre>
-<h3 id="4-archive-builds-with-timestamps"><a class="header" href="#4-archive-builds-with-timestamps">4. Archive Builds with Timestamps</a></h3>
+<h3 id="windows-cmd-2"><a class="header" href="#windows-cmd-2">Windows (CMD)</a></h3>
+<pre><code class="language-cmd">@echo off
+REM batch_variants.cmd — numeric and string variants in CMD
+
+mkdir build\variants 2&gt;nul
+
+REM Numeric variants
+FOR %%W IN (20 30 40 50 80) DO (
+    echo Building: width=%%W
+    openscad -D "width=%%W" -o "build\variants\box_w%%W.stl" src\main.scad
+    IF %ERRORLEVEL% EQU 0 (echo   OK) ELSE (echo   FAILED)
+)
+
+REM String variants — CMD requires doubled quotes
+FOR %%L IN (FRONT BACK TOP) DO (
+    echo Building: label=%%L
+    openscad -D "label=""%%L""" -o "build\variants\label_%%L.stl" src\main.scad
+    IF %ERRORLEVEL% EQU 0 (echo   OK) ELSE (echo   FAILED)
+)
+echo Done.
+</code></pre>
+<hr>
+<h2 id="step-4--timestamped-archiving"><a class="header" href="#step-4--timestamped-archiving">Step 4 — Timestamped Archiving</a></h2>
+<p>Archive a successful build with a timestamp so you can roll back to any previous version.</p>
+<h3 id="linux--macos-bash-3"><a class="header" href="#linux--macos-bash-3">Linux / macOS (bash)</a></h3>
 <pre><code class="language-bash">#!/bin/bash
-# archive_build.sh — timestamped archive of build outputs
+# archive.sh — archive a successful build
 
-TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-ARCHIVE_DIR="archives/${TIMESTAMP}"
+set -e
+
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+ARCHIVE_DIR="archives/$TIMESTAMP"
 
 mkdir -p "$ARCHIVE_DIR"
 
-# Copy build outputs
-cp build/main.stl "$ARCHIVE_DIR/"
-cp src/main.scad  "$ARCHIVE_DIR/"
+# Copy build artifacts and source
+cp build/main.stl  "$ARCHIVE_DIR/"
+cp src/main.scad   "$ARCHIVE_DIR/"
 
-# Record metadata
-echo "Build archived: ${TIMESTAMP}" &gt; "$ARCHIVE_DIR/README.txt"
-echo "Git commit: $(git rev-parse --short HEAD 2&gt;/dev/null || echo 'no git')" &gt;&gt; "$ARCHIVE_DIR/README.txt"
+# Write metadata
+cat &gt; "$ARCHIVE_DIR/BUILD_INFO.txt" &lt;&lt;EOF
+Build timestamp: $TIMESTAMP
+Source:          src/main.scad
+Git commit:      $(git rev-parse --short HEAD 2&gt;/dev/null || echo "no git")
+3dm info output:
+$(3dm info)
+EOF
 
-echo "Archived to: ${ARCHIVE_DIR}"
+echo "Archived to: $ARCHIVE_DIR"
+echo "Contents:"
+ls -lh "$ARCHIVE_DIR/"
 </code></pre>
-<h3 id="5-watch-and-rebuild-loop"><a class="header" href="#5-watch-and-rebuild-loop">5. Watch-and-Rebuild Loop</a></h3>
-<p>Automatically rebuild when source files change:</p>
+<h3 id="windows-powershell-3"><a class="header" href="#windows-powershell-3">Windows (PowerShell)</a></h3>
+<pre><code class="language-powershell"># archive.ps1 — timestamped build archive
+
+$timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
+$archiveDir = "archives\$timestamp"
+
+New-Item -ItemType Directory -Force -Path $archiveDir | Out-Null
+
+Copy-Item "build\main.stl" $archiveDir
+Copy-Item "src\main.scad"  $archiveDir
+
+# Write metadata
+$gitHash = try { git rev-parse --short HEAD 2&gt;$null } catch { "no git" }
+$info    = &amp; 3dm info 2&gt;&amp;1 | Out-String
+
+@"
+Build timestamp: $timestamp
+Source:          src/main.scad
+Git commit:      $gitHash
+3dm info output:
+$info
+"@ | Out-File "$archiveDir\BUILD_INFO.txt" -Encoding UTF8
+
+Write-Host "Archived to: $archiveDir"
+Get-ChildItem $archiveDir | Format-Table Name, Length
+</code></pre>
+<h3 id="windows-cmd-3"><a class="header" href="#windows-cmd-3">Windows (CMD)</a></h3>
+<pre><code class="language-cmd">@echo off
+REM archive.cmd — basic timestamped archive in CMD
+
+REM Build timestamp from date/time (format varies by locale)
+FOR /f "tokens=2 delims==" %%D IN ('wmic os get localdatetime /value') DO SET DT=%%D
+SET TIMESTAMP=%DT:~0,8%_%DT:~8,6%
+SET ARCHIVE=archives\%TIMESTAMP%
+
+mkdir %ARCHIVE% 2&gt;nul
+copy build\main.stl %ARCHIVE%\
+copy src\main.scad  %ARCHIVE%\
+
+echo Build timestamp: %TIMESTAMP% &gt; %ARCHIVE%\BUILD_INFO.txt
+3dm info &gt;&gt; %ARCHIVE%\BUILD_INFO.txt 2&gt;&amp;1
+
+echo Archived to: %ARCHIVE%
+dir %ARCHIVE%
+</code></pre>
+<hr>
+<h2 id="step-5--watch-mode-and-continuous-build"><a class="header" href="#step-5--watch-mode-and-continuous-build">Step 5 — Watch Mode and Continuous Build</a></h2>
+<p>For an iterative design workflow, watch for changes and rebuild automatically.</p>
+<h3 id="linux--macos-bash-4"><a class="header" href="#linux--macos-bash-4">Linux / macOS (bash)</a></h3>
 <pre><code class="language-bash">#!/bin/bash
-# watch_and_build.sh — rebuild when .scad files are modified
+# watch.sh — rebuild whenever src/ changes (requires inotifywait or entr)
 
-echo "Watching src/ for changes... (Ctrl+C to stop)"
+# Method 1: Using 3dm watch (built-in)
+3dm watch
 
-LAST_MOD=""
+# Method 2: Using entr (install with: apt install entr / brew install entr)
+# ls src/*.scad | entr -c bash -c '3dm build &amp;&amp; 3dm info'
 
+# Method 3: Poll-based fallback (works anywhere)
+PREV=""
 while true; do
-  # Find the most recently modified .scad file
-  CURRENT_MOD=$(find src/ -name "*.scad" -newer build/main.stl 2&gt;/dev/null | head -1)
-
-  if [ -n "$CURRENT_MOD" ] &amp;&amp; [ "$CURRENT_MOD" != "$LAST_MOD" ]; then
-    echo "[$(date +%H:%M:%S)] Change detected in $CURRENT_MOD — rebuilding..."
-    3dm build &amp;&amp; echo "Build OK" || echo "Build FAILED"
-    LAST_MOD="$CURRENT_MOD"
+  CURR=$(find src/ -name "*.scad" -newer /tmp/last_build 2&gt;/dev/null | head -1)
+  if [ -n "$CURR" ]; then
+    echo "[$(date +%H:%M:%S)] Change detected: $CURR"
+    3dm build &amp;&amp; 3dm info
+    touch /tmp/last_build
   fi
-
   sleep 2
 done
 </code></pre>
-<p>Note: <code>find -newer</code> compares modification times. This script polls every 2 seconds; for production use, consider <code>inotifywait</code> (Linux) or <code>fswatch</code> (macOS) for event-driven watching.</p>
-<h3 id="checkpoint"><a class="header" href="#checkpoint">Checkpoint</a></h3>
-<ul>
-<li>After step 1: <code>./build_all.sh</code> runs successfully and reports the STL file size.</li>
-<li>After step 2: <code>build/variants/</code> contains one STL per width variant.</li>
-<li>After step 5: When you save <code>src/main.scad</code>, the watch script triggers a rebuild within 2 seconds.</li>
-</ul>
-<h2 id="bash-quick-reference-for-3dmake-automation"><a class="header" href="#bash-quick-reference-for-3dmake-automation">Bash Quick Reference for 3dMake Automation</a></h2>
-<div class="table-wrapper">
-<table>
-<thead>
-<tr><th>Construct</th><th>Syntax</th><th>Example</th></tr>
-</thead>
-<tbody>
-<tr><td>Variable</td><td><code>VAR=value</code></td><td><code>OUT=build/main.stl</code></td></tr>
-<tr><td>Array</td><td><code>ARR=(a b c)</code></td><td><code>widths=(40 50 60)</code></td></tr>
-<tr><td>For loop</td><td><code>for x in "${ARR[@]}"</code></td><td><code>for w in "${widths[@]}"</code></td></tr>
-<tr><td>If exists</td><td><code>if [ -f FILE ]</code></td><td><code>if [ -f build/main.stl ]</code></td></tr>
-<tr><td>String concat</td><td><code>"${VAR}_suffix"</code></td><td><code>"main_w${w}.stl"</code></td></tr>
-<tr><td>Exit on error</td><td><code>set -e</code></td><td>at top of script</td></tr>
-<tr><td>Command subst.</td><td><code>$(command)</code></td><td><code>$(date +%Y%m%d)</code></td></tr>
-<tr><td>Redirect output</td><td><code>command &gt;&gt; file</code></td><td><code>echo "text" &gt;&gt; log.txt</code></td></tr>
-</tbody>
-</table>
-</div>
-<h2 id="quiz--lesson-3dmake9-15-questions"><a class="header" href="#quiz--lesson-3dmake9-15-questions">Quiz — Lesson 3dMake.9 (15 questions)</a></h2>
-<ol>
-<li>What does <code>chmod +x script.sh</code> do, and why is it needed?</li>
-<li>What does <code>set -e</code> do in a bash script?</li>
-<li>What is the difference between <code>import()</code> in OpenSCAD and <code>use</code> or <code>include</code>?</li>
-<li>What does <code>$(date +%Y%m%d_%H%M%S)</code> produce in a bash script?</li>
-<li>How does <code>openscad -D "width=50"</code> differ from editing the <code>.scad</code> file directly?</li>
-<li>What does <code>find src/ -name "*.scad" -newer build/main.stl</code> return?</li>
-<li>True or False: <code>include &lt;library.scad&gt;</code> executes any top-level geometry in the library file.</li>
-<li>What is the purpose of archiving builds with timestamps?</li>
-<li>What limitation does <code>find -newer</code> have compared to <code>inotifywait</code>?</li>
-<li>Write a bash one-liner that builds 3 variants (height=20, 30, 40) using <code>openscad -D</code>.</li>
-<li>What does <code>&amp;&amp;</code> do in the line <code>3dm build &amp;&amp; echo "Build OK" || echo "Build FAILED"</code>?</li>
-<li>Explain the difference between <code>[ -f FILE ]</code> and <code>[ -d DIR ]</code> in bash conditionals.</li>
-<li>Why would you use <code>git rev-parse --short HEAD</code> in a build archive script?</li>
-<li>Describe a scenario where a watch-and-rebuild loop would save significant time during iterative design.</li>
-<li>What bash construct would you use to loop over a list of 10 filament names and print each one on a separate line?</li>
-</ol>
-<h2 id="extension-problems-15"><a class="header" href="#extension-problems-15">Extension Problems (15)</a></h2>
-<ol>
-<li>Write a <code>batch_label.sh</code> script that builds label plates for a list of names (read from a text file), one STL per name.</li>
-<li>Create a <code>clean.sh</code> script that deletes all <code>.stl</code> files in <code>build/</code> and all timestamped archive directories older than 7 days.</li>
-<li>Build a variant comparison report: a script that generates 5 STL variants, records each file size, and writes a CSV summary.</li>
-<li>Write a <code>deploy.sh</code> script that copies the current STL to a network-shared slicer folder and logs the transfer with a timestamp.</li>
-<li>Create a <code>validate.sh</code> script that checks whether <code>build/main.stl</code> exists, has a file size &gt; 1000 bytes, and was built in the last 5 minutes.</li>
-<li>Build a multi-project build orchestrator: a script that loops over a list of project directories, runs <code>3dm build</code> in each, and reports success/failure.</li>
-<li>Extend the watch-and-rebuild script to send a desktop notification (using <code>notify-send</code> on Linux) when a build succeeds or fails.</li>
-<li>Create a “parameter sweep” runner that generates a 3D matrix of variants: all combinations of 3 widths × 3 heights × 2 wall thicknesses (18 STLs total).</li>
-<li>Write a <code>git_checkpoint.sh</code> script that runs <code>3dm build</code>, then commits <code>src/main.scad</code> and <code>build/main.stl</code> to git with an auto-generated commit message.</li>
-<li>Build a <code>diff_variants.sh</code> script that compares file sizes of all STLs in <code>build/variants/</code> and flags any that are more than 20% different from the median.</li>
-<li>Research <code>inotifywait</code> (Linux). Rewrite the watch-and-rebuild loop from step 5 to use <code>inotifywait</code> instead of <code>find -newer</code>. Document the advantages of event-driven vs. polling.</li>
-<li>Create a build log: append each build’s timestamp, STL file size, and OpenSCAD parameter values to a <code>build_log.csv</code> file automatically.</li>
-<li>Write a script that parses your <code>src/main.scad</code> file and extracts all top-level parameter names and values using <code>grep</code> and <code>sed</code>. Output a parameter summary table.</li>
-<li>Build a cross-platform build script (bash + Windows PowerShell) that performs the same validation steps on both platforms. Document the differences.</li>
-<li>Design an automated testing framework for OpenSCAD modules: write a script that builds 10 test cases, each with known expected STL file size ranges, and reports PASS/FAIL for each.</li>
-</ol>
-<h2 id="references-and-helpful-resources"><a class="header" href="#references-and-helpful-resources">References and Helpful Resources</a></h2>
-<h3 id="supplemental-resources"><a class="header" href="#supplemental-resources">Supplemental Resources</a></h3>
-<ul>
-<li><a href="https://www.gnu.org/software/bash/manual/">Bash Scripting Guide — GNU Bash Manual</a></li>
-<li><a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement">OpenSCAD User Manual — Include Statement</a></li>
-<li><a href="https://github.com/tdeck/3dmake/blob/main/e2e_test.py">3DMake End-to-End Test Suite</a> — Example automation patterns from the 3dMake project itself</li>
-<li><a href="https://github.com/inotify-tools/inotify-tools">inotify-tools Linux Documentation</a></li>
-</ul>
+<h3 id="windows-powershell-4"><a class="header" href="#windows-powershell-4">Windows (PowerShell)</a></h3>
+<pre><code class="language-powershell"># watch.ps1 — poll for changes and rebuild
+
+$watcher = New-Object System.IO.FileSystemWatcher
+$watcher.Path   = "src"
+$watcher.Filter = "*.scad"
+$watcher.EnableRaisingEvents = $true
+
+Write-Host "Watching src/*.scad for changes. Press Ctrl+C to stop."
+
+while ($true) {
+    $changed = Wait-Event -SourceIdentifier FileSystemWatcher -Timeout 2
+    if ($changed) {
+        Remove-Event -SourceIdentifier FileSystemWatcher
+        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Change detected — rebuilding..."
+        &amp; 3dm build
+        &amp; 3dm info
+    }
+}
+</code></pre>
 <hr>
-<ol class="footnote-definition">
-<li id="footnote-1">
-<p>3DMake GitHub Repository — Source code and README with full command reference. <a href="https://github.com/tdeck/3dmake">https://github.com/tdeck/3dmake</a> <a href="#fr-1-1">↩</a></p>
-</li>
-<li id="footnote-2">
-<p>OpenSCAD Command-Line Interface — OpenSCAD User Manual. <a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment">https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_OpenSCAD_in_a_command_line_environment</a>. Documents the <code>-D</code> parameter override flag and other CLI options. <a href="#fr-2-1">↩</a></p>
-</li>
+<h2 id="step-6--cicd-integration"><a class="header" href="#step-6--cicd-integration">Step 6 — CI/CD Integration</a></h2>
+<p>Integrate 3dMake builds into a CI pipeline (GitHub Actions example shown, adaptable to others).</p>
+<pre><code class="language-yaml"># .github/workflows/build.yml
+name: 3dMake Build
+
+on:
+  push:
+    paths:
+      - 'src/**'
+  pull_request:
+    paths:
+      - 'src/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install OpenSCAD
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openscad
+
+      - name: Install 3dMake
+        run: curl -fsSL https://get.3dmake.dev | bash
+
+      - name: Build
+        run: |
+          3dm build
+          3dm info
+
+      - name: Verify STL exists and has size
+        run: |
+          test -f build/main.stl
+          SIZE=$(stat -c%s build/main.stl)
+          echo "STL size: $SIZE bytes"
+          test "$SIZE" -gt 1000
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: stl-output-${{ github.sha }}
+          path: build/main.stl
+</code></pre>
+<hr>
+<h2 id="exercises"><a class="header" href="#exercises">Exercises</a></h2>
+<p><strong>Exercise 9.1:</strong> Adapt the <code>batch_variants.sh</code>/<code>.ps1</code>/<code>.cmd</code> script to your platform. Generate your phone stand at 5 different <code>stand_angle</code> values (30°, 45°, 60°, 70°, 80°). Log the bounding box for each to a file.</p>
+<p><strong>Exercise 9.2:</strong> Write a build script in your preferred shell that:</p>
+<ol>
+<li>Builds the model</li>
+<li>Verifies the STL size is &gt; 10,000 bytes</li>
+<li>Archives the result with a timestamp if the build succeeds</li>
+<li>Sends a failure message to the console (and optionally an email) if it fails</li>
 </ol>
+<p><strong>Exercise 9.3 (Advanced):</strong> Create a parametric <code>Makefile</code> (Linux/macOS) and/or a PowerShell <code>Invoke-Build</code> task file (Windows) that has separate targets: <code>build</code>, <code>clean</code>, <code>variants</code>, <code>archive</code>, and <code>test</code> (runs batch_verify). Running <code>make all</code> or <code>Invoke-Build all</code> should run all targets in the correct order.</p>
 
                     </main>
 

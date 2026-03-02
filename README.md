@@ -260,7 +260,10 @@ Best for: Instructors, professional makers, automation enthusiasts
 ```bash
 ./
 +------ README.md                                     
-+------ mdbookgenerate.sh                            
++------ mdbook_generate.ps1                          # Windows PowerShell build script
++------ mdbook_generate.sh                           # Unix/Linux/macOS build script
++------ version.json                                 # Current version (semantic versioning)
++------ versioning.py                                # Version management & release script
 +------ my-book/
 |   +------ src/ (all content above)
 +------ CodeSolutions/
@@ -269,8 +272,12 @@ Best for: Instructors, professional makers, automation enthusiasts
 |   +------ ...through 7Designing-Big-Projects/
 |   +------ AppendixBOpenSCAD-Visual-Reference/
 +------ textbooks/
-    +------ ProgrammingwithOpenSCAD.epub
-    +------ Simplifying3DPrintingwithOpenSCAD.epub
+|   +------ Programming_with_OpenSCAD.epub
+|   +------ Simplifying_3D_Printing_with_OpenSCAD.epub
++------ .github/
+    +------ workflows/
+        +------ deploy.yml                           # Auto-deploy on push to main
+        +------ release.yml                          # Build & release on version tags
 ```
 
 ## Welcome
@@ -330,19 +337,45 @@ The book will be available at `[http://localhost:3000`](http://localhost:3000`) 
 
 Press `Ctrl+C` to stop the server.
 
-### Using the Build Script
+### Using the Build Scripts
 
-From the repository root, use the included build script:
+The repository includes build scripts for both Windows (PowerShell) and Unix-like systems (Bash):
 
-```bash
-bash mdbookgenerate.sh
+**Windows (PowerShell):**
+```powershell
+.\mdbook_generate.ps1
 ```
 
-This runs the full build process and copies output to the appropriate location.
+**Linux/macOS/Git Bash:**
+```bash
+bash mdbook_generate.sh
+```
+
+#### What the Build Scripts Do
+
+Both scripts perform the same operations:
+
+1. **Validate Dependencies**: Check that mdBook is installed and `book.toml` exists
+2. **Build HTML**: Generate the mdBook HTML site from `my-book/src/` to `my-book/docs/`
+3. **Build PDF**: Compile the LaTeX source to PDF using LuaLaTeX
+   - First pass: Initial compilation
+   - Generate index: Process `OpenSCAD_Curriculum.idx`
+   - Second pass: Final compilation with index
+
+**Output Locations:**
+- HTML: `my-book/docs/html/`
+- EPUB: `my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub`
+- LaTeX: `my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex`
+- PDF: `my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf` (and root directory)
+
+**Additional Requirements for PDF:**
+- LuaLaTeX (part of TeX Live or MiKTeX)
+- makeindex (part of TeX distributions)
+- mdbook-pandoc plugin: `cargo install mdbook-pandoc`
 
 ### Deployment
 
-The generated site in `my-book/book/` is static HTML and can be deployed to any web server:
+The generated site in `my-book/docs/html/` is static HTML and can be deployed to any web server:
 
 - GitHub Pages
 - Netlify
@@ -352,3 +385,79 @@ The generated site in `my-book/book/` is static HTML and can be deployed to any 
 - Any traditional web hosting
 
 For GitHub Pages deployment, copy the contents of `my-book/book/` to your `docs/` folder or configure your repository to deploy from the `book/` directory, the .github directory has a deploy.yml file that can be cloned to accomplish this.
+
+## Version Management
+
+This project uses semantic versioning managed through a Python script and JSON file.
+
+### Version Files
+
+- **[version.json](version.json)**: Stores current version in JSON format
+- **[versioning.py](versioning.py)**: Python script to manage versions and git tags
+
+### Quick Start
+
+**View current version:**
+```bash
+python versioning.py --current
+```
+
+**Increment version:**
+```bash
+# Increment patch version (1.0.0 -> 1.0.1)
+python versioning.py patch
+
+# Increment minor version (1.0.1 -> 1.1.0)
+python versioning.py minor
+
+# Increment major version (1.1.0 -> 2.0.0)
+python versioning.py major
+```
+
+**Set specific version:**
+```bash
+python versioning.py --set 2.5.3
+```
+
+### Creating Releases
+
+The versioning script integrates with the GitHub Actions release workflow defined in [.github/workflows/release.yml](.github/workflows/release.yml).
+
+**Increment and create git tag:**
+```bash
+python versioning.py patch --tag
+```
+
+**Increment, tag, and push to trigger release:**
+```bash
+python versioning.py patch --tag --push
+```
+
+When you push a version tag (e.g., `v1.0.1`), the GitHub Actions workflow automatically:
+1. Builds the mdBook HTML documentation
+2. Compiles the LaTeX source to PDF
+3. Generates the EPUB version
+4. Creates a GitHub Release with all assets attached:
+   - `OpenSCAD_Curriculum.epub`
+   - `OpenSCAD_Curriculum.tex`
+   - `OpenSCAD_Curriculum.pdf`
+
+### Semantic Versioning Guidelines
+
+Follow [Semantic Versioning 2.0.0](https://semver.org/):
+
+- **MAJOR** (1.x.x -> 2.x.x): Breaking changes, major curriculum restructuring
+- **MINOR** (x.1.x -> x.2.x): New lessons, significant content additions, backward-compatible changes
+- **PATCH** (x.x.1 -> x.x.2): Bug fixes, typo corrections, minor clarifications
+
+### Manual Release (Alternative)
+
+If you prefer to create tags manually:
+
+```bash
+# Create annotated tag
+git tag -a v1.0.1 -m "Release version 1.0.1"
+
+# Push tag to trigger release workflow
+git push origin v1.0.1
+```

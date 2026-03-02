@@ -1,23 +1,98 @@
-# Lesson 2: Geometric Primitives and Constructive Solid Geometry
+# Lesson 2 — Geometric Primitives and Constructive Solid Geometry
 
-Estimated time: 90–120 minutes
+---
 
 ## Learning Objectives
-- Use all six OpenSCAD primitive shapes: `cube`, `sphere`, `cylinder`, `polyhedron`, `text`, `surface`
-- Apply the four CSG operations: `union`, `difference`, `intersection`, and `hull`
-- Use modifier characters (`#`, `!`, `%`, `*`) for debugging
-- Understand and apply the `0.001` offset rule for clean Boolean operations[^1]
 
-## Materials
-- 3dMake project from Lesson 1
-- Terminal
-- OpenSCAD (for live preview with F5)
+By the end of this lesson you will be able to:
 
-## Step-by-step Tasks
+- Use all core OpenSCAD primitives: `cube`, `sphere`, `cylinder`, `polygon`
+- Combine primitives with `union()`, `difference()`, and `intersection()`
+- Use `color()` to visualize multi-part assemblies
+- Apply the 0.001 mm rule correctly — and understand *why* it exists
+- Create 2D profiles with `polygon()` and extrude them into 3D geometry
 
-### 1. Build a Compound Object with union and difference
+---
+
+## Step 1 — The Core 3D Primitives
 
 ```openscad
+// cube: [width, depth, height], center optional
+cube([30, 20, 10]);
+cube([30, 20, 10], center=true);  // centered on origin
+
+// sphere: r=radius; $fn controls smoothness (faces)
+translate([40, 0, 0])
+  sphere(r=10, $fn=32);   // 32-sided — smooth enough for most prints
+
+// cylinder: h=height, r=radius OR r1/r2 for tapered cones
+translate([70, 0, 0])
+  cylinder(h=20, r=8, $fn=32);
+
+// Cone (tapered cylinder)
+translate([100, 0, 0])
+  cylinder(h=20, r1=10, r2=3, $fn=32);  // r1=base radius, r2=top radius
+
+// Flat-top cylinder (r2=0 gives a spike)
+translate([130, 0, 0])
+  cylinder(h=20, r1=8, r2=0, $fn=32);
+```
+
+---
+
+## Step 2 — Constructive Solid Geometry (CSG)
+
+CSG builds complex shapes by combining simpler ones.
+
+```openscad
+// union() — combine shapes (they merge into one solid)
+union() {
+  cube([20, 20, 5]);
+  translate([10, 10, 5])
+    sphere(r=10, $fn=32);
+}
+
+// difference() — subtract one shape from another
+// The FIRST child is the base; subsequent children are removed FROM it
+translate([40, 0, 0])
+difference() {
+  cube([20, 20, 20]);
+  // Move the cylinder DOWN 0.001 to avoid co-planar face problems (see Step 4)
+  translate([10, 10, -0.001])
+    cylinder(h=20.002, r=5, $fn=32);
+}
+
+// intersection() — keep only the volume that is inside BOTH shapes
+translate([80, 0, 0])
+intersection() {
+  cube([20, 20, 20], center=true);
+  sphere(r=12, $fn=32);
+}
+```
+
+---
+
+## Step 3 — `polygon()` for Custom 2D Profiles
+
+`polygon()` is the most powerful 2D primitive. It creates an arbitrary closed shape from a list of (x, y) points. You then extrude it into 3D with `linear_extrude()`.
+
+Points are listed in **counterclockwise** order around the perimeter.
+
+```openscad
+// L-shaped bracket profile
+bracket_profile = [
+  [0,  0],   // bottom-left
+  [40, 0],   // bottom-right
+  [40, 8],   // step
+  [8,  8],   // step inward
+  [8,  30],  // up the left arm
+  [0,  30]   // back to top-left
+];
+
+// Extrude 5mm deep to make a 3D bracket
+linear_extrude(height=5)
+  polygon(bracket_profile);
+```
 // Simple canister: cylinder body with a sphere on top
 difference() {
   union() {

@@ -1,7 +1,7 @@
-# CMD-3: Input, Output, and Piping
+# Command Line Lesson 3: Input, Output, and Piping
 
 **Duration:** 1 class period
-**Prerequisite:** CMD-2 (File and Folder Manipulation)
+**Prerequisite:** Command Line Lesson 2 (File and Folder Manipulation)
 
 ---
 

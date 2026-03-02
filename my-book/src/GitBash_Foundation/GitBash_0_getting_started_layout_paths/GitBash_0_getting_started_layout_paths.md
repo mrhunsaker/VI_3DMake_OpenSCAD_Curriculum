@@ -1,4 +1,4 @@
-# GitBash-0: Getting Started - Layout, Paths, and the Shell
+# Bash Lesson 0: Getting Started - Layout, Paths, and the Shell
 
 Estimated time: 20-30 minutes
 

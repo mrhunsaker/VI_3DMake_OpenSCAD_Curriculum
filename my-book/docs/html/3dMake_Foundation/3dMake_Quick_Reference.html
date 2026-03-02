@@ -81,10 +81,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../searchindex-16a773af.js";
+            window.path_to_searchindex_js = "../searchindex-bc1ab470.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-a7b67ace.js"></script>
+        <script src="../toc-47d6622c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -235,7 +235,7 @@
 <tr><td>3</td><td>Parametric Architecture</td><td>60m</td><td>Beginner+</td><td>Modules, libraries, parameters</td><td>None</td></tr>
 <tr><td>4</td><td>AI Verification</td><td>45-60m</td><td>Intermediate</td><td><code>3dm info</code>, validation, design documentation</td><td>None</td></tr>
 <tr><td>5</td><td>Safety &amp; Physical Interface</td><td>60-90m</td><td>Intermediate</td><td>Safety protocols, materials, pre-print checks</td><td>None</td></tr>
-<tr><td>6</td><td>3dm Commands &amp; Text</td><td>60-90m</td><td>Intermediate</td><td><code>3dm describe/preview/orient/slice</code>, embossing</td><td>Keycap</td></tr>
+<tr><td>6</td><td>3dm Commands &amp; Text</td><td>60-90m</td><td>Intermediate</td><td><code>3dm info/preview/orient/slice</code>, embossing</td><td>Keycap</td></tr>
 <tr><td>7</td><td>Parametric Transforms</td><td>75-90m</td><td>Intermediate+</td><td>Transforms, multi-part design, assembly</td><td>Phone Stand</td></tr>
 <tr><td>8</td><td>Advanced Parametric Design</td><td>90-120m</td><td>Advanced</td><td>Tolerance, interlocking features, snap-fits</td><td>Stackable Bins</td></tr>
 <tr><td>9</td><td>Automation &amp; Workflows</td><td>60-90m</td><td>Advanced</td><td>PowerShell scripting, batch processing, CI/CD</td><td>[key] Batch Automation</td></tr>
@@ -282,7 +282,7 @@
 3dm build src/main.scad     # Generate STL from SCAD
 
 # Inspection
-3dm describe file.scad      # Text analysis (AI if configured)
+3dm info file.scad      # Text analysis (AI if configured)
 3dm preview file.scad       # Generate 2D tactile preview
 
 # Optimization
@@ -432,7 +432,7 @@ done
 <h2 id="troubleshooting-quick-fixes"><a class="header" href="#troubleshooting-quick-fixes">Troubleshooting Quick Fixes</a></h2>
 <h3 id="problem-model-wont-build"><a class="header" href="#problem-model-wont-build">Problem: Model won’t build</a></h3>
 <p>Diagnosis:</p>
-<pre><code class="language-bash">3dm describe file.scad
+<pre><code class="language-bash">3dm info file.scad
 # Look for error messages
 </code></pre>
 <p>Common Fixes:</p>
@@ -525,7 +525,7 @@ done
 <h3 id="debugging"><a class="header" href="#debugging">Debugging</a></h3>
 <ul>
 <li>Lower <code>$fn</code> to 8-12 for faster renders during development</li>
-<li>Use <code>3dm describe</code> frequently to catch issues early</li>
+<li>Use <code>3dm info</code> frequently to catch issues early</li>
 <li>Test components individually before assembling</li>
 <li>Generate <code>3dm preview</code> for 2D tactile verification</li>
 </ul>
@@ -545,7 +545,7 @@ done
 </ul>
 <h3 id="accessibility"><a class="header" href="#accessibility">Accessibility</a></h3>
 <ul>
-<li>Always use <code>3dm describe</code> to verify non-visual usability</li>
+<li>Always use <code>3dm info</code> to verify non-visual usability</li>
 <li>Generate <code>3dm preview</code> for tactile inspection</li>
 <li>Document measurements clearly</li>
 <li>Test assembly without visual guidance</li>
@@ -575,7 +575,7 @@ done
 <p>Q: What should I measure after printing?<br>A: Critical dimensions and compare to design specifications</p>
 <p>Q: How do I fix non-manifold geometry?<br>A: Use the 0.001 offset rule: <code>translate([0, 0, 0.001])</code> before subtracting</p>
 <p>Q: Can I combine multiple SCAD files?<br>A: Yes, use <code>include &lt;path/to/file.scad&gt;</code> or <code>use &lt;path/to/file.scad&gt;</code></p>
-<p>Q: How do I make designs accessible?<br>A: Use <code>3dm describe</code> and <code>3dm preview</code> and include written measurements/descriptions</p>
+<p>Q: How do I make designs accessible?<br>A: Use <code>3dm info</code> and <code>3dm preview</code> and include written measurements/descriptions</p>
 
                     </main>
 

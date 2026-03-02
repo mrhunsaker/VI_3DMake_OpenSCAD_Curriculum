@@ -1,7 +1,7 @@
-# GitBash-3: Input, Output, and Piping
+# Bash Lesson 3: Input, Output, and Piping
 
 **Duration:** 1 class period
-**Prerequisite:** GitBash-2 (File and Folder Manipulation)
+**Prerequisite:** Bash Lesson 2 (File and Folder Manipulation)
 
 ---
 

@@ -1,4 +1,4 @@
-# GitBash-Pre: Your First Terminal - Screen Reader Navigation Fundamentals {#gitbash_foundation_gitbash_pre_your_first_terminal-gitbash_pre_your_first_terminal}
+# Bash Lesson Pre: Your First Terminal - Screen Reader Navigation Fundamentals {#gitbash_foundation_gitbash_pre_your_first_terminal-gitbash_pre_your_first_terminal}
 
 Duration: 1.5-2 hours (for screen reader users)  
 Prerequisites: None - this is the starting point  
@@ -274,7 +274,7 @@ After completing this lesson, you should be able to answer:
 9. How do you read a file back?
 10. How do you stop a command that's running?
 
-You should be able to answer all 10 with confidence before moving to GitBash-0.
+You should be able to answer all 10 with confidence before moving to Bash Lesson 0.
 
 ## Common Questions
 
@@ -288,7 +288,7 @@ Q: What if I type something wrong?
 A: Just press Enter and you'll see an error message. Type the correct command on the next line. No harm done!
 
 Q: How do I get help with a command?
-A: Type `man command-name` (we'll cover this in GitBash-0)
+A: Type `man command-name` (we'll cover this in Bash Lesson 0)
 
 Q: Why do paths look different in Git Bash?
 A: Git Bash uses Unix-style paths with forward slashes, not Windows backslashes. Don't worry - you'll get used to it quickly.
@@ -308,8 +308,8 @@ In Git Bash:
 ## Next Steps
 
 Once you're comfortable with these basics:
-- Move to GitBash-0: Getting Started for deeper path understanding
-- Then continue through GitBash-1 through GitBash-5 for full terminal mastery
+- Move to Bash Lesson 0: Getting Started for deeper path understanding
+- Then continue through Bash Lesson 1 through Bash Lesson 5 for full terminal mastery
 
 ## Resources
 

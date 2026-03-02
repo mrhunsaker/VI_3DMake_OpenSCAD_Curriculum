@@ -15,7 +15,7 @@ By completing this unit test, you will demonstrate:
 
 ## Target Audience
 
-Users who have completed GitBash-0 through GitBash-6 and need to demonstrate mastery of Git Bash fundamentals.
+Users who have completed Bash Lesson 0 through Bash Lesson 6 and need to demonstrate mastery of Git Bash fundamentals.
 
 ## Instructions
 

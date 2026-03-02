@@ -66,6 +66,36 @@ Typical values:
 
 ---
 
+## Material Properties
+
+### PLA (Polylactic Acid)
+
+- Easy to print
+- Low warping
+- Biodegradable
+- Not heat-resistant
+
+### PETG
+
+- Stronger than PLA
+- Chemical resistant
+- Slight flexibility
+
+### TPU (Thermoplastic Polyurethane)
+
+- Flexible
+- Rubber-like
+- Requires slow printing
+
+### ABS (Acrylonitrile Butadiene Styrene)
+
+- Strong and durable
+- Higher temperature
+- Requires enclosure
+- Prone to warping
+
+---
+
 ## Tolerance
 
 Intentional dimensional offset to ensure mechanical fit.
@@ -117,6 +147,51 @@ cylinder(h=20, d=10);
 
 ---
 
+## Cone
+
+A tapered cylinder created using different top and bottom diameters.
+
+```openscad
+cylinder(h=20, d1=10, d2=0);
+```
+
+---
+
+## 2D Shapes
+
+Flat geometry that can be extruded to 3D.
+
+Examples:
+
+```openscad
+square([10,10]);
+circle(5);
+polygon([[0,0], [10,0], [5,10]]);
+```
+
+---
+
+## Polygon
+
+Custom 2D shape defined by vertices.
+
+```openscad
+polygon(points=[[0,0], [10,0], [10,10], [0,10]]);
+```
+
+---
+
+## Text Commands
+
+Create text geometry for embossing or debossing.
+
+```openscad
+linear_extrude(height=2)
+    text("HELLO", size=10, font="Liberation Sans");
+```
+
+---
+
 ## Boolean Operations
 
 ### union()
@@ -158,6 +233,104 @@ intersection() {
 
 ---
 
+## Transform Operations
+
+### Translate
+
+Move geometry in 3D space.
+
+```openscad
+translate([10, 20, 30])
+    cube([10,10,10]);
+```
+
+---
+
+### Rotate
+
+Rotate geometry around axes.
+
+```openscad
+rotate([0, 0, 45])
+    cube([10,10,10]);
+```
+
+---
+
+### Scale
+
+Resize geometry by multiplier.
+
+```openscad
+scale([2, 1, 1])
+    cube([10,10,10]);
+```
+
+---
+
+### Mirror
+
+Flip geometry across a plane.
+
+```openscad
+mirror([1, 0, 0])
+    cube([10,10,10]);
+```
+
+---
+
+## Advanced Operations
+
+### Hull
+
+Creates convex hull of children objects.
+
+```openscad
+hull() {
+    sphere(5);
+    translate([20,0,0]) sphere(5);
+}
+```
+
+---
+
+### Minkowski Sum
+
+Expands geometry by rolling one shape around another.
+
+```openscad
+minkowski() {
+    cube([10,10,10]);
+    sphere(2, $fn=12);
+}
+```
+
+Warning: Computationally expensive.
+
+---
+
+### Linear Extrude
+
+Extends 2D shapes into 3D.
+
+```openscad
+linear_extrude(height=10)
+    square([10,10]);
+```
+
+---
+
+### Offset
+
+Expands or contracts 2D shapes.
+
+```openscad
+offset(r=2)
+    square([10,10]);
+```
+
+---
+
 ## Variable
 
 A named parameter used to control geometry.
@@ -194,6 +367,83 @@ peg(5, 20);
 
 ---
 
+## Control Structures
+
+### For Loop
+
+Repeat operations.
+
+```openscad
+for (i = [0:5]) {
+    translate([i*15, 0, 0])
+        cube([10,10,10]);
+}
+```
+
+---
+
+### If Statement
+
+Conditional execution.
+
+```openscad
+if (width > 20) {
+    cube([width, 10, 10]);
+}
+```
+
+---
+
+### Else and ElseIf
+
+Extended conditionals.
+
+```openscad
+if (width > 20) {
+    cube([width, 10, 10]);
+} else if (width > 10) {
+    cylinder(h=10, d=width);
+} else {
+    sphere(width/2);
+}
+```
+
+---
+
+## Echo Function
+
+Print debug information to console.
+
+```openscad
+width = 30;
+echo("Width is:", width);
+```
+
+---
+
+## Random Numbers
+
+Generate random values.
+
+```openscad
+rands(min, max, count, seed);
+
+// Example:
+positions = rands(0, 100, 5);
+```
+
+---
+
+## Import
+
+Load external STL or other files.
+
+```openscad
+import("model.stl");
+```
+
+---
+
 ## $fn (Fragment Number)
 
 Controls circular resolution.
@@ -204,6 +454,96 @@ sphere(10);
 ```
 
 Higher values increase smoothness and render time.
+
+---
+
+## # (Hash Mark - Debug Modifier)
+
+Highlights geometry in transparent red during preview.
+
+```openscad
+#cube([10,10,10]);
+```
+
+Used for debugging geometry positions.
+
+---
+
+## Comments
+
+Non-executable text for documentation.
+
+### Single-line Comments
+
+```openscad
+// This is a comment
+cube([10,10,10]);
+```
+
+### Multiline Comments
+
+```openscad
+/*
+  This is a
+  multiline comment
+*/
+cube([10,10,10]);
+```
+
+---
+
+## Logical Operators
+
+### && (And)
+
+Logical AND operator.
+
+```openscad
+if (x > 5 && y < 10) {
+    cube([10,10,10]);
+}
+```
+
+### || (Or)
+
+Logical OR operator.
+
+```openscad
+if (x > 5 || y < 10) {
+    cube([10,10,10]);
+}
+```
+
+---
+
+## Brackets and Delimiters
+
+### [ ] (Square Brackets)
+
+Used for vectors and arrays.
+
+```openscad
+position = [10, 20, 30];
+cube([10,10,10]);
+```
+
+### { } (Curly Brackets)
+
+Define code blocks.
+
+```openscad
+if (x > 5) {
+    cube([10,10,10]);
+}
+```
+
+### < > (Angle Brackets)
+
+Used in some operations and comparisons.
+
+```openscad
+if (x < 10 && y > 5) { }
+```
 
 ---
 
@@ -228,6 +568,28 @@ A command-line tool for automating 3D model generation and processing.
 
 Repository:
 https://github.com/tdeck/3dmake
+
+---
+
+## 3dm build
+
+Command to generate STL from OpenSCAD source.
+
+```bash
+3dm build
+```
+
+Outputs to `build/` directory.
+
+---
+
+## 3dm info
+
+AI-powered geometric description for non-visual validation.
+
+```bash
+3dm info --view front
+```
 
 ---
 
@@ -519,6 +881,24 @@ openscad -o model.stl model.scad
 
 ---
 
+## Slicer Software
+
+Converts STL to G-code.
+
+### PrusaSlicer
+
+Open-source slicer with advanced features.
+
+### Cura
+
+User-friendly slicer by Ultimaker.
+
+### Bambu Studio
+
+Slicer for Bambu Lab printers.
+
+---
+
 ## G-code
 
 Machine instructions generated by slicer.
@@ -541,6 +921,18 @@ Examples:
 - `.ps1`
 - `.sh`
 - `.scad`
+
+---
+
+## Debugging
+
+Process of finding and fixing errors in code.
+
+Techniques:
+- Use `echo()` statements
+- Use `#` modifier to highlight geometry
+- Test modules independently
+- Check console for warnings
 
 ---
 
@@ -591,6 +983,42 @@ Important for screen readers.
 
 ---
 
+## Editor Setup
+
+### VS Code
+
+Recommended extensions:
+- OpenSCAD Language Support
+- Bracket Pair Colorizer
+
+---
+
+### Notepad++
+
+Lightweight editor with syntax highlighting.
+
+Configure:
+- Settings → Preferences → Language
+- Select OpenSCAD or C-style syntax
+
+---
+
+## Indentation
+
+Proper code formatting for readability.
+
+```openscad
+module example() {
+    if (condition) {
+        cube([10,10,10]);
+    }
+}
+```
+
+Use consistent spacing (2 or 4 spaces per level).
+
+---
+
 ## Screen Reader
 
 Software that reads text aloud.
@@ -616,6 +1044,29 @@ Tight fit requiring force.
 ## Overhang
 
 Unsupported geometry exceeding safe angle (≈45° for FDM).
+
+---
+
+## Tolerance
+
+Intentional dimensional offset for mechanical fit.
+
+Example:
+- Designed hole: 10.2mm
+- Designed peg: 10.0mm
+- Clearance: 0.2mm
+
+---
+
+## Calipers
+
+Precision measurement tool for verifying printed dimensions.
+
+Types:
+- Digital calipers (recommended)
+- Vernier calipers
+
+Accuracy: ±0.01mm typical
 
 ---
 

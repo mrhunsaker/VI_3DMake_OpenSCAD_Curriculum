@@ -43,9 +43,9 @@
 
 | Lesson                           | Duration    | What You Will Learn                           |
 |----------------------------------|-------------|-----------------------------------------------|
-| **CMD-Pre: Your First Terminal** | 1.5-2 hours | Opening CMD, first commands, basic navigation |
-| **CMD-0: Getting Started**       | 1.5 hours   | Paths, shortcuts, command basics              |
-| **CMD-1: Navigation**            | 2-2.5 hours | Moving around the file system confidently     |
+| **Command Line Lesson Pre: Your First Terminal** | 1.5-2 hours | Opening CMD, first commands, basic navigation |
+| **Command Line Lesson 0: Getting Started**       | 1.5 hours   | Paths, shortcuts, command basics              |
+| **Command Line Lesson 1: Navigation**            | 2-2.5 hours | Moving around the file system confidently     |
 
 **Goal:** You can navigate to any folder and see what is in it with your screen reader.
 
@@ -53,10 +53,10 @@
 
 | Lesson                                       | Duration    | What You Will Learn                      |
 |----------------------------------------------|-------------|------------------------------------------|
-| **CMD-2: File & Folder Manipulation**        | 2.5-3 hours | Create, copy, move, delete files/folders |
-| **CMD-3: Input, Output & Redirection**       | 2.5-3 hours | Redirect output, pipe commands           |
-| **CMD-4: Environment Variables & Shortcuts** | 2-2.5 hours | Automate settings, create shortcuts      |
-| **CMD-5: Filling in the Gaps**               | 2-2.5 hours | Batch files, history, debugging          |
+| **Command Line Lesson 2: File & Folder Manipulation**        | 2.5-3 hours | Create, copy, move, delete files/folders |
+| **Command Line Lesson 3: Input, Output & Redirection**       | 2.5-3 hours | Redirect output, pipe commands           |
+| **Command Line Lesson 4: Environment Variables & Shortcuts** | 2-2.5 hours | Automate settings, create shortcuts      |
+| **Command Line Lesson 5: Filling in the Gaps**               | 2-2.5 hours | Batch files, history, debugging          |
 
 **Goal:** You can create folders, manage files, and combine commands to accomplish complex tasks.
 
@@ -64,7 +64,7 @@
 
 | Lesson                         | Duration    | What You Will Learn                    |
 |--------------------------------|-------------|----------------------------------------|
-| **CMD-6: Advanced Techniques** | 2.5-3 hours | Scripting, loops, automation workflows |
+| **Command Line Lesson 6: Advanced Techniques** | 2.5-3 hours | Scripting, loops, automation workflows |
 | **CMD Unit Test**              | 2.5-4 hours | Comprehensive assessment               |
 
 ---
@@ -75,19 +75,19 @@
 
 **Start here and go in order:**
 
-1. Do **CMD-Pre: Your First Terminal**.
-2. Continue with CMD-0, CMD-1, and so on.
+1. Do **Command Line Lesson Pre: Your First Terminal**.
+2. Continue with Command Line Lesson 0, Command Line Lesson 1, and so on.
 
 Do not skip steps — each lesson builds on the previous one.
 
 ### If You Have Used a Terminal Before (But Not with a Screen Reader)
 
-1. Quickly review **CMD-Pre** (it has the screen reader focus you need).
-2. Move to **CMD-0** for deeper path understanding.
+1. Quickly review **Command Line Lesson Pre** (it has the screen reader focus you need).
+2. Move to **Command Line Lesson 0** for deeper path understanding.
 
 ### If You Are Experienced with Terminal and Screen Readers
 
-1. Jump to the specific lesson you need (CMD-2, CMD-3, etc.).
+1. Jump to the specific lesson you need (Command Line Lesson 2, Command Line Lesson 3, etc.).
 2. Use the **Quick Reference** sections.
 3. Skip exercises and take the quizzes to verify knowledge.
 
@@ -153,7 +153,7 @@ If your screen reader is not listed in a specific tip, refer to the **Screen Rea
    type learning.txt
    ```
 
-That is the core experience. Now read CMD-Pre for the full explanation.
+That is the core experience. Now read Command Line Lesson Pre for the full explanation.
 
 ---
 
@@ -267,7 +267,7 @@ cd my-practice-folder
    - If using JAWS in demo mode, the session limit is approximately 40 minutes. Restart your computer to reset the demo.
 
 6. **Completely confused?**
-   - Go back to CMD-Pre and start over.
+   - Go back to Command Line Lesson Pre and start over.
    - Work through every single exercise slowly.
    - Ask an instructor or peer for help.
 
@@ -294,21 +294,21 @@ cd my-practice-folder
 ```plaintext
 START HERE
     |
-CMD-Pre: Your First Terminal  (absolute beginner entry point)
+Command Line Lesson Pre: Your First Terminal  (absolute beginner entry point)
     |
-CMD-0: Getting Started        (paths and navigation foundations)
+Command Line Lesson 0: Getting Started        (paths and navigation foundations)
     |
-CMD-1: Navigation             (comfortable moving around)
+Command Line Lesson 1: Navigation             (comfortable moving around)
     |
-CMD-2: File & Folder          (create, move, delete)
+Command Line Lesson 2: File & Folder          (create, move, delete)
     |
-CMD-3: Input & Output         (redirect commands)
+Command Line Lesson 3: Input & Output         (redirect commands)
     |
-CMD-4: Variables & Shortcuts  (automation foundations)
+Command Line Lesson 4: Variables & Shortcuts  (automation foundations)
     |
-CMD-5: Filling in the Gaps    (batch files and history)
+Command Line Lesson 5: Filling in the Gaps    (batch files and history)
     |
-CMD-6: Advanced Techniques    (scripts, loops, workflows)
+Command Line Lesson 6: Advanced Techniques    (scripts, loops, workflows)
     |
 CMD Unit Test                 (comprehensive assessment)
     |
@@ -319,5 +319,5 @@ NEXT: 3D Printing Integration Lessons
 
 **Questions? Feedback? Stuck?** Refer back to this page and try the Troubleshooting section. All the tools you need are here.
 
-**Now open CMD-Pre and get started!**
+**Now open Command Line Lesson Pre and get started!**
 

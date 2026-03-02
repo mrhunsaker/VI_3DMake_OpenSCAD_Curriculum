@@ -1,7 +1,7 @@
-# CMD-2: File and Folder Manipulation {#cmd_foundation_cmd_2_file_folder_manipulation_modification-cmd_2_file_folder_manipulation_modification}
+# Command Line Lesson 2: File and Folder Manipulation {#cmd_foundation_cmd_2_file_folder_manipulation_modification-cmd_2_file_folder_manipulation_modification}
 
 **Duration:** 2-2.5 hours (for screen reader users)  
-**Prerequisites:** CMD-Pre, CMD-0, CMD-1
+**Prerequisites:** Command Line Lesson Pre, Command Line Lesson 0, Command Line Lesson 1
 
 **Learning Objectives:**
 
@@ -256,5 +256,5 @@ After any `copy`, `move`, or `del` operation, always verify with `dir /B` to con
 
 ## Next Steps
 
-Complete all exercises, pass the checkpoint questions, then move to **CMD-3: Input, Output & Redirection**.
+Complete all exercises, pass the checkpoint questions, then move to **Command Line Lesson 3: Input, Output & Redirection**.
 

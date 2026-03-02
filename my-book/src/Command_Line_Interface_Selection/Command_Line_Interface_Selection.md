@@ -1,4 +1,4 @@
-# Command-Line Fundamentals - Choose Your Path {#command_line_interface_selection-command_line_interface_selection}
+# Command-Line Fundamentals - Choose Your Path {# Command_line_interface_selection-command_line_interface_selection}
 
 Welcome! Before diving into 3D design with OpenSCAD, you'll master command-line fundamentals. This page will help you understand what command-line interfaces are and choose the best path for you.
 

@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-16a773af.js";
+            window.path_to_searchindex_js = "../../searchindex-bc1ab470.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-a7b67ace.js"></script>
+        <script src="../../toc-47d6622c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,9 +220,236 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="lesson-5-safety-protocols-and-the-physical-fabrication-interface"><a class="header" href="#lesson-5-safety-protocols-and-the-physical-fabrication-interface">Lesson 5: Safety Protocols and the Physical Fabrication Interface</a></h1>
-<p>Estimated time: 90–120 minutes</p>
+                        <h1 id="lesson-5--safety-protocols-and-the-physical-fabrication-interface"><a class="header" href="#lesson-5--safety-protocols-and-the-physical-fabrication-interface">Lesson 5 — Safety Protocols and the Physical Fabrication Interface</a></h1>
+<p><em>[CORRECTED — March 2026 Curriculum Revision]</em></p>
+<hr>
 <h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<p>By the end of this lesson you will be able to:</p>
+<ul>
+<li>Apply fire, electrical, and fume safety protocols for FDM printing</li>
+<li>Select the appropriate filament material for your use case</li>
+<li>Estimate print cost and material consumption before committing to a print</li>
+<li>Understand material sustainability considerations and responsible disposal</li>
+<li>Use pre-flight build scripts to automate safety-related checks before printing</li>
+</ul>
+<hr>
+<h2 id="step-1--workspace-safety-essentials"><a class="header" href="#step-1--workspace-safety-essentials">Step 1 — Workspace Safety Essentials</a></h2>
+<p><strong>Never leave an FDM printer unattended during a print.</strong> The most common print failures (bed adhesion failure, nozzle jam, warping) happen in the first layer and can be detected early.</p>
+<h3 id="fire-safety"><a class="header" href="#fire-safety">Fire Safety</a></h3>
+<ul>
+<li>Keep a Class ABC dry-chemical extinguisher within arm’s reach</li>
+<li>Never run the printer while you are away from the building</li>
+<li>Keep the build area clear of flammable material (paper, fabric, solvent cans)</li>
+<li>Install a smoke detector above the printer — ABS fumes in high concentrations can trigger it, which is useful</li>
+</ul>
+<h3 id="electrical-safety"><a class="header" href="#electrical-safety">Electrical Safety</a></h3>
+<ul>
+<li>Use a surge protector or UPS with the printer — voltage spikes can damage the mainboard or cause thermal runaway</li>
+<li>Inspect power cables and bed wiring regularly — cracks or fraying in flexible wiring are a fire risk</li>
+<li><strong>For modified or DIY printers only:</strong> Never open the PSU enclosure, and never modify electrical components while the printer is plugged in. Printer PSUs operate at mains voltage internally and are not user-serviceable. If you observe sparking, burning smells, or discoloration on the PSU, replace it and do not repair it.</li>
+<li>Thermal runaway protection must be enabled in firmware. Check: <code>M303</code> (PID autotune) and thermal runaway settings in Marlin or Klipper. Do not disable these protections.</li>
+</ul>
+<h3 id="fume-safety"><a class="header" href="#fume-safety">Fume Safety</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Material</th><th>Fume Risk</th><th>Mitigation</th></tr>
+</thead>
+<tbody>
+<tr><td>PLA</td><td>Low</td><td>Good room ventilation</td></tr>
+<tr><td>PETG</td><td>Low–Medium</td><td>Ventilation; avoid in enclosed spaces</td></tr>
+<tr><td>ABS</td><td>High</td><td>Dedicated fume enclosure with HEPA + activated carbon filter; do not print in occupied rooms without enclosure</td></tr>
+<tr><td>ASA</td><td>High</td><td>Same as ABS</td></tr>
+<tr><td>TPU</td><td>Medium</td><td>Ventilation; keep nozzle temp at minimum required</td></tr>
+<tr><td>Resin (SLA)</td><td>Very High</td><td>Full enclosure required; nitrile gloves; UV-safe goggles</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="step-2--material-selection-guide"><a class="header" href="#step-2--material-selection-guide">Step 2 — Material Selection Guide</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Filament</th><th>Strength</th><th>Flexibility</th><th>Temp Resistance</th><th>Difficulty</th><th>Best For</th></tr>
+</thead>
+<tbody>
+<tr><td>PLA</td><td>Medium</td><td>Rigid</td><td>Low (50–60°C)</td><td>Easy</td><td>Prototypes, display models, artwork</td></tr>
+<tr><td>PETG</td><td>Medium-High</td><td>Slightly flexible</td><td>Medium (75–80°C)</td><td>Easy–Medium</td><td>Functional parts, water contact</td></tr>
+<tr><td>ABS</td><td>High</td><td>Semi-rigid</td><td>High (85–100°C)</td><td>Hard</td><td>Hot environments, post-processing</td></tr>
+<tr><td>TPU</td><td>Medium</td><td>Very flexible</td><td>Medium</td><td>Medium</td><td>Gaskets, grips, phone cases</td></tr>
+<tr><td>Nylon</td><td>Very High</td><td>Flexible</td><td>High</td><td>Hard</td><td>Mechanical parts, gears</td></tr>
+<tr><td>ASA</td><td>High</td><td>Semi-rigid</td><td>Very High (90°C+)</td><td>Hard</td><td>Outdoor use, UV exposure</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Material Sustainability Considerations:</strong></p>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Filament</th><th>Sustainability Notes</th></tr>
+</thead>
+<tbody>
+<tr><td>PLA</td><td>Bio-based (typically corn starch), but <strong>does NOT biodegrade in landfills or home compost</strong> — it requires industrial composting at 58°C+ with specific microbes. Best described as “bio-derived,” not “biodegradable.” Consider filament recycling programs.</td></tr>
+<tr><td>PETG</td><td>Part of the PET plastic family, theoretically recyclable, but most municipal facilities do not accept 3D print scraps due to contamination. Long part lifetime reduces replacement frequency = less waste.</td></tr>
+<tr><td>ABS</td><td>Petroleum-based; difficult to recycle; emits styrene during printing. Avoid for educational settings on sustainability and safety grounds.</td></tr>
+<tr><td>TPU</td><td>Petroleum-based; however, parts printed in TPU typically outlast PLA equivalents by years, reducing total lifecycle waste.</td></tr>
+<tr><td>Recycled/Regrind filaments</td><td>Available from several vendors; slightly reduced mechanical properties but significantly lower carbon footprint.</td></tr>
+</tbody>
+</table>
+</div>
+<p><strong>Reducing Print Waste:</strong></p>
+<ul>
+<li>Always print a small test coupon before committing to a large part (see Lesson 8)</li>
+<li>Use the minimum infill that meets mechanical requirements — 15–20% is sufficient for most non-structural parts</li>
+<li>Keep a “scrap bin” for failed prints; some services (e.g., Terracycle’s plastics program) accept 3D print waste</li>
+</ul>
+<hr>
+<h2 id="step-3--estimating-print-cost-before-printing"><a class="header" href="#step-3--estimating-print-cost-before-printing">Step 3 — Estimating Print Cost Before Printing</a></h2>
+<p>Always estimate cost before printing. Use <code>3dm info</code> volume output as the input.</p>
+<h3 id="formula"><a class="header" href="#formula">Formula</a></h3>
+<pre><code>1. Get volume:   3dm info  →  Volume: XXXX mm³
+2. Convert:      volume_cm3 = volume_mm3 / 1000
+3. Mass:         mass_g = volume_cm3 × filament_density
+                   PLA:  1.24 g/cm³
+                   PETG: 1.27 g/cm³
+                   ABS:  1.05 g/cm³
+                   TPU:  1.20 g/cm³
+                   Nylon: 1.14 g/cm³
+4. Filament cost: cost = mass_g × (spool_price_$ / spool_weight_g)
+                   Typical: $20 / 1000g = $0.020 per gram
+5. Electricity:  ~$0.05–0.15 per print-hour (check local rates)
+6. Amortized:    ~$0.25–0.50 per print (printer wear, bed surface, etc.)
+
+TOTAL = filament_cost + electricity + amortized
+</code></pre>
+<h3 id="worked-example"><a class="header" href="#worked-example">Worked Example</a></h3>
+<pre><code>Volume:   14,500 mm³   (from 3dm info)
+Material: PETG
+
+mass_g    = (14500 / 1000) × 1.27  =  18.4 g
+filament  = 18.4 × $0.020           =  $0.37
+electricity = 2.5 hrs × $0.08/hr   =  $0.20
+amortized                           =  $0.35
+─────────────────────────────────────────────
+TOTAL                               ≈  $0.92
+</code></pre>
+<h3 id="automation-pre-flight-cost-check-script"><a class="header" href="#automation-pre-flight-cost-check-script">Automation: Pre-Flight Cost Check Script</a></h3>
+<h4 id="linux--macos-bash"><a class="header" href="#linux--macos-bash">Linux / macOS (bash)</a></h4>
+<pre><code class="language-bash">#!/bin/bash
+# preflight.sh — check cost and dimensions before sending to printer
+
+set -e
+
+3dm build
+INFO=$(3dm info)
+echo "$INFO"
+
+# Parse volume (expects format: "Volume: XXXXX.X mm3")
+VOLUME=$(echo "$INFO" | grep -oP '(?&lt;=Volume:\s)\d+\.?\d*')
+
+if [ -z "$VOLUME" ]; then
+  echo "ERROR: Could not parse volume from 3dm info output"
+  exit 1
+fi
+
+# Cost calculation (PLA at $0.02/g)
+DENSITY=1.24
+COST_PER_G=0.02
+MASS=$(echo "$VOLUME $DENSITY" | awk '{printf "%.1f", ($1/1000)*$2}')
+COST=$(echo "$MASS $COST_PER_G" | awk '{printf "%.2f", $1*$2}')
+
+echo ""
+echo "=== PRE-FLIGHT SUMMARY ==="
+echo "Volume:   ${VOLUME} mm³"
+echo "Mass:     ${MASS} g  (PLA @ ${DENSITY} g/cm³)"
+echo "Filament: \$${COST}  (@ \$${COST_PER_G}/g)"
+echo ""
+echo "Proceed? [y/N]"
+read CONFIRM
+if [ "$CONFIRM" != "y" ]; then
+  echo "Cancelled."
+  exit 0
+fi
+echo "Approved. Send to slicer."
+</code></pre>
+<h4 id="windows-powershell"><a class="header" href="#windows-powershell">Windows (PowerShell)</a></h4>
+<pre><code class="language-powershell"># preflight.ps1 — pre-flight cost check
+
+3dm build
+$info = 3dm info
+Write-Host $info
+
+# Parse volume
+$volumeMatch = $info | Select-String -Pattern "Volume:\s+([\d.]+)"
+if (-not $volumeMatch) {
+    Write-Error "Could not parse volume from 3dm info"
+    exit 1
+}
+$volume = [double]$volumeMatch.Matches.Groups[1].Value
+
+# Cost calculation
+$density   = 1.24    # PLA g/cm³
+$costPerG  = 0.02    # $/g
+$mass      = ($volume / 1000) * $density
+$filamentCost = $mass * $costPerG
+
+Write-Host ""
+Write-Host "=== PRE-FLIGHT SUMMARY ==="
+Write-Host ("Volume:   {0:F0} mm3" -f $volume)
+Write-Host ("Mass:     {0:F1} g  (PLA)" -f $mass)
+Write-Host ("Filament: `${0:F2}" -f $filamentCost)
+Write-Host ""
+$confirm = Read-Host "Proceed? [y/N]"
+if ($confirm -ne "y") {
+    Write-Host "Cancelled."
+    exit 0
+}
+Write-Host "Approved. Send to slicer."
+</code></pre>
+<h4 id="windows-cmd"><a class="header" href="#windows-cmd">Windows (CMD)</a></h4>
+<pre><code class="language-cmd">@echo off
+REM preflight.cmd — minimal pre-flight check (full calculation requires PowerShell)
+
+3dm build
+if %ERRORLEVEL% NEQ 0 (
+    echo BUILD FAILED - do not print
+    exit /b 1
+)
+
+3dm info
+echo.
+echo Review the bounding box and volume above.
+echo Use the PowerShell script (preflight.ps1) for automatic cost calculation.
+echo.
+set /p CONFIRM="Proceed to slice? [y/N]: "
+if /i not "%CONFIRM%"=="y" (
+    echo Cancelled.
+    exit /b 0
+)
+echo Approved.
+</code></pre>
+<hr>
+<h2 id="step-4--printer-startup-checklist"><a class="header" href="#step-4--printer-startup-checklist">Step 4 — Printer Startup Checklist</a></h2>
+<p>Before every print session, run this checklist:</p>
+<pre><code>PRINTER STARTUP CHECKLIST
+□ Bed level verified (auto-level or manual tramming)
+□ Build plate clean (IPA wipe, no grease or fingerprints)
+□ Nozzle cleared (cold pull if returning from long idle)
+□ Filament loaded and extruding cleanly (run 50mm purge)
+□ First layer height set correctly (0.2mm typical for 0.4mm nozzle)
+□ Print fan operating (spin test or M106 S255 in console)
+□ Workspace clear of flammable material
+□ You will be present for the first 15 minutes of the print
+□ Emergency stop (power switch) is within reach
+</code></pre>
+<hr>
+<h2 id="exercises"><a class="header" href="#exercises">Exercises</a></h2>
+<p><strong>Exercise 5.1:</strong> Run <code>3dm info</code> on your phone stand from Lesson 3. Calculate the material cost in PLA and PETG. Which is cheaper? (PETG is typically slightly more expensive per gram.)</p>
+<p><strong>Exercise 5.2:</strong> Write a preflight script (in your preferred shell: bash, PowerShell, or CMD) that builds your model, reports cost, and requires a <code>y</code> confirmation before exiting. The script must work without modification on your platform.</p>
+<p><strong>Exercise 5.3 (Advanced):</strong> Modify the preflight script to accept a <code>--material</code> argument (values: <code>pla</code>, <code>petg</code>, <code>abs</code>, <code>tpu</code>) and use the appropriate density for cost calculation. Test with all four materials.</p>
+<h1 id="lesson-5-safety-protocols-and-the-physical-fabrication-interface"><a class="header" href="#lesson-5-safety-protocols-and-the-physical-fabrication-interface">Lesson 5: Safety Protocols and the Physical Fabrication Interface</a></h1>
+<p>Estimated time: 90–120 minutes</p>
+<h2 id="learning-objectives-1"><a class="header" href="#learning-objectives-1">Learning Objectives</a></h2>
 <ul>
 <li>Identify and apply the Hierarchy of Controls for 3D printing hazards</li>
 <li>Understand filament-specific hazards and safe material handling</li>

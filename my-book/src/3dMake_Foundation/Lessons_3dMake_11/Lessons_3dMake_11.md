@@ -7,7 +7,7 @@ Estimated time: 120–150 minutes
 - Use calipers to measure and validate printed parts against specifications
 - Diagnose and fix non-manifold geometry errors
 - Perform tolerance stack-up analysis
-- Use `3dm describe` for non-visual validation
+- Use `3dm info` for non-visual validation
 
 ## Materials
 - 3dMake project
@@ -111,10 +111,10 @@ translate([0, 0, key_h/2 - 0.8])
          halign="center", valign="center", $fn=4);
 ```
 
-### B2 — Validate with 3dm describe
+### B2 — Validate with 3dm info
 
 ```bash
-3dm describe
+3dm info
 ```
 
 Expected output should confirm the keycap geometry. Document what the AI description says and compare it to your design intent.
@@ -165,7 +165,7 @@ translate([20, 0, 0]) cube([20, 20, 10]);
 
 Diagnosis tool:
 ```bash
-3dm describe  # AI will often flag non-manifold geometry
+3dm info  # AI will often flag non-manifold geometry
 # Also open STL in slicer and enable "Check for geometry errors"
 ```
 
@@ -202,7 +202,7 @@ rounded_hull();
 2. What is tolerance stack-up, and why does it matter for multi-part assemblies?
 3. What causes non-manifold geometry in OpenSCAD, and how do you detect it?
 4. How does `hull()` differ from `union()`?
-5. What does `3dm describe` help you verify about your model?
+5. What does `3dm info` help you verify about your model?
 6. What does a Cherry MX stem measure in diameter, and what clearance would you add for a slip-fit keycap?
 7. True or False: `find -newer` is an event-driven file change detection method.
 8. If three parts each have ±0.15 mm tolerance, what is the worst-case total error for a three-part stack?
@@ -212,7 +212,7 @@ rounded_hull();
 12. What does `resize([50, 0, 0])` do, and why might `resize()` behave unexpectedly for non-uniform scaling?
 13. When measuring a printed part with calipers, what is the difference between an inside measurement and an outside measurement, and when does that distinction matter for tolerance analysis?
 14. Describe the iterative design workflow for dialing in press-fit tolerances: what do you print, what do you measure, and how do you adjust?
-15. If `3dm describe` reports "the model appears non-manifold," what are three possible causes you would investigate in your OpenSCAD code?
+15. If `3dm info` reports "the model appears non-manifold," what are three possible causes you would investigate in your OpenSCAD code?
 
 ## Extension Problems (15)
 
@@ -238,7 +238,7 @@ rounded_hull();
 
 [^2]: Digital Calipers Measurement Technique — General metrology reference. See also: [Measurement Worksheet Asset](../../assets/3dMake_Foundation/measurement_worksheet.md)
 
-[^3]: 3DMake GitHub Repository — Command reference including `3dm describe`. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+[^3]: 3DMake GitHub Repository — Command reference including `3dm info`. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
 ### Supplemental Resources
 

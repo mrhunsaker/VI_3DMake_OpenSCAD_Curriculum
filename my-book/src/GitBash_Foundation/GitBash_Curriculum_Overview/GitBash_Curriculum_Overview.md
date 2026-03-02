@@ -33,7 +33,7 @@ The main curriculum teaches you to use Git Bash for real work.
 
 ### Foundation Level (Lessons Pre - 1)
 
-#### GitBash-Pre: Your First Terminal (1.5-2.5 hours)
+#### Bash Lesson Pre: Your First Terminal (1.5-2.5 hours)
 What you'll learn:
 - How to open and close Git Bash
 - Understanding the prompt and what it tells you
@@ -55,7 +55,7 @@ Hands-On Work:
 - Create your first test file
 - Read it back with a screen reader
 
-#### GitBash-0: Getting Started - Layout, Paths, and the Shell (1-1.5 hours)
+#### Bash Lesson 0: Getting Started - Layout, Paths, and the Shell (1-1.5 hours)
 What you'll learn:
 - Unix-style paths vs Windows paths
 - Absolute vs relative paths
@@ -75,7 +75,7 @@ Hands-On Work:
 - Practice relative paths in a deep folder structure
 - Document your project folder paths
 
-#### GitBash-1: Navigation - Moving Around Your File System (1.5-2.5 hours)
+#### Bash Lesson 1: Navigation - Moving Around Your File System (1.5-2.5 hours)
 What you'll learn:
 - Mastering `cd` for folder navigation
 - Tab completion strategies
@@ -97,7 +97,7 @@ Hands-On Work:
 
 ### Intermediate Level (Lessons 2 - 4)
 
-#### GitBash-2: File and Folder Manipulation (2-2.5 hours)
+#### Bash Lesson 2: File and Folder Manipulation (2-2.5 hours)
 What you'll learn:
 - Creating files and folders: `mkdir`, `touch`, `echo > file`
 - Copying files: `cp`
@@ -120,7 +120,7 @@ Hands-On Work:
 - Practice safe deletion with confirmation
 - Build a file organization system for 3D printing projects
 
-#### GitBash-3: Input, Output & Piping (2-2.5 hours)
+#### Bash Lesson 3: Input, Output & Piping (2-2.5 hours)
 What you'll learn:
 - Redirecting output: `>`, `>>`
 - Reading files: `cat`, `less`
@@ -144,7 +144,7 @@ Hands-On Work:
 - Create scripts that redirect output to files
 - Build a file-processing workflow
 
-#### GitBash-4: Environment Variables & Aliases (1.5-2 hours)
+#### Bash Lesson 4: Environment Variables & Aliases (1.5-2 hours)
 What you'll learn:
 - Understanding environment variables: `echo $PATH`, `echo $HOME`
 - Setting variables: `export MYVAR="value"`
@@ -167,7 +167,7 @@ Hands-On Work:
 
 ### Advanced Level (Lessons 5 - 6)
 
-#### GitBash-5: Filling in the Gaps - Shell Profiles, History, and Debugging (2-2.5 hours)
+#### Bash Lesson 5: Filling in the Gaps - Shell Profiles, History, and Debugging (2-2.5 hours)
 What you'll learn:
 - Using command history: `history`, `!`, reverse search
 - Debugging commands with `set -x`
@@ -188,7 +188,7 @@ Hands-On Work:
 - Set up a personalized `.bashrc`
 - Create aliases for common debugging tasks
 
-#### GitBash-6: Advanced Terminal Techniques - Scripts, Functions & Professional Workflows (2.5-3.5 hours)
+#### Bash Lesson 6: Advanced Terminal Techniques - Scripts, Functions & Professional Workflows (2.5-3.5 hours)
 What you'll learn:
 - Writing bash scripts (`.sh` files)
 - Creating functions for reuse
@@ -232,47 +232,47 @@ Success Criteria:
 ```
 Pre: First Terminal (accessibility focus)
   v
-GitBash-0: Paths & Layout (foundations)
+Bash Lesson 0: Paths & Layout (foundations)
   v
-GitBash-1: Navigation (mastery)
+Bash Lesson 1: Navigation (mastery)
   v
-GitBash-2: Files & Folders (basic manipulation)
+Bash Lesson 2: Files & Folders (basic manipulation)
   v
-GitBash-3: Piping & Redirection (powerful combinations)
+Bash Lesson 3: Piping & Redirection (powerful combinations)
   v
-GitBash-4: Variables & Aliases (customization)
+Bash Lesson 4: Variables & Aliases (customization)
   v
-GitBash-5: History & Debugging (refinement)
+Bash Lesson 5: History & Debugging (refinement)
   v
-GitBash-6: Scripts & Functions (advanced)
+Bash Lesson 6: Scripts & Functions (advanced)
   v
 Unit Test & Practice (comprehensive)
 ```
 
 ## Command Reference by Lesson
 
-### GitBash-Pre
+### Bash Lesson Pre
 - `pwd` - Show current location
 - `ls` - List files
 - `cd` - Change directory
 - `echo "text" >` - Create files
 - `cat` - Read files
 
-### GitBash-0
+### Bash Lesson 0
 - `pwd` - Current location
 - `ls` - List contents
 - `cd ~` - Go home
 - `cd ..` - Go up
 - `cd /path` - Go to path
 
-### GitBash-1
+### Bash Lesson 1
 - `cd FolderName` - Enter folder
 - `cd ..` - Go up one level
 - `cd ~` - Go home
 - `ls` - List contents
 - Tab completion (Press Tab)
 
-### GitBash-2
+### Bash Lesson 2
 - `mkdir FolderName` - Create folder
 - `touch FileName` - Create file
 - `cp Source Dest` - Copy file
@@ -281,7 +281,7 @@ Unit Test & Practice (comprehensive)
 - `rmdir FolderName` - Delete empty folder
 - `ls -l` - List with details
 
-### GitBash-3
+### Bash Lesson 3
 - `cat FileName` - Display file
 - `grep "text" File` - Search
 - `sort FileName` - Sort lines
@@ -290,21 +290,21 @@ Unit Test & Practice (comprehensive)
 - `command | other` - Pipe commands
 - `less FileName` - Read page by page
 
-### GitBash-4
+### Bash Lesson 4
 - `echo $VAR` - Show variable
 - `export VAR="value"` - Set variable
 - `alias name="command"` - Create shortcut
 - `.bashrc` - Edit startup file
 - `source ~/.bashrc` - Reload config
 
-### GitBash-5
+### Bash Lesson 5
 - `history` - Show past commands
 - `!CommandNumber` - Rerun command
 - `Ctrl+R` - Search history
 - `set -x` - Debug mode
 - `.bashrc` vs `.bashprofile` - Config files
 
-### GitBash-6
+### Bash Lesson 6
 - `#!/bin/bash` - Script header
 - `function name() {}` - Define function
 - `for var in list; do` - Loops
@@ -326,14 +326,14 @@ Every lesson includes:
 
 | Component   | Time          |
 |-------------|---------------|
-| GitBash-Pre | 1.5-2.5 hours |
-| GitBash-0   | 1-1.5 hours   |
-| GitBash-1   | 1.5-2.5 hours |
-| GitBash-2   | 2-2.5 hours   |
-| GitBash-3   | 2-2.5 hours   |
-| GitBash-4   | 1.5-2 hours   |
-| GitBash-5   | 2-2.5 hours   |
-| GitBash-6   | 2.5-3.5 hours |
+| Bash Lesson Pre | 1.5-2.5 hours |
+| Bash Lesson 0   | 1-1.5 hours   |
+| Bash Lesson 1   | 1.5-2.5 hours |
+| Bash Lesson 2   | 2-2.5 hours   |
+| Bash Lesson 3   | 2-2.5 hours   |
+| Bash Lesson 4   | 1.5-2 hours   |
+| Bash Lesson 5   | 2-2.5 hours   |
+| Bash Lesson 6   | 2.5-3.5 hours |
 | Unit Test   | 2.5-5 hours   |
 | Total       | 20-25 hours   |
 
@@ -467,7 +467,7 @@ This curriculum is built on:
 
 Start with the [Command Line Interface Selection Guide](../Command_Line_Interface_Selection.md) to see why Git Bash might be the right choice for you.
 
-Then proceed to GitBash-Pre: Your First Terminal to begin your journey!
+Then proceed to Bash Lesson Pre: Your First Terminal to begin your journey!
 
 Goal: You can navigate to any folder and see what's in it with your screen reader.
 

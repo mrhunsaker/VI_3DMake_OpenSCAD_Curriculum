@@ -1,4 +1,4 @@
-# PowerShell for Screen Reader Users - Complete Curriculum Overview {#powershell_foundation_powershell_curriculum_overview-powershell_curriculum_overview}
+# PowerShell for Screen Reader Users - Complete Curriculum Overview {# Powershell_foundation_powershell_curriculum_overview-powershell_curriculum_overview}
 
 Welcome! This curriculum teaches you how to use PowerShell (Windows Terminal) as a screen reader user, starting from zero experience and building to professional-level skills.
 
@@ -35,9 +35,9 @@ Target Users: Anyone with a screen reader (NVDA, JAWS, or other)
 | Lesson                            | Duration    | What You'll Learn                                      |
 |-----------------------------------|-------------|--------------------------------------------------------|
 | Screen Reader Accessibility Guide | 1.5 hours   | Screen reader tips specific to PowerShell (READ FIRST) |
-| PS-Pre: Your First Terminal       | 2-2.5 hours | Opening PowerShell, first commands, basic navigation   |
-| PS-0: Getting Started             | 1.5 hours   | Paths, shortcuts, tab completion                       |
-| PS-1: Navigation                  | 2-2.5 hours | Moving around the file system confidently              |
+|Powershell Lesson Pre: Your First Terminal       | 2-2.5 hours | Opening PowerShell, first commands, basic navigation   |
+|Powershell Lesson 0: Getting Started             | 1.5 hours   | Paths, shortcuts, tab completion                       |
+|Powershell Lesson 1: Navigation                  | 2-2.5 hours | Moving around the file system confidently              |
 
 Goal: You can navigate to any folder and see what's in it with your screen reader.
 
@@ -45,10 +45,10 @@ Goal: You can navigate to any folder and see what's in it with your screen reade
 
 | Lesson                                | Duration    | What You'll Learn                        |
 |---------------------------------------|-------------|------------------------------------------|
-| PS-2: File & Folder Manipulation      | 2.5-3 hours | Create, copy, move, delete files/folders |
-| PS-3: Input, Output & Piping          | 2.5-3 hours | Chain commands together, redirect output |
-| PS-4: Environment Variables & Aliases | 2-2.5 hours | Automate settings, create shortcuts      |
-| PS-5: Filling in the Gaps             | 2-2.5 hours | Profiles, history, debugging             |
+|Powershell Lesson 2: File & Folder Manipulation      | 2.5-3 hours | Create, copy, move, delete files/folders |
+|Powershell Lesson 3: Input, Output & Piping          | 2.5-3 hours | Chain commands together, redirect output |
+|Powershell Lesson 4: Environment Variables & Aliases | 2-2.5 hours | Automate settings, create shortcuts      |
+|Powershell Lesson 5: Filling in the Gaps             | 2-2.5 hours | Profiles, history, debugging             |
 
 Goal: You can create folders, manage files, and combine commands to accomplish complex tasks.
 
@@ -58,9 +58,9 @@ These topics extend beyond this curriculum but are natural next steps:
 
 | Topic                   | When to Learn   |
 |-------------------------|-----------------|
-| Scripting (.ps1 files)  | After PS-5      |
-| Functions & Loops       | After PS-5      |
-| Error Handling          | After PS-5      |
+| Scripting (.ps1 files)  | AfterPowershell Lesson 5      |
+| Functions & Loops       | AfterPowershell Lesson 5      |
+| Error Handling          | AfterPowershell Lesson 5      |
 | Remote Administration   | Advanced        |
 | 3D Printing Integration | After all above |
 
@@ -71,8 +71,8 @@ These topics extend beyond this curriculum but are natural next steps:
 Start here and go in order:
 
 1. Read Screen Reader Accessibility Guide completely
-2. Do PS-Pre: Your First Terminal exercises
-3. Continue with PS-0, PS-1, etc.
+2. DoPowershell Lesson Pre: Your First Terminal exercises
+3. Continue withPowershell Lesson 0,Powershell Lesson 1, etc.
 
 Don't skip steps - each builds on the previous one.
 
@@ -81,14 +81,14 @@ Don't skip steps - each builds on the previous one.
 Start here:
 
 1. Skim Screen Reader Accessibility Guide (you'll recognize most tips)
-2. Quickly review PS-Pre (basics with screen reader focus)
-3. Move to PS-0 for deeper learning
+2. Quickly reviewPowershell Lesson Pre (basics with screen reader focus)
+3. Move toPowershell Lesson 0 for deeper learning
 
 ### If You're Experienced with Terminal + Screen Reader
 
 You can:
 
-1. Jump to specific lessons you need (PS-2, PS-3, etc.)
+1. Jump to specific lessons you need (PS-2,Powershell Lesson 3, etc.)
 2. Use the Quick Reference sections
 3. Skip the practice exercises, do the quizzes to verify knowledge
 
@@ -156,7 +156,7 @@ Keep it open or printed as you work through lessons.
    cat learning.txt
    ```
 
-That's it! You've done the key concepts. Now read PS-Pre for the details.
+That's it! You've done the key concepts. Now readPowershell Lesson Pre for the details.
 
 ## Common Questions Before Starting
 
@@ -214,15 +214,15 @@ A: Absolutely. Near the end of the 3dMake curriculum, you'll use PowerShell to:
 
 Week 1:
 - Day 1: Read Screen Reader Accessibility Guide
-- Day 2: PS-Pre lesson
-- Day 3: PS-0 lesson
-- Day 4: Practice PS-0 and PS-1 exercises
-- Day 5: PS-1 lesson
+- Day 2:Powershell Lesson Pre lesson
+- Day 3:Powershell Lesson 0 lesson
+- Day 4: PracticePowershell Lesson 0 andPowershell Lesson 1 exercises
+- Day 5:Powershell Lesson 1 lesson
 
 Week 2:
-- Review PS-0 and PS-1 quizzes
+- ReviewPowershell Lesson 0 andPowershell Lesson 1 quizzes
 - Practice navigation exercises daily
-- Do extension problems for PS-0 and PS-1
+- Do extension problems forPowershell Lesson 0 andPowershell Lesson 1
 - Feel confident with file system navigation
 
 Goal: Know how to navigate to any folder, list its contents, and understand paths.
@@ -230,17 +230,17 @@ Goal: Know how to navigate to any folder, list its contents, and understand path
 ### Intermediate Goal (Weeks 3-5)
 
 Week 3:
-- PS-2 lesson (file manipulation)
+-Powershell Lesson 2 lesson (file manipulation)
 - Complete exercises
 - Take quiz
 
 Week 4:
-- PS-3 lesson (piping and output)
+-Powershell Lesson 3 lesson (piping and output)
 - Complete exercises
 - Take quiz
 
 Week 5:
-- PS-4 and PS-5 lessons
+-Powershell Lesson 4 andPowershell Lesson 5 lessons
 - Complete all quizzes
 - Practice combining commands
 
@@ -255,25 +255,25 @@ Goal: Create, modify, and move files. Combine commands for complex tasks.
 
 ## Success Criteria
 
-### By the End of PS-1, You Should:
+### By the End ofPowershell Lesson 1, You Should:
 
 - [ ] Know where you are at all times (`pwd`)
 - [ ] See what's around you (`ls -n`)
 - [ ] Navigate confidently with your screen reader
 - [ ] Use Tab completion comfortably
 - [ ] Understand absolute and relative paths
-- [ ] Pass the PS-0 and PS-1 quizzes
+- [ ] Pass thePowershell Lesson 0 andPowershell Lesson 1 quizzes
 
-### By the End of PS-3, You Should:
+### By the End ofPowershell Lesson 3, You Should:
 
 - [ ] Create and delete files and folders
 - [ ] Copy and move files
 - [ ] Redirect output to files
 - [ ] Pipe commands together
 - [ ] Save long outputs to readable files
-- [ ] Pass all quizzes PS-0 through PS-3
+- [ ] Pass all quizzesPowershell Lesson 0 throughPowershell Lesson 3
 
-### By the End of PS-5, You Should:
+### By the End ofPowershell Lesson 5, You Should:
 
 - [ ] Use command history effectively
 - [ ] Create aliases and functions
@@ -359,7 +359,7 @@ If you're stuck:
    - Press Ctrl+C to stop it
 
 5. Completely confused?
-   - Go back to PS-Pre and start over
+   - Go back toPowershell Lesson Pre and start over
    - Work through every single exercise slowly
    - Ask for help (ask an instructor or peer)
 
@@ -379,7 +379,7 @@ If you're stuck:
 
 ### 3D Printing Integration
 - OpenSCAD Scripting: See 3dMake lessons in this curriculum
-- Batch Processing: See PS-3 and PS-5 for real examples
+- Batch Processing: SeePowershell Lesson 3 andPowershell Lesson 5 for real examples
 
 ## Getting Help
 
@@ -404,7 +404,7 @@ This helps others help you quickly.
 ## Next Steps
 
 1. Right now: Read the Screen Reader Accessibility Guide completely
-2. Next session: Start PS-Pre and do all exercises
+2. Next session: StartPowershell Lesson Pre and do all exercises
 3. Keep going: One lesson per day/week at your pace
 4. Practice: Do exercises, not just read
 5. Check yourself: Take the quizzes honestly
@@ -414,7 +414,7 @@ This helps others help you quickly.
 
 Learning to use PowerShell with a screen reader is absolutely achievable. Many people do it successfully. This curriculum was designed based on real experiences of screen reader users.
 
-You've got this. Start with PS-Pre, take it slow, do the exercises, and ask questions when stuck.
+You've got this. Start withPowershell Lesson Pre, take it slow, do the exercises, and ask questions when stuck.
 
 Welcome to the PowerShell community!
 
@@ -423,13 +423,13 @@ Welcome to the PowerShell community!
 ```
 START HERE v
 +---- Screen Reader Accessibility Guide (reference throughout)
-+---- PS-Pre: Your First Terminal (absolute beginner entry point)
-+---- PS-0: Getting Started (paths & navigation foundations)
-+---- PS-1: Navigation (comfortable moving around)
-+---- PS-2: File & Folder Manipulation (create/move/delete)
-+---- PS-3: Input, Output & Piping (chain commands)
-+---- PS-4: Environment Variables & Aliases (automation)
-+---- PS-5: Filling in the Gaps (profiles & history)
++----Powershell Lesson Pre: Your First Terminal (absolute beginner entry point)
++----Powershell Lesson 0: Getting Started (paths & navigation foundations)
++----Powershell Lesson 1: Navigation (comfortable moving around)
++----Powershell Lesson 2: File & Folder Manipulation (create/move/delete)
++----Powershell Lesson 3: Input, Output & Piping (chain commands)
++----Powershell Lesson 4: Environment Variables & Aliases (automation)
++----Powershell Lesson 5: Filling in the Gaps (profiles & history)
 +---- PS_Unit_Test (comprehensive practice & assessment)
         v
     NEXT: 3D Printing Integration Lessons
@@ -439,7 +439,7 @@ START HERE v
 
 Questions? Feedback? Stuck? Refer back to this page and the Screen Reader Accessibility Guide. You've got everything you need.
 
-Now open PS-Pre and let's get started!
+Now openPowershell Lesson Pre and let's get started!
 
 
 Other Screen Readers

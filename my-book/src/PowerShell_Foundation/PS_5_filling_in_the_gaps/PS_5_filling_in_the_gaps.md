@@ -1,4 +1,4 @@
-# PS-5: Filling in the Gaps - Control Flow, Profiles, and Useful Tricks  {#powershell_foundation_ps_5_filling_in_the_gaps-ps_5_filling_in_the_gaps}
+# Powershell Lesson 5: Filling in the Gaps - Control Flow, Profiles, and Useful Tricks  {# Powershell_foundation_ps_5_filling_in_the_gaps-ps_5_filling_in_the_gaps}
 
 Estimated time: 30-45 minutes
 
@@ -38,7 +38,7 @@ Checkpoints
 12. Design a profile initialization strategy that separates utilities for different projects; explain how you would switch between them.
 13. Walk through a troubleshooting workflow: your screen reader stops announcing output after running a long command. What steps would you take to diagnose and resolve the issue?
 14. Create a safety checkpoint system: before any destructive operation (mass delete, overwrite), how would you use profile functions and history to verify the command is correct?
-15. Develop a comprehensive capstone scenario: integrate everything from PS-0 through PS-5 (navigation, file operations, piping, environment setup, history) to design an automated 3D printing project workflow with error handling and logging.
+15. Develop a comprehensive capstone scenario: integrate everything fromPowershell Lesson 0 throughPowershell Lesson 5 (navigation, file operations, piping, environment setup, history) to design an automated 3D printing project workflow with error handling and logging.
 
 ## Extension Problems
 1. Add an alias and an environment variable change to your profile and document the behavior after reopening PowerShell.

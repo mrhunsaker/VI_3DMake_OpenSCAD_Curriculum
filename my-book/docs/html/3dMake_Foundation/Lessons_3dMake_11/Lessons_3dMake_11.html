@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-16a773af.js";
+            window.path_to_searchindex_js = "../../searchindex-bc1ab470.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-a7b67ace.js"></script>
+        <script src="../../toc-47d6622c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -228,7 +228,7 @@
 <li>Use calipers to measure and validate printed parts against specifications</li>
 <li>Diagnose and fix non-manifold geometry errors</li>
 <li>Perform tolerance stack-up analysis</li>
-<li>Use <code>3dm describe</code> for non-visual validation</li>
+<li>Use <code>3dm info</code> for non-visual validation</li>
 </ul>
 <h2 id="materials"><a class="header" href="#materials">Materials</a></h2>
 <ul>
@@ -315,8 +315,8 @@ translate([0, 0, key_h/2 - 0.8])
     text(label_text, size=8, font="Liberation Sans:style=Bold",
          halign="center", valign="center", $fn=4);
 </code></pre>
-<h3 id="b2--validate-with-3dm-describe"><a class="header" href="#b2--validate-with-3dm-describe">B2 — Validate with 3dm describe</a></h3>
-<pre><code class="language-bash">3dm describe
+<h3 id="b2--validate-with-3dm-info"><a class="header" href="#b2--validate-with-3dm-info">B2 — Validate with 3dm info</a></h3>
+<pre><code class="language-bash">3dm info
 </code></pre>
 <p>Expected output should confirm the keycap geometry. Document what the AI description says and compare it to your design intent.</p>
 <h3 id="b3--print-and-test"><a class="header" href="#b3--print-and-test">B3 — Print and Test</a></h3>
@@ -353,7 +353,7 @@ cube([20.001, 20, 10]);
 translate([20, 0, 0]) cube([20, 20, 10]);
 </code></pre>
 <p>Diagnosis tool:</p>
-<pre><code class="language-bash">3dm describe  # AI will often flag non-manifold geometry
+<pre><code class="language-bash">3dm info  # AI will often flag non-manifold geometry
 # Also open STL in slicer and enable "Check for geometry errors"
 </code></pre>
 <h3 id="c3--advanced-geometry-hull-and-minkowski"><a class="header" href="#c3--advanced-geometry-hull-and-minkowski">C3 — Advanced Geometry: hull() and minkowski()</a></h3>
@@ -386,7 +386,7 @@ rounded_hull();
 <li>What is tolerance stack-up, and why does it matter for multi-part assemblies?</li>
 <li>What causes non-manifold geometry in OpenSCAD, and how do you detect it?</li>
 <li>How does <code>hull()</code> differ from <code>union()</code>?</li>
-<li>What does <code>3dm describe</code> help you verify about your model?</li>
+<li>What does <code>3dm info</code> help you verify about your model?</li>
 <li>What does a Cherry MX stem measure in diameter, and what clearance would you add for a slip-fit keycap?</li>
 <li>True or False: <code>find -newer</code> is an event-driven file change detection method.</li>
 <li>If three parts each have ±0.15 mm tolerance, what is the worst-case total error for a three-part stack?</li>
@@ -396,7 +396,7 @@ rounded_hull();
 <li>What does <code>resize([50, 0, 0])</code> do, and why might <code>resize()</code> behave unexpectedly for non-uniform scaling?</li>
 <li>When measuring a printed part with calipers, what is the difference between an inside measurement and an outside measurement, and when does that distinction matter for tolerance analysis?</li>
 <li>Describe the iterative design workflow for dialing in press-fit tolerances: what do you print, what do you measure, and how do you adjust?</li>
-<li>If <code>3dm describe</code> reports “the model appears non-manifold,” what are three possible causes you would investigate in your OpenSCAD code?</li>
+<li>If <code>3dm info</code> reports “the model appears non-manifold,” what are three possible causes you would investigate in your OpenSCAD code?</li>
 </ol>
 <h2 id="extension-problems-15"><a class="header" href="#extension-problems-15">Extension Problems (15)</a></h2>
 <ol>
@@ -433,7 +433,7 @@ rounded_hull();
 <p>Digital Calipers Measurement Technique — General metrology reference. See also: <a href="../../assets/3dMake_Foundation/measurement_worksheet.html">Measurement Worksheet Asset</a> <a href="#fr-2-1">↩</a></p>
 </li>
 <li id="footnote-3">
-<p>3DMake GitHub Repository — Command reference including <code>3dm describe</code>. <a href="https://github.com/tdeck/3dmake">https://github.com/tdeck/3dmake</a> <a href="#fr-3-1">↩</a></p>
+<p>3DMake GitHub Repository — Command reference including <code>3dm info</code>. <a href="https://github.com/tdeck/3dmake">https://github.com/tdeck/3dmake</a> <a href="#fr-3-1">↩</a></p>
 </li>
 </ol>
 

@@ -1,7 +1,7 @@
-# CMD-1: Navigation - Moving Around Your File System {#cmd_foundation_cmd_1_navigation-cmd_1_navigation}
+# Command Line Lesson 1: Navigation - Moving Around Your File System {#cmd_foundation_cmd_1_navigation-cmd_1_navigation}
 
 **Duration:** 1.5-2 hours (for screen reader users)  
-**Prerequisites:** CMD-Pre and CMD-0  
+**Prerequisites:** Command Line Lesson Pre and Command Line Lesson 0  
 **Learning Objectives:**
 
 - Navigate confidently to any folder location
@@ -227,7 +227,7 @@ Run `cd` at each level. Then navigate back up using only `cd ..`.
 
 ## Checkpoint Questions
 
-Answer all 10 before moving to CMD-2:
+Answer all 10 before moving to Command Line Lesson 2:
 
 1. What is the difference between `cd Documents` and `cd \`?
 2. What does `cd ..` do?
@@ -299,5 +299,5 @@ dir /B /A:F                :: List only files
 
 ## Next Steps
 
-Complete all exercises, pass the checkpoint questions, then move to **CMD-2: File & Folder Manipulation**.
+Complete all exercises, pass the checkpoint questions, then move to **Command Line Lesson 2: File & Folder Manipulation**.
 

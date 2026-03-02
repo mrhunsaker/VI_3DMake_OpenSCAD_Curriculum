@@ -1,1 +1,1 @@
-# GitBash-4: Environment Variables &amp; Aliases
+# Bash Lesson 4: Environment Variables &amp; Aliases

@@ -1,3 +1,309 @@
+# Lesson 8 — Advanced Parametric Design and Interlocking Features
+*[CORRECTED — March 2026 Curriculum Revision]*
+
+---
+
+## Learning Objectives
+
+By the end of this lesson you will be able to:
+
+- Design press-fit and slip-fit joints using printer-specific tolerance values
+- Print and use a tolerance test coupon to measure your printer's actual tolerances
+- Adjust snap-fit cantilever arm geometry for different materials
+- Design dovetail slides and friction-fit features
+- Apply tolerance testing systematically as part of your design workflow
+
+---
+
+## Step 1 — Why Tolerance Matters
+
+A 10mm hole in OpenSCAD does **not** produce a 10mm hole in the print. Fused Deposition Modeling (FDM) printers extrude plastic that:
+
+- Slightly overflows (expands laterally) on inner walls → holes come out **smaller** than designed
+- Shrinks slightly as it cools → outer dimensions come out slightly **smaller** than designed
+
+The gap you must add to a design to make parts fit together is the **clearance**. It varies by:
+- Printer and extrusion calibration
+- Nozzle diameter and layer height
+- Material (each filament shrinks differently)
+- Part orientation on the build plate
+
+**You cannot know your clearance without printing a test coupon.** This lesson provides one.
+
+---
+
+## Step 2 — Tolerance Test Coupon (Print This Before Any Mating Design)
+
+Print the following coupon before designing any part that must fit with another. It tests 5 clearance values in one print.
+
+```openscad
+// Tolerance Test Coupon
+// Tests 5 different clearance values simultaneously
+// Print both rows on the same plate — then try each peg in the socket
+
+// Parameters — match these to your design's nominal dimensions
+nominal    = 10;   // nominal peg/hole diameter in mm
+test_h     = 8;    // peg and socket height in mm
+plate_t    = 3;    // socket plate thickness in mm
+socket_d_outer = nominal + 8;  // outer diameter of socket ring
+
+clearances = [0.0, 0.1, 0.2, 0.3, 0.4];   // mm — clearances to test
+
+// ─── Modules ───────────────────────────────────────────────────────────────
+
+module test_peg(clearance) {
+  peg_d = nominal - clearance;  // peg is SMALLER than nominal by the clearance
+  color("SteelBlue")
+    cylinder(d=peg_d, h=test_h, $fn=32);
+}
+
+module test_socket() {
+  // Socket always uses nominal diameter — peg clearance determines fit
+  color("Coral")
+  difference() {
+    cylinder(d=socket_d_outer, h=plate_t, $fn=32);
+    // Apply 0.001 rule to inner cutout
+    translate([0, 0, -0.001])
+      cylinder(d=nominal, h=plate_t + 0.002, $fn=32);
+  }
+}
+
+module clearance_label(clearance) {
+  // Label showing the clearance value below each peg
+  translate([0, -(nominal/2 + 5), 0])
+    linear_extrude(1)
+      text(str(clearance, "mm"),
+           size=2.5, font="Liberation Sans", halign="center", $fn=4);
+}
+
+// ─── Layout ─────────────────────────────────────────────────────────────────
+
+// Row 1: Pegs (top row)
+for (i = [0 : len(clearances) - 1]) {
+  translate([i * (socket_d_outer + 4), 0, 0]) {
+    test_peg(clearances[i]);
+    clearance_label(clearances[i]);
+  }
+}
+
+// Row 2: Sockets (bottom row — all identical since socket is nominal)
+translate([0, -(socket_d_outer + 8), 0])
+  for (i = [0 : len(clearances) - 1]) {
+    translate([i * (socket_d_outer + 4), 0, 0])
+      test_socket();
+  }
+
+// Instructions plate
+translate([0, -(socket_d_outer * 2 + 20), 0])
+  linear_extrude(1)
+    text("Try each TOP peg in the BOTTOM socket. Find the tightest that fits.",
+         size=2.5, font="Liberation Sans", $fn=4);
+```
+
+**How to Use the Test Coupon:**
+
+| Fit type              | Method                                                         | Result                |
+|-----------------------|----------------------------------------------------------------|-----------------------|
+| Press-fit (permanent) | Tightest peg that enters socket with firm thumb pressure       | Record this clearance |
+| Slip-fit (removable)  | Loosest peg that doesn't rattle in the socket                  | Record this clearance |
+| Snap-fit              | Use press-fit clearance; the snap mechanism adds holding force | Use press-fit value   |
+| Bearing/hinge         | Loosest peg that still turns smoothly                          | Use slip-fit +0.05mm  |
+
+**Record your values** (example log):
+```
+Printer:   Prusa MK4
+Material:  PLA (Prusament)
+Date:      2026-03-01
+Nozzle:    0.4mm
+Layer h:   0.2mm
+
+Press-fit clearance: 0.2mm  (0.2mm peg fit snugly in socket)
+Slip-fit clearance:  0.3mm  (0.3mm peg rotated freely)
+
+Apply: when designing a 10mm peg to press-fit into a 10mm socket,
+       make the socket 10.2mm diameter (or keep socket nominal, make peg 9.8mm)
+```
+
+---
+
+## Step 3 — Snap-Fit Cantilever Arms
+
+A snap-fit arm is a cantilevered beam that deflects to allow a protrusion to pass, then springs back to lock. The key rule: the beam must be flexible enough to deflect without cracking.
+
+```openscad
+// Snap-fit cantilever arm
+// beam_l = arm length (longer = more flexible)
+// beam_t = arm thickness (thinner = more flexible)
+// beam_w = arm width (does not affect flexibility significantly)
+// hook_h = height of the locking protrusion
+// hook_angle = angle of the entry ramp (gentle = easier to snap in)
+
+module snap_arm(beam_l=20, beam_t=1.8, beam_w=8, hook_h=1.2, hook_angle=30,
+                material="PLA") {
+
+  // Material-specific flexibility recommendations
+  max_ratio = (material == "TPU")  ? 0.25 :
+              (material == "PETG") ? 0.18 :
+              (material == "Nylon")? 0.20 :
+              (material == "ABS")  ? 0.12 :
+              0.15;  // default PLA
+
+  ratio = beam_t / beam_l;
+
+  assert(ratio <= max_ratio,
+    str("snap_arm: beam_t/beam_l ratio (", ratio,
+        ") exceeds max for ", material, " (", max_ratio,
+        "). Try beam_t ≤ ", floor(beam_l * max_ratio * 10) / 10, "mm."));
+
+  union() {
+    // The cantilever beam
+    cube([beam_w, beam_l, beam_t]);
+
+    // The locking hook at the tip
+    translate([0, beam_l, 0])
+    union() {
+      // Ramp (angled entry surface)
+      rotate([0, -hook_angle, 0])  // tilt the hook forward
+        translate([0, 0, 0])
+          cube([beam_w, 2, hook_h]);
+      // Vertical face (locking wall)
+      translate([0, 0, beam_t])
+        cube([beam_w, 2, hook_h]);
+    }
+  }
+}
+
+// Material-Specific Snap-Fit Adjustment Table:
+// PLA:   ratio < 0.15  | Standard — good stiffness, limited flex cycles
+// PETG:  ratio < 0.18  | More resilient — handles repeated snapping well
+// TPU:   ratio < 0.25  | Very flexible — thick arms still work; great for soft-touch clips
+// ABS:   ratio < 0.12  | More brittle at layer boundaries — use shorter, thicker arms
+// Nylon: ratio < 0.20  | Best fatigue resistance — ideal for high-cycle snap fits
+
+// Test with default PLA settings
+snap_arm(beam_l=20, beam_t=1.8, beam_w=8, hook_h=1.5, material="PLA");
+
+// Test with PETG — can use a slightly thicker beam
+translate([15, 0, 0])
+snap_arm(beam_l=20, beam_t=2.2, beam_w=8, hook_h=1.5, material="PETG");
+```
+
+---
+
+## Step 4 — Dovetail Slide Joint
+
+A dovetail is a sliding joint where a trapezoidal protrusion fits into a trapezoidal slot, preventing separation except in one direction.
+
+```openscad
+// Dovetail slide — male and female components
+
+// Parameters
+dt_l     = 50;   // length of the dovetail
+dt_w_top = 8;    // top width of the dovetail (narrow side)
+dt_w_bot = 12;   // bottom width (wide side — wider = stronger lock)
+dt_h     = 5;    // height of the dovetail
+clearance = 0.2; // fit clearance (use your test coupon value)
+
+module dovetail_male(l=dt_l, w_top=dt_w_top, w_bot=dt_w_bot, h=dt_h) {
+  profile = [
+    [-w_bot/2, 0],
+    [ w_bot/2, 0],
+    [ w_top/2, h],
+    [-w_top/2, h]
+  ];
+  rotate([90, 0, 0])  // extrude along Y axis
+    linear_extrude(l)
+      polygon(profile);
+}
+
+module dovetail_female(l=dt_l, w_top=dt_w_top, w_bot=dt_w_bot, h=dt_h, c=clearance) {
+  // Female is slightly larger on all internal faces to allow sliding
+  profile = [
+    [-(w_bot/2 + c), -0.001],
+    [  w_bot/2 + c,  -0.001],
+    [  w_top/2 + c,  h + c ],
+    [-(w_top/2 + c), h + c ]
+  ];
+  rotate([90, 0, 0])
+    linear_extrude(l + 0.002)
+      polygon(profile);
+}
+
+// Assembled demo: male protrusion on a block
+difference() {
+  cube([30, dt_l, 15]);
+  // Cut the female slot into the base
+  translate([15, -0.001, 5])
+    dovetail_female();
+}
+
+// The sliding piece with the male dovetail
+translate([40, 0, 0])
+difference() {
+  cube([30, dt_l, 10]);
+}
+translate([55, 0, 5])
+  dovetail_male();
+```
+
+---
+
+## Step 5 — Integrating Tolerance into Your Design Workflow
+
+Never hardcode tolerance values. Make them parameters so you can adjust per material or printer without changing geometry.
+
+```openscad
+// Tolerance as a top-level parameter
+// Change this one value to recalibrate all fits for a new material or printer
+
+PRESS_FIT_C = 0.2;  // press-fit clearance from your test coupon
+SLIP_FIT_C  = 0.3;  // slip-fit clearance
+SNAP_C      = PRESS_FIT_C;  // snap fits use press-fit clearance
+
+// Example: a box with a snap-fit lid
+box_w = 60;
+box_d = 40;
+box_h = 30;
+wall  = 2.5;
+lid_h = 8;
+
+module box_body() {
+  difference() {
+    cube([box_w, box_d, box_h]);
+    translate([wall, wall, wall])
+      cube([box_w - 2*wall, box_d - 2*wall, box_h]);
+    // Lid guide channel — larger than lid by SLIP_FIT_C
+    translate([-0.001, -0.001, box_h - lid_h - wall])
+      cube([box_w + 0.002, box_d + 0.002, lid_h + wall + 0.001]);
+  }
+}
+
+module lid() {
+  // Lid outer dimensions are box inner dimensions minus SLIP_FIT_C on each side
+  lid_w = box_w - 2*wall - SLIP_FIT_C * 2;
+  lid_d = box_d - 2*wall - SLIP_FIT_C * 2;
+  difference() {
+    cube([lid_w, lid_d, lid_h]);
+    translate([wall, wall, -0.001])
+      cube([lid_w - 2*wall, lid_d - 2*wall, lid_h - wall + 0.001]);
+  }
+}
+
+color("SteelBlue") box_body();
+color("Coral")
+  translate([wall + SLIP_FIT_C, wall + SLIP_FIT_C, box_h - lid_h])
+    lid();
+```
+
+---
+
+## Exercises
+
+**Exercise 8.1:** Print the tolerance test coupon. Record your press-fit and slip-fit clearance values. Update the `PRESS_FIT_C` and `SLIP_FIT_C` variables in the box assembly above with your measured values.
+
+**Exercise 8.2:** Design a snap-fit battery cover for a 60 × 40 × 20mm space, using your measured press-fit clearance and the `snap_arm()` module. The cover should snap on and off by hand.
+
+**Exercise 8.3 (Advanced):** Create a parametric box set where a `size` parameter generates small, medium, and large boxes that all use the same lid design (the lid from the small box fits the small box, medium lid fits medium, etc.). Use your measured tolerance values to set the clearances. Generate all three sizes with a bash/PowerShell loop and verify each with `3dm info`.
 # Lesson 8: Advanced Parametric Design and Interlocking Features
 
 Estimated time: 90–120 minutes

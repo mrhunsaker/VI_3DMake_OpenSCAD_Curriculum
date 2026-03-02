@@ -81,10 +81,10 @@
             const path_to_root = "../../";
             const default_light_theme = "rust";
             const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-16a773af.js";
+            window.path_to_searchindex_js = "../../searchindex-bc1ab470.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../../toc-a7b67ace.js"></script>
+        <script src="../../toc-47d6622c.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -220,11 +220,247 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="lesson-4-ai-enhanced-verification-and-multimodal-feedback"><a class="header" href="#lesson-4-ai-enhanced-verification-and-multimodal-feedback">Lesson 4: AI-Enhanced Verification and Multimodal Feedback</a></h1>
-<p>Estimated time: 90–120 minutes</p>
+                        <h1 id="lesson-4--ai-enhanced-verification-and-multimodal-feedback"><a class="header" href="#lesson-4--ai-enhanced-verification-and-multimodal-feedback">Lesson 4 — AI-Enhanced Verification and Multimodal Feedback</a></h1>
+<p><em>[CORRECTED — March 2026 Curriculum Revision]</em></p>
+<hr>
 <h2 id="learning-objectives"><a class="header" href="#learning-objectives">Learning Objectives</a></h2>
+<p>By the end of this lesson you will be able to:</p>
 <ul>
-<li>Use <code>3dm describe</code> to generate AI-assisted descriptions of STL geometry</li>
+<li>Use <code>3dm info</code> effectively and know what to do when it fails</li>
+<li>Verify AI-generated OpenSCAD code systematically before printing</li>
+<li>Build a personal verification chain for any critical design feature</li>
+<li>Use <code>3dm preview</code> and slicer layer view as fallback verification methods</li>
+<li>Apply AI description to accessibility workflows for visually impaired makers</li>
+</ul>
+<hr>
+<h2 id="step-1--using-3dm-info"><a class="header" href="#step-1--using-3dm-info">Step 1 — Using <code>3dm info</code></a></h2>
+<p><code>3dm info</code> sends your built STL to an AI vision model and returns a natural-language description of the geometry.</p>
+<pre><code class="language-bash"># Basic usage — Linux/macOS
+3dm build
+3dm info
+
+# With a specific view angle
+3dm info --view front
+3dm info --view top
+3dm info --view isometric
+
+# Save the description to a file for review
+3dm info --output description.txt
+
+# Windows PowerShell
+3dm build
+3dm info | Out-File -FilePath description.txt -Encoding UTF8
+
+# Windows CMD
+3dm build
+3dm info &gt; description.txt
+</code></pre>
+<p><strong>What <code>3dm info</code> does well:</strong></p>
+<ul>
+<li>Identifying overall shape (box, cylinder, curved surface)</li>
+<li>Counting distinct parts in a colored assembly</li>
+<li>Describing relative positions of components</li>
+<li>Confirming presence of holes, slots, and cutouts</li>
+</ul>
+<p><strong>What <code>3dm info</code> does poorly:</strong></p>
+<ul>
+<li>Precise dimensional measurements (it is not a caliper)</li>
+<li>Distinguishing very similar shapes (two similar cylinders, thin walls)</li>
+<li>Complex interiors that are not visible from outside</li>
+<li>Geometry with very fine detail smaller than ~1mm</li>
+</ul>
+<hr>
+<h2 id="step-2--when-3dm-info-is-not-useful"><a class="header" href="#step-2--when-3dm-info-is-not-useful">Step 2 — When <code>3dm info</code> Is Not Useful</a></h2>
+<p>AI geometry descriptions can be vague, wrong, or generic. When you receive a response like <em>“The model appears to be a complex 3D shape with multiple features”</em>, use this escalation path:</p>
+<p><strong>Fallback Verification Chain (in order of reliability):</strong></p>
+<p><strong>1. <code>3dm info</code> — always accurate</strong></p>
+<pre><code class="language-bash">3dm info
+# Bounding Box: 50.0 x 40.0 x 30.0 mm
+# Volume:       18000 mm³
+</code></pre>
+<p>The bounding box and volume are computed deterministically from the mesh — they cannot be wrong if the build succeeded.</p>
+<p><strong>2. Slicer layer preview</strong>
+Open <code>build/main.stl</code> in your slicer (Cura, PrusaSlicer, etc.) and navigate layer by layer. Screen readers can announce layer numbers; each layer shows a cross-section of the geometry.</p>
+<pre><code class="language-bash"># Generate a layer-by-layer preview using 3dm (if supported)
+3dm preview slice --layer-count
+
+# Windows PowerShell
+3dm preview slice --layer-count | Out-File -FilePath slice_report.txt -Encoding UTF8
+
+# Windows CMD
+3dm preview slice --layer-count &gt; slice_report.txt
+</code></pre>
+<p><strong>3. Isolate and describe a single module</strong>
+If your full model is too complex to describe accurately, build one module at a time:</p>
+<pre><code class="language-bash"># Temporarily add to your .scad file:
+# module_name_here();  // comment out everything else
+3dm build
+3dm info
+</code></pre>
+<p><strong>4. Physical measurement</strong>
+For tolerance-critical features, print a test coupon (see Lesson 8) and measure with digital calipers. Physical measurement is the ground truth.</p>
+<hr>
+<h2 id="step-3--documentation-pattern-for-verification"><a class="header" href="#step-3--documentation-pattern-for-verification">Step 3 — Documentation Pattern for Verification</a></h2>
+<p>When you verify a critical design feature, write down <em>which method</em> confirmed it. This is your design audit trail.</p>
+<pre><code>DESIGN VERIFICATION LOG — phone_stand_v2.scad
+Date: 2026-03-01
+
+Feature: USB-C slot width
+  Designed: 9.5mm wide × 3.5mm tall
+  Verified by: 3dm info bounding box of isolated slot module → 9.5 × 3.5 confirmed ✓
+  AI description: "rectangular cutout, approximately 10mm wide" (approximate only)
+  Physical: measured with calipers after first test print → 9.4mm (within 0.1mm tolerance) ✓
+
+Feature: Mounting feet height
+  Designed: 2.0mm
+  Verified by: 3dm info of isolated foot module → 2.0mm ✓
+  AI description: vague ("small protrusion")
+  Physical: not yet printed
+</code></pre>
+<hr>
+<h2 id="step-4--using-ai-to-generate-openscad-code"><a class="header" href="#step-4--using-ai-to-generate-openscad-code">Step 4 — Using AI to Generate OpenSCAD Code</a></h2>
+<p>AI tools (ChatGPT, Claude, Copilot) can write OpenSCAD code from a text description. This accelerates development but introduces a verification requirement: <strong>AI-generated geometry code is frequently subtly wrong</strong>.</p>
+<p>The most common AI errors in OpenSCAD:</p>
+<ul>
+<li>Forgetting the 0.001 co-planar rule in <code>difference()</code></li>
+<li>Using Python-style variable reassignment (doesn’t work in OpenSCAD)</li>
+<li>Getting transform order wrong (see Lesson 7)</li>
+<li>Producing non-manifold geometry that looks correct but fails the slicer</li>
+</ul>
+<p><strong>AI Code Generation Verification Checklist:</strong></p>
+<pre><code>AI-GENERATED CODE VERIFICATION CHECKLIST
+Run each check in order. Stop if any check fails and fix before proceeding.
+
+[ ] 1. SYNTAX     Does it build without errors?
+        3dm build   ← no red errors in console
+
+[ ] 2. DIMENSIONS Does the bounding box match your intent?
+        3dm info    ← check width × depth × height
+
+[ ] 3. BOOLEAN    Does every difference() use the 0.001 offset rule?
+        Search the code for: translate([*, *, 0])  inside difference()
+        Should be:           translate([*, *, -0.001])
+
+[ ] 4. PARAMETERS Does changing each parameter produce expected results?
+        Test min values, max values, and zero edge cases
+
+[ ] 5. MANIFOLD   Does the slicer accept it without warnings?
+        Open build/main.stl in PrusaSlicer or Cura
+        Check for "non-manifold" or "open shells" warnings
+
+[ ] 6. ASSEMBLY   If multi-part: do components fit together in slicer?
+        Import all parts; check for collisions and gaps
+</code></pre>
+<hr>
+<h2 id="step-5--batch-verification-across-parameter-variants"><a class="header" href="#step-5--batch-verification-across-parameter-variants">Step 5 — Batch Verification Across Parameter Variants</a></h2>
+<p>When you have a parametric model, verify it at the extremes of its parameter range — not just the default values. A model can be valid at <code>width=30</code> but invalid at <code>width=5</code>.</p>
+<h3 id="linux--macos-bash"><a class="header" href="#linux--macos-bash">Linux / macOS (bash)</a></h3>
+<pre><code class="language-bash">#!/bin/bash
+# batch_verify.sh — build and check bounding box for multiple parameter sets
+
+set -e
+LOG="build/verify_log.txt"
+&gt; "$LOG"  # clear log
+
+verify_build() {
+  local params="$1"
+  local desc="$2"
+  echo "Testing: $desc" | tee -a "$LOG"
+
+  # Build with parameters
+  if openscad $params -o /tmp/test_verify.stl src/main.scad 2&gt;&gt;/tmp/build_err.txt; then
+    info=$(3dm info --file /tmp/test_verify.stl 2&gt;/dev/null || echo "info failed")
+    echo "  OK: $info" | tee -a "$LOG"
+  else
+    echo "  FAILED — see /tmp/build_err.txt" | tee -a "$LOG"
+  fi
+}
+
+verify_build '-D "width=10" -D "height=5"'   "minimum size"
+verify_build '-D "width=30" -D "height=10"'  "default size"
+verify_build '-D "width=80" -D "height=25"'  "maximum size"
+
+echo ""
+echo "Full log: $LOG"
+</code></pre>
+<h3 id="windows-powershell"><a class="header" href="#windows-powershell">Windows (PowerShell)</a></h3>
+<pre><code class="language-powershell"># batch_verify.ps1 — build and verify parameter variants
+
+$logFile = "build\verify_log.txt"
+New-Item -Force -Path $logFile -ItemType File | Out-Null
+
+function Test-Build($params, $description) {
+    Write-Host "Testing: $description"
+    Add-Content $logFile "Testing: $description"
+
+    $argList = $params + @("-o", "build\test_verify.stl", "src\main.scad")
+    $result = &amp; openscad @argList 2&gt;&amp;1
+
+    if ($LASTEXITCODE -eq 0) {
+        $info = &amp; 3dm info --file "build\test_verify.stl" 2&gt;&amp;1
+        $msg = "  OK: $info"
+    } else {
+        $msg = "  FAILED"
+    }
+
+    Write-Host $msg
+    Add-Content $logFile $msg
+}
+
+Test-Build @("-D", "width=10", "-D", "height=5")  "minimum size"
+Test-Build @("-D", "width=30", "-D", "height=10") "default size"
+Test-Build @("-D", "width=80", "-D", "height=25") "maximum size"
+
+Write-Host "Full log: $logFile"
+</code></pre>
+<h3 id="windows-cmd"><a class="header" href="#windows-cmd">Windows (CMD)</a></h3>
+<pre><code class="language-cmd">@echo off
+REM batch_verify.cmd — simple parameter variant check (use PowerShell for full features)
+
+echo Testing minimum size...
+openscad -D "width=10" -D "height=5" -o build\test_min.stl src\main.scad
+if %ERRORLEVEL% EQU 0 (echo   OK) else (echo   FAILED)
+
+echo Testing default size...
+openscad -D "width=30" -D "height=10" -o build\test_default.stl src\main.scad
+if %ERRORLEVEL% EQU 0 (echo   OK) else (echo   FAILED)
+
+echo Testing maximum size...
+openscad -D "width=80" -D "height=25" -o build\test_max.stl src\main.scad
+if %ERRORLEVEL% EQU 0 (echo   OK) else (echo   FAILED)
+</code></pre>
+<hr>
+<h2 id="step-6--advanced-encoding-design-intent-as-assert-guards"><a class="header" href="#step-6--advanced-encoding-design-intent-as-assert-guards">Step 6 — Advanced: Encoding Design Intent as <code>assert()</code> Guards</a></h2>
+<p>When using AI-generated code, add <code>assert()</code> guards at the top of your file to encode your design intent. If a future code change violates the intent, rendering halts with a message.</p>
+<pre><code class="language-openscad">// Design intent guards — run at parse time, before any geometry
+width  = 30;
+height = 10;
+wall_t = 2;
+
+// These asserts define and enforce design constraints:
+assert(width  &gt;= 10,  str("width must be &gt;= 10mm for structural integrity, got: ", width));
+assert(height &gt;= 5,   str("height must be &gt;= 5mm, got: ", height));
+assert(wall_t &gt;= 1.5, str("wall_t must be &gt;= 1.5mm to print reliably, got: ", wall_t));
+assert(wall_t &lt; width / 2,
+  str("wall_t (", wall_t, ") must be less than half of width (", width/2, ")"));
+
+// Now the geometry — guaranteed to be within valid bounds
+difference() {
+  cube([width, width, height]);
+  translate([wall_t, wall_t, -0.001])
+    cube([width - 2*wall_t, width - 2*wall_t, height + 0.002]);
+}
+</code></pre>
+<hr>
+<h2 id="exercises"><a class="header" href="#exercises">Exercises</a></h2>
+<p><strong>Exercise 4.1:</strong> Build your phone stand from Lesson 3. Run <code>3dm info</code> from multiple angles (<code>--view front</code>, <code>--view top</code>, <code>--view isometric</code>). Write a verification log documenting which features you could and couldn’t confirm.</p>
+<p><strong>Exercise 4.2:</strong> Ask an AI tool to generate OpenSCAD code for a simple parametric box with a lid. Apply the AI Code Generation Verification Checklist to the result. Document every error you find.</p>
+<p><strong>Exercise 4.3 (Advanced):</strong> Write a bash/PowerShell script that tests your phone stand at 5 different <code>angle</code> parameter values (30°, 45°, 60°, 75°, 90°) and logs the bounding box for each. Confirm that the bounding box height increases as angle increases.</p>
+<h1 id="lesson-4--ai-enhanced-verification-and-multimodal-feedback-1"><a class="header" href="#lesson-4--ai-enhanced-verification-and-multimodal-feedback-1">Lesson 4 — AI-Enhanced Verification and Multimodal Feedback</a></h1>
+<p>Estimated time: 90–120 minutes</p>
+<h2 id="learning-objectives-1"><a class="header" href="#learning-objectives-1">Learning Objectives</a></h2>
+<ul>
+<li>Use <code>3dm info</code> to generate AI-assisted descriptions of STL geometry</li>
 <li>Understand deterministic vs. AI-assisted validation</li>
 <li>Apply prompt engineering techniques for design feedback</li>
 <li>Recognize when to trust, question, or reject AI suggestions</li>
@@ -237,9 +473,9 @@
 <li>Optional: AI chat interface (Claude, ChatGPT, or similar)</li>
 </ul>
 <h2 id="step-by-step-tasks"><a class="header" href="#step-by-step-tasks">Step-by-step Tasks</a></h2>
-<h3 id="1-run-3dm-describe-on-your-current-model"><a class="header" href="#1-run-3dm-describe-on-your-current-model">1. Run 3dm describe on Your Current Model</a></h3>
-<p><code>3dm describe</code> sends your STL to an AI service and returns a natural-language description of the geometry. This is especially useful for non-visual validation.</p>
-<pre><code class="language-bash">3dm describe
+<h3 id="1-run-3dm-info-on-your-current-model"><a class="header" href="#1-run-3dm-info-on-your-current-model">1. Run 3dm info on Your Current Model</a></h3>
+<p><code>3dm info</code> sends your STL to an AI service and returns a natural-language description of the geometry. This is especially useful for non-visual validation.</p>
+<pre><code class="language-bash">3dm info
 </code></pre>
 <p>Expected output (example):</p>
 <pre><code>Model: build/main.stl
@@ -256,12 +492,12 @@ Suggested print orientation: flat on the largest face.
 </thead>
 <tbody>
 <tr><td>Slicer validation</td><td>Manifold geometry, wall thickness, overhang angles</td><td>Deterministic — same result every run</td></tr>
-<tr><td><code>3dm describe</code> (AI)</td><td>Human-readable shape description, print orientation suggestions</td><td>Non-deterministic — may vary slightly between runs</td></tr>
+<tr><td><code>3dm info</code> (AI)</td><td>Human-readable shape description, print orientation suggestions</td><td>Non-deterministic — may vary slightly between runs</td></tr>
 <tr><td>Manual calipers</td><td>Printed part dimensions</td><td>Ground truth</td></tr>
 </tbody>
 </table>
 </div>
-<p>AI-assisted tools like <code>3dm describe</code> are useful for generating first-pass descriptions and spotting obvious issues, but they should not replace deterministic checks (slicer validation, geometry analysis).<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup></p>
+<p>AI-assisted tools like <code>3dm info</code> are useful for generating first-pass descriptions and spotting obvious issues, but they should not replace deterministic checks (slicer validation, geometry analysis).<sup class="footnote-reference" id="fr-1-1"><a href="#footnote-1">1</a></sup></p>
 <h3 id="3-craft-effective-verification-prompts"><a class="header" href="#3-craft-effective-verification-prompts">3. Craft Effective Verification Prompts</a></h3>
 <p>When using an AI assistant (Claude, GPT, etc.) to review OpenSCAD code, prompt quality determines output quality:</p>
 <p><strong>Weak prompt:</strong></p>
@@ -295,9 +531,9 @@ Conclusion: AI was wrong. Apply human domain knowledge.
 <ul>
 <li><strong>Don’t upload proprietary designs</strong> to free-tier AI services without checking their data retention policies</li>
 <li><strong>Anonymize or simplify</strong> your model before requesting AI review if IP is a concern</li>
-<li><code>3dm describe</code> uses the same AI backend as configured in your 3dMake settings — check your instance’s privacy settings</li>
+<li><code>3dm info</code> uses the same AI backend as configured in your 3dMake settings — check your instance’s privacy settings</li>
 </ul>
-<p>For classroom use, <code>3dm describe</code> on non-sensitive learning projects is appropriate. For professional designs, consult your organization’s data policy.<sup class="footnote-reference" id="fr-3-1"><a href="#footnote-3">3</a></sup></p>
+<p>For classroom use, <code>3dm info</code> on non-sensitive learning projects is appropriate. For professional designs, consult your organization’s data policy.<sup class="footnote-reference" id="fr-3-1"><a href="#footnote-3">3</a></sup></p>
 <h3 id="checkpoint"><a class="header" href="#checkpoint">Checkpoint</a></h3>
 <ul>
 <li>After step 2: You can articulate the difference between deterministic and AI-based validation.</li>
@@ -307,7 +543,7 @@ Conclusion: AI was wrong. Apply human domain knowledge.
 <h2 id="common-ai-validation-patterns"><a class="header" href="#common-ai-validation-patterns">Common AI Validation Patterns</a></h2>
 <h3 id="pattern-1-geometry-sanity-check"><a class="header" href="#pattern-1-geometry-sanity-check">Pattern 1: Geometry Sanity Check</a></h3>
 <pre><code class="language-bash"># Ask AI to describe what it "sees" in your model
-3dm describe
+3dm info
 
 # Then compare to your design checklist:
 # - Correct overall dimensions? ✓/✗
@@ -331,18 +567,18 @@ Output format: numbered list of issues, each with severity and fix
 <pre><code>1. Write initial design
 2. Run 3dm build → fix compile errors
 3. Run slicer → fix geometry errors (deterministic)
-4. Run 3dm describe or AI review → address suggestions (with verification)
+4. Run 3dm info or AI review → address suggestions (with verification)
 5. Print test piece → compare to spec
 6. Iterate on parameters if needed
 </code></pre>
 <h2 id="quiz--lesson-3dmake4-15-questions"><a class="header" href="#quiz--lesson-3dmake4-15-questions">Quiz — Lesson 3dMake.4 (15 questions)</a></h2>
 <ol>
-<li>What does <code>3dm describe</code> do?</li>
+<li>What does <code>3dm info</code> do?</li>
 <li>What is the difference between deterministic validation and AI-based validation?</li>
 <li>Give two elements of a strong AI code review prompt that a weak prompt lacks.</li>
 <li>Why should you always verify AI suggestions before applying them? Give a specific example.</li>
 <li>What type of geometry errors does slicer validation catch that AI description does not?</li>
-<li>True or False: <code>3dm describe</code> will always produce identical output for the same STL file.</li>
+<li>True or False: <code>3dm info</code> will always produce identical output for the same STL file.</li>
 <li>What data privacy concern should you consider when uploading a design to a cloud AI service?</li>
 <li>In the iterative improvement loop described above, at which step should you run slicer validation?</li>
 <li>What does it mean for a model to be “non-deterministic” in the context of AI feedback?</li>
@@ -357,7 +593,7 @@ Output format: numbered list of issues, each with severity and fix
 <ol>
 <li>Design a validation checklist for a new 3D printed part. Include at least five items that are deterministic and three that benefit from AI assistance.</li>
 <li>Build a “prompt library” for three common design review scenarios: mounting brackets, enclosures, and text embossing. Test each prompt and document the output quality.</li>
-<li>Run <code>3dm describe</code> on the same STL five times. Document any variation in output. What does this tell you about reproducibility?</li>
+<li>Run <code>3dm info</code> on the same STL five times. Document any variation in output. What does this tell you about reproducibility?</li>
 <li>Create a structured accept/reject log for one full design cycle (design → AI review → verification → decision). Share the log with a classmate for peer review.</li>
 <li>Research what “hallucination” means in the context of AI language models. Document two examples of how an AI might hallucinate in a design review context.</li>
 <li>Design an experiment to compare AI-suggested print orientation with slicer-suggested orientation for 10 different models. Tabulate the agreement rate.</li>
@@ -374,7 +610,7 @@ Output format: numbered list of issues, each with severity and fix
 <h2 id="references-and-helpful-resources"><a class="header" href="#references-and-helpful-resources">References and Helpful Resources</a></h2>
 <h3 id="supplemental-resources"><a class="header" href="#supplemental-resources">Supplemental Resources</a></h3>
 <ul>
-<li><a href="https://github.com/tdeck/3dmake">3DMake GitHub Repository</a> — Source for <code>3dm describe</code> and other commands</li>
+<li><a href="https://github.com/tdeck/3dmake">3DMake GitHub Repository</a> — Source for <code>3dm info</code> and other commands</li>
 <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic Prompt Engineering Overview</a> — Prompting best practices</li>
 <li><a href="https://airc.nist.gov/Home">NIST AI RMF</a> — AI risk management in professional contexts</li>
 <li><a href="https://docs.prusa3d.com/en/">PrusaSlicer Documentation</a> — Deterministic slicer validation reference</li>

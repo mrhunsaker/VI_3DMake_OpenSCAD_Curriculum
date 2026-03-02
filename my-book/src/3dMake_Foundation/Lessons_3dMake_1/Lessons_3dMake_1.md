@@ -1,123 +1,288 @@
-# Lesson 1: Environmental Configuration and the Developer Workflow  
+# Lesson 1 — Environmental Configuration and the Developer Workflow
 
-Estimated time: 90-120 minutes
+---
 
 ## Learning Objectives
-- Install and verify 3dm[^1], openscad[^2], and a slicer are discoverable in the terminal
-- Initialize a 3dMake project and understand the project scaffold (`src/`, `build/`, `3dmake.toml`)
-- Edit `src/main.scad` using OpenSCAD's parametric design capabilities[^3], run `3dm build`, and inspect the generated `build/main.stl`
 
-## Materials
-- Terminal with 3dMake installed
-- Editor (VS Code or Notepad)
-- Example scaffold or classroom repository
+By the end of this lesson you will be able to:
 
-## Step-by-step Tasks
-1. Run `./3dm setup` or follow instructor's installation notes; confirm tools with `which 3dm` and `which openscad`. Verify your 3dMake installation is properly configured[^1].
-2. Create a project scaffold with `3dm new` and open `src/main.scad` using `3dm edit-model`. For a comprehensive introduction to the workflow, consult the OpenSCAD documentation[^2].
-3. Add three top-level parameters (e.g., `width`, `height`, `thickness`) and a minimal model. This demonstrates the parametric design philosophy central to OpenSCAD[^3].
+- Install and verify the 3dMake toolchain on Windows, macOS, and Linux
+- Understand the OpenSCAD coordinate system and unit conventions
+- Write and build your first parametric `.scad` file
+- Read and interpret `3dm info` output without a visual display
+- Use the core developer workflow: edit → build → verify
 
-   Example `src/main.scad`:
-   ```openscad
-   // Top-level parameters (change these to customize your model)
-   width = 50;      // mm
-   height = 30;     // mm
-   thickness = 5;   // mm
-   // Main model
-   cube([width, height, thickness]);
-   ```
+---
 
-4. Run `3dm build` and verify `build/main.stl` exists. Compare this build process to standard OpenSCAD workflows[^4].
-5. Open the STL in your slicer to check for thin walls or non-manifold geometry[^8]; if issues appear, iterate on `main.scad` and rebuild.
-6. Try modifying the parameters and running `3dm build` again to see how parametric design allows you to quickly create variants.
+## Step 1 — Install the 3dMake Toolchain
 
-## Code Style and Documentation Standards
+### Linux / macOS (bash)
+```bash
+# Install via the official installer
+curl -fsSL https://get.3dmake.dev | bash
 
-Professional OpenSCAD code follows consistent documentation practices for clarity, maintainability, and accessibility. As you write more complex designs, good documentation becomes essential for both you and anyone reading your code.
-
-### Comment Types and When to Use Them
-
-File Header Comments - Describe the entire file's purpose:
-
-```openscad
-// ==============================================================
-// Parametric Phone Stand - Design v2.1
-// ==============================================================
-// Purpose: Multi-angle viewing stand for phones/tablets
-// Author: Alex Chen
-// Created: February 2026
-// Last Modified: February 23, 2026
-// 
-// Parameters: phone_width, angle, lip_height
-// Dependencies: None (standalone file)
-// Print Time Estimate: 45-60 min (PLA, 0.20mm layer height)
-// Material: ~50g PLA
-// ==============================================================
+# Verify installation
+3dm --version
+openscad --version
 ```
 
-Section Comments - Organize code into logical blocks:
+### Windows (PowerShell)
+```powershell
+# Install via winget (Windows Package Manager)
+winget install 3dMake.3dMake
 
-```openscad
-// ============================================
-// CUSTOMIZABLE PARAMETERS
-// ============================================
-phone_width = 75;    // mm
-phone_height = 150;  // mm
-stand_angle = 60;    // degrees
-// ============================================
-// DERIVED CALCULATIONS (calculated from parameters)
-// ============================================
-base_width = phone_width + 20;
-lip_height = 15;
-// ============================================
-// MODULE DEFINITIONS
-// ============================================
-module base() { ... }
-module stand() { ... }
+# Or download the installer from https://3dmake.dev/install and run it
+# Then verify in a new PowerShell window:
+3dm --version
+openscad --version
 ```
 
-Inline Comments - Clarify complex logic:
+### Windows (Command Prompt / CMD)
+```cmd
+REM Verify after installation
+3dm --version
+openscad --version
+REM If command not found, add C:\\Program Files\\3dMake\\bin to your PATH
+```
+
+---
+
+## Step 2 — Understanding the OpenSCAD Coordinate System
+
+**Before writing any geometry, you must understand where objects are placed.**
+
+OpenSCAD uses a **right-handed XYZ coordinate system**[^4]. The origin (0, 0, 0) is a fixed point in space:
+
+- **X axis** — points to the right
+- **Y axis** — points away from you (toward the back of the build plate)
+- **Z axis** — points up (away from the build plate)
+
+**All units are millimeters** unless you explicitly configure your slicer otherwise. A `cube([10, 10, 10])` creates a 10 mm × 10 mm × 10 mm cube. Always design in millimeters.
+
+**`center=false` vs `center=true`** controls where the object sits relative to the origin:
+- `center=false` (default): one corner of the cube sits at the origin; the cube occupies positive X, Y, and Z space
+- `center=true`: the cube is centered on the origin; it extends from −5 to +5 in each axis
 
 ```openscad
-// Use minkowski for smooth edges (prevents sharp corners)
-module rounded_base() {
-  minkowski() {
-    cube([width - 2*radius, depth - 2*radius, height], center=true);
-    cylinder(r=radius, h=0.01, $fn=32);  // $fn=32 for smooth curve
-  }
+// Coordinate System Demonstration
+// Run this to understand where (0,0,0) is relative to your shapes
+
+// Default cube — sits with one corner at origin
+// Occupies X: 0-20, Y: 0-20, Z: 0-10
+cube([20, 20, 10]);
+
+// Centered cube — straddles origin
+// Occupies X: -10 to 10, Y: -10 to 10, Z: -5 to 5
+translate([35, 0, 0])
+  cube([20, 20, 10], center=true);
+
+// Tiny marker at the exact origin so you can see where (0,0,0) is
+color("red") sphere(r=1.5, $fn=16);
+
+// Axis markers
+color("red")   translate([25, 0, 0]) cylinder(r=0.5, h=1, $fn=8);  // +X
+color("green") translate([0, 25, 0]) cylinder(r=0.5, h=1, $fn=8);  // +Y
+color("blue")  cylinder(r=0.5, h=25, $fn=8);                        // +Z
+```
+
+> **Screen Reader Note:** When using `3dm info`, the description will reflect the absolute position of each object in the coordinate space. If an object is not where you expect it, first check whether you used `center=false` or `center=true`.
+
+---
+
+## Step 3 — Create Your First Project
+
+### Linux / macOS (bash)
+```bash
+mkdir my_first_project
+cd my_first_project
+mkdir src build
+
+# Create a starter file
+cat > src/main.scad << 'EOF'
+// My First Parametric Model
+width  = 30;   // mm
+depth  = 20;   // mm
+height = 10;   // mm
+
+cube([width, depth, height]);
+EOF
+```
+
+### Windows (PowerShell)
+```powershell
+New-Item -ItemType Directory -Path "my_first_project\\src","my_first_project\\build"
+Set-Location "my_first_project"
+
+# Create a starter file
+@'
+// My First Parametric Model
+width  = 30;   // mm
+depth  = 20;   // mm
+height = 10;   // mm
+
+cube([width, depth, height]);
+'@ | Out-File -FilePath "src\\main.scad" -Encoding UTF8
+```
+
+### Windows (CMD)
+```cmd
+mkdir my_first_project\\src
+mkdir my_first_project\\build
+cd my_first_project
+
+REM Create the scad file using echo (use a text editor for real projects)
+echo // My First Parametric Model > src\\main.scad
+echo width  = 30; >> src\\main.scad
+echo depth  = 20; >> src\\main.scad
+echo height = 10; >> src\\main.scad
+echo cube([width, depth, height]); >> src\\main.scad
+```
+
+---
+
+## Step 4 — Build and Verify
+
+### Build (all platforms)
+```bash
+# Linux/macOS
+3dm build
+
+# Windows PowerShell or CMD — identical command
+3dm build
+```
+
+### Read the output
+
+```bash
+3dm info
+```
+
+**Sample output:**
+```
+File:         build/main.stl
+Bounding Box: 30.0 x 20.0 x 10.0 mm
+Volume:       6000.0 mm³
+Triangles:    12
+```
+
+**Reading `3dm info` without a visual display:**
+
+The bounding box tells you the outer envelope of your model in millimeters:
+- `30.0 x 20.0 x 10.0 mm` means the model is 30 mm wide (X), 20 mm deep (Y), and 10 mm tall (Z)
+- If you designed `cube([30, 20, 10])`, this confirms the model built correctly
+- If the bounding box is 0 × 0 × 0, the model failed to build (check the error log)
+- **Volume** tells you how much material will be used — approximately 1 cm³ per 1,000 mm³
+
+**Estimating material cost from volume:**
+```
+mass_g  = (volume_mm3 / 1000) × filament_density_g_per_cm3
+cost_$  = mass_g × (spool_price / spool_weight_g)
+
+Example: 6000 mm³ of PLA (density 1.24 g/cm³), $20/1000g spool
+  mass  = (6000/1000) × 1.24  = 7.44 g
+  cost  = 7.44 × (20/1000)    = $0.15 in filament
+```
+
+---
+
+## Step 5 — The Core Developer Workflow
+
+```
+EDIT  →  BUILD  →  VERIFY  →  repeat
+
+Edit:    Change src/main.scad in any text editor
+Build:   3dm build
+Verify:  3dm info   (bounding box, volume)
+         3dm info  (AI geometry description)
+         Open build/main.stl in slicer for layer preview
+```
+
+### Watch mode (auto-rebuild on save)
+
+```bash
+# Linux/macOS
+3dm watch
+
+# Windows PowerShell
+3dm watch
+
+# Windows CMD
+3dm watch
+```
+
+---
+
+## Step 6 — Advanced Technique: Parameterized Builds from the Command Line
+
+Once your model uses variables at the top, you can override them from the command line without editing the file. This is essential for batch builds and CI automation.
+
+### Linux / macOS (bash)
+```bash
+# Build with different parameter values
+openscad -D "width=50" -D "height=15" -o build/main_large.stl src/main.scad
+
+# Loop over multiple sizes
+for w in 20 30 40 50; do
+  openscad -D "width=$w" -o "build/main_w${w}.stl" src/main.scad
+  echo "Built: width=$w → build/main_w${w}.stl"
+done
+```
+
+### Windows (PowerShell)
+```powershell
+# Build with different parameter values
+openscad -D "width=50" -D "height=15" -o "build\\main_large.stl" "src\\main.scad"
+
+# Loop over multiple sizes
+$widths = @(20, 30, 40, 50)
+foreach ($w in $widths) {
+  openscad -D "width=$w" -o "build\\main_w$w.stl" "src\\main.scad"
+  Write-Host "Built: width=$w -> build/main_w$w.stl"
 }
 ```
 
-Parameter Documentation - Explain units and constraints:
+### Windows (CMD)
+```cmd
+REM Build with a parameter override
+openscad -D "width=50" -D "height=15" -o build\\main_large.stl src\\main.scad
 
-```openscad
-// Parameter ranges and units
-width = 100;         // mm - must be > 50 mm for stability
-height = 50;         // mm - can be 20-100 mm
-wall_thickness = 2;  // mm - 1.5-3 mm recommended (too thin breaks, too thick wastes material)
-angle = 45;          // degrees - 30-80 degrees typical
-$fn = 32;            // render quality - use 16-20 for preview, 32+ for export
+REM Note: loops in CMD are limited. Use PowerShell for automation tasks.
+FOR %%W IN (20 30 40 50) DO (
+  openscad -D "width=%%W" -o build\\main_w%%W.stl src\\main.scad
+  echo Built width=%%W
+)
 ```
 
-### Documentation Best Practices
+---
 
-1. Write for Your Audience
-- Document assumptions and constraints
-- Explain non-obvious design choices
-- Use clear parameter names (`wall_thickness` not `w`)
+## Summary
 
-2. Include Module Documentation
+| Concept        | Key Point                                                         |
+|----------------|-------------------------------------------------------------------|
+| Units          | Always millimeters                                                |
+| Origin         | (0, 0, 0) — lower-left-front of build space                       |
+| X axis         | Points right                                                      |
+| Y axis         | Points away from you                                              |
+| Z axis         | Points up                                                         |
+| `center=false` | Default — one corner at origin                                    |
+| `center=true`  | Object straddles origin                                           |
+| `3dm info`     | Deterministic — use for verification when AI description is vague |
+
+---
+
+## Exercises
+
+**Exercise 1.1:** Create a cube that is exactly 50 mm × 30 mm × 8 mm. Use `3dm info` to confirm the bounding box matches.
+
+**Exercise 1.2:** Change your cube to `center=true`. What does `3dm info` report? Why does the bounding box stay the same even though the position changed?
+
+**Exercise 1.3 (Advanced):** Write a bash/PowerShell loop that generates 5 STL files with heights 5, 10, 15, 20, and 25 mm, using command-line parameter overrides. Confirm each file's bounding box with `3dm info`.
 
 ```openscad
-// Create a hollow box with walls of specified thickness
-// Parameters: outer_w, outer_d, outer_h (mm), wall (mm)
-// Example: hollow_box(50, 50, 50, 2) creates 50x50x50 box with 2mm walls
-module hollow_box(outer_w, outer_d, outer_h, wall) {
   difference() {
     cube([outer_w, outer_d, outer_h], center=true);
     cube([outer_w - 2*wall, outer_d - 2*wall, outer_h], center=true);
   }
-}
 ```
 
 3. Document Known Limitations
@@ -269,7 +434,7 @@ Understanding the FDM pipeline helps you design parts that not only look correct
 ### Next Steps: The Slicer
 
 After you create an STL with `3dm build`, you open it in a slicer to:
-1. Verify geometry (check for thin walls or non-manifold faces)
+1. Verify geometry (check for thin walls or non-manifold faces)[^8]
 2. Set layer height, infill, and supports
 3. Preview the layers to see what the printer will do
 4. Export as G-code to send to the printer

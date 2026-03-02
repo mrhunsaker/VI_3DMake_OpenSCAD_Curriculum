@@ -1,4 +1,4 @@
-# PowerShell Unit Test - Comprehensive Assessment {#powershell_foundation_ps_unit_test-ps_unit_test}
+# PowerShell Unit Test - Comprehensive Assessment {# Powershell_foundation_ps_unit_test-ps_unit_test}
 
 Estimated time: 60-90 minutes
 
@@ -15,7 +15,7 @@ By completing this unit test, you will demonstrate:
 
 ## Target Audience:
 
-Users who have completed PS-0 through PS-5 and need to demonstrate mastery of PowerShell fundamentals.
+Users who have completedPowershell Lesson 0 throughPowershell Lesson 5 and need to demonstrate mastery of PowerShell fundamentals.
 
 ## Instructions:
 

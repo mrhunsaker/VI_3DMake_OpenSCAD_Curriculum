@@ -1,7 +1,7 @@
-# GitBash-1: Navigation - Moving Around Your File System
+# Bash Lesson 1: Navigation - Moving Around Your File System
 
 **Duration:** 1 class period
-**Prerequisite:** GitBash-0 (Getting Started)
+**Prerequisite:** Bash Lesson 0 (Getting Started)
 
 ## Learning Objectives
 By the end of this lesson, you will be able to:

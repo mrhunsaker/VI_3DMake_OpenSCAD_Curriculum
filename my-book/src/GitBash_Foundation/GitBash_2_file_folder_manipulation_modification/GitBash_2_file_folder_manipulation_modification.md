@@ -1,4 +1,4 @@
-# GitBash-2: File and Folder Manipulation
+# Bash Lesson 2: File and Folder Manipulation
 
 Estimated time: 30-45 minutes
 

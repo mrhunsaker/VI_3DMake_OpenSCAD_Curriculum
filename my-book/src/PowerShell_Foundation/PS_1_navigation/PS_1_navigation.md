@@ -1,7 +1,7 @@
-# PS-1: Navigation - Moving Around Your File System {#powershell_foundation_ps_1_navigation-ps_1_navigation}
+# Powershell Lesson 1: Navigation - Moving Around Your File System {# Powershell_foundation_ps_1_navigation-ps_1_navigation}
 
 Duration: 1 class period  
-Prerequisite: PS-0 (Getting Started)
+Prerequisite:Powershell Lesson 0 (Getting Started)
 
 Learning Objectives
 By the end of this lesson, you will be able to:

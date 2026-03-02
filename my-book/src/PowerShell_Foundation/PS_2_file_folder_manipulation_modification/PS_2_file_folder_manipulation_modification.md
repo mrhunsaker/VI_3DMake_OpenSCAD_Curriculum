@@ -1,4 +1,4 @@
-# PS-2: File and Folder Manipulation  {#powershell_foundation_ps_2_file_folder_manipulation_modification-ps_2_file_folder_manipulation_modification}
+# Powershell Lesson 2: File and Folder Manipulation  {# Powershell_foundation_ps_2_file_folder_manipulation_modification-ps_2_file_folder_manipulation_modification}
 
 Estimated time: 30-45 minutes
 

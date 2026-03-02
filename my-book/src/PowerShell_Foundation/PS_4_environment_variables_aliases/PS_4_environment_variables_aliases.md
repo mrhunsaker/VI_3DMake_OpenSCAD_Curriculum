@@ -1,4 +1,4 @@
-# PS-4: Environment Variables, PATH, and Aliases  {#powershell_foundation_ps_4_environment_variables_aliases-ps_4_environment_variables_aliases}
+# Powershell Lesson 4: Environment Variables, PATH, and Aliases  {# Powershell_foundation_ps_4_environment_variables_aliases-ps_4_environment_variables_aliases}
 
 Estimated time: 30-45 minutes
 

@@ -46,14 +46,14 @@ Introductory & Reference Materials:
 
 Lessons Included:
 
-- PS-Pre: Your First Terminal - Opening PowerShell, first commands, screen reader tricks
-- PS-0: Getting Started - Paths, shortcuts, tab completion
-- PS-1: Navigation - Moving around the file system confidently
-- PS-2: File and Folder Manipulation - Creating, editing, moving files
-- PS-3: Input, Output, and Piping - Redirecting output, piping commands
-- PS-4: Environment Variables and Aliases - Setting variables, creating shortcuts
-- PS-5: Filling in the Gaps - Control flow, profiles, useful tricks
-- PS-6: Advanced Terminal Techniques - Scripts, functions, professional workflows
+-Powershell Lesson Pre: Your First Terminal - Opening PowerShell, first commands, screen reader tricks
+-Powershell Lesson 0: Getting Started - Paths, shortcuts, tab completion
+-Powershell Lesson 1: Navigation - Moving around the file system confidently
+-Powershell Lesson 2: File and Folder Manipulation - Creating, editing, moving files
+-Powershell Lesson 3: Input, Output, and Piping - Redirecting output, piping commands
+-Powershell Lesson 4: Environment Variables and Aliases - Setting variables, creating shortcuts
+-Powershell Lesson 5: Filling in the Gaps - Control flow, profiles, useful tricks
+-Powershell Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows
 - PowerShell Unit Test & Practice - Comprehensive self-assessment
 
 Time commitment: 30-45 hours (for screen reader users)
@@ -66,14 +66,14 @@ Where to Start: [CMD Curriculum Overview](CMD_Foundation/CMD_Curriculum_Overview
 
 Lessons Included:
 
-- CMD-Pre: Your First Terminal - Opening CMD, first commands, screen reader tricks
-- CMD-0: Getting Started - Paths, shortcuts, command basics
-- CMD-1: Navigation - Moving around the file system confidently
-- CMD-2: File and Folder Manipulation - Creating, editing, moving files
-- CMD-3: Input, Output & Redirection - Redirecting output, piping commands
-- CMD-4: Environment Variables & Shortcuts - Setting variables, shortcuts
-- CMD-5: Filling in the Gaps - Batch files, advanced techniques
-- CMD-6: Advanced Terminal Techniques - Scripts, automation, professional workflows
+- Command Line Lesson Pre: Your First Terminal - Opening CMD, first commands, screen reader tricks
+- Command Line Lesson 0: Getting Started - Paths, shortcuts, command basics
+- Command Line Lesson 1: Navigation - Moving around the file system confidently
+- Command Line Lesson 2: File and Folder Manipulation - Creating, editing, moving files
+- Command Line Lesson 3: Input, Output & Redirection - Redirecting output, piping commands
+- Command Line Lesson 4: Environment Variables & Shortcuts - Setting variables, shortcuts
+- Command Line Lesson 5: Filling in the Gaps - Batch files, advanced techniques
+- Command Line Lesson 6: Advanced Terminal Techniques - Scripts, automation, professional workflows
 - CMD Unit Test & Practice - Comprehensive self-assessment
 
 Time commitment: 30-45 hours (for screen reader users)
@@ -92,14 +92,14 @@ Introductory & Reference Materials:
 
 Lessons Included:
 
-- GitBash-Pre: Your First Terminal - Opening Git Bash, first commands, screen reader tricks
-- GitBash-0: Getting Started - Paths, shortcuts, Unix path notation
-- GitBash-1: Navigation - Moving around the file system confidently
-- GitBash-2: File and Folder Manipulation - Creating, editing, moving files
-- GitBash-3: Input, Output & Piping - Redirecting output, piping commands
-- GitBash-4: Environment Variables & Aliases - Setting variables, creating shortcuts
-- GitBash-5: Filling in the Gaps - Shell profiles, history, debugging
-- GitBash-6: Advanced Terminal Techniques - Scripts, functions, professional workflows
+- Bash Lesson Pre: Your First Terminal - Opening Git Bash, first commands, screen reader tricks
+- Bash Lesson 0: Getting Started - Paths, shortcuts, Unix path notation
+- Bash Lesson 1: Navigation - Moving around the file system confidently
+- Bash Lesson 2: File and Folder Manipulation - Creating, editing, moving files
+- Bash Lesson 3: Input, Output & Piping - Redirecting output, piping commands
+- Bash Lesson 4: Environment Variables & Aliases - Setting variables, creating shortcuts
+- Bash Lesson 5: Filling in the Gaps - Shell profiles, history, debugging
+- Bash Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows
 - GitBash Unit Test & Practice - Comprehensive self-assessment
 
 Time commitment: 30-45 hours (for screen reader users)
@@ -129,11 +129,11 @@ Total: 45-55 hours instruction + practice projects
 
 #### Reference Appendices
 
-**Command Line Tools:**
+**Command Line Tools:**  
 - [Appendix A: PowerShell Integration for SCAD Workflows](3dMake_Foundation/Appendix_D_PowerShell_Integration.md) - Batch processing, automation scripts, and advanced workflow integration
 - [Appendix B: Advanced OpenSCAD Concepts](3dMake_Foundation/Appendix_E_Advanced_OpenSCAD_Concepts.md) - Specialized topics including gears, batch processing, performance, print orientation, and recursion
 
-**3dMake:**
+**3dMake:**  
 - [Appendix 1: Comprehensive Slicing Guide](3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md) - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
 - [Appendix 2: Material Properties & Selection Guide](3dMake_Foundation/Appendix_B_Material_Properties.md) - Detailed material reference including shrinkage data, print settings, and properties
 - [Appendix 3: Tolerance Testing & Quality Assurance Matrix](3dMake_Foundation/Appendix_C_Tolerance_QA.md) - Comprehensive QA procedures and tolerance validation methods
@@ -201,49 +201,49 @@ Each project requires:
 
 Quick navigation to common topics:
 
-[OpenSCAD Cheat Sheet](3dMake_Foundation/Lessons_3dMake_2/openscad-cheat-sheet.md) - Syntax quick-reference
-[3dMake Setup Guide](3dMake_Foundation/Lessons_3dMake_1/3dmake-setup-guide.md) - Installation walkthrough
-[VSCode Setup Guide](3dMake_Foundation/Lessons_3dMake_1/vscode-setup-guide.md) - Accessibility configuration
-[Vocabulary Glossary](3dMake_Foundation/Lessons_3dMake_1/vocabulary-glossary.md) - Course terminology
-[Filament Comparison Table](3dMake_Foundation/Lessons_3dMake_5/filament-comparison-table.md) - Material reference
-[Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md) - Project assessment criteria
+[OpenSCAD Cheat Sheet](3dMake_Foundation/Lessons_3dMake_2/openscad-cheat-sheet.md) - Syntax quick-reference  
+[3dMake Setup Guide](3dMake_Foundation/Lessons_3dMake_1/3dmake-setup-guide.md) - Installation walkthrough  
+[VSCode Setup Guide](3dMake_Foundation/Lessons_3dMake_1/vscode-setup-guide.md) - Accessibility configuration  
+[Vocabulary Glossary](3dMake_Foundation/Lessons_3dMake_1/vocabulary-glossary.md) - Course terminology  
+[Filament Comparison Table](3dMake_Foundation/Lessons_3dMake_5/filament-comparison-table.md) - Material reference  
+[Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md) - Project assessment criteria  
 
 ### Navigation
 
-[Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) - Detailed overview of all lessons and appendices
-[Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md) - At-a-glance command and syntax reference
-[Appendices](Appendices/Appendices.md) - 3dMake reference materials
-
+[Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) - Detailed overview of all lessons and appendices  
+[Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md) - At-a-glance command and syntax reference  
+[Appendices](Appendices/Appendices.md) - 3dMake reference materials  
+  
 ## Supplemental Resources & Textbooks
 
 ### Textbook options (EPUB Format)
 
-- [Programming with OpenSCAD: A Beginner's Guide to Coding 3D-Printable Objects](https://nostarch.com/programmingopenscad) - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Ideal for deep dives into specific topics and as a reference guide throughout the course.
-- [Simplifying 3D Printing with OpenSCAD](https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174) - Focused on practical workflows, optimization, and real-world printing scenarios.
+- [Programming with OpenSCAD: A Beginner's Guide to Coding 3D-Printable Objects](https://nostarch.com/programmingopenscad) - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Ideal for deep dives into specific topics and as a reference guide throughout the course.  
+- [Simplifying 3D Printing with OpenSCAD](https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174) - Focused on practical workflows, optimization, and real-world printing scenarios.  
 
 ### Companion Teaching Resources
 
-[Practice Worksheets](https://programmingwithopenscad.github.io/learning.html) - Printable worksheets for visualization practice, decomposition exercises, vocabulary building, and assessment.
-[Visual Quick Reference](https://programmingwithopenscad.github.io/quick-reference.html) - Command syntax guides and geometry reference.
-[Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) - Working OpenSCAD examples organized by topic (3D shapes, transformations, loops, modules, if-statements, advanced techniques).
+[Practice Worksheets](https://programmingwithopenscad.github.io/learning.html) - Printable worksheets for visualization practice, decomposition exercises, vocabulary building, and assessment.  
+[Visual Quick Reference](https://programmingwithopenscad.github.io/quick-reference.html) - Command syntax guides and geometry reference.  
+[Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) - Working OpenSCAD examples organized by topic (3D shapes, transformations, loops, modules, if-statements, advanced techniques).  
 
 ## Getting Started
 
 ### For Students:
-
-1. Start with [Setup & Accessibility Fundamentals](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md)
+ 
+1. Start with [Setup & Accessibility Fundamentals](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md)  
 2. Read [Command Line Interface Selection Guide](Command_Line_Interface_Selection/Command_Line_Interface_Selection.md) to choose your CLI pathway
-3. Complete your chosen CLI Foundation (PowerShell, CMD, or Git Bash)
-4. Begin [3dMake Introduction](3dMake_Foundation/3dMake_Intro/3dMake_Intro.md)
-5. Follow [Lesson 1: Environmental Configuration](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md)
+3. Complete your chosen CLI Foundation (PowerShell, CMD, or Git Bash)  
+4. Begin [3dMake Introduction](3dMake_Foundation/3dMake_Intro/3dMake_Intro.md)  
+5. Follow [Lesson 1: Environmental Configuration](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md)  
 6. Continue through Lesson 11
 
 ## For Instructors:
 
-1. Review [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md)
-2. Use [11 Teacher Templates](3dMake_Foundation/Templates/Teacher/) for assessment
-3. Reference [Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md) for grading
-4. Check [Syllabus](Syllabus.md) for course policies and learning progression
+1. Review [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md)  
+2. Use [11 Teacher Templates](3dMake_Foundation/Templates/Teacher/) for assessment  
+3. Reference [Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md) for grading  
+4. Check [Syllabus](Syllabus.md) for course policies and learning progression  
 
 
 ## Screen Readers

@@ -1,4 +1,4 @@
-# CMD-Pre: Your First Terminal - Screen Reader Navigation Fundamentals {#cmd_foundation_cmd_pre_your_first_terminal-cmd_pre_your_first_terminal}
+# Command Line Lesson Pre: Your First Terminal - Screen Reader Navigation Fundamentals {#cmd_foundation_cmd_pre_your_first_terminal-cmd_pre_your_first_terminal}
 
 **Duration:** 1.5-2 hours (for screen reader users)  
 **Prerequisites:** None — this is the starting point  
@@ -342,7 +342,7 @@ After this lesson, you should be able to answer all ten with confidence:
 9. How do you read a file back in the terminal?
 10. How do you stop a command that is running?
 
-**Answer all 10 before moving to CMD-0.**
+**Answer all 10 before moving to Command Line Lesson 0.**
 
 ---
 
@@ -364,7 +364,7 @@ A: Type `help command-name` (for example, `help cd`). Or type `command /?` for b
 
 ## Next Steps
 
-Once comfortable with these basics, move to **CMD-0: Getting Started** for deeper path understanding, then continue through CMD-1 to CMD-5 for full terminal mastery.
+Once comfortable with these basics, move to **Command Line Lesson 0: Getting Started** for deeper path understanding, then continue through Command Line Lesson 1 to Command Line Lesson 5 for full terminal mastery.
 
 ---
 

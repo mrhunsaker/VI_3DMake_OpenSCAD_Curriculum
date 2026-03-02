@@ -1,3 +1,319 @@
+# Lesson 3 — Parametric Architecture and Modular Libraries
+*[CORRECTED — March 2026 Curriculum Revision]*
+
+---
+
+## Learning Objectives
+
+By the end of this lesson you will be able to:
+
+- Understand OpenSCAD's unique variable scoping rules (the "last-wins" model)
+- Write parametric modules with validated inputs using `assert()`
+- Organize reusable geometry into library files using `use` and `include`
+- Write recursive functions for mathematical and spatial computations
+- Apply list comprehensions and vector operations for advanced parametric design
+
+---
+
+## Step 1 — How OpenSCAD Variables Work (It's Different!)
+
+OpenSCAD variables do **not** work like variables in Python, JavaScript, or C. Understanding this prevents one of the most common beginner bugs.
+
+**The three rules:**
+
+1. **There is no assignment during execution.** Variables are bound at parse time (when the file is read), not when the geometry is drawn.
+2. **The last assignment in a scope wins.** If you write `x = 5;` and then `x = 10;`, `x` is always `10` — the first line is silently overridden.
+3. **Variables inside modules are local.** They do not affect global variables with the same name.
+
+```openscad
+// COMMON MISTAKE: thinking x changes value during execution
+x = 5;
+echo("x = ", x);  // Prints 10, NOT 5 — last assignment wins at parse time
+x = 10;
+
+// WHY: OpenSCAD reads the ENTIRE file before rendering anything.
+// By the time it renders, x has already been resolved to 10.
+
+// CORRECT PATTERN: use distinct names, not reassignment
+base_size    = 20;
+padded_size  = base_size + 10;   // 30 — this is fine
+doubled_size = base_size * 2;    // 40 — fine too
+echo(base_size, padded_size, doubled_size);  // 20, 30, 40
+
+// Module scope: variables inside a module are LOCAL
+wall_t = 3;   // global wall thickness
+
+module demo_box(size) {
+  wall_t = 1;           // LOCAL — does not affect the global wall_t
+  cube([size, size, wall_t]);  // uses local wall_t = 1
+}
+
+demo_box(20);
+echo("Global wall_t is still:", wall_t);  // still 3 — not changed
+
+// PRACTICAL IMPLICATION: to conditionally vary a parameter, use a ternary
+mode = "large";
+box_size = (mode == "large") ? 40 : 20;  // ternary — correct pattern
+cube([box_size, box_size, 5]);
+```
+
+---
+
+## Step 2 — `assert()` for Parameter Validation
+
+`assert()` is the correct tool for validating module parameters. It halts rendering immediately with a descriptive error message if a condition is false. This is far better than `echo()`, which only warns and allows bad geometry to continue rendering.
+
+```openscad
+// assert(condition, message)
+// If condition is false: rendering stops; message is shown in the console
+
+module safe_cylinder(r, h, fn=32) {
+  // Validate every parameter before it can produce invalid geometry
+  assert(is_num(r) && r > 0,
+    str("safe_cylinder: r must be a positive number, got: ", r));
+  assert(is_num(h) && h > 0,
+    str("safe_cylinder: h must be a positive number, got: ", h));
+  assert(fn >= 3,
+    str("safe_cylinder: $fn must be >= 3, got: ", fn));
+  assert(r < 500,
+    str("safe_cylinder: r=", r, "mm seems wrong — did you use cm instead of mm?"));
+
+  cylinder(r=r, h=h, $fn=fn);
+}
+
+safe_cylinder(5, 20);         // works fine
+// safe_cylinder(-3, 20);     // STOPS with: "r must be a positive number, got: -3"
+// safe_cylinder(0, 20);      // STOPS with: "r must be a positive number, got: 0"
+
+// Compare with echo() — only warns, does NOT stop rendering:
+module unsafe_cylinder(r, h) {
+  if (r <= 0) echo("WARNING: r should be positive");  // continues anyway!
+  cylinder(r=r, h=h, $fn=32);  // produces invalid geometry
+}
+
+// ADVANCED: Multi-condition assert with compound expressions
+module slot(length, width, depth) {
+  assert(length > width,
+    str("slot: length (", length, ") must be greater than width (", width, ")"));
+  assert(depth > 0 && depth <= 50,
+    "slot: depth must be between 0 and 50mm");
+
+  translate([-length/2, -width/2, -0.001])
+    cube([length, width, depth + 0.001]);
+}
+```
+
+---
+
+## Step 3 — Modules and Library Files
+
+Modules are reusable geometry factories. Put shared modules in a separate file and load them with `use` or `include`.
+
+```openscad
+// === lib/hardware.scad ===
+
+// Standard M3 bolt hole (adds 0.2mm clearance for real M3 bolts)
+module m3_bolt_hole(depth=10, countersink=false) {
+  assert(depth > 0, "m3_bolt_hole: depth must be positive");
+  translate([0, 0, -0.001]) {
+    cylinder(d=3.4, h=depth + 0.002, $fn=16);  // M3 clearance
+    if (countersink) {
+      translate([0, 0, depth - 2.5])
+        cylinder(d1=3.4, d2=7.0, h=3, $fn=16);  // countersink cone
+    }
+  }
+}
+
+// Standard M3 standoff (for PCB mounting)
+module m3_standoff(height=5, outer_d=6) {
+  assert(height > 2, "m3_standoff: height must be > 2mm");
+  difference() {
+    cylinder(d=outer_d, h=height, $fn=16);
+    m3_bolt_hole(depth=height);
+  }
+}
+```
+
+```openscad
+// === src/main.scad ===
+
+// use: loads module/function definitions but does NOT execute top-level geometry
+use <../lib/hardware.scad>
+
+// include: loads AND executes everything (use sparingly — can cause geometry conflicts)
+// include <../lib/settings.scad>
+
+// Now m3_bolt_hole and m3_standoff are available
+difference() {
+  cube([40, 30, 5]);
+  // Place 4 bolt holes at PCB mounting pattern
+  for (pos = [[5,5], [35,5], [5,25], [35,25]]) {
+    translate([pos[0], pos[1], 0])
+      m3_bolt_hole(depth=5);
+  }
+}
+```
+
+---
+
+## Step 4 — Recursive Functions
+
+Recursive functions compute values by calling themselves with a smaller input. OpenSCAD supports recursion for **value computation** (not for geometry directly).
+
+```openscad
+// Factorial: n! = n × (n-1) × ... × 1
+// Base case: factorial(0) = 1 or factorial(1) = 1
+function factorial(n) = (n <= 1) ? 1 : n * factorial(n - 1);
+
+echo(factorial(1));   // 1
+echo(factorial(5));   // 120
+echo(factorial(10));  // 3628800
+
+// Fibonacci sequence: each term is the sum of the two before it
+// fib(0)=0, fib(1)=1, fib(2)=1, fib(3)=2, fib(4)=3, fib(5)=5 ...
+function fib(n) = (n <= 1) ? n : fib(n-1) + fib(n-2);
+
+// Use Fibonacci spacing to place pegs — natural, visually pleasing distribution
+for (i = [2:9]) {
+  translate([fib(i) * 4, 0, 0])
+    cylinder(r=1.5, h=5, $fn=16);
+}
+
+// ADVANCED: Recursive list building — generate evenly-spaced points
+// This replaces a for loop when you need a VALUE (list) rather than geometry
+function linspace(start, stop, n) =
+  (n <= 1)
+    ? [start]
+    : concat([start], linspace(start + (stop - start) / (n - 1), stop, n - 1));
+
+positions = linspace(0, 50, 6);  // [0, 10, 20, 30, 40, 50]
+echo("Positions:", positions);
+
+for (p = positions) {
+  translate([p, 0, 0]) sphere(r=2, $fn=16);
+}
+```
+
+---
+
+## Step 5 — List Comprehensions and Vector Math
+
+List comprehensions let you generate lists of values or geometry positions using compact functional syntax.
+
+```openscad
+// List comprehension: [expression for variable in range if condition]
+
+// Generate a list of cylinder heights: [5, 10, 15, 20, 25]
+heights = [for (i = [1:5]) i * 5];
+echo("Heights:", heights);  // [5, 10, 15, 20, 25]
+
+// Place cylinders at computed positions
+positions = [for (i = [0:7]) [i * 12, 0, 0]];
+for (pos = positions) {
+  translate(pos)
+    cylinder(h = 5 + pos[0] * 0.3, r=3, $fn=16);  // height grows with X position
+}
+
+// Filter with a condition: only even-indexed items
+even_positions = [for (i = [0:9]) if (i % 2 == 0) i * 15];
+echo("Even positions:", even_positions);  // [0, 15, 30, 45, 60]
+
+// 2D grid of points
+grid = [for (x = [0:3]) for (y = [0:3]) [x * 20, y * 20, 0]];
+for (pt = grid) {
+  translate(pt)
+    cylinder(r=2, h=8, $fn=16);
+}
+
+// Geometric series — rapidly growing spacing (useful for logarithmic layouts)
+geo_series = [for (i = [0:5]) pow(2, i) * 3];  // [3, 6, 12, 24, 48, 96]
+echo("Geometric series:", geo_series);
+```
+
+---
+
+## Step 6 — Working with Vectors and Math Functions
+
+```openscad
+// Vector arithmetic is built in
+v1 = [10, 20, 5];
+v2 = [3, 4, 0];
+
+sum   = v1 + v2;         // [13, 24, 5]
+diff  = v1 - v2;         // [7, 16, 5]
+scaled = v1 * 2;         // [20, 40, 10]  (scalar multiplication)
+
+echo("sum:", sum, "diff:", diff, "scaled:", scaled);
+
+// Dot product and norm (vector length)
+dot_product = v1 * v2;          // 10*3 + 20*4 + 5*0 = 110
+length_v1   = norm(v1);         // sqrt(10²+20²+5²) ≈ 22.9
+echo("dot:", dot_product, "norm:", length_v1);
+
+// Built-in math functions
+echo(abs(-5));      // 5
+echo(ceil(3.2));    // 4
+echo(floor(3.8));   // 3
+echo(round(3.5));   // 4
+echo(max(3,7,2));   // 7
+echo(min(3,7,2));   // 2
+echo(pow(2, 8));    // 256
+echo(sqrt(144));    // 12
+echo(log(100));     // 2 (log base 10)
+echo(ln(exp(1)));   // 1 (natural log)
+
+// Trigonometry — angles in DEGREES (not radians)
+echo(sin(90));      // 1
+echo(cos(0));       // 1
+echo(tan(45));      // 1
+echo(atan2(1, 1));  // 45 — two-argument arctangent (safe for all quadrants)
+
+// Cross product (needed for surface normals)
+cross_v = cross(v1, v2);
+echo("cross:", cross_v);
+```
+
+---
+
+## Step 7 — `$fn`, `$fa`, `$fs` — Controlling Curve Resolution
+
+```openscad
+// $fn: fixed number of faces (overrides $fa and $fs)
+// $fa: minimum angle per face in degrees (default 12)
+// $fs: minimum size of each face in mm (default 2)
+
+// LOW $fn — fast to render, blocky (use during development)
+sphere(r=10, $fn=8);
+
+// HIGH $fn — slow to render, smooth (use for final export only)
+translate([30, 0, 0]) sphere(r=10, $fn=64);
+
+// GLOBAL defaults — set once at the top of your file
+$fa = 5;    // faces no more than 5° apart
+$fs = 0.5;  // faces no smaller than 0.5mm
+// All subsequent curves use these defaults
+
+// Per-shape override — finer control
+translate([70, 0, 0])
+  cylinder(h=20, r=10, $fn=24);   // this one uses 24 faces regardless of globals
+
+// PRACTICAL GUIDELINE:
+// During development: $fn=16 or $fn=24
+// For final export:   $fn=64 or higher for visible smooth curves
+//                     $fn=32 is usually sufficient for functional parts
+```
+
+---
+
+## Exercises
+
+**Exercise 3.1:** Write a module `safe_box(w, d, h, wall=2)` that validates all parameters with `assert()` and creates a hollow box. The wall thickness must be less than half of the smallest dimension.
+
+**Exercise 3.2:** Create a library file `lib/fasteners.scad` with modules for M2, M3, and M4 bolt holes. Use `use` to load it in a main file and place bolt holes at the corners of a 60 × 40 mm plate.
+
+**Exercise 3.3:** Write a recursive function `sum_list(lst, i=0)` that returns the sum of all elements in a list. Use it to compute the total material volume of a set of cylinders.
+
+**Exercise 3.4 (Advanced):** Use a list comprehension to generate a 5 × 5 grid of cylinders where each cylinder's height equals `row + column + 1` (so heights go from 1 to 9). Use `echo()` to verify the maximum height.
 # Lesson 3: Parametric Architecture and Modular Libraries
 
 Estimated time: 90–120 minutes

@@ -136,7 +136,7 @@ Master the key 3dm commands by building a practical project-a customizable keyca
 
 Key Topics:
 
-- `3dm describe`: Text-based model analysis
+- `3dm info`: Text-based model analysis
 - `3dm preview`: Generating 2D tactile prints
 - `3dm orient`: Analyzing optimal print orientation
 - `3dm slice`: Generating G-code
@@ -306,7 +306,7 @@ All code examples from lessons are provided as:
 
 This curriculum is designed for non-visual learners:
 
-- Text descriptions of all models (`3dm describe`)
+- Text descriptions of all models (`3dm info`)
 - Tactile 2D previews (`3dm preview`)
 - Structured written documentation
 - Command-line based (no graphical interface required)
@@ -362,7 +362,7 @@ Each lesson includes:
 
 | Issue             | Related Lesson | Solution                                                        |
 |-------------------|----------------|-----------------------------------------------------------------|
-| Model won't build | Lesson 2       | Check for non-manifold geometry with `3dm describe`             |
+| Model won't build | Lesson 2       | Check for non-manifold geometry with `3dm info`             |
 | Parts don't fit   | Lesson 8       | Use tolerance testing matrix to find correct `stack_clear`      |
 | Print fails       | Lesson 5       | Verify pre-print checklist and slicer settings                  |
 | Dimensions off    | Lesson 10      | Conduct tolerance sensitivity study and apply correction factor |

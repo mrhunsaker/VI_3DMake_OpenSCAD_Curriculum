@@ -15,7 +15,7 @@ By completing this unit test, you will demonstrate:
 
 ## Target Audience
 
-Users who have completed CMD-0 through CMD-6 and need to demonstrate mastery of Command Prompt fundamentals.
+Users who have completed Command Line Lesson 0 through Command Line Lesson 6 and need to demonstrate mastery of Command Prompt fundamentals.
 
 ## Instructions
 

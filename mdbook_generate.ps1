@@ -39,7 +39,6 @@ $env:RUST_BACKTRACE = 'full'
 mdbook build --dest-dir "$BuildOutput"
 Pop-Location
 
-
 Write-Host "building pdf in root directory with lualatex"
 Push-Location $ScriptDir
 lualatex "$BuildOutput/pandoc/latex/OpenSCAD_Curriculum.tex"

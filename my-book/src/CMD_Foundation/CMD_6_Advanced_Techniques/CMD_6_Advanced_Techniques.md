@@ -1,7 +1,7 @@
-# CMD-6: Advanced Terminal Techniques - Batch Scripts, Functions & Professional Workflows
+# Command Line Lesson 6: Advanced Terminal Techniques - Batch Scripts, Functions & Professional Workflows
 
 **Duration:** 4-4.5 hours (for screen reader users)
-**Prerequisites:** Complete CMD-0 through CMD-5
+**Prerequisites:** Complete Command Line Lesson 0 through Command Line Lesson 5
 **Skill Level:** Advanced intermediate
 
 This lesson extends CMD skills to professional-level workflows. You'll learn to automate complex tasks, write reusable batch scripts, and integrate tools for 3D printing workflows.

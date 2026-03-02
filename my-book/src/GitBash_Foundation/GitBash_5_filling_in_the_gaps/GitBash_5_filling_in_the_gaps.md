@@ -1,4 +1,4 @@
-# GitBash-5: Filling in the Gaps - Shell Profiles, History, and Useful Tricks
+# Bash Lesson 5: Filling in the Gaps - Shell Profiles, History, and Useful Tricks
 
 Estimated time: 30-45 minutes
 
@@ -38,7 +38,7 @@ Estimated time: 30-45 minutes
 12. Design a `.bashrc` initialization strategy that separates utilities for different projects; explain how you would switch between them.
 13. Walk through a troubleshooting workflow: your screen reader stops announcing output after running a long command. What steps would you take to diagnose and resolve the issue?
 14. Create a safety checkpoint system: before any destructive operation (mass delete, overwrite), how would you use `.bashrc` functions and history to verify the command is correct?
-15. Develop a comprehensive capstone scenario: integrate everything from GitBash-0 through GitBash-5 (navigation, file operations, piping, environment setup, history) to design an automated 3D printing project workflow with error handling and logging.
+15. Develop a comprehensive capstone scenario: integrate everything from Bash Lesson 0 through Bash Lesson 5 (navigation, file operations, piping, environment setup, history) to design an automated 3D printing project workflow with error handling and logging.
 
 ## Extension Problems
 1. Add an alias and an environment variable change to your `.bashrc` and document the behavior after reopening Git Bash.

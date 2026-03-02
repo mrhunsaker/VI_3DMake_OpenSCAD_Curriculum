@@ -1,4 +1,4 @@
-# PS-Pre: Your First Terminal - Screen Reader Navigation Fundamentals {#powershell_foundation_ps_pre_your_first_terminal-ps_pre_your_first_terminal}
+# Powershell Lesson Pre: Your First Terminal - Screen Reader Navigation Fundamentals {# Powershell_foundation_ps_pre_your_first_terminal-ps_pre_your_first_terminal}
 
 Duration: 1.5-2 hours (for screen reader users)  
 Prerequisites: None - this is the starting point  
@@ -319,7 +319,7 @@ After completing this lesson, you should be able to answer:
 9. How do you read a file back?
 10. How do you stop a command that's running?
 
-You should be able to answer all 10 with confidence before moving to PS-0.
+You should be able to answer all 10 with confidence before moving toPowershell Lesson 0.
 
 ## Common Questions
 
@@ -333,16 +333,16 @@ Q: What if I type something wrong?
 A: Just press Enter and you'll see an error message. Type the correct command on the next line. No harm done!
 
 Q: How do I get help with a command?
-A: Type `Get-Help command-name` (we'll cover this in PS-0)
+A: Type `Get-Help command-name` (we'll cover this inPowershell Lesson 0)
 
 Q: Can I make PowerShell more accessible?
-A: Yes! We'll cover customization in PS-5.
+A: Yes! We'll cover customization inPowershell Lesson 5.
 
 ## Next Steps
 
 Once you're comfortable with these basics:
-- Move to PS-0: Getting Started for deeper path understanding
-- Then continue through PS-1 through PS-5 for full terminal mastery
+- Move toPowershell Lesson 0: Getting Started for deeper path understanding
+- Then continue throughPowershell Lesson 1 throughPowershell Lesson 5 for full terminal mastery
 
 ## Resources
 

@@ -13,7 +13,7 @@ Fast lookup for lessons, projects, resources, and common tasks
 | 3  | Parametric Architecture     | 60m      | Beginner+     | Modules, libraries, parameters                 | None                   |
 | 4  | AI Verification             | 45-60m   | Intermediate  | `3dm info`, validation, design documentation   | None                   |
 | 5  | Safety & Physical Interface | 60-90m   | Intermediate  | Safety protocols, materials, pre-print checks  | None                   |
-| 6  | 3dm Commands & Text         | 60-90m   | Intermediate  | `3dm describe/preview/orient/slice`, embossing | Keycap                 |
+| 6  | 3dm Commands & Text         | 60-90m   | Intermediate  | `3dm info/preview/orient/slice`, embossing | Keycap                 |
 | 7  | Parametric Transforms       | 75-90m   | Intermediate+ | Transforms, multi-part design, assembly        | Phone Stand            |
 | 8  | Advanced Parametric Design  | 90-120m  | Advanced      | Tolerance, interlocking features, snap-fits    | Stackable Bins         |
 | 9  | Automation & Workflows      | 60-90m   | Advanced      | PowerShell scripting, batch processing, CI/CD  | [key] Batch Automation |
@@ -70,7 +70,7 @@ Best for: Focus on practical printing and quality
 3dm build src/main.scad     # Generate STL from SCAD
 
 # Inspection
-3dm describe file.scad      # Text analysis (AI if configured)
+3dm info file.scad      # Text analysis (AI if configured)
 3dm preview file.scad       # Generate 2D tactile preview
 
 # Optimization
@@ -265,7 +265,7 @@ done
 Diagnosis:
 
 ```bash
-3dm describe file.scad
+3dm info file.scad
 # Look for error messages
 ```
 
@@ -365,7 +365,7 @@ Solution:
 ### Debugging
 
 - Lower `$fn` to 8-12 for faster renders during development
-- Use `3dm describe` frequently to catch issues early
+- Use `3dm info` frequently to catch issues early
 - Test components individually before assembling
 - Generate `3dm preview` for 2D tactile verification
 
@@ -385,7 +385,7 @@ Solution:
 
 ### Accessibility
 
-- Always use `3dm describe` to verify non-visual usability
+- Always use `3dm info` to verify non-visual usability
 - Generate `3dm preview` for tactile inspection
 - Document measurements clearly
 - Test assembly without visual guidance
@@ -422,4 +422,4 @@ Q: Can I combine multiple SCAD files?
 A: Yes, use `include <path/to/file.scad>` or `use <path/to/file.scad>`
 
 Q: How do I make designs accessible?  
-A: Use `3dm describe` and `3dm preview` and include written measurements/descriptions
+A: Use `3dm info` and `3dm preview` and include written measurements/descriptions

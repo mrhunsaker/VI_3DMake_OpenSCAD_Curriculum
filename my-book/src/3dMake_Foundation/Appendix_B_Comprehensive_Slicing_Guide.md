@@ -574,9 +574,9 @@ Write-Host "Time remaining: $($status.progress.printTimeLeft) seconds"
 ### Describing Sliced Models
 
 ```powershell
-# Use 3dm describe to understand the slicer's output
+# Use 3dm info to understand the slicer's output
 # (Best practice: describe after slicing to verify settings)
-3dm describe output/bracelet_holder.stl
+3dm info output/bracelet_holder.stl
 # Output includes:
 # - Number of parts
 # - Dimensions
