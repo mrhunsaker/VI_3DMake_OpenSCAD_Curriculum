@@ -40,7 +40,15 @@ $endif$
     BoldFont=*-Bold,
     ItalicFont=*-Italic,          % ← not *-RegularItalic
     BoldItalicFont=*-BoldItalic
+    RawFeature={fallback=symbolsfallback}
   ]
+  % Fallback for glyphs missing from Atkinson (e.g. → U+2192)
+  \directlua{
+    luaotfload.add_fallback("symbolsfallback", {
+      "DejaVuSans:mode=harf;",
+      "NotoSans:mode=harf;"
+    })
+  }
 \else\ifXeTeX
   \usepackage{fontspec}
   \usepackage[sfdefault]{atkinson}
@@ -48,7 +56,7 @@ $endif$
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-RegularItalic,
+    ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic
   ]
 \fi\fi
@@ -58,7 +66,7 @@ $endif$
   Extension=.otf,
   UprightFont=*-Regular,
   BoldFont=*-Bold,
-  ItalicFont=*-RegularItalic,
+  ItalicFont=*-Italic,
   BoldItalicFont=*-BoldItalic
 ]
 

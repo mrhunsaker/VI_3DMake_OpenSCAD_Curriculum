@@ -45,7 +45,8 @@ jobs:
             texlive-fonts-extra \
             texlive-luatex \
             texlive-xetex \
-            lmodern
+            lmodern\
+            fonts-dejavu 
 
       - name: Install Atkinson Hyperlegible fonts
         run: |
