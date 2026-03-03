@@ -1495,26 +1495,9 @@ Manual
 Hull
 and
 Minkowski.
-\url
-{https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull}
+https://en.wikibooks.org/wiki/OpenSCAD\_User\_Manual/Minkowski\_and\_Hull
 \@endanenote 
 \@doanenote {82}
-macro:->Digital
-Calipers
-Measurement
-Technique
----
-General
-metrology
-reference.
-See
-also:
-\href
-{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Lessons_3dMake_10\%5C../../assets/3dMake_Foundation/measurement_worksheet.md}{Measurement
-Worksheet
-Asset}
-\@endanenote 
-\@doanenote {83}
 macro:->3DMake
 GitHub
 Repository
@@ -1525,8 +1508,23 @@ including
 \texttt
 {3dm\
 info}.
-\url
-{https://github.com/tdeck/3dmake}
+https://github.com/tdeck/3dmake
+\@endanenote 
+\@doanenote {83}
+macro:->Digital
+Calipers
+Measurement
+Technique
+---
+General
+metrology
+reference.
+See
+also:
+Measurement
+Worksheet
+Asset
+(assets/3dMake\_Foundation/measurement\_worksheet.md)
 \@endanenote 
 \@doanenote {84}
 macro:->OpenSCAD

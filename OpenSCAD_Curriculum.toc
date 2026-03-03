@@ -82,37 +82,37 @@
 \contentsline {subsubsection}{Snap-Fit Clip - Student Documentation Template (Extension Project)}{439}{section*.1598}%
 \contentsline {subsubsection}{Snap-Fit Clip - Teacher Template (Extension Project)}{440}{section*.1609}%
 \contentsline {subsection}{Lesson 9 --- Automation and 3dm Workflows}{442}{section*.1619}%
-\contentsline {subsection}{Lesson 10: Hands-On Practice Exercises and Troubleshooting}{451}{section*.1644}%
-\contentsline {subsubsection}{Diagnostic Checklist for 3D Printing}{464}{section*.1665}%
-\contentsline {subsubsection}{Measurement Calibration Guide}{471}{section*.1687}%
-\contentsline {subsubsection}{Measurement Worksheet}{477}{section*.1710}%
-\contentsline {subsubsection}{Common 3D Printing Issues and Solutions}{480}{section*.1720}%
-\contentsline {subsubsection}{Accessibility Audit Project}{485}{section*.1736}%
-\contentsline {subsubsection}{Accessibility Audit - Student Documentation Template (Extension Project)}{485}{section*.1737}%
-\contentsline {subsubsection}{Accessibility Audit - Teacher Template (Extension Project)}{487}{section*.1749}%
-\contentsline {subsection}{Lesson 10: Hands-On Practice Exercises and Troubleshooting}{489}{section*.1759}%
-\contentsline {subsubsection}{Stakeholder Interview Template}{494}{section*.1778}%
-\contentsline {subsubsection}{Functional Requirements Template}{497}{section*.1798}%
-\contentsline {subsubsection}{Design Specification Template}{502}{section*.1833}%
-\contentsline {subsubsection}{Feedback Collection Template}{508}{section*.1859}%
-\contentsline {subsubsection}{Master Project Rubric - 0-9 Point Scale}{514}{section*.1896}%
-\contentsline {subsubsection}{Project 3: Beaded Jewelry - OpenSCAD Design}{516}{section*.1903}%
-\contentsline {section}{3dMake Foundation Final Exam}{520}{section*.1916}%
-\contentsline {section}{3dMake Foundation Quick Reference Guide}{530}{section*.1934}%
-\contentsline {chapter}{BackMatter}{547}{chapter*.1981}%
-\contentsline {section}{Appendices}{548}{section*.1984}%
-\contentsline {subsection}{Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows}{548}{section*.1986}%
-\contentsline {subsection}{Appendix B: PowerShell Integration for SCAD Workflows}{551}{section*.1999}%
-\contentsline {subsection}{Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows}{564}{section*.2040}%
-\contentsline {section}{Appendices}{567}{section*.2052}%
-\contentsline {subsection}{Appendix A: 3DMake Cheat Sheet}{567}{section*.2054}%
-\contentsline {subsection}{Appendix A: Comprehensive Slicing Guide - All Major Slicers}{567}{section*.2055}%
-\contentsline {subsection}{Appendix B: Material Properties \& Selection Guide}{580}{section*.2107}%
-\contentsline {subsection}{Appendix C: Tolerance Testing \& Quality Assurance Matrix}{592}{section*.2158}%
-\contentsline {subsection}{Appendix D: Advanced OpenSCAD Concepts}{602}{section*.2187}%
-\contentsline {section}{PTECHNICAL REFERENCE}{614}{section*.2216}%
-\contentsline {section}{Student Glossary}{636}{section*.2335}%
-\contentsline {section}{Teacher Glossary}{656}{section*.2466}%
-\contentsline {section}{References}{669}{section*.2547}%
-\contentsline {section}{Index}{673}{section*.2555}%
-\contentsline {section}{Contributors to this Curriculum}{673}{section*.2556}%
+\contentsline {subsection}{Lesson 10 --- Hands-On Practice Exercises and Troubleshooting}{451}{section*.1644}%
+\contentsline {subsubsection}{Diagnostic Checklist for 3D Printing}{465}{section*.1686}%
+\contentsline {subsubsection}{Measurement Calibration Guide}{472}{section*.1708}%
+\contentsline {subsubsection}{Measurement Worksheet}{477}{section*.1731}%
+\contentsline {subsubsection}{Common 3D Printing Issues and Solutions}{480}{section*.1741}%
+\contentsline {subsubsection}{Accessibility Audit Project}{486}{section*.1757}%
+\contentsline {subsubsection}{Accessibility Audit - Student Documentation Template (Extension Project)}{486}{section*.1758}%
+\contentsline {subsubsection}{Accessibility Audit - Teacher Template (Extension Project)}{488}{section*.1770}%
+\contentsline {subsection}{Lesson 10: Hands-On Practice Exercises and Troubleshooting}{489}{section*.1780}%
+\contentsline {subsubsection}{Stakeholder Interview Template}{495}{section*.1799}%
+\contentsline {subsubsection}{Functional Requirements Template}{498}{section*.1819}%
+\contentsline {subsubsection}{Design Specification Template}{503}{section*.1854}%
+\contentsline {subsubsection}{Feedback Collection Template}{509}{section*.1880}%
+\contentsline {subsubsection}{Master Project Rubric - 0-9 Point Scale}{515}{section*.1917}%
+\contentsline {subsubsection}{Project 3: Beaded Jewelry - OpenSCAD Design}{517}{section*.1924}%
+\contentsline {section}{3dMake Foundation Final Exam}{520}{section*.1937}%
+\contentsline {section}{3dMake Foundation Quick Reference Guide}{531}{section*.1955}%
+\contentsline {chapter}{BackMatter}{548}{chapter*.2002}%
+\contentsline {section}{Appendices}{549}{section*.2005}%
+\contentsline {subsection}{Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows}{549}{section*.2007}%
+\contentsline {subsection}{Appendix B: PowerShell Integration for SCAD Workflows}{552}{section*.2020}%
+\contentsline {subsection}{Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows}{565}{section*.2061}%
+\contentsline {section}{Appendices}{568}{section*.2073}%
+\contentsline {subsection}{Appendix A: 3DMake Cheat Sheet}{568}{section*.2075}%
+\contentsline {subsection}{Appendix A: Comprehensive Slicing Guide - All Major Slicers}{568}{section*.2076}%
+\contentsline {subsection}{Appendix B: Material Properties \& Selection Guide}{581}{section*.2128}%
+\contentsline {subsection}{Appendix C: Tolerance Testing \& Quality Assurance Matrix}{593}{section*.2179}%
+\contentsline {subsection}{Appendix D: Advanced OpenSCAD Concepts}{603}{section*.2208}%
+\contentsline {section}{PTECHNICAL REFERENCE}{615}{section*.2237}%
+\contentsline {section}{Student Glossary}{637}{section*.2356}%
+\contentsline {section}{Teacher Glossary}{657}{section*.2487}%
+\contentsline {section}{References}{670}{section*.2568}%
+\contentsline {section}{Index}{674}{section*.2576}%
+\contentsline {section}{Contributors to this Curriculum}{674}{section*.2577}%

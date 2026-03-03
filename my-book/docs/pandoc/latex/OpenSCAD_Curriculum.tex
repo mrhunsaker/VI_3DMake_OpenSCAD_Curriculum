@@ -15,8 +15,36 @@
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-RegularItalic,
+    ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic
+  ]
+\ifLuaTeX
+  \usepackage{fontspec}
+  \usepackage[sfdefault]{atkinson}
+  \setmonofont{AtkinsonHyperlegibleMono}[
+    Extension=.otf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic
+  ]
+  % Fallback for glyphs missing from Atkinson (e.g. → U+2192)
+  \directlua{
+    luaotfload.add_fallback("symbolsfallback", {
+      "DejaVuSans:mode=harf;",
+      "NotoSans:mode=harf;"
+    })
+  }
+  \setmainfont{AtkinsonHyperlegibleNext}[
+    Extension=.otf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic,
+    BoldFeatures={RawFeature={fallback=symbolsfallback}},
+    UprightFeatures={RawFeature={fallback=symbolsfallback}},
+    ItalicFeatures={RawFeature={fallback=symbolsfallback}},
+    BoldItalicFeatures={RawFeature={fallback=symbolsfallback}}
   ]
 \else\ifXeTeX
   \usepackage{fontspec}
@@ -25,17 +53,16 @@
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-RegularItalic,
+    ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic
   ]
 \fi\fi
 
-% Define explicit mono font command for listings
 \newfontfamily\listingfont{AtkinsonHyperlegibleMono}[
   Extension=.otf,
   UprightFont=*-Regular,
   BoldFont=*-Bold,
-  ItalicFont=*-RegularItalic,
+  ItalicFont=*-Italic,
   BoldItalicFont=*-BoldItalic
 ]
 
@@ -1083,7 +1110,7 @@ Project
 \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_9__lessons_3dmake_9.md__lesson-9--automation-and-3dm-workflows]{Lesson 9}
 & Automation + File Import/Export (requires CLI Foundation) & 75-105 min
 & Batch Processing Automation \\
-\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__lesson-10-hands-on-practice-exercises-and-troubleshooting]{Lesson 10}
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__lesson-10--hands-on-practice-exercises-and-troubleshooting]{Lesson 10}
 & Troubleshooting \& Mastery with Measurement & 120-150 min &
 QA Testing + Accessibility Audit \\
 \end{longtable}
@@ -30957,83 +30984,58 @@ jobs:
 
 \textbf{Exercise 9.3 (Advanced):} Create a parametric \texttt{Makefile} (Linux/macOS) and/or a PowerShell \texttt{Invoke-Build} task file (Windows) that has separate targets: \texttt{build}, \texttt{clean}, \texttt{variants}, \texttt{archive}, and \texttt{test} (runs batch\_verify). Running \texttt{make\ all} or \texttt{Invoke-Build\ all} should run all targets in the correct order.
 
-\subsection{Lesson 10: Hands-On Practice Exercises and Troubleshooting}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__lesson-10-hands-on-practice-exercises-and-troubleshooting}
+\subsection{Lesson 10 --- Hands-On Practice Exercises and Troubleshooting}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__lesson-10--hands-on-practice-exercises-and-troubleshooting}
 
-Estimated time: 120--150 minutes
-
-\subsubsection*{\texorpdfstring{Learning Objectives \footnote{OpenSCAD User Manual --- Hull and Minkowski. \url{https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull}}}{Learning Objectives }}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__learning-objectives-}
-
-\begin{itemize}
-\tightlist
-\item
-  Apply skills from Lessons 1--9 in three integrated design exercises
-\item
-  Use calipers to measure and validate printed parts against specifications
-\item
-  Diagnose and fix non-manifold geometry errors
-\item
-  Perform tolerance stack-up analysis
-\item
-  Use \texttt{3dm\ info} for non-visual validation
-\end{itemize}
-
-\subsubsection*{Materials}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__materials}
-
-\begin{itemize}
-\tightlist
-\item
-  3dMake project
-\item
-  Printer and PLA filament
-\item
-  Digital calipers
-\item
-  Printed parts from previous lessons (or new prints from exercises below)
-\end{itemize}
-
-\subsubsection*{Exercise Set A: Phone Stand Refinement}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__exercise-set-a-phone-stand-refinement}
-
-\paragraph*{A1 --- Measure and Iterate}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__a1--measure-and-iterate}
-
-Using calipers, measure your printed phone stand against the design specification\footnote{Digital Calipers Measurement Technique --- General metrology reference. See also: \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Lessons_3dMake_10\%5C../../assets/3dMake_Foundation/measurement_worksheet.md}{Measurement Worksheet Asset}}:
-
-\begin{lstlisting}[style=Alabaster]
-# Lesson 10 — Hands-On Practice Exercises and Troubleshooting
-*[CORRECTED — March 2026 Curriculum Revision]*
-
----
-
-## Learning Objectives
+\subsubsection*{Learning Objectives}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__learning-objectives}
 
 By the end of this lesson you will be able to:
 
-- Apply `hull()` and `minkowski()` with awareness of their performance cost
-- Use `$preview` to conditionally disable slow operations during development
-- Create 2D templates with `projection()` for drilling guides and laser cutting
-- Diagnose and fix non-manifold geometry
-- Apply `resize()` to imported models and use `surface()` for height-map geometry
-- Write advanced parametric assemblies using `children()` and `$children`
+\begin{itemize}
+\tightlist
+\item
+  Apply \texttt{hull()} and \texttt{minkowski()}\footnote{OpenSCAD User Manual --- Hull and Minkowski.
+    https://en.wikibooks.org/wiki/OpenSCAD\_User\_Manual/Minkowski\_and\_Hull} with awareness of their performance cost
+\item
+  Use \texttt{\$preview} to conditionally disable slow operations during development
+\item
+  Create 2D templates with \texttt{projection()} for drilling guides and laser cutting
+\item
+  Diagnose and fix non-manifold geometry
+\item
+  Apply \texttt{resize()} to imported models and use \texttt{surface()} for height-map geometry
+\item
+  Write advanced parametric assemblies using \texttt{children()} and \texttt{\$children}
+\end{itemize}
 
----
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-## Step 1 — `hull()` for Organic Shapes
+\subsubsection*{\texorpdfstring{Step 1 --- \texttt{hull()} for Organic Shapes}{Step 1 --- hull() for Organic Shapes}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__step-1--hull-for-organic-shapes}
 
-`hull()` creates the convex hull of its children — the smallest convex shape that contains all of them. It is much faster than `minkowski()` and excellent for creating smooth transitions between shapes.
+\texttt{hull()} creates the convex hull of its children --- the smallest convex shape that contains all of them. It is much faster than \texttt{minkowski()} and excellent for creating smooth transitions between shapes.
 
-```openscad
+\paragraph*{Example 1: Smooth transition between a hexagonal cylinder and a sphere}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-1-smooth-transition-between-a-hexagonal-cylinder-and-a-sphere}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
 // hull() between two different shapes at different heights
-// Creates a smooth transition (like a transition piece or funnel)
-
-  cylinder(r=20, h=1, $fn=6);          // hexagon at bottom
+// Creates a smooth transition (like a funnel or transition piece)
+hull() {
+  cylinder(r=20, h=1, $fn=6);       // hexagon at bottom
   translate([0, 0, 30])
-    sphere(r=8, $fn=32);                // sphere at top
+    sphere(r=8, $fn=32);             // sphere at top
 }
 
-// Rounded box using hull of 4 spheres
-// Each sphere is at a corner; hull fills the space between them
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{Example 2: Rounded box using \texttt{hull()} of 8 spheres}{Example 2: Rounded box using hull() of 8 spheres}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-2-rounded-box-using-hull-of-8-spheres}
+
+Place one sphere at each of the 8 corners; \texttt{hull()} fills the space between them,
+rounding every corner and edge by the sphere radius.
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
 r = 5;  // corner radius
 w = 40; d = 30; h = 20;
-Worst case (all errors same direction): 0.12 + 0.13 + 0.09 = 0.34mm — still within spec
+
+hull() {
   for (x = [r, w-r]) {
     for (y = [r, d-r]) {
       translate([x, y, 0]) sphere(r=r, $fn=24);
@@ -31042,53 +31044,69 @@ Worst case (all errors same direction): 0.12 + 0.13 + 0.09 = 0.34mm — still wi
   }
 }
 
-// Wing / aerofoil profile — hull of two offset cylinders
+\end{lstlisting}
+
+\paragraph*{Example 3: Wing / aerofoil profile}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-3-wing--aerofoil-profile}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// hull() of two cylinders at different positions and radii
+// produces a smooth aerofoil cross-section
 translate([0, 50, 0])
+hull() {
+  cylinder(r=6, h=2, $fn=32);            // leading edge (round)
+  translate([40, 0, 0])
+    cylinder(r=1, h=2, $fn=16);          // trailing edge (sharp)
+}
 
 \end{lstlisting}
 
-cylinder(r=6, h=2, \$fn=32);              // leading edge (round)
-translate({[}40, 0, 0{]}) cylinder(r=1, h=2, \$fn=16);  // trailing edge (sharp)
-\}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{lstlisting}[style=Alabaster]
+\subsubsection*{\texorpdfstring{Step 2 --- \texttt{minkowski()} --- Performance Warning and Pattern}{Step 2 --- minkowski() --- Performance Warning and Pattern}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__step-2--minkowski--performance-warning-and-pattern}
 
----
+\texttt{minkowski()} computes the Minkowski sum: it "rolls" the secondary shape around every point on the primary shape\textquotesingle s surface. This produces perfectly rounded or offset geometry, but the computation scales with the product of both shapes\textquotesingle{} face counts.
 
-## Step 2 — `minkowski()` — Performance Warning and Pattern
+\begin{quote}
+⚠ A complex primary shape combined with a sphere at \texttt{\$fn=64} can take many minutes to render. Always use \texttt{\$preview} to skip the \texttt{minkowski()} call during development.
+\end{quote}
 
-`minkowski()` computes the Minkowski sum: it "rolls" the secondary shape around every point on the primary shape's surface. This produces perfectly rounded or offset geometry, but the computation scales with the product of both shapes' face counts.
+\begin{quote}
+\textbf{Version note:} \texttt{\$preview} is available in \textbf{OpenSCAD 2019.05 and later}. In earlier versions it is undefined (treated as \texttt{false}). If you are using an older version, omit the \texttt{\$preview} guard and only run F6 when you need the final result.
+\end{quote}
 
-**A complex primary shape + sphere with $fn=64 can take minutes to render.** Always use `$preview` to skip it during development.
-
-```openscad
-// $preview is TRUE during F5 (fast preview) and FALSE during F6 (full render)
-// Use it to swap between a fast approximation and the full computation
-
-PREVIEW = $preview;
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// $preview is TRUE during F5 (fast preview) and FALSE during F6 (full render).
+// Use it to swap between a fast placeholder and the full Minkowski computation.
 
 module rounded_box(w, d, h, r=4) {
-  if (PREVIEW) {
-    // Fast preview mode: plain cube — renders instantly
-    // (add color to remind you this is not the final shape)
+  if ($preview) {
+    // Fast preview mode: plain cube — renders instantly.
+    // Color it orange as a reminder this is NOT the final shape.
     color("orange", 0.6) cube([w, d, h]);
   } else {
-    // Full render mode: proper Minkowski sum
-    // Keep the secondary shape (sphere) LOW-POLY to limit face explosion
+    // Full render mode: proper Minkowski sum.
+    // Keep the secondary sphere LOW-POLY to limit face-count explosion.
     minkowski() {
       cube([w - 2*r, d - 2*r, h - r]);
-      sphere(r=r, $fn=12);  // keep $fn LOW for minkowski — 12 is enough
+      sphere(r=r, $fn=12);  // keep $fn LOW for minkowski — 12 is usually enough
     }
   }
 }
 
 rounded_box(50, 40, 20, r=5);
 
-// hull() as a faster minkowski() alternative:
-// hull() only works for convex shapes, but is MUCH faster
-translate([0, 60, 0])
+\end{lstlisting}
 
-  // Create the equivalent of minkowski(cube, sphere) using hull of 8 spheres
+\paragraph*{\texorpdfstring{\texttt{hull()} as a faster \texttt{minkowski()} alternative}{hull() as a faster minkowski() alternative}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__hull-as-a-faster-minkowski-alternative}
+
+\texttt{hull()} only works for convex shapes, but it is far faster than \texttt{minkowski()}.
+For a simple rounded box you can get an equivalent result by placing a sphere at
+each corner and taking the hull:
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+translate([0, 60, 0])
+hull() {
+  // Equivalent to minkowski(cube, sphere) — much faster for convex shapes
   r = 4;
   w = 50; d = 40; h = 16;
   for (x = [r, w-r]) for (y = [r, d-r]) for (z = [r, h-r]) {
@@ -31101,18 +31119,9 @@ translate([0, 60, 0])
 \textbf{Performance guidelines for \texttt{minkowski()}:}
 
 {\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3000}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3286}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3714}}@{}}
+\begin{longtable}[]{@{}lll@{}}
 \toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Primary shape faces
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Secondary shape 
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-\texttt{\$fn}
-\end{minipage} \\
+Primary shape faces & Secondary  & \texttt{\$fn} \\
 \midrule\noalign{}
 \endhead
 \bottomrule\noalign{}
@@ -31133,7 +31142,7 @@ Secondary shape
 \begin{itemize}
 \tightlist
 \item
-  Generate drilling templates
+  Generate drilling and assembly templates
 \item
   Create laser-cut outlines from 3D models
 \item
@@ -31155,37 +31164,35 @@ module phone_stand_example() {
 // 3D model (for printing)
 phone_stand_example();
 
-// 2D silhouette (footprint) — place beside the 3D model for comparison
+// 2D silhouette (footprint) — placed beside the 3D model for comparison
 color("LightGreen")
 translate([110, 0, 0])
-  linear_extrude(1)    // make it 1mm thick so it's visible in 3D preview
+  linear_extrude(1)   // 1mm thick so it is visible in 3D preview
     projection(cut=false)
       phone_stand_example();
 
-// Cross-section at z=3 — shows the internal structure at that height
+// Cross-section at z=3 — shows internal structure at that height
 color("LightCoral")
 translate([220, 0, 0])
   linear_extrude(1)
     projection(cut=true)
-      translate([0, 0, -3])  // shift model so the cut happens at z=3 of the part
+      translate([0, 0, -3])  // shift model so the cut falls at z=3 of the part
         phone_stand_example();
 
 \end{lstlisting}
 
 \textbf{Exporting a 2D DXF for laser cutting or CNC:}
 
-\begin{lstlisting}[style=Alabaster, language=bash]
-# Export the projection as DXF (OpenSCAD command line)
-# Your .scad file should contain ONLY the projection() call for clean export
+\begin{quote}
+\textbf{Note:} \texttt{3dm} is designed for building STL output. Use the \texttt{openscad} CLI directly for DXF export --- do \textbf{not} use \texttt{3dm\ build} for this step.
+\end{quote}
 
-# Linux/macOS (bash)
+\begin{lstlisting}[style=Alabaster, language=bash]
+# Linux / macOS
 openscad -o template.dxf src/template_projection.scad
 
-# Windows (PowerShell)
-openscad -o template.dxf src\template_projection.scad
-
-# Windows (CMD)
-openscad -o template.dxf src\template_projection.scad
+# Windows (PowerShell or CMD)
+openscad -o template.dxf src\\template_projection.scad
 
 \end{lstlisting}
 
@@ -31193,21 +31200,21 @@ openscad -o template.dxf src\template_projection.scad
 
 \begin{lstlisting}[style=Alabaster, language=openscad]
 // src/template_projection.scad
-// This file exports a 2D projection for DXF output
-// Import the 3D model and project it
+// This file is used exclusively for DXF export.
+// It should contain only projection() — no 3D geometry.
 
 use <../src/main.scad>
 
-// Only the projection — no 3D geometry
+// Project the full silhouette
 projection(cut=false)
   main_assembly();
 
-// Add mounting hole markers (as circles — DXF circles are standard)
-// These appear as circles in the DXF, ready for CNC drilling
+// Add mounting-hole markers as circles.
+// DXF circles are standard and ready for CNC drilling.
 hole_positions = [[10, 10], [80, 10], [10, 60], [80, 60]];
 for (pos = hole_positions) {
   translate(pos)
-    circle(r=1.75, $fn=16);  // 3.5mm diameter holes
+    circle(r=1.75, $fn=16);  // 3.5 mm diameter holes
 }
 
 \end{lstlisting}
@@ -31216,21 +31223,24 @@ for (pos = hole_positions) {
 
 \subsubsection*{Step 4 --- Diagnosing Non-Manifold Geometry}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__step-4--diagnosing-non-manifold-geometry}
 
-A mesh is \textbf{manifold} (or "watertight") when every edge is shared by exactly two faces and the surface has no holes or self-intersections. Slicers require manifold geometry.
+A mesh is \textbf{manifold} (or "watertight") when every edge is shared by exactly two faces and the surface has no holes, zero-thickness walls, or self-intersections. Slicers require manifold geometry.
 
-\textbf{Common causes and fixes:}
+\paragraph*{\texorpdfstring{Problem 1 --- Co-planar faces in \texttt{difference()}}{Problem 1 --- Co-planar faces in difference()}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__problem-1--co-planar-faces-in-difference}
+
+When the cutter exactly coincides with the face of the base shape, OpenSCAD cannot determine which side of the face to keep. Fix: extend the cutter by 0.001 mm on each side.
 
 \begin{lstlisting}[style=Alabaster, language=openscad]
-// PROBLEM 1: Co-planar faces in difference()
-// FIX: Apply the 0.001 rule
 difference() {
   cube([20, 20, 20]);
-  translate([5, 5, -0.001])    // ← extend 0.001 below base
-    cylinder(r=5, h=20.002, $fn=24);  // ← extend 0.001 above top
+  translate([5, 5, -0.001])           // extend 0.001 below base
+    cylinder(r=5, h=20.002, $fn=24);  // extend 0.001 above top
 }
 
-// PROBLEM 2: Zero-thickness walls (geometry that "almost" closes)
-// FIX: Ensure all walls have positive thickness
+\end{lstlisting}
+
+\paragraph*{Problem 2 --- Zero-thickness or negative-thickness walls}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__problem-2--zero-thickness-or-negative-thickness-walls}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
 module thin_wall_box(w, d, h, wall=2) {
   assert(wall > 0 && wall < min(w,d)/2,
     str("wall must be 0 < wall < ", min(w,d)/2, ", got: ", wall));
@@ -31241,111 +31251,137 @@ module thin_wall_box(w, d, h, wall=2) {
   }
 }
 
-// PROBLEM 3: Touching (not overlapping) shapes
-// Shapes that just touch at a face create a non-manifold edge
-// FIX: Overlap by 0.001 and use union()
+\end{lstlisting}
+
+\paragraph*{Problem 3 --- Shapes that only touch (not overlap)}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__problem-3--shapes-that-only-touch-not-overlap}
+
+Two shapes that share a face but do not overlap create a non-manifold edge. Fix: overlap by 0.001 mm and wrap in \texttt{union()}.
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
 module two_boxes() {
-  union() {   // explicit union ensures proper merging
+  union() {
     cube([10, 10, 10]);
-    translate([10 - 0.001, 0, 0])    // overlap by 0.001 — not just touch
+    translate([10 - 0.001, 0, 0])   // overlap by 0.001 — not just touch
       cube([10, 10, 10]);
   }
 }
 
-// PROBLEM 4: Inverted normals (inside-out geometry)
-// Usually caused by scale() with negative values
-// FIX: Avoid negative scale; use mirror() instead
-// WRONG:
-// scale([-1, 1, 1]) some_module();  // negative scale flips normals
-// CORRECT:
-// mirror([1, 0, 0]) some_module();  // mirror preserves normals
+\end{lstlisting}
 
-// DIAGNOSE: Use the % modifier to ghost shapes and see through walls
-// difference() {
-//   cube([20, 20, 20]);
-//   % cylinder(r=5, h=25, $fn=24);  // ghost the cutter to see it
-// }
+\paragraph*{\texorpdfstring{Problem 4 --- Inverted normals from negative \texttt{scale()}}{Problem 4 --- Inverted normals from negative scale()}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__problem-4--inverted-normals-from-negative-scale}
+
+\texttt{scale()} with a negative value flips face normals, creating inside-out geometry. Use \texttt{mirror()} instead.
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// WRONG — negative scale flips normals:
+// scale([-1, 1, 1]) some_module();
+
+// CORRECT — mirror() preserves normals:
+mirror([1, 0, 0]) some_module();
 
 \end{lstlisting}
 
-\textbf{Manifold check workflow:}
+\paragraph*{Debugging tip --- ghost modifier}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__debugging-tip--ghost-modifier}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// Use the % modifier to render a shape as a transparent ghost
+// so you can see inside the model and verify cutter placement.
+difference() {
+  cube([20, 20, 20]);
+  % cylinder(r=5, h=25, $fn=24);  // ghost the cutter
+}
+
+\end{lstlisting}
+
+\paragraph*{Manifold check workflow}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__manifold-check-workflow}
 
 \begin{lstlisting}[style=Alabaster, language=bash]
-# Linux/macOS (bash)
+# Build the STL
 3dm build
-# Check console for "WARNING: Number of surfaces is odd:" — sign of non-manifold
 
-# Open in PrusaSlicer and look for orange highlights on problem edges
-# Or use: admesh --analyze build/main.stl (install with: apt install admesh)
+# OpenSCAD prints manifold warnings to the console, e.g.:
+#   WARNING: Object may not be a valid 2-manifold ...
+# Check for this message after every build.
 
-# Windows (PowerShell)
-3dm build
-# Same console check applies
+# For more detail, use admesh:
+# Linux:   apt install admesh
+# macOS:   brew install admesh
+admesh --analyze build/main.stl
 
-# Windows (CMD)
-3dm build
+# Or open the STL in PrusaSlicer and enable "Check for geometry errors"
+# to see orange highlights on problem edges.
 
 \end{lstlisting}
+
+\begin{quote}
+⚠ The correct OpenSCAD manifold warning is \textbf{"WARNING: Object may not be a valid 2-manifold"}. Searching for any other string will cause you to miss real errors.
+\end{quote}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsubsection*{\texorpdfstring{Step 5 --- \texttt{surface()} for Height-Map Geometry}{Step 5 --- surface() for Height-Map Geometry}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__step-5--surface-for-height-map-geometry}
 
-\texttt{surface()} reads a grayscale image or data file and creates a 3D surface where brightness = height. This is useful for terrain, texture panels, and embossed artwork.
+\texttt{surface()} reads a grayscale image or a \texttt{.dat} data file and creates a 3D surface where pixel brightness maps to height. Black = 0 height, white = maximum height. This is useful for terrain, texture panels, and embossed artwork.
+
+\paragraph*{\texorpdfstring{Example 1: Minimal self-contained \texttt{surface()} from a \texttt{.dat} file}{Example 1: Minimal self-contained surface() from a .dat file}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-1-minimal-self-contained-surface-from-a-dat-file}
+
+Save the matrix below as \texttt{terrain.dat} in the same folder as your \texttt{.scad} file, then run the \texttt{surface()} call. No external image editor required.
+
+\begin{lstlisting}[style=Alabaster]
+ 0  10  20  10   0
+10  40  60  40  10
+20  60 100  60  20
+10  40  60  40  10
+ 0  10  20  10   0
+
+\end{lstlisting}
 
 \begin{lstlisting}[style=Alabaster, language=openscad]
-// surface() reads a PNG or DAT file
-// Black = 0 height, White = maximum height
+// In your .scad file:
+scale([5, 5, 0.3])   // each cell = 5 mm wide; height scaled from 0–100
+  surface(file="terrain.dat", center=true);
 
-// From an image file (grayscale PNG)
-// surface(file="heightmap.png", center=true, invert=false);
+\end{lstlisting}
 
-// From an inline DAT file (matrix of height values 0-255)
-// Create a simple wave pattern as a DAT file, then use surface()
+\paragraph*{Example 2: Embossed logo panel}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-2-embossed-logo-panel}
 
-// Inline demonstration using a simple pattern:
-// (In real use, provide a .dat or .png file)
+Create a grayscale PNG (logo = white, background = black), save it as \texttt{src/logo\_heightmap.png}, then use the module below.
 
-// This creates a 10x10 terrain from a data file
-// surface(file = "terrain.dat", center = true);
-
-// PRACTICAL PATTERN: Embossed logo panel
-// 1. Create a grayscale version of your logo in any image editor
-// 2. Save as terrain.png (all non-logo area = black, logo = white)
-// 3. Place it in your project's src/ folder
-
+\begin{lstlisting}[style=Alabaster, language=openscad]
 module logo_panel(panel_w=60, panel_d=40, panel_h=3, relief=1.5) {
   // Base plate
   cube([panel_w, panel_d, panel_h]);
-  // Embossed surface on top (requires a heightmap file)
-  // translate([0, 0, panel_h])
-  //   scale([panel_w/100, panel_d/100, relief/255])
-  //     surface(file="src/logo_heightmap.png", center=false);
+
+  // Embossed surface on top.
+  // Assumes logo_heightmap.png is 100×100 pixels; scale to fit the panel.
+  translate([0, 0, panel_h])
+    scale([panel_w/100, panel_d/100, relief/255])
+      surface(file="src/logo_heightmap.png", center=false, invert=false);
 }
 
----
+logo_panel();
 
-## Step 6 — Advanced: `children()` and Custom Container Modules
+\end{lstlisting}
 
-`children()` gives modules access to the geometry passed to them. This enables powerful reusable "container" patterns.
+\begin{quote}
+✓ \texttt{surface()} supports PNG (grayscale or colour --- uses luminance) and \texttt{.dat} (whitespace-separated matrix). Always check that the image dimensions match the aspect ratio you want before scaling.
+\end{quote}
 
-```openscad
-// A container module that adds a base plate under any child geometry
-module on_base(base_h=3, margin=5) {
-  // Get the bounding box of children (approximate — OpenSCAD doesn't expose exact bbox)
-  // Place the children on top of a plate
-  children();  // render the child geometry at its natural position
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-  // We can't easily query bbox, so use a fixed-size base or pass dimensions
-}
+\subsubsection*{\texorpdfstring{Step 6 --- Advanced: \texttt{children()} and Custom Container Modules}{Step 6 --- Advanced: children() and Custom Container Modules}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__step-6--advanced-children-and-custom-container-modules}
 
-// Correct approach: pass dimensions explicitly
+\texttt{children()} gives modules access to the geometry passed to them, enabling powerful reusable "container" patterns. \texttt{\$children} holds the count of child objects passed.
+
+\paragraph*{\texorpdfstring{Example 1: \texttt{mounted\_on\_plate} --- place any geometry on a base with corner posts}{Example 1: mounted\_on\_plate --- place any geometry on a base with corner posts}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-1-mounted_on_plate--place-any-geometry-on-a-base-with-corner-posts}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
 module mounted_on_plate(plate_w, plate_d, plate_h=3, post_h=5) {
   // Base plate
   color("LightGray")
     cube([plate_w, plate_d, plate_h]);
 
-  // Mount posts at corners
+  // Corner mounting posts
   for (x = [5, plate_w - 5]) {
     for (y = [5, plate_d - 5]) {
       translate([x, y, plate_h])
@@ -31358,16 +31394,21 @@ module mounted_on_plate(plate_w, plate_d, plate_h=3, post_h=5) {
     children();
 }
 
-// Usage: wrap any geometry with mounted_on_plate
+// Usage: any geometry wrapped in mounted_on_plate()
 mounted_on_plate(80, 60, plate_h=3, post_h=8) {
-  // These children sit on the mounting plate
   cylinder(r=15, h=20, $fn=32);
 }
 
-// $children gives you the count of children
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{Example 2: \texttt{repeat\_children} --- tile multiple named children in a grid}{Example 2: repeat\_children --- tile multiple named children in a grid}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-2-repeat_children--tile-multiple-named-children-in-a-grid}
+
+\texttt{\$children} gives you the count of children passed. Use \texttt{children(i)} to render the i-th child individually.
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
 module repeat_children(n=3, spacing=25) {
-  for (i = [0:$children-1]) {
-    for (j = [0:n-1]) {
+  for (i = [0 : $children - 1]) {
+    for (j = [0 : n - 1]) {
       translate([j * spacing, i * spacing, 0])
         children(i);  // render the i-th child
     }
@@ -31376,25 +31417,30 @@ module repeat_children(n=3, spacing=25) {
 
 translate([0, 100, 0])
 repeat_children(n=4, spacing=20) {
-  sphere(r=5, $fn=16);          // child 0
-  cylinder(r=4, h=10, $fn=16);  // child 1
-  cube([8, 8, 6]);               // child 2
+  sphere(r=5, $fn=16);           // child 0
+  cylinder(r=4, h=10, $fn=16);   // child 1
+  cube([8, 8, 6]);                // child 2
 }
 
----
+\end{lstlisting}
 
-## Step 7 — Advanced: Lookup Tables and `search()`
+\begin{quote}
+✓ OpenSCAD does \textbf{not} expose bounding-box queries at runtime. Always pass dimensions explicitly to container modules rather than trying to compute them from children.
+\end{quote}
 
-`search()` finds the index of a value in a list. Combined with lookup tables, this replaces complex if/else chains.
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-```openscad
-// lookup() interpolates a value from a table of [input, output] pairs
-// Use for smooth parametric curves
+\subsubsection*{\texorpdfstring{Step 7 --- Advanced: Lookup Tables and \texttt{search()}}{Step 7 --- Advanced: Lookup Tables and search()}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__step-7--advanced-lookup-tables-and-search}
 
-// Speed-to-fan-speed lookup table
+\texttt{search()} finds the index of a value in a list. Combined with lookup tables, this replaces long \texttt{if}/\texttt{else} chains. \texttt{lookup()} interpolates a value from a table of \texttt{{[}input,\ output{]}} pairs.
+
+\paragraph*{\texorpdfstring{Example 1: \texttt{lookup()} for smooth parametric curves}{Example 1: lookup() for smooth parametric curves}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-1-lookup-for-smooth-parametric-curves}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// Temperature-to-fan-speed lookup table
 speed_table = [
-  [0,  0],    // 0°C → fan off
-  [40, 0],    // 40°C → fan off
+  [0,   0],   //  0°C → fan off
+  [40,  0],   // 40°C → fan off
   [50, 50],   // 50°C → 50% speed
   [60, 80],   // 60°C → 80% speed
   [70, 100]   // 70°C → full speed
@@ -31402,26 +31448,37 @@ speed_table = [
 
 temp = 55;
 fan_speed = lookup(temp, speed_table);
-echo("Fan speed at", temp, "°C:", fan_speed, "%");  // 65%
+echo("Fan speed at", temp, "°C:", fan_speed, "%");  // → 65%
 
-// search() — find index of a value in a list
-materials = ["PLA", "PETG", "ABS", "TPU", "Nylon"];
-densities = [1.24,  1.27,  1.05, 1.20,  1.14];
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{Example 2: \texttt{search()} to look up material properties}{Example 2: search() to look up material properties}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-2-search-to-look-up-material-properties}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+materials = ["PLA",  "PETG", "ABS",  "TPU",  "Nylon"];
+densities = [ 1.24,   1.27,   1.05,   1.20,   1.14];
 
 selected = "PETG";
 idx = search([selected], materials)[0];
 density = densities[idx];
 echo(str(selected, " density: ", density, " g/cm³"));
 
-// Applied: select filament properties dynamically
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{Example 3: Print cost estimator with \texttt{search()} and \texttt{assert()}}{Example 3: Print cost estimator with search() and assert()}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__example-3-print-cost-estimator-with-search-and-assert}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
 module print_cost_label(volume_mm3, material="PLA") {
   materials = ["PLA",  "PETG", "ABS",  "TPU",  "Nylon"];
-  densities = [1.24,   1.27,   1.05,   1.20,   1.14];
-  costs_g   = [0.020,  0.025,  0.018,  0.035,  0.045];
+  densities = [ 1.24,   1.27,   1.05,   1.20,   1.14];
+  costs_g   = [ 0.020,  0.025,  0.018,  0.035,  0.045];
 
-  idx = search([material], materials)[0];
-  assert(len(idx) > 0 || idx != [],
-    str("Unknown material: ", material, ". Valid: ", materials));
+  // search() returns a list of lists.
+  // matches[0] is the first result: an index on success, [] on failure.
+  matches = search([material], materials);
+  assert(len(matches[0]) > 0,
+    str("Unknown material: \\"", material, "\\". Valid: ", materials));
+  idx = matches[0];
 
   mass_g = (volume_mm3 / 1000) * densities[idx];
   cost   = mass_g * costs_g[idx];
@@ -31431,12 +31488,43 @@ module print_cost_label(volume_mm3, material="PLA") {
   echo("Cost estimate:", label);
   linear_extrude(1)
     text(label, size=4, font="Liberation Sans", halign="center");
+}
+
+print_cost_label(12000, "PETG");
 
 \end{lstlisting}
 
+\begin{quote}
+⚠ \texttt{search()} returns a list of lists. Check \texttt{len(matches{[}0{]})\ \textgreater{}\ 0} for a valid result --- \texttt{idx\ !=\ {[}{]}} does \textbf{not} work correctly in OpenSCAD.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Exercise Set A: Phone Stand}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__exercise-set-a-phone-stand}
+
+\paragraph*{A1 --- Hull Transition}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__a1--hull-transition}
+
+Add a smooth \texttt{hull()} transition between the base plate and the mounting post:
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+hull() {
+  translate([15, 20, 0]) cylinder(r=8, h=1, $fn=32);   // post footprint on base
+  translate([15, 20, 5]) cylinder(r=5, h=35, $fn=24);  // actual post
+}
+
+\end{lstlisting}
+
+\paragraph*{A2 --- Tolerance Stack-Up}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__a2--tolerance-stack-up}
+
+Measure the three main structural parts of your phone stand and record them in a table. Calculate worst-case stack-up:
+
+\textbf{Worst case = sum of all individual tolerances}
+
+Example for three parts each at ±0.15 mm: 0.15 + 0.15 + 0.15 = \textbf{±0.45 mm total}
+
 Document your own measurements in a similar table.
 
-\paragraph*{\texorpdfstring{A3 --- Add a Cable Slot \footnote{3DMake GitHub Repository --- Command reference including \texttt{3dm\ info}. \url{https://github.com/tdeck/3dmake}}}{A3 --- Add a Cable Slot }}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__a3--add-a-cable-slot-}
+\paragraph*{A3 --- Add a Cable Slot}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__a3--add-a-cable-slot}
 
 Extend your phone stand design with a cable slot through the base:
 
@@ -31445,22 +31533,24 @@ cable_slot_w  = 12;   // mm
 cable_slot_d  = 5;    // mm
 cable_slot_z  = -0.001;
 
-// Add to main difference() block:
+// Add inside your main difference() block:
 translate([base_w/2 - cable_slot_w/2, 0, cable_slot_z])
   cube([cable_slot_w, cable_slot_d, base_h + 0.002]);
 
 \end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsubsection*{Exercise Set B: Keycap with Text}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__exercise-set-b-keycap-with-text}
 
 \paragraph*{B1 --- Build a Mechanical Keyboard Keycap}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__b1--build-a-mechanical-keyboard-keycap}
 
 \begin{lstlisting}[style=Alabaster, language=openscad]
-// Parametric keycap
+// Parametric keycap for Cherry MX switches
 key_w      = 18;
 key_d      = 18;
 key_h      = 7;
-stem_r     = 2.75;  // MX stem: 5.5mm diameter
+stem_r     = 2.75;  // MX stem: 5.5 mm diameter
 stem_h     = 3.8;
 wall       = 1.5;
 label_text = "A";
@@ -31492,7 +31582,7 @@ module stem_mount() {
 keycap();
 stem_mount();
 
-// Engrave label
+// Engrave label on top
 translate([0, 0, key_h/2 - 0.8])
   linear_extrude(1.2)
     text(label_text, size=8, font="Liberation Sans:style=Bold",
@@ -31500,24 +31590,25 @@ translate([0, 0, key_h/2 - 0.8])
 
 \end{lstlisting}
 
-\paragraph*{B2 --- Validate with 3dm info}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__b2--validate-with-3dm-info}
+\paragraph*{\texorpdfstring{B2 --- Validate with \texttt{3dm\ info}\footnote{3DMake GitHub Repository --- Command reference including \texttt{3dm\ info}.
+  https://github.com/tdeck/3dmake}}{B2 --- Validate with 3dm info}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__b2--validate-with-3dm-info}
 
 \begin{lstlisting}[style=Alabaster, language=bash]
 3dm info
 
 \end{lstlisting}
 
-Expected output should confirm the keycap geometry. Document what the AI description says and compare it to your design intent.
+Document what the model description reports and compare it to your design intent.
 
 \paragraph*{B3 --- Print and Test}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__b3--print-and-test}
 
-Print the keycap and test it on a Cherry MX switch (or compatible). If the stem is too tight, increase \texttt{stem\_r\ +\ 0.1} to \texttt{stem\_r\ +\ 0.15}. If too loose, decrease to \texttt{stem\_r\ +\ 0.05}.
+Print the keycap and test it on a Cherry MX switch (or compatible). If the stem is too tight, increase the clearance from \texttt{stem\_r\ +\ 0.1} to \texttt{stem\_r\ +\ 0.15}. If too loose, decrease to \texttt{stem\_r\ +\ 0.05}.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsubsection*{Exercise Set C: Stackable Bins}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__exercise-set-c-stackable-bins}
 
 \paragraph*{C1 --- Build a Three-Size Bin Set}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__c1--build-a-three-size-bin-set}
-
-Using the stackable bin module from Lesson 8, generate three sizes:
 
 \begin{lstlisting}[style=Alabaster, language=openscad]
 // Small bin
@@ -31536,12 +31627,12 @@ translate([180, 0, 0])
 
 \paragraph*{C2 --- Diagnose and Fix Non-Manifold Geometry}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__c2--diagnose-and-fix-non-manifold-geometry}
 
-Non-manifold geometry occurs when faces share edges inconsistently (T-junctions, missing faces, zero-thickness walls). Common causes:
+Non-manifold geometry occurs when faces share edges inconsistently (T-junctions, missing faces, zero-thickness walls). A common cause is two shapes that touch at exactly one face:
 
 \begin{lstlisting}[style=Alabaster, language=openscad]
-// PROBLEM: two cubes share a face exactly — may produce non-manifold edge
+// PROBLEM: two cubes share a face exactly — may produce a non-manifold edge
 cube([20, 20, 10]);
-translate([20, 0, 0]) cube([20, 20, 10]);  // touching at x=20 — ambiguous edge
+translate([20, 0, 0]) cube([20, 20, 10]);  // touching at x=20
 
 // FIX 1: use union()
 union() {
@@ -31550,46 +31641,48 @@ union() {
 }
 
 // FIX 2: overlap slightly
-cube([20.001, 20, 10]);
-translate([20, 0, 0]) cube([20, 20, 10]);
-
-\end{lstlisting}
-
-Diagnosis tool:
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-3dm info  # AI will often flag non-manifold geometry
-# Also open STL in slicer and enable "Check for geometry errors"
-
-\end{lstlisting}
-
-\paragraph*{C3 --- Advanced Geometry: hull() and minkowski()}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__c3--advanced-geometry-hull-and-minkowski}
-
-\begin{lstlisting}[style=Alabaster, language=openscad]
-// hull() creates a convex envelope — useful for organic shapes
-module smooth_transition() {
-  hull() {
-    translate([0, 0, 0]) cylinder(r=15, h=5, $fn=64);
-    translate([0, 0, 30]) cylinder(r=5, h=2, $fn=64);
-  }
+union() {
+  cube([20.001, 20, 10]);
+  translate([20, 0, 0]) cube([20, 20, 10]);
 }
 
+\end{lstlisting}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+# Diagnosis
+3dm info  # AI will often flag non-manifold geometry
+# Also open the STL in your slicer and enable "Check for geometry errors"
+
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{C3 --- Advanced Geometry: \texttt{hull()} and \texttt{minkowski()}}{C3 --- Advanced Geometry: hull() and minkowski()}}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__c3--advanced-geometry-hull-and-minkowski}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// hull() creates a convex envelope — useful for organic transitions
+module smooth_transition() {
+  hull() {
+    translate([0, 0, 0])  cylinder(r=15, h=5, $fn=64);
+    translate([0, 0, 30]) cylinder(r=5,  h=2, $fn=64);
+  }
+}
 smooth_transition();
 
-// minkowski() adds the shape of a small object to every surface point
+// minkowski() adds the secondary shape to every surface point
+// Result: all edges rounded by 2 mm
 module rounded_hull() {
   minkowski() {
     hull() {
-      cylinder(r=10, h=3, $fn=8);      // octagonal prism
+      cylinder(r=10, h=3, $fn=8);           // octagonal prism
       translate([30, 0, 0]) sphere(r=8, $fn=32);
     }
-    sphere(r=2, $fn=16);  // rounds all edges by 2mm
+    sphere(r=2, $fn=16);  // rounds all edges by 2 mm
   }
 }
-
 rounded_hull();
 
 \end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsubsection*{Quiz --- Lesson 3dMake.10 (15 questions)}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__quiz--lesson-3dmake10-15-questions}
 
@@ -31606,7 +31699,7 @@ rounded_hull();
 \item
   What does \texttt{3dm\ info} help you verify about your model?
 \item
-  What does a Cherry MX stem measure in diameter, and what clearance would you add for a slip-fit keycap?
+  What is the diameter of a Cherry MX stem, and what clearance would you add for a slip-fit keycap?
 \item
   True or False: \texttt{find\ -newer} is an event-driven file change detection method.
 \item
@@ -31620,12 +31713,15 @@ rounded_hull();
 \item
   What does \texttt{resize({[}50,\ 0,\ 0{]})} do, and why might \texttt{resize()} behave unexpectedly for non-uniform scaling?
 \item
-  When measuring a printed part with calipers, what is the difference between an inside measurement and an outside measurement, and when does that distinction matter for tolerance analysis?
+  When measuring a printed part with calipers\footnote{Digital Calipers Measurement Technique --- General metrology reference.
+    See also: Measurement Worksheet Asset (assets/3dMake\_Foundation/measurement\_worksheet.md)}, what is the difference between an inside measurement and an outside measurement, and when does that distinction matter for tolerance analysis?
 \item
-  Describe the iterative design workflow for dialing in press-fit tolerances: what do you print, what do you measure, and how do you adjust?
+  Describe the iterative workflow for dialling in press-fit tolerances: what do you print, what do you measure, and how do you adjust?
 \item
   If \texttt{3dm\ info} reports "the model appears non-manifold," what are three possible causes you would investigate in your OpenSCAD code?
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsubsection*{Extension Problems (15)}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__extension-problems-15}
 
@@ -31636,32 +31732,34 @@ rounded_hull();
 \item
   Design a go/no-go gauge for a 10 mm nominal hole: a part with a "go" pin sized for slip-fit and a "no-go" pin sized for interference fit.
 \item
-  Write a printer calibration SOP (standard operating procedure): bed leveling, first-layer calibration, and dimension verification. Include a measurement checklist.
+  Write a printer calibration SOP: bed levelling, first-layer calibration, and dimension verification. Include a measurement checklist.
 \item
   Build a three-tier stackable storage system for art supplies. Each tier has a different inner grid.
 \item
   Conduct a tolerance stack-up analysis for your stackable bin system. Calculate worst-case misalignment.
 \item
-  Build a parametric test coupon that tests four different wall thicknesses (0.8, 1.2, 1.6, 2.0 mm) in a single print.
+  Build a parametric test coupon that tests four wall thicknesses (0.8, 1.2, 1.6, 2.0 mm) in a single print.
 \item
-  Design a caliper stand: a holder that holds your digital calipers at a comfortable angle for one-handed operation.
+  Design a caliper stand: a holder that keeps your digital calipers at a comfortable angle for one-handed operation.
 \item
-  Build a non-manifold error catalog: intentionally create 5 different types of non-manifold geometry, document how each was created and how to fix it.
+  Build a non-manifold error catalogue: intentionally create 5 different types of non-manifold geometry, document how each was created, and how to fix it.
 \item
   Use \texttt{hull()} to design a smooth ergonomic tool handle and compare it to a simple cylinder handle.
 \item
   Create a printability checklist for new designs: overhangs, wall thickness, minimum feature size, support requirements. Apply it to your keycap and bin designs.
 \item
-  Research the \texttt{resize()} function in OpenSCAD. Build an example showing how it behaves differently from \texttt{scale()} for non-uniform resizing.
+  Research the \texttt{resize()} function. Build an example showing how it behaves differently from \texttt{scale()} for non-uniform resizing.
 \item
-  Design a multi-part assembly tutorial: a three-piece interlocking puzzle that teaches the concepts of tolerance, alignment, and slip-fit.
+  Design a multi-part assembly tutorial: a three-piece interlocking puzzle that teaches tolerance, alignment, and slip-fit.
 \item
   Build a "measurement worksheet" template in OpenSCAD: render a flat sheet that lists all key dimensions of a part as text, for printing alongside the part.
 \item
-  Create a chi-squared goodness-of-fit test for your printer\textquotesingle s dimensional accuracy: measure 20 prints of the same part and determine if the errors are normally distributed.
+  Create a chi-squared goodness-of-fit test for your printer\textquotesingle s dimensional accuracy: measure 20 prints of the same part and determine whether the errors are normally distributed.
 \item
-  Write a comprehensive troubleshooting guide covering the 10 most common 3D printing failures you have encountered (or researched), with causes, prevention, and fixes.
+  Write a comprehensive troubleshooting guide covering the 10 most common 3D printing failures you have encountered or researched, with causes, prevention, and fixes.
 \end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \subsubsection*{References and Helpful Resources}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__lessons_3dmake_10.md__references-and-helpful-resources}
 
@@ -31670,13 +31768,13 @@ rounded_hull();
 \begin{itemize}
 \tightlist
 \item
-  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5CProgramming_with_OpenSCAD.epub}{Programming with OpenSCAD EPUB Textbook} --- Troubleshooting and advanced geometry chapters
+  Programming with OpenSCAD EPUB Textbook --- assets/Programming\_with\_OpenSCAD.epub
 \item
-  \href{https://github.com/ProgrammingWithOpenSCAD/CodeSolutions}{CodeSolutions Repository} --- Worked practice exercises
+  CodeSolutions Repository: https://github.com/ProgrammingWithOpenSCAD/CodeSolutions
 \item
-  \href{https://programmingwithopenscad.github.io/quick-reference.html}{OpenSCAD Quick Reference} --- Function reference
+  OpenSCAD Quick Reference: https://programmingwithopenscad.github.io/quick-reference.html
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Lessons_3dMake_10\%5C../../assets/3dMake_Foundation/master-rubric.md}{Master Rubric} --- Assessment criteria for practice exercises
+  Master Rubric: assets/3dMake\_Foundation/master-rubric.md
 \end{itemize}
 
 \subsubsection{Diagnostic Checklist for 3D Printing}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__diagnostic_checklist.md__3dmake_foundation_lessons_3dmake_10-diagnostic_checklist}
@@ -37723,20 +37821,18 @@ See the author\textquotesingle s notes and contributor information: \hyperref[do
 
 \section{Appendices}\label{docs__pandoc__latex__src__appendices__cli_appendices.md__appendices-cli-appendices}
 
-Comprehensive reference materials, guides, and supplemental resources for the OpenSCAD and 3dMake curriculum.
+Comprehensive reference materials, guides, and supplemental resources for command line interface integration with OpenSCAD workflows.
 
 \subsection*{Command Line Interface}\label{docs__pandoc__latex__src__appendices__cli_appendices.md__command-line-interface}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices\%5C../3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md}{Appendix A: Comprehensive Slicing Guide - All Major Slicers} - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
+  \hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_a_commandline_integration.md__3dmake_foundation-appendix_f_cmd_integration]{Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows} - Automate SCAD workflows using traditional Windows CMD and batch scripting
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices\%5C../3dMake_Foundation/Appendix_B_Material_Properties.md}{Appendix B: Material Properties \& Selection Guide} - Detailed material reference including shrinkage data, print settings, and properties
+  \hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_b_powershell_integration.md__3dmake_foundation-appendix_d_powershell_integration]{Appendix B: PowerShell Integration for SCAD Workflows} - Streamline 3D design workflows with PowerShell automation and batch operations
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices\%5C../3dMake_Foundation/Appendix_C_Tolerance_QA.md}{Appendix C: Tolerance Testing \& Quality Assurance Matrix} - Comprehensive QA procedures and tolerance validation methods
-\item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices\%5C../3dMake_Foundation/Appendix_D_PowerShell_Integration.md}{Appendix D: PowerShell Integration for SCAD Workflows} - Batch processing, automation scripts, and advanced workflow integration
+  \hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_c_gitbash_integration.md__3dmake_foundation-appendix_g_gitbash_integration]{Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows} - Use Git Bash and POSIX-compatible shells for cross-platform SCAD automation
 \end{itemize}
 
 \subsection{Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows}\label{docs__pandoc__latex__src__command_line_interface_selection__appendix_a_commandline_integration.md__3dmake_foundation-appendix_f_cmd_integration}
