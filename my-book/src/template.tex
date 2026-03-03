@@ -38,9 +38,8 @@ $endif$
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-Italic,          % ← not *-RegularItalic
+    ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic
-    RawFeature={fallback=symbolsfallback}
   ]
   % Fallback for glyphs missing from Atkinson (e.g. → U+2192)
   \directlua{
@@ -49,6 +48,17 @@ $endif$
       "NotoSans:mode=harf;"
     })
   }
+  \setmainfont{Atkinson-Hyperlegible}[
+    Extension=.otf,
+    UprightFont=*-Regular,
+    BoldFont=*-Bold,
+    ItalicFont=*-Italic,
+    BoldItalicFont=*-BoldItalic,
+    BoldFeatures={RawFeature={fallback=symbolsfallback}},
+    UprightFeatures={RawFeature={fallback=symbolsfallback}},
+    ItalicFeatures={RawFeature={fallback=symbolsfallback}},
+    BoldItalicFeatures={RawFeature={fallback=symbolsfallback}}
+  ]
 \else\ifXeTeX
   \usepackage{fontspec}
   \usepackage[sfdefault]{atkinson}
@@ -61,7 +71,6 @@ $endif$
   ]
 \fi\fi
 
-% Define explicit mono font command for listings
 \newfontfamily\listingfont{AtkinsonHyperlegibleMono}[
   Extension=.otf,
   UprightFont=*-Regular,
@@ -339,4 +348,5 @@ $endfor$
 
 \cleardoublepage
 \phantomsection
+
 \end{document}
