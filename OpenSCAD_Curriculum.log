@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.24.0 (MiKTeX 26.1) (format=lualatex 2026.2.4)  2 MAR 2026 13:56
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 26.1) (format=lualatex 2026.2.4)  3 MAR 2026 08:57
  restricted system commands enabled.
 **E:/GitHubRepos/VI_3DMake_OpenSCAD_Curriculum/my-book/docs/pandoc/latex/OpenSC
 AD_Curriculum.tex
@@ -8079,7 +8079,7 @@ f_dest, 214 pdf_action nodes
    avail lists: 1:7,2:58396,3:1062,4:15785,5:12035,6:178,7:93145,8:111,9:29050,1
 0:50,11:1519
  54176 multiletter control sequences out of 65536+600000
- 88 fonts using 20246347 bytes
+ 88 fonts using 20246195 bytes
  74i,10n,114p,1525b,1150s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/fonts/opentype/public/lm-m
 ath/latinmodern-math.otf><C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/f
