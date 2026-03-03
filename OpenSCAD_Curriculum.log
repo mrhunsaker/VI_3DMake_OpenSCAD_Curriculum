@@ -1,21 +1,21 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.1)  2 MAR 2026 17:25
+This is LuaHBTeX, Version 1.24.0 (MiKTeX 26.1) (format=lualatex 2026.2.4)  2 MAR 2026 13:56
  restricted system commands enabled.
-**/run/media/ryhunsaker/250GB/VI_3DMake_OpenSCAD_Curriculum/my-book/docs/pandoc
-/latex/OpenSCAD_Curriculum.tex
+**E:/GitHubRepos/VI_3DMake_OpenSCAD_Curriculum/my-book/docs/pandoc/latex/OpenSC
+AD_Curriculum.tex
 
-(/run/media/ryhunsaker/250GB/VI_3DMake_OpenSCAD_Curriculum/my-book/docs/pandoc/
-latex/OpenSCAD_Curriculum.tex
+(E:/GitHubRepos/VI_3DMake_OpenSCAD_Curriculum/my-book/docs/pandoc/latex/OpenSCA
+D_Curriculum.tex
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-29>
+L3 programming layer <2026-01-19>
 Lua module: luaotfload 2024-12-03 v3.29 Lua based OpenType font support
 Lua module: lualibs 2023-07-13 v2.76 ConTeXt Lua standard libraries.
 Lua module: lualibs-extended 2023-07-13 v2.76 ConTeXt Lua libraries -- extended 
 collection.
-luaotfload | conf : Root cache directory is "/var/home/ryhunsaker/.local/texlive
-/2025/texmf-var/luatex-cache/generic/names".
+luaotfload | conf : Root cache directory is "C:/Users/Ryan Hunsaker/AppData/Loca
+l/MiKTeX/luatex-cache/generic/names".
 luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-res
-olved path "/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/luatex/luaot
-fload/fontloader-2023-12-28.lua".
+olved path "C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/luatex/luao
+tfload/fontloader-2023-12-28.lua".
 Lua-only attribute luaotfload@noligature = 1
 luaotfload | init : Context OpenType loader version 3.134
 Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
@@ -23,8 +23,8 @@ Inserting `luaotfload.node_processor' in `hpack_filter'.
 Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
 Inserting `luaotfload.define_font' in `define_font'.
 Lua-only attribute luaotfload_color_attribute = 2
-luaotfload | conf : Root cache directory is "/var/home/ryhunsaker/.local/texlive
-/2025/texmf-var/luatex-cache/generic/names".
+luaotfload | conf : Root cache directory is "C:/Users/Ryan Hunsaker/AppData/Loca
+l/MiKTeX/luatex-cache/generic/names".
 Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
 Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
 Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
@@ -42,13 +42,16 @@ Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
 Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
 Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
-Inserting `tracingstacklevels' in `input_level_string'. (/var/home/ryhunsaker/.
-local/texlive/2025/texmf-dist/tex/latex/base/report.cls
+Inserting `tracingstacklevels' in `input_level_string'.
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/base/report.cl
+s"
 Document Class: report 2025/01/22 v1.4n Standard LaTeX document class
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/base/size10.clo
+
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/base/size10.cl
+o"
 File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
-luaotfload | db : Font names database loaded from /var/home/ryhunsaker/.local/te
-xlive/2025/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
+luaotfload | db : Font names database loaded from C:/Users/Ryan Hunsaker/AppData
+/Local/MiKTeX/luatex-cache/generic/names/luaotfload-names.luc.gz)
 \c@part=\count273
 \c@chapter=\count274
 \c@section=\count275
@@ -62,22 +65,22 @@ xlive/2025/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
 \belowcaptionskip=\skip50
 \bibindent=\dimen147
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/xcolor/xcolor.st
-y
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.
+sty"
 Package: xcolor 2024/09/29 v3.02 LaTeX color extensions (UK)
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/graphics-cfg/col
-or.cfg
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/graphics-cfg/c
+olor.cfg"
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: luatex.def on input line 274.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/graphics-def/lua
-tex.def
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/graphics-def/l
+uatex.def"
 File: luatex.def 2025/09/29 v1.2f Graphics/color driver for luatex
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/graphics/mathcol
-or.ltx)
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/graphics/mathc
+olor.ltx")
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1349.
 Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1353.
 Package xcolor Info: Model `RGB' extended on input line 1365.
@@ -88,30 +91,30 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1370.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1371.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1372.
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsmath/amsmath.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsmat
+h.sty"
 Package: amsmath 2025/07/09 v2.17z AMS math features
 \@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsmath/amstext.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amstex
+t.sty"
 Package: amstext 2024/11/17 v2.01 AMS text
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsmath/amsgen.s
-ty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsgen
+.sty"
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks17
 \ex@=\dimen148
 ))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsmath/amsbsy.s
-ty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsbsy
+.sty"
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 \pmbraise@=\dimen149
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsmath/amsopn.s
-ty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsmath/amsopn
+.sty"
 Package: amsopn 2022/04/08 v2.04 operator names
 )
 \inf@bad=\count282
@@ -162,12 +165,12 @@ LaTeX Info: Redefining \Relbar on input line 970.
 LaTeX Info: Redefining \[ on input line 2950.
 LaTeX Info: Redefining \] on input line 2951.
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsfonts/amssymb
-.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amssy
+mb.sty"
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsfonts/amsfont
-s.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/amsfo
+nts.sty"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
@@ -175,20 +178,20 @@ LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/iftex/iftex.st
-y
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/iftex/iftex.
+sty"
 Package: iftex 2024/12/12 v1.0g TeX engine tests
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/fontspec/fontspe
-c.sty
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/l3packages/xpars
-e/xparse.sty
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/l3kernel/expl3.s
-ty
-Package: expl3 2025-12-29 L3 programming layer (loader) 
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/fontspec/fonts
+pec.sty"
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/l3packages/xpa
+rse/xparse.sty"
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/l3kernel/expl3
+.sty"
+Package: expl3 2026-01-19 L3 programming layer (loader) 
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/l3backend/l3back
-end-luatex.def
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/l3backend/l3ba
+ckend-luatex.def"
 File: l3backend-luatex.def 2025-10-09 L3 backend support: PDF output (LuaTeX)
 \l__color_backend_stack_int=\count294
 Inserting `l3color' in `luaotfload.parse_color'.))
@@ -196,8 +199,8 @@ Package: xparse 2025-10-09 L3 Experimental document command parser
 )
 Package: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
 Lua module: fontspec 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaTeX
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/fontspec/fontspe
-c-luatex.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/fontspec/fonts
+pec-luatex.sty"
 Package: fontspec-luatex 2025/09/29 v2.9g Font selection for XeLaTeX and LuaLaT
 eX
 \l__fontspec_script_int=\count295
@@ -215,43 +218,43 @@ eX
 \l__fontspec_tmpb_dim=\dimen158
 \l__fontspec_tmpc_dim=\dimen159
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/base/fontenc.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/base/fontenc.s
+ty"
 Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/fontspec/fontspe
-c.cfg)))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/atkinson/atkinso
-n.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/fontspec/fonts
+pec.cfg")))
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/atkinson/atkin
+son.sty"
 Package: atkinson 2025/11/20 Supports Atkinson Hyperlegible fonts for all LaTeX
  engines.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/iftex/ifxetex.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/iftex/ifxete
+x.sty"
 Package: ifxetex 2019/10/25 v0.7 ifxetex legacy package. Use iftex instead.
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/iftex/ifluatex
-.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/iftex/ifluat
+ex.sty"
 Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/xkeyval/xkeyval.
-sty
-Package: xkeyval 2025/11/04 v2.10 package option processing (HA)
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyva
+l.sty"
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkeyva
-l.tex
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/xkeyval/xkvuti
-ls.tex
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/xkeyval/xkey
+val.tex"
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/xkeyval/xkvu
+tils.tex"
 \XKV@toks=\toks22
 \XKV@tempa@toks=\toks23
-\XKV@tempb@toks=\toks24
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/xkeyval/keyval
-.tex))
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/xkeyval/keyv
+al.tex"))
 \XKV@depth=\count306
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/base/textcomp.st
-y
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/base/textcomp.
+sty"
 Package: textcomp 2024/04/24 v2.1b Standard LaTeX package
 )
 
@@ -440,63 +443,13 @@ de=node;script=latn;language=dflt;+tlig;+tnum;"
 node;script=latn;language=dflt;+tlig;+tnum;"
 
 )
-luaotfload | db : Reload initiated (formats: otf,ttf,ttc); reason: File not foun
-d: "AtkinsonHyperlegibleMono-Italic.otf".
-
-! Package fontspec Error: 
-(fontspec)                The font "AtkinsonHyperlegibleMono-Italic" cannot
-(fontspec)                be found; this may be but usually is not a
-(fontspec)                fontspec bug. Either there is a typo in the font
-(fontspec)                name/file, the font is not installed (correctly),
-(fontspec)                or there is a bug in the underlying font loading
-(fontspec)                engine (XeTeX/luaotfload).
-
-For immediate help type H <return>.
- ...                                              
-                                                  
-l.20   ]
-        
-
-A font might not be found for many reasons.
- Check the spelling, where the font is installed etc. etc.
-
- When in doubt, ask someone for help!
-
-
-
-! Package fontspec Error: 
-(fontspec)                The font "AtkinsonHyperlegibleMono-Italic" cannot
-(fontspec)                be found; this may be but usually is not a
-(fontspec)                fontspec bug. Either there is a typo in the font
-(fontspec)                name/file, the font is not installed (correctly),
-(fontspec)                or there is a bug in the underlying font loading
-(fontspec)                engine (XeTeX/luaotfload).
-
-For immediate help type H <return>.
- ...                                              
-                                                  
-l.20   ]
-        
-
-A font might not be found for many reasons.
- Check the spelling, where the font is installed etc. etc.
-
- When in doubt, ask someone for help!
-
-
-luaotfload | aux : no font with id 0
-luaotfload | aux : no font with id 0
-luaotfload | aux : no font with id 0
-luaotfload | aux : no font with id 0
-luaotfload | aux : no font with id 0
-luaotfload | aux : no font with id 0
 
 Package fontspec Info: 
 (fontspec)             Font family 'AtkinsonHyperlegibleMono(1)' created for
 (fontspec)             font 'AtkinsonHyperlegibleMono' with options
 (fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
-Space,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,
-BoldItalicFont=*-BoldItalic].
+Space,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular
+Italic,BoldItalicFont=*-BoldItalic].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
@@ -508,8 +461,8 @@ ipt=latn;language=dflt;"
 (fontspec)             <->"[AtkinsonHyperlegibleMono-Bold.otf]:mode=node;script
 =latn;language=dflt;"
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->"[AtkinsonHyperlegibleMono-Italic.otf]:mode=node;scri
-pt=latn;language=dflt;"
+(fontspec)             <->"[AtkinsonHyperlegibleMono-RegularItalic.otf]:mode=no
+de;script=latn;language=dflt;"
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
 (fontspec)             <->"[AtkinsonHyperlegibleMono-BoldItalic.otf]:mode=node;
 script=latn;language=dflt;"
@@ -540,23 +493,23 @@ de;script=latn;language=dflt;"
 script=latn;language=dflt;"
 
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/endnotes/endnote
-s.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/endnotes/endno
+tes.sty"
 Package: endnotes 2020-01-02 endnotes package
 \c@endnote=\count307
 \endnotesep=\dimen160
 \@enotes=\write3
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/etoolbox/etoolbo
-x.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/etoolbox/etool
+box.sty"
 Package: etoolbox 2025/10/02 v2.5m e-TeX tools for LaTeX (JAW)
 \etb@tempcnta=\count308
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/listings/listing
-s.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/listings/listi
+ngs.sty"
 \lst@mode=\count309
 \lst@gtempboxa=\box55
-\lst@token=\toks25
+\lst@token=\toks24
 \lst@length=\count310
 \lst@currlwidth=\dimen161
 \lst@column=\count311
@@ -567,19 +520,19 @@ s.sty
 \lst@lineno=\count314
 \lst@maxwidth=\dimen164
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/listings/lstpatc
-h.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstpa
+tch.sty"
 File: lstpatch.sty 2025/11/14 1.11b (Carsten Heinz)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/listings/lstmisc
-.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstmi
+sc.sty"
 File: lstmisc.sty 2025/11/14 1.11b (Carsten Heinz)
 \c@lstnumber=\count315
 \lst@skipnumbers=\count316
 \lst@framebox=\box56
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/listings/listing
-s.cfg
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/listings/listi
+ngs.cfg"
 File: listings.cfg 2025/11/14 1.11b listings configuration
 ))
 Package: listings 2025/11/14 1.11b (Carsten Heinz)
@@ -591,17 +544,17 @@ Package: listings 2025/11/14 1.11b (Carsten Heinz)
         2025/11/14 1.11b (Carsten Heinz)
     so I'm assuming it got fixed.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/upquote/upquote.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/upquote/upquot
+e.sty"
 Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verba
 tim
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/tabularray/tabul
-array.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/tabularray/tab
+ularray.sty"
 Package: tabularray 2025-11-27 v2025C Typeset tabulars and arrays with LaTeX3
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/ninecolors/ninec
-olors.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/ninecolors/nin
+ecolors.sty"
 Package: ninecolors 2022-02-13 v2022D Select colors with proper color contrast
 )
 \g__tblr_nohyper_int=\count317
@@ -730,8 +683,8 @@ Package: ninecolors 2022-02-13 v2022D Select colors with proper color contrast
 \l__tblr_last_vline_wd_dim=\dimen278
 \l__tblr_tikz_node_box=\box84
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/booktabs/booktab
-s.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/booktabs/bookt
+abs.sty"
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \heavyrulewidth=\dimen279
 \lightrulewidth=\dimen280
@@ -753,8 +706,8 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 )
 \AlabasterTabWidth=\skip54
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/tools/longtable.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/tools/longtabl
+e.sty"
 Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \LTleft=\skip55
 \LTright=\skip56
@@ -771,35 +724,38 @@ Package: longtable 2025-10-13 v4.24 Multi-page Table package (DPC)
 \LT@rows=\count362
 \c@LT@tables=\count363
 \c@LT@chunks=\count364
-\LT@p@ftn=\toks26
+\LT@p@ftn=\toks25
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/tools/array.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/tools/array.st
+y"
 Package: array 2025/09/25 v2.6n Tabular extension package (FMi)
 \col@sep=\dimen293
 \ar@mcellbox=\box90
 \extrarowheight=\dimen294
-\NC@list=\toks27
+\NC@list=\toks26
 \extratabsurround=\skip59
 \backup@length=\skip60
 \ar@cellbox=\box91
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/unicode-math/uni
-code-math.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/unicode-math/u
+nicode-math.sty"
 Package: unicode-math 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaLaTeX
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/unicode-math/uni
-code-math-luatex.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/unicode-math/u
+nicode-math-luatex.sty"
 Package: unicode-math-luatex 2023/08/13 v0.8r Unicode maths in XeLaTeX and LuaL
 aTeX
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/l3packages/l3key
-s2e/l3keys2e.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/l3packages/l3k
+eys2e/l3keys2e.sty"
 Package: l3keys2e 2025-10-09 LaTeX2e option processing using LaTeX3 keys
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/base/fix-cm.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/base/fix-cm.st
+y"
 Package: fix-cm 2020/11/24 v1.1t fixes to LaTeX
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/base/ts1enc.def
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/base/ts1enc.de
+f"
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 LaTeX Encoding Info:    Redeclaring text command \capitalcedilla (encoding TS1)
@@ -1057,8 +1013,8 @@ put line 193.
 LaTeX Encoding Info:    Redeclaring text symbol \textdiv (encoding TS1) on inpu
 t line 194.
 ))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/lualatex/lualatex-math
-/lualatex-math.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/lualatex/lualatex-ma
+th/lualatex-math.sty"
 Package: lualatex-math 2022/01/01 v1.12 Patches for mathematics typesetting wit
 h LuaLaTeX
 Lua module: lualatex-math 2013/08/03 v1.3 Patches for mathematics typesetting wi
@@ -1068,9 +1024,10 @@ th LuaLaTeX)
 \l__um_primecount_int=\count367
 \g__um_primekern_muskip=\muskip18
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/unicode-math/uni
-code-math-table.tex)))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/lm/lmodern.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/unicode-math/u
+nicode-math-table.tex")))
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/lm/lmodern.sty
+"
 Package: lmodern 2015/05/01 v1.6.1 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -1105,15 +1062,15 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/microtype/microt
-ype.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/microtype/micr
+otype.sty"
 Package: microtype 2025/07/09 v3.2b Micro-typographical refinements (RS)
-\MT@toks=\toks28
+\MT@toks=\toks27
 \MT@tempbox=\box92
 \MT@count=\count368
 LaTeX Info: Redefining \noprotrusionifhmode on input line 1087.
 LaTeX Info: Redefining \leftprotrusion on input line 1088.
-\MT@prot@toks=\toks29
+\MT@prot@toks=\toks28
 LaTeX Info: Redefining \rightprotrusion on input line 1107.
 LaTeX Info: Redefining \textls on input line 1449.
 \MT@outer@kern=\dimen295
@@ -1121,8 +1078,8 @@ LaTeX Info: Redefining \microtypecontext on input line 2053.
 LaTeX Info: Redefining \textmicrotypecontext on input line 2070.
 \MT@listname@count=\count369
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/microtype/microt
-ype-luatex.def
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/microtype/micr
+otype-luatex.def"
 File: microtype-luatex.def 2025/07/09 v3.2b Definitions specific to luatex (RS)
 
 Lua module: microtype 2025/07/09 v3.2b microtype module.
@@ -1133,31 +1090,32 @@ LaTeX Info: Redefining \lslig on input line 779.
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/microtype/microt
-ype.cfg
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/microtype/micr
+otype.cfg"
 File: microtype.cfg 2025/07/09 v3.2b microtype main configuration file (RS)
 )
 LaTeX Info: Redefining \microtypesetup on input line 3065.
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/parskip/parskip.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/parskip/parski
+p.sty"
 Package: parskip 2021-03-14 v2.0h non-zero parskip adjustments
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/kvoptions/kvopti
-ons.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/kvoptions/kvop
+tions.sty"
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/ltxcmds/ltxcmd
-s.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/ltxcmds/ltxc
+mds.sty"
 Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/kvsetkeys/kvsetk
-eys.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/kvsetkeys/kvse
+tkeys.sty"
 Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
 )))
 \c@none=\count370
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/tools/calc.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/tools/calc.sty
+"
 Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
 \calc@Acount=\count371
 \calc@Bcount=\count372
@@ -1170,142 +1128,130 @@ LaTeX Info: Redefining \addtolength on input line 87.
 \calc@Ccount=\count373
 \calc@Cskip=\skip64
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/footnotehyper/fo
-otnotehyper.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/footnotehyper/
+footnotehyper.sty"
 Package: footnotehyper 2025/11/15 v1.1f hyperref aware footnote.sty (JFB)
 \FNH@notes=\box93
 \FNH@width=\dimen298
-\FNH@toks=\toks30
+\FNH@toks=\toks29
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/babel/babel.st
-y
-Package: babel 2025/12/30 v25.18 The multilingual framework for LuaLaTeX, pdfLa
-TeX and XeLaTeX
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.
+sty"
+Package: babel 2026/01/26 v26.2 The multilingual framework for LuaLaTeX, pdfLaT
+eX and XeLaTeX
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/babel/luababel
-.def
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/babel/luabab
+el.def"
 \bbl@readstream=\read2
-\l@dumylang=\language2
+\l@afrikaans=\language2
 Package babel Info: Non-standard hyphenation setup on input line 118.
-\l@nohyphenation=\language3
-\l@german-x-2024-02-28=\language4
-\l@ngerman-x-2024-02-28=\language5
-\l@afrikaans=\language6
-\l@albanian=\language7
-\l@ancientgreek=\language8
-\l@ibycus=\language9
-\l@arabic=\language10
-\l@armenian=\language11
-\l@basque=\language12
-\l@belarusian=\language13
-\l@bulgarian=\language14
-\l@catalan=\language15
-\l@pinyin=\language16
-\l@churchslavonic=\language17
-\l@coptic=\language18
-\l@croatian=\language19
-\l@czech=\language20
-\l@danish=\language21
-\l@dutch=\language22
-\l@ukenglish=\language23
-\l@usenglishmax=\language24
-\l@esperanto=\language25
-\l@estonian=\language26
-\l@ethiopic=\language27
-\l@farsi=\language28
-\l@finnish=\language29
-\l@schoolfinnish=\language30
-\l@french=\language31
-\l@friulan=\language32
-\l@galician=\language33
-\l@georgian=\language34
-\l@german=\language35
-\l@ngerman=\language36
-\l@swissgerman=\language37
-\l@greek=\language38
-\l@monogreek=\language39
-\l@hebrew=\language40
-\l@hungarian=\language41
-\l@icelandic=\language42
-\l@assamese=\language43
-\l@bengali=\language44
-\l@gujarati=\language45
-\l@hindi=\language46
-\l@kannada=\language47
-\l@malayalam=\language48
-\l@marathi=\language49
-\l@oriya=\language50
-\l@pali=\language51
-\l@panjabi=\language52
-\l@tamil=\language53
-\l@telugu=\language54
-\l@indonesian=\language55
-\l@interlingua=\language56
-\l@irish=\language57
-\l@italian=\language58
-\l@kurmanji=\language59
-\l@classiclatin=\language60
-\l@latin=\language61
-\l@liturgicallatin=\language62
-\l@latvian=\language63
-\l@lithuanian=\language64
-\l@macedonian=\language65
-\l@mongolian=\language66
-\l@mongolianlmc=\language67
-\l@bokmal=\language68
-\l@nynorsk=\language69
-\l@occitan=\language70
-\l@piedmontese=\language71
-\l@polish=\language72
-\l@portuguese=\language73
-\l@romanian=\language74
-\l@romansh=\language75
-\l@russian=\language76
-\l@sanskrit=\language77
-\l@serbian=\language78
-\l@serbianc=\language79
-\l@slovak=\language80
-\l@slovenian=\language81
-\l@spanish=\language82
-\l@swedish=\language83
-\l@thai=\language84
-\l@turkish=\language85
-\l@turkmen=\language86
-\l@ukrainian=\language87
-\l@uppersorbian=\language88
-\l@vietnamese=\language89
-\l@welsh=\language90
+\l@ancientgreek=\language3
+\l@armenian=\language4
+\l@assamese=\language5
+\l@basque=\language6
+\l@belarusian=\language7
+\l@bengali=\language8
+\l@bokmal=\language9
+\l@bulgarian=\language10
+\l@catalan=\language11
+\l@churchslavonic=\language12
+\l@classiclatin=\language13
+\l@coptic=\language14
+\l@croatian=\language15
+\l@czech=\language16
+\l@danish=\language17
+\l@dutch=\language18
+\l@esperanto=\language19
+\l@estonian=\language20
+\l@ethiopic=\language21
+\l@finnish=\language22
+\l@french=\language23
+\l@friulan=\language24
+\l@galician=\language25
+\l@georgian=\language26
+\l@german=\language27
+\l@greek=\language28
+\l@gujarati=\language29
+\l@hindi=\language30
+\l@hungarian=\language31
+\l@icelandic=\language32
+\l@indonesian=\language33
+\l@interlingua=\language34
+\l@irish=\language35
+\l@italian=\language36
+\l@kannada=\language37
+\l@kurmanji=\language38
+\l@latin=\language39
+\l@latvian=\language40
+\l@lithuanian=\language41
+\l@liturgicallatin=\language42
+\l@macedonian=\language43
+\l@malayalam=\language44
+\l@marathi=\language45
+\l@mongolian=\language46
+\l@mongolianlmc=\language47
+\l@monogreek=\language48
+\l@ngerman=\language49
+\l@nynorsk=\language50
+\l@occitan=\language51
+\l@oriya=\language52
+\l@pali=\language53
+\l@panjabi=\language54
+\l@piedmontese=\language55
+\l@polish=\language56
+\l@portuguese=\language57
+\l@romanian=\language58
+\l@romansh=\language59
+\l@russian=\language60
+\l@sanskrit=\language61
+\l@serbian=\language62
+\l@serbianc=\language63
+\l@slovak=\language64
+\l@slovenian=\language65
+\l@spanish=\language66
+\l@swedish=\language67
+\l@swissgerman=\language68
+\l@tamil=\language69
+\l@telugu=\language70
+\l@thai=\language71
+\l@turkish=\language72
+\l@turkmen=\language73
+\l@ukenglish=\language74
+\l@ukrainian=\language75
+\l@uppersorbian=\language76
+\l@usenglishmax=\language77
+\l@welsh=\language78
 \babelcatcodetablenum=\catcodetable14
 \bbl@pattcodes=\catcodetable15
 )
 \babel@savecnt=\count374
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding OT1) on input li
-ne 2068.
+ne 2078.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding OT1) on input li
-ne 2070.
+ne 2080.
 LaTeX Encoding Info:    Redeclaring text command \ij (encoding T1) on input lin
-e 2072.
+e 2082.
 LaTeX Encoding Info:    Redeclaring text command \IJ (encoding T1) on input lin
-e 2073.
+e 2083.
 LaTeX Encoding Info:    Ignoring declaration for text command \ij (encoding ?) 
-on input line 2074.
+on input line 2084.
 LaTeX Encoding Info:    Ignoring declaration for text command \IJ (encoding ?) 
-on input line 2076.
+on input line 2086.
 LaTeX Encoding Info:    Ignoring declaration for text command \SS (encoding ?) 
-on input line 2101.
+on input line 2111.
 \U@D=\dimen299
-\l@unhyphenated=\language91
+\l@unhyphenated=\language79
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/babel/luababel
-.def
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/babel/luabab
+el.def"
 \bbl@attr@locale=\attribute4
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/luatex/luatexbase/luat
-exbase.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/luatex/luatexbase/lu
+atexbase.sty"
 Package: luatexbase 2015/10/04 v1.3 luatexbase interface to LuaTeX 
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/luatex/ctablestack/cta
-blestack.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/luatex/ctablestack/c
+tablestack.sty"
 Package: ctablestack 2015/10/01 v1.0 Catcode table stable support
 \@catcodetablestackcnt=\count375
 )
@@ -1322,41 +1268,54 @@ Inserting `luaotfload.node_processor' in `hpack_filter'.
 Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
 \bbl@attr@dir=\attribute5
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/babel/locale/e
-n/babel-english.tex)
-Package babel Info: Importing font and identification data for english
-(babel)             from babel-en.ini. Reported on input line 4321.
+Package babel Info: Configuration files are deprecated, as
+(babel)             they can break document portability.
+(babel)             Reported on input line 4206.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/babel-english/
-english.ldf
+*************************************
+* Local config file bblopts.cfg used
+*
+
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/arabi/bblopts.
+cfg"
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/babel/locale
+/en/babel-english.tex")
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 4330.
+
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/babel-english/
+english.ldf"
 Language: english 2017/06/06 v3.3r English support from the babel system
 Package babel Info: Hyphen rules for 'canadian' set to \l@english
 (babel)             (\language0). Reported on input line 102.
 Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
-(babel)             (\language23). Reported on input line 105.
+(babel)             (\language74). Reported on input line 105.
 Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
-(babel)             (\language23). Reported on input line 108.
+(babel)             (\language74). Reported on input line 108.
 ))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/lualatex/selnolig/seln
-olig.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/lualatex/selnolig/se
+lnolig.sty"
 === Package selnolig, Version 0.302, Date 2015/10/26 ===
 Package: selnolig 2015/10/26
 Inserting `Suppress ligatures selectively' in `ligaturing'.
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/lualatex/selnolig/seln
-olig-english-patterns.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/lualatex/selnolig/se
+lnolig-english-patterns.sty"
 Package: selnolig-english-patterns 2015/10/26
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/lualatex/selnolig/seln
-olig-english-hyphex.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/lualatex/selnolig/se
+lnolig-english-hyphex.sty"
 Package: selnolig-english-hyphex 2015/10/26
 ))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/fvextra/fvextra.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/fvextra/fvextr
+a.sty"
 Package: fvextra 2025/05/29 v1.13.2 fvextra - extensions and patches for fancyv
 rb
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/fancyvrb/fancyvr
-b.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/fancyvrb/fancy
+vrb.sty"
 Package: fancyvrb 2025/07/28 4.6 verbatim text (tvz,hv)
 \FV@CodeLineNo=\count376
 \FV@InFile=\read3
@@ -1365,25 +1324,25 @@ Package: fancyvrb 2025/07/28 4.6 verbatim text (tvz,hv)
 \FV@StepNumber=\count378
 \FV@OutFile=\write4
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/pdftexcmds/pdf
-texcmds.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/pdftexcmds/p
+dftexcmds.sty"
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/infwarerr/infw
-arerr.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/infwarerr/in
+fwarerr.sty"
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 )
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-\pdftexcmds@toks=\toks31
+\pdftexcmds@toks=\toks30
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/lineno/lineno.st
-y
-Package: lineno 2025/05/13 line numbers on paragraphs v5.5
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/lineno/lineno.
+sty"
+Package: lineno 2026/02/16 line numbers on paragraphs v5.7
 \linenopenalty=\count379
-\output=\toks32
+\output=\toks31
 \linenoprevgraf=\count380
 \linenumbersep=\dimen300
 \linenumberwidth=\dimen301
@@ -1425,42 +1384,42 @@ Package: lineno 2025/05/13 line numbers on paragraphs v5.5
 \c@FV@BreakBufferDepth=\count400
 \FV@LineWidth=\dimen310
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/bookmark/bookmar
-k.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/bookmark/bookm
+ark.sty"
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/hyperref/hyperre
-f.sty
-Package: hyperref 2025-07-12 v7.01o Hypertext links for LaTeX
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hyper
+ref.sty"
+Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/kvdefinekeys/k
-vdefinekeys.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/kvdefinekeys
+/kvdefinekeys.sty"
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/pdfescape/pdfe
-scape.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/pdfescape/pd
+fescape.sty"
 Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/hycolor/hycolor.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/hycolor/hycolo
+r.sty"
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/hyperref/nameref
-.sty
-Package: nameref 2025-06-21 v2.57 Cross-referencing by name of section
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/namer
+ef.sty"
+Package: nameref 2026-01-29 v2.58 Cross-referencing by name of section
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/refcount/refcoun
-t.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refco
+unt.sty"
 Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/gettitlestring
-/gettitlestring.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/gettitlestri
+ng/gettitlestring.sty"
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count401
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/stringenc/stri
-ngenc.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/stringenc/st
+ringenc.sty"
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
@@ -1468,73 +1427,74 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 \Hy@linkcounter=\count402
 \Hy@pagecounter=\count403
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/hyperref/pd1enc.
-def
-File: pd1enc.def 2025-07-12 v7.01o Hyperref: PDFDocEncoding definition (HO)
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/pd1en
+c.def"
+File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/intcalc/intcal
-c.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/intcalc/intc
+alc.sty"
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count404
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/hyperref/puenc.d
-ef
-File: puenc.def 2025-07-12 v7.01o Hyperref: PDF Unicode definition (HO)
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/puenc
+.def"
+File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4066.
-Package hyperref Info: Hyper figures OFF on input line 4195.
-Package hyperref Info: Link nesting OFF on input line 4200.
-Package hyperref Info: Hyper index ON on input line 4203.
-Package hyperref Info: Plain pages OFF on input line 4210.
-Package hyperref Info: Backreferencing OFF on input line 4215.
+Package hyperref Info: Option `unicode' set `true' on input line 4072.
+Package hyperref Info: Hyper figures OFF on input line 4201.
+Package hyperref Info: Link nesting OFF on input line 4206.
+Package hyperref Info: Hyper index ON on input line 4209.
+Package hyperref Info: Plain pages OFF on input line 4216.
+Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4462.
+Package hyperref Info: Bookmarks ON on input line 4468.
 \c@Hy@tempcnt=\count405
- (/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/url/url.sty
+
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty"
 \Urlmuskip=\muskip19
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4801.
+LaTeX Info: Redefining \url on input line 4807.
 \XeTeXLinkMargin=\dimen312
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/bitset/bitset.
-sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/bitset/bitse
+t.sty"
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/bigintcalc/big
-intcalc.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/bigintcalc/b
+igintcalc.sty"
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
 \Fld@menulength=\count406
 \Field@Width=\dimen313
 \Fld@charsize=\dimen314
-Package hyperref Info: Hyper figures OFF on input line 6078.
-Package hyperref Info: Link nesting OFF on input line 6083.
-Package hyperref Info: Hyper index ON on input line 6086.
-Package hyperref Info: backreferencing OFF on input line 6093.
-Package hyperref Info: Link coloring OFF on input line 6098.
-Package hyperref Info: Link coloring with OCG OFF on input line 6103.
-Package hyperref Info: PDF/A mode OFF on input line 6108.
+Package hyperref Info: Hyper figures OFF on input line 6084.
+Package hyperref Info: Link nesting OFF on input line 6089.
+Package hyperref Info: Hyper index ON on input line 6092.
+Package hyperref Info: backreferencing OFF on input line 6099.
+Package hyperref Info: Link coloring OFF on input line 6104.
+Package hyperref Info: Link coloring with OCG OFF on input line 6109.
+Package hyperref Info: PDF/A mode OFF on input line 6114.
 \Hy@abspage=\count407
 \c@Item=\count408
 \c@Hfootnote=\count409
 )
 Package hyperref Info: Driver (autodetected): hluatex.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/hyperref/hluatex
-.def
-File: hluatex.def 2025-07-12 v7.01o Hyperref driver for luaTeX
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/hyperref/hluat
+ex.def"
+File: hluatex.def 2026-01-29 v7.01p Hyperref driver for luaTeX
 \Fld@listcount=\count410
 \c@bookmark@seq@number=\count411
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/rerunfilecheck/r
-erunfilecheck.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck
+/rerunfilecheck.sty"
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/generic/uniquecounter/
-uniquecounter.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/generic/uniquecounte
+r/uniquecounter.sty"
 Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
@@ -1542,16 +1502,15 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip66
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/bookmark/bkm-pdf
-tex.def
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/bookmark/bkm-p
+dftex.def"
 File: bkm-pdftex.def 2023-12-10 v1.31 bookmark driver for pdfTeX and luaTeX (HO
 )
 \BKM@id=\count412
 ))
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/xurl/xurl.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/xurl/xurl.sty"
 Package: xurl 2022/01/09 v 0.10 modify URL breaks
-)
-(./OpenSCAD_Curriculum.aux)
+) (./OpenSCAD_Curriculum.aux)
 \openout1 = OpenSCAD_Curriculum.aux
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 263.
@@ -1575,20 +1534,20 @@ LaTeX Font Info:    ... okay on input line 263.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 263.
 LaTeX Font Info:    ... okay on input line 263.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/context/base/mkii/supp
--pdf.mkii
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/su
+pp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count413
 \scratchdimen=\dimen315
 \scratchbox=\box101
 \nofMPsegments=\count414
 \nofMParguments=\count415
-\everyMPshowfont=\toks33
+\everyMPshowfont=\toks32
 \MPscratchCnt=\count416
 \MPscratchDim=\dimen316
 \MPnumerator=\count417
 \makeMPintoPDFobject=\count418
-\everyMPtoPDFconversion=\toks34
+\everyMPtoPDFconversion=\toks33
 )
 \c@lstlisting=\count419
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
@@ -1809,7 +1768,7 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
 (Font)              scaled to size 5.75401pt on input line 263.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 2
 63.
- (/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/lm/omllmm.fd
+ ("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/lm/omllmm.fd"
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
@@ -1827,20 +1786,25 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Trying to load font information for U+msa on input line 263
 .
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsa.
+fd"
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 263
 .
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/amsfonts/umsb.
+fd"
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Info: Redefining \microtypecontext on input line 263.
 Package microtype Info: Applying patch `item' on input line 263.
 Package microtype Info: Applying patch `toc' on input line 263.
 Package microtype Info: Applying patch `eqnum' on input line 263.
-Package microtype Info: Applying patch `footnote' on input line 263.
+
+
+Package microtype Warning: Unable to apply patch `footnote' on input line 263.
+
 Package microtype Info: Applying patch `verbatim' on input line 263.
 LaTeX Info: Redefining \microtypesetup on input line 263.
 Package microtype Info: Generating PDF output.
@@ -1871,10 +1835,9 @@ LaTeX Font Info:    Font shape `TU/AtkinsonHyperlegibleNext(0)/m/n' will be
 (Font)              scaled to size 14.4pt on input line 271.
 LaTeX Font Info:    Font shape `TU/AtkinsonHyperlegibleNext(0)/m/n' will be
 (Font)              scaled to size 12.0pt on input line 273.
- [1
+[1
 
-{/var/home/ryhunsaker/.local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdft
-ex.map}]
+{C:/Users/Ryan Hunsaker/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
 LaTeX Font Info:    Font shape `TU/AtkinsonHyperlegibleNext(0)/m/n' will be
 (Font)              scaled to size 9.0pt on input line 280.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
@@ -1890,12 +1853,12 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 6.90482pt on input line 281.
 
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msa
-.cfg
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/microtype/mt-m
+sa.cfg"
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/microtype/mt-msb
-.cfg
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/microtype/mt-m
+sb.cfg"
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [2] (./OpenSCAD_Curriculum.toc
 LaTeX Font Info:    Font shape `TU/AtkinsonHyperlegibleNext(0)/b/n' will be
@@ -2208,12 +2171,12 @@ Overfull \hbox (13.03374pt too wide) in paragraph at lines 474--475
  []
 
 [9]
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/listings/lstlang
-1.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstla
+ng1.sty"
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
-(/var/home/ryhunsaker/.local/texlive/2025/texmf-dist/tex/latex/listings/lstlang
-1.sty
+("C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/tex/latex/listings/lstla
+ng1.sty"
 File: lstlang1.sty 2025/11/14 1.11b listings language file
 )
 LaTeX Font Info:    Font shape `TU/AtkinsonHyperlegibleNext(0)/m/n' will be
@@ -2287,7 +2250,7 @@ Overfull \hbox (7.0547pt too wide) in paragraph at lines 829--829
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 hours|  
  []
 
-ignored error Infinite glue shrinkage found in box being split [16]
+ignored: Infinite glue shrinkage found in box being split [16]
 Overfull \hbox (6.12407pt too wide) in paragraph at lines 858--858
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 hours|  
  []
@@ -2332,7 +2295,7 @@ Overfull \hbox (6.12407pt too wide) in paragraph at lines 879--879
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 hours|  
  []
 
-ignored error Infinite glue shrinkage found in box being split [17]
+ignored: Infinite glue shrinkage found in box being split [17]
 Overfull \hbox (5.38446pt too wide) in paragraph at lines 916--916
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 hours|  
  []
@@ -2377,7 +2340,7 @@ Overfull \hbox (5.38446pt too wide) in paragraph at lines 937--937
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 hours|  
  []
 
-ignored error Infinite glue shrinkage found in box being split [18] [19]
+ignored: Infinite glue shrinkage found in box being split [18] [19]
 Overfull \hbox (12.85582pt too wide) in paragraph at lines 981--982
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Project  
  []
@@ -2440,7 +2403,7 @@ Overfull \hbox (11.57224pt too wide) in paragraph at lines 1332--1333
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Score  
  []
 
-ignored error Infinite glue shrinkage found in box being split [24]
+ignored: Infinite glue shrinkage found in box being split [24]
 Overfull \hbox (13.53357pt too wide) in paragraph at lines 1361--1362
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Score  
  []
@@ -2473,7 +2436,7 @@ Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
 ld.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
 ld.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
-ignored error Infinite glue shrinkage found in box being split [32
+ignored: Infinite glue shrinkage found in box being split [32
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
 ld.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
@@ -2499,7 +2462,7 @@ Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
 ld.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
 ld.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
-ignored error Infinite glue shrinkage found in box being split [33
+ignored: Infinite glue shrinkage found in box being split [33
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
 ld.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Bo
@@ -2608,8 +2571,8 @@ Overfull \hbox (7.25122pt too wide) in paragraph at lines 2261--2262
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 sLock+Numpad 
  []
 
-ignored error Infinite glue shrinkage found in box being split [38]
-ignored error Infinite glue shrinkage found in box being split [39] [40]
+ignored: Infinite glue shrinkage found in box being split [38]
+ignored: Infinite glue shrinkage found in box being split [39] [40]
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
 gular.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
@@ -2840,7 +2803,7 @@ Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
 gular.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
 gular.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
-ignored error Infinite glue shrinkage found in box being split [48
+ignored: Infinite glue shrinkage found in box being split [48
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
 gular.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
@@ -3132,15 +3095,15 @@ will help you un-der-stand what
 [71
 
 ] [72]
-ignored error Infinite glue shrinkage found in box being split [73] [74]
-[75] [76] [77]
+ignored: Infinite glue shrinkage found in box being split [73] [74] [75]
+[76] [77]
 LaTeX Font Info:    Font shape `TU/AtkinsonHyperlegibleNext(0)/m/it' will be
 (Font)              scaled to size 10.0pt on input line 5000.
  [78]
-ignored error Infinite glue shrinkage found in box being split [79] [80]
-[81] [82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93] [94]
-ignored error Infinite glue shrinkage found in box being split [95] [96]
-[97] [98] [99] [100]
+ignored: Infinite glue shrinkage found in box being split [79] [80] [81]
+[82] [83] [84] [85] [86] [87] [88] [89] [90] [91] [92] [93] [94]
+ignored: Infinite glue shrinkage found in box being split [95] [96] [97]
+[98] [99] [100]
 Underfull \hbox (badness 10000) in paragraph at lines 6749--6751
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 What hap-pens when you use \TU/lmtt/m/
 n/10 ls -n part?.scad \TU/AtkinsonHyperlegibleNext(0)/m/n/10 ver-sus \TU/lmtt/m
@@ -3162,8 +3125,7 @@ name.txt
  []
 
 [103]
-ignored error Infinite glue shrinkage found in box being split [104] [105]
-[106]
+ignored: Infinite glue shrinkage found in box being split [104] [105] [106]
 Underfull \hbox (badness 3919) in paragraph at lines 7167--7169
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 What would be the dif-fer-ence in out-p
 ut be-tween \TU/lmtt/m/n/10 echo "test" >
@@ -3399,9 +3361,9 @@ Projects \TU/AtkinsonHyperlegibleNext(0)/m/n/10 folder and redi-rect the out-put
  []
 
 [188] [189]
-ignored error Infinite glue shrinkage found in box being split [190] [191]
-[192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
-[204] [205] [206] [207] [208] [209] [210]
+ignored: Infinite glue shrinkage found in box being split [190] [191] [192]
+[193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203] [204]
+[205] [206] [207] [208] [209] [210]
 Underfull \vbox (badness 2875) has occurred while \output is active []
 
  [211]
@@ -3495,8 +3457,8 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [269]
 [270] [271] [272] [273] [274] [275] [276]
-ignored error Infinite glue shrinkage found in box being split [277] [278]
-[279] [280] [281]
+ignored: Infinite glue shrinkage found in box being split [277] [278] [279]
+[280] [281]
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
 gular.otf]:mode=node;script=latn;language=dflt;+tlig;+pnum;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleNext-Re
@@ -3643,8 +3605,8 @@ usaMK4" \TU/AtkinsonHyperlegibleNext(0)/m/n/10 but your project's \TU/lmtt/m/n/
 
 [303] [304] [305] [306] [307] [308] [309] [310] [311] [312] [313] [314]
 [315] [316]
-ignored error Infinite glue shrinkage found in box being split [317] [318]
-[319] [320] [321] [322] [323] [324] [325] [326] [327]
+ignored: Infinite glue shrinkage found in box being split [317] [318] [319]
+[320] [321] [322] [323] [324] [325] [326] [327]
 Overfull \hbox (4.89091pt too wide) in paragraph at lines 23007--23008
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Points  
  []
@@ -3664,7 +3626,7 @@ Overfull \hbox (3.11208pt too wide) in paragraph at lines 23083--23084
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Score  
  []
 
-ignored error Infinite glue shrinkage found in box being split [329] [330]
+ignored: Infinite glue shrinkage found in box being split [329] [330]
 Underfull \hbox (badness 2261) in paragraph at lines 23241--23242
 \TU/lmtt/m/n/10 polygon() \TU/AtkinsonHyperlegibleNext(0)/m/n/10 is the most pow
 -er-ful 2D prim-i-tive. It cre-ates an ar-bi-trary
@@ -3743,8 +3705,8 @@ Overfull \hbox (8.10687pt too wide) in paragraph at lines 24203--24204
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Score  
  []
 
-ignored error Infinite glue shrinkage found in box being split [345] [346]
-[347] [348] [349] [350] [351] [352] [353] [354] [355]
+ignored: Infinite glue shrinkage found in box being split [345] [346] [347]
+[348] [349] [350] [351] [352] [353] [354] [355]
 Overfull \hbox (2.15009pt too wide) in paragraph at lines 24932--24934
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Write type-safe mod-ules us-ing \TU/lm
 tt/m/n/10 is_number()\TU/AtkinsonHyperlegibleNext(0)/m/n/10 , \TU/lmtt/m/n/10 is
@@ -3938,7 +3900,7 @@ Overfull \hbox (7.51018pt too wide) in paragraph at lines 26218--26218
 []|\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Medium|  
  []
 
-ignored error Infinite glue shrinkage found in box being split [377]
+ignored: Infinite glue shrinkage found in box being split [377]
 Overfull \hbox (4.14764pt too wide) in paragraph at lines 26240--26241
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Strength  
  []
@@ -3978,7 +3940,7 @@ Overfull \hbox (4.4917pt too wide) in paragraph at lines 26292--26292
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 cled/Re- 
  []
 
-ignored error Infinite glue shrinkage found in box being split [378]
+ignored: Infinite glue shrinkage found in box being split [378]
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleMono-Re
 gular.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no → (U+2192) in font [AtkinsonHyperlegibleMono-Re
@@ -4405,7 +4367,7 @@ Underfull \vbox (badness 2027) has occurred while \output is active []
 
  [402]
 [403] [404]
-ignored error Infinite glue shrinkage found in box being split [405] [406]
+ignored: Infinite glue shrinkage found in box being split [405] [406]
 Underfull \hbox (badness 3872) in paragraph at lines 28252--28254
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Cre-ate \TU/lmtt/m/n/10 keychain.scad 
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 with top-level pa-ram-e-ters: \TU/lmtt/m
@@ -6157,8 +6119,8 @@ ing guide cov-er-ing the 10 most
 
 [464] [465] [466] [467] [468] [469] [470] [471] [472] [473] [474] [475]
 [476]
-ignored error Infinite glue shrinkage found in box being split [477] [478]
-[479] [480] [481] [482] [483] [484] [485]
+ignored: Infinite glue shrinkage found in box being split [477] [478] [479]
+[480] [481] [482] [483] [484] [485]
 Overfull \hbox (1.206pt too wide) in paragraph at lines 33675--33675
 []|\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Medium|  
  []
@@ -6171,8 +6133,8 @@ ing guide cov-er-ing the 10 most
 
 [493] [494] [495] [496] [497] [498] [499] [500] [501] [502] [503] [504]
 [505] [506] [507] [508] [509] [510]
-ignored error Infinite glue shrinkage found in box being split [511] [512]
-[513] [514]
+ignored: Infinite glue shrinkage found in box being split [511] [512] [513]
+[514]
 Overfull \hbox (11.57224pt too wide) in paragraph at lines 36060--36061
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Score  
  []
@@ -7081,7 +7043,7 @@ Overfull \hbox (4.22037pt too wide) in paragraph at lines 37028--37028
 \TU/AtkinsonHyperlegibleNext(0)/m/n/10 vanced+|  
  []
 
-ignored error Infinite glue shrinkage found in box being split [530
+ignored: Infinite glue shrinkage found in box being split [530
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
 lar.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
@@ -7215,8 +7177,8 @@ Overfull \hbox (4.7958pt too wide) in paragraph at lines 37069--37069
 []|\TU/AtkinsonHyperlegibleNext(0)/m/n/10 1,100+ 
  []
 
-ignored error Infinite glue shrinkage found in box being split [531] [532]
-[533] [534] [535] [536] [537] [538] [539] (./OpenSCAD_Curriculum.ent
+ignored: Infinite glue shrinkage found in box being split [531] [532] [533]
+[534] [535] [536] [537] [538] [539] (./OpenSCAD_Curriculum.ent
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [540]
@@ -7404,7 +7366,7 @@ lar.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
 lar.otf]:mode=node;script=latn;language=dflt;!
 ] [561] [562]
-ignored error Infinite glue shrinkage found in box being split [563] [564]
+ignored: Infinite glue shrinkage found in box being split [563] [564]
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
 lar.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
@@ -7458,9 +7420,8 @@ lar.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
 lar.otf]:mode=node;script=latn;language=dflt;!
 ] [574]
-ignored error Infinite glue shrinkage found in box being split [575] [576]
-[577]
-ignored error Infinite glue shrinkage found in box being split [578]
+ignored: Infinite glue shrinkage found in box being split [575] [576] [577]
+ignored: Infinite glue shrinkage found in box being split [578]
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
 lar.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
@@ -7479,10 +7440,9 @@ lar.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
 lar.otf]:mode=node;script=latn;language=dflt;!
 ] [580]
-ignored error Infinite glue shrinkage found in box being split [581] [582]
-[583]
-ignored error Infinite glue shrinkage found in box being split [584] [585]
-[586] [587]
+ignored: Infinite glue shrinkage found in box being split [581] [582] [583]
+ignored: Infinite glue shrinkage found in box being split [584] [585] [586]
+[587]
 Overfull \hbox (9.53333pt too wide) in paragraph at lines 40826--40827
 []\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Strength  
  []
@@ -7682,9 +7642,9 @@ Overfull \hbox (3.0197pt too wide) in paragraph at lines 41357--41357
 []|\TU/AtkinsonHyperlegibleNext(0)/m/n/10 Pass/fail|  
  []
 
-ignored error Infinite glue shrinkage found in box being split [594] [595]
-[596] [597] [598]
-ignored error Infinite glue shrinkage found in box being split [599] [600]
+ignored: Infinite glue shrinkage found in box being split [594] [595] [596]
+[597] [598]
+ignored: Infinite glue shrinkage found in box being split [599] [600]
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
 lar.otf]:mode=node;script=latn;language=dflt;!
 Missing character: There is no ` (U+0060) in font [AtkinsonHyperlegibleMono-Regu
@@ -8105,38 +8065,40 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 ] (./OpenSCAD_Curriculum.aux)
  ***********
 LaTeX2e <2025-11-01>
-L3 programming layer <2025-12-29>
+L3 programming layer <2026-01-19>
  ***********
 )
 
 Here is how much of LuaTeX's memory you used:
- 46050 strings out of 476081
- 1456528,1977958 words of node,token memory allocated
- 171352 words of node memory still in use:
+ 46041 strings out of 476076
+ 1456482,1977958 words of node,token memory allocated
+ 171369 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 1 local_par, 4 glue, 5 kern, 1 penalty, 3 glyph, 63
-554 attribute, 64 glue_spec, 21188 attribute_list, 1 write, 1 user_defined, 1 pd
+560 attribute, 64 glue_spec, 21189 attribute_list, 2 write, 1 user_defined, 1 pd
 f_dest, 214 pdf_action nodes
-   avail lists: 1:12,2:58392,3:1060,4:15784,5:12035,6:178,7:93145,8:114,9:29050,
-10:50,11:1519
- 54185 multiletter control sequences out of 65536+600000
- 88 fonts using 20246195 bytes
- 74i,10n,114p,1564b,1150s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</var/home/ryhunsaker/.local/texlive/2025/texmf-dist/fonts/opentype/public/lm-ma
-th/latinmodern-math.otf></var/home/ryhunsaker/.fonts/Atkinson Hyperlegible Next/
-AtkinsonHyperlegibleNext-RegularItalic.otf></var/home/ryhunsaker/.local/texlive/
-2025/texmf-dist/fonts/opentype/public/lm/lmmonolt10-bold.otf></var/home/ryhunsak
-er/.local/share/fonts/AtkinsonHyperlegibleMono-RegularItalic.otf></var/home/ryhu
-nsaker/.local/texlive/2025/texmf-dist/fonts/opentype/public/lm/lmmono10-regular.
-otf></var/home/ryhunsaker/.local/share/fonts/AtkinsonHyperlegibleMono-Bold.otf><
-/var/home/ryhunsaker/.local/share/fonts/AtkinsonHyperlegibleMono-Regular.otf></v
-ar/home/ryhunsaker/.fonts/Atkinson Hyperlegible Next/AtkinsonHyperlegibleNext-Re
-gular.otf></var/home/ryhunsaker/.fonts/Atkinson Hyperlegible Next/AtkinsonHyperl
-egibleNext-Bold.otf></var/home/ryhunsaker/.local/texlive/2025/texmf-dist/fonts/t
-ype1/public/amsfonts/symbols/msam10.pfb>
-Output written on OpenSCAD_Curriculum.pdf (682 pages, 2377482 bytes).
+   avail lists: 1:7,2:58396,3:1062,4:15785,5:12035,6:178,7:93145,8:111,9:29050,1
+0:50,11:1519
+ 54176 multiletter control sequences out of 65536+600000
+ 88 fonts using 20246347 bytes
+ 74i,10n,114p,1525b,1150s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/fonts/opentype/public/lm-m
+ath/latinmodern-math.otf><C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/f
+onts/opentype/public/atkinson/AtkinsonHyperlegibleNext-RegularItalic.otf><c:/use
+rs/ryan hunsaker/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmonolt
+10-bold.otf><C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/fonts/opentype
+/public/atkinson/AtkinsonHyperlegibleMono-RegularItalic.otf><c:/users/ryan hunsa
+ker/appdata/local/programs/miktex/fonts/opentype/public/lm/lmmono10-regular.otf>
+<C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/fonts/opentype/public/atki
+nson/AtkinsonHyperlegibleMono-Bold.otf><C:/Users/Ryan Hunsaker/AppData/Local/Pro
+grams/MiKTeX/fonts/opentype/public/atkinson/AtkinsonHyperlegibleMono-Regular.otf
+><C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/fonts/opentype/public/atk
+inson/AtkinsonHyperlegibleNext-Regular.otf><C:/Users/Ryan Hunsaker/AppData/Local
+/Programs/MiKTeX/fonts/opentype/public/atkinson/AtkinsonHyperlegibleNext-Bold.ot
+f><C:/Users/Ryan Hunsaker/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfo
+nts/symbols/msam10.pfb>
+Output written on OpenSCAD_Curriculum.pdf (682 pages, 4112481 bytes).
 
-PDF statistics: 18164 PDF objects out of 18468 (max. 8388607)
- 17279 compressed objects within 173 object streams
- 13877 named destinations out of 15390 (max. 131072)
+PDF statistics: 17990 PDF objects out of 18468 (max. 8388607)
+ 13877 named destinations out of 15390 (max. 1048576)
  625 words of extra memory for PDF output out of 10000 (max. 100000000)
 
