@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.1)  2 MAR 2026 17:10
+This is LuaHBTeX, Version 1.22.0 (TeX Live 2025)  (format=lualatex 2026.1.1)  2 MAR 2026 17:25
  restricted system commands enabled.
 **/run/media/ryhunsaker/250GB/VI_3DMake_OpenSCAD_Curriculum/my-book/docs/pandoc
 /latex/OpenSCAD_Curriculum.tex
@@ -440,13 +440,63 @@ de=node;script=latn;language=dflt;+tlig;+tnum;"
 node;script=latn;language=dflt;+tlig;+tnum;"
 
 )
+luaotfload | db : Reload initiated (formats: otf,ttf,ttc); reason: File not foun
+d: "AtkinsonHyperlegibleMono-Italic.otf".
+
+! Package fontspec Error: 
+(fontspec)                The font "AtkinsonHyperlegibleMono-Italic" cannot
+(fontspec)                be found; this may be but usually is not a
+(fontspec)                fontspec bug. Either there is a typo in the font
+(fontspec)                name/file, the font is not installed (correctly),
+(fontspec)                or there is a bug in the underlying font loading
+(fontspec)                engine (XeTeX/luaotfload).
+
+For immediate help type H <return>.
+ ...                                              
+                                                  
+l.20   ]
+        
+
+A font might not be found for many reasons.
+ Check the spelling, where the font is installed etc. etc.
+
+ When in doubt, ask someone for help!
+
+
+
+! Package fontspec Error: 
+(fontspec)                The font "AtkinsonHyperlegibleMono-Italic" cannot
+(fontspec)                be found; this may be but usually is not a
+(fontspec)                fontspec bug. Either there is a typo in the font
+(fontspec)                name/file, the font is not installed (correctly),
+(fontspec)                or there is a bug in the underlying font loading
+(fontspec)                engine (XeTeX/luaotfload).
+
+For immediate help type H <return>.
+ ...                                              
+                                                  
+l.20   ]
+        
+
+A font might not be found for many reasons.
+ Check the spelling, where the font is installed etc. etc.
+
+ When in doubt, ask someone for help!
+
+
+luaotfload | aux : no font with id 0
+luaotfload | aux : no font with id 0
+luaotfload | aux : no font with id 0
+luaotfload | aux : no font with id 0
+luaotfload | aux : no font with id 0
+luaotfload | aux : no font with id 0
 
 Package fontspec Info: 
 (fontspec)             Font family 'AtkinsonHyperlegibleMono(1)' created for
 (fontspec)             font 'AtkinsonHyperlegibleMono' with options
 (fontspec)             [WordSpace={1,0,0},HyphenChar=None,PunctuationSpace=Word
-Space,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Regular
-Italic,BoldItalicFont=*-BoldItalic].
+Space,Extension=.otf,UprightFont=*-Regular,BoldFont=*-Bold,ItalicFont=*-Italic,
+BoldItalicFont=*-BoldItalic].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
@@ -458,8 +508,8 @@ ipt=latn;language=dflt;"
 (fontspec)             <->"[AtkinsonHyperlegibleMono-Bold.otf]:mode=node;script
 =latn;language=dflt;"
 (fontspec)             - 'italic' (m/it) with NFSS spec.:
-(fontspec)             <->"[AtkinsonHyperlegibleMono-RegularItalic.otf]:mode=no
-de;script=latn;language=dflt;"
+(fontspec)             <->"[AtkinsonHyperlegibleMono-Italic.otf]:mode=node;scri
+pt=latn;language=dflt;"
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
 (fontspec)             <->"[AtkinsonHyperlegibleMono-BoldItalic.otf]:mode=node;
 script=latn;language=dflt;"
@@ -8057,14 +8107,10 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-29>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 )
 
 Here is how much of LuaTeX's memory you used:
- 46049 strings out of 476081
+ 46050 strings out of 476081
  1456528,1977958 words of node,token memory allocated
  171352 words of node memory still in use:
    7 hlist, 2 vlist, 2 rule, 1 local_par, 4 glue, 5 kern, 1 penalty, 3 glyph, 63
@@ -8072,9 +8118,9 @@ Here is how much of LuaTeX's memory you used:
 f_dest, 214 pdf_action nodes
    avail lists: 1:12,2:58392,3:1060,4:15784,5:12035,6:178,7:93145,8:114,9:29050,
 10:50,11:1519
- 54184 multiletter control sequences out of 65536+600000
- 88 fonts using 20246119 bytes
- 74i,10n,114p,1567b,1150s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 54185 multiletter control sequences out of 65536+600000
+ 88 fonts using 20246195 bytes
+ 74i,10n,114p,1564b,1150s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </var/home/ryhunsaker/.local/texlive/2025/texmf-dist/fonts/opentype/public/lm-ma
 th/latinmodern-math.otf></var/home/ryhunsaker/.fonts/Atkinson Hyperlegible Next/
 AtkinsonHyperlegibleNext-RegularItalic.otf></var/home/ryhunsaker/.local/texlive/
