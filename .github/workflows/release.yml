@@ -46,7 +46,7 @@ jobs:
             texlive-luatex \
             texlive-xetex \
             lmodern\
-            fonts-dejavu 
+            fonts-dejavu
 
       - name: Install Atkinson Hyperlegible fonts
         run: |
@@ -54,7 +54,7 @@ jobs:
           mkdir -p "$FONT_DIR"
 
           # --- Atkinson Hyperlegible (regular family) ---
-          BASE="https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf"
+          BASE="https://github.com/googlefonts/atkinson-hyperlegible-next/raw/main/fonts/otf"
           wget -q "${BASE}/AtkinsonHyperlegible-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegible-Regular.otf"
           wget -q "${BASE}/AtkinsonHyperlegible-Bold.otf"       -O "$FONT_DIR/AtkinsonHyperlegible-Bold.otf"
           wget -q "${BASE}/AtkinsonHyperlegible-Italic.otf"     -O "$FONT_DIR/AtkinsonHyperlegible-Italic.otf"
