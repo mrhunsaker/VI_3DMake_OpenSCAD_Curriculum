@@ -52,8 +52,7 @@ jobs:
             texlive-fonts-extra \
             texlive-luatex \
             texlive-xetex \
-            lmodern \
-            fonts-atkinson-hyperlegible
+            lmodern 
 
       - name: Install Atkinson Hyperlegible Mono fonts
         run: |
@@ -80,7 +79,7 @@ jobs:
             cp ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-BoldItalic.otf ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-BoldItalic.otf
           
           # Refresh font cache
-          fc-cache -fv
+          fc-cache -fv || true
           
           # Verify fonts are installed
           fc-list | grep -i atkinson || echo "Warning: Atkinson fonts may not be properly installed"

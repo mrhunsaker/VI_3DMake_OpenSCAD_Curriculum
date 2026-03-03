@@ -45,36 +45,35 @@ jobs:
             texlive-fonts-extra \
             texlive-luatex \
             texlive-xetex \
-            lmodern \
-            fonts-atkinson-hyperlegible
+            lmodern
 
       - name: Install Atkinson Hyperlegible Mono fonts
         run: |
           # Create font directory
           mkdir -p ~/.local/share/fonts/atkinson-hyperlegible
-          
+
           # Download Atkinson Hyperlegible font family from Google Fonts
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/Atkinson-Hyperlegible-Regular.otf -O ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-Regular.otf
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/Atkinson-Hyperlegible-Bold.otf -O ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-Bold.otf
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/Atkinson-Hyperlegible-Italic.otf -O ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-Italic.otf
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/Atkinson-Hyperlegible-BoldItalic.otf -O ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-BoldItalic.otf
-          
+
           # Download Mono variants if available (fallback to regular if not)
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/AtkinsonHyperlegible-Regular.otf -O ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-Regular.otf 2>/dev/null || \
             cp ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-Regular.otf ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-Regular.otf
-          
+
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/AtkinsonHyperlegible-Bold.otf -O ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-Bold.otf 2>/dev/null || \
             cp ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-Bold.otf ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-Bold.otf
-          
+
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/AtkinsonHyperlegible-Italic.otf -O ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-Italic.otf 2>/dev/null || \
             cp ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-Italic.otf ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-Italic.otf
-          
+
           wget -q https://github.com/googlefonts/atkinson-hyperlegible/raw/main/fonts/otf/AtkinsonHyperlegible-BoldItalic.otf -O ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-BoldItalic.otf 2>/dev/null || \
             cp ~/.local/share/fonts/atkinson-hyperlegible/Atkinson-Hyperlegible-BoldItalic.otf ~/.local/share/fonts/atkinson-hyperlegible/AtkinsonHyperlegibleMono-BoldItalic.otf
-          
+
           # Refresh font cache
-          fc-cache -fv
-          
+          fc-cache -fv || true
+
           # Verify fonts are installed
           fc-list | grep -i atkinson || echo "Warning: Atkinson fonts may not be properly installed"
 
