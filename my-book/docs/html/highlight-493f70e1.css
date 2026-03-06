@@ -1,25 +1,83 @@
-<!DOCTYPE HTML>
-<html lang="en" class="rust sidebar-visible" dir="ltr">
-    <head>
-        <!-- Book generated using mdBook -->
-        <meta charset="UTF-8">
-        <title>Appendix B: Comprehensive Slicing Guide - All Major Slicers - 3D Printing Course for Blind and Visually Impaired Learners</title>
+/*
+ * An increased contrast highlighting scheme loosely based on the
+ * "Base16 Atelier Dune Light" theme by Bram de Haan
+ * (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/dune)
+ * Original Base16 color scheme by Chris Kempson
+ * (https://github.com/chriskempson/base16)
+ */
 
+/* Comment */
+.hljs-comment,
+.hljs-quote {
+  color: #575757;
+}
 
-        <!-- Custom HTML head -->
-        <script>
-          (function(){
-            // Load Atkinson Hyperlegible fonts from the book assets (injected at runtime so paths are correct on GitHub Pages)
-            try {
-              const link = Array.from(document.getElementsByTagName('link')).find(l => l.href && l.href.match(/\/css\/variables-.*\.css$/));
-              const base = (function(){
-                if (!link) return (window.location.origin||'') + '/';
-                const u = new URL(link.href, window.location.href);
-                const basePath = u.pathname.replace(/\/css\/.*$/,'');
-                return u.origin + basePath + (basePath.endsWith('/') ? '' : '/');
-              })();
-        
-              const css = `\
-        @font-face {\
-          font-family: 'Atkinson Hyperlegible Next';\
-          src: url('${base}assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf')
+/* Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-attribute,
+.hljs-attr,
+.hljs-tag,
+.hljs-name,
+.hljs-regexp,
+.hljs-link,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class {
+  color: #d70025;
+}
+
+/* Orange */
+.hljs-number,
+.hljs-meta,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params {
+  color: #b21e00;
+}
+
+/* Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet {
+  color: #008200;
+}
+
+/* Blue */
+.hljs-title,
+.hljs-section {
+  color: #0030f2;
+}
+
+/* Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+  color: #9d00ec;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  background: #f6f7f6;
+  color: #000;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-addition {
+  color: #22863a;
+  background-color: #f0fff4;
+}
+
+.hljs-deletion {
+  color: #b31d28;
+  background-color: #ffeef0;
+}

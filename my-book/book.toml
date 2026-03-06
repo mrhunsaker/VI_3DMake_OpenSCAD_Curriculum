@@ -36,29 +36,6 @@ level = 1
 
 [output.pandoc]
 
-# --- PDF PROFILE UPDATES ---
-#[output.pandoc.profile.pdf]
-#output-file = "OpenSCAD_Curriculum.pdf"
-#to = "latex"
-#number-sections = false
-#toc = true
-#toc-depth = 3
-#include-before-body = ["src/Cover.tex"]
-#template = "src/template.tex"
-#pdf-engine = "lualatex"
-
-#[output.pandoc.profile.pdf.variables]
-#listings = true  
-#secnumdepth = 2
-#date = "2026-02-24"
-#title-meta = "3D Printing Course for Blind and Visually Impaired Learners"
-#author-meta = "Michael Ryan Hunsaker, M.Ed., Ph.D."
-#documentclass = "book"
-#papersize = "letter"
-#fontsize = "11pt"
-#maketitle = false
-
-
 # --- EPUB PROFILE UPDATES ---
 [output.pandoc.profile.epub]
 output-file = "OpenSCAD_Curriculum.epub"
