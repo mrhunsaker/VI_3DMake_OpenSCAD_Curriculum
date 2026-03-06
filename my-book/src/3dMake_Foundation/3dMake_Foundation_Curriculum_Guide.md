@@ -282,7 +282,7 @@ Automation: Lesson 9
 ### Structured Exercises by Lesson
 
 | Lesson | Exercise Type         | Deliverable                         |
-|--------|-----------------------|-------------------------------------|
+| ------ | --------------------- | ----------------------------------- |
 | 1      | Setup & Configuration | Working project scaffold            |
 | 2      | Geometry Construction | 3 CSG examples + fixes              |
 | 3      | Modular Design        | Parametric bracket module           |
@@ -351,7 +351,7 @@ Each lesson includes:
 ### Project Completion Tracking
 
 | Project      | Lessons | Output Files                | Est. Print Time |
-|--------------|---------|-----------------------------|-----------------|
+| ------------ | ------- | --------------------------- | --------------- |
 | Keycap Set   | 1-6     | 5+ SCAD files, 3+ STL files | 15-30 min total |
 | Phone Stand  | 1-7     | 1 SCAD with 3+ variants     | 30-60 min total |
 | Storage Bins | 1-8     | 1 parametric SCAD, 3 sizes  | 60-90 min total |
@@ -361,8 +361,8 @@ Each lesson includes:
 ### Common Issues and References
 
 | Issue             | Related Lesson | Solution                                                        |
-|-------------------|----------------|-----------------------------------------------------------------|
-| Model won't build | Lesson 2       | Check for non-manifold geometry with `3dm info`             |
+| ----------------- | -------------- | --------------------------------------------------------------- |
+| Model won't build | Lesson 2       | Check for non-manifold geometry with `3dm info`                 |
 | Parts don't fit   | Lesson 8       | Use tolerance testing matrix to find correct `stack_clear`      |
 | Print fails       | Lesson 5       | Verify pre-print checklist and slicer settings                  |
 | Dimensions off    | Lesson 10      | Conduct tolerance sensitivity study and apply correction factor |
@@ -545,7 +545,7 @@ Accessibility: Each example includes comprehensive comments, starts with simplif
 ## Curriculum Revision History
 
 | Version | Date     | Changes                                                                                   |
-|---------|----------|-------------------------------------------------------------------------------------------|
+| ------- | -------- | ----------------------------------------------------------------------------------------- |
 | 2.1     | Feb 2026 | Added Appendix E (Advanced OpenSCAD); Enhanced Lessons 3, 6, 7, 8, 9 with advanced topics |
 | 2.0     | Feb 2026 | Added Lesson 11 (Stakeholder Design) + 4 Appendices; Consolidated Units 0-3 content       |
 | 1.0     | Feb 2026 | Initial comprehensive curriculum with 10 lessons + 5 projects                             |

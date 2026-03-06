@@ -1,6 +1,6 @@
 # Lesson 4 — AI-Enhanced Verification and Multimodal Feedback
 
-_[CORRECTED — March 2026 Curriculum Revision]_
+Estimated time: 90–120 minutes
 
 ---
 
@@ -13,6 +13,18 @@ By the end of this lesson you will be able to:
 - Build a personal verification chain for any critical design feature
 - Use `3dm preview` and slicer layer view as fallback verification methods
 - Apply AI description to accessibility workflows for visually impaired makers
+- Understand deterministic vs. AI-assisted validation
+- Apply prompt engineering techniques for design feedback
+- Recognize when to trust, question, or reject AI suggestions
+- Understand data privacy considerations when using cloud AI tools
+
+---
+
+## Materials
+
+- 3dMake project with a completed STL from Lessons 1–3
+- Terminal
+- Optional: AI chat interface (Claude, ChatGPT, or similar)
 
 ---
 
@@ -74,7 +86,7 @@ AI geometry descriptions can be vague, wrong, or generic. When you receive a res
 
 The bounding box and volume are computed deterministically from the mesh — they cannot be wrong if the build succeeded.
 
-**2. Slicer layer preview**
+**2. Slicer layer preview**  
 Open `build/main.stl` in your slicer (Cura, PrusaSlicer, etc.) and navigate layer by layer. Screen readers can announce layer numbers; each layer shows a cross-section of the geometry.
 
 ```bash
@@ -88,7 +100,7 @@ Open `build/main.stl` in your slicer (Cura, PrusaSlicer, etc.) and navigate laye
 3dm preview slice --layer-count > slice_report.txt
 ```
 
-**3. Isolate and describe a single module**
+**3. Isolate and describe a single module**  
 If your full model is too complex to describe accurately, build one module at a time:
 
 ```bash
@@ -98,7 +110,7 @@ If your full model is too complex to describe accurately, build one module at a 
 3dm info
 ```
 
-**4. Physical measurement**
+**4. Physical measurement**  
 For tolerance-critical features, print a test coupon (see Lesson 8) and measure with digital calipers. Physical measurement is the ground truth.
 
 ---
@@ -128,7 +140,7 @@ Feature: Mounting feet height
 
 ## Step 4 — Using AI to Generate OpenSCAD Code
 
-AI tools (ChatGPT, Claude, Copilot) can write OpenSCAD code from a text description. This accelerates development but introduces a verification requirement: **AI-generated geometry code is frequently subtly wrong**.
+AI tools (ChatGPT, Claude, Copilot) can write OpenSCAD code from a text description. This accelerates development but introduces a verification requirement: **AI-generated geometry code is frequently subtly wrong. It is also hilariously and catastrophically wrong**.
 
 The most common AI errors in OpenSCAD:
 
@@ -162,6 +174,32 @@ Run each check in order. Stop if any check fails and fix before proceeding.
 
 [ ] 6. ASSEMBLY   If multi-part: do components fit together in slicer?
         Import all parts; check for collisions and gaps
+```
+
+### Quick AI Guidance + Simple Flaw Example
+
+**When AI Helps:** rapid scaffolding of parametric structures, natural-language descriptions for accessibility, and idea generation.
+
+**When to be Skeptical:** anything involving tolerances, boolean boundaries, transform order, or process-dependent fit.
+
+**Simple flawed AI example (coplanar subtraction):**
+
+```openscad
+// Flawed: inner subtraction is coplanar -> slicer artifacts
+difference() {
+  cube([30,30,10]);
+  translate([5,5,0]) cube([20,20,10]);
+}
+```
+
+**Fix:**
+
+```openscad
+// Correct: nudge Z with -0.001 and +0.002 for robust difference
+difference() {
+  cube([30,30,10]);
+  translate([5,5,-0.001]) cube([20,20,10+0.002]);
+}
 ```
 
 ---
@@ -283,64 +321,19 @@ difference() {
 
 ---
 
-## Exercises
+## Concepts & Best Practices
 
-**Exercise 4.1:** Build your phone stand from Lesson 3. Run `3dm info` from multiple angles (`--view front`, `--view top`, `--view isometric`). Write a verification log documenting which features you could and couldn't confirm.
+### Deterministic vs. AI Validation
 
-**Exercise 4.2:** Ask an AI tool to generate OpenSCAD code for a simple parametric box with a lid. Apply the AI Code Generation Verification Checklist to the result. Document every error you find.
-
-**Exercise 4.3 (Advanced):** Write a bash/PowerShell script that tests your phone stand at 5 different `angle` parameter values (30°, 45°, 60°, 75°, 90°) and logs the bounding box for each. Confirm that the bounding box height increases as angle increases.
-
-# Lesson 4 — AI-Enhanced Verification and Multimodal Feedback
-
-Estimated time: 90–120 minutes
-
-## Learning Objectives
-
-- Use `3dm info` to generate AI-assisted descriptions of STL geometry
-- Understand deterministic vs. AI-assisted validation
-- Apply prompt engineering techniques for design feedback
-- Recognize when to trust, question, or reject AI suggestions
-- Understand data privacy considerations when using cloud AI tools
-
-## Materials
-
-- 3dMake project with a completed STL from Lessons 1–3
-- Terminal
-- Optional: AI chat interface (Claude, ChatGPT, or similar)
-
-## Step-by-step Tasks
-
-### 1. Run 3dm info on Your Current Model
-
-`3dm info` sends your STL to an AI service and returns a natural-language description of the geometry. This is especially useful for non-visual validation.
-
-```bash
-3dm info
-```
-
-Expected output (example):
-
-```
-Model: build/main.stl
-The model appears to be a rectangular box approximately 50mm x 30mm x 5mm.
-It has uniform wall thickness and no visible holes or undercuts.
-Suggested print orientation: flat on the largest face.
-```
-
-Review the description. Does it match your design intent? Note any discrepancies.
-
-### 2. Understand Deterministic vs. AI Validation
-
-| Validation Type   | What It Checks                                                  | Reliability                                        |
-| ----------------- | --------------------------------------------------------------- | -------------------------------------------------- |
-| Slicer validation | Manifold geometry, wall thickness, overhang angles              | Deterministic — same result every run              |
-| `3dm info` (AI)   | Human-readable shape description, print orientation suggestions | Non-deterministic — may vary slightly between runs |
-| Manual calipers   | Printed part dimensions                                         | Ground truth                                       |
+| Validation Type   | What It Checks                                                  | Reliability                                                          |
+| ----------------- | --------------------------------------------------------------- | -------------------------------------------------------------------- |
+| Slicer validation | Manifold geometry, wall thickness, overhang angles              | Deterministic — same result every run                                |
+| `3dm info` (AI)   | Human-readable shape description, print orientation suggestions | Non-deterministic — may vary slightly (or dramatically) between runs |
+| Manual calipers   | Printed part dimensions                                         | Ground truth                                                         |
 
 AI-assisted tools like `3dm info` are useful for generating first-pass descriptions and spotting obvious issues, but they should not replace deterministic checks (slicer validation, geometry analysis).[^1]
 
-### 3. Craft Effective Verification Prompts
+### Craft Effective Verification Prompts
 
 When using an AI assistant (Claude, GPT, etc.) to review OpenSCAD code, prompt quality determines output quality:
 
@@ -348,6 +341,12 @@ When using an AI assistant (Claude, GPT, etc.) to review OpenSCAD code, prompt q
 
 ```
 Review my OpenSCAD code.
+```
+
+or
+
+```
+tell me what I need to do to improve this model
 ```
 
 **Strong prompt:**
@@ -365,7 +364,7 @@ Respond with: issues found, severity (critical/warning/note), and suggested fix 
 
 A structured prompt produces structured, actionable feedback.[^2]
 
-### 4. Validate AI Suggestions Before Applying Them
+### Validate AI Suggestions Before Applying Them
 
 AI tools can produce plausible-sounding but incorrect recommendations. Always apply a verification step:
 
@@ -382,9 +381,7 @@ Conclusion: AI was wrong. Apply human domain knowledge.
 
 Document your accept/reject decisions in your project notes for future reference.
 
-### 5. Apply Privacy and Data Considerations
-
-When using cloud AI tools:
+### Privacy and Data Considerations
 
 - **Don't upload proprietary designs** to free-tier AI services without checking their data retention policies
 - **Anonymize or simplify** your model before requesting AI review if IP is a concern
@@ -398,9 +395,9 @@ For classroom use, `3dm info` on non-sensitive learning projects is appropriate.
 - After step 3: Your AI prompt produces structured, reviewable output.
 - After step 4: You have documented at least one accept or reject decision for an AI suggestion.
 
-## Common AI Validation Patterns
+### Common AI Validation Patterns
 
-### Pattern 1: Geometry Sanity Check
+**Pattern 1: Geometry Sanity Check**
 
 ```bash
 # Ask AI to describe what it "sees" in your model
@@ -413,7 +410,7 @@ For classroom use, `3dm info` on non-sensitive learning projects is appropriate.
 # - Print orientation makes sense? ✓/✗
 ```
 
-### Pattern 2: Code Review Prompt Template
+**Pattern 2: Code Review Prompt Template**
 
 Use this template when asking an AI to review OpenSCAD code:
 
@@ -429,7 +426,7 @@ Review for:
 Output format: numbered list of issues, each with severity and fix
 ```
 
-### Pattern 3: Iterative Improvement Loop
+**Pattern 3: Iterative Improvement Loop**
 
 ```
 1. Write initial design
@@ -439,6 +436,20 @@ Output format: numbered list of issues, each with severity and fix
 5. Print test piece -> compare to spec
 6. Iterate on parameters if needed
 ```
+
+See the **AI Appendix for this chapter — AI Guidance & Flawed OpenSCAD Examples** for detailed failure modes and corrected code patterns.
+
+---
+
+## Exercises
+
+**Exercise 4.1:** Build your phone stand from Lesson 3. Run `3dm info` from multiple angles (`--view front`, `--view top`, `--view isometric`). Write a verification log documenting which features you could and couldn't confirm.
+
+**Exercise 4.2:** Ask an AI tool to generate OpenSCAD code for a simple parametric box with a lid. Apply the AI Code Generation Verification Checklist to the result. Document every error you find.
+
+**Exercise 4.3 (Advanced):** Write a bash/PowerShell script that tests your phone stand at 5 different `angle` parameter values (30°, 45°, 60°, 75°, 90°) and logs the bounding box for each. Confirm that the bounding box height increases as angle increases.
+
+---
 
 ## Quiz — Lesson 3dMake.4 (15 questions)
 
@@ -458,6 +469,8 @@ Output format: numbered list of issues, each with severity and fix
 14. Describe two ways you could reduce IP exposure when using a cloud AI tool to review a proprietary design.
 15. In the validation table (deterministic vs. AI vs. calipers), which method provides "ground truth" and why?
 
+---
+
 ## Extension Problems (15)
 
 1. Design a validation checklist for a new 3D printed part. Include at least five items that are deterministic and three that benefit from AI assistance.
@@ -476,19 +489,21 @@ Output format: numbered list of issues, each with severity and fix
 14. Create a lesson plan (5 minutes) explaining AI validation concepts to a fellow student who has never used an AI tool. Focus on the deterministic vs. non-deterministic distinction.
 15. Research and document the difference between "AI-assisted" and "AI-automated" workflows. At what point does removing the human from the validation loop become risky?
 
+---
+
 ## References and Helpful Resources
 
-[^1]: OpenSCAD User Manual — Manifold and Geometry Validation - [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language)
+[^1]: OpenSCAD User Manual — Manifold and Geometry Validation - https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language
 
-[^2]: Anthropic Prompt Engineering Guide — [https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview). Covers structured prompting techniques applicable to code review use cases.
+[^2]: Anthropic Prompt Engineering Guide — https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview. Covers structured prompting techniques applicable to code review use cases.
 
 [^3]: Data Privacy in AI-Assisted Tools — General guidance: review your AI provider's terms of service and data retention policy before submitting proprietary or sensitive design files.
 
-[^4]: NIST AI Risk Management Framework (AI RMF 1.0) — National Institute of Standards and Technology, 2023. [https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf](https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf). Provides a structured framework for managing risks in AI-integrated workflows.
+[^4]: NIST AI Risk Management Framework (AI RMF 1.0) — National Institute of Standards and Technology, 2023. https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf. Provides a structured framework for managing risks in AI-integrated workflows.
 
 ### Supplemental Resources
 
-- [3DMake GitHub Repository](https://github.com/tdeck/3dmake) — Source for `3dm info` and other commands
-- [Anthropic Prompt Engineering Overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview) — Prompting best practices
-- [NIST AI RMF](https://airc.nist.gov/Home) — AI risk management in professional contexts
-- [PrusaSlicer Documentation](https://docs.prusa3d.com/en/) — Deterministic slicer validation reference
+- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
+- Anthropic Prompt Engineering Overview — https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
+- NIST AI RMF — https://airc.nist.gov/Home
+- PrusaSlicer Documentation — https://docs.prusa3d.com/en/

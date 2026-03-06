@@ -104,7 +104,7 @@
     - [Appendix B: PowerShell Integration for SCAD Workflows](Command_Line_Interface_Selection/Appendix_B_PowerShell_Integration.md)
     - [Appendix C: PowerShell Integration for SCAD Workflows](Command_Line_Interface_Selection/Appendix_C_GitBash_Integration.md)
   - [3D Make and OpenSCAD Appendices](Appendices/3dMake_Appendices.md)
-    - [Appendix A: 3DMake Cheat Sheet](../3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md)
+    - [Appendix A: 3DMake Cheat Sheet](3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md)
     - [Appendix B: Comprehensive Slicing Guide - All Major Slicers](3dMake_Foundation/Appendix_B_Comprehensive_Slicing_Guide.md)
     - [Appendix C: Material Properties & Selection Guide](3dMake_Foundation/Appendix_C_Material_Properties.md)
     - [Appendix D: Tolerance Testing & Quality Assurance Matrix](3dMake_Foundation/Appendix_D_Tolerance_QA.md)

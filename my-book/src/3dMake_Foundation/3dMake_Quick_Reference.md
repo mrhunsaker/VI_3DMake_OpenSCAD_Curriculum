@@ -26,10 +26,10 @@ Quick links to comprehensive reference materials:
 
 | Appendix                                                                                      | Focus                  | Size         | Use When                                     |
 |-----------------------------------------------------------------------------------------------|------------------------|--------------|----------------------------------------------|
-| [A: Comprehensive Slicing Guide](Appendix_A_Comprehensive_Slicing_Guide.md)                   | PrusaSlicer, Bambu Studio, Cura, OrcaSlicer configuration | 1,500+ lines | Slicing questions, slicer reference          |
-| [B: Material Properties & Selection Guide](Appendix_B_Material_Properties.md)                  | Shrinkage data, print settings, material properties       | 1,200+ lines | Choosing material, troubleshooting prints    |
-| [C: Tolerance Testing & Quality Assurance Matrix](Appendix_C_Tolerance_QA.md)                  | QA procedures, tolerance validation methods               | 1,200+ lines | Quality verification, measurement techniques |
-| [D: PowerShell Integration for SCAD Workflows](Appendix_D_PowerShell_Integration.md)           | Batch processing, automation scripts, workflow integration| 1,100+ lines | Building automation, batch processing        |
+| [A: Comprehensive Slicing Guide](Appendix_B_Comprehensive_Slicing_Guide.md)                   | PrusaSlicer, Bambu Studio, Cura, OrcaSlicer configuration | 1,500+ lines | Slicing questions, slicer reference          |
+| [B: Material Properties & Selection Guide](Appendix_C_Material_Properties.md)                  | Shrinkage data, print settings, material properties       | 1,200+ lines | Choosing material, troubleshooting prints    |
+| [C: Tolerance Testing & Quality Assurance Matrix](Appendix_D_Tolerance_QA.md)                  | QA procedures, tolerance validation methods               | 1,200+ lines | Quality verification, measurement techniques |
+| [D: PowerShell Integration for SCAD Workflows](../Command_Line_Interface_Selection/Appendix_B_PowerShell_Integration.md)           | Batch processing, automation scripts, workflow integration| 1,100+ lines | Building automation, batch processing        |
 
 ## Learning Paths
 

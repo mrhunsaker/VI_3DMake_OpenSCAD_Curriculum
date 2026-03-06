@@ -39,11 +39,6 @@ This guide provides a comprehensive comparison including:
 
 Where to Start: [PowerShell Curriculum Overview](PowerShell_Foundation/PowerShell_Curriculum_Overview/PowerShell_Curriculum_Overview.md)
 
-Introductory & Reference Materials:
-
-- [PowerShell Introduction](PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md) - Screen-reader-friendly quick-start guide (JAWS/NVDA)
-- [PowerShell Tutorial](PowerShell_Foundation/Powershell_Tutorial/Powershell_Tutorial.md) - Hands-on tutorial covering paths, navigation, and common operations
-
 Lessons Included:
 
 - Powershell Lesson Pre: Your First Terminal - Opening PowerShell, first commands, screen reader tricks
@@ -85,10 +80,6 @@ Skills: Terminal navigation, file operations, batch scripting, basic automation
 Where to Start: [Git Bash Curriculum Overview](GitBash_Foundation/GitBash_Curriculum_Overview/GitBash_Curriculum_Overview.md)
 
 Introductory & Reference Materials:
-
-- [Git Bash Introduction](GitBash_Foundation/GitBash_Introduction/GitBash_Introduction.md) - Screen-reader-friendly quick-start guide (JAWS/NVDA)
-- [Git Bash Tutorial](GitBash_Foundation/GitBash_Tutorial/GitBash_Tutorial.md) - Hands-on tutorial covering paths, navigation, and common operations
-- [Screen Reader Accessibility Guide for Git Bash](GitBash_Foundation/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) - NVDA and JAWS configuration for Git Bash
 
 Lessons Included:
 

@@ -2,6 +2,11 @@
 
 Comprehensive reference materials, guides, and supplemental resources for the OpenSCAD and 3dMake curriculum.
 
+## 3D Printing and Makerspace Appendices
+
+- [Appendix A: Utah Makerspace Index](../3dMake_Foundation/Utah_Makerspace_Appendix.md)
+- [Appendix B: National Makerspaces](../3dMake_Foundation/National_Makerspace_Appendix.md)
+
 ## 3dMake Foundation Appendices
 
 - [Appendix A: 3DMake Cheat Sheet](../3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md)

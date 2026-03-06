@@ -27,6 +27,11 @@ fi
 # Create output directory if it doesn't exist
 mkdir -p "$BUILDOUTPUT"
 
+# Remove previous LaTeX build artifacts generated in repository root
+ROOTDIR="$SCRIPTDIR"
+echo "Cleaning previous LaTeX build artifacts in $ROOTDIR..."
+rm -f "$ROOTDIR/OpenSCAD_Curriculum."{aux,ent,idx,log,out,pdf,toc}
+
 # Build the book
 echo "Building mdbook..."
 echo "  Source: $BOOKDIR/src/"
@@ -39,7 +44,7 @@ RUST_BACKTRACE=full mdbook build --dest-dir "$BUILDOUTPUT"
 echo "building pdf in root directory with lualatex"
 cd "$SCRIPTDIR"
 lualatex -interaction=nonstopmode "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.tex"
-makeindex "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.idx"
+# makeindex "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.idx"
 lualatex -interaction=nonstopmode "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.tex"
 
 echo ""

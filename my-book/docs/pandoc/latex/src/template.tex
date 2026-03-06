@@ -12,6 +12,12 @@ $endif$
 \usepackage{iftex}
 \usepackage{etoolbox}
 \usepackage{pdflscape} 
+% Automatically rotate wide tables onto landscape pages
+% This wraps every table and longtable environment in a landscape page.
+% If you prefer conditional rotation only for very-wide tables, tell me
+% and I can implement a measurement-based approach instead.
+\AtBeginEnvironment{table}{\begin{landscape}}
+\AtEndEnvironment{table}{\end{landscape}}
 \usepackage{calc}
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -47,7 +53,7 @@ $endif$
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-Italic,
+    ItalicFont=*-RegularItalic,
     BoldItalicFont=*-BoldItalic
   ]
   \directlua{
@@ -60,7 +66,7 @@ $endif$
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-Italic,
+    ItalicFont=*-RegularItalic,
     BoldItalicFont=*-BoldItalic,
     BoldFeatures={RawFeature={fallback=symbolsfallback}},
     UprightFeatures={RawFeature={fallback=symbolsfallback}},
@@ -73,9 +79,26 @@ $endif$
   Extension=.otf,
   UprightFont=*-Regular,
   BoldFont=*-Bold,
-  ItalicFont=*-Italic,
+  ItalicFont=*-RegularItalic,
   BoldItalicFont=*-BoldItalic
 ]
+
+% Unicode replacements for glyphs missing in Atkinson fonts
+% Use a dedicated symbol font (DejaVu Sans / Noto Sans) for these glyphs
+\usepackage{newunicodechar}
+\usepackage{textcomp}
+\usepackage{pifont}
+% Symbol fallback font (uses system DejaVu Sans if available)
+\newfontfamily\symbolfont{DejaVu Sans}[Scale=MatchLowercase]
+% Fallback mappings: render specific unicode glyphs using \symbolfont
+\newunicodechar{`}{{\symbolfont\textasciigrave}}
+\newunicodechar{↓}{{\symbolfont↓}}
+\newunicodechar{←}{{\symbolfont←}}
+\newunicodechar{─}{{\symbolfont─}}
+\newunicodechar{⚠}{{\symbolfont⚠}}
+\newunicodechar{✓}{{\symbolfont✓}}
+\newunicodechar{✗}{{\symbolfont✗}}
+\newunicodechar{□}{{\symbolfont□}}
 
 % Footnotes to Endnotes Configuration
 \usepackage{endnotes}
@@ -284,7 +307,7 @@ $endif$
     \vspace{1.5cm}
     {\Large Michael Ryan Hunsaker, M.Ed., Ph.D.}
     \vfill
-    {\large Updated: $date$}
+    {\large Updated: \today}
 \end{titlepage}
 
 % Copyright Page (Verso)

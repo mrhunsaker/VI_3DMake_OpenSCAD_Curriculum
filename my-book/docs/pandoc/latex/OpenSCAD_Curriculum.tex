@@ -10,6 +10,12 @@
 \usepackage{iftex}
 \usepackage{etoolbox}
 \usepackage{pdflscape} 
+% Automatically rotate wide tables onto landscape pages
+% This wraps every table and longtable environment in a landscape page.
+% If you prefer conditional rotation only for very-wide tables, tell me
+% and I can implement a measurement-based approach instead.
+\AtBeginEnvironment{table}{\begin{landscape}}
+\AtEndEnvironment{table}{\end{landscape}}
 \usepackage{calc}
 \usepackage{longtable}
 \usepackage{booktabs}
@@ -42,7 +48,7 @@
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-Italic,
+    ItalicFont=*-RegularItalic,
     BoldItalicFont=*-BoldItalic
   ]
   \directlua{
@@ -55,7 +61,7 @@
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-Italic,
+    ItalicFont=*-RegularItalic,
     BoldItalicFont=*-BoldItalic,
     BoldFeatures={RawFeature={fallback=symbolsfallback}},
     UprightFeatures={RawFeature={fallback=symbolsfallback}},
@@ -68,9 +74,26 @@
   Extension=.otf,
   UprightFont=*-Regular,
   BoldFont=*-Bold,
-  ItalicFont=*-Italic,
+  ItalicFont=*-RegularItalic,
   BoldItalicFont=*-BoldItalic
 ]
+
+% Unicode replacements for glyphs missing in Atkinson fonts
+% Use a dedicated symbol font (DejaVu Sans / Noto Sans) for these glyphs
+\usepackage{newunicodechar}
+\usepackage{textcomp}
+\usepackage{pifont}
+% Symbol fallback font (uses system DejaVu Sans if available)
+\newfontfamily\symbolfont{DejaVu Sans}[Scale=MatchLowercase]
+% Fallback mappings: render specific unicode glyphs using \symbolfont
+\newunicodechar{`}{{\symbolfont\textasciigrave}}
+\newunicodechar{↓}{{\symbolfont↓}}
+\newunicodechar{←}{{\symbolfont←}}
+\newunicodechar{─}{{\symbolfont─}}
+\newunicodechar{⚠}{{\symbolfont⚠}}
+\newunicodechar{✓}{{\symbolfont✓}}
+\newunicodechar{✗}{{\symbolfont✗}}
+\newunicodechar{□}{{\symbolfont□}}
 
 % Footnotes to Endnotes Configuration
 \usepackage{endnotes}
@@ -316,7 +339,7 @@
     \vspace{1.5cm}
     {\Large Michael Ryan Hunsaker, M.Ed., Ph.D.}
     \vfill
-    {\large Updated: 2026-02-24}
+    {\large Updated: \today}
 \end{titlepage}
 
 % Copyright Page (Verso)
@@ -403,16 +426,6 @@ This guide provides a comprehensive comparison including:
 
 Where to Start: \hyperref[docs__pandoc__latex__src__powershell_foundation__powershell_curriculum_overview__powershell_curriculum_overview.md__powershell-for-screen-reader-users---complete-curriculum-overview]{PowerShell Curriculum Overview}
 
-Introductory \& Reference Materials:
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md}{PowerShell Introduction} - Screen-reader-friendly quick-start guide (JAWS/NVDA)
-\item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/PowerShell_Foundation/Powershell_Tutorial/Powershell_Tutorial.md}{PowerShell Tutorial} - Hands-on tutorial covering paths, navigation, and common operations
-\end{itemize}
-
 Lessons Included:
 
 \begin{itemize}
@@ -478,16 +491,6 @@ Skills: Terminal navigation, file operations, batch scripting, basic automation
 Where to Start: \hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_curriculum_overview__gitbash_curriculum_overview.md__gitbash_foundation_gitbash_curriculum_overview-gitbash_curriculum_overview]{Git Bash Curriculum Overview}
 
 Introductory \& Reference Materials:
-
-\begin{itemize}
-\tightlist
-\item
-  \href{docs/pandoc/latex/src/GitBash_Foundation/GitBash_Introduction/GitBash_Introduction.md}{Git Bash Introduction} - Screen-reader-friendly quick-start guide (JAWS/NVDA)
-\item
-  \href{docs/pandoc/latex/src/GitBash_Foundation/GitBash_Tutorial/GitBash_Tutorial.md}{Git Bash Tutorial} - Hands-on tutorial covering paths, navigation, and common operations
-\item
-  \hyperref[docs__pandoc__latex__src__gitbash_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-git-bash]{Screen Reader Accessibility Guide for Git Bash} - NVDA and JAWS configuration for Git Bash
-\end{itemize}
 
 Lessons Included:
 
@@ -584,7 +587,7 @@ Total: 45-55 hours instruction + practice projects
 \begin{itemize}
 \tightlist
 \item
-  \href{docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - Quick reference for 3dm command-line tool
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet]{3DMake CLI Cheat Sheet} - Quick reference for 3dm command-line tool
 \item
   \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_b_comprehensive_slicing_guide.md__3dmake_foundation-appendix_a_comprehensive_slicing_guide]{Appendix A: Comprehensive Slicing Guide} - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
 \item
@@ -615,7 +618,7 @@ This course uses tools designed for screen reader access:
   Accessible text editors - Notepad, VS Code, Notepad++, Nano, Vim, etc. (all keyboard-driven, screen reader friendly)
 \end{itemize}
 
-See \href{docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md}{Appendix A: 3DMake Cheat Sheet} for detailed keyboard shortcuts and configuration.
+See \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet]{Appendix A: 3DMake Cheat Sheet} for detailed keyboard shortcuts and configuration.
 
 \subsection*{3DMake: Non-Visual Build Automation}\label{docs__pandoc__latex__src__readme.md__3dmake-non-visual-build-automation}
 
@@ -709,7 +712,7 @@ Each project requires:
 \subsection*{Quick Reference Materials}\label{docs__pandoc__latex__src__readme.md__quick-reference-materials}
 
 \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_2__openscad-cheat-sheet.md__3dmake_foundation_lessons_3dmake_2-openscad-cheat-sheet]{OpenSCAD Cheat Sheet} - Syntax quick-reference\\
-\href{docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - Complete 3dm command reference\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet]{3DMake CLI Cheat Sheet} - Complete 3dm command reference\\
 \href{docs/pandoc/latex/src/3dMake_Foundation/Lessons_3dMake_5/filament-comparison-table.md}{Filament Comparison Table} - Material selection guide\\
 \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_11__master-rubric.md__3dmake_foundation_lessons_3dmake_11-master-rubric]{Master Rubric} - Project assessment criteria
 
@@ -1456,7 +1459,7 @@ Use When
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\href{docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md}{3DMake Cheat Sheet}
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet]{3DMake Cheat Sheet}
 & Complete 3dm CLI Reference &
 Quick command lookup, troubleshooting 3dm commands \\
 \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_b_comprehensive_slicing_guide.md__3dmake_foundation-appendix_a_comprehensive_slicing_guide]{Appendix A}
@@ -1892,7 +1895,7 @@ OpenSCAD
 \item
   \href{https://github.com/tdeck/3dmake}{3DMake Documentation \& Installation} - Command-line build tool for OpenSCAD
 \item
-  \href{docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - Complete command reference
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet]{3DMake CLI Cheat Sheet} - Complete command reference
 \item
   \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_quick_reference.md__3dmake_foundation-3dmake_quick_reference]{3dMake Quick Reference} - Command and workflow reference
 \end{itemize}
@@ -2094,7 +2097,7 @@ University of Utah Maker Spaces
 \item
   \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_2__openscad-cheat-sheet.md__3dmake_foundation_lessons_3dmake_2-openscad-cheat-sheet]{OpenSCAD Cheat Sheet} - Complete syntax quick-reference
 \item
-  \href{docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - All 3dm commands and options
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet]{3DMake CLI Cheat Sheet} - All 3dm commands and options
 \end{itemize}
 
 \textbf{Materials \& Safety:}
@@ -39193,7 +39196,7 @@ Comprehensive reference materials, guides, and supplemental resources for the Op
 \begin{itemize}
 \tightlist
 \item
-  \href{docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md}{Appendix A: 3DMake Cheat Sheet}
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet]{Appendix A: 3DMake Cheat Sheet}
 \item
   \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices/../3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md}{Appendix B: Comprehensive Slicing Guide - All Major Slicers} - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
 \item
@@ -39204,7 +39207,2059 @@ Comprehensive reference materials, guides, and supplemental resources for the Op
   \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices/../3dMake_Foundation/Appendix_D_PowerShell_Integration.md}{Appendix E: Advanced OpenSCAD Concepts} - Batch processing, automation scripts, and advanced workflow integration
 \end{itemize}
 
-\subsection{Appendix A: 3DMake Cheat Sheet}\label{docs__pandoc__latex__src__1b6cf37aa0228bb2.md__appendix-a-3dmake-cheat-sheet}
+\subsection{3DMake CLI Cheat Sheet}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dmake-cli-cheat-sheet}
+
+\begin{quote}
+A comprehensive reference for the \texttt{3dm} command-line tool used alongside OpenSCAD for 3D printing.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Basic Syntax}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__basic-syntax}
+
+\begin{lstlisting}[style=Alabaster]
+3dm ACTIONS... [OPTIONS]... [INPUT_FILE]
+
+\end{lstlisting}
+
+You can combine multiple actions in a single command, and most single-letter options can be used with a single dash (e.g. \texttt{-s\ 1.5} instead of \texttt{-\/-scale\ 1.5}).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Quick Examples}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__quick-examples}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm build                                    # Build the default model
+3dm build orient slice                       # Build, auto-orient, then slice
+3dm build orient slice -m cover -o supports  # With a specific model and overlay
+3dm info alpaca.stl                          # Get info about an STL file
+3dm preview alpaca.stl                       # Preview an STL file
+3dm slice print alpaca.stl                   # Slice and send an STL to printer
+3dm image --angle top --angle front          # Export rendered images
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{All Actions}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__all-actions}
+
+\paragraph*{Project Setup \& Management}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__project-setup--management}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.0522}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.9478}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Action
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{setup} &
+Set up 3DMake for the first time, or overwrite/upgrade existing settings (printer profile, Gemini AI key, OctoPrint connection) \\
+\texttt{new} &
+Interactively create a new 3DMake project directory structure (\texttt{src/}, \texttt{build/}, \texttt{3dmake.toml}, starter \texttt{.scad} file) \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm setup       # First-time setup or re-configure
+3dm new         # Create a new project (prompts for directory name)
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Build Pipeline}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__build-pipeline}
+
+These actions can be chained together in sequence:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.0930}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.9070}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Action
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{build} &
+Compile the OpenSCAD \texttt{.scad} source file into a \texttt{.stl} model \\
+\texttt{orient} &
+Auto-orient the model to minimize the need for supports (uses Tweaker3) \\
+\texttt{slice} &
+Slice the model into printer-ready G-code using PrusaSlicer \\
+\texttt{print} &
+Send the sliced G-code to the printer (OctoPrint, Bambu LAN, or Bambu Connect) \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm build                        # Just compile OpenSCAD -> STL
+3dm build orient                 # Compile then auto-orient
+3dm build orient slice           # Compile, orient, then slice
+3dm build orient slice print     # Full pipeline: compile -> orient -> slice -> print
+3dm slice print                  # Slice an already-built model and print it
+3dm print                        # Send an already-sliced file to the printer
+
+\end{lstlisting}
+
+\begin{quote}
+\textbf{Note:} Actions automatically trigger their dependencies. For example, \texttt{slice} will imply \texttt{build} if needed.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Inspection \& Visualization}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__inspection--visualization}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.0612}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.9388}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Action
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{info} &
+Display mesh dimensions and center point; optionally get an AI description of the model (requires Gemini or OpenRouter API key configured) \\
+\texttt{preview} &
+Produce a 2D silhouette projection of the model (outputs a flat STL for quick reference) \\
+\texttt{image} &
+Export one or more rendered PNG images of the model from specified viewpoints \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm info                         # Show mesh size/center info
+3dm info --interactive           # Info + start AI chat session about the model
+3dm info model.stl               # Info on a specific STL file
+3dm preview                      # Generate 3-silhouette projection (default view)
+3dm preview --view topsil        # Generate top-only silhouette
+3dm image --angle top            # Render image from top viewpoint
+3dm image --angle top --angle front --angle left  # Multiple viewpoints
+3dm image --colorscheme slicer_dark --image-size 1920x1080
+
+\end{lstlisting}
+
+\textbf{Available \texttt{-\/-view} options for \texttt{preview}:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+View Name & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{3sil} & Three-view silhouette (top, left, front) --- default \\
+\texttt{topsil} & Top-down silhouette only \\
+\texttt{leftsil} & Left-side silhouette only \\
+\texttt{rightsil} & Right-side silhouette only \\
+\texttt{frontsil} & Front silhouette only \\
+\texttt{backsil} & Back silhouette only \\
+\end{longtable}
+}
+
+\textbf{Available \texttt{-\/-colorscheme} options for \texttt{image}:}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Scheme Name & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{slicer\_light} & Orange model on light gray background \\
+\texttt{slicer\_dark} & Orange model on dark background \\
+\texttt{light\_on\_dark} & Floral white model on dark background \\
+\end{longtable}
+}
+
+\textbf{Available \texttt{-\/-angle} options for \texttt{image}:}\\
+\texttt{above\_front\_left}, \texttt{above\_front\_right}, \texttt{above\_back\_left}, \texttt{above\_back\_right}, \texttt{top}, \texttt{bottom}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Configuration Editors}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__configuration-editors}
+
+These are all isolated actions (cannot be combined with other actions):
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2062}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7938}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Action
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{edit-model} &
+Open the current model\textquotesingle s \texttt{.scad} source file in your configured editor \\
+\texttt{edit-profile} &
+Open the current printer profile \texttt{.ini} file in your editor \\
+\texttt{edit-overlay} &
+Open (or create) a slicer settings overlay file in your editor \\
+\texttt{edit-profile-gcode} &
+Interactively select and edit a G-code script embedded in the printer profile \\
+\texttt{edit-prompt} &
+Edit the AI prompt used by the \texttt{info} command \\
+\texttt{edit-global-config} &
+Edit the global \texttt{defaults.toml} settings file (printer, API keys, etc.) \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm edit-model                    # Edit the default model's .scad file
+3dm edit-model -m lid             # Edit a specific model (lid.scad)
+3dm edit-profile                  # Edit the current printer profile
+3dm edit-profile -p prusa_mk4     # Edit a specific profile
+3dm edit-overlay                  # Prompted to choose/create an overlay
+3dm edit-overlay -o supports      # Edit the "supports" overlay directly
+3dm edit-profile-gcode            # Choose and edit a G-code script in the profile
+3dm edit-prompt                   # Edit the AI description prompt
+3dm edit-global-config            # Edit global settings (defaults.toml)
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Library Management}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__library-management}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1597}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8403}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Action
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{list-libraries} &
+List all available OpenSCAD libraries in the catalog, showing which are installed and their versions \\
+\texttt{install-libraries} &
+Download and install any libraries required by the current project (as specified in \texttt{3dmake.toml}) \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm list-libraries        # See available and installed libraries
+3dm install-libraries     # Install missing project libraries
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Listing Configuration}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__listing-configuration}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Action & Description \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{list-profiles} & List all available printer profiles \\
+\texttt{list-overlays} & List all available slicer setting overlays \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm list-profiles         # See all printer profiles
+3dm list-overlays         # See all overlays (with profile restrictions if any)
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Diagnostics \& Info}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__diagnostics--info}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1573}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8427}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Action
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{test-connect} &
+Test the connection to the configured print server (OctoPrint or Bambu LAN) \\
+\texttt{help} & Display the help message with all actions and options \\
+\texttt{version} &
+Print the 3DMake version, program location, and config directory \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm test-connect          # Test printer connection
+3dm help                  # Show help
+3dm version               # Show version info
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{All Options}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__all-options}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1345}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0420}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1429}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.6807}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Option
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Short
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{-\/-scale} & \texttt{-s} & \texttt{float} or \texttt{auto} &
+Scale the model by a decimal factor (e.g. \texttt{1.5} for 150\%, \texttt{0.5} for 50\%) \\
+\texttt{-\/-model} & \texttt{-m} & \texttt{string} &
+Select a specific model by name in a multi-model project (omit \texttt{.scad} extension) \\
+\texttt{-\/-profile} & \texttt{-p} & \texttt{string} &
+Select a printer profile by name \\
+\texttt{-\/-overlay} & \texttt{-o} & \texttt{string} &
+Apply a slicer settings overlay; can be used multiple times \\
+\texttt{-\/-view} & \texttt{-v} & \texttt{string} &
+Select the preview view type (see view options above) \\
+\texttt{-\/-angle} & \texttt{-a} & \texttt{string} &
+Set a viewpoint for image export; can be used multiple times \\
+\texttt{-\/-copies} & \texttt{-c} & \texttt{int} &
+Number of copies to slice/print (default: \texttt{1}) \\
+\texttt{-\/-interactive} & \texttt{-i} & flag &
+Start an interactive AI chat after the \texttt{info} command \\
+\texttt{-\/-colorscheme} & --- & \texttt{string} &
+Color scheme name for image export \\
+\texttt{-\/-image-size} & --- & \texttt{WxH} &
+Image dimensions in pixels (e.g. \texttt{1920x1080}, default: \texttt{1080x720}) \\
+\texttt{-\/-debug} & --- & flag &
+Enable debug output (shows full subprocess logs, raises exceptions) \\
+\texttt{-\/-help} / \texttt{-\/-h} & \texttt{-h} & flag &
+Display help and exit \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Input Files}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__input-files}
+
+You can pass an \texttt{.stl} or \texttt{.scad} file directly instead of running inside a project directory:
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm info model.stl                  # Inspect a standalone STL
+3dm preview model.stl               # Preview a standalone STL
+3dm slice print model.stl           # Slice and print a standalone STL
+3dm build model.scad                # Build a standalone SCAD file -> STL
+3dm image model.stl --angle top     # Render image from standalone STL
+
+\end{lstlisting}
+
+\begin{quote}
+When passing a \texttt{.scad} file, \texttt{build} is automatically added to the action list.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{\texorpdfstring{Project File (\texttt{3dmake.toml}) \& Global Config (\texttt{defaults.toml})}{Project File (3dmake.toml) \& Global Config (defaults.toml)}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__project-file-3dmaketoml--global-config-defaultstoml}
+
+Both files use identical TOML keys. \texttt{defaults.toml} lives in the config directory and sets machine-wide defaults. \texttt{3dmake.toml} lives in your project root and \textbf{overrides} the global defaults for that project only.
+
+\begin{quote}
+Run \texttt{3dm\ edit-global-config} to open \texttt{defaults.toml} in your editor.\\
+Settings set via CLI flags (e.g. \texttt{-\/-scale}, \texttt{-\/-profile}) override both files at runtime.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{General / Project Settings}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__general--project-settings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1471}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0441}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1103}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.6985}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{model\_name} & string & \texttt{"main"} &
+The default model name. Maps to \texttt{src/\textless{}name\textgreater{}.scad} and \texttt{build/\textless{}name\textgreater{}.stl} \\
+\texttt{project\_name} & string & \emph{(folder name)} &
+Project name used as a prefix on output filenames. Auto-detected from directory name if not set \\
+\texttt{scale} & float & \texttt{1.0} &
+Scale factor applied during slicing. \texttt{1.0} = 100\%, \texttt{1.5} = 150\%, \texttt{0.5} = 50\% \\
+\texttt{copies} & int & \texttt{1} &
+Number of copies to slice/print in one run \\
+\texttt{strict\_warnings} & bool & \texttt{false} &
+Pass \texttt{-\/-hardwarnings} to OpenSCAD --- treat all warnings as errors during \texttt{build} \\
+\texttt{min\_3dmake\_version} & string & \emph{(none)} &
+Minimum required 3DMake version to run this project. Prevents running with outdated installs \\
+\texttt{interactive} & bool & \texttt{false} &
+Default to interactive AI chat mode after \texttt{info} \\
+\texttt{debug} & bool & \texttt{false} &
+Enable debug/verbose output globally \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# General project settings
+model_name = "main"
+project_name = "my-widget"
+scale = 1.0
+copies = 1
+strict_warnings = true
+min_3dmake_version = "1.2.0"
+interactive = false
+debug = false
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{OpenSCAD / Build Settings}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__openscad--build-settings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0895}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0789}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0368}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.7947}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{libraries} & list of strings & \texttt{{[}{]}} &
+OpenSCAD libraries required by this project. Names must be \textbf{lowercase} and match entries in the library catalog. Install with \texttt{3dm\ install-libraries} \\
+\texttt{local\_libraries} & list of strings & \texttt{{[}{]}} &
+Paths to local library directories (absolute or relative to project root) to add to \texttt{OPENSCADPATH} during build \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# OpenSCAD library dependencies
+libraries = ["openscad-threads", "bosl2"]
+
+# Local/custom libraries not in the catalog
+local_libraries = ["./lib/my-custom-parts", "/home/user/shared-scad-libs"]
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Printer \& Slicer Settings}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__printer--slicer-settings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0960}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0847}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0904}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.7288}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{printer\_profile} & string & \emph{(required)} &
+Name of the printer profile \texttt{.ini} file to use (without the \texttt{.ini} extension). Set during \texttt{3dm\ setup} \\
+\texttt{overlays} & list of strings & \texttt{{[}{]}} &
+Default slicer setting overlays to apply on every slice. Profile-specific versions are preferred over default ones when available \\
+\texttt{view} & string & \texttt{"3sil"} &
+Default preview view type used by the \texttt{preview} action \\
+\texttt{image\_angles} & list of strings & \texttt{{[}{]}} &
+Default viewpoint angles for the \texttt{image} action \\
+\texttt{colorscheme} & string & \texttt{"slicer\_light"} &
+Default color scheme for the \texttt{image} action \\
+\texttt{image\_size} & string & \texttt{"1080x720"} &
+Default image export dimensions in \texttt{WIDTHxHEIGHT} pixels \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# Slicer configuration
+printer_profile = "prusa_mk4"
+overlays = ["fast-draft"]
+
+# Preview and image defaults
+view = "3sil"
+image_angles = ["above_front_left", "top"]
+colorscheme = "slicer_light"
+image_size = "1920x1080"
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Print Sending Settings}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__print-sending-settings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1397}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0441}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1544}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.6618}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{print\_mode} & string & \emph{(required to print)} &
+How to send prints to the printer. One of: \texttt{"octoprint"}, \texttt{"bambu\_lan"}, \texttt{"bambu\_connect"} \\
+\texttt{auto\_start\_prints} & bool & \texttt{true} &
+When using OctoPrint, automatically start the print after uploading the file \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# Print sending mode
+print_mode = "octoprint"       # Options: "octoprint", "bambu_lan", "bambu_connect"
+auto_start_prints = true
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{OctoPrint Connection}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__octoprint-connection}
+
+Used when \texttt{print\_mode\ =\ "octoprint"}. Test with \texttt{3dm\ test-connect}.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1135}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0426}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0567}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.7872}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{octoprint\_host} & string & \emph{(none)} &
+Full URL to your OctoPrint server, including protocol (e.g. \texttt{"http://octopi.local"} or \texttt{"http://192.168.1.50"}) \\
+\texttt{octoprint\_key} & string & \emph{(none)} &
+OctoPrint Application API key. Generate in OctoPrint \textgreater{} Settings \textgreater{} Application Keys \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# OctoPrint connection (set in defaults.toml, not project toml)
+octoprint_host = "http://octopi.local"
+octoprint_key = "ABC123DEF456..."
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Bambu Labs Connection}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__bambu-labs-connection}
+
+Used when \texttt{print\_mode\ =\ "bambu\_lan"}. Test with \texttt{3dm\ test-connect}.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1858}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0531}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0708}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.6903}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{bambu\_host} & string & \emph{(none)} &
+Local IP address of your Bambu printer on your network (e.g. \texttt{"192.168.1.42"}) \\
+\texttt{bambu\_serial\_number} & string & \emph{(none)} &
+Printer serial number (found in the printer\textquotesingle s settings screen or Bambu Studio) \\
+\texttt{bambu\_access\_code} & string & \emph{(none)} &
+Local network access code shown on the printer screen (Settings \textgreater{} WLAN) \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# Bambu Labs LAN connection (set in defaults.toml, not project toml)
+bambu_host = "192.168.1.42"
+bambu_serial_number = "01S00C123456789"
+bambu_access_code = "12345678"
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{AI Description Settings}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__ai-description-settings}
+
+Used by the \texttt{info} action. Set up during \texttt{3dm\ setup} or via \texttt{3dm\ edit-global-config}.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0766}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0287}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0957}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.7990}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{gemini\_key} & string & \emph{(none)} &
+Google Gemini API key for AI model descriptions. Free tier allows \textasciitilde{}50 requests/day. Get one at \href{https://aistudio.google.com/app/apikey}{aistudio.google.com/app/apikey} \\
+\texttt{openrouter\_key} & string & \emph{(none)} &
+OpenRouter API key (alternative to Gemini for AI descriptions, supports many LLM providers) \\
+\texttt{llm\_name} & string & \emph{(provider default)} &
+Specific LLM model name to use with Gemini or OpenRouter (e.g. \texttt{"gemini-1.5-flash"}, \texttt{"google/gemini-pro-vision"}) \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# AI description keys (set in defaults.toml only — keep out of project toml!)
+gemini_key = "AIzaSy..."
+openrouter_key = "sk-or-..."
+llm_name = "gemini-1.5-flash"
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Editor Settings}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__editor-settings}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1250}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.0375}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.1125}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.7250}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Type
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Default
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{editor} & string & \emph{(system default)} &
+Command used to open files for editing (e.g. \texttt{"code"}, \texttt{"vim"}, \texttt{"notepad"}, \texttt{"subl"}). Used by all \texttt{edit-*} actions \\
+\texttt{edit\_in\_background} & bool & \texttt{false} &
+Launch the editor as a background process (non-blocking). Set to \texttt{true} on Windows where GUI editors are common \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster]
+# Editor configuration (typically set in defaults.toml)
+editor = "code"                 # VS Code
+edit_in_background = true       # Don't block the terminal while editing
+
+# Other common editor values:
+# editor = "vim"
+# editor = "nano"
+# editor = "subl"               # Sublime Text
+# editor = "notepad"            # Windows Notepad
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Complete Annotated Example}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__complete-annotated-example}
+
+A fully commented \texttt{3dmake.toml} for a real project:
+
+\begin{lstlisting}[style=Alabaster]
+# ── Project identity ──────────────────────────────────────────────
+model_name = "enclosure"           # src/enclosure.scad -> build/enclosure.stl
+project_name = "pi-case"           # Output files named pi-case-enclosure.gcode etc.
+min_3dmake_version = "1.2.0"       # Fail loudly if tool is out of date
+
+# ── Build ─────────────────────────────────────────────────────────
+strict_warnings = true             # Treat OpenSCAD warnings as errors
+libraries = ["openscad-threads"]   # Needs thread library (run: 3dm install-libraries)
+local_libraries = ["./lib"]        # Also include project-local ./lib/ directory
+
+# ── Slicing ───────────────────────────────────────────────────────
+printer_profile = "prusa_mk4"      # Use profiles/prusa_mk4.ini
+scale = 1.0                        # No scaling
+copies = 1
+overlays = ["fast-draft"]          # Always slice with fast-draft settings
+
+# ── Images & Preview ──────────────────────────────────────────────
+view = "3sil"
+image_angles = ["above_front_left", "top"]
+colorscheme = "slicer_light"
+image_size = "1920x1080"
+
+# ── Printing ──────────────────────────────────────────────────────
+# (Print connection settings like octoprint_host belong in defaults.toml,
+#  not here, since they are machine-specific not project-specific)
+print_mode = "octoprint"
+auto_start_prints = true
+
+\end{lstlisting}
+
+A fully commented \texttt{defaults.toml} for a machine-wide config:
+
+\begin{lstlisting}[style=Alabaster]
+# ── Machine-wide defaults (in ~/.config/3dmake/defaults.toml) ────
+
+# General defaults
+model_name = "main"
+view = "3sil"
+auto_start_prints = true
+
+# Editor
+editor = "code"
+edit_in_background = true          # For GUI editors that return immediately
+
+# Printer
+printer_profile = "prusa_mk4"
+
+# OctoPrint connection
+print_mode = "octoprint"
+octoprint_host = "http://octopi.local"
+octoprint_key = "ABC123DEF456GHI789..."
+
+# AI descriptions (keep sensitive keys here, not in project toml)
+gemini_key = "AIzaSyABC123..."
+llm_name = "gemini-1.5-flash"
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Typical Workflows}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__typical-workflows}
+
+\paragraph*{New Project from Scratch}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__new-project-from-scratch}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm new                    # Create project structure
+cd my-project
+3dm edit-model             # Write your OpenSCAD model
+3dm build                  # Verify it compiles
+3dm info                   # Check dimensions
+3dm build orient slice print  # Full pipeline
+
+\end{lstlisting}
+
+\paragraph*{Iterate on an Existing Model}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__iterate-on-an-existing-model}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm edit-model             # Edit the .scad source
+3dm build                  # Recompile
+3dm preview                # Quick visual check
+3dm slice -o supports      # Slice with supports overlay
+3dm print                  # Send to printer
+
+\end{lstlisting}
+
+\paragraph*{Working with a Standalone STL}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__working-with-a-standalone-stl}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm info my-model.stl
+3dm preview my-model.stl
+3dm image my-model.stl --angle above_front_left --angle top
+3dm slice print my-model.stl
+
+\end{lstlisting}
+
+\paragraph*{Export Images for Documentation}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__export-images-for-documentation}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm image \
+  --angle above_front_left \
+  --angle above_front_right \
+  --angle top \
+  --colorscheme slicer_light \
+  --image-size 1920x1080
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Environment Variables}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__environment-variables}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2794}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7206}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{3DMAKE\_CONFIG\_DIR} &
+Override the default configuration directory path \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Configuration Directory Structure}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__configuration-directory-structure}
+
+\begin{lstlisting}[style=Alabaster]
+~/.config/3dmake/         (or $3DMAKE_CONFIG_DIR)
+├── defaults.toml          Global settings (printer, API keys, etc.)
+├── profiles/
+│   └── my_printer.ini     Printer profiles (slicer settings)
+├── overlays/
+│   ├── default/
+│   │   └── supports.ini   Default overlays (apply to all printers)
+│   └── my_printer/
+│       └── supports.ini   Printer-specific overlay overrides
+├── libraries/             Installed OpenSCAD libraries
+└── templates/             Starter templates for new projects/overlays
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Overlays}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__overlays}
+
+Overlays are \textbf{partial PrusaSlicer \texttt{.ini} files} that override specific slicer settings without replacing the entire printer profile. They are the primary way to switch between print quality modes, enable supports, adjust strength, or any other per-print tuning --- without touching your base printer profile.
+
+\paragraph*{How Overlays Work}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__how-overlays-work}
+
+\begin{enumerate}
+\tightlist
+\item
+  When slicing, 3DMake loads your base printer profile first, then applies each overlay \textbf{in order}, with later overlays winning over earlier ones.
+\item
+  Overlay files only need to contain the keys you want to change --- all other profile settings are preserved.
+\item
+  3DMake looks for overlays in two places, preferring the printer-specific version if it exists:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{overlays/\textless{}printer\_profile\textgreater{}/\textless{}name\textgreater{}.ini} ← preferred
+  \item
+    \texttt{overlays/default/\textless{}name\textgreater{}.ini} ← fallback
+  \end{itemize}
+\end{enumerate}
+
+\paragraph*{Creating and Editing Overlays}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__creating-and-editing-overlays}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm edit-overlay                  # Prompted to pick or create an overlay
+3dm edit-overlay -o strong        # Open (or create) the "strong" overlay directly
+3dm list-overlays                 # See all available overlays
+
+\end{lstlisting}
+
+When creating a new overlay via \texttt{3dm\ edit-overlay}, you can optionally lock it to a specific printer profile. A locked overlay lives under \texttt{overlays/\textless{}profile\textgreater{}/} and only applies when that profile is active.
+
+\paragraph*{Using Overlays}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__using-overlays}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+# Apply a single overlay
+3dm slice -o strong
+
+# Apply multiple overlays (stacked in order, last wins on conflicts)
+3dm slice -o fine -o supports
+
+# Set a default overlay for a project in 3dmake.toml
+overlays = ["strong"]
+
+# CLI overlay replaces (not adds to) the toml default
+3dm slice -o draft              # Uses only "draft", ignores toml default
+
+\end{lstlisting}
+
+\paragraph*{Overlay File Format}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__overlay-file-format}
+
+Overlay \texttt{.ini} files use the same key=value format as PrusaSlicer profiles. You only need to include the keys you want to override.
+
+\begin{lstlisting}[style=Alabaster]
+# overlays/default/strong.ini
+# Keys and values are identical to PrusaSlicer's config export format.
+# Lines starting with # are comments and are ignored.
+
+perimeters = 4
+top_solid_layers = 6
+bottom_solid_layers = 6
+fill_density = 40%
+fill_pattern = grid
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Key PrusaSlicer INI Settings Reference}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__key-prusaslicer-ini-settings-reference}
+
+The most useful keys for overlay tuning, with types and sample values:
+
+\subparagraph*{Shell / Wall Strength}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__shell--wall-strength}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2074}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4889}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3037}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sample Values
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{perimeters} & Number of outer wall loops &
+\texttt{2} (draft) · \texttt{3} (normal) · \texttt{5} (strong) \\
+\texttt{top\_solid\_layers} & Solid layers on the top surface &
+\texttt{3} (draft) · \texttt{5} (normal) · \texttt{8} (strong) \\
+\texttt{bottom\_solid\_layers} & Solid layers on the bottom surface &
+\texttt{3} (draft) · \texttt{4} (normal) · \texttt{6} (strong) \\
+\texttt{top\_solid\_min\_thickness} &
+Minimum top skin thickness in mm (overrides layer count if larger) &
+\texttt{0.5} · \texttt{0.8} · \texttt{1.0} \\
+\texttt{bottom\_solid\_min\_thickness} &
+Minimum bottom skin thickness in mm &
+\texttt{0.5} · \texttt{0.8} · \texttt{1.0} \\
+\texttt{external\_perimeters\_first} &
+Print outer walls before inner walls (better surface quality) &
+\texttt{0} · \texttt{1} \\
+\texttt{thin\_walls} &
+Detect and print thin walls that would otherwise be missed &
+\texttt{0} · \texttt{1} \\
+\end{longtable}
+}
+
+\subparagraph*{Infill}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__infill}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.1552}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3563}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4885}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sample Values
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{fill\_density} & Infill percentage &
+\texttt{5\%} · \texttt{15\%} · \texttt{20\%} · \texttt{40\%} · \texttt{60\%} \\
+\texttt{fill\_pattern} & Infill pattern &
+\texttt{grid} · \texttt{gyroid} · \texttt{honeycomb} · \texttt{cubic} · \texttt{rectilinear} · \texttt{lightning} · \texttt{triangles} \\
+\texttt{top\_fill\_pattern} & Pattern for top solid layers &
+\texttt{rectilinear} · \texttt{monotonic} · \texttt{concentric} · \texttt{smooth} \\
+\texttt{bottom\_fill\_pattern} & Pattern for bottom solid layers &
+\texttt{rectilinear} · \texttt{monotonic} · \texttt{concentric} \\
+\texttt{infill\_every\_layers} &
+Only infill every N layers (speeds up print, reduces strength) &
+\texttt{1} · \texttt{2} · \texttt{3} \\
+\texttt{solid\_infill\_every\_layers} &
+Force solid infill every N layers & \texttt{0} (off) · \texttt{5} \\
+\texttt{infill\_overlap} & How much infill overlaps with perimeters (\%)
+& \texttt{15\%} · \texttt{25\%} \\
+\end{longtable}
+}
+
+\subparagraph*{Layer Height \& Speed}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__layer-height--speed}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2342}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4955}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2703}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sample Values
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{layer\_height} & Standard layer height in mm &
+\texttt{0.1} · \texttt{0.15} · \texttt{0.2} · \texttt{0.3} \\
+\texttt{first\_layer\_height} &
+Height of the first layer (absolute mm or \%) &
+\texttt{0.2} · \texttt{0.25} · \texttt{75\%} \\
+\texttt{perimeter\_speed} & Speed for perimeter walls (mm/s) &
+\texttt{40} · \texttt{60} · \texttt{80} \\
+\texttt{external\_perimeter\_speed} &
+Speed for outermost wall only (slower = better quality) &
+\texttt{25} · \texttt{35} · \texttt{50\%} \\
+\texttt{infill\_speed} & Speed for infill (mm/s) &
+\texttt{60} · \texttt{80} · \texttt{120} \\
+\texttt{solid\_infill\_speed} & Speed for solid infill layers (mm/s) &
+\texttt{50} · \texttt{70} \\
+\texttt{top\_solid\_infill\_speed} &
+Speed for top surface layers (slower = smoother) &
+\texttt{30} · \texttt{40} · \texttt{50} \\
+\texttt{travel\_speed} & Non-extrusion travel speed (mm/s) &
+\texttt{130} · \texttt{180} · \texttt{250} \\
+\texttt{first\_layer\_speed} & First layer speed (mm/s or \%) &
+\texttt{20} · \texttt{30} · \texttt{50\%} \\
+\end{longtable}
+}
+
+\subparagraph*{Supports}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__supports}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2672}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4198}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3130}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sample Values
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{support\_material} & Enable support structures &
+\texttt{0} · \texttt{1} \\
+\texttt{support\_material\_auto} & Auto-detect where supports are needed
+& \texttt{0} · \texttt{1} \\
+\texttt{support\_material\_threshold} &
+Overhang angle above which supports are added (degrees) &
+\texttt{40} · \texttt{45} · \texttt{55} \\
+\texttt{support\_material\_pattern} & Support infill pattern &
+\texttt{rectilinear} · \texttt{honeycomb} · \texttt{lightning} \\
+\texttt{support\_material\_spacing} &
+Distance between support lines (mm) &
+\texttt{2} · \texttt{2.5} · \texttt{3} \\
+\texttt{support\_material\_contact\_distance} &
+Z gap between support and part (mm) &
+\texttt{0.1} · \texttt{0.2} · \texttt{0.25} \\
+\texttt{support\_material\_interface\_layers} &
+Dense interface layers between support and part &
+\texttt{0} · \texttt{2} · \texttt{3} \\
+\end{longtable}
+}
+
+\subparagraph*{Cooling \& Bridging}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__cooling--bridging}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2568}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4595}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2838}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sample Values
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{cooling} & Enable fan cooling & \texttt{0} · \texttt{1} \\
+\texttt{min\_fan\_speed} & Minimum fan speed \% &
+\texttt{20} · \texttt{35} · \texttt{50} \\
+\texttt{max\_fan\_speed} & Maximum fan speed \% &
+\texttt{50} · \texttt{80} · \texttt{100} \\
+\texttt{bridge\_fan\_speed} & Fan speed during bridges \% &
+\texttt{80} · \texttt{100} \\
+\texttt{bridge\_speed} & Extrusion speed for bridges (mm/s) &
+\texttt{20} · \texttt{30} · \texttt{40} \\
+\texttt{bridge\_flow\_ratio} & Flow rate multiplier for bridges &
+\texttt{0.8} · \texttt{0.9} · \texttt{1.0} \\
+\end{longtable}
+}
+
+\subparagraph*{Skirt, Brim \& Raft}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__skirt-brim--raft}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2133}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5067}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2800}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sample Values
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{skirts} & Number of skirt loops &
+\texttt{0} · \texttt{1} · \texttt{3} \\
+\texttt{skirt\_distance} & Distance from part to skirt (mm) &
+\texttt{3} · \texttt{5} · \texttt{6} \\
+\texttt{brim\_width} & Brim width in mm (\texttt{0} = disabled) &
+\texttt{0} · \texttt{3} · \texttt{5} · \texttt{8} \\
+\texttt{raft\_layers} & Number of raft layers (\texttt{0} = disabled) &
+\texttt{0} · \texttt{2} · \texttt{3} \\
+\end{longtable}
+}
+
+\subparagraph*{Temperature}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__temperature}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3152}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4239}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2609}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Key
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Description
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Sample Values
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{temperature} & Hotend temperature for all layers (°C) &
+\texttt{200} · \texttt{215} · \texttt{230} \\
+\texttt{first\_layer\_temperature} &
+Hotend temperature for first layer only &
+\texttt{215} · \texttt{225} · \texttt{235} \\
+\texttt{bed\_temperature} & Bed temperature for all layers (°C) &
+\texttt{0} · \texttt{55} · \texttt{60} · \texttt{80} \\
+\texttt{first\_layer\_bed\_temperature} &
+Bed temperature for first layer only &
+\texttt{60} · \texttt{65} · \texttt{85} \\
+\end{longtable}
+}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{\texorpdfstring{Sample Overlay: \texttt{strong.ini}}{Sample Overlay: strong.ini}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__sample-overlay-strongini}
+
+For functional parts, mechanical components, or anything that needs to survive stress. Heavier walls, more solid layers, higher infill, slower outer perimeters.
+
+\begin{lstlisting}[style=Alabaster]
+# overlays/default/strong.ini
+# Heavy-duty print — maximizes strength at the cost of time and filament.
+
+# Shell: thick walls and solid layers
+perimeters = 5
+top_solid_layers = 7
+bottom_solid_layers = 6
+top_solid_min_thickness = 1.2
+bottom_solid_min_thickness = 1.0
+external_perimeters_first = 1
+
+# Infill: dense cubic for near-isotropic strength
+fill_density = 50%
+fill_pattern = cubic
+infill_overlap = 25%
+
+# Speed: slower outer wall for better layer adhesion
+external_perimeter_speed = 25
+perimeter_speed = 45
+top_solid_infill_speed = 30
+
+# First layer: slower for bed adhesion
+first_layer_speed = 20
+
+# Cooling: slightly reduced to improve layer bonding on perimeters
+max_fan_speed = 70
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{\texorpdfstring{Sample Overlay: \texttt{draft.ini}}{Sample Overlay: draft.ini}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__sample-overlay-draftini}
+
+For quick test fits, rough prototypes, or checking dimensions before committing to a full print. Faster speeds, minimal walls, low infill, thicker layers.
+
+\begin{lstlisting}[style=Alabaster]
+# overlays/default/draft.ini
+# Fast draft print — sacrifices surface quality and strength for speed.
+
+# Shell: minimum viable walls
+perimeters = 2
+top_solid_layers = 3
+bottom_solid_layers = 3
+
+# Infill: low density, fast pattern
+fill_density = 10%
+fill_pattern = grid
+
+# Layer height: thick layers = fewer passes = faster print
+# NOTE: layer_height must be <= 75% of nozzle diameter.
+# For a 0.4mm nozzle, max is 0.3mm.
+layer_height = 0.3
+
+# Speed: push everything faster
+perimeter_speed = 80
+external_perimeter_speed = 60
+infill_speed = 120
+solid_infill_speed = 90
+top_solid_infill_speed = 60
+travel_speed = 200
+first_layer_speed = 30
+
+# Cooling: full fan to keep up with fast extrusion
+min_fan_speed = 50
+max_fan_speed = 100
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{\texorpdfstring{Sample Overlay: \texttt{fine.ini}}{Sample Overlay: fine.ini}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__sample-overlay-fineini}
+
+For display models, miniatures, parts with fine surface detail, or anything where appearance matters more than speed. Thin layers, many perimeters, slow outer walls, smooth top surfaces.
+
+\begin{lstlisting}[style=Alabaster]
+# overlays/default/fine.ini
+# Fine detail print — maximizes surface quality and dimensional accuracy.
+
+# Shell: many perimeters for crisp edges and thick solid skins
+perimeters = 4
+top_solid_layers = 8
+bottom_solid_layers = 5
+top_solid_min_thickness = 1.0
+external_perimeters_first = 1
+thin_walls = 1
+
+# Infill: moderate density with monotonic top for smooth finish
+fill_density = 20%
+fill_pattern = gyroid
+top_fill_pattern = monotonic
+bottom_fill_pattern = monotonic
+
+# Layer height: thin layers for fine Z resolution
+# NOTE: must be >= 25% of nozzle diameter to ensure reliable extrusion.
+# For a 0.4mm nozzle, minimum is ~0.08mm; 0.1mm is safe.
+layer_height = 0.1
+first_layer_height = 0.2
+
+# Speed: slow everything down for precision
+perimeter_speed = 40
+external_perimeter_speed = 20
+infill_speed = 60
+solid_infill_speed = 40
+top_solid_infill_speed = 25
+bridge_speed = 20
+first_layer_speed = 15
+
+# Cooling: strong cooling for clean overhangs and bridges
+min_fan_speed = 50
+max_fan_speed = 100
+bridge_fan_speed = 100
+bridge_flow_ratio = 0.85
+
+# Brim: small brim helps adhesion for tall fine parts
+brim_width = 3
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{\texorpdfstring{Sample Overlay: \texttt{supports.ini}}{Sample Overlay: supports.ini}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__sample-overlay-supportsini}
+
+Enable automatic support structures for models with steep overhangs. Stack with other quality overlays.
+
+\begin{lstlisting}[style=Alabaster]
+# overlays/default/supports.ini
+# Enable automatic supports for overhangs > 45 degrees.
+
+support_material = 1
+support_material_auto = 1
+support_material_threshold = 45
+support_material_pattern = lightning
+support_material_spacing = 2.5
+support_material_contact_distance = 0.2
+support_material_interface_layers = 2
+
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{Sample Overlay: \texttt{no-supports.ini}}{Sample Overlay: no-supports.ini}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__sample-overlay-no-supportsini}
+
+Explicitly disable supports --- useful when your base profile has them on by default.
+
+\begin{lstlisting}[style=Alabaster]
+# overlays/default/no-supports.ini
+support_material = 0
+support_material_auto = 0
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Stacking Overlays}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__stacking-overlays}
+
+Overlays are applied \textbf{left to right}, so later overlays win on any conflicting keys. This lets you compose print settings modularly:
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+# Fine quality WITH supports
+3dm slice -o fine -o supports
+
+# Strong walls but fast draft speed (fine conflicts: perimeter_speed in draft wins)
+3dm slice -o strong -o draft
+
+# Strong structural settings + supports, no brim (add a tiny no-brim override)
+3dm slice -o strong -o supports -o no-brim
+
+\end{lstlisting}
+
+You can also set permanent default overlays for a project in \texttt{3dmake.toml}, while adding extra ones at the CLI:
+
+\begin{lstlisting}[style=Alabaster]
+# 3dmake.toml — always use strong as the base for this project
+overlays = ["strong"]
+
+\end{lstlisting}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+# At CLI: strong (from toml) is REPLACED by the CLI overlay list
+3dm slice -o strong -o supports   # Both applied
+3dm slice -o fine                 # Only fine — replaces toml default entirely
+
+\end{lstlisting}
+
+\begin{quote}
+\textbf{Tip:} Name your overlays by intent (\texttt{strong}, \texttt{draft}, \texttt{fine}, \texttt{supports}, \texttt{vase-mode}, \texttt{no-brim}) rather than by settings (\texttt{40pct-infill}). This keeps the CLI readable and lets you tune the overlay file without renaming references everywhere.
+\end{quote}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Action Dependency \& Chain Rules}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__action-dependency--chain-rules}
+
+\paragraph*{Implied Action Dependencies}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__implied-action-dependencies}
+
+Some actions automatically trigger prerequisite actions. You never need to spell these out manually --- 3DMake inserts them for you.
+
+\begin{lstlisting}[style=Alabaster]
+print
+  └── slice (implied)
+        └── build (implied, if scad source exists)
+
+image
+  └── load-mesh (internal, implied)
+
+info
+  └── measure-mesh (internal, implied)
+        └── load-mesh (internal, implied)
+
+preview
+  └── measure-mesh (internal, implied)
+        └── load-mesh (internal, implied)
+
+orient
+  (no implied actions — operates on an already-built STL)
+
+\end{lstlisting}
+
+So running \texttt{3dm\ print} on a project with OpenSCAD source will automatically run \texttt{build} -\textgreater{} \texttt{slice} -\textgreater{} \texttt{print} in order. You only need to be explicit when you want to \textbf{stop partway through} (e.g. \texttt{3dm\ build} to just check compilation without slicing).
+
+\paragraph*{\texorpdfstring{\texttt{last\_in\_chain} --- Actions That Must Come Last}{last\_in\_chain --- Actions That Must Come Last}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__last_in_chain--actions-that-must-come-last}
+
+Three actions are marked \texttt{last\_in\_chain}, meaning \textbf{no other pipeline actions can follow them} in the same command. Attempting to do so is an error.
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.1286}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.8714}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Action
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Why it\textquotesingle s last
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{image} &
+Produces image files; nothing meaningful can follow a render \\
+\texttt{info} &
+Terminal inspection command; no build artifact is produced \\
+\texttt{preview} &
+Produces a projection STL; slicing a silhouette is not useful \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+# ✅ Valid — last_in_chain actions used alone or at the end
+3dm build image
+3dm build orient image
+3dm info
+3dm build preview
+
+# ❌ Invalid — actions after a last_in_chain action
+3dm image slice        # ERROR: 'image' cannot be followed by 'slice'
+3dm info build         # ERROR: 'info' cannot be followed by 'build'
+3dm preview print      # ERROR: 'preview' cannot be followed by 'print'
+
+\end{lstlisting}
+
+\paragraph*{Isolated Actions}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__isolated-actions}
+
+A separate category called \textbf{isolated} means the action cannot be combined with \emph{any} other action at all --- it must be the only verb on the command line. All \texttt{edit-*} actions, \texttt{setup}, \texttt{new}, \texttt{version}, \texttt{help}, \texttt{test-connect}, \texttt{list-profiles}, \texttt{list-overlays}, \texttt{list-libraries}, and \texttt{install-libraries} are isolated.
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+# ✅ Valid
+3dm edit-model
+3dm setup
+3dm list-profiles
+
+# ❌ Invalid
+3dm edit-model build    # ERROR: edit-model is isolated
+3dm setup new           # ERROR: setup is isolated
+
+\end{lstlisting}
+
+\paragraph*{Full Action Execution Order}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__full-action-execution-order}
+
+When you request multiple actions, they always execute in this fixed internal order regardless of how you type them on the command line:
+
+\begin{lstlisting}[style=Alabaster]
+setup -> new -> build -> load-mesh* -> measure-mesh* -> info -> orient ->
+image -> preview -> slice -> print -> list-profiles -> list-overlays ->
+edit-model -> edit-overlay -> edit-profile -> edit-profile-gcode ->
+edit-prompt -> edit-global-config -> list-libraries -> install-libraries ->
+test-connect -> help -> version
+
+\end{lstlisting}
+
+\_(Actions marked \texttt{\_} are internal and cannot be requested directly.)*
+
+This means \texttt{3dm\ slice\ build} and \texttt{3dm\ build\ slice} are identical --- order of verbs on the command line does not matter.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Multi-Model Projects}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__multi-model-projects}
+
+A single 3DMake project can contain multiple OpenSCAD models. Each model is a separate \texttt{.scad} file in the \texttt{src/} directory.
+
+\paragraph*{Directory Layout}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__directory-layout}
+
+\begin{lstlisting}[style=Alabaster]
+my-project/
+├── 3dmake.toml
+├── src/
+│   ├── main.scad        ← default model (model_name = "main")
+│   ├── lid.scad
+│   ├── bracket.scad
+│   └── insert.scad
+└── build/               ← generated STLs and GCode land here
+    ├── main.stl
+    ├── lid.stl
+    └── my-project-main.gcode
+
+\end{lstlisting}
+
+\paragraph*{Selecting a Model}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__selecting-a-model}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+# Uses model_name from 3dmake.toml (default: "main")
+3dm build slice
+
+# Override at the CLI with --model / -m
+3dm build slice -m lid
+3dm build slice -m bracket
+3dm info -m insert
+
+# edit-model also respects -m
+3dm edit-model -m lid
+
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{Setting a Per-Model Default in \texttt{3dmake.toml}}{Setting a Per-Model Default in 3dmake.toml}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__setting-a-per-model-default-in-3dmaketoml}
+
+\begin{lstlisting}[style=Alabaster]
+# 3dmake.toml
+model_name = "bracket"    # Everyone on this project defaults to the bracket model
+
+\end{lstlisting}
+
+\paragraph*{Output File Naming}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__output-file-naming}
+
+Output G-code files are named using the pattern:
+
+\begin{lstlisting}[style=Alabaster]
+<project_name>-<model_name>.gcode          # 1 copy
+<project_name>-<model_name>-x3.gcode       # 3 copies (--copies 3)
+
+\end{lstlisting}
+
+For example, a project named \texttt{pi-case} building the \texttt{lid} model with 2 copies produces:
+
+\begin{lstlisting}[style=Alabaster]
+build/pi-case-lid-x2.gcode
+
+\end{lstlisting}
+
+If \texttt{project\_name} is not set in \texttt{3dmake.toml}, it is auto-detected from the directory name.
+
+\paragraph*{Tip: Shared Parameters Across Models}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__tip-shared-parameters-across-models}
+
+A common OpenSCAD pattern is a shared \texttt{params.scad} file included by all models:
+
+\begin{lstlisting}[style=Alabaster]
+src/
+├── params.scad      ← shared dimensions, tolerances, material choices
+├── main.scad        ← include <params.scad>
+├── lid.scad         ← include <params.scad>
+└── bracket.scad     ← include <params.scad>
+
+\end{lstlisting}
+
+This way changing one dimension in \texttt{params.scad} propagates to every model, and you can rebuild all variants with a shell loop:
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+for model in main lid bracket; do
+    3dm build slice -m $model
+done
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Special INI Keys}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__special-ini-keys}
+
+\paragraph*{\texorpdfstring{\texttt{3dm\_bed\_center}}{3dm\_bed\_center}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__3dm_bed_center}
+
+This is a \textbf{3DMake-specific} key (not a standard PrusaSlicer key) that you can add to a printer profile or overlay. It works around a PrusaSlicer CLI bug where models are not correctly centered on non-rectangular or offset build volumes.
+
+\begin{lstlisting}[style=Alabaster]
+# In a printer profile .ini or overlay .ini
+# Value is "X,Y" coordinates of the bed center in mm
+3dm_bed_center = 117.5,117.5    # Prusa MK3/MK4 (235x235mm bed)
+3dm_bed_center = 110,110        # 220x220mm bed
+3dm_bed_center = 150,150        # 300x300mm bed
+3dm_bed_center = 175,162.5      # Prusa XL (350x325mm bed)
+
+\end{lstlisting}
+
+When this key is present, 3DMake passes \texttt{-\/-center\ X,Y} to the PrusaSlicer CLI automatically. You should set this in your \textbf{printer profile} rather than an overlay, since it is specific to the physical printer\textquotesingle s bed geometry.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{AI Prompt Customization}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__ai-prompt-customization}
+
+The \texttt{info} action sends rendered images of your model to an AI (Gemini or OpenRouter) along with a text prompt. The default prompt asks for a general physical description of the object. You can customize this prompt to get more targeted or useful output.
+
+\paragraph*{Editing the Prompt}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__editing-the-prompt}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm edit-prompt    # Opens the prompt file in your configured editor
+
+\end{lstlisting}
+
+The prompt file lives at:
+
+\begin{lstlisting}[style=Alabaster]
+~/.config/3dmake/prompt.txt    (or $3DMAKE_CONFIG_DIR/prompt.txt)
+
+\end{lstlisting}
+
+If the file does not exist when you run \texttt{3dm\ edit-prompt}, 3DMake creates it from a built-in default automatically.
+
+\paragraph*{What the Prompt Receives}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__what-the-prompt-receives}
+
+The AI receives your prompt text \textbf{plus six rendered PNG images} of the model taken from these fixed viewpoints: \texttt{above\_front\_left}, \texttt{above\_front\_right}, \texttt{above\_back\_left}, \texttt{above\_back\_right}, \texttt{top}, and \texttt{bottom}. Each image is 768×768 pixels.
+
+\paragraph*{Sample Prompts}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__sample-prompts}
+
+\textbf{Default-style --- general physical description:}
+
+\begin{lstlisting}[style=Alabaster]
+You are analyzing a 3D model for 3D printing. Describe the object's physical
+shape, identifying any notable geometric features, symmetry, overhangs, thin
+walls, or small details that might affect printability. Be concise and factual.
+
+\end{lstlisting}
+
+\textbf{Printability review --- focused on print problems:}
+
+\begin{lstlisting}[style=Alabaster]
+You are a 3D printing expert reviewing a model before printing. Examine these
+views and identify:
+1. Any overhangs greater than 45 degrees that will need supports
+2. Thin walls or small features that may not print reliably at 0.4mm nozzle diameter
+3. The best orientation for printing (which face should be on the bed)
+4. Any other potential print quality issues
+
+Be specific about locations (e.g. "the underside of the lip on the left side").
+
+\end{lstlisting}
+
+\textbf{Dimensional estimation --- for sanity-checking scale:}
+
+\begin{lstlisting}[style=Alabaster]
+Based on the shape and proportions of this 3D model, estimate what real-world
+object it most resembles and what its approximate dimensions might be in
+millimeters. Note any features that suggest a specific scale (screw holes,
+finger clearances, standard hardware interfaces, etc.).
+
+\end{lstlisting}
+
+\textbf{Design feedback --- for iterating on a model:}
+
+\begin{lstlisting}[style=Alabaster]
+You are reviewing a 3D model for functional and aesthetic design quality.
+Comment on: whether the design looks structurally sound, any places where
+the geometry looks unintentional or messy, whether any features look like
+they might be too fragile, and one specific improvement suggestion.
+
+\end{lstlisting}
+
+\textbf{Interactive mode} (\texttt{3dm\ info\ -\/-interactive}) lets you follow up with specific questions after the initial AI response, such as asking it to focus on a particular feature or compare proportions.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{Troubleshooting}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__troubleshooting}
+
+\paragraph*{Setup \& Configuration}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__setup--configuration}
+
+\textbf{\texttt{3DMake\ settings\ and\ print\ options\ have\ not\ been\ set\ up\ on\ this\ machine.}}
+Run \texttt{3dm\ setup} before any other command. This creates the config directory, copies default profiles, and walks you through initial configuration.
+
+\textbf{\texttt{Printer\ profile\ \textquotesingle{}X\textquotesingle{}\ does\ not\ exist.}}
+Run \texttt{3dm\ list-profiles} to see valid profile names. Profile names are case-sensitive and must match the \texttt{.ini} filename exactly (without the extension). Set the correct one with \texttt{3dm\ setup} or by editing \texttt{defaults.toml} with \texttt{3dm\ edit-global-config}.
+
+\textbf{\texttt{This\ project\ requires\ 3DMake\ version\ X\ or\ newer.}}
+The \texttt{min\_3dmake\_version} key in \texttt{3dmake.toml} is higher than your installed version. Run \texttt{3dm\ version} to check your version, then update 3DMake. If you are the project author, lower \texttt{min\_3dmake\_version} if the feature requirement does not actually apply.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Build Errors}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__build-errors}
+
+\textbf{\texttt{Source\ file\ src/main.scad\ does\ not\ exist.}}
+Either you are not in a 3DMake project directory, or \texttt{model\_name} in your \texttt{3dmake.toml} does not match an actual \texttt{.scad} file in \texttt{src/}. Run \texttt{3dm\ edit-model} to create the file, or correct \texttt{model\_name}.
+
+\textbf{\texttt{Some\ needed\ libraries\ are\ not\ installed:\ \textless{}name\textgreater{}}}
+Run \texttt{3dm\ install-libraries} to download and install the missing libraries listed in your \texttt{3dmake.toml} \texttt{libraries} key. Run \texttt{3dm\ list-libraries} to verify the library name is spelled correctly (names are lowercase).
+
+\textbf{OpenSCAD prints warnings but does not fail.}
+Add \texttt{strict\_warnings\ =\ true} to your \texttt{3dmake.toml} to treat warnings as errors. This is recommended for all projects to catch issues like undefined variables and deprecated syntax early.
+
+\textbf{Build succeeds but STL looks wrong / has missing geometry.}
+Run with \texttt{-\/-debug} to see the full OpenSCAD output including all warnings:
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm build --debug
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Slicing Errors}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__slicing-errors}
+
+\textbf{\texttt{Could\ not\ find\ overlay\ \textquotesingle{}X\textquotesingle{}\ for\ profile\ \textquotesingle{}Y\textquotesingle{}.}}
+The overlay file does not exist at \texttt{overlays/Y/X.ini} or \texttt{overlays/default/X.ini}. Run \texttt{3dm\ list-overlays} to see what is available, or \texttt{3dm\ edit-overlay\ -o\ X} to create it.
+
+\textbf{\texttt{Could\ not\ fit\ the\ object\ outline\ on\ the\ build\ surface.}}
+The model is larger than the printer\textquotesingle s bed, or is being placed off-center. Check your model dimensions with \texttt{3dm\ info}, verify your \texttt{printer\_profile} is correct for your actual printer, and confirm \texttt{3dm\_bed\_center} is set correctly in your profile if you have a non-standard bed.
+
+\textbf{Slicer produces unexpected print warnings.}
+Run with \texttt{-\/-debug} to see the full PrusaSlicer stdout output:
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm slice --debug
+
+\end{lstlisting}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{Print / Connection Errors}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__print--connection-errors}
+
+\textbf{\texttt{Unknown\ print\ mode\ \textquotesingle{}X\textquotesingle{}.}}
+\texttt{print\_mode} in your config must be exactly one of: \texttt{octoprint}, \texttt{bambu\_lan}, or \texttt{bambu\_connect}. Check spelling in \texttt{defaults.toml}.
+
+\textbf{OctoPrint: \texttt{ERROR:\ Authentication\ failed\ (401)}}
+Your \texttt{octoprint\_key} is wrong or expired. In OctoPrint, go to Settings \textgreater{} Application Keys and generate a new key, then update \texttt{defaults.toml} via \texttt{3dm\ edit-global-config}.
+
+\textbf{OctoPrint: \texttt{ERROR:\ Could\ not\ connect\ to\ server}}
+Check that \texttt{octoprint\_host} is correct and includes the protocol (\texttt{http://} or \texttt{https://}). Verify OctoPrint is running and the machine running 3DMake is on the same network. Run \texttt{3dm\ test-connect} for a detailed diagnosis.
+
+\textbf{Bambu: FTP or MQTT connection fails.}
+Verify \texttt{bambu\_host} is the printer\textquotesingle s current local IP (it may change if your router assigns IPs dynamically --- consider setting a static IP for the printer). Check \texttt{bambu\_access\_code} on the printer screen under Settings \textgreater{} WLAN. Run \texttt{3dm\ test-connect} for step-by-step diagnosis.
+
+\textbf{Bambu Connect mode:} \texttt{3dm\ print} with \texttt{print\_mode\ =\ "bambu\_connect"} does \textbf{not} connect directly to the printer. It packages your G-code into a \texttt{.3mf} file and opens the Bambu Connect desktop application via a URI handoff. Bambu Connect must be installed and running on your machine. \texttt{3dm\ test-connect} will report that it cannot test this mode --- this is expected.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\paragraph*{General}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__general}
+
+\textbf{\texttt{Unknown\ action\ \textquotesingle{}X\textquotesingle{}}}
+Action names are lowercase and use hyphens, not underscores (e.g. \texttt{edit-model}, not \texttt{edit\_model}). Run \texttt{3dm\ help} for the full list.
+
+\textbf{\texttt{The\ action\ \textquotesingle{}X\textquotesingle{}\ can\ only\ be\ used\ on\ its\ own}}
+You combined an isolated action with other actions. Isolated actions (\texttt{edit-*}, \texttt{setup}, \texttt{new}, \texttt{version}, \texttt{help}, \texttt{test-connect}, \texttt{list-*}, \texttt{install-libraries}) must be run alone.
+
+\textbf{\texttt{Action\ \textquotesingle{}X\textquotesingle{}\ cannot\ be\ followed\ by\ other\ actions}}
+You placed a \texttt{last\_in\_chain} action (\texttt{image}, \texttt{info}, \texttt{preview}) before other pipeline actions. These must be the final (or only) action in your command.
+
+\textbf{\texttt{Cannot\ select\ a\ model\ name\ when\ using\ an\ input\ file}}
+\texttt{-\/-model} / \texttt{-m} and a direct input file path are mutually exclusive. Use one or the other.
+
+\textbf{\texttt{Multiple\ inputs\ not\ supported\ yet}}
+Only one input file can be passed per invocation. To process multiple files, use a shell loop.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection*{OpenSCAD Tips \& Conventions for 3DMake}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__openscad-tips--conventions-for-3dmake}
+
+\paragraph*{Project Conventions}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__project-conventions}
+
+3DMake expects OpenSCAD source files in \texttt{src/\textless{}model\_name\textgreater{}.scad} and writes STL output to \texttt{build/\textless{}model\_name\textgreater{}.stl}. As long as you follow this layout (created automatically by \texttt{3dm\ new}), everything works without extra configuration.
+
+\paragraph*{Parameterized Models}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__parameterized-models}
+
+The most powerful pattern for 3DMake projects is a fully parameterized model where all key dimensions are defined as variables at the top of the file. This makes it trivial to create variants without duplicating code.
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// src/box.scad
+// All tunable parameters at the top
+
+length    = 80;     // mm
+width     = 50;     // mm
+height    = 30;     // mm
+wall      = 2.5;    // mm — wall thickness
+tolerance = 0.2;    // mm — fit clearance for mating parts
+fillet_r  = 1.5;    // mm — corner radius
+
+// Model below uses only the variables above
+module box_shell() {
+    difference() {
+        rounded_rect([length, width, height], r=fillet_r);
+        translate([wall, wall, wall])
+            cube([length-wall*2, width-wall*2, height]);
+    }
+}
+
+box_shell();
+
+\end{lstlisting}
+
+\paragraph*{Multi-Model Shared Parameters}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__multi-model-shared-parameters}
+
+For projects with multiple related models (e.g. a box and its lid), put shared dimensions in a separate include file:
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// src/params.scad  — shared across all models
+outer_length  = 80;
+outer_width   = 50;
+wall          = 2.5;
+tolerance     = 0.2;
+lid_height    = 8;
+body_height   = 35;
+
+\end{lstlisting}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// src/body.scad
+include <params.scad>
+
+difference() {
+    cube([outer_length, outer_width, body_height]);
+    translate([wall, wall, wall])
+        cube([outer_length-wall*2, outer_width-wall*2, body_height]);
+}
+
+\end{lstlisting}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// src/lid.scad
+include <params.scad>
+
+cube([outer_length - tolerance*2, outer_width - tolerance*2, lid_height]);
+
+\end{lstlisting}
+
+\paragraph*{Useful OpenSCAD Modules for 3D Printing}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__useful-openscad-modules-for-3d-printing}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// Rounded rectangle (better bed adhesion, less stress concentration)
+module rounded_rect(size, r=1) {
+    hull() {
+        for (x=[r, size[0]-r], y=[r, size[1]-r])
+            translate([x, y, 0]) cylinder(r=r, h=size[2], $fn=32);
+    }
+}
+
+// Countersunk screw hole (M3 example)
+module m3_hole(depth=10, countersink=true) {
+    cylinder(d=3.4, h=depth, $fn=24);
+    if (countersink)
+        translate([0, 0, depth-3.2])
+            cylinder(d1=3.4, d2=6.5, h=3.2, $fn=24);
+}
+
+// Snap-fit clip tab
+module snap_tab(length=10, width=4, height=3, overhang=0.8) {
+    union() {
+        cube([length, width, height]);
+        translate([0, 0, height])
+            linear_extrude(overhang, scale=[1, 1, 0])
+                square([length, width]);
+    }
+}
+
+\end{lstlisting}
+
+\paragraph*{\texorpdfstring{\texttt{\$fn}, \texttt{\$fa}, \texttt{\$fs} --- Circle Resolution}{\$fn, \$fa, \$fs --- Circle Resolution}}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__fn-fa-fs--circle-resolution}
+
+OpenSCAD renders circles and cylinders as polygons. Control resolution with these special variables:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.0964}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4337}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4699}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Meaning
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Recommended
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{\$fn} & Fixed number of fragments &
+\texttt{32} for small circles, \texttt{64}+ for large \\
+\texttt{\$fa} & Minimum angle per fragment (degrees) &
+\texttt{1} for smooth curves \\
+\texttt{\$fs} & Minimum fragment size (mm) &
+\texttt{0.5} for print resolution \\
+\end{longtable}
+}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// Set globally at top of file for consistent quality
+$fa = 1;
+$fs = 0.4;    // Match your nozzle diameter
+
+// Or set per-object for performance (preview fast, export high quality)
+cylinder(r=10, h=5, $fn=64);
+
+\end{lstlisting}
+
+\begin{quote}
+\textbf{Tip:} Use \texttt{\$fn=16} or \texttt{\$fn=24} during development for fast preview renders, then raise it to \texttt{\$fn=64} or higher before your final \texttt{3dm\ build} for export.
+\end{quote}
+
+\paragraph*{Designing for Printability}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__designing-for-printability}
+
+\textbf{Avoid overhangs steeper than 45°} without supports. Use chamfers instead of horizontal overhangs where possible:
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// ❌ Horizontal lip — needs supports
+translate([0, 0, 10]) cube([20, 5, 2]);
+
+// ✅ 45° chamfer — self-supporting
+hull() {
+    cube([20, 2, 10]);
+    translate([0, 5, 8]) cube([20, 0.01, 2]);
+}
+
+\end{lstlisting}
+
+\textbf{Minimum feature sizes} at 0.4mm nozzle:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.3867}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.6133}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Feature
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Minimum
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Wall thickness & 0.8mm (2× nozzle) --- ideally 1.2mm+ \\
+Hole diameter & 2mm (smaller holes tend to close up) \\
+Gap / clearance between parts &
+0.2--0.3mm for sliding fit, 0.1mm for press fit \\
+Text / embossed detail & 0.5mm depth, 4pt font minimum \\
+Pin diameter & 2mm minimum for structural pins \\
+\end{longtable}
+}
+
+\textbf{Orientation matters.} Layer lines are weakest in tension perpendicular to the print direction. Design critical stress paths to run parallel to layer lines, or use the \texttt{orient} action to auto-optimize placement.
+
+\textbf{Tolerance for fits.} PLA typically needs 0.2--0.3mm clearance for a sliding fit between printed parts. PETG and ABS may need slightly more. Build a quick tolerance test into your workflow:
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// Tolerance test — print this and measure which gap fits your printer
+for (i=[0:4])
+    translate([i*15, 0, 0])
+        difference() {
+            cube([12, 12, 5]);
+            translate([6, 6, 0])
+                cylinder(d=5 + i*0.1, h=5, $fn=32);
+        }
+
+\end{lstlisting}
+
+\paragraph*{Using OpenSCAD Libraries with 3DMake}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_a_3dmake_cheat_sheet.md__using-openscad-libraries-with-3dmake}
+
+Declare library dependencies in \texttt{3dmake.toml}, then install them:
+
+\begin{lstlisting}[style=Alabaster]
+# 3dmake.toml
+libraries = ["openscad-threads", "bosl2"]
+
+\end{lstlisting}
+
+\begin{lstlisting}[style=Alabaster, language=bash]
+3dm install-libraries    # Downloads and installs to config dir
+3dm list-libraries       # Verify installation
+
+\end{lstlisting}
+
+Then use them in your \texttt{.scad} files normally:
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// BOSL2 example
+include <BOSL2/std.scad>
+
+cuboid([20, 20, 10], rounding=2, edges="Z");
+
+\end{lstlisting}
+
+\begin{lstlisting}[style=Alabaster, language=openscad]
+// openscad-threads example
+use <threads.scad>
+
+metric_thread(diameter=8, pitch=1.25, length=20);
+
+\end{lstlisting}
 
 \subsection{Appendix A: Comprehensive Slicing Guide - All Major Slicers}\label{docs__pandoc__latex__src__3dmake_foundation__appendix_b_comprehensive_slicing_guide.md__3dmake_foundation-appendix_a_comprehensive_slicing_guide}
 
@@ -46891,6 +48946,34 @@ YouTube. (n.d.). \emph{Luke's Lab channel.} https://www.youtube.com/@LukesBlab
 YouTube. (n.d.). \emph{Teaching Tech channel.} https://www.youtube.com/@TeachingTech
 
 \section{Index}\label{docs__pandoc__latex__src__index_page.md__index}
+
+\texttt{\#} (hash mark) \texttt{\$fn} parameter \texttt{\&\&} (and)
+\texttt{*/\ /*} (multiline comments)* \texttt{//} (single-line comments)
+\texttt{{[}\ {]}} (square brackets) \texttt{\{\ \}} (curly brackets)
+\texttt{\textbar{}\textbar{}} (or)
+\texttt{\textless{}\ \textgreater{}} (angle brackets) 2D fabrication
+2D shapes 3D design 3D printing 3D shapes Abstraction Algorithms
+Arithmetic Boolean operations Code statement Comments
+Computational thinking Cones Cube commands Cylinder commands Debugging
+Decomposition Design cycle Design mode Difference operations
+\texttt{Echo()} function Editor window Extended if statement File format
+For loops Hull operations \texttt{If} statement \texttt{ElseIf} Import
+Indentation Intersection operations Linear\_extrude operation
+Minkowski operation/sum Mirror operations Modules Offset operations
+Parameters Physical computing Polygon commands Preview window Print mode
+Random numbers / rands() Render mode/operations Rotate operations
+Scale parameter Text commands Translate operations Union operations
+Variables Walking skeleton approach Screen Reader Accessibility Guide
+Braille Display Setup Editor Setup VS Code Notepad++
+Indent Announcement Configuration Non-Visual Toolchain Introduction
+PowerShell Windows Command Prompt CMD Git Bash
+File and Folder Manipulation CLI Command Line Interface
+Input, Output, and Piping Environment Variables \& PATH 3dm build
+3dm info Geometric Primitives Parametric Architecture
+Safety Protocols and Ventilation Text Embossing Parametric Transforms
+Interlocking Features \& Tolerance Stakeholder-Centric Design
+Slicing Guides PrusaSlicer Bambu Cura Material Properties PLA PETG TPU
+ABS Quality Assurance \& Measurement Calipers
 
 \section{Contributors to this Curriculum}\label{docs__pandoc__latex__src__contributors.md__contributors}
 
