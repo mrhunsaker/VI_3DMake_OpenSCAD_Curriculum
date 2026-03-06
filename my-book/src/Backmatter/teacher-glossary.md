@@ -114,13 +114,13 @@ Prevents overwhelming students with complexity.
 Iterative process:
 
 ```
-Define → Ideate → Prototype → Test → Refine → Repeat
+Define -> Ideate -> Prototype -> Test -> Refine -> Repeat
 ```
 
 ### In 3dMake Context
 
 ```
-Edit .scad → 3dm build → 3dm info → Measure print → Adjust parameters
+Edit .scad -> 3dm build -> 3dm info -> Measure print -> Adjust parameters
 ```
 
 ---
@@ -144,7 +144,7 @@ Remove scaffolding as competency increases.
 Learning that connects digital design to physical artifacts.
 
 3D printing provides immediate tangible feedback:
-- Code → STL → Physical object
+- Code -> STL -> Physical object
 - Reinforces cause-and-effect
 - Engages kinesthetic learners
 
@@ -241,11 +241,11 @@ Configure screen readers to verbalize indentation level.
 
 ### NVDA
 
-Settings → Document Formatting → Report line indentation
+Settings > Document Formatting > Report line indentation
 
 ### JAWS
 
-Settings Center → Reading → Report Indentation
+Settings Center > Reading > Report Indentation
 
 Critical for understanding OpenSCAD block structure.
 

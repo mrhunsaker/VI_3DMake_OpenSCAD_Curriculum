@@ -26,7 +26,7 @@ In desktop contexts, this typically refers to FDM (Fused Deposition Modeling).
 - Thermoplastic extrusion (in FDM)
 
 ### Workflow Position
-OpenSCAD → STL → Slicer → G-code → Printer → Physical object
+OpenSCAD -> STL -> Slicer -> G-code -> Printer -> Physical object
 
 ---
 
@@ -998,7 +998,7 @@ Recommended extensions:
 Lightweight editor with syntax highlighting.
 
 Configure:
-- Settings → Preferences → Language
+- Settings > Preferences > Language
 - Select OpenSCAD or C-style syntax
 
 ---
@@ -1084,7 +1084,7 @@ openscad -o output.stl model.scad
 
 ## Deterministic Modeling
 
-Same input → same output every time.
+Same input -> same output every time.
 
 OpenSCAD is deterministic.
 

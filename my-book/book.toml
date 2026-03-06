@@ -57,8 +57,7 @@ level = 1
 #papersize = "letter"
 #fontsize = "11pt"
 #maketitle = false
-# Ensure these strings are correct for LaTeX
-#]
+
 
 # --- EPUB PROFILE UPDATES ---
 [output.pandoc.profile.epub]
@@ -77,7 +76,6 @@ output-file = "OpenSCAD_Curriculum.tex"
 to = "latex"
 number-sections = false
 toc-depth = 3
-include-before-body = ["src/Cover.tex"]
 template = "src/template.tex"
 filters = ["src/code-to-listings.lua", "src/pagebreak-chapters.lua"]
 
@@ -85,3 +83,8 @@ filters = ["src/code-to-listings.lua", "src/pagebreak-chapters.lua"]
 date = "2026-02-24"
 title-meta = "3D Printing Course for Blind and Visually Impaired Learners"
 author-meta = "Michael Ryan Hunsaker, M.Ed., Ph.D."
+documentclass = "book"
+papersize = "letter"
+fontsize = "11pt"
+colorlinks = true
+toccolor = "linkblue"

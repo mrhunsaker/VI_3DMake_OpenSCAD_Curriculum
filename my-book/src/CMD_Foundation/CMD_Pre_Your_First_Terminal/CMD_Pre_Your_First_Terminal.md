@@ -82,7 +82,7 @@ C:\Users\YourName
 
 - A path shows your location in the file system, like a mailing address.
 - Windows paths use backslashes: `C:\Users\YourName\Documents`
-- Think of it as nested folders: `C:\` (the main drive) → `Users` → `YourName` → `Documents`
+- Think of it as nested folders: `C:\` (the main drive) > `Users` > `YourName` > `Documents`
 
 ### Command 2: "What's Here?" — `dir`
 
@@ -245,9 +245,9 @@ Windows Narrator is built into Windows 10 and Windows 11. Enable it with **Windo
 2. **To read all output from here**, press **Narrator+R** to read from the cursor position.
 3. **To move through output**, use **Narrator+Up/Down Arrow** in scan mode (press **Narrator+Space** to toggle scan mode on).
 4. **For long outputs**, always redirect to a file: `command > output.txt`, then `notepad.exe output.txt`. Notepad is more comfortable for Narrator users than reading directly from the terminal.
-5. **Narrator settings**: Windows key → Settings → Accessibility → Narrator.
+5. **Narrator settings**: Windows key > Settings > Accessibility > Narrator.
 
-> **Narrator key note:** The Narrator modifier key is **CapsLock** or **Insert**. You can change it in Settings → Accessibility → Narrator → Keyboard shortcuts.
+> **Narrator key note:** The Narrator modifier key is **CapsLock** or **Insert**. You can change it in Settings > Accessibility > Narrator > Keyboard shortcuts.
 
 ### Dolphin SuperNova Users
 
@@ -259,7 +259,7 @@ Dolphin SuperNova is available from [https://yourdolphin.com/supernova/](https:/
 4. **For long outputs**, redirect to a file: `command > output.txt`, then `notepad.exe output.txt`.
 5. **SuperNova settings**: press **CapsLock+SpaceBar** to open the SuperNova Control Panel.
 
-> **Dolphin key note:** The SuperNova modifier key is **CapsLock** by default. This can be changed in the SuperNova Control Panel → Keyboard.
+> **Dolphin key note:** The SuperNova modifier key is **CapsLock** by default. This can be changed in the SuperNova Control Panel > Keyboard.
 
 ---
 

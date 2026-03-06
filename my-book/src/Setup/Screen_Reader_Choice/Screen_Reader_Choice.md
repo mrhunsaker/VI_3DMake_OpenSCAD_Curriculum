@@ -77,7 +77,7 @@ Windows Narrator is Microsoft's built-in screen reader, included with Windows 10
 
 **Trial:** Not applicable — Narrator is always available on Windows.
 
-**Enable:** Settings → Accessibility → Narrator, or press **Windows+Ctrl+Enter**.
+**Enable:** Settings > Accessibility > Narrator, or press **Windows+Ctrl+Enter**.
 
 ---
 
@@ -140,13 +140,13 @@ All four screen readers can perform the same tasks in the terminal. The table be
 | **Jump to start of screen/buffer**      | NVDA+Home                               | Insert+Home                              | Narrator+Home                        | CapsLock+Page Up                            |
 | **Recall last command (shell history)** | Up Arrow (shell native; SR reads it)    | Up Arrow (shell native; SR reads it)     | Up Arrow (shell native; SR reads it) | Up Arrow (shell native; SR reads it)        |
 | **Stop reading**                        | Ctrl                                    | Ctrl                                     | Ctrl                                 | Ctrl                                        |
-| **Open screen reader settings**         | NVDA+N → Preferences                    | Insert+F3 → Options/Settings             | Windows+Ctrl+N (Narrator settings)   | CapsLock+SpaceBar (SuperNova control panel) |
+| **Open screen reader settings**         | NVDA+N > Preferences                    | Insert+F3 > Options/Settings             | Windows+Ctrl+N (Narrator settings)   | CapsLock+SpaceBar (SuperNova control panel) |
 
 > **Notes on modifier keys:**
-> - **NVDA key** is Insert by default; can be changed to CapsLock in NVDA Preferences → Keyboard.
+> - **NVDA key** is Insert by default; can be changed to CapsLock in NVDA Preferences > Keyboard.
 > - **JAWS key** is Insert by default; can be changed to CapsLock in JAWS Settings Center.
-> - **Narrator key** is CapsLock or Insert; configurable in Settings → Accessibility → Narrator → Keyboard shortcuts.
-> - **Dolphin key** is CapsLock by default; configurable in SuperNova Control Panel → Keyboard.
+> - **Narrator key** is CapsLock or Insert; configurable in Settings > Accessibility > Narrator > Keyboard shortcuts.
+> - **Dolphin key** is CapsLock by default; configurable in SuperNova Control Panel > Keyboard.
 
 ---
 

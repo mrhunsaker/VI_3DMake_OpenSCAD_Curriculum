@@ -24,7 +24,7 @@ In a terminal environment:
 
 ### Bluetooth Connection
 1. Put the braille display into pairing mode (refer to the device's quick-start guide).
-2. On Windows, go to **Settings → Bluetooth & devices → Add a device** and pair the display.
+2. On Windows, go to **Settings > Bluetooth & devices > Add a device** and pair the display.
 3. Once paired, open your screen reader's braille settings and select the display.
 
 ### Before Opening the Terminal
@@ -40,7 +40,7 @@ NVDA includes built-in braille support for a wide range of displays without requ
 
 1. Connect your display via USB or Bluetooth.
 2. Open the NVDA menu: press **NVDA+N** (Insert+N or CapsLock+N depending on your modifier key setting).
-3. Go to **Preferences → Settings → Braille** (or press **NVDA+Ctrl+B** as a shortcut on some versions).
+3. Go to **Preferences > Settings > Braille** (or press **NVDA+Ctrl+B** as a shortcut on some versions).
 4. In the **"Braille display"** dropdown, select your display from the list. NVDA supports automatic detection for many displays — you can also select **"Automatic"** and let NVDA detect it.
 5. Set your preferred **braille output table** (e.g., Unified English Braille Grade 1 or Grade 2, or your country's national table).
 6. Set **"Braille input table"** if you want to type commands using the display's braille keyboard (if equipped).
@@ -72,7 +72,7 @@ JAWS supports a wide range of braille displays through its built-in braille mana
 1. Connect your display via USB or Bluetooth.
 2. Install the vendor's display driver if required (check the vendor's website — some displays work without a driver in JAWS, others need one).
 3. Open the JAWS menu: press **Insert+F3** (or your JAWS key+F3).
-4. Go to **Options → Basics → Braille** or use the **JAWS Settings Center** and search for **"Braille"**.
+4. Go to **Options > Basics > Braille** or use the **JAWS Settings Center** and search for **"Braille"**.
 5. In Braille Settings, select your display model from the list.
 6. Choose your **braille translation table** (e.g., English Unified Grade 1 for uncontracted, Grade 2 for contracted).
 7. Configure **cursor routing** so that pressing a routing button on the display moves the JAWS cursor to that position.
@@ -84,8 +84,8 @@ JAWS supports a wide range of braille displays through its built-in braille mana
 - In the JAWS Settings Center, look for **"Braille for Applications"** — you can set different braille behavior for specific applications (e.g., a terminal vs. a word processor).
 
 **Accessing braille settings:**
-- **Insert+F3** → Options → Basics → Braille
-- Or: **Insert+F2** (JAWS Manager) → Settings Center → search "braille"
+- **Insert+F3** > Options > Basics > Braille
+- Or: **Insert+F2** (JAWS Manager) > Settings Center > search "braille"
 
 ---
 
@@ -95,7 +95,7 @@ Windows Narrator supports braille output through the **Windows braille service**
 
 1. Connect your display via USB or Bluetooth.
 2. Install the vendor's display driver if required.
-3. Open **Settings → Accessibility → Narrator → Braille** (Windows 11) or **Settings → Ease of Access → Narrator → Use Braille** (Windows 10).
+3. Open **Settings > Accessibility > Narrator > Braille** (Windows 11) or **Settings > Ease of Access > Narrator > Use Braille** (Windows 10).
 4. Turn on **"Install braille"** (first-time setup may require downloading the braille translation component — approximately 70 MB).
 5. Select your **display brand and model** from the list.
 6. Choose a **braille table** (Grade 1 recommended for terminal work).
@@ -116,9 +116,9 @@ Dolphin SuperNova includes integrated braille support as part of its screen read
 1. Connect your display via USB or Bluetooth.
 2. Install the vendor's driver if required.
 3. Open the **SuperNova Control Panel**: press **CapsLock+SpaceBar** or click the SuperNova icon in the taskbar.
-4. Go to **Braille → Display** and select your display model from the list.
-5. Go to **Braille → Translation** and select your braille table (Grade 1 / uncontracted recommended for code).
-6. Go to **Braille → Settings** to configure cursor style, word wrap, and other options.
+4. Go to **Braille > Display** and select your display model from the list.
+5. Go to **Braille > Translation** and select your braille table (Grade 1 / uncontracted recommended for code).
+6. Go to **Braille > Settings** to configure cursor style, word wrap, and other options.
 7. Click **Apply** and test in Notepad.
 
 **Dolphin SuperNova braille tips for terminal work:**
@@ -209,7 +209,7 @@ Multiline tactile displays from Orbit Research designed for reading text and tac
 
 **Routing keys not moving the cursor:**
 - In your screen reader's braille settings, confirm that cursor routing is enabled.
-- In NVDA, this is under Preferences → Settings → Braille → enable "Move system cursor when routing review cursor".
+- In NVDA, this is under Preferences > Settings > Braille > enable "Move system cursor when routing review cursor".
 - In JAWS, check the routing settings in the JAWS braille configuration.
 
 ---
@@ -233,9 +233,9 @@ Multiline tactile displays from Orbit Research designed for reading text and tac
 
 | Screen Reader     | Where to Find Braille Settings                              | Recommended Braille Table for Code     |
 |-------------------|-------------------------------------------------------------|----------------------------------------|
-| NVDA              | NVDA Menu → Preferences → Settings → Braille                | Unified English Braille Grade 1        |
-| JAWS              | Insert+F3 → Options → Basics → Braille (or Settings Center) | English Braille Grade 1 (uncontracted) |
-| Windows Narrator  | Settings → Accessibility → Narrator → Braille               | English Grade 1 (uncontracted)         |
-| Dolphin SuperNova | CapsLock+SpaceBar → Braille → Display and Translation       | Grade 1 (uncontracted)                 |
+| NVDA              | NVDA Menu > Preferences > Settings > Braille                | Unified English Braille Grade 1        |
+| JAWS              | Insert+F3 > Options > Basics > Braille (or Settings Center) | English Braille Grade 1 (uncontracted) |
+| Windows Narrator  | Settings > Accessibility > Narrator > Braille               | English Grade 1 (uncontracted)         |
+| Dolphin SuperNova | CapsLock+SpaceBar > Braille > Display and Translation       | Grade 1 (uncontracted)                 |
 
 This page gives a practical overview. Always consult your braille display vendor's documentation and your screen reader's braille guide for device-specific setup steps and advanced configuration options.

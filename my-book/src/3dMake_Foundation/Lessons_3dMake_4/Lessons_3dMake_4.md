@@ -113,13 +113,13 @@ Date: 2026-03-01
 
 Feature: USB-C slot width
   Designed: 9.5mm wide × 3.5mm tall
-  Verified by: 3dm info bounding box of isolated slot module → 9.5 × 3.5 confirmed ✓
+  Verified by: 3dm info bounding box of isolated slot module -> 9.5 × 3.5 confirmed ✓
   AI description: "rectangular cutout, approximately 10mm wide" (approximate only)
-  Physical: measured with calipers after first test print → 9.4mm (within 0.1mm tolerance) ✓
+  Physical: measured with calipers after first test print -> 9.4mm (within 0.1mm tolerance) ✓
 
 Feature: Mounting feet height
   Designed: 2.0mm
-  Verified by: 3dm info of isolated foot module → 2.0mm ✓
+  Verified by: 3dm info of isolated foot module -> 2.0mm ✓
   AI description: vague ("small protrusion")
   Physical: not yet printed
 ```
@@ -433,10 +433,10 @@ Output format: numbered list of issues, each with severity and fix
 
 ```
 1. Write initial design
-2. Run 3dm build → fix compile errors
-3. Run slicer → fix geometry errors (deterministic)
-4. Run 3dm info or AI review → address suggestions (with verification)
-5. Print test piece → compare to spec
+2. Run 3dm build -> fix compile errors
+3. Run slicer -> fix geometry errors (deterministic)
+4. Run 3dm info or AI review -> address suggestions (with verification)
+5. Print test piece -> compare to spec
 6. Iterate on parameters if needed
 ```
 
@@ -463,7 +463,7 @@ Output format: numbered list of issues, each with severity and fix
 1. Design a validation checklist for a new 3D printed part. Include at least five items that are deterministic and three that benefit from AI assistance.
 2. Build a "prompt library" for three common design review scenarios: mounting brackets, enclosures, and text embossing. Test each prompt and document the output quality.
 3. Run `3dm info` on the same STL five times. Document any variation in output. What does this tell you about reproducibility?
-4. Create a structured accept/reject log for one full design cycle (design → AI review → verification → decision). Share the log with a classmate for peer review.
+4. Create a structured accept/reject log for one full design cycle (design -> AI review -> verification -> decision). Share the log with a classmate for peer review.
 5. Research what "hallucination" means in the context of AI language models. Document two examples of how an AI might hallucinate in a design review context.
 6. Design an experiment to compare AI-suggested print orientation with slicer-suggested orientation for 10 different models. Tabulate the agreement rate.
 7. Write a one-page data privacy policy for an imaginary classroom 3D printing lab that uses cloud AI tools. Reference your school's existing digital privacy guidelines.

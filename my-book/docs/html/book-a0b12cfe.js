@@ -1,843 +1,388 @@
-'use strict';
+<!DOCTYPE HTML>
+<html lang="en" class="rust sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>BackMatter - 3D Printing Course for Blind and Visually Impaired Learners</title>
 
-/* global default_theme, default_dark_theme, default_light_theme, hljs, ClipboardJS */
 
-// Fix back button cache problem
-window.onunload = function() { };
-
-// Global variable, shared between modules
-function playground_text(playground, hidden = true) {
-    const code_block = playground.querySelector('code');
-
-    if (window.ace && code_block.classList.contains('editable')) {
-        const editor = window.ace.edit(code_block);
-        return editor.getValue();
-    } else if (hidden) {
-        return code_block.textContent;
-    } else {
-        return code_block.innerText;
-    }
-}
-
-(function codeSnippets() {
-    function fetch_with_timeout(url, options, timeout = 6000) {
-        return Promise.race([
-            fetch(url, options),
-            new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), timeout)),
-        ]);
-    }
-
-    const playgrounds = Array.from(document.querySelectorAll('.playground'));
-    if (playgrounds.length > 0) {
-        fetch_with_timeout('https://play.rust-lang.org/meta/crates', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'POST',
-            mode: 'cors',
-        })
-            .then(response => response.json())
-            .then(response => {
-            // get list of crates available in the rust playground
-                const playground_crates = response.crates.map(item => item['id']);
-                playgrounds.forEach(block => handle_crate_list_update(block, playground_crates));
-            });
-    }
-
-    function handle_crate_list_update(playground_block, playground_crates) {
-        // update the play buttons after receiving the response
-        update_play_button(playground_block, playground_crates);
-
-        // and install on change listener to dynamically update ACE editors
-        if (window.ace) {
-            const code_block = playground_block.querySelector('code');
-            if (code_block.classList.contains('editable')) {
-                const editor = window.ace.edit(code_block);
-                editor.addEventListener('change', () => {
-                    update_play_button(playground_block, playground_crates);
-                });
-                // add Ctrl-Enter command to execute rust code
-                editor.commands.addCommand({
-                    name: 'run',
-                    bindKey: {
-                        win: 'Ctrl-Enter',
-                        mac: 'Ctrl-Enter',
-                    },
-                    exec: _editor => run_rust_code(playground_block),
-                });
-            }
-        }
-    }
-
-    // updates the visibility of play button based on `no_run` class and
-    // used crates vs ones available on https://play.rust-lang.org
-    function update_play_button(pre_block, playground_crates) {
-        const play_button = pre_block.querySelector('.play-button');
-
-        // skip if code is `no_run`
-        if (pre_block.querySelector('code').classList.contains('no_run')) {
-            play_button.classList.add('hidden');
-            return;
-        }
-
-        // get list of `extern crate`'s from snippet
-        const txt = playground_text(pre_block);
-        const re = /extern\s+crate\s+([a-zA-Z_0-9]+)\s*;/g;
-        const snippet_crates = [];
-        let item;
-        while (item = re.exec(txt)) {
-            snippet_crates.push(item[1]);
-        }
-
-        // check if all used crates are available on play.rust-lang.org
-        const all_available = snippet_crates.every(function(elem) {
-            return playground_crates.indexOf(elem) > -1;
-        });
-
-        if (all_available) {
-            play_button.classList.remove('hidden');
-            play_button.hidden = false;
-        } else {
-            play_button.classList.add('hidden');
-        }
-    }
-
-    function run_rust_code(code_block) {
-        let result_block = code_block.querySelector('.result');
-        if (!result_block) {
-            result_block = document.createElement('code');
-            result_block.className = 'result hljs language-bash';
-
-            code_block.append(result_block);
-        }
-
-        const text = playground_text(code_block);
-        const classes = code_block.querySelector('code').classList;
-        let edition = '2015';
-        classes.forEach(className => {
-            if (className.startsWith('edition')) {
-                edition = className.slice(7);
-            }
-        });
-        const params = {
-            version: 'stable',
-            optimize: '0',
-            code: text,
-            edition: edition,
-        };
-
-        if (text.indexOf('#![feature') !== -1) {
-            params.version = 'nightly';
-        }
-
-        result_block.innerText = 'Running...';
-
-        fetch_with_timeout('https://play.rust-lang.org/evaluate.json', {
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            method: 'POST',
-            mode: 'cors',
-            body: JSON.stringify(params),
-        })
-            .then(response => response.json())
-            .then(response => {
-                if (response.result.trim() === '') {
-                    result_block.innerText = 'No output';
-                    result_block.classList.add('result-no-output');
-                } else {
-                    result_block.innerText = response.result;
-                    result_block.classList.remove('result-no-output');
-                }
-            })
-            .catch(error => result_block.innerText = 'Playground Communication: ' + error.message);
-    }
-
-    // Syntax highlighting Configuration
-    hljs.configure({
-        tabReplace: '    ', // 4 spaces
-        languages: [], // Languages used for auto-detection
-    });
-
-    const code_nodes = Array
-        .from(document.querySelectorAll('code'))
-        // Don't highlight `inline code` blocks in headers.
-        .filter(function(node) {
-            return !node.parentElement.classList.contains('header');
-        });
-
-    if (window.ace) {
-        // language-rust class needs to be removed for editable
-        // blocks or highlightjs will capture events
-        code_nodes
-            .filter(function(node) {
-                return node.classList.contains('editable');
-            })
-            .forEach(function(block) {
-                block.classList.remove('language-rust');
-            });
-
-        code_nodes
-            .filter(function(node) {
-                return !node.classList.contains('editable');
-            })
-            .forEach(function(block) {
-                hljs.highlightBlock(block);
-            });
-    } else {
-        code_nodes.forEach(function(block) {
-            hljs.highlightBlock(block);
-        });
-    }
-
-    // Adding the hljs class gives code blocks the color css
-    // even if highlighting doesn't apply
-    code_nodes.forEach(function(block) {
-        block.classList.add('hljs');
-    });
-
-    Array.from(document.querySelectorAll('code.hljs')).forEach(function(block) {
-
-        const lines = Array.from(block.querySelectorAll('.boring'));
-        // If no lines were hidden, return
-        if (!lines.length) {
-            return;
-        }
-        block.classList.add('hide-boring');
-
-        const buttons = document.createElement('div');
-        buttons.className = 'buttons';
-        buttons.innerHTML = '<button title="Show hidden lines" \
-aria-label="Show hidden lines"></button>';
-        buttons.firstChild.innerHTML = document.getElementById('fa-eye').innerHTML;
-
-        // add expand button
-        const pre_block = block.parentNode;
-        pre_block.insertBefore(buttons, pre_block.firstChild);
-
-        buttons.firstChild.addEventListener('click', function(e) {
-            if (this.title === 'Show hidden lines') {
-                this.innerHTML = document.getElementById('fa-eye-slash').innerHTML;
-                this.title = 'Hide lines';
-                this.setAttribute('aria-label', e.target.title);
-
-                block.classList.remove('hide-boring');
-            } else if (this.title === 'Hide lines') {
-                this.innerHTML = document.getElementById('fa-eye').innerHTML;
-                this.title = 'Show hidden lines';
-                this.setAttribute('aria-label', e.target.title);
-
-                block.classList.add('hide-boring');
-            }
-        });
-    });
-
-    if (window.playground_copyable) {
-        Array.from(document.querySelectorAll('pre code')).forEach(function(block) {
-            const pre_block = block.parentNode;
-            if (!pre_block.classList.contains('playground')) {
-                let buttons = pre_block.querySelector('.buttons');
-                if (!buttons) {
-                    buttons = document.createElement('div');
-                    buttons.className = 'buttons';
-                    pre_block.insertBefore(buttons, pre_block.firstChild);
-                }
-
-                const clipButton = document.createElement('button');
-                clipButton.className = 'clip-button';
-                clipButton.title = 'Copy to clipboard';
-                clipButton.setAttribute('aria-label', clipButton.title);
-                clipButton.innerHTML = '<i class="tooltiptext"></i>';
-
-                buttons.insertBefore(clipButton, buttons.firstChild);
-            }
-        });
-    }
-
-    // Process playground code blocks
-    Array.from(document.querySelectorAll('.playground')).forEach(function(pre_block) {
-        // Add play button
-        let buttons = pre_block.querySelector('.buttons');
-        if (!buttons) {
-            buttons = document.createElement('div');
-            buttons.className = 'buttons';
-            pre_block.insertBefore(buttons, pre_block.firstChild);
-        }
-
-        const runCodeButton = document.createElement('button');
-        runCodeButton.className = 'play-button';
-        runCodeButton.hidden = true;
-        runCodeButton.title = 'Run this code';
-        runCodeButton.setAttribute('aria-label', runCodeButton.title);
-        runCodeButton.innerHTML = document.getElementById('fa-play').innerHTML;
-
-        buttons.insertBefore(runCodeButton, buttons.firstChild);
-        runCodeButton.addEventListener('click', () => {
-            run_rust_code(pre_block);
-        });
-
-        if (window.playground_copyable) {
-            const copyCodeClipboardButton = document.createElement('button');
-            copyCodeClipboardButton.className = 'clip-button';
-            copyCodeClipboardButton.innerHTML = '<i class="tooltiptext"></i>';
-            copyCodeClipboardButton.title = 'Copy to clipboard';
-            copyCodeClipboardButton.setAttribute('aria-label', copyCodeClipboardButton.title);
-
-            buttons.insertBefore(copyCodeClipboardButton, buttons.firstChild);
-        }
-
-        const code_block = pre_block.querySelector('code');
-        if (window.ace && code_block.classList.contains('editable')) {
-            const undoChangesButton = document.createElement('button');
-            undoChangesButton.className = 'reset-button';
-            undoChangesButton.title = 'Undo changes';
-            undoChangesButton.setAttribute('aria-label', undoChangesButton.title);
-            undoChangesButton.innerHTML +=
-                document.getElementById('fa-clock-rotate-left').innerHTML;
-
-            buttons.insertBefore(undoChangesButton, buttons.firstChild);
-
-            undoChangesButton.addEventListener('click', function() {
-                const editor = window.ace.edit(code_block);
-                editor.setValue(editor.originalCode);
-                editor.clearSelection();
-            });
-        }
-    });
-})();
-
-(function themes() {
-    const html = document.querySelector('html');
-    const themeToggleButton = document.getElementById('mdbook-theme-toggle');
-    const themePopup = document.getElementById('mdbook-theme-list');
-    const themeColorMetaTag = document.querySelector('meta[name="theme-color"]');
-    const themeIds = [];
-    themePopup.querySelectorAll('button.theme').forEach(function(el) {
-        themeIds.push(el.id);
-    });
-    const stylesheets = {
-        ayuHighlight: document.querySelector('#mdbook-ayu-highlight-css'),
-        tomorrowNight: document.querySelector('#mdbook-tomorrow-night-css'),
-        highlight: document.querySelector('#mdbook-highlight-css'),
-    };
-
-    function showThemes() {
-        themePopup.style.display = 'block';
-        themeToggleButton.setAttribute('aria-expanded', true);
-        themePopup.querySelector('button#mdbook-theme-' + get_theme()).focus();
-    }
-
-    function updateThemeSelected() {
-        themePopup.querySelectorAll('.theme-selected').forEach(function(el) {
-            el.classList.remove('theme-selected');
-        });
-        const selected = get_saved_theme() ?? 'default_theme';
-        let element = themePopup.querySelector('button#mdbook-theme-' + selected);
-        if (element === null) {
-            // Fall back in case there is no "Default" item.
-            element = themePopup.querySelector('button#mdbook-theme-' + get_theme());
-        }
-        element.classList.add('theme-selected');
-    }
-
-    function hideThemes() {
-        themePopup.style.display = 'none';
-        themeToggleButton.setAttribute('aria-expanded', false);
-        themeToggleButton.focus();
-    }
-
-    function get_saved_theme() {
-        let theme = null;
-        try {
-            theme = localStorage.getItem('mdbook-theme');
-        } catch {
-            // ignore error.
-        }
-        return theme;
-    }
-
-    function delete_saved_theme() {
-        localStorage.removeItem('mdbook-theme');
-    }
-
-    function get_theme() {
-        const theme = get_saved_theme();
-        if (theme === null || theme === undefined || !themeIds.includes('mdbook-theme-' + theme)) {
-            if (typeof default_dark_theme === 'undefined') {
-                // A customized index.hbs might not define this, so fall back to
-                // old behavior of determining the default on page load.
-                return default_theme;
-            }
-            return window.matchMedia('(prefers-color-scheme: dark)').matches
-                ? default_dark_theme
-                : default_light_theme;
-        } else {
-            return theme;
-        }
-    }
-
-    let previousTheme = default_theme;
-    function set_theme(theme, store = true) {
-        let ace_theme;
-
-        if (theme === 'coal' || theme === 'navy') {
-            stylesheets.ayuHighlight.disabled = true;
-            stylesheets.tomorrowNight.disabled = false;
-            stylesheets.highlight.disabled = true;
-
-            ace_theme = 'ace/theme/tomorrow_night';
-        } else if (theme === 'ayu') {
-            stylesheets.ayuHighlight.disabled = false;
-            stylesheets.tomorrowNight.disabled = true;
-            stylesheets.highlight.disabled = true;
-            ace_theme = 'ace/theme/tomorrow_night';
-        } else {
-            stylesheets.ayuHighlight.disabled = true;
-            stylesheets.tomorrowNight.disabled = true;
-            stylesheets.highlight.disabled = false;
-            ace_theme = 'ace/theme/dawn';
-        }
-
-        setTimeout(function() {
-            themeColorMetaTag.content = getComputedStyle(document.documentElement).backgroundColor;
-        }, 1);
-
-        if (window.ace && window.editors) {
-            window.editors.forEach(function(editor) {
-                editor.setTheme(ace_theme);
-            });
-        }
-
-        if (store) {
+        <!-- Custom HTML head -->
+        <script>
+          (function(){
+            // Load Atkinson Hyperlegible fonts from the book assets (injected at runtime so paths are correct on GitHub Pages)
             try {
-                localStorage.setItem('mdbook-theme', theme);
-            } catch {
-                // ignore error.
-            }
-        }
+              const link = Array.from(document.getElementsByTagName('link')).find(l => l.href && l.href.match(/\/css\/variables-.*\.css$/));
+              const base = (function(){
+                if (!link) return (window.location.origin||'') + '/';
+                const u = new URL(link.href, window.location.href);
+                const basePath = u.pathname.replace(/\/css\/.*$/,'');
+                return u.origin + basePath + (basePath.endsWith('/') ? '' : '/');
+              })();
+        
+              const css = `\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Next';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf') format('truetype');\
+          font-weight: 400; font-style: normal; font-display: swap;\
+        }\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Mono';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-SemiBold.ttf') format('truetype');\
+          font-weight: 600; font-style: normal; font-display: swap;\
+        }\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Mono';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-Regular.otf') format('opentype');\
+          font-weight: 400; font-style: normal; font-display: swap;\
+        }\
+        pre, code, .hljs, .leftbar { font-family: 'Atkinson Hyperlegible Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Courier New", monospace !important; }\
+        body { font-family: 'Atkinson Hyperlegible Next', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }\
+        `;
+        
+              const style = document.createElement('style');
+              style.appendChild(document.createTextNode(css));
+              document.head.appendChild(style);
+            } catch (e) { console.warn('Font injection failed', e); }
+          })();
+        </script>
+        
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            mermaid.initialize({ startOnLoad: true });
+          });
+        </script>
 
-        html.classList.remove(previousTheme);
-        html.classList.add(theme);
-        previousTheme = theme;
-        updateThemeSelected();
-    }
+        <meta name="description" content="An introduction to 3D printing for blind and visually impaired learners, using OpenSCAD and 3DMake to create accessible 3D models.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-    const query = window.matchMedia('(prefers-color-scheme: dark)');
-    query.onchange = function() {
-        set_theme(get_theme(), false);
-    };
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
 
-    // Set theme.
-    set_theme(get_theme(), false);
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
 
-    themeToggleButton.addEventListener('click', function() {
-        if (themePopup.style.display === 'block') {
-            hideThemes();
-        } else {
-            showThemes();
-        }
-    });
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
 
-    themePopup.addEventListener('click', function(e) {
-        let theme;
-        if (e.target.className === 'theme') {
-            theme = e.target.id;
-        } else if (e.target.parentElement.className === 'theme') {
-            theme = e.target.parentElement.id;
-        } else {
-            return;
-        }
-        theme = theme.replace(/^mdbook-theme-/, '');
-
-        if (theme === 'default_theme' || theme === null) {
-            delete_saved_theme();
-            set_theme(get_theme(), false);
-        } else {
-            set_theme(theme);
-        }
-    });
-
-    themePopup.addEventListener('focusout', function(e) {
-        // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
-        if (!!e.relatedTarget &&
-            !themeToggleButton.contains(e.relatedTarget) &&
-            !themePopup.contains(e.relatedTarget)
-        ) {
-            hideThemes();
-        }
-    });
-
-    // Should not be needed, but it works around an issue on macOS & iOS:
-    // https://github.com/rust-lang/mdBook/issues/628
-    document.addEventListener('click', function(e) {
-        if (themePopup.style.display === 'block' &&
-            !themeToggleButton.contains(e.target) &&
-            !themePopup.contains(e.target)
-        ) {
-            hideThemes();
-        }
-    });
-
-    document.addEventListener('keydown', function(e) {
-        if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
-            return;
-        }
-        if (!themePopup.contains(e.target)) {
-            return;
-        }
-
-        let li;
-        switch (e.key) {
-        case 'Escape':
-            e.preventDefault();
-            hideThemes();
-            break;
-        case 'ArrowUp':
-            e.preventDefault();
-            li = document.activeElement.parentElement;
-            if (li && li.previousElementSibling) {
-                li.previousElementSibling.querySelector('button').focus();
-            }
-            break;
-        case 'ArrowDown':
-            e.preventDefault();
-            li = document.activeElement.parentElement;
-            if (li && li.nextElementSibling) {
-                li.nextElementSibling.querySelector('button').focus();
-            }
-            break;
-        case 'Home':
-            e.preventDefault();
-            themePopup.querySelector('li:first-child button').focus();
-            break;
-        case 'End':
-            e.preventDefault();
-            themePopup.querySelector('li:last-child button').focus();
-            break;
-        }
-    });
-})();
-
-(function sidebar() {
-    const sidebar = document.getElementById('mdbook-sidebar');
-    const sidebarLinks = document.querySelectorAll('#mdbook-sidebar a');
-    const sidebarToggleButton = document.getElementById('mdbook-sidebar-toggle');
-    const sidebarResizeHandle = document.getElementById('mdbook-sidebar-resize-handle');
-    const sidebarCheckbox = document.getElementById('mdbook-sidebar-toggle-anchor');
-    let firstContact = null;
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../src/assets/custom-19d70d6b.css">
 
 
-    /* Because we cannot change the `display` using only CSS after/before the transition, we
-       need JS to do it. We change the display to prevent the browsers search to find text inside
-       the collapsed sidebar. */
-    if (!document.documentElement.classList.contains('sidebar-visible')) {
-        sidebar.style.display = 'none';
-    }
-    sidebar.addEventListener('transitionend', () => {
-        /* We only change the display to "none" if we're collapsing the sidebar. */
-        if (!sidebarCheckbox.checked) {
-            sidebar.style.display = 'none';
-        }
-    });
-    sidebarToggleButton.addEventListener('click', () => {
-        /* To allow the sidebar expansion animation, we first need to put back the display. */
-        if (!sidebarCheckbox.checked) {
-            sidebar.style.display = '';
-            // Workaround for Safari skipping the animation when changing
-            // `display` and a transform in the same event loop. This forces a
-            // reflow after updating the display.
-            sidebar.offsetHeight;
-        }
-    });
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3fdb52a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-816984a7.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
-    function showSidebar() {
-        document.documentElement.classList.add('sidebar-visible');
-        Array.from(sidebarLinks).forEach(function(link) {
-            link.setAttribute('tabIndex', 0);
-        });
-        sidebarToggleButton.setAttribute('aria-expanded', true);
-        sidebar.setAttribute('aria-hidden', false);
-        try {
-            localStorage.setItem('mdbook-sidebar', 'visible');
-        } catch {
-            // Ignore error.
-        }
-    }
-
-    function hideSidebar() {
-        document.documentElement.classList.remove('sidebar-visible');
-        Array.from(sidebarLinks).forEach(function(link) {
-            link.setAttribute('tabIndex', -1);
-        });
-        sidebarToggleButton.setAttribute('aria-expanded', false);
-        sidebar.setAttribute('aria-hidden', true);
-        try {
-            localStorage.setItem('mdbook-sidebar', 'hidden');
-        } catch {
-            // Ignore error.
-        }
-    }
-
-    // Toggle sidebar
-    sidebarCheckbox.addEventListener('change', function sidebarToggle() {
-        if (sidebarCheckbox.checked) {
-            const current_width = parseInt(
-                document.documentElement.style.getPropertyValue('--sidebar-target-width'), 10);
-            if (current_width < 150) {
-                document.documentElement.style.setProperty('--sidebar-target-width', '150px');
-            }
-            showSidebar();
-        } else {
-            hideSidebar();
-        }
-    });
-
-    sidebarResizeHandle.addEventListener('mousedown', initResize, false);
-
-    function initResize() {
-        window.addEventListener('mousemove', resize, false);
-        window.addEventListener('mouseup', stopResize, false);
-        document.documentElement.classList.add('sidebar-resizing');
-    }
-    function resize(e) {
-        let pos = e.clientX - sidebar.offsetLeft;
-        if (pos < 20) {
-            hideSidebar();
-        } else {
-            if (!document.documentElement.classList.contains('sidebar-visible')) {
-                showSidebar();
-            }
-            pos = Math.min(pos, window.innerWidth - 100);
-            document.documentElement.style.setProperty('--sidebar-target-width', pos + 'px');
-        }
-    }
-    //on mouseup remove windows functions mousemove & mouseup
-    function stopResize() {
-        document.documentElement.classList.remove('sidebar-resizing');
-        window.removeEventListener('mousemove', resize, false);
-        window.removeEventListener('mouseup', stopResize, false);
-    }
-
-    document.addEventListener('touchstart', function(e) {
-        firstContact = {
-            x: e.touches[0].clientX,
-            time: Date.now(),
-        };
-    }, { passive: true });
-
-    document.addEventListener('touchmove', function(e) {
-        if (!firstContact) {
-            return;
-        }
-
-        const curX = e.touches[0].clientX;
-        const xDiff = curX - firstContact.x,
-            tDiff = Date.now() - firstContact.time;
-
-        if (tDiff < 250 && Math.abs(xDiff) >= 150) {
-            if (xDiff >= 0 && firstContact.x < Math.min(document.body.clientWidth * 0.25, 300)) {
-                showSidebar();
-            } else if (xDiff < 0 && curX < 300) {
-                hideSidebar();
-            }
-
-            firstContact = null;
-        }
-    }, { passive: true });
-})();
-
-(function chapterNavigation() {
-    document.addEventListener('keydown', function(e) {
-        if (e.altKey || e.ctrlKey || e.metaKey) {
-            return;
-        }
-        if (window.search && window.search.hasFocus()) {
-            return;
-        }
-        const html = document.querySelector('html');
-
-        function next() {
-            const nextButton = document.querySelector('.nav-chapters.next');
-            if (nextButton) {
-                window.location.href = nextButton.href;
-            }
-        }
-        function prev() {
-            const previousButton = document.querySelector('.nav-chapters.previous');
-            if (previousButton) {
-                window.location.href = previousButton.href;
-            }
-        }
-        function showHelp() {
-            const container = document.getElementById('mdbook-help-container');
-            const overlay = document.getElementById('mdbook-help-popup');
-            container.style.display = 'flex';
-
-            // Clicking outside the popup will dismiss it.
-            const mouseHandler = event => {
-                if (overlay.contains(event.target)) {
-                    return;
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
                 }
-                if (event.button !== 0) {
-                    return;
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
                 }
-                event.preventDefault();
-                event.stopPropagation();
-                document.removeEventListener('mousedown', mouseHandler);
-                hideHelp();
-            };
+            } catch (e) { }
+        </script>
 
-            // Pressing esc will dismiss the popup.
-            const escapeKeyHandler = event => {
-                if (event.key === 'Escape') {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    document.removeEventListener('keydown', escapeKeyHandler, true);
-                    hideHelp();
-                }
-            };
-            document.addEventListener('keydown', escapeKeyHandler, true);
-            document.getElementById('mdbook-help-container')
-                .addEventListener('mousedown', mouseHandler);
-        }
-        function hideHelp() {
-            document.getElementById('mdbook-help-container').style.display = 'none';
-        }
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
 
-        // Usually needs the Shift key to be pressed
-        switch (e.key) {
-        case '?':
-            e.preventDefault();
-            showHelp();
-            break;
-        }
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
-        // Rest of the keys are only active when the Shift key is not pressed
-        if (e.shiftKey) {
-            return;
-        }
-
-        switch (e.key) {
-        case 'ArrowRight':
-            e.preventDefault();
-            if (html.dir === 'rtl') {
-                prev();
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
             } else {
-                next();
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-            break;
-        case 'ArrowLeft':
-            e.preventDefault();
-            if (html.dir === 'rtl') {
-                next();
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
             } else {
-                prev();
+                html.classList.remove('sidebar-visible');
             }
-            break;
-        }
-    });
-})();
+        </script>
 
-(function clipboard() {
-    const clipButtons = document.querySelectorAll('.clip-button');
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
 
-    function hideTooltip(elem) {
-        elem.firstChild.innerText = '';
-        elem.className = 'clip-button';
-    }
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
-    function showTooltip(elem, msg) {
-        elem.firstChild.innerText = msg;
-        elem.className = 'clip-button tooltipped';
-    }
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
 
-    const clipboardSnippets = new ClipboardJS('.clip-button', {
-        text: function(trigger) {
-            hideTooltip(trigger);
-            const playground = trigger.closest('pre');
-            return playground_text(playground, false);
-        },
-    });
+                    <h1 class="menu-title">3D Printing Course for Blind and Visually Impaired Learners</h1>
 
-    Array.from(clipButtons).forEach(function(clipButton) {
-        clipButton.addEventListener('mouseout', function(e) {
-            hideTooltip(e.currentTarget);
-        });
-    });
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
 
-    clipboardSnippets.on('success', function(e) {
-        e.clearSelection();
-        showTooltip(e.trigger, 'Copied!');
-    });
+                    </div>
+                </div>
 
-    clipboardSnippets.on('error', function(e) {
-        showTooltip(e.trigger, 'Clipboard error!');
-    });
-})();
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-(function scrollToTop() {
-    const menuTitle = document.querySelector('.menu-title');
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-    menuTitle.addEventListener('click', function() {
-        document.scrollingElement.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-})();
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="backmatter"><a class="header" href="#backmatter">BackMatter</a></h1>
+<p>This section contains supplementary material and appendices that support the main book.</p>
+<ul>
+<li>
+<p><strong>Command Line Appendices</strong> — guidance and integration notes for using the command line with SCAD workflows.</p>
+<ul>
+<li><a href="../Command_Line_Interface_Selection/Appendix_A_CommandLine_Integration.html">Appendix A: CMD Integration for SCAD Workflows</a></li>
+<li><a href="../Command_Line_Interface_Selection/Appendix_B_PowerShell_Integration.html">Appendix B: PowerShell Integration for SCAD Workflows</a></li>
+<li><a href="../Command_Line_Interface_Selection/Appendix_C_GitBash_Integration.html">Appendix C: PowerShell Integration for SCAD Workflows</a></li>
+</ul>
+</li>
+<li>
+<p><strong>3D Make and OpenSCAD Appendices</strong> — deeper references for slicing, materials, tolerances and advanced OpenSCAD topics.</p>
+<ul>
+<li><a href="../3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.html">Appendix A: Comprehensive Slicing Guide - All Major Slicers</a></li>
+<li><a href="../3dMake_Foundation/Appendix_B_Material_Properties.html">Appendix B: Material Properties &amp; Selection Guide</a></li>
+<li><a href="../3dMake_Foundation/Appendix_C_Tolerance_QA.html">Appendix C: Tolerance Testing &amp; Quality Assurance Matrix</a></li>
+<li><a href="../3dMake_Foundation/Appendix_D_Advanced_OpenSCAD_Concepts.html">Appendix D: Advanced OpenSCAD Concepts</a></li>
+</ul>
+</li>
+<li>
+<p>** Student Glossary** — a concise list of terms and definitions used throughout the book with applicatiuon examples.</p>
+<ul>
+<li><a href="../Backmatter/glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Teacher Glossary</strong> — a concise list of terms and definitions used throughout the book with instructional tips.</p>
+<ul>
+<li><a href="../Backmatter/teacher-glossary.html">Glossary</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Further Reading</strong> — curated list of books, articles, tools, and resources to continue learning.</p>
+<ul>
+<li><a href="../Backmatter/Further_Reading.html">Further Reading</a></li>
+</ul>
+</li>
+<li>
+<p><strong>Index</strong> — an alphabetical index of topics for quick lookup.</p>
+<ul>
+<li><a href="../Backmatter/Index.html">Index</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="how-to-use-these-appendices"><a class="header" href="#how-to-use-these-appendices">How to use these appendices</a></h2>
+<ul>
+<li>
+<p>Each appendix is intended as a focused reference you can consult when you need extra detail beyond the course material.</p>
+</li>
+<li>
+<p>They are ordered in the book’s SUMMARY so they will appear after the main lessons and can be built separately or merged into the full PDF output.</p>
+</li>
+<li>
+<p><strong>Glossary and Index:</strong></p>
+<ul>
+<li>The glossary collects short definitions and cross-references to chapters where terms appear.</li>
+<li>The index is produced as a separate backmatter component and may be generated during PDF build using pandoc’s raw LaTeX index commands or a separate index generation step (for example, tagging terms with index markers and running <code>makeindex</code> during the LaTeX build).</li>
+</ul>
+</li>
+</ul>
+<h2 id="about-the-author"><a class="header" href="#about-the-author">About the Author</a></h2>
+<p>See the author’s notes and contributor information: <a href="../Contributors.html">About the Author</a></p>
 
-(function controllMenu() {
-    const menu = document.getElementById('mdbook-menu-bar');
+                    </main>
 
-    (function controllPosition() {
-        let scrollTop = document.scrollingElement.scrollTop;
-        let prevScrollTop = scrollTop;
-        const minMenuY = -menu.clientHeight - 50;
-        // When the script loads, the page can be at any scroll (e.g. if you refresh it).
-        menu.style.top = scrollTop + 'px';
-        // Same as parseInt(menu.style.top.slice(0, -2), but faster
-        let topCache = menu.style.top.slice(0, -2);
-        menu.classList.remove('sticky');
-        let stickyCache = false; // Same as menu.classList.contains('sticky'), but faster
-        document.addEventListener('scroll', function() {
-            scrollTop = Math.max(document.scrollingElement.scrollTop, 0);
-            // `null` means that it doesn't need to be updated
-            let nextSticky = null;
-            let nextTop = null;
-            const scrollDown = scrollTop > prevScrollTop;
-            const menuPosAbsoluteY = topCache - scrollTop;
-            if (scrollDown) {
-                nextSticky = false;
-                if (menuPosAbsoluteY > 0) {
-                    nextTop = prevScrollTop;
-                }
-            } else {
-                if (menuPosAbsoluteY > 0) {
-                    nextSticky = true;
-                } else if (menuPosAbsoluteY < minMenuY) {
-                    nextTop = prevScrollTop + minMenuY;
-                }
-            }
-            if (nextSticky === true && stickyCache === false) {
-                menu.classList.add('sticky');
-                stickyCache = true;
-            } else if (nextSticky === false && stickyCache === true) {
-                menu.classList.remove('sticky');
-                stickyCache = false;
-            }
-            if (nextTop !== null) {
-                menu.style.top = nextTop + 'px';
-                topCache = nextTop;
-            }
-            prevScrollTop = scrollTop;
-        }, { passive: true });
-    })();
-    (function controllBorder() {
-        function updateBorder() {
-            if (menu.offsetTop === 0) {
-                menu.classList.remove('bordered');
-            } else {
-                menu.classList.add('bordered');
-            }
-        }
-        updateBorder();
-        document.addEventListener('scroll', updateBorder, { passive: true });
-    })();
-})();
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../3dMake_Foundation/3dMake_Quick_Reference.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../Appendices/CLI_Appendices.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../3dMake_Foundation/3dMake_Quick_Reference.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../Appendices/CLI_Appendices.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-4a3ec6df.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
+                                                                                                                                        rect x="522.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="541.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="560.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="579.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="617.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="636.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="655.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="674.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="693.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="731.50" y="313.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="9.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="161.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="237.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="389.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="427.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="503.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="541.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="617.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="693.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="731.50" y="332.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="9.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="47.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="85.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="123.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="161.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="199.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="237.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="256.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="275.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="294.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="313.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="351.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="370.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="389.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="408.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="427.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="446.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="465.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="503.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="541.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="579.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="617.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="655.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="674.50" y="351.50" width="19.00" height="19.00" fill="#1a1a2e"/>
+  <rect x="693.5

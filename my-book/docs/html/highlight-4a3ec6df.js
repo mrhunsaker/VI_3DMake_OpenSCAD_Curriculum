@@ -1,2151 +1,863 @@
-/*!
-  Highlight.js v11.11.1 (git: 08cb242e7d)
-  (c) 2006-2025 Josh Goebel <hello@joshgoebel.com> and other contributors
-  License: BSD-3-Clause
- */
-var hljs = (function () {
-  "use strict";
-
-  /* eslint-disable no-multi-assign */
-
-  function deepFreeze(obj) {
-    if (obj instanceof Map) {
-      obj.clear =
-        obj.delete =
-        obj.set =
-          function () {
-            throw new Error("map is read-only");
-          };
-    } else if (obj instanceof Set) {
-      obj.add =
-        obj.clear =
-        obj.delete =
-          function () {
-            throw new Error("set is read-only");
-          };
-    }
-
-    // Freeze self
-    Object.freeze(obj);
-
-    Object.getOwnPropertyNames(obj).forEach((name) => {
-      const prop = obj[name];
-      const type = typeof prop;
-
-      // Freeze prop if it is an object or function and also not already frozen
-      if (
-        (type === "object" || type === "function") &&
-        !Object.isFrozen(prop)
-      ) {
-        deepFreeze(prop);
-      }
-    });
-
-    return obj;
-  }
-
-  /** @typedef {import('highlight.js').CallbackResponse} CallbackResponse */
-  /** @typedef {import('highlight.js').CompiledMode} CompiledMode */
-  /** @implements CallbackResponse */
-
-  class Response {
-    /**
-     * @param {CompiledMode} mode
-     */
-    constructor(mode) {
-      // eslint-disable-next-line no-undefined
-      if (mode.data === undefined) mode.data = {};
-
-      this.data = mode.data;
-      this.isMatchIgnored = false;
-    }
-
-    ignoreMatch() {
-      this.isMatchIgnored = true;
-    }
-  }
-
-  /**
-   * @param {string} value
-   * @returns {string}
-   */
-  function escapeHTML(value) {
-    return value
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#x27;");
-  }
-
-  /**
-   * performs a shallow merge of multiple objects into one
-   *
-   * @template T
-   * @param {T} original
-   * @param {Record<string,any>[]} objects
-   * @returns {T} a single new object
-   */
-  function inherit$1(original, ...objects) {
-    /** @type Record<string,any> */
-    const result = Object.create(null);
-
-    for (const key in original) {
-      result[key] = original[key];
-    }
-    objects.forEach(function (obj) {
-      for (const key in obj) {
-        result[key] = obj[key];
-      }
-    });
-    return /** @type {T} */ (result);
-  }
-
-  /**
-   * @typedef {object} Renderer
-   * @property {(text: string) => void} addText
-   * @property {(node: Node) => void} openNode
-   * @property {(node: Node) => void} closeNode
-   * @property {() => string} value
-   */
-
-  /** @typedef {{scope?: string, language?: string, sublanguage?: boolean}} Node */
-  /** @typedef {{walk: (r: Renderer) => void}} Tree */
-  /** */
-
-  const SPAN_CLOSE = "</span>";
-
-  /**
-   * Determines if a node needs to be wrapped in <span>
-   *
-   * @param {Node} node */
-  const emitsWrappingTags = (node) => {
-    // rarely we can have a sublanguage where language is undefined
-    // TODO: track down why
-    return !!node.scope;
-  };
-
-  /**
-   *
-   * @param {string} name
-   * @param {{prefix:string}} options
-   */
-  const scopeToCSSClass = (name, { prefix }) => {
-    // sub-language
-    if (name.startsWith("language:")) {
-      return name.replace("language:", "language-");
-    }
-    // tiered scope: comment.line
-    if (name.includes(".")) {
-      const pieces = name.split(".");
-      return [
-        `${prefix}${pieces.shift()}`,
-        ...pieces.map((x, i) => `${x}${"_".repeat(i + 1)}`),
-      ].join(" ");
-    }
-    // simple scope
-    return `${prefix}${name}`;
-  };
-
-  /** @type {Renderer} */
-  class HTMLRenderer {
-    /**
-     * Creates a new HTMLRenderer
-     *
-     * @param {Tree} parseTree - the parse tree (must support `walk` API)
-     * @param {{classPrefix: string}} options
-     */
-    constructor(parseTree, options) {
-      this.buffer = "";
-      this.classPrefix = options.classPrefix;
-      parseTree.walk(this);
-    }
-
-    /**
-     * Adds texts to the output stream
-     *
-     * @param {string} text */
-    addText(text) {
-      this.buffer += escapeHTML(text);
-    }
-
-    /**
-     * Adds a node open to the output stream (if needed)
-     *
-     * @param {Node} node */
-    openNode(node) {
-      if (!emitsWrappingTags(node)) return;
-
-      const className = scopeToCSSClass(node.scope, {
-        prefix: this.classPrefix,
-      });
-      this.span(className);
-    }
-
-    /**
-     * Adds a node close to the output stream (if needed)
-     *
-     * @param {Node} node */
-    closeNode(node) {
-      if (!emitsWrappingTags(node)) return;
-
-      this.buffer += SPAN_CLOSE;
-    }
-
-    /**
-     * returns the accumulated buffer
-     */
-    value() {
-      return this.buffer;
-    }
-
-    // helpers
-
-    /**
-     * Builds a span element
-     *
-     * @param {string} className */
-    span(className) {
-      this.buffer += `<span class="${className}">`;
-    }
-  }
-
-  /** @typedef {{scope?: string, language?: string, children: Node[]} | string} Node */
-  /** @typedef {{scope?: string, language?: string, children: Node[]} } DataNode */
-  /** @typedef {import('highlight.js').Emitter} Emitter */
-  /**  */
-
-  /** @returns {DataNode} */
-  const newNode = (opts = {}) => {
-    /** @type DataNode */
-    const result = { children: [] };
-    Object.assign(result, opts);
-    return result;
-  };
-
-  class TokenTree {
-    constructor() {
-      /** @type DataNode */
-      this.rootNode = newNode();
-      this.stack = [this.rootNode];
-    }
-
-    get top() {
-      return this.stack[this.stack.length - 1];
-    }
-
-    get root() {
-      return this.rootNode;
-    }
-
-    /** @param {Node} node */
-    add(node) {
-      this.top.children.push(node);
-    }
-
-    /** @param {string} scope */
-    openNode(scope) {
-      /** @type Node */
-      const node = newNode({ scope });
-      this.add(node);
-      this.stack.push(node);
-    }
-
-    closeNode() {
-      if (this.stack.length > 1) {
-        return this.stack.pop();
-      }
-      // eslint-disable-next-line no-undefined
-      return undefined;
-    }
-
-    closeAllNodes() {
-      while (this.closeNode());
-    }
-
-    toJSON() {
-      return JSON.stringify(this.rootNode, null, 4);
-    }
-
-    /**
-     * @typedef { import("./html_renderer").Renderer } Renderer
-     * @param {Renderer} builder
-     */
-    walk(builder) {
-      // this does not
-      return this.constructor._walk(builder, this.rootNode);
-      // this works
-      // return TokenTree._walk(builder, this.rootNode);
-    }
-
-    /**
-     * @param {Renderer} builder
-     * @param {Node} node
-     */
-    static _walk(builder, node) {
-      if (typeof node === "string") {
-        builder.addText(node);
-      } else if (node.children) {
-        builder.openNode(node);
-        node.children.forEach((child) => this._walk(builder, child));
-        builder.closeNode(node);
-      }
-      return builder;
-    }
-
-    /**
-     * @param {Node} node
-     */
-    static _collapse(node) {
-      if (typeof node === "string") return;
-      if (!node.children) return;
-
-      if (node.children.every((el) => typeof el === "string")) {
-        // node.text = node.children.join("");
-        // delete node.children;
-        node.children = [node.children.join("")];
-      } else {
-        node.children.forEach((child) => {
-          TokenTree._collapse(child);
-        });
-      }
-    }
-  }
-
-  /**
-    Currently this is all private API, but this is the minimal API necessary
-    that an Emitter must implement to fully support the parser.
-
-    Minimal interface:
-
-    - addText(text)
-    - addSublanguage(emitter, subLanguageName)
-    - startScope(scope)
-    - endScope()
-    - finalize()
-    - toHTML()
-
-  */
-
-  /**
-   * @implements {Emitter}
-   */
-  class TokenTreeEmitter extends TokenTree {
-    /**
-     * @param {*} options
-     */
-    constructor(options) {
-      super();
-      this.options = options;
-    }
-
-    /**
-     * @param {string} text
-     */
-    addText(text) {
-      if (text === "") {
-        return;
-      }
-
-      this.add(text);
-    }
-
-    /** @param {string} scope */
-    startScope(scope) {
-      this.openNode(scope);
-    }
-
-    endScope() {
-      this.closeNode();
-    }
-
-    /**
-     * @param {Emitter & {root: DataNode}} emitter
-     * @param {string} name
-     */
-    addSublanguage(emitter, name) {
-      /** @type DataNode */
-      const node = emitter.root;
-      if (name) node.scope = `language:${name}`;
-
-      this.add(node);
-    }
-
-    toHTML() {
-      const renderer = new HTMLRenderer(this, this.options);
-      return renderer.value();
-    }
-
-    finalize() {
-      this.closeAllNodes();
-      return true;
-    }
-  }
-
-  /**
-   * @param {string} value
-   * @returns {RegExp}
-   * */
-
-  /**
-   * @param {RegExp | string } re
-   * @returns {string}
-   */
-  function source(re) {
-    if (!re) return null;
-    if (typeof re === "string") return re;
-
-    return re.source;
-  }
-
-  /**
-   * @param {RegExp | string } re
-   * @returns {string}
-   */
-  function lookahead(re) {
-    return concat("(?=", re, ")");
-  }
-
-  /**
-   * @param {RegExp | string } re
-   * @returns {string}
-   */
-  function anyNumberOfTimes(re) {
-    return concat("(?:", re, ")*");
-  }
-
-  /**
-   * @param {RegExp | string } re
-   * @returns {string}
-   */
-  function optional(re) {
-    return concat("(?:", re, ")?");
-  }
-
-  /**
-   * @param {...(RegExp | string) } args
-   * @returns {string}
-   */
-  function concat(...args) {
-    const joined = args.map((x) => source(x)).join("");
-    return joined;
-  }
-
-  /**
-   * @param { Array<string | RegExp | Object> } args
-   * @returns {object}
-   */
-  function stripOptionsFromArgs(args) {
-    const opts = args[args.length - 1];
-
-    if (typeof opts === "object" && opts.constructor === Object) {
-      args.splice(args.length - 1, 1);
-      return opts;
-    } else {
-      return {};
-    }
-  }
-
-  /** @typedef { {capture?: boolean} } RegexEitherOptions */
-
-  /**
-   * Any of the passed expresssions may match
-   *
-   * Creates a huge this | this | that | that match
-   * @param {(RegExp | string)[] | [...(RegExp | string)[], RegexEitherOptions]} args
-   * @returns {string}
-   */
-  function either(...args) {
-    /** @type { object & {capture?: boolean} }  */
-    const opts = stripOptionsFromArgs(args);
-    const joined =
-      "(" +
-      (opts.capture ? "" : "?:") +
-      args.map((x) => source(x)).join("|") +
-      ")";
-    return joined;
-  }
-
-  /**
-   * @param {RegExp | string} re
-   * @returns {number}
-   */
-  function countMatchGroups(re) {
-    return new RegExp(re.toString() + "|").exec("").length - 1;
-  }
-
-  /**
-   * Does lexeme start with a regular expression match at the beginning
-   * @param {RegExp} re
-   * @param {string} lexeme
-   */
-  function startsWith(re, lexeme) {
-    const match = re && re.exec(lexeme);
-    return match && match.index === 0;
-  }
-
-  // BACKREF_RE matches an open parenthesis or backreference. To avoid
-  // an incorrect parse, it additionally matches the following:
-  // - [...] elements, where the meaning of parentheses and escapes change
-  // - other escape sequences, so we do not misparse escape sequences as
-  //   interesting elements
-  // - non-matching or lookahead parentheses, which do not capture. These
-  //   follow the '(' with a '?'.
-  const BACKREF_RE = /\[(?:[^\\\]]|\\.)*\]|\(\??|\\([1-9][0-9]*)|\\./;
-
-  // **INTERNAL** Not intended for outside usage
-  // join logically computes regexps.join(separator), but fixes the
-  // backreferences so they continue to match.
-  // it also places each individual regular expression into it's own
-  // match group, keeping track of the sequencing of those match groups
-  // is currently an exercise for the caller. :-)
-  /**
-   * @param {(string | RegExp)[]} regexps
-   * @param {{joinWith: string}} opts
-   * @returns {string}
-   */
-  function _rewriteBackreferences(regexps, { joinWith }) {
-    let numCaptures = 0;
-
-    return regexps
-      .map((regex) => {
-        numCaptures += 1;
-        const offset = numCaptures;
-        let re = source(regex);
-        let out = "";
-
-        while (re.length > 0) {
-          const match = BACKREF_RE.exec(re);
-          if (!match) {
-            out += re;
-            break;
-          }
-          out += re.substring(0, match.index);
-          re = re.substring(match.index + match[0].length);
-          if (match[0][0] === "\\" && match[1]) {
-            // Adjust the backreference.
-            out += "\\" + String(Number(match[1]) + offset);
-          } else {
-            out += match[0];
-            if (match[0] === "(") {
-              numCaptures++;
-            }
-          }
-        }
-        return out;
-      })
-      .map((re) => `(${re})`)
-      .join(joinWith);
-  }
-
-  /** @typedef {import('highlight.js').Mode} Mode */
-  /** @typedef {import('highlight.js').ModeCallback} ModeCallback */
-
-  // Common regexps
-  const MATCH_NOTHING_RE = /\b\B/;
-  const IDENT_RE = "[a-zA-Z]\\w*";
-  const UNDERSCORE_IDENT_RE = "[a-zA-Z_]\\w*";
-  const NUMBER_RE = "\\b\\d+(\\.\\d+)?";
-  const C_NUMBER_RE =
-    "(-?)(\\b0[xX][a-fA-F0-9]+|(\\b\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)"; // 0x..., 0..., decimal, float
-  const BINARY_NUMBER_RE = "\\b(0b[01]+)"; // 0b...
-  const RE_STARTERS_RE =
-    "!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|-|-=|/=|/|:|;|<<|<<=|<=|<|===|==|=|>>>=|>>=|>=|>>>|>>|>|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";
-
-  /**
-   * @param { Partial<Mode> & {binary?: string | RegExp} } opts
-   */
-  const SHEBANG = (opts = {}) => {
-    const beginShebang = /^#![ ]*\//;
-    if (opts.binary) {
-      opts.begin = concat(beginShebang, /.*\b/, opts.binary, /\b.*/);
-    }
-    return inherit$1(
-      {
-        scope: "meta",
-        begin: beginShebang,
-        end: /$/,
-        relevance: 0,
-        /** @type {ModeCallback} */
-        "on:begin": (m, resp) => {
-          if (m.index !== 0) resp.ignoreMatch();
-        },
-      },
-      opts,
-    );
-  };
-
-  // Common modes
-  const BACKSLASH_ESCAPE = {
-    begin: "\\\\[\\s\\S]",
-    relevance: 0,
-  };
-  const APOS_STRING_MODE = {
-    scope: "string",
-    begin: "'",
-    end: "'",
-    illegal: "\\n",
-    contains: [BACKSLASH_ESCAPE],
-  };
-  const QUOTE_STRING_MODE = {
-    scope: "string",
-    begin: '"',
-    end: '"',
-    illegal: "\\n",
-    contains: [BACKSLASH_ESCAPE],
-  };
-  const PHRASAL_WORDS_MODE = {
-    begin:
-      /\b(a|an|the|are|I'm|isn't|don't|doesn't|won't|but|just|should|pretty|simply|enough|gonna|going|wtf|so|such|will|you|your|they|like|more)\b/,
-  };
-  /**
-   * Creates a comment mode
-   *
-   * @param {string | RegExp} begin
-   * @param {string | RegExp} end
-   * @param {Mode | {}} [modeOptions]
-   * @returns {Partial<Mode>}
-   */
-  const COMMENT = function (begin, end, modeOptions = {}) {
-    const mode = inherit$1(
-      {
-        scope: "comment",
-        begin,
-        end,
-        contains: [],
-      },
-      modeOptions,
-    );
-    mode.contains.push({
-      scope: "doctag",
-      // hack to avoid the space from being included. the space is necessary to
-      // match here to prevent the plain text rule below from gobbling up doctags
-      begin: "[ ]*(?=(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):)",
-      end: /(TODO|FIXME|NOTE|BUG|OPTIMIZE|HACK|XXX):/,
-      excludeBegin: true,
-      relevance: 0,
-    });
-    const ENGLISH_WORD = either(
-      // list of common 1 and 2 letter words in English
-      "I",
-      "a",
-      "is",
-      "so",
-      "us",
-      "to",
-      "at",
-      "if",
-      "in",
-      "it",
-      "on",
-      // note: this is not an exhaustive list of contractions, just popular ones
-      /[A-Za-z]+['](d|ve|re|ll|t|s|n)/, // contractions - can't we'd they're let's, etc
-      /[A-Za-z]+[-][a-z]+/, // `no-way`, etc.
-      /[A-Za-z][a-z]{2,}/, // allow capitalized words at beginning of sentences
-    );
-    // looking like plain text, more likely to be a comment
-    mode.contains.push({
-      // TODO: how to include ", (, ) without breaking grammars that use these for
-      // comment delimiters?
-      // begin: /[ ]+([()"]?([A-Za-z'-]{3,}|is|a|I|so|us|[tT][oO]|at|if|in|it|on)[.]?[()":]?([.][ ]|[ ]|\))){3}/
-      // ---
-
-      // this tries to find sequences of 3 english words in a row (without any
-      // "programming" type syntax) this gives us a strong signal that we've
-      // TRULY found a comment - vs perhaps scanning with the wrong language.
-      // It's possible to find something that LOOKS like the start of the
-      // comment - but then if there is no readable text - good chance it is a
-      // false match and not a comment.
-      //
-      // for a visual example please see:
-      // https://github.com/highlightjs/highlight.js/issues/2827
-
-      begin: concat(
-        /[ ]+/, // necessary to prevent us gobbling up doctags like /* @author Bob Mcgill */
-        "(",
-        ENGLISH_WORD,
-        /[.]?[:]?([.][ ]|[ ])/,
-        "){3}",
-      ), // look for 3 words in a row
-    });
-    return mode;
-  };
-  const C_LINE_COMMENT_MODE = COMMENT("//", "$");
-  const C_BLOCK_COMMENT_MODE = COMMENT("/\\*", "\\*/");
-  const HASH_COMMENT_MODE = COMMENT("#", "$");
-  const NUMBER_MODE = {
-    scope: "number",
-    begin: NUMBER_RE,
-    relevance: 0,
-  };
-  const C_NUMBER_MODE = {
-    scope: "number",
-    begin: C_NUMBER_RE,
-    relevance: 0,
-  };
-  const BINARY_NUMBER_MODE = {
-    scope: "number",
-    begin: BINARY_NUMBER_RE,
-    relevance: 0,
-  };
-  const REGEXP_MODE = {
-    scope: "regexp",
-    begin: /\/(?=[^/\n]*\/)/,
-    end: /\/[gimuy]*/,
-    contains: [
-      BACKSLASH_ESCAPE,
-      {
-        begin: /\[/,
-        end: /\]/,
-        relevance: 0,
-        contains: [BACKSLASH_ESCAPE],
-      },
-    ],
-  };
-  const TITLE_MODE = {
-    scope: "title",
-    begin: IDENT_RE,
-    relevance: 0,
-  };
-  const UNDERSCORE_TITLE_MODE = {
-    scope: "title",
-    begin: UNDERSCORE_IDENT_RE,
-    relevance: 0,
-  };
-  const METHOD_GUARD = {
-    // excludes method names from keyword processing
-    begin: "\\.\\s*" + UNDERSCORE_IDENT_RE,
-    relevance: 0,
-  };
-
-  /**
-   * Adds end same as begin mechanics to a mode
-   *
-   * Your mode must include at least a single () match group as that first match
-   * group is what is used for comparison
-   * @param {Partial<Mode>} mode
-   */
-  const END_SAME_AS_BEGIN = function (mode) {
-    return Object.assign(mode, {
-      /** @type {ModeCallback} */
-      "on:begin": (m, resp) => {
-        resp.data._beginMatch = m[1];
-      },
-      /** @type {ModeCallback} */
-      "on:end": (m, resp) => {
-        if (resp.data._beginMatch !== m[1]) resp.ignoreMatch();
-      },
-    });
-  };
-
-  var MODES = /*#PURE*/ Object.freeze({
-    proto: null,
-    APOS_STRING_MODE: APOS_STRING_MODE,
-    BACKSLASH_ESCAPE: BACKSLASH_ESCAPE,
-    BINARY_NUMBER_MODE: BINARY_NUMBER_MODE,
-    BINARY_NUMBER_RE: BINARY_NUMBER_RE,
-    COMMENT: COMMENT,
-    C_BLOCK_COMMENT_MODE: C_BLOCK_COMMENT_MODE,
-    C_LINE_COMMENT_MODE: C_LINE_COMMENT_MODE,
-    C_NUMBER_MODE: C_NUMBER_MODE,
-    C_NUMBER_RE: C_NUMBER_RE,
-    END_SAME_AS_BEGIN: END_SAME_AS_BEGIN,
-    HASH_COMMENT_MODE: HASH_COMMENT_MODE,
-    IDENT_RE: IDENT_RE,
-    MATCH_NOTHING_RE: MATCH_NOTHING_RE,
-    METHOD_GUARD: METHOD_GUARD,
-    NUMBER_MODE: NUMBER_MODE,
-    NUMBER_RE: NUMBER_RE,
-    PHRASAL_WORDS_MODE: PHRASAL_WORDS_MODE,
-    QUOTE_STRING_MODE: QUOTE_STRING_MODE,
-    REGEXP_MODE: REGEXP_MODE,
-    RE_STARTERS_RE: RE_STARTERS_RE,
-    SHEBANG: SHEBANG,
-    TITLE_MODE: TITLE_MODE,
-    UNDERSCORE_IDENT_RE: UNDERSCORE_IDENT_RE,
-    UNDERSCORE_TITLE_MODE: UNDERSCORE_TITLE_MODE,
-  });
-
-  /**
-  @typedef {import('highlight.js').CallbackResponse} CallbackResponse
-  @typedef {import('highlight.js').CompilerExt} CompilerExt
-  */
-
-  // Grammar extensions / plugins
-  // See: https://github.com/highlightjs/highlight.js/issues/2833
-
-  // Grammar extensions allow "syntactic sugar" to be added to the grammar modes
-  // without requiring any underlying changes to the compiler internals.
-
-  // `compileMatch` being the perfect small example of now allowing a grammar
-  // author to write `match` when they desire to match a single expression rather
-  // than being forced to use `begin`.  The extension then just moves `match` into
-  // `begin` when it runs.  Ie, no features have been added, but we've just made
-  // the experience of writing (and reading grammars) a little bit nicer.
-
-  // ------
-
-  // TODO: We need negative look-behind support to do this properly
-  /**
-   * Skip a match if it has a preceding dot
-   *
-   * This is used for `beginKeywords` to prevent matching expressions such as
-   * `bob.keyword.do()`. The mode compiler automatically wires this up as a
-   * special _internal_ 'on:begin' callback for modes with `beginKeywords`
-   * @param {RegExpMatchArray} match
-   * @param {CallbackResponse} response
-   */
-  function skipIfHasPrecedingDot(match, response) {
-    const before = match.input[match.index - 1];
-    if (before === ".") {
-      response.ignoreMatch();
-    }
-  }
-
-  /**
-   *
-   * @type {CompilerExt}
-   */
-  function scopeClassName(mode, _parent) {
-    // eslint-disable-next-line no-undefined
-    if (mode.className !== undefined) {
-      mode.scope = mode.className;
-      delete mode.className;
-    }
-  }
-
-  /**
-   * `beginKeywords` syntactic sugar
-   * @type {CompilerExt}
-   */
-  function beginKeywords(mode, parent) {
-    if (!parent) return;
-    if (!mode.beginKeywords) return;
-
-    // for languages with keywords that include non-word characters checking for
-    // a word boundary is not sufficient, so instead we check for a word boundary
-    // or whitespace - this does no harm in any case since our keyword engine
-    // doesn't allow spaces in keywords anyways and we still check for the boundary
-    // first
-    mode.begin =
-      "\\b(" + mode.beginKeywords.split(" ").join("|") + ")(?!\\.)(?=\\b|\\s)";
-    mode.beforeBegin = skipIfHasPrecedingDot;
-    mode.keywords = mode.keywords || mode.beginKeywords;
-    delete mode.beginKeywords;
-
-    // prevents double relevance, the keywords themselves provide
-    // relevance, the mode doesn't need to double it
-    // eslint-disable-next-line no-undefined
-    if (mode.relevance === undefined) mode.relevance = 0;
-  }
-
-  /**
-   * Allow `illegal` to contain an array of illegal values
-   * @type {CompilerExt}
-   */
-  function compileIllegal(mode, _parent) {
-    if (!Array.isArray(mode.illegal)) return;
-
-    mode.illegal = either(...mode.illegal);
-  }
-
-  /**
-   * `match` to match a single expression for readability
-   * @type {CompilerExt}
-   */
-  function compileMatch(mode, _parent) {
-    if (!mode.match) return;
-    if (mode.begin || mode.end)
-      throw new Error("begin & end are not supported with match");
-
-    mode.begin = mode.match;
-    delete mode.match;
-  }
-
-  /**
-   * provides the default 1 relevance to all modes
-   * @type {CompilerExt}
-   */
-  function compileRelevance(mode, _parent) {
-    // eslint-disable-next-line no-undefined
-    if (mode.relevance === undefined) mode.relevance = 1;
-  }
-
-  // allow beforeMatch to act as a "qualifier" for the match
-  // the full match begin must be [beforeMatch][begin]
-  const beforeMatchExt = (mode, parent) => {
-    if (!mode.beforeMatch) return;
-    // starts conflicts with endsParent which we need to make sure the child
-    // rule is not matched multiple times
-    if (mode.starts) throw new Error("beforeMatch cannot be used with starts");
-
-    const originalMode = Object.assign({}, mode);
-    Object.keys(mode).forEach((key) => {
-      delete mode[key];
-    });
-
-    mode.keywords = originalMode.keywords;
-    mode.begin = concat(
-      originalMode.beforeMatch,
-      lookahead(originalMode.begin),
-    );
-    mode.starts = {
-      relevance: 0,
-      contains: [Object.assign(originalMode, { endsParent: true })],
-    };
-    mode.relevance = 0;
-
-    delete originalMode.beforeMatch;
-  };
-
-  // keywords that should have no default relevance value
-  const COMMON_KEYWORDS = [
-    "of",
-    "and",
-    "for",
-    "in",
-    "not",
-    "or",
-    "if",
-    "then",
-    "parent", // common variable name
-    "list", // common variable name
-    "value", // common variable name
-  ];
-
-  const DEFAULT_KEYWORD_SCOPE = "keyword";
-
-  /**
-   * Given raw keywords from a language definition, compile them.
-   *
-   * @param {string | Record<string,string|string[]> | Array<string>} rawKeywords
-   * @param {boolean} caseInsensitive
-   */
-  function compileKeywords(
-    rawKeywords,
-    caseInsensitive,
-    scopeName = DEFAULT_KEYWORD_SCOPE,
-  ) {
-    /** @type {import("highlight.js/private").KeywordDict} */
-    const compiledKeywords = Object.create(null);
-
-    // input can be a string of keywords, an array of keywords, or a object with
-    // named keys representing scopeName (which can then point to a string or array)
-    if (typeof rawKeywords === "string") {
-      compileList(scopeName, rawKeywords.split(" "));
-    } else if (Array.isArray(rawKeywords)) {
-      compileList(scopeName, rawKeywords);
-    } else {
-      Object.keys(rawKeywords).forEach(function (scopeName) {
-        // collapse all our objects back into the parent object
-        Object.assign(
-          compiledKeywords,
-          compileKeywords(rawKeywords[scopeName], caseInsensitive, scopeName),
-        );
-      });
-    }
-    return compiledKeywords;
-
-    // ---
-
-    /**
-     * Compiles an individual list of keywords
-     *
-     * Ex: "for if when while|5"
-     *
-     * @param {string} scopeName
-     * @param {Array<string>} keywordList
-     */
-    function compileList(scopeName, keywordList) {
-      if (caseInsensitive) {
-        keywordList = keywordList.map((x) => x.toLowerCase());
-      }
-      keywordList.forEach(function (keyword) {
-        const pair = keyword.split("|");
-        compiledKeywords[pair[0]] = [
-          scopeName,
-          scoreForKeyword(pair[0], pair[1]),
-        ];
-      });
-    }
-  }
-
-  /**
-   * Returns the proper score for a given keyword
-   *
-   * Also takes into account comment keywords, which will be scored 0 UNLESS
-   * another score has been manually assigned.
-   * @param {string} keyword
-   * @param {string} [providedScore]
-   */
-  function scoreForKeyword(keyword, providedScore) {
-    // manual scores always win over common keywords
-    // so you can force a score of 1 if you really insist
-    if (providedScore) {
-      return Number(providedScore);
-    }
-
-    return commonKeyword(keyword) ? 0 : 1;
-  }
-
-  /**
-   * Determines if a given keyword is common or not
-   *
-   * @param {string} keyword */
-  function commonKeyword(keyword) {
-    return COMMON_KEYWORDS.includes(keyword.toLowerCase());
-  }
-
-  /*
-
-  For the reasoning behind this please see:
-  https://github.com/highlightjs/highlight.js/issues/2880#issuecomment-747275419
-
-  */
-
-  /**
-   * @type {Record<string, boolean>}
-   */
-  const seenDeprecations = {};
-
-  /**
-   * @param {string} message
-   */
-  const error = (message) => {
-    console.error(message);
-  };
-
-  /**
-   * @param {string} message
-   * @param {any} args
-   */
-  const warn = (message, ...args) => {
-    console.log(`WARN: ${message}`, ...args);
-  };
-
-  /**
-   * @param {string} version
-   * @param {string} message
-   */
-  const deprecated = (version, message) => {
-    if (seenDeprecations[`${version}/${message}`]) return;
-
-    console.log(`Deprecated as of ${version}. ${message}`);
-    seenDeprecations[`${version}/${message}`] = true;
-  };
-
-  /* eslint-disable no-throw-literal */
-
-  /**
-  @typedef {import('highlight.js').CompiledMode} CompiledMode
-  */
-
-  const MultiClassError = new Error();
-
-  /**
-   * Renumbers labeled scope names to account for additional inner match
-   * groups that otherwise would break everything.
-   *
-   * Lets say we 3 match scopes:
-   *
-   *   { 1 => ..., 2 => ..., 3 => ... }
-   *
-   * So what we need is a clean match like this:
-   *
-   *   (a)(b)(c) => [ "a", "b", "c" ]
-   *
-   * But this falls apart with inner match groups:
-   *
-   * (a)(((b)))(c) => ["a", "b", "b", "b", "c" ]
-   *
-   * Our scopes are now "out of alignment" and we're repeating `b` 3 times.
-   * What needs to happen is the numbers are remapped:
-   *
-   *   { 1 => ..., 2 => ..., 5 => ... }
-   *
-   * We also need to know that the ONLY groups that should be output
-   * are 1, 2, and 5.  This function handles this behavior.
-   *
-   * @param {CompiledMode} mode
-   * @param {Array<RegExp | string>} regexes
-   * @param {{key: "beginScope"|"endScope"}} opts
-   */
-  function remapScopeNames(mode, regexes, { key }) {
-    let offset = 0;
-    const scopeNames = mode[key];
-    /** @type Record<number,boolean> */
-    const emit = {};
-    /** @type Record<number,string> */
-    const positions = {};
-
-    for (let i = 1; i <= regexes.length; i++) {
-      positions[i + offset] = scopeNames[i];
-      emit[i + offset] = true;
-      offset += countMatchGroups(regexes[i - 1]);
-    }
-    // we use _emit to keep track of which match groups are "top-level" to avoid double
-    // output from inside match groups
-    mode[key] = positions;
-    mode[key]._emit = emit;
-    mode[key]._multi = true;
-  }
-
-  /**
-   * @param {CompiledMode} mode
-   */
-  function beginMultiClass(mode) {
-    if (!Array.isArray(mode.begin)) return;
-
-    if (mode.skip || mode.excludeBegin || mode.returnBegin) {
-      error(
-        "skip, excludeBegin, returnBegin not compatible with beginScope: {}",
-      );
-      throw MultiClassError;
-    }
-
-    if (typeof mode.beginScope !== "object" || mode.beginScope === null) {
-      error("beginScope must be object");
-      throw MultiClassError;
-    }
-
-    remapScopeNames(mode, mode.begin, { key: "beginScope" });
-    mode.begin = _rewriteBackreferences(mode.begin, { joinWith: "" });
-  }
-
-  /**
-   * @param {CompiledMode} mode
-   */
-  function endMultiClass(mode) {
-    if (!Array.isArray(mode.end)) return;
-
-    if (mode.skip || mode.excludeEnd || mode.returnEnd) {
-      error("skip, excludeEnd, returnEnd not compatible with endScope: {}");
-      throw MultiClassError;
-    }
-
-    if (typeof mode.endScope !== "object" || mode.endScope === null) {
-      error("endScope must be object");
-      throw MultiClassError;
-    }
-
-    remapScopeNames(mode, mode.end, { key: "endScope" });
-    mode.end = _rewriteBackreferences(mode.end, { joinWith: "" });
-  }
-
-  /**
-   * this exists only to allow `scope: {}` to be used beside `match:`
-   * Otherwise `beginScope` would necessary and that would look weird
-
-    {
-      match: [ /def/, /\w+/ ]
-      scope: { 1: "keyword" , 2: "title" }
-    }
-
-   * @param {CompiledMode} mode
-   */
-  function scopeSugar(mode) {
-    if (mode.scope && typeof mode.scope === "object" && mode.scope !== null) {
-      mode.beginScope = mode.scope;
-      delete mode.scope;
-    }
-  }
-
-  /**
-   * @param {CompiledMode} mode
-   */
-  function MultiClass(mode) {
-    scopeSugar(mode);
-
-    if (typeof mode.beginScope === "string") {
-      mode.beginScope = { _wrap: mode.beginScope };
-    }
-    if (typeof mode.endScope === "string") {
-      mode.endScope = { _wrap: mode.endScope };
-    }
-
-    beginMultiClass(mode);
-    endMultiClass(mode);
-  }
-
-  /**
-  @typedef {import('highlight.js').Mode} Mode
-  @typedef {import('highlight.js').CompiledMode} CompiledMode
-  @typedef {import('highlight.js').Language} Language
-  @typedef {import('highlight.js').HLJSPlugin} HLJSPlugin
-  @typedef {import('highlight.js').CompiledLanguage} CompiledLanguage
-  */
-
-  // compilation
-
-  /**
-   * Compiles a language definition result
-   *
-   * Given the raw result of a language definition (Language), compiles this so
-   * that it is ready for highlighting code.
-   * @param {Language} language
-   * @returns {CompiledLanguage}
-   */
-  function compileLanguage(language) {
-    /**
-     * Builds a regex with the case sensitivity of the current language
-     *
-     * @param {RegExp | string} value
-     * @param {boolean} [global]
-     */
-    function langRe(value, global) {
-      return new RegExp(
-        source(value),
-        "m" +
-          (language.case_insensitive ? "i" : "") +
-          (language.unicodeRegex ? "u" : "") +
-          (global ? "g" : ""),
-      );
-    }
-
-    /**
-      Stores multiple regular expressions and allows you to quickly search for
-      them all in a string simultaneously - returning the first match.  It does
-      this by creating a huge (a|b|c) regex - each individual item wrapped with ()
-      and joined by `|` - using match groups to track position.  When a match is
-      found checking which position in the array has content allows us to figure
-      out which of the original regexes / match groups triggered the match.
-
-      The match object itself (the result of `Regex.exec`) is returned but also
-      enhanced by merging in any meta-data that was registered with the regex.
-      This is how we keep track of which mode matched, and what type of rule
-      (`illegal`, `begin`, end, etc).
-    */
-    class MultiRegex {
-      constructor() {
-        this.matchIndexes = {};
-        // @ts-ignore
-        this.regexes = [];
-        this.matchAt = 1;
-        this.position = 0;
-      }
-
-      // @ts-ignore
-      addRule(re, opts) {
-        opts.position = this.position++;
-        // @ts-ignore
-        this.matchIndexes[this.matchAt] = opts;
-        this.regexes.push([opts, re]);
-        this.matchAt += countMatchGroups(re) + 1;
-      }
-
-      compile() {
-        if (this.regexes.length === 0) {
-          // avoids the need to check length every time exec is called
-          // @ts-ignore
-          this.exec = () => null;
-        }
-        const terminators = this.regexes.map((el) => el[1]);
-        this.matcherRe = langRe(
-          _rewriteBackreferences(terminators, { joinWith: "|" }),
-          true,
-        );
-        this.lastIndex = 0;
-      }
-
-      /** @param {string} s */
-      exec(s) {
-        this.matcherRe.lastIndex = this.lastIndex;
-        const match = this.matcherRe.exec(s);
-        if (!match) {
-          return null;
-        }
-
-        // eslint-disable-next-line no-undefined
-        const i = match.findIndex((el, i) => i > 0 && el !== undefined);
-        // @ts-ignore
-        const matchData = this.matchIndexes[i];
-        // trim off any earlier non-relevant match groups (ie, the other regex
-        // match groups that make up the multi-matcher)
-        match.splice(0, i);
-
-        return Object.assign(match, matchData);
-      }
-    }
-
-    /*
-      Created to solve the key deficiently with MultiRegex - there is no way to
-      test for multiple matches at a single location.  Why would we need to do
-      that?  In the future a more dynamic engine will allow certain matches to be
-      ignored.  An example: if we matched say the 3rd regex in a large group but
-      decided to ignore it - we'd need to started testing again at the 4th
-      regex... but MultiRegex itself gives us no real way to do that.
-
-      So what this class creates MultiRegexs on the fly for whatever search
-      position they are needed.
-
-      NOTE: These additional MultiRegex objects are created dynamically.  For most
-      grammars most of the time we will never actually need anything more than the
-      first MultiRegex - so this shouldn't have too much overhead.
-
-      Say this is our search group, and we match regex3, but wish to ignore it.
-
-        regex1 | regex2 | regex3 | regex4 | regex5    ' ie, startAt = 0
-
-      What we need is a new MultiRegex that only includes the remaining
-      possibilities:
-
-        regex4 | regex5                               ' ie, startAt = 3
-
-      This class wraps all that complexity up in a simple API... `startAt` decides
-      where in the array of expressions to start doing the matching. It
-      auto-increments, so if a match is found at position 2, then startAt will be
-      set to 3.  If the end is reached startAt will return to 0.
-
-      MOST of the time the parser will be setting startAt manually to 0.
-    */
-    class ResumableMultiRegex {
-      constructor() {
-        // @ts-ignore
-        this.rules = [];
-        // @ts-ignore
-        this.multiRegexes = [];
-        this.count = 0;
-
-        this.lastIndex = 0;
-        this.regexIndex = 0;
-      }
-
-      // @ts-ignore
-      getMatcher(index) {
-        if (this.multiRegexes[index]) return this.multiRegexes[index];
-
-        const matcher = new MultiRegex();
-        this.rules
-          .slice(index)
-          .forEach(([re, opts]) => matcher.addRule(re, opts));
-        matcher.compile();
-        this.multiRegexes[index] = matcher;
-        return matcher;
-      }
-
-      resumingScanAtSamePosition() {
-        return this.regexIndex !== 0;
-      }
-
-      considerAll() {
-        this.regexIndex = 0;
-      }
-
-      // @ts-ignore
-      addRule(re, opts) {
-        this.rules.push([re, opts]);
-        if (opts.type === "begin") this.count++;
-      }
-
-      /** @param {string} s */
-      exec(s) {
-        const m = this.getMatcher(this.regexIndex);
-        m.lastIndex = this.lastIndex;
-        let result = m.exec(s);
-
-        // The following is because we have no easy way to say "resume scanning at the
-        // existing position but also skip the current rule ONLY". What happens is
-        // all prior rules are also skipped which can result in matching the wrong
-        // thing. Example of matching "booger":
-
-        // our matcher is [string, "booger", number]
-        //
-        // ....booger....
-
-        // if "booger" is ignored then we'd really need a regex to scan from the
-        // SAME position for only: [string, number] but ignoring "booger" (if it
-        // was the first match), a simple resume would scan ahead who knows how
-        // far looking only for "number", ignoring potential string matches (or
-        // future "booger" matches that might be valid.)
-
-        // So what we do: We execute two matchers, one resuming at the same
-        // position, but the second full matcher starting at the position after:
-
-        //     /--- resume first regex match here (for [number])
-        //     |/---- full match here for [string, "booger", number]
-        //     vv
-        // ....booger....
-
-        // Which ever results in a match first is then used. So this 3-4 step
-        // process essentially allows us to say "match at this position, excluding
-        // a prior rule that was ignored".
-        //
-        // 1. Match "booger" first, ignore. Also proves that [string] does non match.
-        // 2. Resume matching for [number]
-        // 3. Match at index + 1 for [string, "booger", number]
-        // 4. If #2 and #3 result in matches, which came first?
-        if (this.resumingScanAtSamePosition()) {
-          if (result && result.index === this.lastIndex);
-          else {
-            // use the second matcher result
-            const m2 = this.getMatcher(0);
-            m2.lastIndex = this.lastIndex + 1;
-            result = m2.exec(s);
-          }
-        }
-
-        if (result) {
-          this.regexIndex += result.position + 1;
-          if (this.regexIndex === this.count) {
-            // wrap-around to considering all matches again
-            this.considerAll();
-          }
-        }
-
-        return result;
-      }
-    }
-
-    /**
-     * Given a mode, builds a huge ResumableMultiRegex that can be used to walk
-     * the content and find matches.
-     *
-     * @param {CompiledMode} mode
-     * @returns {ResumableMultiRegex}
-     */
-    function buildModeRegex(mode) {
-      const mm = new ResumableMultiRegex();
-
-      mode.contains.forEach((term) =>
-        mm.addRule(term.begin, { rule: term, type: "begin" }),
-      );
-
-      if (mode.terminatorEnd) {
-        mm.addRule(mode.terminatorEnd, { type: "end" });
-      }
-      if (mode.illegal) {
-        mm.addRule(mode.illegal, { type: "illegal" });
-      }
-
-      return mm;
-    }
-
-    /** skip vs abort vs ignore
-     *
-     * @skip   - The mode is still entered and exited normally (and contains rules apply),
-     *           but all content is held and added to the parent buffer rather than being
-     *           output when the mode ends.  Mostly used with `sublanguage` to build up
-     *           a single large buffer than can be parsed by sublanguage.
-     *
-     *             - The mode begin ands ends normally.
-     *             - Content matched is added to the parent mode buffer.
-     *             - The parser cursor is moved forward normally.
-     *
-     * @abort  - A hack placeholder until we have ignore.  Aborts the mode (as if it
-     *           never matched) but DOES NOT continue to match subsequent `contains`
-     *           modes.  Abort is bad/suboptimal because it can result in modes
-     *           farther down not getting applied because an earlier rule eats the
-     *           content but then aborts.
-     *
-     *             - The mode does not begin.
-     *             - Content matched by `begin` is added to the mode buffer.
-     *             - The parser cursor is moved forward accordingly.
-     *
-     * @ignore - Ignores the mode (as if it never matched) and continues to match any
-     *           subsequent `contains` modes.  Ignore isn't technically possible with
-     *           the current parser implementation.
-     *
-     *             - The mode does not begin.
-     *             - Content matched by `begin` is ignored.
-     *             - The parser cursor is not moved forward.
-     */
-
-    /**
-     * Compiles an individual mode
-     *
-     * This can raise an error if the mode contains certain detectable known logic
-     * issues.
-     * @param {Mode} mode
-     * @param {CompiledMode | null} [parent]
-     * @returns {CompiledMode | never}
-     */
-    function compileMode(mode, parent) {
-      const cmode = /** @type CompiledMode */ (mode);
-      if (mode.isCompiled) return cmode;
-
-      [
-        scopeClassName,
-        // do this early so compiler extensions generally don't have to worry about
-        // the distinction between match/begin
-        compileMatch,
-        MultiClass,
-        beforeMatchExt,
-      ].forEach((ext) => ext(mode, parent));
-
-      language.compilerExtensions.forEach((ext) => ext(mode, parent));
-
-      // beforeBegin is considered private API, internal use only
-      mode.beforeBegin = null;
-
-      [
-        beginKeywords,
-        // do this later so compiler extensions that come earlier have access to the
-        // raw array if they wanted to perhaps manipulate it, etc.
-        compileIllegal,
-        // default to 1 relevance if not specified
-        compileRelevance,
-      ].forEach((ext) => ext(mode, parent));
-
-      mode.isCompiled = true;
-
-      let keywordPattern = null;
-      if (typeof mode.keywords === "object" && mode.keywords.$pattern) {
-        // we need a copy because keywords might be compiled multiple times
-        // so we can't go deleting $pattern from the original on the first
-        // pass
-        mode.keywords = Object.assign({}, mode.keywords);
-        keywordPattern = mode.keywords.$pattern;
-        delete mode.keywords.$pattern;
-      }
-      keywordPattern = keywordPattern || /\w+/;
-
-      if (mode.keywords) {
-        mode.keywords = compileKeywords(
-          mode.keywords,
-          language.case_insensitive,
-        );
-      }
-
-      cmode.keywordPatternRe = langRe(keywordPattern, true);
-
-      if (parent) {
-        if (!mode.begin) mode.begin = /\B|\b/;
-        cmode.beginRe = langRe(cmode.begin);
-        if (!mode.end && !mode.endsWithParent) mode.end = /\B|\b/;
-        if (mode.end) cmode.endRe = langRe(cmode.end);
-        cmode.terminatorEnd = source(cmode.end) || "";
-        if (mode.endsWithParent && parent.terminatorEnd) {
-          cmode.terminatorEnd += (mode.end ? "|" : "") + parent.terminatorEnd;
-        }
-      }
-      if (mode.illegal)
-        cmode.illegalRe = langRe(/** @type {RegExp | string} */ (mode.illegal));
-      if (!mode.contains) mode.contains = [];
-
-      mode.contains = [].concat(
-        ...mode.contains.map(function (c) {
-          return expandOrCloneMode(c === "self" ? mode : c);
-        }),
-      );
-      mode.contains.forEach(function (c) {
-        compileMode(/** @type Mode */ (c), cmode);
-      });
-
-      if (mode.starts) {
-        compileMode(mode.starts, parent);
-      }
-
-      cmode.matcher = buildModeRegex(cmode);
-      return cmode;
-    }
-
-    if (!language.compilerExtensions) language.compilerExtensions = [];
-
-    // self is not valid at the top-level
-    if (language.contains && language.contains.includes("self")) {
-      throw new Error(
-        "ERR: contains `self` is not supported at the top-level of a language.  See documentation.",
-      );
-    }
-
-    // we need a null object, which inherit will guarantee
-    language.classNameAliases = inherit$1(language.classNameAliases || {});
-
-    return compileMode(/** @type Mode */ (language));
-  }
-
-  /**
-   * Determines if a mode has a dependency on it's parent or not
-   *
-   * If a mode does have a parent dependency then often we need to clone it if
-   * it's used in multiple places so that each copy points to the correct parent,
-   * where-as modes without a parent can often safely be re-used at the bottom of
-   * a mode chain.
-   *
-   * @param {Mode | null} mode
-   * @returns {boolean} - is there a dependency on the parent?
-   * */
-  function dependencyOnParent(mode) {
-    if (!mode) return false;
-
-    return mode.endsWithParent || dependencyOnParent(mode.starts);
-  }
-
-  /**
-   * Expands a mode or clones it if necessary
-   *
-   * This is necessary for modes with parental dependenceis (see notes on
-   * `dependencyOnParent`) and for nodes that have `variants` - which must then be
-   * exploded into their own individual modes at compile time.
-   *
-   * @param {Mode} mode
-   * @returns {Mode | Mode[]}
-   * */
-  function expandOrCloneMode(mode) {
-    if (mode.variants && !mode.cachedVariants) {
-      mode.cachedVariants = mode.variants.map(function (variant) {
-        return inherit$1(mode, { variants: null }, variant);
-      });
-    }
-
-    // EXPAND
-    // if we have variants then essentially "replace" the mode with the variants
-    // this happens in compileMode, where this function is called from
-    if (mode.cachedVariants) {
-      return mode.cachedVariants;
-    }
-
-    // CLONE
-    // if we have dependencies on parents then we need a unique
-    // instance of ourselves, so we can be reused with many
-    // different parents without issue
-    if (dependencyOnParent(mode)) {
-      return inherit$1(mode, {
-        starts: mode.starts ? inherit$1(mode.starts) : null,
-      });
-    }
-
-    if (Object.isFrozen(mode)) {
-      return inherit$1(mode);
-    }
-
-    // no special dependency issues, just return ourselves
-    return mode;
-  }
-
-  var version = "11.11.1";
-
-  class HTMLInjectionError extends Error {
-    constructor(reason, html) {
-      super(reason);
-      this.name = "HTMLInjectionError";
-      this.html = html;
-    }
-  }
-
-  /*
-  Syntax highlighting with language autodetection.
-  https://highlightjs.org/
-  */
-
-  /**
-  @typedef {import('highlight.js').Mode} Mode
-  @typedef {import('highlight.js').CompiledMode} CompiledMode
-  @typedef {import('highlight.js').CompiledScope} CompiledScope
-  @typedef {import('highlight.js').Language} Language
-  @typedef {import('highlight.js').HLJSApi} HLJSApi
-  @typedef {import('highlight.js').HLJSPlugin} HLJSPlugin
-  @typedef {import('highlight.js').PluginEvent} PluginEvent
-  @typedef {import('highlight.js').HLJSOptions} HLJSOptions
-  @typedef {import('highlight.js').LanguageFn} LanguageFn
-  @typedef {import('highlight.js').HighlightedHTMLElement} HighlightedHTMLElement
-  @typedef {import('highlight.js').BeforeHighlightContext} BeforeHighlightContext
-  @typedef {import('highlight.js/private').MatchType} MatchType
-  @typedef {import('highlight.js/private').KeywordData} KeywordData
-  @typedef {import('highlight.js/private').EnhancedMatch} EnhancedMatch
-  @typedef {import('highlight.js/private').AnnotatedError} AnnotatedError
-  @typedef {import('highlight.js').AutoHighlightResult} AutoHighlightResult
-  @typedef {import('highlight.js').HighlightOptions} HighlightOptions
-  @typedef {import('highlight.js').HighlightResult} HighlightResult
-  */
-
-  const escape = escapeHTML;
-  const inherit = inherit$1;
-  const NO_MATCH = Symbol("nomatch");
-  const MAX_KEYWORD_HITS = 7;
-
-  /**
-   * @param {any} hljs - object that is extended (legacy)
-   * @returns {HLJSApi}
-   */
-  const HLJS = function (hljs) {
-    // Global internal variables used within the highlight.js library.
-    /** @type {Record<string, Language>} */
-    const languages = Object.create(null);
-    /** @type {Record<string, string>} */
-    const aliases = Object.create(null);
-    /** @type {HLJSPlugin[]} */
-    const plugins = [];
-
-    // safe/production mode - swallows more errors, tries to keep running
-    // even if a single syntax or parse hits a fatal error
-    let SAFE_MODE = true;
-    const LANGUAGE_NOT_FOUND =
-      "Could not find the language '{}', did you forget to load/include a language module?";
-    /** @type {Language} */
-    const PLAINTEXT_LANGUAGE = {
-      disableAutodetect: true,
-      name: "Plain text",
-      contains: [],
-    };
-
-    // Global options used when within external APIs. This is modified when
-    // calling the `hljs.configure` function.
-    /** @type HLJSOptions */
-    let options = {
-      ignoreUnescapedHTML: false,
-      throwUnescapedHTML: false,
-      noHighlightRe: /^(no-?highlight)$/i,
-      languageDetectRe: /\blang(?:uage)?-([\w-]+)\b/i,
-      classPrefix: "hljs-",
-      cssSelector: "pre code",
-      languages: null,
-      // beta configuration options, subject to change, welcome to discuss
-      // https://github.com/highlightjs/highlight.js/issues/1086
-      emitter: TokenTreeEmitter,
-    };
-
-    /* Utility functions */
-
-    /**
-     * Tests a language name to see if highlighting should be skipped
-     * @param {string} languageName
-     */
-    function shouldNotHighlight(languageName) {
-      return options.noHighlightRe.test(languageName);
-    }
-
-    /**
-     * @param {HighlightedHTMLElement} block - the HTML element to determine language for
-     */
-    function blockLanguage(block) {
-      let classes = block.className + " ";
-
-      classes += block.parentNode ? block.parentNode.className : "";
-
-      // language-* takes precedence over non-prefixed class names.
-      const match = options.languageDetectRe.exec(classes);
-      if (match) {
-        const language = getLanguage(match[1]);
-        if (!language) {
-          warn(LANGUAGE_NOT_FOUND.replace("{}", match[1]));
-          warn("Falling back to no-highlight mode for this block.", block);
-        }
-        return language ? match[1] : "no-highlight";
-      }
-
-      return classes
-        .split(/\s+/)
-        .find((_class) => shouldNotHighlight(_class) || getLanguage(_class));
-    }
-
-    /**
-     * Core highlighting function.
-     *
-     * OLD API
-     * highlight(lang, code, ignoreIllegals, continuation)
-     *
-     * NEW API
-     * highlight(code, {lang, ignoreIllegals})
-     *
-     * @param {string} codeOrLanguageName - the language to use for highlighting
-     * @param {string | HighlightOptions} optionsOrCode - the code to highlight
-     * @param {boolean} [ignoreIllegals] - whether to ignore illegal matches, default is to bail
-     *
-     * @returns {HighlightResult} Result - an object that represents the result
-     * @property {string} language - the language name
-     * @property {number} relevance - the relevance score
-     * @property {string} value - the highlighted HTML code
-     * @property {string} code - the original raw code
-     * @property {CompiledMode} top - top of the current mode stack
-     * @property {boolean} illegal - indicates whether any illegal matches were found
-     */
-    function highlight(codeOrLanguageName, optionsOrCode, ignoreIllegals) {
-      let code = "";
-      let languageName = "";
-      if (typeof optionsOrCode === "object") {
-        code = codeOrLanguageName;
-        ignoreIllegals = optionsOrCode.ignoreIllegals;
-        languageName = optionsOrCode.language;
-      } else {
-        // old API
-        deprecated(
-          "10.7.0",
-          "highlight(lang, code, ...args) has been deprecated.",
-        );
-        deprecated(
-          "10.7.0",
-          "Please use highlight(code, options) instead.\nhttps://github.com/highlightjs/highlight.js/issues/2277",
-        );
-        languageName = codeOrLanguageName;
-        code = optionsOrCode;
-      }
-
-      // https://github.com/highlightjs/highlight.js/issues/3149
-      // eslint-disable-next-line no-undefined
-      if (ignoreIllegals === undefined) {
-        ignoreIllegals = true;
-      }
-
-      /** @type {BeforeHighlightContext} */
-      const context = {
-        code,
-        language: languageName,
-      };
-      // the plugin can change the desired language or the code to be highlighted
-      // just be changing the object it was passed
-      fire("before:highlight", context);
-
-      // a before plugin can usurp the result completely by providing it's own
-      // in which case we don't even need to call highlight
-      const result = context.result
-        ? context.result
-        : _highlight(context.language, context.code, ignoreIllegals);
-
-      result.code = context.code;
-      // the plugin can change anything in result to suite it
-      fire("after:highlight", result);
-
-      return result;
-    }
-
-    /**
-     * private highlight that's used internally and does not fire callbacks
-     *
-     * @param {string} languageName - the language to use for highlighting
-     * @param {string} codeToHighlight - the code to highlight
-     * @param {boolean?} [ignoreIllegals] - whether to ignore illegal matches, default is to bail
-     * @param {CompiledMode?} [continuation] - current continuation mode, if any
-     * @returns {HighlightResult} - result of the highlight operation
-     */
-    function _highlight(
-      languageName,
-      codeToHighlight,
-      ignoreIllegals,
-      continuation,
-    ) {
-      const keywordHits = Object.create(null);
-
-      /**
-       * Return keyword data if a match is a keyword
-       * @param {CompiledMode} mode - current mode
-       * @param {string} matchText - the textual match
-       * @returns {KeywordData | false}
-       */
-      function keywordData(mode, matchText) {
-        return mode.keywords[matchText];
-      }
-
-      function processKeywords() {
-        if (!top.keywords) {
-          emitter.addText(modeBuffer);
-          return;
-        }
-
-        let lastIndex = 0;
-        top.keywordPatternRe.lastIndex = 0;
-        let match = top.keywordPatternRe.exec(modeBuffer);
-        let buf = "";
-
-        while (match) {
-          buf += modeBuffer.substring(lastIndex, match.index);
-          const word = language.case_insensitive
-            ? match[0].toLowerCase()
-            : match[0];
-          const data = keywordData(top, word);
-          if (data) {
-            const [kind, keywordRelevance] = data;
-            emitter.addText(buf);
-            buf = "";
-
-            keywordHits[word] = (keywordHits[word] || 0) + 1;
-            if (keywordHits[word] <= MAX_KEYWORD_HITS)
-              relevance += keywordRelevance;
-            if (kind.startsWith("_")) {
-              // _ implied for relevance only, do not highlight
-              // by applying a class name
-              buf += match[0];
+<!DOCTYPE HTML>
+<html lang="en" class="rust sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Appendix E: Advanced OpenSCAD Concepts - 3D Printing Course for Blind and Visually Impaired Learners</title>
+
+
+        <!-- Custom HTML head -->
+        <script>
+          (function(){
+            // Load Atkinson Hyperlegible fonts from the book assets (injected at runtime so paths are correct on GitHub Pages)
+            try {
+              const link = Array.from(document.getElementsByTagName('link')).find(l => l.href && l.href.match(/\/css\/variables-.*\.css$/));
+              const base = (function(){
+                if (!link) return (window.location.origin||'') + '/';
+                const u = new URL(link.href, window.location.href);
+                const basePath = u.pathname.replace(/\/css\/.*$/,'');
+                return u.origin + basePath + (basePath.endsWith('/') ? '' : '/');
+              })();
+        
+              const css = `\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Next';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf') format('truetype');\
+          font-weight: 400; font-style: normal; font-display: swap;\
+        }\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Mono';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-SemiBold.ttf') format('truetype');\
+          font-weight: 600; font-style: normal; font-display: swap;\
+        }\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Mono';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-Regular.otf') format('opentype');\
+          font-weight: 400; font-style: normal; font-display: swap;\
+        }\
+        pre, code, .hljs, .leftbar { font-family: 'Atkinson Hyperlegible Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Courier New", monospace !important; }\
+        body { font-family: 'Atkinson Hyperlegible Next', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }\
+        `;
+        
+              const style = document.createElement('style');
+              style.appendChild(document.createTextNode(css));
+              document.head.appendChild(style);
+            } catch (e) { console.warn('Font injection failed', e); }
+          })();
+        </script>
+        
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            mermaid.initialize({ startOnLoad: true });
+          });
+        </script>
+
+        <meta name="description" content="An introduction to 3D printing for blind and visually impaired learners, using OpenSCAD and 3DMake to create accessible 3D models.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../css/general-2459343d.css">
+        <link rel="stylesheet" href="../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../css/print-9e4910d8.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../fonts/fonts-9644e21d.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../ayu-highlight-3fdfc3ac.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../src/assets/custom-19d70d6b.css">
+
+
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../searchindex-c3fdb52a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc-816984a7.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>‚Üê</kbd> or <kbd>‚Üí</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
+                <p>Press <kbd>?</kbd> to show this help</p>
+                <p>Press <kbd>Esc</kbd> to hide this help</p>
+            </div>
+        </div>
+    </div>
+    <div id="mdbook-body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
             } else {
-              const cssClass = language.classNameAliases[kind] || kind;
-              emitKeyword(match[0], cssClass);
+                sidebar = 'hidden';
+                sidebar_toggle.checked = false;
             }
-          } else {
-            buf += match[0];
-          }
-          lastIndex = top.keywordPatternRe.lastIndex;
-          match = top.keywordPatternRe.exec(modeBuffer);
-        }
-        buf += modeBuffer.substring(lastIndex);
-        emitter.addText(buf);
-      }
-
-      function processSubLanguage() {
-        if (modeBuffer === "") return;
-        /** @type HighlightResult */
-        let result = null;
-
-        if (typeof top.subLanguage === "string") {
-          if (!languages[top.subLanguage]) {
-            emitter.addText(modeBuffer);
-            return;
-          }
-          result = _highlight(
-            top.subLanguage,
-            modeBuffer,
-            true,
-            continuations[top.subLanguage],
-          );
-          continuations[top.subLanguage] = /** @type {CompiledMode} */ (
-            result._top
-          );
-        } else {
-          result = highlightAuto(
-            modeBuffer,
-            top.subLanguage.length ? top.subLanguage : null,
-          );
-        }
-
-        // Counting embedded language score towards the host language may be disabled
-        // with zeroing the containing mode relevance. Use case in point is Markdown that
-        // allows XML everywhere and makes every XML snippet to have a much larger Markdown
-        // score.
-        if (top.relevance > 0) {
-          relevance += result.relevance;
-        }
-        emitter.addSublanguage(result._emitter, result.language);
-      }
-
-      function processBuffer() {
-        if (top.subLanguage != null) {
-          processSubLanguage();
-        } else {
-          processKeywords();
-        }
-        modeBuffer = "";
-      }
-
-      /**
-       * @param {string} text
-       * @param {string} scope
-       */
-      function emitKeyword(keyword, scope) {
-        if (keyword === "") return;
-
-        emitter.startScope(scope);
-        emitter.addText(keyword);
-        emitter.endScope();
-      }
-
-      /**
-       * @param {CompiledScope} scope
-       * @param {RegExpMatchArray} match
-       */
-      function emitMultiClass(scope, match) {
-        let i = 1;
-        const max = match.length - 1;
-        while (i <= max) {
-          if (!scope._emit[i]) {
-            i++;
-            continue;
-          }
-          const klass = language.classNameAliases[scope[i]] || scope[i];
-          const text = match[i];
-          if (klass) {
-            emitKeyword(text, klass);
-          } else {
-            modeBuffer = text;
-            processKeywords();
-            modeBuffer = "";
-          }
-          i++;
-        }
-      }
-
-      /**
-       * @param {CompiledMode} mode - new mode to start
-       * @param {RegExpMatchArray} match
-       */
-      function startNewMode(mode, match) {
-        if (mode.scope && typeof mode.scope === "string") {
-          emitter.openNode(language.classNameAliases[mode.scope] || mode.scope);
-        }
-        if (mode.beginScope) {
-          // beginScope just wraps the begin match itself in a scope
-          if (mode.beginScope._wrap) {
-            emitKeyword(
-              modeBuffer,
-              language.classNameAliases[mode.beginScope._wrap] ||
-                mode.beginScope._wrap,
-            );
-            modeBuffer = "";
-          } else if (mode.beginScope._multi) {
-            // at this point modeBuffer should just be the match
-            emitMultiClass(mode.beginScope, match);
-            modeBuffer = "";
-          }
-        }
-
-        top = Object.create(mode, { parent: { value: top } });
-        return top;
-      }
-
-      /**
-       * @param {CompiledMode } mode - the mode to potentially end
-       * @param {RegExpMatchArray} match - the latest match
-       * @param {string} matchPlusRemainder - match plus remainder of content
-       * @returns {CompiledMode | void} - the next mode, or if void continue on in current mode
-       */
-      function endOfMode(mode, match, matchPlusRemainder) {
-        let matched = startsWith(mode.endRe, matchPlusRemainder);
-
-        if (matched) {
-          if (mode["on:end"]) {
-            const resp = new Response(mode);
-            mode["on:end"](match, resp);
-            if (resp.isMatchIgnored) matched = false;
-          }
-
-          if (matched) {
-            while (mode.endsParent && mode.parent) {
-              mode = mode.parent;
+            if (sidebar === 'visible') {
+                sidebar_toggle.checked = true;
+            } else {
+                html.classList.remove('sidebar-visible');
             }
-            return mode;
-          }
-        }
-        // even if on:end fires an `ignore` it's still possible
-        // that we might trigger the end node because of a parent mode
-        if (mode.endsWithParent) {
-          return endOfMode(mode.parent, match, matchPlusRemainder);
-        }
-      }
+        </script>
 
-      /**
-       * Handle matching but then ignoring a sequence of text
-       *
-       * @param {string} lexeme - string containing full match text
-       */
-      function doIgnore(lexeme) {
-        if (top.matcher.regexIndex === 0) {
-          // no more regexes to potentially match here, so we move the cursor forward one
-          // space
-          modeBuffer += lexeme[0];
-          return 1;
-        } else {
-          // no need to move the cursor, we still have additional regexes to try and
-          // match at this very spot
-          resumeScanAtSamePosition = true;
-          return 0;
-        }
-      }
+        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
 
-      /**
-       * Handle the start of a new potential mode match
-       *
-       * @param {EnhancedMatch} match - the current match
-       * @returns {number} how far to advance the parse cursor
-       */
-      function doBeginMatch(match) {
-        const lexeme = match[0];
-        const newMode = match.rule;
+        <div id="mdbook-page-wrapper" class="page-wrapper">
 
-        const resp = new Response(newMode);
-        // first internal before callbacks, then the public ones
-        const beforeCallbacks = [newMode.beforeBegin, newMode["on:begin"]];
-        for (const cb of beforeCallbacks) {
-          if (!cb) continue;
-          cb(match, resp);
-          if (resp.isMatchIgnored) return doIgnore(lexeme);
-        }
+            <div class="page">
+                <div id="mdbook-menu-bar-hover-placeholder"></div>
+                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        </label>
+                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        </button>
+                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        </ul>
+                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
+                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        </button>
+                    </div>
 
-        if (newMode.skip) {
-          modeBuffer += lexeme;
-        } else {
-          if (newMode.excludeBegin) {
-            modeBuffer += lexeme;
-          }
-          processBuffer();
-          if (!newMode.returnBegin && !newMode.excludeBegin) {
-            modeBuffer = lexeme;
-          }
-        }
-        startNewMode(newMode, match);
-        return newMode.returnBegin ? 0 : lexeme.length;
-      }
+                    <h1 class="menu-title">3D Printing Course for Blind and Visually Impaired Learners</h1>
 
-      /**
-       * Handle the potential end of mode
-       *
-       * @param {RegExpMatchArray} match - the current match
-       */
-      function doEndMatch(match) {
-        const lexeme = match[0];
-        const matchPlusRemainder = codeToHighlight.substring(match.index);
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                        </a>
 
-        const endMode = endOfMode(top, match, matchPlusRemainder);
-        if (!endMode) {
-          return NO_MATCH;
-        }
+                    </div>
+                </div>
 
-        const origin = top;
-        if (top.endScope && top.endScope._wrap) {
-          processBuffer();
-          emitKeyword(lexeme, top.endScope._wrap);
-        } else if (top.endScope && top.endScope._multi) {
-          processBuffer();
-          emitMultiClass(top.endScope, match);
-        } else if (origin.skip) {
-          modeBuffer += lexeme;
-        } else {
-          if (!(origin.returnEnd || origin.excludeEnd)) {
-            modeBuffer += lexeme;
-          }
-          processBuffer();
-          if (origin.excludeEnd) {
-            modeBuffer = lexeme;
-          }
-        }
-        do {
-          if (top.scope) {
-            emitter.closeNode();
-          }
-          if (!top.skip && !top.subLanguage) {
-            relevance += top.relevance;
-          }
-          top = top.parent;
-        } while (top !== endMode.parent);
-        if (endMode.starts) {
-          startNewMode(endMode.starts, match);
-        }
-        return origin.returnEnd ? 0 : lexeme.length;
-      }
+                <div id="mdbook-search-wrapper" class="hidden">
+                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
+                        <div class="search-wrapper">
+                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
+                            <div class="spinner-wrapper">
+                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
+                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
+                        <ul id="mdbook-searchresults">
+                        </ul>
+                    </div>
+                </div>
 
-      function processContinuations() {
-        const list = [];
-        for (
-          let current = top;
-          current !== language;
-          current = current.parent
-        ) {
-          if (current.scope) {
-            list.unshift(current.scope);
-          }
-        }
-        list.forEach((item) => emitter.openNode(item));
-      }
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
 
-      /** @type {{type?: MatchType, index?: number, rule?: Mode}}} */
-      let lastMatch = {};
+                <div id="mdbook-content" class="content">
+                    <main>
+                        <h1 id="appendix-d-advanced-openscad-concepts"><a class="header" href="#appendix-d-advanced-openscad-concepts">Appendix D: Advanced OpenSCAD Concepts</a></h1>
+<p>This appendix covers specialized topics for experienced users seeking to tackle complex parametric designs. These are optional topics not required for foundational mastery but valuable for professional application development.</p>
+<h2 id="topic-1-gears-and-mechanical-components"><a class="header" href="#topic-1-gears-and-mechanical-components">Topic 1: Gears and Mechanical Components</a></h2>
+<p>Gears are one of the most challenging parametric designs, requiring careful calculation of tooth geometry. Understanding gear mathematics enables creation of mechanical systems-power transmission, speed reduction, or precise positioning.</p>
+<h3 id="gear-terminology"><a class="header" href="#gear-terminology">Gear Terminology</a></h3>
+<ul>
+<li>Pitch Diameter (PD): The reference diameter for meshing calculations</li>
+<li>Module: PD divided by tooth count; determines tooth size</li>
+<li>Pressure Angle: Typically 20deg or 14.5deg; affects tooth shape and strength</li>
+<li>Clearance: Space between teeth to allow smooth meshing</li>
+<li>Backlash: Intentional gap to prevent binding at tolerance extremes</li>
+</ul>
+<h3 id="simple-involute-gear-algorithm"><a class="header" href="#simple-involute-gear-algorithm">Simple Involute Gear Algorithm</a></h3>
+<pre><code class="language-openscad">// Simplified gear with circular teeth (adequate for most 3D prints)
+function gear_module(pitch_diameter, teeth_count) = pitch_diameter / teeth_count;
+module simple_gear(pitch_diameter, teeth_count, bore_diameter, thickness) {
+  module_m = gear_module(pitch_diameter, teeth_count);
+  outer_diameter = pitch_diameter + 2 * module_m;
+  tooth_angle = 360 / teeth_count;
+  difference() {
+    // Main gear body
+    cylinder(r=outer_diameter/2, h=thickness, $fn=teeth_count*4);
+    // Center bore
+    cylinder(r=bore_diameter/2, h=thickness + 2);
+  }
+  // Add teeth as small protrusions
+  for (i = [0:teeth_count-1]) {
+    angle = i * tooth_angle;
+    translate([
+      (pitch_diameter/2 + module_m/2) * cos(angle),
+      (pitch_diameter/2 + module_m/2) * sin(angle),
+      0
+    ])
+      rotate([0, 0, angle])
+        cube([module_m * 0.8, module_m, thickness], center=true);
+  }
+}
+// Create meshing gear pair
+module gear_pair_demo() {
+  // Gear 1: 20 teeth, 40mm pitch diameter
+  simple_gear(40, 20, 8, 10);
+  // Gear 2: 30 teeth, positioned to mesh
+  center_distance = (40 + 60) / 4;  // Sum of radii
+  translate([center_distance, 0, 0])
+    simple_gear(60, 30, 8, 10);
+}
+gear_pair_demo();
+</code></pre>
+<h3 id="practical-application-servo-gearbox"><a class="header" href="#practical-application-servo-gearbox">Practical Application: Servo Gearbox</a></h3>
+<pre><code class="language-openscad">// Parametric servo gearbox with 3:1 reduction
+module servo_gearbox(motor_torque, reduction_ratio, bore_size) {
+  // Input gear (motor)
+  input_teeth = 12;
+  input_pd = 30;
+  // Output gear (load)
+  output_teeth = input_teeth * reduction_ratio;
+  output_pd = input_pd * reduction_ratio;
+  // Gearbox housing
+  housing_size = output_pd + 40;
+  difference() {
+    // Main box
+    cube([housing_size, housing_size, 30]);
+    // Interior chamber
+    translate([20, 20, 5])
+      cube([housing_size - 40, housing_size - 40, 25]);
+  }
+  // Mount input gear
+  translate([housing_size/4, housing_size/2, 15]) {
+    simple_gear(input_pd, input_teeth, bore_size, 15);
+    // Motor coupling
+    cylinder(r=bore_size/2, h=5);
+  }
+  // Mount output gear
+  translate([3*housing_size/4, housing_size/2, 15])
+    simple_gear(output_pd, output_teeth, bore_size, 15);
+}
+servo_gearbox(10, 3, 5);
+</code></pre>
+<h3 id="belt-and-pulley-systems"><a class="header" href="#belt-and-pulley-systems">Belt and Pulley Systems</a></h3>
+<pre><code class="language-openscad">// Timing pulley with tooth grooves
+module timing_pulley(bore_diameter, pitch_diameter, teeth_count, width) {
+  module_m = pitch_diameter / teeth_count;
+  tooth_height = module_m * 0.3;
+  difference() {
+    // Main pulley body
+    cylinder(r=pitch_diameter/2 + tooth_height/2, h=width);
+    // Center bore
+    cylinder(r=bore_diameter/2, h=width + 2);
+    // Tooth grooves
+    for (i = [0:teeth_count-1]) {
+      angle = i * (360 / teeth_count);
+      rotate([0, 0, angle])
+        translate([pitch_diameter/2, -module_m*0.3, 0])
+          cube([module_m * 0.6, module_m * 0.6, width], center=true);
+    }
+  }
+}
+// Belt drive demonstration
+module belt_drive_system() {
+  // Motor pulley (input)
+  timing_pulley(5, 20, 16, 10);
+  // Load pulley (output) - positioned for belt routing
+  translate([80, 0, 0])
+    timing_pulley(5, 40, 32, 10);
+}
+belt_drive_system();
+</code></pre>
+<h2 id="topic-2-batch-processing-and-statistical-analysis"><a class="header" href="#topic-2-batch-processing-and-statistical-analysis">Topic 2: Batch Processing and Statistical Analysis</a></h2>
+<p>Professional applications often generate many variants and need to analyze results. Batch processing enables systematic exploration of parameter spaces.</p>
+<h3 id="parameter-sweep-generation"><a class="header" href="#parameter-sweep-generation">Parameter Sweep Generation</a></h3>
+<pre><code class="language-openscad">// Generate models with all combinations of parameters
+// Define parameter ranges
+wall_thicknesses = [1, 1.5, 2, 2.5, 3];
+part_sizes = [20, 30, 40, 50];
+materials = ["pla", "petg", "nylon"];
+// Theory: Generate 5 x 4 x 3 = 60 variants automatically
+// In practice, export each to separate STL for analysis
+</code></pre>
+<h3 id="statistical-summary-generation-script"><a class="header" href="#statistical-summary-generation-script">Statistical Summary Generation Script</a></h3>
+<pre><code class="language-cmd">@echo off
+rem analyze_batch.bat - Analyze batch results (CMD / Batch)
+setlocal enableextensions enabledelayedexpansion
+set "OUTPUT_DIR=batch_results"
+set "REPORT_FILE=batch_analysis.csv"
+echo Part,Wall,Size,File_Size_KB,Est_Print_Time_min,Est_Weight_g &gt; "%REPORT_FILE%"
 
-      /**
-       *  Process an individual match
-       *
-       * @param {string} textBeforeMatch - text preceding the match (since the last match)
-       * @param {EnhancedMatch} [match] - the match itself
-       */
-      function processLexeme(textBeforeMatch, match) {
-        const lexeme = match && match[0];
+for %%w in (1 2 3) do (
+  for %%s in (20 30 40 50) do (
+    set "SCAD_FILE=part_%%s_wall%%w.scad"
+    set "STL_FILE=%OUTPUT_DIR%\%%~nSCAD_FILE.stl"
+    "C:\Program Files\OpenSCAD\openscad.exe" -D "part_size=%%s" -D "wall=%%w" -o "%OUTPUT_DIR%\part_%%s_wall%%w.stl" src\main.scad
+    if exist "%OUTPUT_DIR%\part_%%s_wall%%w.stl" (
+      for /f "usebackq" %%F in (`powershell -NoProfile -Command "(Get-Item -Path '%OUTPUT_DIR%\part_%%s_wall%%w.stl').Length"`) do set FILE_BYTES=%%F
+      set /a FILE_KB=FILE_BYTES / 1024
+      set /a EST_TIME=(FILE_KB / 1024) * 60
+      set /a EST_WEIGHT=FILE_KB / 1024
+    ) else (
+      set FILE_KB=0
+      set EST_TIME=0
+      set EST_WEIGHT=0
+    )
+    echo part_%%s_wall%%w,%%w,%%s,!FILE_KB!,!EST_TIME!,!EST_WEIGHT!&gt;&gt;"%REPORT_FILE%"
+  )
+)
+endlocal
+echo Analysis complete. Results in %REPORT_FILE%
+</code></pre>
+<pre><code class="language-powershell"># analyze_batch.ps1 - Analyze batch results (PowerShell)
+$OutputDir = "batch_results"
+$ReportFile = "batch_analysis.csv"
+"Part,Wall,Size,File_Size_KB,Est_Print_Time_min,Est_Weight_g" | Out-File -FilePath $ReportFile -Encoding utf8
 
-        // add non-matched text to the current mode buffer
-        modeBuffer += textBeforeMatch;
+foreach ($wall in @(1.0,1.5,2.0,2.5,3.0)) {
+  foreach ($size in @(20,30,40,50)) {
+    $scad = "part_${size}_wall${wall}.scad"
+    $stl = Join-Path $OutputDir ("{0}.stl" -f ([System.IO.Path]::GetFileNameWithoutExtension($scad)))
+    &amp; "C:\Program Files\OpenSCAD\openscad.exe" -D ("part_size={0}" -f $size) -D ("wall={0}" -f $wall) -o $stl src\main.scad
+    if (Test-Path $stl) {
+      $bytes = (Get-Item $stl).Length
+      $kb = [math]::Round($bytes / 1KB, 2)
+      $est_time = [math]::Round(($kb / 1024) * 60, 2)
+      $est_weight = [math]::Round($kb / 1024, 2)
+    } else {
+      $kb = 0; $est_time = 0; $est_weight = 0
+    }
+    "{0},{1},{2},{3},{4},{5}" -f ("part_{0}_wall{1}" -f $size,$wall), $wall, $size, $kb, $est_time, $est_weight | Out-File -FilePath $ReportFile -Append -Encoding utf8
+  }
+}
+Write-Host "Analysis complete. Results in $ReportFile"
+</code></pre>
+<pre><code class="language-bash">#!/bin/bash
+# analyze_batch.sh - Analyze batch results statistically
 
-        if (lexeme == null) {
-          processBuffer();
-          return 0;
-        }
+OUTPUT_DIR="batch_results"
+REPORT_FILE="batch_analysis.csv"
 
-        // we've found a 0 width match and we're stuck, so we need to advance
-        // this happens when we have badly behaved rules that have optional matchers to the degree that
-        // sometimes they can end up matching nothing at all
+echo "Part,Wall,Size,File_Size_KB,Est_Print_Time_min,Est_Weight_g" &gt; "$REPORT_FILE"
+
+for wall in 1.0 1.5 2.0 2.5 3.0; do
+  for size in 20 30 40 50; do
+    # Generate model
+    SCAD_FILE="part_${size}_wall${wall}.scad"
+    STL_FILE="$OUTPUT_DIR/${SCAD_FILE%.scad}.stl"
+    
+    # Export to STL
+    openscad -D "part_size=$size" -D "wall=$wall" \
+      -o "$STL_FILE" src/main.scad
+    
+    # Get file size
+    FILE_SIZE=$(stat -c%s "$STL_FILE" 2&gt;/dev/null | awk '{print $1/1024}')
+    
+    # Estimate print time (rough: 1 hour per MB)
+    EST_TIME=$((FILE_SIZE / 1024 * 60))
+    
+    # Estimate weight (rough: 1g per MB for PLA)
+    EST_WEIGHT=$((FILE_SIZE / 1024))
+    
+    # Log results
+    echo "part_${size}_wall${wall},$wall,$size,$FILE_SIZE,$EST_TIME,$EST_WEIGHT" &gt;&gt; "$REPORT_FILE"
+  done
+done
+
+echo "Analysis complete. Results in $REPORT_FILE"
+</code></pre>
+<h3 id="data-driven-design-selection"><a class="header" href="#data-driven-design-selection">Data-Driven Design Selection</a></h3>
+<pre><code class="language-openscad">// Load results and select optimal configuration
+// wall=2.0mm gives best balance of strength/weight for most sizes
+function optimal_configuration(target_size, priority) =
+  priority == "strength" ? 3.0 :
+  priority == "speed" ? 1.0 :
+  priority == "balanced" ? 2.0 :
+  2.0;  // Default
+module batch_optimized_part(size, priority) {
+  wall = optimal_configuration(size, priority);
+  echo(str("Generating optimized part: size=", size, " wall=", wall, " priority=", priority));
+  // Create part with optimal parameters
+  difference() {
+    cube([size, size, size]);
+    translate([wall, wall, wall])
+      cube([size - 2*wall, size - 2*wall, size]);
+  }
+}
+// Generate three variants with different priorities
+batch_optimized_part(40, "strength");    // thickest walls
+translate([60, 0, 0]) batch_optimized_part(40, "speed");    // thinnest walls
+translate([120, 0, 0]) batch_optimized_part(40, "balanced"); // medium walls
+</code></pre>
+<h2 id="topic-3-performance-optimization"><a class="header" href="#topic-3-performance-optimization">Topic 3: Performance Optimization</a></h2>
+<p>Complex models can take hours to render. Strategic optimization keeps iteration cycles fast.</p>
+<h3 id="measuring-render-performance"><a class="header" href="#measuring-render-performance">Measuring Render Performance</a></h3>
+<pre><code class="language-bash"># Time how long rendering takes
+time openscad -o output.stl -D "quality=32" src/main.scad
+# Output: real 5m 32s, user 5m 28s, sys 0m 2s
+</code></pre>
+<h3 id="resolution-parameter-strategy"><a class="header" href="#resolution-parameter-strategy">Resolution Parameter Strategy</a></h3>
+<pre><code class="language-openscad">// Use lower resolution during development, high during export
+quality = $preview ? 16 : 64;  // 16 segments in preview, 64 in export
+module efficient_sphere(radius) {
+  sphere(r=radius, $fn=quality);
+}
+// In array operations, efficiency matters most
+module circular_array(radius, count) {
+  for (i = [0:count-1]) {
+    angle = (360 / count) * i;
+    x = radius * cos(angle);
+    y = radius * sin(angle);
+    translate([x, y, 0])
+      efficient_sphere(5);  // Uses quality parameter
+  }
+}
+circular_array(30, 100);  // 100 spheres: slow with quality=64!
+</code></pre>
+<h3 id="cache-complex-calculations"><a class="header" href="#cache-complex-calculations">Cache Complex Calculations</a></h3>
+<pre><code class="language-openscad">// Pre-compute expensive calculations outside loops
+// SLOW: Recalculates sin/cos for every iteration
+module slow_spiral() {
+  for (i = [0:200]) {
+    angle = i * 2;
+    x = 40 * cos(angle);
+    y = 40 * sin(angle);
+    z = i * 0.5;
+    translate([x, y, z])
+      sphere(r=1);
+  }
+}
+// FAST: Pre-compute positions, then use them
+spiral_positions = [for (i = [0:200]) [
+  40 * cos(i * 2),
+  40 * sin(i * 2),
+  i * 0.5
+]];
+module fast_spiral() {
+  for (pos = spiral_positions)
+    translate(pos)
+      sphere(r=1);
+}
+// Use the fast version
+fast_spiral();
+</code></pre>
+<h3 id="simplification-during-preview"><a class="header" href="#simplification-during-preview">Simplification During Preview</a></h3>
+<pre><code class="language-openscad">// Complex model that simplifies in preview mode
+module detailed_model() {
+  if ($preview) {
+    // Simplified version for fast preview
+    cube([100, 100, 50]);
+  } else {
+    // Detailed version for export
+    difference() {
+      cube([100, 100, 50]);
+      // Complex inner geometry
+      for (x = [10:10:90])
+        for (y = [10:10:90])
+          translate([x, y, 20])
+            cylinder(h=15, d=3, $fn=32);
+    }
+  }
+}
+detailed_model();
+</code></pre>
+<h3 id="profile-driven-optimization"><a class="header" href="#profile-driven-optimization">Profile-Driven Optimization</a></h3>
+<pre><code class="language-bash">#!/bin/bash
+# profile_render.sh - Identify slow rendering hotspots
+
+echo "Profiling render performance..."
+
+for fn_value in 8 16 32 64 128; do
+  echo ""
+  echo "Testing with \$fn=$fn_value..."
+  
+  /usr/bin/time -v openscad -D "fn=$fn_value" \
+    -o test_$fn_value.stl src/main.scad 2&gt;&amp;1 | \
+    grep "Maximum resident set size"
+done
+</code></pre>
+<h2 id="topic-4-print-orientation-and-support-structure-algorithms"><a class="header" href="#topic-4-print-orientation-and-support-structure-algorithms">Topic 4: Print Orientation and Support Structure Algorithms</a></h2>
+<p>Strategic orientation dramatically affects support material, print time, and surface quality.</p>
+<h3 id="strength-orientation-analysis"><a class="header" href="#strength-orientation-analysis">Strength Orientation Analysis</a></h3>
+<pre><code class="language-openscad">// Different orientations affect strength differently
+// SCENARIO: Bracket with cantilever load
+module bracket() {
+  difference() {
+    cube([50, 100, 10]);
+    translate([25, 50, 5]) cylinder(r=5, h=10);
+  }
+}
+// Orientation A: Lay flat (XY plane) - WEAK for cantilever
+echo("Orientation A: Flat - Low strength for cantilever");
+bracket();
+// Orientation B: Stand tall (Z axis) - STRONG for cantilever
+translate([70, 0, 0]) {
+  echo("Orientation B: Tall - High strength for cantilever");
+  rotate([90, 0, 0]) bracket();
+}
+// Orientation C: Diagonal - MODERATE strength
+translate([0, 150, 0]) {
+  echo("Orientation C: Diagonal - Moderate strength");
+  rotate([45, 0, 0]) bracket();
+}
+</code></pre>
+<h3 id="support-material-minimization"><a class="header" href="#support-material-minimization">Support Material Minimization</a></h3>
+<pre><code class="language-openscad">// Design features to reduce supports needed
+// POOR: Overhanging feature needs extensive supports
+module poor_design() {
+  cube([50, 50, 50]);
+  translate([25, 25, 50])
+    cube([30, 30, 10]);  // 30mm overhang!
+}
+// GOOD: Bridge angle keeps overhang under 45deg
+module good_design() {
+  cube([50, 50, 50]);
+  // Add ramp instead of overhang
+  translate([20, 20, 50])
+    rotate([20, 0, 0])
+      cube([30, 30, 10]);
+}
+// Compare
+poor_design();
+translate([80, 0, 0])
+  good_design();
+</code></pre>
+<h3 id="bridge-span-calculation"><a class="header" href="#bridge-span-calculation">Bridge Span Calculation</a></h3>
+<pre><code class="language-openscad">// Calculate maximum unsupported span for given material/settings
+function max_bridge_span(material) =
+  material == "pla" ? 10 :
+  material == "petg" ? 12 :
+  material == "nylon" ? 15 :
+  material == "abs" ? 8 :
+  10;  // Default
+module bridged_connector(material, gap_width) {
+  max_span = max_bridge_span(material);
+  if (gap_width &lt;= max_span) {
+    echo(str("Bridge OK: gap ", gap_width, "mm fits within ", max_span, "mm limit"));
+    // Create part with bridge
+    union() {
+      cube([50, 10, 10]);  // Side A
+      translate([gap_width, 0, 0])
+        cube([50, 10, 10]);  // Side B
+      // Bridge connecting them
+      translate([0, 5, 10])
+        cube([gap_width + 100, 2, 1]);
+    }
+  } else {
+    echo(str("ERROR: gap ", gap_width, "mm exceeds ", max_span, "mm max bridge span"));
+  }
+}
+bridged_connector("pla", 8);      // OK: 8 &lt; 10
+// bridged_connector("pla", 15);  // ERROR: 15 &gt; 10
+</code></pre>
+<h3 id="slicing-parameter-calculation"><a class="header" href="#slicing-parameter-calculation">Slicing Parameter Calculation</a></h3>
+<pre><code class="language-openscad">// Calculate optimal slicing parameters based on geometry
+function recommended_layer_height(nozzle_diameter, quality_priority) =
+  quality_priority == "fast" ? nozzle_diameter * 0.75 :
+  quality_priority == "balanced" ? nozzle_diameter * 0.5 :
+  quality_priority == "detailed" ? nozzle_diameter * 0.25 :
+  nozzle_diameter * 0.5;
+function recommended_infill(structural_load, safety_factor) =
+  structural_load &lt; 1 ? 10 :    // Decorative: minimal fill
+  structural_load &lt; 5 ? 20 :    // Light duty: low fill
+  structural_load &lt; 20 ? 50 :   // Medium duty: standard fill
+  100;                           // High duty: solid
+module optimized_part(
+  nozzle_0p4,
+  quality_priority,
+  structural_load,
+  safety_factor
+) {
+  layer_h = recommended_layer_height(nozzle_0p4, quality_priority);
+  infill_pct = recommended_infill(structural_load, safety_factor);
+  echo(str("Recommended layer height: ", layer_h, "mm"));
+  echo(str("Recommended infill: ", infill_pct, "%"));
+  // Create part
+  cube([50, 50, 30]);
+}
+optimized_part(0.4, "detailed", 15, 2);
+</code></pre>
+<h2 id="topic-5-recursive-function-patterns"><a class="header" href="#topic-5-recursive-function-patterns">Topic 5: Recursive Function Patterns</a></h2>
+<p>Recursion enables elegant solutions to problems with self-similar structure: trees, fractals, nested components.</p>
+<h3 id="basic-recursive-pattern"><a class="header" href="#basic-recursive-pattern">Basic Recursive Pattern</a></h3>
+<pre><code class="language-openscad">// Tree structure: branches recursively smaller
+function tree_depth(level) = level &gt; 0 ? level + tree_depth(level - 1) : 0;
+// Calculate: tree_depth(5) = 5 + 4 + 3 + 2 + 1 = 15
+result = tree_depth(5);
+echo(result);  // Prints: 15
+// Recursive tree drawing
+module tree_branch(length, angle, recursion_depth) {
+  if (recursion_depth &gt; 0) {
+    // Draw this branch
+    rotate([angle, 0, 0])
+      cube([2, 2, length]);
+    // Recursively draw sub-branches
+    translate([0, 0, length])
+      rotate([-angle/2, 0, 0])
+        tree_branch(length * 0.7, angle, recursion_depth - 1);
+    translate([0, 0, length])
+      rotate([angle/2, 0, 0])
+        tree_branch(length * 0.7, angle, recursion_depth - 1);
+  }
+}
+tree_branch(30, 25, 4);  // Tree with 4 levels of recursion
+</code></pre>
+<h3 id="fractal-generation"><a class="header" href="#fractal-generation">Fractal Generation</a></h3>
+<pre><code class="language-openscad">// Sierpinski Triangle fractal
+function sierpinski_triangle(size, depth) =
+  depth == 0 ?
+    [[0, 0], [size, 0], [size/2, size * sqrt(3)/2]] :
+    // Recursive case: three smaller triangles at corners
+    concat(
+      sierpinski_triangle(size/2, depth - 1),
+      sierpinski_triangle(size/2, depth - 1),
+      sierpinski_triangle(size/2, depth - 1)
+    );
+// Create 3D fractal structure
+module fractal_spiral(base_size, depth, height_per_level) {
+  if (depth &gt; 0) {
+    // Create current level
+    cube([base_size, base_size, 5], center=true);
+    // Recursively create smaller level on top
+    translate([0, 0, height_per_level])
+      scale([0.6, 0.6, 1])
+        fractal_spiral(base_size, depth - 1, height_per_level);
+  }
+}
+fractal_spiral(40, 5, 10);  // 5-level spiral
+</code></pre>
+<h3 id="nested-component-assembly"><a class="header" href="#nested-component-assembly">Nested Component Assembly</a></h3>
+<pre><code class="language-openscad">// Russian doll boxes: each box contains a smaller copy
+module russian_doll(size, wall, nesting_depth) {
+  if (nesting_depth &gt; 0) {
+    // Current level: hollow box
+    difference() {
+      cube([size, size, size]);
+      translate([wall, wall, wall])
+        cube([size - 2*wall, size - 2*wall, size - wall]);
+    }
+    // Recursively place next smaller doll inside
+    interior_size = size - 4*wall;
+    translate([2*wall, 2*wall, wall])
+      russian_doll(interior_size, wall, nesting_depth - 1);
+  } else {
+    // Smallest doll (solid)
+    cube([size, size, size]);
+  }
+}
+russian_doll(60, 2, 4);  // 4 nested boxes
+</code></pre>
+<h3 id="performance-considerations"><a class="header" href="#performance-considerations">Performance Considerations</a></h3>
+<pre><code class="language-openscad">// Recursion can be expensive - monitor depth
+// EFFICIENT: Tail recursion (result computed immediately)
+function sum_to(n, accumulator) =
+  n == 0 ? accumulator :
+  sum_to(n - 1, accumulator + n);
+result = sum_to(100, 0);  // Computes: 5050
+// INEFFICIENT: Deep recursion without optimization
+function fibonacci(n) =
+  n &lt;= 1 ? n :
+  fibonacci(n-1) + fibonacci(n-2);
+// fibonacci(20) recalculates sub-problems thousands of times
+// Don't use for depth &gt; 20 without memoization
+// BETTER: Use iteration where possible
+function fibonacci_iter(n) =
+  let(
+    fib = [for (i = [0:n])
+      i &lt;= 1 ? i :
+      let(prev = [for (j = [0:i-1]) i==j ? 1 : i==j+1 ? 0 : 0])
+        1  // Placeholder
+    ]
+  ) fib[n];
+</code></pre>
+<h3 id="practical-example-cable-management"><a class="header" href="#practical-example-cable-management">Practical Example: Cable Management</a></h3>
+<pre><code class="language-openscad">// Recursive cable tray with branching paths
+module cable_tray(width, depth, height, levels, branch_angle) {
+  if (levels &gt; 0) {
+    // Main tray section
+    difference() {
+      cube([width, depth, height]);
+      translate([2, 2, 2])
+        cube([width - 4, depth - 4, height - 2]);
+    }
+    // Left branch (recursively smaller)
+    translate([-width/2, 0, height])
+      rotate([0, 0, -branch_angle])
+        cable_tray(width * 0.6, depth, height, levels - 1, branch_angle);
+    // Right branch
+    translate([width/2, 0, height])
+      rotate([0, 0, branch_angle])
+        cable_tray(width * 0.6, depth, height, levels - 1, branch_angle);
+  }
+}
+cable_tray(40, 10, 5, 3, 30);  // 3-level branching cable tray
+</code></pre>
+<h2 id="summary-when-to-use-each-advanced-technique"><a class="header" href="#summary-when-to-use-each-advanced-technique">Summary: When to Use Each Advanced Technique</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>Technique</th><th>Use Case</th><th>Complexity</th><th>Performance</th></tr>
+</thead>
+<tbody>
+<tr><td>Gears</td><td>Mechanical power transmission</td><td>High</td><td>Medium</td></tr>
+<tr><td>Batch Processing</td><td>Design space exploration</td><td>Medium</td><td>Depends on scope</td></tr>
+<tr><td>Performance Optimization</td><td>Reducing render time</td><td>Medium</td><td>High payoff</td></tr>
+<tr><td>Orientation Analysis</td><td>Strength optimization</td><td>Medium</td><td>Simulation cost</td></tr>
+<tr><td>Recursion</td><td>Fractal/nested structures</td><td>High</td><td>Can be expensive</td></tr>
+</tbody>
+</table>
+</div>
+<h2 id="references-and-further-learning"><a class="header" href="#references-and-further-learning">References and Further Learning</a></h2>
+<ul>
+<li>OpenSCAD Documentation - Advanced Features: <a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual">https://en.wikibooks.org/wiki/OpenSCAD_User_Manual</a></li>
+<li>Gear Design Theory: <a href="https://www.mekanizmalar.com/">https://www.mekanizmalar.com/</a></li>
+<li>3D Print Orientation Optimization: <a href="https://stratasys.com/">https://stratasys.com/</a></li>
+<li>Fractal Geometry: <a href="https://en.wikipedia.org/wiki/Fractal">https://en.wikipedia.org/wiki/Fractal</a></li>
+<li>Recursive Algorithms: <a href="https://www.khanacademy.org/computing/computer-science/algorithms">https://www.khanacademy.org/computing/computer-science/algorithms</a></li>
+</ul>
+<p>For Educators and Students</p>
+<p>These advanced topics are intended for:</p>
+<ul>
+<li>Experienced users tackling professional applications</li>
+<li>Specialized problem domains (robotics, mechanical design, etc.)</li>
+<li>Research and optimization work</li>
+<li>Custom library and framework development</li>
+</ul>
+<p>For accessibility:</p>
+<ul>
+<li>All recursive examples include base cases clearly marked</li>
+<li>Each section provides simplified versions before advanced variants</li>
+<li>Code comments explain both ‚Äúwhat‚Äù and ‚Äúwhy‚Äù</li>
+<li>Practical examples show real-world applications</li>
+<li>Performance considerations documented to prevent frustration</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../3dMake_Foundation/Appendix_D_Tolerance_QA.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                            </a>
+
+                            <a rel="next prefetch" href="../Backmatter/troubleshooting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../3dMake_Foundation/Appendix_D_Tolerance_QA.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
+                    </a>
+
+                    <a rel="next prefetch" href="../Backmatter/troubleshooting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
+                    </a>
+            </nav>
+
+        </div>
+
+        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
+        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
+        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
+        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
+        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr-ef4e11c1.min.js"></script>
+        <script src="../mark-09e88c2c.min.js"></script>
+        <script src="../searcher-c2a407aa.js"></script>
+
+        <script src="../clipboard-1626706a.min.js"></script>
+        <script src="../highlight-4a3ec6df.js"></script>
+        <script src="../book-a0b12cfe.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+
+    </div>
+    </body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                 ÑÅX^^©¸\FDDøü;ArOªÍä¯≈wº%w‡À<„⁄‚·áè‰éë‘µ◊^Ô~œmπc¿∂∂æVãıœŒN/wÑ‰Œ?ˇêıOÖúﬁ’π#$w…ìüî;¬@ºÊ«~ wv…OΩ˛MÒªø˚πc$wﬂØ|(:ù…‹1Ä∫Âñü ¯2∑ﬂ˛Œ∏„é˜Âéë\ØW˝=Éùn∑˚?õ’/ FÙk1óó_Ò‰‹*´˙’N        `Ë):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xÌ‹    Ä4∂˛œG£wÚdÓ¸?˝ï’Ëù8±æçV+˙Õf¥ˆÌâëØ}Zå>˚Y££π#  @—ù    †¢v|(v|(w˛	›ODl~√?{k¥.~RLø˙?EÛº√πc  @ëº∫     ∑~?v¯tú˙ÓWƒôü¯ØΩ^ÓD   PE'    ÄbÙc˚è?ßø„{#66rá  Ä¢(:    fÁ»£qÍ¶ÔÛd'   ¯{ù     
+‘;z,ñÙıπc   @1ù     
+’ΩÛÆÿ˙ÿ«s«   Ä"(:    l˝ñ€rG   Ä"(:  êMø€Õ ´~Øü;C`ÁsGÔËÒ‹1 ≤rÔ  @Ñ¢   ˇî‘ﬂøØo$˛ Ä≤ıOüŒÅ!±Òw‰é ê◊ Z“·˚;äT  √@—	  Ä«’;q"È¯˝≠Ì§„îÆf%wÜƒˆ˝üÃ ´˛F⁄IÙè¶Ω˜ `w(:  ∏˙'”>iƒØ¶Å∫ÎolÊé¿êËÛ<Po˝Ì¥˜˝ÂÂ§„ ∞;ù   x|€[IáoÙRø†p;;π0$<®Ω~⁄{áﬁ∂Û, ¿0Pt  ‡Òçé§øÈ∂®∑∆ÿhÓãV#wÄºöiœÉçQ◊d Äa`G  Ä«’òõK˚ÌV⁄Ò
+◊\‹õ;C¢1:ñ;@^Ìv“·3”I« `w(:  ∏öÛI«oå$~b@·FÆº<wÜDcr"wÄ¨„iüÕΩI« `w(:  ¯â_11ût|Ä“ç>ÔÜàJ2æ≤ÊÏLÓ Y5¶:i«o•}b  ªC—	  Ä|ø~†tÕôôhùwnÓÉñ◊Ωı÷pÔ  @(:   @VùWΩ¬Cù    û E'    »®˝îKbÙ_ü;   @Òù     ≥©ü¸—hûµî;   @—ù     ∑f3Êﬁı∂hûΩ?w   Äb):   @	FGcÓW˛[å=Îôπì    I—	    
+“y›´bÓ±¶˘ô    IDAT∑FÎí#ö∂Ô    æ®ù;     5œ;≥∑ø9bc#6ˇ‡èb˚/Óéﬁ√èF{+¢›é∆‰d4Ê¢9=—»ùñààùá>›O=ò;   Tö¢    îj|<∆nº.∆nº.wæÇı_}Ø¢   $ÊŸ◊        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        Pºˆ†?∞’j∆ïW^6Ëè∏{>˛â¯áÔÃ#πf´Ωùù‹1í:ÎÏ•¯¬√è‰éë‹ÏÃLÂèÕ={rGàÈôÈ œeDƒk_˚”±µµù;FRK˚„ë#Gs«Hnﬂ“ﬁxÙëcπc$5Ÿôàµ’ı‹1í;˚¿˛x¯ÛGr«HÓºÛœç}˚ˆÊéëTß3ﬂ˜≤WÊéë‹˛˝˚‚»ëGs«Hj||,ﬁÚsˇ%wå‰:ù…Z¨ﬁ˛ÛÔä’’µ‹1í⁄≥g!é?ë;Fr7Ω¯qÌµ◊‰éë\éÀıµıZ\3ˆ,ƒâäõú?˛⁄ #πππŸZõØ˛·◊G∑€Õ#©˝gÌã#_®ˆZ6"bqqO=z<wå§¶¶:±≤≤ö;Frˇ˙∆oâÎÆ{vÓ…Ω˙’Øè”ßñs«HÍÚ+û/˘Kr«HÓˆ€ﬂ˜‹}ÓIççè∆Ê∆VÓ…MMM’b˝”l6rGHÆ›n’b.«∆«rGÄF-Êr~~6wÑ x—igß˜‹SÌÖADƒ»»H|Ù£wÁéë\ª›Æ¸¶¡’W?5Ó∫Î„πc$w…%∆|:wå§:ò;¬@úY>SãÛÏg?˚7±º\ÌMÉ+Øº¨sy˘ÂOâ˚Ó˚dÓIÌŸ≥'éØˆ∆lDƒ5◊|M‹yÁ_‰éë‹““æx‰ëj°pÈ•óƒ'>Ò@Ó…=Ìió«›wﬂó;FRììπ#ƒÍÍZ-Æô'Oûäø˛ÎœÂéë‘Öùü~≥πc$˜¨g=#wÑÅ®√qŸi«]Ω'wå‰.º¸¯Ùß´}l^t—˘π#ƒ©Sßkql˛Â_>ÎÎπc$u’Uó««>VÌµlD=ÓMññ„ëG™ˇC∑K/ª$wÑÅ¯„˛Y=ZÌÙmmU˚;°/∫ÁÓ˚„¯„‹1íöùùé”ßœ‰éë‹5◊\UãıOØ◊œ!πnwßsππ±ô;¬ Ùk1óuYˇ‰‡’u        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        Pºˆ†?∞ŸlƒÏÏÙ†?v‡&&∆bnn6wå‰FF⁄±Ω›Õ#©âââZÃÂ¯¯xÂèÕÈÈ…‹bd¥]˘πåàòôôéf≥ë;FRìùÒZú:ùÍüggf:±≥SÌÎeDƒƒd=˛œNOO≈ÊÊfÓI’·∏åà≠¸5sbb"wÑÅh∑Í±˛ÈLu*lv&;µòÀV´ï;¬@‘a.«FÎ±ˇ31Q˝=É…N'wÑÅ©¸\FDLNN∆ÿÿXÓIML÷cÕ^á{ìôô©ÿÿÿ»#πëëÅï≈ÃL'∂∂™Ωg011ö;¬@t¶&+˛ôûûäF£˙œƒ´≈˙ßöÕf-Ê≤YÉ=ÉF£ùë—ëz\3s¯ ≤◊Î«È”g˝±˜Ïg?3ﬁ˘Æ[s«Ä'ÏE/ziÂèÕππµ‹b{´[˘πåà¯‡Ôàπ˘π‹1 bØ∏˘G*Õ¨˙èæ®ªSèıœØ˝˙Î„‚ã/»#©{Óæ/û˜ºÔŒ#πùùù‹¢«ÂÅsˆ«ªﬂs[Ó…}Î∑˛ª œÁ⁄ÍjÓ±µµ]˘πåà¯ü˛~t:ı¯¡√ÔÛü?ﬂår«HÆ.˜&ÀÀ´ï?œÆØoÂé0oz”ÎsG`ó‹~˚;„O>Ùë‹1ÿΩ^ØÚÁÿàà^ˆ˙˝ztF∂∂ÎqÕÃ°˙5]        `Ë):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xÌ‹  ‡ü£wz9∂ˇÏœcÁo>±∂—jFcv6öÛsçFÓx¸sÙ˚—;~"zßó£—hDt:—∫‡På}˝”#∆«sß     
+£Ë @˘∂∂bıÁﬂ€¯¡Ë-Ø‰NCb´çàÊ¬Bå=˜˙ò∏ÈEπ„      ÖÍ:  ä∂˘ﬁﬂâ7º06ÛwïúÍ¢—;~"÷ˇ˚ª„‰ı/åÌ?Ω3w"     † äN  ÎÃ´~<Vo}{ƒV7w2ÈØÆ≈ô◊º!Vﬂr{Ó(     @f^] @ëño˛·Ëﬁˇ…‹1(B?6Î˜¢øµS?¸sá     2ÒD'  ä≥ˆÊ€îú¯ˇlΩÔ±˘€ÔÀ     »D—	 Ä¢Ù>ÛW±Ò;ÔœÉB≠›˙ˆË≠¨‰é     d†Ë @QVﬁxKD?w
+J’ﬂÓ∆˙-∑Âé     d†Ë @1z'OG˜≥üÕÉ¬m˝…GrG`7ÌÏ‰N  √°Ô◊ @Õızπ  P E'  ä±ÒÎˇ””ú¯ä˙€›ÿ˛–üÂé¡.ÈolÊé  ªcªõt¯˛ô3I«(]ou5Ì(î E'  ä±}˜Ωπ#0$∂ù¶:Ìó™˝≠≠§„¿†ÙéO:~%Ò¸ •[ﬂH:|Ôƒ…§„ ∞;ù  (FÔ—£π#0$∫˚˘‹j£w"Ìó∂±Ωùv| ê‰Â‡MOAÍ≠øïˆ…yΩìßìé ¿ÓPt †[
+<Akkπ‘«f⁄„“€! ®ä˛V‚"Rw'Ì¯ •Î%>*î E'  `ËÙç‹Í£ïˆ∂—TPçƒ◊Ãh∫h5ó¯Ê°ﬂj% Ä›°Ë @9⁄Ì‹	ç±—‹j£1=ïˆöæL †"&'”éﬂI;>@ÈÔ4ßü« ÿäN  £1>ñ;C¢9=ù;Bm4˜$ø1ÍK[ ™°π7Ò5sr"È¯ •kå•›3h.ÓM:>  ªC—	 Äb4¶?9Ü hÃœÂéP≠ƒOZSp†"R?±1;ìt|Ä“5:iü∏î∫H ¿ÓPt †^G∆’ˆ∫≥™hå:Ó‡âpÕÍŒ+Ã àPt        ÜÄ¢        P<E'        †xäN        @Òù        Ä‚):        ≈kÁ   É“ZZå∆‹lÓµ–{ÙXÙNû      ®E'  jc¸€ücœΩ>wåZXªıb„Ωøù;     P!^]        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈k¸€≠∏Êö´˝±◊ÈLÊé0øÔéùùù‹1íöööäïïï‹1í[⁄∑X˘cs~a.wÑÅòõõ©¸\FD¸ÍØ˛V4*^◊Ìt¶buµ˙ÁüÎÆ˚Ê8˜‹πc$µ∂∂øÙKøû;FrWÕïqı◊^ô;FrøÚÀøÀgŒ‰éë‘¡ÉÁƒı◊?;wå‰ˆüµøÚ◊Ã——ë‹b™”©¸\FD¥Z_¸DD´›Æ≈\NLéÁé0uòÀ≈Ω{sGà.8„c£πc$µ∏Øsπ∞gæ«Ê{ﬁÛ—ÔÁNëV]ˆ,o∏·_∆9Áúï;FRçF£«ÂÏÃTÓq≈Oéïï’‹1íöüüâ€ogÓ…’ao∂›nG∑€Õ#πcGO‘‚<[É-Éhè‘cœ`l¨{ıXˇÏ›ªê;BeºË‘ÌÓƒùw~l–;p◊_ˇÕπ#ƒœ˛Ãmï_]}ıS„Æª>û;Fró\ra<¿ßs«HÍ–°Éπ#ƒ©SÀµ8œ~ÍS≈ÚÚrÓI]yÂeqœ=˜Áéë‹≈?©ÚEß’’’¯ôüæ5wå‰næ˘{kQtzÎ[ﬂ?|$wå§ÆΩˆöZùé|·HÂØôììπ#ƒ ÍjÂÁ2"bgßó;Br;›n-ÊÚπœΩ.wÑÅ®√\:\è˚Ãœ|ÊØ‚„ø7πË¢ÛsGà«O÷‚ÿº˜ﬁO∆˙˙FÓI]u’ÂÒ±è›ó;Fró]vIÂãN˝~ø«Âø∏ˆÈπ#ƒΩ˜~*é=ñ;FRW\qi‹q«˚r«HÆ{≥≥≥”q˙tµÃÒÿ0Ípû≠¡ñAt∑Î±g¬ﬁò;¬ ‘c˝Û§ÎqüôC∫ù        ¿∞St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚µ˝ÅÕf3Œ>p÷†?v‡FFGrGà?¸_ˇ#˙˝‹)“j4¢ÚcDD≥—´¯ﬂ92Rè„Úe/ª)^ÙmœÕÉ]–l6¢Wı3"ññsGÄz¨∆∆GsGà}Kãè-*lnn&wÑÅxÌÎ^?Ù óÁéëT≥YÌˇ´_Ù¸Áˇ´¯¶o˙Ü‹1í;p`Ó…5õçZ\3GFæìEÊr™3ô;¬@,ÃœU~>ˆÏ…a næ˘%q”ã_ò;Fruÿœ˚Û?ˇã8Ú»±‹1ík6´Õl4Í±˛´«û¡““bÂø:˜–ÅxÀœΩ!wå‰Í≤7[Ô˚˝ƒﬂ~Óπc$◊®¯~eDƒSØº4˛ËÉw‰éë‹ﬁΩπ#$WóıOgr"wÑ ¯]BØ◊ãá?_˝ã…ˆ÷vÓqË–¡‹Ä/37?sÛsπc ˇ@=÷?õ[π#ƒ£èçá>í;FRÁ>7wÑÅX\‹ãuËZ÷¿ÃÃtÃÃLÁé¡.Ëı˙µ∏fnowsGà:ÃÂ ÍZÓq‚‰© œÁTß–Ûs1ø`œ†
+ÓøˇÅ óΩ^ıØô˝~=÷?õıÿ3x‰ë£qÙhµKà]xA>Ïª!ÜG≥’™≈y∂_ıñwDåçç9ˇTD]÷?´kÎπ#TñW◊        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xÌ‹   ˛Ÿ÷◊£˜Ö#πS‘Bˇ‘©‹ Äàà≠MÎüı76£øº12ÌÛGåèÁé  PiäN  ¿–Ÿ˙–GbÎC… ``∂Ô˝dú˙ˆÔÕÉØd¥Ìs≈ÿ∑=/∆û˝Ã‹i   *«´Î     `7lu£˚–gbı?'o¸Œÿ˛”;s'  ®E'     ÿe˝”ß„Ãk~*VﬂxKÓ(   ï°Ë     âl~‡è‚Ã+,w  ÄJPt    ÄÑ∂Ô∫'÷ﬁ|[Ó   CO—	     €¯Ì˜G˜ìÊé  0‘ù     ` Vﬁ3π#   5E'   —ÔÁN Zœq ‘GÔ·#—}°‹1`(Ÿ2   B—	 Äí¨≠ßﬂÆË¿Ù∑∑sG`HÙ77rG Ä›°ºÀ¥˛Àøë;ßµµ‹	  (Ä¢  ≈Ë≠Æ¶ˇÙr“Ò˘í˛Òπ#0$˙[π# ¿ÆËù8ô;CbÁ˛rGÄ°‘_O˚#â˛ô3I« `w(: Pé≠Õ§√˚ÚipzÀJe<A›nÓ ∞+˙'OÂé¿êË[+√W•øôxœ‡®Ï  E'   —Ì%>ıØ?˘{6Ω∫é'¶ﬂK{‹¿†x+OTøªì;ßù¥«N√y `(: På~‚Òçƒ¿ó¥€π0$L ™¬˙ ≠ƒ˜}˜&  CA—	 Äb4R941ëv|˛Nsv:wÜ≈ËhÓ ∞+öÛπ#0,î)‡´”j%æ91ñt|  vá¢  ÂK[xhÌ›ìt|æ§uŸSrG`H¥ˆ/Âé  ªbÙÍßÊé¿∞PtÇØJ#Òè$öã{ìé ¿ÓPt †ÕN'È¯çÈ©§„Û%c◊?'¬˜7<£◊>=w ÿ#_wMD√v+_Y#ÒSi†™ìiü“‹Hº' ¿ÓpÁ @9ºZÆ2ö≥3—⁄∑ò;•k6cÙ7ÊN ª£›åˆìÁN¡0hŸñáØF√û  °Ë @I<®R∆_Ú‚‹(‹»ïóEs ì÷ ®é…Ôˇπ#0‹¯¿W≈° @(:  âå=ÁY—:x wJ’jEÁ«_ù; Ï™ˆ•óD˚ÚKs«   Ä Rt  íôæÂç£Ì‹1(–‘æ<öÛ≥πc ¿Æõ˙È◊E£3ô;   Tí¢  êLsqOÃºÈç-e'æd¸;_£◊?'w H¢99≥oª%££π£   @Â(:  Iµ/JÃΩ˝ñhLurG!≥F≥ùõ_ì/˝∑π£ @RÕsœâôwø-öÛπ£   @•(:  …5/8?ÊÎócÏYœåh∫©£ˆ˘ácˆóﬁcœø1w à÷“RÃΩ˜]1v„ı≠VÓ8   P	æa   £›éŒÎ^sø˜k1ˆonåÊ˛˝æÙ´≤F3s≥1zÌ◊≈‹ªﬁ3øxk4œ9ê; V≥ù¯˜±ø„7}[¥Œ9;mØÙ  ÄØñªj  `†öìì—y≈K#^Ò“ø˚∑ﬁôïåâÿMÕŒ§ßv¿ók∑cÚ%ﬂÒíÔ˙ªÍ≠¨DÙ3f‚qÌ|‚SqÊG~2w   ˛äN  @vÕÈ©‹  ™9e˝S™ﬁƒDÓ   <?≥        äßË        O—	        (û¢        P<E'        †xäN        @Òù        Ä‚):        ≈St        äßË        O—	        (û¢        P<E'        †xäN        @Ò⁄É˛¿V´ó<˘¬AÏˇmÔﬁc-ªÍ˚Äˇˆyﬁ«Ã‹◊ÿ„Òõ¡3~åÌ±=√´íí@1∏äh¢äÜHU”àê†§<‹HIEä‘J$ëZÑ˙nÅ§à˛ï∂¥©"˘Q€0Ä]ú;~‡yøÓ=˜ûsvˇ∏Ü∏.‡ÒxˆYÎÓ˝˘H#Y÷Ã^ﬂ£}ˆﬁkØÛ=gO‹‘‘TÍqÔ=ƒx<N£RùN'Ü√aÍïÎt⁄1éR«®Tj*ÆΩˆ ‘1*˜¯„O∆SO>ù:FÂˆﬁpmt:Ì‘1*uÙ»—x¯·GS«®\ª”éQÕœ?À+ß1ˇôùùIa"^ÒäKcÀ‹Ê‘1*µ∏8wﬂu_Íïk¬¸ß(ä(À2uå u∫ùÆ’Œﬁj∑c<™˜{ˆ…ßæﬂàkf™ó:¬D4a_Œœœ•é0^xAÉ‘1*u˛˘Á7c˛”êkÊç7]≠VΩø„€Îuqûm∑'˛∆ƒµZÕ∏fŒŒLßé0;v\K[R«®‘‹‹Êf\3∞f–Ìv‚˙Ω{R«®‹ÙÙt#Œ≥≠Vë:BÂNú8~˚·‘1*◊Ñ9˚x\6‚∏úüØ˜Á)M¸.a4≈C>2Èa'nee%uÑâxﬂ˚>T˚–ç7^˜ﬁ˚ı‘1*∑{˜ŒxË°zõó]vI¸∑Ø˝QÍï˚◊ˇÍãÒŸœ~>uå ›wﬂWc~a>uåJ›u˜ÒÀ˙µ‘1*wÕ5W∆ÅﬂN£RKKKqË–°‘1*˜ñ7ﬂú:¬D¸˘ü/û¨y°¥›j«{ﬁÛ∑S«®‹ı◊_˜ﬂ uåJMOO≈Úr˝ÔMˆÌ€wﬂ]ˇÖˆÀ.ª8{Ïâ‘1*µs◊éx§EÔ¡ jÍ—Ñıü={Íˇeöàà'ü|∫ˆ˚s˘Ùr#Ê?˚ˆÔmƒá”æ˘?jˇEå’’µ⁄ó£QΩ◊û#"∆„f\3Où^Na"}Ù{ÒÏ≥S«®TØ€kƒ5Û∫ÎÆé¯fÍïöüüã˚Óˇ/©cTnyyπÁŸÒ∏˛_t{€7‚¸”Ñœ¶õÚC#7‹pmÍµUÔØµ         µ†Ë        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        ò∞?é  IDAT»û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸÎLz¿vª7ﬁxÌ§áù∏ôôÈ‘&bÔﬁkb<ßéQ©+ÆÿÔ}Ôm©cTÆ€Î∆⁄ÍZÍïö›4õ:¬DÃÕoiƒy∂h©#TnœûW«ß?}gÍïÎOıc∞2H£Rk√a|·?|9uå mŸ≤9uÑâ¯˚˚p,ü>ù:F•z˝^¨VS«®\Øﬂè’AΩœ?Q¥" zœ◊#"˙˝~‹q«≠©cTÆ”Ìƒpmò:F•∫›n¨≠’˚æ$"bÔ{RGòà&Ãe/ø¸í‘&‚W~ÂÉq‰—‘1*’Ñuëàı˚Ø;ﬁ]ˇkføﬂO°r˝~ØÎ?›n7uÑ -,Ã5‚öyÂUØJa">yÁGbey%uåJıßz1X©ˇöA÷,ªΩ^ÍÒS?ı∆ÿv˛y©cTnÎ÷≈‘*˜ +.oƒ5≥ﬂÔ◊˛≥ÈqÒÔ˛ÌóR«®‹÷•Ö‘jk‚Eß—h˜ﬁ˚ıI;qÔx«[SGòà˚Ó;√aΩ⁄/πÙ¢x◊moKŒÿ±£«qû-«eÍï€æ}õÛOM<˚Ï¡¯Ëo¸vÍï{ÕknJa"ﬁ˙÷[RG Ä¡\∂>ﬁÙ¶◊ßé º¿`∞⁄àıü&†gf¶]3k‰gˆÕ©# /∞k◊éÿµkGÍúKKãÆô5±∂∂˘µO§éQπWÌﬁô:Bmyt        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆ:©        PΩÒëÉ1|‚ª1>ÙtîßOEDD—ÌEk~k¥∂_ù/èh˘ÕÚ•Ë       PSÂ©c1¯≥ˇÉ˚ˇ4∆ü˛â∑5=ù´nä©◊º%⁄óÓúPB8säN        5SÆÆƒ‡œ˛$V˛ÎGπr˙å˛Õx˘T¨ﬁ˚µXΩ˜k—π‚öòy«¢}¡•'Ö3ßË       P#√'çSüˇΩ;|ˆ€¯ŒÅ8˛è?”oLΩ·ÁŒa:8{äN  4∆È˙œc˘ü˝ã‘1ààç¢é"F„(«„àGDE´—nEt:Q¥€©Sr&∆eƒp- ÏÀÚ˚≤àhµ#:Ìàv;ä¢HùîSñQá√qƒxeYFD¨ÔªVk}_v:ˆÂÜPF◊œ≥?<.À2ä¢—*"⁄œÌÀV+uPŒƒhÂpÂhº~ŒçÒ˙qX¥û€óm◊Ãçb<˛ÀÛl9é≤|ﬁ¸ÁπÛl—ÓD8Õ¶7•N $p˙3Àü˝\ÍD¨œ{Ü√(G£à≤|ﬁ}¶5Éç¶è◊ÔMF√ıπÏèX3(⁄Ì˜ô˘˚·ö¡h}^kÕ [" Àss1≈Úó?£«ø3∑(än˜lŒû¢  çQQ©ccïÎãò£QƒÍZî©„2îQé à—8bmÌπˇ√FUñeƒx˝ÉÜàÅ}πÅïÂxΩW:EVÌÀl˝CÖ\3ùc7∂ÁÕ÷Ã R*WQÆX3»ó5É˙¯◊ÏÀçÕöAûä•NƒE˝sæ›’˚ˇgƒp-fﬂˇ´
+ä$Â´{        ›L;‚Ús_r˙Å’w≈ÚWøPŸˆ·L(:       ld≠"ä]˝àäüÓπÚ’/∆⁄√_Øv¯	ù        6∞b{7¢7ÅG ïe,Â_Æ?∂Pt       ÿ®:Eƒ›â7z˙{±zﬂüNl<x>E'       Ä™ÿ÷≠¸ëu/¥Úﬂø<Ÿ·9äN     0)eô:  5S.M∏Â£gûà—ìèM|\Pt  Â JÍ   ï*G„‘`C*W©# @ûz≠(¶“T?÷˘Fíqi6E'  ≤Qû<ï:  @µ∆£‘	`C*OüN Ú¥)]ÌcÙƒwìçMs): êèÅog  57ˆË:8~—	 ~¥¢_${|Èdc”\äN  d£SG   ®V©Ëg≈c‡G*;	ãNÀû“¿‰): êçt∑c   R(:¡Ÿp‰ ¿èV§\Xy,3ìßË @6ä~?u  Äjµ⁄©¿ÜTÙ∫©# @ñ Q∫:p15ùllöK—	 Äl¥∑ùü:  @•ä-õSGÄ©µÌº‘  K≈ ]—©µ‡˙Ã‰): êçÓæΩ©#   T™ΩÎä‘`CÍÓΩ>u »RπúÆË‘æ‡“dc”\äN  d£w«ª¢àî  ®÷‘ÔJ6§©˜ﬁñ: ‰È‘("—„Î:Øº2…∏4õ¢  ŸhÕÃD˚ÍWßé  Pâ÷‚BÙˆ^õ:lH≠π-—ﬁΩ3u »”·—ƒálÕläŒ+Øö¯∏†Ë @V6}Ï#Q¥LS Ä˙ô˝ﬂI6¥M˚ıà¬/A¿ïœÆM|Ãﬁçoä¢”ù¯∏‡$  ≤“⁄v^L‡=©c   úSΩ◊ÓãÓÎ˜ßéZ˚¢Ì1ıæ€S« Ä¸úOÙWùZ”≥1uÀ;'6<ü¢  Ÿô˙Ö˜E˜Ê◊•é  pN¥/ª$6˝Ó«S«ÄZò˘‡ﬂåﬁk˜•é Ÿ)üDîì´À≠QÃnûÃ`äN  diÛùøΩü˚ô‘1   ^ñŒ’W∆‹Á~?u®ïMø˚ÒËˇÙ-©c @^V (_≠|òˆ÷ã£ˇWﬁV˘8„(: ê≠Mø˛wcÛ?¯Õ(6Õ¶é  “Ù:1˝Kø[>Û©àñ•x8◊fÎ√1{ÁG£òµf  ?ÙÙZƒ≥√Í∂øZ∆‘Îoã¢›©nxﬁ}  d≠˚∆◊≈¬_É/¸«X˛‚óc¸Ã≥„qÍX   ˇø"¢µ∞Ωø˙Êò˘[ÔèËXÇá*ıo~CÙo~C˛˝ób˘è˛Såü˛~D9°gˆ @¶ «Q¥#bÒœEeîØD—ü9∑€Öó»]  Bˇˆ[£˚≠„q~4F>„ïA33—ZZàbz*uDŒByÚTîáèƒxe≠~/ä≈Ö(6oJã≥1Xç—°#Qû<Eß≈¬|¥ÊÊ¸éTGQ>ÂÒQD±eKãÛQt⁄©£ÒRïeîGé≈¯Ë—(á£hmﬁ¥~ûÌ˜R'„,î«O∆¯·(W◊¢òûäbq1Z≥”©cq Âï<ÂÚr›nK—⁄≤9u,ŒBπ∂∂>ó=v"Z›N¥wÓàŒUØVnÇ˙Ôæ-˙Ôæm}Õ‡°ÔƒË?ºæf0;≠•≈(¶˙©#r Sß¢<x8∆É’ı5É•Eø˙ΩQ≠bt‰Hî'N˝Âö¡¸\Dë:/U9FyHî'û[3ò€≠≈˘à∂5Éúú¸¯ÔD˘ù”QlG\‹;7«⁄âQîﬂD¨)ìû;.  6ñV+:ªØàŒÓ+R'^†õ:   –l≠VtÆ‹ù+w•NºÄ5ò†Áä˜ÂSkQúGyI/äô≥¸6‚®åxr- ßá~5ël(:       ‘Lylq|9 •N€{”g¯ÛN√2‚‡0 '◊÷ˇ2¢Ë       PGe¨óñ#fZ[⁄≥≠(¶ZÎçë""FEƒ`ÂÚ8‚¯h˝è~ôRt       ®ª”„ı?°«ƒ∆uñb        òE'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆ:ì∞(äËt&>Ïƒïekkk©cTÆ◊Î¶éPπ¢h5b_FQ¶Q©¢(¢,Î˝#ösûéF86Î\Æ´ˇÎçÜç8.£àóMπû‘ˇ∏\Wˇ◊Ÿå˜kDˆÂ∫&ºŒ&º∆àÊºŒ&h æl¬Îl¬kåh Îl ®	˜ô„qY˚˚Ã¶º_ùÍ§˚≤	Ø≥Ô◊à&ÏÀà¶ÏœfÏÀvª≠VΩØ¶)üe∂kæSö¯ªß,Àáìv‚æÚï?âO|‚¶éQπNßS˚˝˘Ω«èWÌzmÍï€Ω{g<Ù–#©cTÍ¢ã∂«_¸≈S©cTnˇ˛Ωµ?.#"ﬁÚÊüè„«èßéQ©ÎÆª:x‡õ©cTÓökÆåæù:F•ñññq\ﬁs˜˝ç∏fn€v~<ÛÃ˜S«®‘UWÌéo}Î°‘1*w˝ı◊ƒ˝˜H£R””S±ººí:FÂˆÌ€wﬂ}_ÍïªÏ≤ã„±«ûH£R;wÌàG~4uå ›t”uqœ=§é¡9p„M◊≈Ωÿó;wÓàG©˜±ŸÑslDƒæ˝{„ÓªÍÕl¬hÔﬁkqü˘{ü˙˝⁄ﬂõl€v^<ÛÃ≥©cTnˇ˛‚Æª˛WÍï[ZZåCáßéQ©={Æäo|„[©cTÆ	k≥ssõ„ÿ±©cTnˇ˛ΩqWÊ?^¥=û¨˘g`ª_Ω3z∞ﬁüeFD|˙”w∆ªn{[ÍïjJgd4ßéP[*d        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt       ‡≈EÍ4ú¢       @˝~µ€üö™t˚bù        j†µ¥PÌˆ´›>ºE'       Äh_±£≤m∑6mä÷ÁW∂}8äN        5–›cu€ﬁ∑7¢(*€>ú	E'       ÄËﬁt}ÛÛïlª˜3∑T≤]x)ù        j†Ë˜cÍéwûÛÌvvæ≤“_ãÇ3•Ë       PS∑ﬂÌÀ.9wlµbˆWŸcÎ»Ç¢       @M›nl˙Ìﬂäb”Ï9ŸﬁÃ/˝B¥Ø‹}N∂/ó¢       @ç¥/Ω86ˇŒ«_vŸi˙oº;¶Ó∏Ì•ÇóO—	       †f:{Æä-ü˘G—~≈e/˘ﬂ”S1˚/¶?¯Å
+í¡ŸÎ§        ¿π◊æ¸íÿÚáˇ$¸ïX˛7_äÚ·ü¯˜ãn7∫oπ9f~Ò˝—:ÎÑR¬ôSt       ®©¢€â©ügL›ˆ◊bÌﬁ˚bÌûb¯›ˇÂ¡ÉQGQ,ÃG˚‚Ì—›suÙﬁö(ÊÁRGÜK—	       †Ó⁄ÌËÓø)∫˚oJùŒZ+u         Ä£Ë        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ+É’rí>ı‘3ÒπIôƒ÷•≈8xËpÍïk∑Z1èS«®‘÷•Ö8xËHÍïõü€GèùH£R≥33qÍÙÈ‘1*∑uÎB<Xˇ˜lØ◊ã’’’‘1*µ∏0áèK£rÛsq‰hΩ_ÁTø+ÉAÍï€∫u1¨ˇ¸gzj*ñWVR«®‘¸¸ñ8zÙxÍï[\òè√Gé¶éQ©nßk√aÍïk ˘gÛ¶ô8q≤ﬁÛŸ-[6≈Ò„'S«®‹“‚B:\ˇ9{,--ƒ°¨lŸ≤9éØ˜ö¡¶M3q≤ÊÁÿààÛ∂.∆≥∏fv:ù÷|‘ÑπlDƒ¸¸\≠˘ö¡ÃÙtú^^N£rMô≥Oı{±2®˜öe÷Ú""Ê‚HÕ◊f{›^¨Æ’˚˝—úÛœÏÃtú:]ÔÎ…¸¸Ê8z¥ﬁ˜%∑ˇı∑«µ◊]ù:F•F£q|ÚìüJ£r˚˜ﬂo˚OßéQK/:        ºT]        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆù        ÄÏ):        ŸSt        ≤ßË        dO—	        »û¢        ê=E'         {äN        @ˆ˛/ÎCö^£h–    IENDÆB`Ç                                                                                                                                                                                                                                                                                                          nd up matching nothing at all
         // Ref: https://github.com/highlightjs/highlight.js/issues/2140
         if (
           lastMatch.type === "begin" &&

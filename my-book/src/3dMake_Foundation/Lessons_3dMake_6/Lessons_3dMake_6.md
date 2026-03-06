@@ -94,7 +94,7 @@ $fonts | Select-Object Name | Sort-Object Name
 $fonts | Where-Object { $_.Name -like "*Arial*" } | Select-Object Name
 
 # OpenSCAD on Windows also has a Font List viewer:
-# In OpenSCAD: Help menu → Font List
+# In OpenSCAD: Help menu > Font List
 # This shows exact font name strings ready to copy
 ```
 
@@ -221,7 +221,7 @@ translate([0, 20, 0]) {
 
 ```bash
 # BUILD COMMANDS
-3dm build                        # build src/main.scad → build/main.stl
+3dm build                        # build src/main.scad -> build/main.stl
 3dm build --clean                # delete build/ first, then rebuild
 3dm build --watch                # auto-rebuild when src/ files change
 
@@ -262,7 +262,7 @@ for label in "${LABELS[@]}"; do
   filename=$(echo "$label" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
   output="build/labels/${filename}.stl"
 
-  echo "Generating: $label → $output"
+  echo "Generating: $label -> $output"
   openscad -D "text_label=\"${label}\"" \
            -o "$output" \
            src/main.scad
@@ -289,7 +289,7 @@ foreach ($label in $labels) {
     $filename = $label.ToLower() -replace ' ', '_'
     $output   = "build\labels\$filename.stl"
 
-    Write-Host "Generating: $label → $output"
+    Write-Host "Generating: $label -> $output"
 
     # Note: string parameters require escaped quotes inside -D
     $dParam = "text_label=`"$label`""
@@ -402,7 +402,7 @@ Quick Reference:
 
 | Command        | What It Does               | Output                           |
 |----------------|----------------------------|----------------------------------|
-| `3dm build`    | Compile `.scad` → `.stl`   | `build/main.stl`                 |
+| `3dm build`    | Compile `.scad` -> `.stl`   | `build/main.stl`                 |
 | `3dm info` | AI geometry description    | Console text                     |
 | `3dm preview`  | Render model to PNG image  | `build/preview.png`              |
 | `3dm orient`   | Suggest print orientation  | Console text with recommendation |

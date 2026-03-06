@@ -10,7 +10,7 @@ By the end of this lesson you will be able to:
 - Understand the OpenSCAD coordinate system and unit conventions
 - Write and build your first parametric `.scad` file
 - Read and interpret `3dm info` output without a visual display
-- Use the core developer workflow: edit → build → verify
+- Use the core developer workflow: edit -> build -> verify
 
 ---
 
@@ -188,7 +188,7 @@ Example: 6000 mm³ of PLA (density 1.24 g/cm³), $20/1000g spool
 ## Step 5 — The Core Developer Workflow
 
 ```
-EDIT  →  BUILD  →  VERIFY  →  repeat
+EDIT  ->  BUILD  ->  VERIFY  ->  repeat
 
 Edit:    Change src/main.scad in any text editor
 Build:   3dm build
@@ -224,7 +224,7 @@ openscad -D "width=50" -D "height=15" -o build/main_large.stl src/main.scad
 # Loop over multiple sizes
 for w in 20 30 40 50; do
   openscad -D "width=$w" -o "build/main_w${w}.stl" src/main.scad
-  echo "Built: width=$w → build/main_w${w}.stl"
+  echo "Built: width=$w -> build/main_w${w}.stl"
 done
 ```
 

@@ -1,4 +1,4 @@
-# GitBash Unit Test - Comprehensive Assessment
+# Bash Unit Test - Comprehensive Assessment
 
 Estimated time: 60-90 minutes
 

@@ -1,1 +1,1 @@
-[Header 3 ("git-bash-introduction", [], []) [Str "Git Bash Introduction"]]
+# Git Bash Introduction

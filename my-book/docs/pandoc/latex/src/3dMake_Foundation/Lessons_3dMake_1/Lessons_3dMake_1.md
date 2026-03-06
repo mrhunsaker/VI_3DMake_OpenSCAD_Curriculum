@@ -1,4 +1,4 @@
-[Header 3 ("lesson-1--environmental-configuration-and-the-developer-workflow", [], []) [Str "Lesson 1 — Environmental Configuration and the Developer Workflow"], HorizontalRule, Header 4 ("learning-objectives", ["unnumbered", "unlisted"], []) [Str "Learning Objectives"], Para [Str "By the end of this lesson you will be able to:"], BulletList [[Plain [Str "Install and verify the 3dMake toolchain on Windows, macOS, and Linux"]], [Plain [Str "Understand the OpenSCAD coordinate system and unit conventions"]], [Plain [Str "Write and build your first parametric ", Code ("", [], []) ".scad", Str " file"]], [Plain [Str "Read and interpret ", Code ("", [], []) "3dm info", Str " output without a visual display"]], [Plain [Str "Use the core developer workflow: edit → build → verify"]]], HorizontalRule, Header 4 ("step-1--install-the-3dmake-toolchain", ["unnumbered", "unlisted"], []) [Str "Step 1 — Install the 3dMake Toolchain"], Header 5 ("linux--macos-bash", ["unnumbered", "unlisted"], []) [Str "Linux / macOS (bash)"], CodeBlock ("", ["bash"], []) "# Install via the official installer
+[Header 3 ("lesson-1--environmental-configuration-and-the-developer-workflow", [], []) [Str "Lesson 1 — Environmental Configuration and the Developer Workflow"], HorizontalRule, Header 4 ("learning-objectives", ["unnumbered", "unlisted"], []) [Str "Learning Objectives"], Para [Str "By the end of this lesson you will be able to:"], BulletList [[Plain [Str "Install and verify the 3dMake toolchain on Windows, macOS, and Linux"]], [Plain [Str "Understand the OpenSCAD coordinate system and unit conventions"]], [Plain [Str "Write and build your first parametric ", Code ("", [], []) ".scad", Str " file"]], [Plain [Str "Read and interpret ", Code ("", [], []) "3dm info", Str " output without a visual display"]], [Plain [Str "Use the core developer workflow: edit -> build -> verify"]]], HorizontalRule, Header 4 ("step-1--install-the-3dmake-toolchain", ["unnumbered", "unlisted"], []) [Str "Step 1 — Install the 3dMake Toolchain"], Header 5 ("linux--macos-bash", ["unnumbered", "unlisted"], []) [Str "Linux / macOS (bash)"], CodeBlock ("", ["bash"], []) "# Install via the official installer
 curl -fsSL https://get.3dmake.dev | bash
 
 # Verify installation
@@ -85,7 +85,7 @@ cost_$  = mass_g × (spool_price / spool_weight_g)
 Example: 6000 mm³ of PLA (density 1.24 g/cm³), $20/1000g spool
   mass  = (6000/1000) × 1.24  = 7.44 g
   cost  = 7.44 × (20/1000)    = $0.15 in filament
-", HorizontalRule, Header 4 ("step-5--the-core-developer-workflow", ["unnumbered", "unlisted"], []) [Str "Step 5 — The Core Developer Workflow"], CodeBlock ("", [""], []) "EDIT  →  BUILD  →  VERIFY  →  repeat
+", HorizontalRule, Header 4 ("step-5--the-core-developer-workflow", ["unnumbered", "unlisted"], []) [Str "Step 5 — The Core Developer Workflow"], CodeBlock ("", [""], []) "EDIT  ->  BUILD  ->  VERIFY  ->  repeat
 
 Edit:    Change src/main.scad in any text editor
 Build:   3dm build
@@ -106,7 +106,7 @@ openscad -D \"width=50\" -D \"height=15\" -o build/main_large.stl src/main.scad
 # Loop over multiple sizes
 for w in 20 30 40 50; do
   openscad -D \"width=$w\" -o \"build/main_w${w}.stl\" src/main.scad
-  echo \"Built: width=$w → build/main_w${w}.stl\"
+  echo \"Built: width=$w -> build/main_w${w}.stl\"
 done
 ", Header 5 ("windows-powershell-2", ["unnumbered", "unlisted"], []) [Str "Windows (PowerShell)"], CodeBlock ("", ["powershell"], []) "# Build with different parameter values
 openscad -D \"width=50\" -D \"height=15\" -o \"build\\\\main_large.stl\" \"src\\\\main.scad\"

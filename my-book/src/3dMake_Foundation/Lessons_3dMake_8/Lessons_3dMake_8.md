@@ -19,8 +19,8 @@ By the end of this lesson you will be able to:
 
 A 10mm hole in OpenSCAD does **not** produce a 10mm hole in the print. Fused Deposition Modeling (FDM) printers extrude plastic that:
 
-- Slightly overflows (expands laterally) on inner walls → holes come out **smaller** than designed
-- Shrinks slightly as it cools → outer dimensions come out slightly **smaller** than designed
+- Slightly overflows (expands laterally) on inner walls -> holes come out **smaller** than designed
+- Shrinks slightly as it cools -> outer dimensions come out slightly **smaller** than designed
 
 The gap you must add to a design to make parts fit together is the **clearance**. It varies by:
 - Printer and extrusion calibration

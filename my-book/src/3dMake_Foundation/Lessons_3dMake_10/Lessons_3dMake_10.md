@@ -397,16 +397,16 @@ repeat_children(n=4, spacing=20) {
 ```openscad
 // Temperature-to-fan-speed lookup table
 speed_table = [
-  [0,   0],   //  0°C → fan off
-  [40,  0],   // 40°C → fan off
-  [50, 50],   // 50°C → 50% speed
-  [60, 80],   // 60°C → 80% speed
-  [70, 100]   // 70°C → full speed
+  [0,   0],   //  0°C -> fan off
+  [40,  0],   // 40°C -> fan off
+  [50, 50],   // 50°C -> 50% speed
+  [60, 80],   // 60°C -> 80% speed
+  [70, 100]   // 70°C -> full speed
 ];
 
 temp = 55;
 fan_speed = lookup(temp, speed_table);
-echo("Fan speed at", temp, "°C:", fan_speed, "%");  // → 65%
+echo("Fan speed at", temp, "°C:", fan_speed, "%");  // -> 65%
 ```
 
 ### Example 2: `search()` to look up material properties

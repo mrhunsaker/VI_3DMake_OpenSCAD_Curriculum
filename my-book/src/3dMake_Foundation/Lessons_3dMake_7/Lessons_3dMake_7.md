@@ -544,7 +544,7 @@ sphere(r=20, $fn=$fn);
 6. Design a phone stand for a large tablet: update parameters and verify the design still holds at the correct angle.
 7. Build a "compound arm": three rigid links connected at joints, each rotated by a parameter angle. Display all three links as an assembly.
 8. Create an ergonomic keyboard wrist rest using `minkowski()` with an ellipsoid for smooth contouring.
-9. Demonstrate transform order: build a visual example that shows the difference between `rotate → translate` and `translate → rotate` using colored shapes.
+9. Demonstrate transform order: build a visual example that shows the difference between `rotate -> translate` and `translate -> rotate` using colored shapes.
 10. Redesign the phone stand as a wall-mount: replace the base with a plate that has two mounting holes, positioned so the phone faces outward.
 11. Build a mirror-symmetric earring holder: design one arm with pegs, then use `mirror()` to create the symmetric pair.
 12. Use `norm()` to calculate the diagonal of a rectangular prism and use that value to size a through-hole in the design.

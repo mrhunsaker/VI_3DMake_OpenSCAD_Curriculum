@@ -1,13 +1,40 @@
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+
 \documentclass[
-  10pt,
-  twoside,
-        english,
-      ]{report}
+  11pt,twoside,letterpaper]{book}
+
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \usepackage{iftex}
+\usepackage{etoolbox}
+\usepackage{pdflscape} 
+\usepackage{calc}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage{showframe}
+
+% Hyperlink Color Configuration
+\definecolor{linkblue}{HTML}{0055AA} 
+\definecolor{exturl}{HTML}{008000}   
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    citecolor=linkblue,
+    filecolor=linkblue,
+    urlcolor=exturl,
+    pdfnewwindow=true,
+    breaklinks=true
+}
+
+
 \ifLuaTeX
   \usepackage{fontspec}
   \usepackage[sfdefault]{atkinson}
@@ -18,17 +45,6 @@
     ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic
   ]
-\ifLuaTeX
-  \usepackage{fontspec}
-  \usepackage[sfdefault]{atkinson}
-  \setmonofont{AtkinsonHyperlegibleMono}[
-    Extension=.otf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
-  ]
-  % Fallback for glyphs missing from Atkinson (e.g. → U+2192)
   \directlua{
     luaotfload.add_fallback("symbolsfallback", {
       "DejaVuSans:mode=harf;",
@@ -46,17 +62,7 @@
     ItalicFeatures={RawFeature={fallback=symbolsfallback}},
     BoldItalicFeatures={RawFeature={fallback=symbolsfallback}}
   ]
-\else\ifXeTeX
-  \usepackage{fontspec}
-  \usepackage[sfdefault]{atkinson}
-  \setmonofont{AtkinsonHyperlegibleMono}[
-    Extension=.otf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
-  ]
-\fi\fi
+\fi
 
 \newfontfamily\listingfont{AtkinsonHyperlegibleMono}[
   Extension=.otf,
@@ -66,13 +72,12 @@
   BoldItalicFont=*-BoldItalic
 ]
 
-% Convert footnotes to chapter endnotes
+% Footnotes to Endnotes Configuration
 \usepackage{endnotes}
 \let\footnote=\endnote
 \renewcommand{\notesname}{Notes}
 
 % Automatically print endnotes at the end of each chapter
-\usepackage{etoolbox}
 \preto\chapter{%
   \ifnum\value{endnote}>0
     \begingroup
@@ -83,17 +88,15 @@
     \endgroup
   \fi
 }
-\usepackage{listings}
-\usepackage{upquote}
-\usepackage{tabularray}
-\UseTblrLibrary{booktabs}
 
+% Code Highlighting Colors (Alabaster)
 \definecolor{alabaster-bg}{HTML}{FAFAFA}
 \definecolor{alabaster-keyword}{HTML}{C92C2C}
 \definecolor{alabaster-string}{HTML}{008000}
 \definecolor{alabaster-comment}{HTML}{0078D7}
 \definecolor{alabaster-number}{HTML}{333333}
 \definecolor{alabaster-identifier}{HTML}{000000}
+\definecolor{BrickRed}{HTML}{B22222}
 
 \newlength{\AlabasterTabWidth}
 \settowidth{\AlabasterTabWidth}{{\listingfont\footnotesize\ \ \ \ }}
@@ -210,11 +213,9 @@
 \lstalias{batch}{cmd}
 \lstalias{powershell}{powershell}
 \lstalias{json}{json}
-\usepackage{longtable}
-\usepackage{booktabs}
-\usepackage{array}
 
 \setcounter{secnumdepth}{-\maxdimen}
+
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -280,16 +281,34 @@
   pdftitle={3D Printing Course for Blind and Visually Impaired Learners},
   pdfauthor={Michael Ryan Hunsaker, M.Ed., Ph.D.},
   pdflang={en},
-  hidelinks,
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
+
 
 \title{3D Printing Course for Blind and Visually Impaired Learners}
 \author{Michael Ryan Hunsaker, M.Ed., Ph.D.}
 \date{2026-02-24}
 
+% Configure longtable for better PDF output
+% Don't automatically wrap in landscape - causes nesting errors with document environment
+% Tables will resize columns as needed with LuaTeX's text width handling
+\setlength\LTpost{0pt}
+\setlength\LTpre{0pt}
+
+% Define \tightlist macro for Pandoc-generated lists
+% Provides proper spacing for bullet and numbered lists
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parskip}{0pt}%
+}
+
 \begin{document}
 
-\renewcommand{\maketitle}{}
+% --- HARDCODED COVER SECTION ---
 \begin{titlepage}
     \centering
     \vspace*{2cm}
@@ -300,24 +319,39 @@
     {\large Updated: 2026-02-24}
 \end{titlepage}
 
-% Copyright Page
+% Copyright Page (Verso)
 \newpage
 \thispagestyle{empty}
 \vspace*{\fill}
-{\small \textcopyright\ 2026 Michael Ryan Hunsaker, M.Ed., Ph.D. All rights reserved.}
-{\small Creative Commons CC BY-SC-ND license. To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-nc-nd/4.0/}\par}
+{\small \textcopyright\ 2026 Michael Ryan Hunsaker, M.Ed., Ph.D. 
+All rights reserved.}
+
+\vspace{1em}
+{\small Creative Commons CC BY-NC-ND license. To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-nc-nd/4.0/}\par}
+
 {\small Book URL: \url{https://mrhunsaker.github.io/VI_3DMake_OpenSCAD_Curriculum/}}
 \newpage
+% --- END COVER SECTION ---
 
+\frontmatter
+
+
+\cleardoublepage 
 {
+\hypersetup{linkcolor=linkblue}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
+
+
+
+\mainmatter
+
 \chapter{Introduction}\label{docs__pandoc__latex__src__readme.md__readme}
 
 This course teaches 3D design and digital fabrication using a fully accessible, command-line-driven toolchain centered on OpenSCAD (text-based CAD), 3DMake (non-visual build automation), and accessible editors (VS Code, Notepad++, command-line editors) with screen reader support.
 
-The curriculum is explicitly designed for blind and visually impaired learners who use screen readers (NVDA, JAWS, VoiceOver). It eliminates GUI navigation and visual feedback in favor of keyboard-driven, text-based workflows that screen readers can fully access. Accessibility is not an add-on. It is the foundation of every tool, workflow, and lesson in this curriculum.
+The curriculum is explicitly designed for blind and visually impaired learners who use screen readers (NVDA, JAWS, Orca, VoiceOver). It eliminates GUI navigation and visual feedback in favor of keyboard-driven, text-based workflows that screen readers can fully access. Accessibility is not an add-on. It is the foundation of every tool, workflow, and lesson in this curriculum.
 
 \section*{Curriculum Structure}\label{docs__pandoc__latex__src__readme.md__curriculum-structure}
 
@@ -347,7 +381,7 @@ Students master terminal/command-line fundamentals before learning 3D design. Yo
 
 \subsubsection*{Compare All Three Pathways}\label{docs__pandoc__latex__src__readme.md__compare-all-three-pathways}
 
--\textgreater{} \hyperref[docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__command-line-fundamentals---choose-your-path]{Command Line Interface Selection Guide}
+\hyperref[docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__command-line-fundamentals---choose-your-path]{Command Line Interface Selection Guide}
 
 This guide provides a comprehensive comparison including:
 
@@ -365,7 +399,7 @@ This guide provides a comprehensive comparison including:
   FAQ addressing common questions
 \end{itemize}
 
-\subsubsection*{Part 2A: PowerShell Foundation (Recommended for Windows Users)}\label{docs__pandoc__latex__src__readme.md__part-2a-powershell-foundation-recommended-for-windows-users}
+\subsubsection*{PowerShell Foundation (Recommended for Windows Users)}\label{docs__pandoc__latex__src__readme.md__powershell-foundation-recommended-for-windows-users}
 
 Where to Start: \hyperref[docs__pandoc__latex__src__powershell_foundation__powershell_curriculum_overview__powershell_curriculum_overview.md__powershell-for-screen-reader-users---complete-curriculum-overview]{PowerShell Curriculum Overview}
 
@@ -381,17 +415,24 @@ Introductory \& Reference Materials:
 
 Lessons Included:
 
--Powershell Lesson Pre: Your First Terminal - Opening PowerShell, first commands, screen reader tricks
--Powershell Lesson 0: Getting Started - Paths, shortcuts, tab completion
--Powershell Lesson 1: Navigation - Moving around the file system confidently
--Powershell Lesson 2: File and Folder Manipulation - Creating, editing, moving files
--Powershell Lesson 3: Input, Output, and Piping - Redirecting output, piping commands
--Powershell Lesson 4: Environment Variables and Aliases - Setting variables, creating shortcuts
--Powershell Lesson 5: Filling in the Gaps - Control flow, profiles, useful tricks
--Powershell Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows
-
 \begin{itemize}
 \tightlist
+\item
+  Powershell Lesson Pre: Your First Terminal - Opening PowerShell, first commands, screen reader tricks
+\item
+  Powershell Lesson 0: Getting Started - Paths, shortcuts, tab completion
+\item
+  Powershell Lesson 1: Navigation - Moving around the file system confidently
+\item
+  Powershell Lesson 2: File and Folder Manipulation - Creating, editing, moving files
+\item
+  Powershell Lesson 3: Input, Output, and Piping - Redirecting output, piping commands
+\item
+  Powershell Lesson 4: Environment Variables and Aliases - Setting variables, creating shortcuts
+\item
+  Powershell Lesson 5: Filling in the Gaps - Control flow, profiles, useful tricks
+\item
+  Powershell Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows
 \item
   PowerShell Unit Test \& Practice - Comprehensive self-assessment
 \end{itemize}
@@ -400,7 +441,7 @@ Time commitment: 30-45 hours (for screen reader users)
 Best for: Users who want modern Windows features and advanced automation
 Skills: Terminal navigation, piping, advanced scripting, professional automation
 
-\subsubsection*{Part 2B: Windows Command Prompt Foundation (Simplified Alternative)}\label{docs__pandoc__latex__src__readme.md__part-2b-windows-command-prompt-foundation-simplified-alternative}
+\subsubsection*{Windows Command Prompt Foundation (Simplified Alternative)}\label{docs__pandoc__latex__src__readme.md__windows-command-prompt-foundation-simplified-alternative}
 
 Where to Start: \hyperref[docs__pandoc__latex__src__cmd_foundation__cmd_curriculum_overview__cmd_curriculum_overview.md__cmd_foundation_cmd_curriculum_overview-cmd_curriculum_overview]{CMD Curriculum Overview}
 
@@ -432,7 +473,7 @@ Time commitment: 30-45 hours (for screen reader users)
 Best for: Absolute beginners or users who prefer simplicity
 Skills: Terminal navigation, file operations, batch scripting, basic automation
 
-\subsubsection*{Part 2C: Git Bash Foundation (Cross-Platform Skills)}\label{docs__pandoc__latex__src__readme.md__part-2c-git-bash-foundation-cross-platform-skills}
+\subsubsection*{Git Bash Foundation (Cross-Platform Skills)}\label{docs__pandoc__latex__src__readme.md__git-bash-foundation-cross-platform-skills}
 
 Where to Start: \hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_curriculum_overview__gitbash_curriculum_overview.md__gitbash_foundation_gitbash_curriculum_overview-gitbash_curriculum_overview]{Git Bash Curriculum Overview}
 
@@ -441,9 +482,9 @@ Introductory \& Reference Materials:
 \begin{itemize}
 \tightlist
 \item
-  \hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_introduction__gitbash_introduction.md__git-bash-introduction]{Git Bash Introduction} - Screen-reader-friendly quick-start guide (JAWS/NVDA)
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Foundation\%5CGitBash_Introduction\%5CGitBash_Introduction.md}{Git Bash Introduction} - Screen-reader-friendly quick-start guide (JAWS/NVDA)
 \item
-  \hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__gitbash_foundation_gitbash_tutorial-gitbash_tutorial]{Git Bash Tutorial} - Hands-on tutorial covering paths, navigation, and common operations
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Foundation\%5CGitBash_Tutorial\%5CGitBash_Tutorial.md}{Git Bash Tutorial} - Hands-on tutorial covering paths, navigation, and common operations
 \item
   \hyperref[docs__pandoc__latex__src__gitbash_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-git-bash]{Screen Reader Accessibility Guide for Git Bash} - NVDA and JAWS configuration for Git Bash
 \end{itemize}
@@ -531,9 +572,11 @@ Total: 45-55 hours instruction + practice projects
 \begin{itemize}
 \tightlist
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_D_PowerShell_Integration.md}{Appendix A: PowerShell Integration for SCAD Workflows} - Batch processing, automation scripts, and advanced workflow integration
+  \hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_a_commandline_integration.md__3dmake_foundation-appendix_f_cmd_integration]{Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows} - Batch processing and automation for CMD users
 \item
-  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_e_advanced_openscad_concepts.md__appendix-d-advanced-openscad-concepts]{Appendix B: Advanced OpenSCAD Concepts} - Specialized topics including gears, batch processing, performance, print orientation, and recursion
+  \hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_b_powershell_integration.md__3dmake_foundation-appendix_d_powershell_integration]{Appendix B: PowerShell Integration for SCAD Workflows} - Batch processing, automation scripts, and advanced workflow integration for PowerShell users
+\item
+  \hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_c_gitbash_integration.md__3dmake_foundation-appendix_g_gitbash_integration]{Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows} - Shell scripting and automation for Git Bash / Unix shell users
 \end{itemize}
 
 \textbf{3dMake:}
@@ -541,13 +584,17 @@ Total: 45-55 hours instruction + practice projects
 \begin{itemize}
 \tightlist
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md}{Appendix 1: Comprehensive Slicing Guide} - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CAppendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - Quick reference for 3dm command-line tool
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_B_Material_Properties.md}{Appendix 2: Material Properties \& Selection Guide} - Detailed material reference including shrinkage data, print settings, and properties
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_b_comprehensive_slicing_guide.md__3dmake_foundation-appendix_a_comprehensive_slicing_guide]{Appendix A: Comprehensive Slicing Guide} - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_C_Tolerance_QA.md}{Appendix 3: Tolerance Testing \& Quality Assurance Matrix} - Comprehensive QA procedures and tolerance validation methods
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_c_material_properties.md__3dmake_foundation-appendix_b_material_properties]{Appendix B: Material Properties \& Selection Guide} - Detailed material reference including shrinkage data, print settings, and properties
 \item
-  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{Appendix 4: 3dMake Code Examples \& Assets} - OpenSCAD code examples and reference designs
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_d_tolerance_qa.md__3dmake_foundation-appendix_c_tolerance_qa]{Appendix C: Tolerance Testing \& Quality Assurance Matrix} - Comprehensive QA procedures and tolerance validation methods
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_e_advanced_openscad_concepts.md__appendix-d-advanced-openscad-concepts]{Appendix D: Advanced OpenSCAD Concepts} - Specialized topics including gears, batch processing, performance, print orientation, and recursion
+\item
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{3dMake Code Examples \& Assets} - OpenSCAD code examples and reference designs
 \end{itemize}
 
 \section*{The Accessible Toolchain}\label{docs__pandoc__latex__src__readme.md__the-accessible-toolchain}
@@ -559,16 +606,16 @@ This course uses tools designed for screen reader access:
 \begin{itemize}
 \tightlist
 \item
-  Terminal/Command line - Text-based, fully accessible to NVDA, JAWS, VoiceOver
+  Terminal/Command line - Text-based, fully accessible to NVDA, JAWS, Orca, VoiceOver
 \item
   OpenSCAD - Free, open-source text-based CAD (no visual-only GUI dependency)
 \item
   3DMake - Command-line build tool eliminating GUI navigation
 \item
-  Accessible editors - VS Code, Notepad++, Nano, Vim (all keyboard-driven, screen reader friendly)
+  Accessible text editors - Notepad, VS Code, Notepad++, Nano, Vim, etc. (all keyboard-driven, screen reader friendly)
 \end{itemize}
 
-See \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__nvda-jaws-coding-tips.md__3dmake_foundation_lessons_3dmake_1-nvda-jaws-coding-tips]{Screen Reader Coding Tips (NVDA \& JAWS)} for detailed keyboard shortcuts and configuration.
+See \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CAppendix_A_3DMake_Cheat_Sheet.md}{Appendix A: 3DMake Cheat Sheet} for detailed keyboard shortcuts and configuration.
 
 \subsection*{3DMake: Non-Visual Build Automation}\label{docs__pandoc__latex__src__readme.md__3dmake-non-visual-build-automation}
 
@@ -620,13 +667,13 @@ Students learn to design through code and testing, not visual previews:
 \begin{itemize}
 \tightlist
 \item
-  Lesson 6: Keycap with embossed text (3dm commands)
+  Lesson 6: Keychain with embossed text (3dm commands)
 \item
   Lesson 7: Phone stand (parametric transforms)
 \item
   Lesson 8: Stackable bins (interlocking features, tolerances)
 \item
-  Lesson 9: Keychain automation (PowerShell batch processing)
+  Lesson 9: Build automation (PowerShell batch processing)
 \item
   Lesson 10: QA testing + accessibility audit (measurement, troubleshooting)
 \item
@@ -647,74 +694,271 @@ Each project requires:
 
 \section*{Learning Support}\label{docs__pandoc__latex__src__readme.md__learning-support}
 
-\subsection*{Reference Materials}\label{docs__pandoc__latex__src__readme.md__reference-materials}
-
-Quick navigation to common topics:
-
-\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_2__openscad-cheat-sheet.md__3dmake_foundation_lessons_3dmake_2-openscad-cheat-sheet]{OpenSCAD Cheat Sheet} - Syntax quick-reference\\
-\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__3dmake-setup-guide.md__3dmake-setup--workflow]{3dMake Setup Guide} - Installation walkthrough\\
-\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__vscode-setup-guide.md__3dmake_foundation_lessons_3dmake_1-vscode-setup-guide]{VSCode Setup Guide} - Accessibility configuration\\
-\href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Lessons_3dMake_1/vocabulary-glossary.md}{Vocabulary Glossary} - Course terminology\\
-\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CLessons_3dMake_5\%5Cfilament-comparison-table.md}{Filament Comparison Table} - Material reference\\
-\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_11__master-rubric.md__3dmake_foundation_lessons_3dmake_11-master-rubric]{Master Rubric} - Project assessment criteria
-
-\subsection*{Navigation}\label{docs__pandoc__latex__src__readme.md__navigation}
+\subsection*{Primary Navigation \& Overview}\label{docs__pandoc__latex__src__readme.md__primary-navigation--overview}
 
 \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_foundation_curriculum_guide.md__3dmake_foundation-3dmake_foundation_curriculum_guide]{Curriculum Guide} - Detailed overview of all lessons and appendices\\
 \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_quick_reference.md__3dmake_foundation-3dmake_quick_reference]{Quick Reference} - At-a-glance command and syntax reference\\
-\href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices/Appendices.md}{Appendices} - 3dMake reference materials
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__mdbook-navigation-guide.md__3dmake_foundation_lessons_3dmake_1-mdbook-navigation-guide]{mdBook Navigation Guide} - How to navigate this curriculum
+
+\subsection*{Setup \& Configuration Guides}\label{docs__pandoc__latex__src__readme.md__setup--configuration-guides}
+
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__3dmake-setup-guide.md__3dmake-setup--workflow]{3dMake Setup Guide} - Installation walkthrough\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__vscode-setup-guide.md__3dmake_foundation_lessons_3dmake_1-vscode-setup-guide]{VSCode Setup Guide} - Accessibility configuration\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__nvda-jaws-coding-tips.md__3dmake_foundation_lessons_3dmake_1-nvda-jaws-coding-tips]{Screen Reader Coding Tips (NVDA \& JAWS)} - Keyboard shortcuts and coding configuration
+
+\subsection*{Quick Reference Materials}\label{docs__pandoc__latex__src__readme.md__quick-reference-materials}
+
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_2__openscad-cheat-sheet.md__3dmake_foundation_lessons_3dmake_2-openscad-cheat-sheet]{OpenSCAD Cheat Sheet} - Syntax quick-reference\\
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CAppendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - Complete 3dm command reference\\
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CLessons_3dMake_5\%5Cfilament-comparison-table.md}{Filament Comparison Table} - Material selection guide\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_11__master-rubric.md__3dmake_foundation_lessons_3dmake_11-master-rubric]{Master Rubric} - Project assessment criteria
+
+\subsection*{Safety \& Maintenance}\label{docs__pandoc__latex__src__readme.md__safety--maintenance}
+
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_5__safety_checklist.md__3dmake_foundation_lessons_3dmake_5-safety_checklist]{Safety Checklist} - Pre-print safety procedures\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_5__maintenance_log.md__3dmake_foundation_lessons_3dmake_5-maintenance_log]{Maintenance Log} - Printer maintenance tracking
+
+\subsection*{Troubleshooting \& Diagnostics}\label{docs__pandoc__latex__src__readme.md__troubleshooting--diagnostics}
+
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__common_issues_and_solutions.md__3dmake_foundation_lessons_3dmake_10-common_issues_and_solutions]{Common Issues and Solutions} - Comprehensive troubleshooting guide\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__diagnostic_checklist.md__3dmake_foundation_lessons_3dmake_10-diagnostic_checklist]{Diagnostic Checklist} - Systematic problem diagnosis\\
+\hyperref[docs__pandoc__latex__src__backmatter__troubleshooting.md__technical-reference]{Technical Reference} - Advanced systems architecture and professional reference
+
+\subsection*{Glossaries \& Terminology}\label{docs__pandoc__latex__src__readme.md__glossaries--terminology}
+
+\hyperref[docs__pandoc__latex__src__backmatter__glossary.md__student--glossary]{Student Glossary} - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI\\
+\hyperref[docs__pandoc__latex__src__backmatter__teacher-glossary.md__teacher-glossary]{Teacher Glossary} - Pedagogical framework and instructional design terminology
+
+\subsection*{Command Line Integration Appendices}\label{docs__pandoc__latex__src__readme.md__command-line-integration-appendices}
+
+\hyperref[docs__pandoc__latex__src__appendices__cli_appendices.md__appendices-cli-appendices]{CLI Appendices Overview} - All command line integration guides\\
+\hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_a_commandline_integration.md__3dmake_foundation-appendix_f_cmd_integration]{Appendix A: CMD/Batch Integration} - Windows CMD automation\\
+\hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_b_powershell_integration.md__3dmake_foundation-appendix_d_powershell_integration]{Appendix B: PowerShell Integration} - PowerShell workflow automation\\
+\hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_c_gitbash_integration.md__3dmake_foundation-appendix_g_gitbash_integration]{Appendix C: Git Bash Integration} - Unix shell integration
+
+\subsection*{3dMake \& OpenSCAD Appendices}\label{docs__pandoc__latex__src__readme.md__3dmake--openscad-appendices}
+
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CAppendices\%5C3DMake_Appendices.md}{3dMake Appendices Overview} - All 3dMake reference materials\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_b_comprehensive_slicing_guide.md__3dmake_foundation-appendix_a_comprehensive_slicing_guide]{Appendix A: Comprehensive Slicing Guide} - PrusaSlicer, Bambu Studio, Cura, OrcaSlicer\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_c_material_properties.md__3dmake_foundation-appendix_b_material_properties]{Appendix B: Material Properties \& Selection Guide} - Detailed material specifications\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_d_tolerance_qa.md__3dmake_foundation-appendix_c_tolerance_qa]{Appendix C: Tolerance Testing \& QA Matrix} - Quality assurance procedures\\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_e_advanced_openscad_concepts.md__appendix-d-advanced-openscad-concepts]{Appendix D: Advanced OpenSCAD Concepts} - Gears, recursion, performance optimization
+
+\subsection*{Code Examples \& Assets}\label{docs__pandoc__latex__src__readme.md__code-examples--assets}
+
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{3dMake Code Examples \& Assets} - OpenSCAD code examples and reference designs
+
+\subsection*{Further Reading \& References}\label{docs__pandoc__latex__src__readme.md__further-reading--references}
+
+\hyperref[docs__pandoc__latex__src__backmatter__further_reading.md__references]{References \& Further Reading} - Peer-reviewed research and scholarly works
 
 \section*{Supplemental Resources \& Textbooks}\label{docs__pandoc__latex__src__readme.md__supplemental-resources--textbooks}
 
-\subsection*{Textbook options (EPUB Format)}\label{docs__pandoc__latex__src__readme.md__textbook-options-epub-format}
+\subsection*{Textbook Options}\label{docs__pandoc__latex__src__readme.md__textbook-options}
+
+\textbf{Beginner-Friendly Textbooks:}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://nostarch.com/programmingopenscad}{Programming with OpenSCAD: A Beginner\textquotesingle s Guide to Coding 3D-Printable Objects} - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Ideal for deep dives into specific topics and as a reference guide throughout the course.
+  \href{https://nostarch.com/programmingopenscad}{Programming with OpenSCAD: A Beginner\textquotesingle s Guide to Coding 3D-Printable Objects} by Justin Gohde and Marius Kintel - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Ideal for deep dives into specific topics and as a reference guide throughout the course. Available in EPUB format (screen reader accessible).
 \item
-  \href{https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174}{Simplifying 3D Printing with OpenSCAD} - Focused on practical workflows, optimization, and real-world printing scenarios.
+  \href{https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174}{Simplifying 3D Printing with OpenSCAD} by Alicia Noors - Focused on practical workflows, optimization, and real-world printing scenarios. Available in EPUB/PDF formats.
+\item
+  \href{https://www.apress.com/gp/book/9781484213292}{OpenSCAD for 3D Printing} by Al Williams - Hands-on introduction to OpenSCAD with practical 3D printing projects. Covers basics through intermediate topics with step-by-step tutorials.
+\item
+  \href{https://www.amazon.com/Mastering-OpenSCAD-Jochen-Kerdels/dp/1803243538}{Mastering OpenSCAD} by Jochen Kerdels - Project-based learning approach with emphasis on parametric design and reusable code modules.
+\end{itemize}
+
+\textbf{Free Online Resources:}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://en.wikibooks.org/wiki/OpenSCAD_User_Manual}{Official OpenSCAD Documentation} - Complete language reference and user manual on Wikibooks. Fully accessible and searchable.
+\item
+  \href{https://openscad.org/documentation.html}{OpenSCAD Tutorial} - Official beginner tutorial covering core concepts and syntax.
+\item
+  \href{https://openscad.org/cheatsheet/}{OpenSCAD Cheat Sheet (Official)} - Quick reference for all OpenSCAD commands and functions.
 \end{itemize}
 
 \subsection*{Companion Teaching Resources}\label{docs__pandoc__latex__src__readme.md__companion-teaching-resources}
+
+\textbf{Curriculum-Specific Materials:}
 
 \href{https://programmingwithopenscad.github.io/learning.html}{Practice Worksheets} - Printable worksheets for visualization practice, decomposition exercises, vocabulary building, and assessment.\\
 \href{https://programmingwithopenscad.github.io/quick-reference.html}{Visual Quick Reference} - Command syntax guides and geometry reference.\\
 \href{https://github.com/ProgrammingWithOpenSCAD/CodeSolutions}{Code Solutions Repository} - Working OpenSCAD examples organized by topic (3D shapes, transformations, loops, modules, if-statements, advanced techniques).
 
+\textbf{Community Resources:}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.thingiverse.com/search?q=openscad&type=things}{Thingiverse OpenSCAD Designs} - Community-created parametric designs with source code available for study and modification.
+\item
+  \href{https://forum.openscad.org/}{OpenSCAD Forums} - Active community support for troubleshooting and learning.
+\item
+  \href{https://www.youtube.com/results?search_query=openscad+tutorial+beginner}{OpenSCAD Tutorials (YouTube)} - Video tutorials (note: supplemental to text-based curriculum; transcripts recommended for accessibility).
+\end{itemize}
+
 \section*{Getting Started}\label{docs__pandoc__latex__src__readme.md__getting-started}
 
-\subsection*{For Students:}\label{docs__pandoc__latex__src__readme.md__for-students}
+\subsection*{For Students}\label{docs__pandoc__latex__src__readme.md__for-students}
+
+\textbf{Step 1: Screen Reader Setup \& Accessibility}
+
+Before beginning any technical work, optimize your screen reader configuration for command-line and coding work:
+
+\begin{itemize}
+\tightlist
+\item
+  Start with \hyperref[docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__setup_screen_reader_accessibility_guide-screen_reader_accessibility_guide]{Screen Reader Accessibility Guide} - Configure NVDA/JAWS for terminal work
+\item
+  Review \hyperref[docs__pandoc__latex__src__setup__screen_reader_choice__screen_reader_choice.md__setup_screen_reader_choice-screen_reader_choice]{Screen Reader Choice: Windows CLI} - Help choosing between NVDA and JAWS
+\item
+  Optional: \hyperref[docs__pandoc__latex__src__setup__braille_displays__braille_displays.md__setup_braille_displays-braille_displays]{Braille Display \& Terminal Mode} - Refreshable braille display configuration
+\item
+  Complete \hyperref[docs__pandoc__latex__src__setup__editor_selection_setup__editor_selection_setup.md__setup_editor_selection_setup-editor_selection_setup]{Editor Selection and Setup} - Choose and configure an accessible text editor
+\end{itemize}
+
+\textbf{Step 2: Choose Your Command Line Pathway}
+
+Read \hyperref[docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__command-line-fundamentals---choose-your-path]{Command Line Interface Selection Guide} to compare all three CLI options, then select ONE pathway:
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__powershell_curriculum_overview__powershell_curriculum_overview.md__powershell-for-screen-reader-users---complete-curriculum-overview]{PowerShell Curriculum Overview} - Recommended for Windows users
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__cmd_curriculum_overview__cmd_curriculum_overview.md__cmd_foundation_cmd_curriculum_overview-cmd_curriculum_overview]{CMD Curriculum Overview} - Simplified alternative for beginners
+\item
+  \hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_curriculum_overview__gitbash_curriculum_overview.md__gitbash_foundation_gitbash_curriculum_overview-gitbash_curriculum_overview]{Git Bash Curriculum Overview} - Cross-platform Unix skills
+\end{itemize}
+
+Complete ALL lessons in your chosen pathway (Pre through Lesson 6 + Unit Test) before moving to Step 3.
+
+\textbf{Step 3: Begin 3dMake Foundation}
+
+Once you\textquotesingle ve completed your CLI foundation:
 
 \begin{enumerate}
 \tightlist
 \item
-  Start with \hyperref[docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__setup_screen_reader_accessibility_guide-screen_reader_accessibility_guide]{Setup \& Accessibility Fundamentals}
+  Read \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_intro__3dmake_intro.md__instructional-framework-for-3dmake-and-openscad-in-secondary-stem-education]{3dMake Introduction} - Overview of OpenSCAD and 3dMake
 \item
-  Read \hyperref[docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__command-line-fundamentals---choose-your-path]{Command Line Interface Selection Guide} to choose your CLI pathway
+  Start \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__lessons_3dmake_1.md__lesson-1--environmental-configuration-and-the-developer-workflow]{Lesson 1: Environmental Configuration} - Install OpenSCAD and 3dMake
 \item
-  Complete your chosen CLI Foundation (PowerShell, CMD, or Git Bash)
+  Progress through Lessons 2-11 sequentially
 \item
-  Begin \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_intro__3dmake_intro.md__instructional-framework-for-3dmake-and-openscad-in-secondary-stem-education]{3dMake Introduction}
+  Complete all project templates as you encounter them
 \item
-  Follow \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__lessons_3dmake_1.md__lesson-1--environmental-configuration-and-the-developer-workflow]{Lesson 1: Environmental Configuration}
-\item
-  Continue through Lesson 11
+  Review \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_foundation_curriculum_guide.md__3dmake_foundation-3dmake_foundation_curriculum_guide]{3dMake Foundation Curriculum Guide} for detailed lesson descriptions
 \end{enumerate}
 
-\section*{For Instructors:}\label{docs__pandoc__latex__src__readme.md__for-instructors}
+\textbf{Step 4: Projects \& Documentation}
+
+Use the \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CTemplates\%5CStudent}{Student Templates} for all project documentation:
+
+\begin{itemize}
+\tightlist
+\item
+  Your First Print (Lesson 1)
+\item
+  Your Second Print \& Bonus Print (Lesson 2)
+\item
+  Dice Dice Dice (Lesson 4)
+\item
+  Parametric Keychain (Lesson 6)
+\item
+  Miniature Assembly (Lesson 7)
+\item
+  Snap Fit Clip (Lesson 8)
+\item
+  Accessibility Audit (Lesson 10)
+\item
+  Projects 0, 1, and 3 (Lesson 11)
+\end{itemize}
+
+\textbf{Step 5: Final Assessment}
+
+Complete \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_final_exam.md__3dmake_foundation-3dmake_final_exam]{3dMake Foundation Final Exam} to demonstrate mastery of OpenSCAD, 3DMake, and parametric design principles.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection*{For Instructors}\label{docs__pandoc__latex__src__readme.md__for-instructors}
+
+\textbf{Course Setup \& Planning:}
 
 \begin{enumerate}
 \tightlist
 \item
-  Review \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_foundation_curriculum_guide.md__3dmake_foundation-3dmake_foundation_curriculum_guide]{Curriculum Guide}
+  Review \hyperref[docs__pandoc__latex__src__syllabus.md__syllabus]{Syllabus} - Complete course structure, philosophy, learning objectives, and assessment framework
 \item
-  Use \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CTemplates\%5CTeacher}{11 Teacher Templates} for assessment
+  Read \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_foundation_curriculum_guide.md__3dmake_foundation-3dmake_foundation_curriculum_guide]{3dMake Foundation Curriculum Guide} - Detailed lesson-by-lesson breakdown with timing and objectives
 \item
-  Reference \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_11__master-rubric.md__3dmake_foundation_lessons_3dmake_11-master-rubric]{Master Rubric} for grading
+  Study \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_11__master-rubric.md__3dmake_foundation_lessons_3dmake_11-master-rubric]{Master Rubric} - Comprehensive project assessment criteria
 \item
-  Check \hyperref[docs__pandoc__latex__src__syllabus.md__syllabus]{Syllabus} for course policies and learning progression
+  Explore \hyperref[docs__pandoc__latex__src__backmatter__teacher-glossary.md__teacher-glossary]{Teacher Glossary} - Pedagogical framework and instructional terminology
 \end{enumerate}
+
+\textbf{Assessment Materials:}
+
+Use the \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CTemplates\%5CTeacher}{Teacher Templates} for grading and feedback:
+
+\begin{itemize}
+\tightlist
+\item
+  your\_first\_print\_teacher\_template.md
+\item
+  your\_second\_print\_teacher\_template.md
+\item
+  bonus\_print\_teacher\_template.md
+\item
+  dice\_dice\_dice\_teacher\_template.md
+\item
+  parametric\_keychain\_teacher\_template.md
+\item
+  miniature\_assembly\_teacher\_template.md
+\item
+  snap\_fit\_clip\_teacher\_template.md
+\item
+  accessibility\_audit\_teacher\_template.md
+\item
+  project\_0\_teacher\_template.md
+\item
+  project\_1\_teacher\_template.md
+\item
+  project\_3\_teacher\_template.md
+\end{itemize}
+
+\textbf{Final Exam:}
+
+Administer \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_final_exam.md__3dmake_foundation-3dmake_final_exam]{3dMake Foundation Final Exam} - 25-question comprehensive assessment covering error detection, code analysis, design challenges, and real-world application (100 points total).
+
+\textbf{Accessibility Support:}
+
+\begin{itemize}
+\tightlist
+\item
+  Ensure all students complete \hyperref[docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__setup_screen_reader_accessibility_guide-screen_reader_accessibility_guide]{Screen Reader Setup} before beginning coursework
+\item
+  Reference \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__nvda-jaws-coding-tips.md__3dmake_foundation_lessons_3dmake_1-nvda-jaws-coding-tips]{Screen Reader Coding Tips (NVDA \& JAWS)} for troubleshooting student screen reader issues
+\item
+  Provide access to \hyperref[docs__pandoc__latex__src__backmatter__glossary.md__student--glossary]{Student Glossary} for terminology reference
+\end{itemize}
+
+\textbf{Additional Resources:}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[docs__pandoc__latex__src__backmatter__troubleshooting.md__technical-reference]{Technical Reference} - Advanced troubleshooting and systems architecture
+\item
+  \hyperref[docs__pandoc__latex__src__backmatter__further_reading.md__references]{Further Reading} - Peer-reviewed research supporting curriculum design
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_quick_reference.md__3dmake_foundation-3dmake_quick_reference]{Quick Reference} - At-a-glance lesson and command reference for student handouts
+\end{itemize}
 
 \section*{Screen Readers}\label{docs__pandoc__latex__src__readme.md__screen-readers}
 
@@ -724,8 +968,8 @@ We know that users of this curriculum will primarily be JAWS and NVDA screenread
 
 \chapter{3D Design \& Printing Curriculum - Non-Visual Toolchain Edition}\label{docs__pandoc__latex__src__syllabus.md__syllabus}
 
-Author: Michael Ryan Hunsaker, M.Ed., Ph.D. Last Updated: 2026-02-22
-Target Audience: Blind and visually impaired high school students; anyone learning 3D design and printing through screen reader-accessible workflows.
+Author: Michael Ryan Hunsaker, M.Ed., Ph.D.\\
+Last Updated: 2026-03-04
 
 \section*{Overview}\label{docs__pandoc__latex__src__syllabus.md__overview}
 
@@ -733,7 +977,7 @@ This curriculum teaches 3D design and digital fabrication using a fully accessib
 
 \subsection*{Who This Course Is For}\label{docs__pandoc__latex__src__syllabus.md__who-this-course-is-for}
 
-This course is explicitly designed for blind and visually impaired learners who use screen readers (NVDA, JAWS, VoiceOver). It eliminates GUI navigation and visual feedback in favor of keyboard-driven, text-based workflows that screen readers can fully access.
+This course is explicitly designed for blind and visually impaired learners who use screen readers (NVDA, JAWS, Orca, VoiceOver, Windows Narrator, Dolphin SuperNova). It eliminates GUI navigation and visual feedback in favor of keyboard-driven, text-based workflows that screen readers can fully access.
 
 Accessibility is not an add-on. It is the foundation of every tool, workflow, and lesson in this curriculum.
 
@@ -931,10 +1175,10 @@ Content
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_introduction__gitbash_introduction.md__git-bash-introduction]{Git Bash Introduction}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Foundation\%5CGitBash_Introduction\%5CGitBash_Introduction.md}{Git Bash Introduction}
 & 20-30 min &
 Screen-reader-friendly quick-start (JAWS/NVDA); essential commands \\
-\hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__gitbash_foundation_gitbash_tutorial-gitbash_tutorial]{Git Bash Tutorial}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Foundation\%5CGitBash_Tutorial\%5CGitBash_Tutorial.md}{Git Bash Tutorial}
 & 30-45 min &
 Hands-on tutorial: paths, navigation, wildcards, running scripts \\
 \hyperref[docs__pandoc__latex__src__gitbash_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-git-bash]{Screen Reader Accessibility Guide for Git Bash}
@@ -960,7 +1204,7 @@ Redirecting output, piping with grep/sort/wc, understanding data flow \\
 \hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_6_advanced_techniques__gitbash_6_advanced_techniques.md__bash-lesson-6-advanced-terminal-techniques---shell-scripts-functions--professional-workflows]{Bash Lesson 6: Advanced Terminal Techniques}
 & 2.5-3.5 hours &
 Shell scripts, functions, loops, professional workflows \\
-\hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_unit_test__gitbash_unit_test.md__gitbash-unit-test---comprehensive-assessment]{GitBash Unit Test \& Practice}
+\hyperref[docs__pandoc__latex__src__gitbash_foundation__gitbash_unit_test__gitbash_unit_test.md__bash-unit-test---comprehensive-assessment]{GitBash Unit Test \& Practice}
 & 2-2.5 hours & Practice exercises, assessment, reinforcement \\
 \end{longtable}
 }
@@ -1148,13 +1392,25 @@ Total: 16-20 hours of instruction + projects
 
 \subsection*{Reference Appendices}\label{docs__pandoc__latex__src__syllabus.md__reference-appendices}
 
-Located in \texttt{3dMake\_Foundation/} alongside the lessons:
+\subsubsection*{Overview Documents}\label{docs__pandoc__latex__src__syllabus.md__overview-documents}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\hyperref[docs__pandoc__latex__src__appendices__cli_appendices.md__appendices-cli-appendices]{CLI Appendices Overview}} - Summary of all command line integration guides
+\item
+  \textbf{\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CAppendices\%5C3DMake_Appendices.md}{3dMake Appendices Overview}} - Summary of all 3dMake reference materials
+\end{itemize}
+
+\subsubsection*{Command Line Integration Appendices}\label{docs__pandoc__latex__src__syllabus.md__command-line-integration-appendices}
+
+Located in \texttt{Command\_Line\_Interface\_Selection/}:
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4190}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2570}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3240}}@{}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.5216}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2112}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2672}}@{}}
 \toprule\noalign{}
 \begin{minipage}[b]{\linewidth}\raggedright
 Appendix
@@ -1167,26 +1423,175 @@ Use When
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md}{Appendix A}
+\hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_a_commandline_integration.md__3dmake_foundation-appendix_f_cmd_integration]{Appendix A}
+& CMD/Batch Integration for SCAD Workflows &
+Automating with Windows Command Prompt and batch files \\
+\hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_b_powershell_integration.md__3dmake_foundation-appendix_d_powershell_integration]{Appendix B}
+& PowerShell Integration for SCAD Workflows &
+Automating with PowerShell scripts and advanced workflows \\
+\hyperref[docs__pandoc__latex__src__command_line_interface_selection__appendix_c_gitbash_integration.md__3dmake_foundation-appendix_g_gitbash_integration]{Appendix C}
+& Git Bash / POSIX Shell Integration for SCAD &
+Automating with Unix/bash shell scripts for cross-platform \\
+\end{longtable}
+}
+
+\subsubsection*{3dMake \& OpenSCAD Appendices}\label{docs__pandoc__latex__src__syllabus.md__3dmake--openscad-appendices}
+
+Located in \texttt{3dMake\_Foundation/}:
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.4611}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.2383}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 4\tabcolsep) * \real{0.3005}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Appendix
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Title
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Use When
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CAppendix_A_3DMake_Cheat_Sheet.md}{3DMake Cheat Sheet}
+& Complete 3dm CLI Reference &
+Quick command lookup, troubleshooting 3dm commands \\
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_b_comprehensive_slicing_guide.md__3dmake_foundation-appendix_a_comprehensive_slicing_guide]{Appendix A}
 & Comprehensive Slicing Guide &
 Slicing questions, switching slicers, quality issues \\
-\href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_B_Material_Properties.md}{Appendix B}
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_c_material_properties.md__3dmake_foundation-appendix_b_material_properties]{Appendix B}
 & Material Properties \& Selection Guide &
 Choosing material, troubleshooting prints, cost analysis \\
-\href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_C_Tolerance_QA.md}{Appendix C}
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_d_tolerance_qa.md__3dmake_foundation-appendix_c_tolerance_qa]{Appendix C}
 & Tolerance Testing \& Quality Assurance Matrix &
 Starting a project, verifying dimensions, quality issues \\
-\href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_D_PowerShell_Integration.md}{Appendix D}
-& PowerShell Integration for SCAD Workflows &
-Automating tasks, testing variations, batch printing \\
-\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_e_advanced_openscad_concepts.md__appendix-d-advanced-openscad-concepts]{Appendix E}
+\hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_e_advanced_openscad_concepts.md__appendix-d-advanced-openscad-concepts]{Appendix D}
 & Advanced OpenSCAD Concepts &
 Building mechanical systems, optimizing complex models \\
-\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{Appendix F}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{Code Examples \& Assets}
 & 3dMake Code Examples \& Assets &
 Reference designs, working code examples \\
 \end{longtable}
 }
+
+\subsection*{Project Templates \& Assessment Materials}\label{docs__pandoc__latex__src__syllabus.md__project-templates--assessment-materials}
+
+\subsubsection*{Student Project Templates}\label{docs__pandoc__latex__src__syllabus.md__student-project-templates}
+
+Located in \texttt{3dMake\_Foundation/Templates/Student/}, these templates guide students through structured documentation for each project:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{your\_first\_print\_student\_template.md} - Lesson 1 extension project
+\item
+  \textbf{your\_second\_print\_student\_template.md} - Lesson 2 basic parametric design
+\item
+  \textbf{bonus\_print\_student\_template.md} - Lesson 2 advanced practice
+\item
+  \textbf{dice\_dice\_dice\_student\_template.md} - Lesson 4 verification project
+\item
+  \textbf{parametric\_keychain\_student\_template.md} - Lesson 6 practical 3dm commands
+\item
+  \textbf{miniature\_assembly\_student\_template.md} - Lesson 7 transforms project
+\item
+  \textbf{snap\_fit\_clip\_student\_template.md} - Lesson 8 assembly design
+\item
+  \textbf{accessibility\_audit\_student\_template.md} - Lesson 10 QA testing
+\item
+  \textbf{project\_0\_student\_template.md} - Lesson 11 preliminary design
+\item
+  \textbf{project\_1\_student\_template.md} - Lesson 11 prototype iteration
+\item
+  \textbf{project\_3\_student\_template.md} - Lesson 11 final stakeholder project
+\end{itemize}
+
+Each template includes sections for problem statement, design decisions, code documentation, testing results, measurements, reflections, and iteration notes.
+
+\subsubsection*{Teacher Assessment Templates}\label{docs__pandoc__latex__src__syllabus.md__teacher-assessment-templates}
+
+Located in \texttt{3dMake\_Foundation/Templates/Teacher/}, corresponding templates provide grading rubrics and feedback frameworks:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{your\_first\_print\_teacher\_template.md}
+\item
+  \textbf{your\_second\_print\_teacher\_template.md}
+\item
+  \textbf{bonus\_print\_teacher\_template.md}
+\item
+  \textbf{dice\_dice\_dice\_teacher\_template.md}
+\item
+  \textbf{parametric\_keychain\_teacher\_template.md}
+\item
+  \textbf{miniature\_assembly\_teacher\_template.md}
+\item
+  \textbf{snap\_fit\_clip\_teacher\_template.md}
+\item
+  \textbf{accessibility\_audit\_teacher\_template.md}
+\item
+  \textbf{project\_0\_teacher\_template.md}
+\item
+  \textbf{project\_1\_teacher\_template.md}
+\item
+  \textbf{project\_3\_teacher\_template.md}
+\end{itemize}
+
+Each teacher template includes the 0-9 rubric scoring guide, common issues to watch for, and focus areas for feedback.
+
+\subsubsection*{Final Assessment}\label{docs__pandoc__latex__src__syllabus.md__final-assessment}
+
+\textbf{\hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_final_exam.md__3dmake_foundation-3dmake_final_exam]{3dMake Foundation Final Exam}} - Comprehensive 25-question assessment (100 points total) covering:
+
+\begin{itemize}
+\tightlist
+\item
+  Section 1: Error Detection \& Code Analysis (Problems 1-10)
+\item
+  Section 2: Design Challenges \& Real-World Application (Problems 11-25)
+\end{itemize}
+
+Questions include error identification, code explanation, behavioral analysis, and design problem-solving.
+
+\subsubsection*{Master Rubric}\label{docs__pandoc__latex__src__syllabus.md__master-rubric}
+
+\textbf{\hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_11__master-rubric.md__3dmake_foundation_lessons_3dmake_11-master-rubric]{Master Rubric}} - Unified assessment framework used across all projects, providing detailed criteria for the three scoring categories (Problem \& Solution, Design \& Code Quality, Documentation).
+
+\subsection*{Reference Materials for Students \& Teachers}\label{docs__pandoc__latex__src__syllabus.md__reference-materials-for-students--teachers}
+
+\subsubsection*{Glossaries}\label{docs__pandoc__latex__src__syllabus.md__glossaries}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\hyperref[docs__pandoc__latex__src__backmatter__glossary.md__student--glossary]{Student Glossary}} - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI
+\item
+  \textbf{\hyperref[docs__pandoc__latex__src__backmatter__teacher-glossary.md__teacher-glossary]{Teacher Glossary}} - Pedagogical framework, instructional design strategies, assessment concepts, and accessibility terminology
+\end{itemize}
+
+\subsubsection*{Technical References}\label{docs__pandoc__latex__src__syllabus.md__technical-references}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\hyperref[docs__pandoc__latex__src__backmatter__troubleshooting.md__technical-reference]{Technical Reference \& Troubleshooting}} - Advanced systems architecture, OpenSCAD professional modeling reference, 3DMake professional usage, CLI references (CMD, PowerShell, Git Bash), and comprehensive troubleshooting compendium
+\item
+  \textbf{\hyperref[docs__pandoc__latex__src__backmatter__further_reading.md__references]{Further Reading \& References}} - Peer-reviewed research and scholarly works supporting curriculum design
+\end{itemize}
+
+\subsubsection*{Quick References}\label{docs__pandoc__latex__src__syllabus.md__quick-references}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_foundation_curriculum_guide.md__3dmake_foundation-3dmake_foundation_curriculum_guide]{3dMake Foundation Curriculum Guide}} - Detailed lesson-by-lesson breakdown with objectives and timing
+\item
+  \textbf{\hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_quick_reference.md__3dmake_foundation-3dmake_quick_reference]{3dMake Quick Reference}} - At-a-glance command and syntax reference
+\end{itemize}
 
 \section*{Learning Progression: Student Roles}\label{docs__pandoc__latex__src__syllabus.md__learning-progression-student-roles}
 
@@ -1487,6 +1892,8 @@ OpenSCAD
 \item
   \href{https://github.com/tdeck/3dmake}{3DMake Documentation \& Installation} - Command-line build tool for OpenSCAD
 \item
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CAppendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - Complete command reference
+\item
   \hyperref[docs__pandoc__latex__src__3dmake_foundation__3dmake_quick_reference.md__3dmake_foundation-3dmake_quick_reference]{3dMake Quick Reference} - Command and workflow reference
 \end{itemize}
 
@@ -1512,7 +1919,15 @@ Screen Readers
   \href{https://www.nvaccess.org/}{NVDA Download} - Free, open-source screen reader (Windows)
 \item
   \href{https://www.freedomscientific.com/products/software/jaws/}{JAWS Screen Reader} - Commercial screen reader (Windows, macOS)
+\item
+  \href{https://help.gnome.org/users/orca/stable/}{Orca Screen Reader} - Built-in screen reader for Linux/GNOME desktop
+\item
+  \href{https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1}{Windows Narrator} - Built-in Windows screen reader
+\item
+  \href{https://yourdolphin.com/ScreenReader-Training}{Dolphin SuperNova} - Commercial screen reader (Windows)
 \end{itemize}
+
+Note: This curriculum is designed to work with all major screen readers. The workflows are tested primarily with NVDA and JAWS but apply to all screen readers listed above.
 
 Accessibility Configuration
 
@@ -1541,21 +1956,59 @@ Accessibility Configuration
 \item
   \href{https://github.com/SoftFever/OrcaSlicer/releases}{OrcaSlicer}
 \item
-  \href{https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md}{Appendix A: Comprehensive Slicing Guide} - Detailed setup guides for all major slicers
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__appendix_b_comprehensive_slicing_guide.md__3dmake_foundation-appendix_a_comprehensive_slicing_guide]{Appendix A: Comprehensive Slicing Guide} - Detailed setup guides for all major slicers
 \end{itemize}
 
-\subsection*{Supplemental Textbooks}\label{docs__pandoc__latex__src__syllabus.md__supplemental-textbooks}
+\subsection*{Supplemental Textbooks \& Learning Resources}\label{docs__pandoc__latex__src__syllabus.md__supplemental-textbooks--learning-resources}
+
+\textbf{Beginner-Friendly Textbooks:}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://nostarch.com/programmingopenscad}{Programming with OpenSCAD: A Beginner\textquotesingle s Guide}
+  \href{https://nostarch.com/programmingopenscad}{Programming with OpenSCAD: A Beginner\textquotesingle s Guide to Coding 3D-Printable Objects} by Justin Gohde and Marius Kintel - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Available in EPUB format (screen reader accessible).
 \item
-  \href{https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174}{Simplifying 3D Printing with OpenSCAD}
+  \href{https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174}{Simplifying 3D Printing with OpenSCAD} by Alicia Noors - Focused on practical workflows, optimization, and real-world printing scenarios. Available in EPUB/PDF formats.
 \item
-  \href{https://programmingwithopenscad.github.io/learning.html}{Programming with OpenSCAD Companion Resources}
+  \href{https://www.apress.com/gp/book/9781484213292}{OpenSCAD for 3D Printing} by Al Williams - Hands-on introduction to OpenSCAD with practical 3D printing projects. Covers basics through intermediate topics.
 \item
-  \href{https://github.com/ProgrammingWithOpenSCAD/CodeSolutions}{Code Solutions Repository}
+  \href{https://www.amazon.com/Mastering-OpenSCAD-Jochen-Kerdels/dp/1803243538}{Mastering OpenSCAD} by Jochen Kerdels - Project-based learning approach with emphasis on parametric design and reusable code modules.
+\end{itemize}
+
+\textbf{Free Online Resources:}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://en.wikibooks.org/wiki/OpenSCAD_User_Manual}{Official OpenSCAD Documentation} - Complete language reference and user manual on Wikibooks. Fully accessible and searchable.
+\item
+  \href{https://openscad.org/documentation.html}{OpenSCAD Tutorial} - Official beginner tutorial covering core concepts and syntax.
+\item
+  \href{https://openscad.org/cheatsheet/}{OpenSCAD Cheat Sheet (Official)} - Quick reference for all OpenSCAD commands and functions.
+\end{itemize}
+
+\textbf{Curriculum-Specific Resources:}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://programmingwithopenscad.github.io/learning.html}{Programming with OpenSCAD Companion Resources} - Practice worksheets for visualization, decomposition exercises, vocabulary building, and assessment.
+\item
+  \href{https://programmingwithopenscad.github.io/quick-reference.html}{Visual Quick Reference} - Command syntax guides and geometry reference.
+\item
+  \href{https://github.com/ProgrammingWithOpenSCAD/CodeSolutions}{Code Solutions Repository} - Working OpenSCAD examples organized by topic (3D shapes, transformations, loops, modules, if-statements, advanced techniques).
+\end{itemize}
+
+\textbf{Community Resources:}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.thingiverse.com/search?q=openscad&type=things}{Thingiverse OpenSCAD Designs} - Community-created parametric designs with source code for study and modification.
+\item
+  \href{https://forum.openscad.org/}{OpenSCAD Forums} - Active community support for troubleshooting and learning.
+\item
+  \href{https://www.youtube.com/results?search_query=openscad+tutorial+beginner}{OpenSCAD Tutorials (YouTube)} - Video tutorials (note: supplemental to text-based curriculum; transcripts recommended for accessibility).
 \end{itemize}
 
 \section*{Local Resources: Utah Makerspaces \& Community Printing}\label{docs__pandoc__latex__src__syllabus.md__local-resources-utah-makerspaces--community-printing}
@@ -1620,21 +2073,61 @@ University of Utah Maker Spaces
 
 \section*{Troubleshooting \& Getting Help}\label{docs__pandoc__latex__src__syllabus.md__troubleshooting--getting-help}
 
-If you\textquotesingle re stuck:
+\subsection*{Quick Reference Materials}\label{docs__pandoc__latex__src__syllabus.md__quick-reference-materials}
+
+\textbf{Setup \& Configuration:}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__3dmake-setup-guide.md__3dmake-setup--workflow]{3dMake Setup Guide} - Installation walkthrough
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__vscode-setup-guide.md__3dmake_foundation_lessons_3dmake_1-vscode-setup-guide]{VSCode Setup Guide} - Accessibility-focused editor configuration
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__mdbook-navigation-guide.md__3dmake_foundation_lessons_3dmake_1-mdbook-navigation-guide]{mdBook Navigation Guide} - How to navigate this curriculum
+\end{itemize}
+
+\textbf{Syntax \& Commands:}
+
+\begin{itemize}
+\tightlist
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_2__openscad-cheat-sheet.md__3dmake_foundation_lessons_3dmake_2-openscad-cheat-sheet]{OpenSCAD Cheat Sheet} - Complete syntax quick-reference
+\item
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CAppendix_A_3DMake_Cheat_Sheet.md}{3DMake CLI Cheat Sheet} - All 3dm commands and options
+\end{itemize}
+
+\textbf{Materials \& Safety:}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CLessons_3dMake_5\%5Cfilament-comparison-table.md}{Filament Comparison Table} - Material selection guide
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_5__safety_checklist.md__3dmake_foundation_lessons_3dmake_5-safety_checklist]{Safety Checklist} - Pre-print safety procedures
+\item
+  \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_5__maintenance_log.md__3dmake_foundation_lessons_3dmake_5-maintenance_log]{Maintenance Log} - Printer maintenance tracking
+\end{itemize}
+
+\subsection*{When You\textquotesingle re Stuck}\label{docs__pandoc__latex__src__syllabus.md__when-youre-stuck}
+
+\textbf{For Technical Issues:}
 
 \begin{enumerate}
 \tightlist
 \item
-  Check \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__common_issues_and_solutions.md__3dmake_foundation_lessons_3dmake_10-common_issues_and_solutions]{Common Issues and Solutions}
+  Check \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__common_issues_and_solutions.md__3dmake_foundation_lessons_3dmake_10-common_issues_and_solutions]{Common Issues and Solutions} - Comprehensive troubleshooting guide
 \item
-  Check \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__diagnostic_checklist.md__3dmake_foundation_lessons_3dmake_10-diagnostic_checklist]{Diagnostic Checklist}
+  Review \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_10__diagnostic_checklist.md__3dmake_foundation_lessons_3dmake_10-diagnostic_checklist]{Diagnostic Checklist} - Systematic problem diagnosis
 \item
-  Post in \href{https://discord.gg/F2Nx2VxTB7}{OpenSCAD Discord} or \href{https://www.reddit.com/r/openscad/}{Reddit}
+  Consult \hyperref[docs__pandoc__latex__src__backmatter__troubleshooting.md__technical-reference]{Technical Reference} - Advanced systems architecture and professional reference
+\item
+  Post in \href{https://discord.gg/F2Nx2VxTB7}{OpenSCAD Discord} or \href{https://www.reddit.com/r/openscad/}{Reddit r/openscad}
 \item
   Visit your local makerspace for hands-on support
 \end{enumerate}
 
-For accessibility support:
+\textbf{For Accessibility Support:}
 
 \begin{itemize}
 \tightlist
@@ -1643,7 +2136,21 @@ For accessibility support:
 \item
   Refer to the \hyperref[docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__setup_screen_reader_accessibility_guide-screen_reader_accessibility_guide]{Screen Reader Accessibility Guide}
 \item
+  Review \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__nvda-jaws-coding-tips.md__3dmake_foundation_lessons_3dmake_1-nvda-jaws-coding-tips]{Screen Reader Coding Tips (NVDA \& JAWS)}
+\item
   Check the \hyperref[docs__pandoc__latex__src__gitbash_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-git-bash]{Git Bash Screen Reader Guide} if using Git Bash
+\end{itemize}
+
+\textbf{For Design \& Concept Questions:}
+
+\begin{itemize}
+\tightlist
+\item
+  Review \hyperref[docs__pandoc__latex__src__backmatter__glossary.md__student--glossary]{Student Glossary} for terminology clarification
+\item
+  Check project-specific guides in lesson folders
+\item
+  Consult the \hyperref[docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_11__master-rubric.md__3dmake_foundation_lessons_3dmake_11-master-rubric]{Master Rubric} for assessment expectations
 \end{itemize}
 
 \newpage
@@ -1825,7 +2332,7 @@ Announce the word under the review cursor \\
 }
 
 \begin{quote}
-\textbf{Note on NVDA key:} On desktop keyboards the NVDA modifier is typically the \textbf{Insert} key. On laptops without a numpad the NVDA key is often \textbf{CapsLock}. You can change this in NVDA Preferences → Keyboard.
+\textbf{Note on NVDA key:} On desktop keyboards the NVDA modifier is typically the \textbf{Insert} key. On laptops without a numpad the NVDA key is often \textbf{CapsLock}. You can change this in NVDA Preferences \textgreater{} Keyboard.
 \end{quote}
 
 \subsection*{Example: Reading Long Output}\label{docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output}
@@ -1851,7 +2358,7 @@ Announce the word under the review cursor \\
 \item
   Press \textbf{NVDA+N} to open the NVDA menu.
 \item
-  Go to \textbf{Preferences → Settings → Speech}.
+  Go to \textbf{Preferences \textgreater{} Settings \textgreater{} Speech}.
 \item
   Increase or decrease verbosity to taste.
 \item
@@ -1922,7 +2429,7 @@ Command & What It Does \\
 \item
   Press \textbf{Insert+F3} to open the JAWS menu.
 \item
-  Go to \textbf{Options → Settings Center} (or \textbf{Utilities → Settings Manager} in older versions).
+  Go to \textbf{Options \textgreater{} Settings Center} (or \textbf{Utilities \textgreater{} Settings Manager} in older versions).
 \item
   Search for \textbf{"terminal"} or \textbf{"console"}.
 \item
@@ -1935,7 +2442,7 @@ Command & What It Does \\
 
 \section*{Windows Narrator-Specific Tips}\label{docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__narrator-tips}
 
-Windows Narrator is built into Windows 10 and Windows 11 at no extra cost. Enable it via \textbf{Settings → Accessibility → Narrator} or press \textbf{Windows+Ctrl+Enter}.
+Windows Narrator is built into Windows 10 and Windows 11 at no extra cost. Enable it via \textbf{Settings \textgreater{} Accessibility \textgreater{} Narrator} or press \textbf{Windows+Ctrl+Enter}.
 
 These tips work across all shells: PowerShell, CMD, and Git Bash.
 
@@ -1972,7 +2479,7 @@ Toggle Narrator scan mode (browse vs. type mode) \\
 }
 
 \begin{quote}
-\textbf{Note on Narrator key:} The Narrator modifier is \textbf{CapsLock} or \textbf{Insert} by default. You can change this in \textbf{Settings → Accessibility → Narrator → Keyboard shortcuts}.
+\textbf{Note on Narrator key:} The Narrator modifier is \textbf{CapsLock} or \textbf{Insert} by default. You can change this in \textbf{Settings \textgreater{} Accessibility \textgreater{} Narrator \textgreater{} Keyboard shortcuts}.
 \end{quote}
 
 \subsection*{Working with Terminals Using Narrator}\label{docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__working-with-terminals-using-narrator}
@@ -1998,7 +2505,7 @@ Narrator works well in \textbf{focus mode} (the default when a terminal is activ
 \begin{enumerate}
 \tightlist
 \item
-  Open \textbf{Settings → Accessibility → Narrator}.
+  Open \textbf{Settings \textgreater{} Accessibility \textgreater{} Narrator}.
 \item
   Under \textbf{"Change what you hear when typing"}, enable \textbf{"Hear characters as you type"}.
 \item
@@ -2052,7 +2559,7 @@ Say all / read all from current position \\
 }
 
 \begin{quote}
-\textbf{Note on Dolphin key:} Dolphin SuperNova typically uses \textbf{Caps Lock} as its modifier key (referred to as the "Dolphin key"). This can be changed in \textbf{SuperNova Control Panel → Keyboard}.
+\textbf{Note on Dolphin key:} Dolphin SuperNova typically uses \textbf{Caps Lock} as its modifier key (referred to as the "Dolphin key"). This can be changed in \textbf{SuperNova Control Panel \textgreater{} Keyboard}.
 \end{quote}
 
 \subsection*{Working with Terminals Using Dolphin SuperNova}\label{docs__pandoc__latex__src__setup__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__working-with-terminals-using-dolphin-supernova}
@@ -2076,13 +2583,13 @@ Say all / read all from current position \\
 \item
   Open \textbf{SuperNova Control Panel} (press Caps Lock+SpaceBar, or click the SuperNova icon).
 \item
-  Go to \textbf{Speech → Verbosity} and set a comfortable level (3 or 4 recommended for terminal work).
+  Go to \textbf{Speech \textgreater{} Verbosity} and set a comfortable level (3 or 4 recommended for terminal work).
 \item
-  Go to \textbf{Speech → Text Processing → Indentation} and enable indentation announcement (important for code).
+  Go to \textbf{Speech \textgreater{} Text Processing \textgreater{} Indentation} and enable indentation announcement (important for code).
 \item
-  Go to \textbf{Braille → Settings} if you are using a braille display alongside speech.
+  Go to \textbf{Braille \textgreater{} Settings} if you are using a braille display alongside speech.
 \item
-  In \textbf{General → Application Settings}, you can set terminal-specific verbosity so SuperNova behaves differently in your terminal versus other programs.
+  In \textbf{General \textgreater{} Application Settings}, you can set terminal-specific verbosity so SuperNova behaves differently in your terminal versus other programs.
 \end{enumerate}
 
 \textbf{Note:} Dolphin SuperNova\textquotesingle s magnification features can be helpful if you have some remaining vision. Terminal text can be magnified while still receiving speech output.
@@ -2481,13 +2988,13 @@ Proper indent announcement is critical for reading code. Enable it for your scre
 \begin{itemize}
 \tightlist
 \item
-  \textbf{NVDA:} NVDA Menu → Preferences → Settings → Document Formatting → enable \textbf{"Report indentation"}, set to \textbf{"Tones and speech"}.
+  \textbf{NVDA:} NVDA Menu \textgreater{} Preferences \textgreater{} Settings \textgreater{} Document Formatting \textgreater{} enable \textbf{"Report indentation"}, set to \textbf{"Tones and speech"}.
 \item
-  \textbf{JAWS:} Settings Center → search \textbf{"Indent"} → enable \textbf{"Announce Indentation"}, set mode to \textbf{"Tones"} or \textbf{"Tones and Speech"}.
+  \textbf{JAWS:} Settings Center \textgreater{} search \textbf{"Indent"} \textgreater{} enable \textbf{"Announce Indentation"}, set mode to \textbf{"Tones"} or \textbf{"Tones and Speech"}.
 \item
-  \textbf{Windows Narrator:} Settings → Accessibility → Narrator → Advanced Options → enable \textbf{"Report indentation"} (limited options compared to NVDA/JAWS).
+  \textbf{Windows Narrator:} Settings \textgreater{} Accessibility \textgreater{} Narrator \textgreater{} Advanced Options \textgreater{} enable \textbf{"Report indentation"} (limited options compared to NVDA/JAWS).
 \item
-  \textbf{Dolphin SuperNova:} SuperNova Control Panel → Speech → Text Processing → Indentation → enable and set preferred announcement style.
+  \textbf{Dolphin SuperNova:} SuperNova Control Panel \textgreater{} Speech \textgreater{} Text Processing \textgreater{} Indentation \textgreater{} enable and set preferred announcement style.
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -2695,7 +3202,7 @@ Windows Narrator is Microsoft\textquotesingle s built-in screen reader, included
 
 \textbf{Trial:} Not applicable --- Narrator is always available on Windows.
 
-\textbf{Enable:} Settings → Accessibility → Narrator, or press \textbf{Windows+Ctrl+Enter}.
+\textbf{Enable:} Settings \textgreater{} Accessibility \textgreater{} Narrator, or press \textbf{Windows+Ctrl+Enter}.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -2810,8 +3317,9 @@ Up Arrow (shell native; SR reads it) &
 Up Arrow (shell native; SR reads it) &
 Up Arrow (shell native; SR reads it) \\
 \textbf{Stop reading} & Ctrl & Ctrl & Ctrl & Ctrl \\
-\textbf{Open screen reader settings} & NVDA+N → Preferences &
-Insert+F3 → Options/Settings & Windows+Ctrl+N (Narrator settings) &
+\textbf{Open screen reader settings} & NVDA+N \textgreater{} Preferences
+& Insert+F3 \textgreater{} Options/Settings &
+Windows+Ctrl+N (Narrator settings) &
 CapsLock+SpaceBar (SuperNova control panel) \\
 \end{longtable}
 }
@@ -2822,13 +3330,13 @@ CapsLock+SpaceBar (SuperNova control panel) \\
 \begin{itemize}
 \tightlist
 \item
-  \textbf{NVDA key} is Insert by default; can be changed to CapsLock in NVDA Preferences → Keyboard.
+  \textbf{NVDA key} is Insert by default; can be changed to CapsLock in NVDA Preferences \textgreater{} Keyboard.
 \item
   \textbf{JAWS key} is Insert by default; can be changed to CapsLock in JAWS Settings Center.
 \item
-  \textbf{Narrator key} is CapsLock or Insert; configurable in Settings → Accessibility → Narrator → Keyboard shortcuts.
+  \textbf{Narrator key} is CapsLock or Insert; configurable in Settings \textgreater{} Accessibility \textgreater{} Narrator \textgreater{} Keyboard shortcuts.
 \item
-  \textbf{Dolphin key} is CapsLock by default; configurable in SuperNova Control Panel → Keyboard.
+  \textbf{Dolphin key} is CapsLock by default; configurable in SuperNova Control Panel \textgreater{} Keyboard.
 \end{itemize}
 \end{quote}
 
@@ -2932,7 +3440,7 @@ In a terminal environment:
 \item
   Put the braille display into pairing mode (refer to the device\textquotesingle s quick-start guide).
 \item
-  On Windows, go to \textbf{Settings → Bluetooth \& devices → Add a device} and pair the display.
+  On Windows, go to \textbf{Settings \textgreater{} Bluetooth \& devices \textgreater{} Add a device} and pair the display.
 \item
   Once paired, open your screen reader\textquotesingle s braille settings and select the display.
 \end{enumerate}
@@ -2956,7 +3464,7 @@ NVDA includes built-in braille support for a wide range of displays without requ
 \item
   Open the NVDA menu: press \textbf{NVDA+N} (Insert+N or CapsLock+N depending on your modifier key setting).
 \item
-  Go to \textbf{Preferences → Settings → Braille} (or press \textbf{NVDA+Ctrl+B} as a shortcut on some versions).
+  Go to \textbf{Preferences \textgreater{} Settings \textgreater{} Braille} (or press \textbf{NVDA+Ctrl+B} as a shortcut on some versions).
 \item
   In the \textbf{"Braille display"} dropdown, select your display from the list. NVDA supports automatic detection for many displays --- you can also select \textbf{"Automatic"} and let NVDA detect it.
 \item
@@ -3021,7 +3529,7 @@ JAWS supports a wide range of braille displays through its built-in braille mana
 \item
   Open the JAWS menu: press \textbf{Insert+F3} (or your JAWS key+F3).
 \item
-  Go to \textbf{Options → Basics → Braille} or use the \textbf{JAWS Settings Center} and search for \textbf{"Braille"}.
+  Go to \textbf{Options \textgreater{} Basics \textgreater{} Braille} or use the \textbf{JAWS Settings Center} and search for \textbf{"Braille"}.
 \item
   In Braille Settings, select your display model from the list.
 \item
@@ -3049,9 +3557,9 @@ JAWS supports a wide range of braille displays through its built-in braille mana
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Insert+F3} → Options → Basics → Braille
+  \textbf{Insert+F3} \textgreater{} Options \textgreater{} Basics \textgreater{} Braille
 \item
-  Or: \textbf{Insert+F2} (JAWS Manager) → Settings Center → search "braille"
+  Or: \textbf{Insert+F2} (JAWS Manager) \textgreater{} Settings Center \textgreater{} search "braille"
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -3067,7 +3575,7 @@ Windows Narrator supports braille output through the \textbf{Windows braille ser
 \item
   Install the vendor\textquotesingle s display driver if required.
 \item
-  Open \textbf{Settings → Accessibility → Narrator → Braille} (Windows 11) or \textbf{Settings → Ease of Access → Narrator → Use Braille} (Windows 10).
+  Open \textbf{Settings \textgreater{} Accessibility \textgreater{} Narrator \textgreater{} Braille} (Windows 11) or \textbf{Settings \textgreater{} Ease of Access \textgreater{} Narrator \textgreater{} Use Braille} (Windows 10).
 \item
   Turn on \textbf{"Install braille"} (first-time setup may require downloading the braille translation component --- approximately 70 MB).
 \item
@@ -3107,11 +3615,11 @@ Dolphin SuperNova includes integrated braille support as part of its screen read
 \item
   Open the \textbf{SuperNova Control Panel}: press \textbf{CapsLock+SpaceBar} or click the SuperNova icon in the taskbar.
 \item
-  Go to \textbf{Braille → Display} and select your display model from the list.
+  Go to \textbf{Braille \textgreater{} Display} and select your display model from the list.
 \item
-  Go to \textbf{Braille → Translation} and select your braille table (Grade 1 / uncontracted recommended for code).
+  Go to \textbf{Braille \textgreater{} Translation} and select your braille table (Grade 1 / uncontracted recommended for code).
 \item
-  Go to \textbf{Braille → Settings} to configure cursor style, word wrap, and other options.
+  Go to \textbf{Braille \textgreater{} Settings} to configure cursor style, word wrap, and other options.
 \item
   Click \textbf{Apply} and test in Notepad.
 \end{enumerate}
@@ -3262,7 +3770,7 @@ Multiline tactile displays from Orbit Research designed for reading text and tac
 \item
   In your screen reader\textquotesingle s braille settings, confirm that cursor routing is enabled.
 \item
-  In NVDA, this is under Preferences → Settings → Braille → enable "Move system cursor when routing review cursor".
+  In NVDA, this is under Preferences \textgreater{} Settings \textgreater{} Braille \textgreater{} enable "Move system cursor when routing review cursor".
 \item
   In JAWS, check the routing settings in the JAWS braille configuration.
 \end{itemize}
@@ -3325,15 +3833,18 @@ Recommended Braille Table for Code
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-NVDA & NVDA Menu → Preferences → Settings → Braille &
-Unified English Braille Grade 1 \\
-JAWS & Insert+F3 → Options → Basics → Braille (or Settings Center) &
-English Braille Grade 1 (uncontracted) \\
-Windows Narrator & Settings → Accessibility → Narrator → Braille &
-English Grade 1 (uncontracted) \\
+NVDA &
+NVDA Menu \textgreater{} Preferences \textgreater{} Settings \textgreater{} Braille
+& Unified English Braille Grade 1 \\
+JAWS &
+Insert+F3 \textgreater{} Options \textgreater{} Basics \textgreater{} Braille (or Settings Center)
+& English Braille Grade 1 (uncontracted) \\
+Windows Narrator &
+Settings \textgreater{} Accessibility \textgreater{} Narrator \textgreater{} Braille
+& English Grade 1 (uncontracted) \\
 Dolphin SuperNova &
-CapsLock+SpaceBar → Braille → Display and Translation &
-Grade 1 (uncontracted) \\
+CapsLock+SpaceBar \textgreater{} Braille \textgreater{} Display and Translation
+& Grade 1 (uncontracted) \\
 \end{longtable}
 }
 
@@ -5804,6 +6315,289 @@ Now openPowershell Lesson Pre and let\textquotesingle s get started!
 Other Screen Readers
 
 Dolphin SuperNova (commercial) and Windows Narrator (built-in) are also supported; the workflows and recommendations in this document apply to them. See \url{https://yourdolphin.com/supernova/} and \url{https://support.microsoft.com/narrator} for vendor documentation.
+
+\subsection{Screen Reader Accessibility Guide for PowerShell}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-powershell}
+
+Target Users: NVDA, JAWS, and other screen reader users\\
+Last Updated: 2026
+
+This guide supports the PowerShell Foundation curriculum and helps screen reader users navigate and work efficiently with PowerShell on Windows.
+
+\subsubsection*{Table of Contents}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__table-of-contents}
+
+\begin{enumerate}
+\tightlist
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started]{Getting Started with Screen Readers}
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips]{NVDA-Specific Tips}
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips]{JAWS-Specific Tips}
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal]{General Terminal Accessibility}
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output]{Working with Long Output}
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts]{Keyboard Shortcuts Reference}
+\item
+  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting]{Troubleshooting}
+\end{enumerate}
+
+\subsubsection*{Getting Started with Screen Readers}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started}
+
+\paragraph*{Which Screen Reader Should I Use?}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__which-screen-reader-should-i-use}
+
+NVDA is free and often recommended for new users; JAWS is a powerful commercial option. Also consider Dolphin SuperNova and Windows Narrator:
+
+\begin{itemize}
+\tightlist
+\item
+  Dolphin SuperNova: commercial speech, braille and magnification (check vendor docs for keyboard mappings).
+\item
+  Windows Narrator: built into Windows and useful for quick access without installing third-party software.
+\end{itemize}
+
+\paragraph*{Before You Start}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__before-you-start}
+
+\begin{enumerate}
+\tightlist
+\item
+  Start your screen reader before opening PowerShell.
+\item
+  Open PowerShell and listen for the window title and prompt.
+\item
+  If silent, press Alt+Tab to find the window.
+\end{enumerate}
+
+\paragraph*{What is PowerShell?}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__what-is-powershell}
+
+PowerShell is the modern Windows shell and scripting environment. Common commands include \texttt{Get-ChildItem}, \texttt{Get-Content}, and \texttt{Out-File}. PowerShell provides richer objects and piping than CMD.
+
+\subsubsection*{NVDA-Specific Tips}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips}
+
+NVDA is available from \url{https://www.nvaccess.org/}
+
+\paragraph*{Dolphin SuperNova}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__dolphin-supernova}
+
+Dolphin SuperNova: \url{https://yourdolphin.com/supernova/} --- commercial option providing speech and magnification; consult vendor guides for features and commands.
+
+\paragraph*{Windows Narrator}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__windows-narrator}
+
+Windows Narrator: \url{https://support.microsoft.com/narrator} --- built-in Narrator has a different set of commands; it can be enabled via Windows Settings \textgreater{} Accessibility.
+
+\paragraph*{Key Commands for PowerShell}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-powershell}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2361}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7639}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Command
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What It Does
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+NVDA+Home & Read the current line (your command or output) \\
+NVDA+Down Arrow & Read from cursor to end of screen \\
+NVDA+Up Arrow & Read from top to cursor \\
+NVDA+Page Down & Read next page \\
+NVDA+Page Up & Read previous page \\
+NVDA+F7 & Open the Review Mode viewer (can scroll through text) \\
+\end{longtable}
+}
+
+\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output}
+
+If \texttt{Get-ChildItem} produces many lines, redirect to a file and open it in Notepad:
+
+\begin{lstlisting}[style=Alabaster, language=powershell]
+Get-ChildItem -Name > list.txt
+notepad list.txt
+
+\end{lstlisting}
+
+\texttt{-Name} prints one item per line (screen reader friendly).
+
+\subsubsection*{JAWS-Specific Tips}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips}
+
+JAWS is available from \url{https://www.freedomscientific.com/}
+
+\paragraph*{Key Commands for PowerShell}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-powershell-1}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Command & What It Does \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Insert+Down Arrow & Read line by line downward \\
+Insert+Up Arrow & Read line by line upward \\
+Insert+Page Down & Read next page of text \\
+Insert+Page Up & Read previous page of text \\
+\end{longtable}
+}
+
+\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output-1}
+
+\begin{enumerate}
+\tightlist
+\item
+  Redirect: \texttt{Get-ChildItem\ -Name\ \textgreater{}\ list.txt}
+\item
+  Open Notepad: \texttt{notepad\ list.txt}
+\item
+  Use Insert+Ctrl+Down to read full contents.
+\end{enumerate}
+
+\subsubsection*{General Terminal Accessibility}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal}
+
+\paragraph*{Understanding the PowerShell Layout}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__understanding-the-powershell-layout}
+
+PowerShell shows a title bar, content area, and a prompt that looks like:
+
+\begin{lstlisting}[style=Alabaster, language=powershell]
+PS C:\Users\YourName>
+
+\end{lstlisting}
+
+\paragraph*{Navigation Sequence}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__navigation-sequence}
+
+\begin{enumerate}
+\tightlist
+\item
+  Screen reader announces the title
+\item
+  Then it announces the prompt line
+\item
+  Anything above prompt is prior output
+\end{enumerate}
+
+\subsubsection*{Working with Long Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output}
+
+\paragraph*{Solution 1: Redirect to a File}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-1-redirect-to-a-file}
+
+\begin{lstlisting}[style=Alabaster, language=powershell]
+Get-ChildItem -Name > list.txt
+notepad list.txt
+
+\end{lstlisting}
+
+\paragraph*{Solution 2: Use Pagination}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-2-use-pagination}
+
+\begin{lstlisting}[style=Alabaster, language=powershell]
+Get-Content largefile.txt | more
+
+\end{lstlisting}
+
+\paragraph*{Solution 3: Filter Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-3-filter-output}
+
+\begin{lstlisting}[style=Alabaster, language=powershell]
+Get-ChildItem -Name | Where-Object { $_ -like "*.scad" }
+
+\end{lstlisting}
+
+\paragraph*{Solution 4: Count Before Displaying}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-4-count-before-displaying}
+
+\begin{lstlisting}[style=Alabaster, language=powershell]
+(Get-ChildItem -Name).Count
+
+\end{lstlisting}
+
+\subsubsection*{Keyboard Shortcuts Reference}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Key & Action \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Up Arrow & Show previous command \\
+Down Arrow & Show next command \\
+Tab & Auto-complete file/folder names \\
+Home & Jump to start of line \\
+End & Jump to end of line \\
+Ctrl+C & Stop command \\
+Enter & Run command \\
+\end{longtable}
+}
+
+\subsubsection*{Troubleshooting}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting}
+
+\paragraph*{Problem: "I Can\textquotesingle t Hear the Output"}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-i-cant-hear-the-output}
+
+\begin{enumerate}
+\tightlist
+\item
+  Redirect to file and open in Notepad.
+\item
+  Use End to jump to the end of text.
+\end{enumerate}
+
+\paragraph*{Problem: "Tab Completion Isn\textquotesingle t Working"}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-tab-completion-isnt-working}
+
+\begin{enumerate}
+\tightlist
+\item
+  Type some characters before Tab.
+\end{enumerate}
+
+\paragraph*{Problem: "Command Not Found"}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-command-not-found}
+
+\begin{enumerate}
+\tightlist
+\item
+  Use \texttt{Get-Command\ programname} to check availability.
+\end{enumerate}
+
+\subsubsection*{Pro Tips}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__pro-tips}
+
+\begin{enumerate}
+\tightlist
+\item
+  Use \texttt{Get-ChildItem\ -Name} for one-per-line listings.
+\item
+  Use \texttt{Out-File\ -FilePath\ list.txt} to capture output with encoding options.
+\end{enumerate}
+
+\subsubsection*{Recommended Workflow}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__recommended-workflow}
+
+\begin{enumerate}
+\tightlist
+\item
+  \texttt{Set-Location} (or \texttt{cd}) to the project folder
+\item
+  \texttt{Get-ChildItem\ -Name} to list files
+\item
+  Redirect large output to files and open in Notepad
+\end{enumerate}
+
+\subsubsection*{Additional Resources}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__additional-resources}
+
+\begin{itemize}
+\tightlist
+\item
+  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
+\item
+  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
+\item
+  PowerShell Documentation: \url{https://docs.microsoft.com/powershell}
+\item
+  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
+\item
+  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
+\item
+  Dolphin SuperNova: \url{https://yourdolphin.com/supernova/}
+\item
+  Windows Narrator: \url{https://support.microsoft.com/narrator}
+\end{itemize}
 
 \subsection{Powershell Lesson Pre: Your First Terminal - Screen Reader Navigation Fundamentals}\label{docs__pandoc__latex__src__powershell_foundation__ps_pre_your_first_terminal__ps_pre_your_first_terminal.md__powershell-lesson-pre-your-first-terminal---screen-reader-navigation-fundamentals}
 
@@ -8853,289 +9647,6 @@ Passing Score: 49 points (70\%)
   Submission includes this checklist
 \end{itemize}
 
-\subsection{Screen Reader Accessibility Guide for PowerShell}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-powershell}
-
-Target Users: NVDA, JAWS, and other screen reader users\\
-Last Updated: 2026
-
-This guide supports the PowerShell Foundation curriculum and helps screen reader users navigate and work efficiently with PowerShell on Windows.
-
-\subsubsection*{Table of Contents}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__table-of-contents}
-
-\begin{enumerate}
-\tightlist
-\item
-  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started]{Getting Started with Screen Readers}
-\item
-  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips]{NVDA-Specific Tips}
-\item
-  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips]{JAWS-Specific Tips}
-\item
-  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal]{General Terminal Accessibility}
-\item
-  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output]{Working with Long Output}
-\item
-  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts]{Keyboard Shortcuts Reference}
-\item
-  \hyperref[docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting]{Troubleshooting}
-\end{enumerate}
-
-\subsubsection*{Getting Started with Screen Readers}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started}
-
-\paragraph*{Which Screen Reader Should I Use?}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__which-screen-reader-should-i-use}
-
-NVDA is free and often recommended for new users; JAWS is a powerful commercial option. Also consider Dolphin SuperNova and Windows Narrator:
-
-\begin{itemize}
-\tightlist
-\item
-  Dolphin SuperNova: commercial speech, braille and magnification (check vendor docs for keyboard mappings).
-\item
-  Windows Narrator: built into Windows and useful for quick access without installing third-party software.
-\end{itemize}
-
-\paragraph*{Before You Start}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__before-you-start}
-
-\begin{enumerate}
-\tightlist
-\item
-  Start your screen reader before opening PowerShell.
-\item
-  Open PowerShell and listen for the window title and prompt.
-\item
-  If silent, press Alt+Tab to find the window.
-\end{enumerate}
-
-\paragraph*{What is PowerShell?}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__what-is-powershell}
-
-PowerShell is the modern Windows shell and scripting environment. Common commands include \texttt{Get-ChildItem}, \texttt{Get-Content}, and \texttt{Out-File}. PowerShell provides richer objects and piping than CMD.
-
-\subsubsection*{NVDA-Specific Tips}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips}
-
-NVDA is available from \url{https://www.nvaccess.org/}
-
-\paragraph*{Dolphin SuperNova}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__dolphin-supernova}
-
-Dolphin SuperNova: \url{https://yourdolphin.com/supernova/} --- commercial option providing speech and magnification; consult vendor guides for features and commands.
-
-\paragraph*{Windows Narrator}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__windows-narrator}
-
-Windows Narrator: \url{https://support.microsoft.com/narrator} --- built-in Narrator has a different set of commands; it can be enabled via Windows Settings \textgreater{} Accessibility.
-
-\paragraph*{Key Commands for PowerShell}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-powershell}
-
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2361}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7639}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Command
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-What It Does
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-NVDA+Home & Read the current line (your command or output) \\
-NVDA+Down Arrow & Read from cursor to end of screen \\
-NVDA+Up Arrow & Read from top to cursor \\
-NVDA+Page Down & Read next page \\
-NVDA+Page Up & Read previous page \\
-NVDA+F7 & Open the Review Mode viewer (can scroll through text) \\
-\end{longtable}
-}
-
-\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output}
-
-If \texttt{Get-ChildItem} produces many lines, redirect to a file and open it in Notepad:
-
-\begin{lstlisting}[style=Alabaster, language=powershell]
-Get-ChildItem -Name > list.txt
-notepad list.txt
-
-\end{lstlisting}
-
-\texttt{-Name} prints one item per line (screen reader friendly).
-
-\subsubsection*{JAWS-Specific Tips}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips}
-
-JAWS is available from \url{https://www.freedomscientific.com/}
-
-\paragraph*{Key Commands for PowerShell}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-powershell-1}
-
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Command & What It Does \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Insert+Down Arrow & Read line by line downward \\
-Insert+Up Arrow & Read line by line upward \\
-Insert+Page Down & Read next page of text \\
-Insert+Page Up & Read previous page of text \\
-\end{longtable}
-}
-
-\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output-1}
-
-\begin{enumerate}
-\tightlist
-\item
-  Redirect: \texttt{Get-ChildItem\ -Name\ \textgreater{}\ list.txt}
-\item
-  Open Notepad: \texttt{notepad\ list.txt}
-\item
-  Use Insert+Ctrl+Down to read full contents.
-\end{enumerate}
-
-\subsubsection*{General Terminal Accessibility}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal}
-
-\paragraph*{Understanding the PowerShell Layout}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__understanding-the-powershell-layout}
-
-PowerShell shows a title bar, content area, and a prompt that looks like:
-
-\begin{lstlisting}[style=Alabaster, language=powershell]
-PS C:\Users\YourName>
-
-\end{lstlisting}
-
-\paragraph*{Navigation Sequence}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__navigation-sequence}
-
-\begin{enumerate}
-\tightlist
-\item
-  Screen reader announces the title
-\item
-  Then it announces the prompt line
-\item
-  Anything above prompt is prior output
-\end{enumerate}
-
-\subsubsection*{Working with Long Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output}
-
-\paragraph*{Solution 1: Redirect to a File}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-1-redirect-to-a-file}
-
-\begin{lstlisting}[style=Alabaster, language=powershell]
-Get-ChildItem -Name > list.txt
-notepad list.txt
-
-\end{lstlisting}
-
-\paragraph*{Solution 2: Use Pagination}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-2-use-pagination}
-
-\begin{lstlisting}[style=Alabaster, language=powershell]
-Get-Content largefile.txt | more
-
-\end{lstlisting}
-
-\paragraph*{Solution 3: Filter Output}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-3-filter-output}
-
-\begin{lstlisting}[style=Alabaster, language=powershell]
-Get-ChildItem -Name | Where-Object { $_ -like "*.scad" }
-
-\end{lstlisting}
-
-\paragraph*{Solution 4: Count Before Displaying}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-4-count-before-displaying}
-
-\begin{lstlisting}[style=Alabaster, language=powershell]
-(Get-ChildItem -Name).Count
-
-\end{lstlisting}
-
-\subsubsection*{Keyboard Shortcuts Reference}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts}
-
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Key & Action \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Up Arrow & Show previous command \\
-Down Arrow & Show next command \\
-Tab & Auto-complete file/folder names \\
-Home & Jump to start of line \\
-End & Jump to end of line \\
-Ctrl+C & Stop command \\
-Enter & Run command \\
-\end{longtable}
-}
-
-\subsubsection*{Troubleshooting}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting}
-
-\paragraph*{Problem: "I Can\textquotesingle t Hear the Output"}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-i-cant-hear-the-output}
-
-\begin{enumerate}
-\tightlist
-\item
-  Redirect to file and open in Notepad.
-\item
-  Use End to jump to the end of text.
-\end{enumerate}
-
-\paragraph*{Problem: "Tab Completion Isn\textquotesingle t Working"}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-tab-completion-isnt-working}
-
-\begin{enumerate}
-\tightlist
-\item
-  Type some characters before Tab.
-\end{enumerate}
-
-\paragraph*{Problem: "Command Not Found"}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-command-not-found}
-
-\begin{enumerate}
-\tightlist
-\item
-  Use \texttt{Get-Command\ programname} to check availability.
-\end{enumerate}
-
-\subsubsection*{Pro Tips}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__pro-tips}
-
-\begin{enumerate}
-\tightlist
-\item
-  Use \texttt{Get-ChildItem\ -Name} for one-per-line listings.
-\item
-  Use \texttt{Out-File\ -FilePath\ list.txt} to capture output with encoding options.
-\end{enumerate}
-
-\subsubsection*{Recommended Workflow}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__recommended-workflow}
-
-\begin{enumerate}
-\tightlist
-\item
-  \texttt{Set-Location} (or \texttt{cd}) to the project folder
-\item
-  \texttt{Get-ChildItem\ -Name} to list files
-\item
-  Redirect large output to files and open in Notepad
-\end{enumerate}
-
-\subsubsection*{Additional Resources}\label{docs__pandoc__latex__src__powershell_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__additional-resources}
-
-\begin{itemize}
-\tightlist
-\item
-  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
-\item
-  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
-\item
-  PowerShell Documentation: \url{https://docs.microsoft.com/powershell}
-\item
-  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
-\item
-  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
-\item
-  Dolphin SuperNova: \url{https://yourdolphin.com/supernova/}
-\item
-  Windows Narrator: \url{https://support.microsoft.com/narrator}
-\end{itemize}
-
 \section{Windows Command Line}\label{docs__pandoc__latex__src__cmd_foundation__part_1.md__cmd_foundation-part_1}
 
 This section covers terminal fundamentals, screen reader accessibility, and command-line basics needed before diving into 3D design with OpenSCAD. This is an alternate pathway to the PowerShell curriculum, using Windows Command Prompt (CMD) instead.
@@ -9210,7 +9721,7 @@ CMD is simpler than PowerShell but has fewer advanced features. Both pathways te
 
 \subsubsection*{Curriculum Structure}\label{docs__pandoc__latex__src__cmd_foundation__cmd_curriculum_overview__cmd_curriculum_overview.md__curriculum-structure}
 
-\paragraph*{Phase 1: Absolute Beginner → Comfortable User}\label{docs__pandoc__latex__src__cmd_foundation__cmd_curriculum_overview__cmd_curriculum_overview.md__phase-1-absolute-beginner--comfortable-user}
+\paragraph*{Phase 1: Absolute Beginner -\textgreater{} Comfortable User}\label{docs__pandoc__latex__src__cmd_foundation__cmd_curriculum_overview__cmd_curriculum_overview.md__phase-1-absolute-beginner---comfortable-user}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -9240,7 +9751,7 @@ Moving around the file system confidently \\
 
 \textbf{Goal:} You can navigate to any folder and see what is in it with your screen reader.
 
-\paragraph*{Phase 2: Intermediate User → Power User}\label{docs__pandoc__latex__src__cmd_foundation__cmd_curriculum_overview__cmd_curriculum_overview.md__phase-2-intermediate-user--power-user}
+\paragraph*{Phase 2: Intermediate User -\textgreater{} Power User}\label{docs__pandoc__latex__src__cmd_foundation__cmd_curriculum_overview__cmd_curriculum_overview.md__phase-2-intermediate-user---power-user}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -9406,7 +9917,7 @@ If your screen reader is not listed in a specific tip, refer to the \textbf{Scre
 
 \begin{enumerate}
 \item
-  Open Command Prompt (Windows key → type \texttt{cmd} → Enter).
+  Open Command Prompt (Windows key \textgreater{} type \texttt{cmd} \textgreater{} Enter).
 \item
   Run these commands:
 
@@ -9670,6 +10181,295 @@ NEXT: 3D Printing Integration Lessons
 
 \textbf{Now open Command Line Lesson Pre and get started!}
 
+\subsection{Screen Reader Accessibility Guide for Windows Command Prompt (CMD)}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-windows-command-prompt-cmd}
+
+Target Users: NVDA, JAWS, and other screen reader users\\
+Last Updated: 2026
+
+This guide supports the CMD Foundation curriculum and helps screen reader users navigate and work efficiently with the Windows Command Prompt.
+
+\subsubsection*{Table of Contents}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__table-of-contents}
+
+\begin{enumerate}
+\tightlist
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started]{Getting Started with Screen Readers}
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips]{NVDA-Specific Tips}
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips]{JAWS-Specific Tips}
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal]{General Terminal Accessibility}
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output]{Working with Long Output}
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts]{Keyboard Shortcuts Reference}
+\item
+  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting]{Troubleshooting}
+\end{enumerate}
+
+\subsubsection*{Getting Started with Screen Readers}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started}
+
+\paragraph*{Which Screen Reader Should I Use?}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__which-screen-reader-should-i-use}
+
+Both NVDA and JAWS work with CMD; NVDA is free and often easiest to start with. JAWS provides advanced features for power users. Dolphin SuperNova and Windows Narrator are also options:
+
+\begin{itemize}
+\tightlist
+\item
+  Dolphin SuperNova: commercial speech, braille, and magnification (use vendor docs for key mappings).
+\item
+  Windows Narrator: built into Windows for quick, no-install access.
+\end{itemize}
+
+\paragraph*{Before You Start}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__before-you-start}
+
+\begin{enumerate}
+\tightlist
+\item
+  Start your screen reader before opening CMD.
+\item
+  Open Command Prompt and listen for the window title and prompt.
+\item
+  If silent, press Alt+Tab to find the window.
+\end{enumerate}
+
+\paragraph*{What is CMD?}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__what-is-cmd}
+
+CMD (Command Prompt) is the classic Windows shell. Common commands include \texttt{dir}, \texttt{type}, and \texttt{more}. Paths use backslashes (e.g., \texttt{C:\textbackslash{}Users\textbackslash{}You}).
+
+\subsubsection*{NVDA-Specific Tips}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips}
+
+NVDA is available from \url{https://www.nvaccess.org/}
+
+\paragraph*{Dolphin SuperNova}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__dolphin-supernova}
+
+Dolphin SuperNova: \url{https://yourdolphin.com/supernova/} --- commercial screen reader and magnifier; check institutional licensing.
+
+\paragraph*{Windows Narrator}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__windows-narrator}
+
+Windows Narrator: \url{https://support.microsoft.com/narrator} --- built-in, simpler command set; useful when third-party readers are unavailable.
+
+\paragraph*{Key Commands for CMD}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-cmd}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2361}}
+  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7639}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Command
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+What It Does
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+NVDA+Home & Read the current line (your command or output) \\
+NVDA+Down Arrow & Read from cursor to end of screen \\
+NVDA+Up Arrow & Read from top to cursor \\
+NVDA+Page Down & Read next page \\
+NVDA+Page Up & Read previous page \\
+NVDA+F7 & Open the Review Mode viewer (can scroll through text) \\
+\end{longtable}
+}
+
+\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output}
+
+If \texttt{dir} produces many lines, redirect to a file and open it in Notepad:
+
+\begin{lstlisting}[style=Alabaster, language=cmd]
+dir /b > list.txt
+notepad list.txt
+
+\end{lstlisting}
+
+\texttt{dir\ /b} shows one item per line (screen reader friendly).
+
+\subsubsection*{JAWS-Specific Tips}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips}
+
+JAWS is available from \url{https://www.freedomscientific.com/}
+
+\paragraph*{Key Commands for CMD}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-cmd-1}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Command & What It Does \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Insert+Down Arrow & Read line by line downward \\
+Insert+Up Arrow & Read line by line upward \\
+Insert+Page Down & Read next page of text \\
+Insert+Page Up & Read previous page of text \\
+\end{longtable}
+}
+
+\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output-1}
+
+\begin{enumerate}
+\tightlist
+\item
+  Redirect: \texttt{dir\ /b\ \textgreater{}\ list.txt}
+\item
+  Open Notepad: \texttt{notepad\ list.txt}
+\item
+  Use Insert+Ctrl+Down to read full contents.
+\end{enumerate}
+
+\subsubsection*{General Terminal Accessibility}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal}
+
+\paragraph*{Understanding the CMD Layout}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__understanding-the-cmd-layout}
+
+The Command Prompt window shows a title bar, a content area, and the prompt (e.g., \texttt{C:\textbackslash{}Users\textbackslash{}YourName\textgreater{}}).
+
+\paragraph*{The CMD Prompt}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__the-cmd-prompt}
+
+Example:
+
+\begin{lstlisting}[style=Alabaster]
+C:\Users\YourName>
+
+\end{lstlisting}
+
+\paragraph*{Navigation Sequence}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__navigation-sequence}
+
+\begin{enumerate}
+\tightlist
+\item
+  Screen reader announces the title
+\item
+  Then it announces the prompt line
+\item
+  Anything above prompt is prior output
+\end{enumerate}
+
+\subsubsection*{Working with Long Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output}
+
+\paragraph*{Solution 1: Redirect to a File}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-1-redirect-to-a-file}
+
+\begin{lstlisting}[style=Alabaster, language=cmd]
+dir /b > list.txt
+notepad list.txt
+
+\end{lstlisting}
+
+\paragraph*{Solution 2: Use Pagination}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-2-use-pagination}
+
+\begin{lstlisting}[style=Alabaster, language=cmd]
+type largefile.txt | more
+
+\end{lstlisting}
+
+Use Space for next page and Q to quit.
+
+\paragraph*{Solution 3: Filter Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-3-filter-output}
+
+\begin{lstlisting}[style=Alabaster, language=cmd]
+dir /b | findstr /R "\.scad$"
+
+\end{lstlisting}
+
+\paragraph*{Solution 4: Count Before Displaying}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-4-count-before-displaying}
+
+\begin{lstlisting}[style=Alabaster, language=cmd]
+dir /b | find /v "" /c
+
+\end{lstlisting}
+
+\subsubsection*{Keyboard Shortcuts Reference}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}ll@{}}
+\toprule\noalign{}
+Key & Action \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Up Arrow & Show previous command \\
+Down Arrow & Show next command \\
+Tab & Auto-complete file/folder names \\
+Home & Jump to start of line \\
+End & Jump to end of line \\
+Ctrl+C & Stop command \\
+Enter & Run command \\
+\end{longtable}
+}
+
+\subsubsection*{Troubleshooting}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting}
+
+\paragraph*{Problem: "I Can\textquotesingle t Hear the Output"}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-i-cant-hear-the-output}
+
+\begin{enumerate}
+\tightlist
+\item
+  Redirect to file and open in Notepad.
+\item
+  Use End to jump to the end of text.
+\end{enumerate}
+
+\paragraph*{Problem: "Tab Completion Isn\textquotesingle t Working"}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-tab-completion-isnt-working}
+
+\begin{enumerate}
+\tightlist
+\item
+  Type at least one character before Tab.
+\end{enumerate}
+
+\paragraph*{Problem: "Command Not Found"}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-command-not-found}
+
+\begin{enumerate}
+\tightlist
+\item
+  Use \texttt{where\ programname} to find installed programs.
+\end{enumerate}
+
+\subsubsection*{Pro Tips}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__pro-tips}
+
+\begin{enumerate}
+\tightlist
+\item
+  Use \texttt{dir\ /b} for one-per-line listings.
+\item
+  Create a personal notes file and open it in Notepad for quick reference.
+\end{enumerate}
+
+\subsubsection*{Recommended Workflow}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__recommended-workflow}
+
+\begin{enumerate}
+\tightlist
+\item
+  \texttt{cd} to the project folder
+\item
+  \texttt{dir\ /b} to list files
+\item
+  Redirect large output to files and open in Notepad
+\end{enumerate}
+
+\subsubsection*{Additional Resources}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__additional-resources}
+
+\begin{itemize}
+\tightlist
+\item
+  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
+\item
+  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
+\item
+  Windows CMD Reference: \url{https://docs.microsoft.com/windows-server/administration/windows-commands/windows-commands}
+\item
+  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
+\item
+  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
+\item
+  Dolphin SuperNova: \url{https://yourdolphin.com/supernova/}
+\item
+  Windows Narrator: \url{https://support.microsoft.com/narrator}
+\end{itemize}
+
 \subsection{Command Line Lesson Pre: Your First Terminal - Screen Reader Navigation Fundamentals}\label{docs__pandoc__latex__src__cmd_foundation__cmd_pre_your_first_terminal__cmd_pre_your_first_terminal.md__cmd_foundation_cmd_pre_your_first_terminal-cmd_pre_your_first_terminal}
 
 \textbf{Duration:} 1.5-2 hours (for screen reader users)\\
@@ -9793,7 +10593,7 @@ C:\Users\YourName
 \item
   Windows paths use backslashes: \texttt{C:\textbackslash{}Users\textbackslash{}YourName\textbackslash{}Documents}
 \item
-  Think of it as nested folders: \texttt{C:\textbackslash{}} (the main drive) → \texttt{Users} → \texttt{YourName} → \texttt{Documents}
+  Think of it as nested folders: \texttt{C:\textbackslash{}} (the main drive) \textgreater{} \texttt{Users} \textgreater{} \texttt{YourName} \textgreater{} \texttt{Documents}
 \end{itemize}
 
 \paragraph*{\texorpdfstring{Command 2: "What\textquotesingle s Here?" --- \texttt{dir}}{Command 2: "What\textquotesingle s Here?" --- dir}}\label{docs__pandoc__latex__src__cmd_foundation__cmd_pre_your_first_terminal__cmd_pre_your_first_terminal.md__command-2-whats-here--dir}
@@ -10034,11 +10834,11 @@ Windows Narrator is built into Windows 10 and Windows 11. Enable it with \textbf
 \item
   \textbf{For long outputs}, always redirect to a file: \texttt{command\ \textgreater{}\ output.txt}, then \texttt{notepad.exe\ output.txt}. Notepad is more comfortable for Narrator users than reading directly from the terminal.
 \item
-  \textbf{Narrator settings}: Windows key → Settings → Accessibility → Narrator.
+  \textbf{Narrator settings}: Windows key \textgreater{} Settings \textgreater{} Accessibility \textgreater{} Narrator.
 \end{enumerate}
 
 \begin{quote}
-\textbf{Narrator key note:} The Narrator modifier key is \textbf{CapsLock} or \textbf{Insert}. You can change it in Settings → Accessibility → Narrator → Keyboard shortcuts.
+\textbf{Narrator key note:} The Narrator modifier key is \textbf{CapsLock} or \textbf{Insert}. You can change it in Settings \textgreater{} Accessibility \textgreater{} Narrator \textgreater{} Keyboard shortcuts.
 \end{quote}
 
 \paragraph*{Dolphin SuperNova Users}\label{docs__pandoc__latex__src__cmd_foundation__cmd_pre_your_first_terminal__cmd_pre_your_first_terminal.md__dolphin-supernova-users}
@@ -10060,7 +10860,7 @@ Dolphin SuperNova is available from \url{https://yourdolphin.com/supernova/}
 \end{enumerate}
 
 \begin{quote}
-\textbf{Dolphin key note:} The SuperNova modifier key is \textbf{CapsLock} by default. This can be changed in the SuperNova Control Panel → Keyboard.
+\textbf{Dolphin key note:} The SuperNova modifier key is \textbf{CapsLock} by default. This can be changed in the SuperNova Control Panel \textgreater{} Keyboard.
 \end{quote}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -13080,295 +13880,6 @@ Hands-On Tasks & 10 & 3 & 30 \\
   Submission includes this checklist
 \end{itemize}
 
-\subsection{Screen Reader Accessibility Guide for Windows Command Prompt (CMD)}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-windows-command-prompt-cmd}
-
-Target Users: NVDA, JAWS, and other screen reader users\\
-Last Updated: 2026
-
-This guide supports the CMD Foundation curriculum and helps screen reader users navigate and work efficiently with the Windows Command Prompt.
-
-\subsubsection*{Table of Contents}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__table-of-contents}
-
-\begin{enumerate}
-\tightlist
-\item
-  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started]{Getting Started with Screen Readers}
-\item
-  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips]{NVDA-Specific Tips}
-\item
-  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips]{JAWS-Specific Tips}
-\item
-  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal]{General Terminal Accessibility}
-\item
-  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output]{Working with Long Output}
-\item
-  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts]{Keyboard Shortcuts Reference}
-\item
-  \hyperref[docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting]{Troubleshooting}
-\end{enumerate}
-
-\subsubsection*{Getting Started with Screen Readers}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__getting-started}
-
-\paragraph*{Which Screen Reader Should I Use?}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__which-screen-reader-should-i-use}
-
-Both NVDA and JAWS work with CMD; NVDA is free and often easiest to start with. JAWS provides advanced features for power users. Dolphin SuperNova and Windows Narrator are also options:
-
-\begin{itemize}
-\tightlist
-\item
-  Dolphin SuperNova: commercial speech, braille, and magnification (use vendor docs for key mappings).
-\item
-  Windows Narrator: built into Windows for quick, no-install access.
-\end{itemize}
-
-\paragraph*{Before You Start}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__before-you-start}
-
-\begin{enumerate}
-\tightlist
-\item
-  Start your screen reader before opening CMD.
-\item
-  Open Command Prompt and listen for the window title and prompt.
-\item
-  If silent, press Alt+Tab to find the window.
-\end{enumerate}
-
-\paragraph*{What is CMD?}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__what-is-cmd}
-
-CMD (Command Prompt) is the classic Windows shell. Common commands include \texttt{dir}, \texttt{type}, and \texttt{more}. Paths use backslashes (e.g., \texttt{C:\textbackslash{}Users\textbackslash{}You}).
-
-\subsubsection*{NVDA-Specific Tips}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__nvda-tips}
-
-NVDA is available from \url{https://www.nvaccess.org/}
-
-\paragraph*{Dolphin SuperNova}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__dolphin-supernova}
-
-Dolphin SuperNova: \url{https://yourdolphin.com/supernova/} --- commercial screen reader and magnifier; check institutional licensing.
-
-\paragraph*{Windows Narrator}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__windows-narrator}
-
-Windows Narrator: \url{https://support.microsoft.com/narrator} --- built-in, simpler command set; useful when third-party readers are unavailable.
-
-\paragraph*{Key Commands for CMD}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-cmd}
-
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.2361}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.7639}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Command
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-What It Does
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-NVDA+Home & Read the current line (your command or output) \\
-NVDA+Down Arrow & Read from cursor to end of screen \\
-NVDA+Up Arrow & Read from top to cursor \\
-NVDA+Page Down & Read next page \\
-NVDA+Page Up & Read previous page \\
-NVDA+F7 & Open the Review Mode viewer (can scroll through text) \\
-\end{longtable}
-}
-
-\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output}
-
-If \texttt{dir} produces many lines, redirect to a file and open it in Notepad:
-
-\begin{lstlisting}[style=Alabaster, language=cmd]
-dir /b > list.txt
-notepad list.txt
-
-\end{lstlisting}
-
-\texttt{dir\ /b} shows one item per line (screen reader friendly).
-
-\subsubsection*{JAWS-Specific Tips}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__jaws-tips}
-
-JAWS is available from \url{https://www.freedomscientific.com/}
-
-\paragraph*{Key Commands for CMD}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__key-commands-for-cmd-1}
-
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Command & What It Does \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Insert+Down Arrow & Read line by line downward \\
-Insert+Up Arrow & Read line by line upward \\
-Insert+Page Down & Read next page of text \\
-Insert+Page Up & Read previous page of text \\
-\end{longtable}
-}
-
-\paragraph*{Example: Reading Long Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__example-reading-long-output-1}
-
-\begin{enumerate}
-\tightlist
-\item
-  Redirect: \texttt{dir\ /b\ \textgreater{}\ list.txt}
-\item
-  Open Notepad: \texttt{notepad\ list.txt}
-\item
-  Use Insert+Ctrl+Down to read full contents.
-\end{enumerate}
-
-\subsubsection*{General Terminal Accessibility}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__general-terminal}
-
-\paragraph*{Understanding the CMD Layout}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__understanding-the-cmd-layout}
-
-The Command Prompt window shows a title bar, a content area, and the prompt (e.g., \texttt{C:\textbackslash{}Users\textbackslash{}YourName\textgreater{}}).
-
-\paragraph*{The CMD Prompt}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__the-cmd-prompt}
-
-Example:
-
-\begin{lstlisting}[style=Alabaster]
-C:\Users\YourName>
-
-\end{lstlisting}
-
-\paragraph*{Navigation Sequence}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__navigation-sequence}
-
-\begin{enumerate}
-\tightlist
-\item
-  Screen reader announces the title
-\item
-  Then it announces the prompt line
-\item
-  Anything above prompt is prior output
-\end{enumerate}
-
-\subsubsection*{Working with Long Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__long-output}
-
-\paragraph*{Solution 1: Redirect to a File}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-1-redirect-to-a-file}
-
-\begin{lstlisting}[style=Alabaster, language=cmd]
-dir /b > list.txt
-notepad list.txt
-
-\end{lstlisting}
-
-\paragraph*{Solution 2: Use Pagination}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-2-use-pagination}
-
-\begin{lstlisting}[style=Alabaster, language=cmd]
-type largefile.txt | more
-
-\end{lstlisting}
-
-Use Space for next page and Q to quit.
-
-\paragraph*{Solution 3: Filter Output}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-3-filter-output}
-
-\begin{lstlisting}[style=Alabaster, language=cmd]
-dir /b | findstr /R "\.scad$"
-
-\end{lstlisting}
-
-\paragraph*{Solution 4: Count Before Displaying}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__solution-4-count-before-displaying}
-
-\begin{lstlisting}[style=Alabaster, language=cmd]
-dir /b | find /v "" /c
-
-\end{lstlisting}
-
-\subsubsection*{Keyboard Shortcuts Reference}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__shortcuts}
-
-{\def\LTcaptype{none} % do not increment counter
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Key & Action \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Up Arrow & Show previous command \\
-Down Arrow & Show next command \\
-Tab & Auto-complete file/folder names \\
-Home & Jump to start of line \\
-End & Jump to end of line \\
-Ctrl+C & Stop command \\
-Enter & Run command \\
-\end{longtable}
-}
-
-\subsubsection*{Troubleshooting}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__troubleshooting}
-
-\paragraph*{Problem: "I Can\textquotesingle t Hear the Output"}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-i-cant-hear-the-output}
-
-\begin{enumerate}
-\tightlist
-\item
-  Redirect to file and open in Notepad.
-\item
-  Use End to jump to the end of text.
-\end{enumerate}
-
-\paragraph*{Problem: "Tab Completion Isn\textquotesingle t Working"}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-tab-completion-isnt-working}
-
-\begin{enumerate}
-\tightlist
-\item
-  Type at least one character before Tab.
-\end{enumerate}
-
-\paragraph*{Problem: "Command Not Found"}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__problem-command-not-found}
-
-\begin{enumerate}
-\tightlist
-\item
-  Use \texttt{where\ programname} to find installed programs.
-\end{enumerate}
-
-\subsubsection*{Pro Tips}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__pro-tips}
-
-\begin{enumerate}
-\tightlist
-\item
-  Use \texttt{dir\ /b} for one-per-line listings.
-\item
-  Create a personal notes file and open it in Notepad for quick reference.
-\end{enumerate}
-
-\subsubsection*{Recommended Workflow}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__recommended-workflow}
-
-\begin{enumerate}
-\tightlist
-\item
-  \texttt{cd} to the project folder
-\item
-  \texttt{dir\ /b} to list files
-\item
-  Redirect large output to files and open in Notepad
-\end{enumerate}
-
-\subsubsection*{Additional Resources}\label{docs__pandoc__latex__src__cmd_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__additional-resources}
-
-\begin{itemize}
-\tightlist
-\item
-  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
-\item
-  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
-\item
-  Windows CMD Reference: \url{https://docs.microsoft.com/windows-server/administration/windows-commands/windows-commands}
-\item
-  NVDA Documentation: \url{https://www.nvaccess.org/documentation/}
-\item
-  JAWS Documentation: \url{https://www.freedomscientific.com/support/}
-\item
-  Dolphin SuperNova: \url{https://yourdolphin.com/supernova/}
-\item
-  Windows Narrator: \url{https://support.microsoft.com/narrator}
-\end{itemize}
-
 \section{Git Bash}\label{docs__pandoc__latex__src__gitbash_foundation__part_1.md__gitbash_foundation-part_1}
 
 This section covers terminal fundamentals, screen reader accessibility, and command-line basics needed before diving into 3D design with OpenSCAD.
@@ -14550,332 +15061,6 @@ Now open GB-Pre and let\textquotesingle s get started!
 Other Screen Readers
 
 Dolphin SuperNova (commercial) and Windows Narrator (built-in) are also supported; the workflows and recommendations in this document apply to them. See \url{https://yourdolphin.com/supernova/} and \url{https://support.microsoft.com/narrator} for vendor documentation.
-
-\subsection{Git Bash Introduction}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_introduction__gitbash_introduction.md__git-bash-introduction}
-
-\subsection{Git Bash Tutorial}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__gitbash_foundation_gitbash_tutorial-gitbash_tutorial}
-
-Estimated time: 30-45 minutes
-
-Learning Objectives
-
-\begin{itemize}
-\tightlist
-\item
-  Launch Git Bash and identify the prompt
-\item
-  Understand and use basic path notation (\texttt{\textasciitilde{}}, \texttt{./}, \texttt{../})
-\item
-  Use \texttt{pwd}, \texttt{ls\ -1}, and \texttt{cd} to navigate the filesystem
-\item
-  Open files in an external editor and run simple commands
-\end{itemize}
-
-Materials
-
-\begin{itemize}
-\tightlist
-\item
-  A computer with Git Bash installed (install via \url{https://git-scm.com/})
-\item
-  Access to a text editor (Notepad, VS Code)
-\end{itemize}
-
-\subsubsection*{Pre-Requisite Knowledge}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__pre-requisite-knowledge}
-
-\begin{itemize}
-\tightlist
-\item
-  Typing and basic text-editing skills
-\item
-  Familiarity with file/folder concepts and basic OS navigation
-\item
-  Basic screen-reading familiarity (if applicable)
-\end{itemize}
-
-\subsubsection*{What is Git Bash?}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__what-is-git-bash}
-
-Git Bash is a free terminal application for Windows that provides a Bash (Unix shell) environment. It is installed as part of Git for Windows. When you open Git Bash, you can use Unix commands like \texttt{ls}, \texttt{cat}, \texttt{grep}, and \texttt{echo} - the same commands used on Linux and macOS - right on your Windows computer.
-
-Git Bash is useful for:
-
-\begin{itemize}
-\tightlist
-\item
-  Running CLI programs (like OpenSCAD, slicers, or 3DMake)
-\item
-  Navigating the filesystem with keyboard-only commands
-\item
-  Automating repetitive tasks with scripts
-\item
-  Accessibility: works cleanly with NVDA, JAWS, and other screen readers
-\end{itemize}
-
-\subsubsection*{What We\textquotesingle ll Do and Why}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__what-well-do-and-why}
-
-You\textquotesingle ll use Git Bash to run CLI programs, navigate the filesystem, and manipulate files - tasks that are especially efficient when using a keyboard or a screen reader.
-
-\subsubsection*{Quick Tutorial \& Core Concepts}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__quick-tutorial--core-concepts}
-
-\paragraph*{Paths and Navigation}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__paths-and-navigation}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{\textasciitilde{}} - home directory (e.g., \texttt{/c/Users/YourName})
-\item
-  \texttt{.} - current directory
-\item
-  \texttt{..} - parent directory
-\item
-  \texttt{./} - current directory shortcut (used to run scripts: \texttt{./script.sh})
-\item
-  \texttt{../} - parent directory shortcut
-\item
-  Use Tab to autocomplete files and folders
-\end{itemize}
-
-Git Bash uses forward slashes (\texttt{/}) for paths, just like Linux. Your Windows \texttt{C:\textbackslash{}Users\textbackslash{}YourName} folder is accessible as \texttt{/c/Users/YourName} or simply \texttt{\textasciitilde{}}.
-
-\paragraph*{Useful Commands (Examples)}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__useful-commands-examples}
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-pwd                # show current directory
-ls -1              # list files, one per line (screen-reader friendly)
-cd path/to/dir     # change directory
-whoami             # current user
-
-\end{lstlisting}
-
-\paragraph*{Wildcards}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__wildcards}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{*} matches zero or more characters
-\item
-  \texttt{?} matches a single character
-\end{itemize}
-
-Use \texttt{ls\ *.scad} to filter by extension, for example.
-
-\subsubsection*{Common Operations}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__common-operations}
-
-\paragraph*{File and Folder Manipulation}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__file-and-folder-manipulation}
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-mkdir my-folder          # create folder
-mkdir -p a/b/c           # create nested folders at once
-cp -r src dest           # copy (use -r for directories)
-mv oldname newname       # rename or move
-rm file                  # remove file
-rm -r folder             # remove folder and contents
-touch filename.txt       # create new empty file
-
-\end{lstlisting}
-
-\paragraph*{Input, Output, and Piping}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__input-output-and-piping}
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-echo 'hello' | clip      # copy to clipboard
-command > output.txt     # redirect output to file
-command >> output.txt    # append output to file
-command > /dev/null      # discard/suppress output
-
-\end{lstlisting}
-
-Use \texttt{\textbar{}} to pipe output and \texttt{\textgreater{}} to redirect into files.
-
-\paragraph*{Editing and Running Programs}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__editing-and-running-programs}
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-notepad file.txt         # open in Notepad (Windows)
-code file.txt            # open in VS Code (if in PATH)
-./script.sh              # run a script in the current directory
-chmod +x script.sh       # make a script executable
-
-\end{lstlisting}
-
-\subsubsection*{Screen-Reader Friendly Tips}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__screen-reader-friendly-tips}
-
-\begin{itemize}
-\tightlist
-\item
-  Prefer \texttt{ls\ -1} for name-only, one-per-line output.
-\item
-  Filter lists with \texttt{grep}: \texttt{ls\ -1\ \textasciitilde{}/Documents\ \textbar{}\ grep\ "\textbackslash{}.scad\$"} (files only ending in .scad).
-\item
-  Redirect very long outputs to a file and open it in an editor.
-\end{itemize}
-
-\subsubsection*{Error Handling and Control}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__error-handling-and-control}
-
-\begin{itemize}
-\tightlist
-\item
-  Abort a running command: \texttt{Ctrl+C}
-\item
-  View history: Up/Down arrows or \texttt{history}
-\item
-  Clear screen: \texttt{clear} (or \texttt{Ctrl+L})
-\item
-  If an error is long, read the first few lines for the gist and copy short snippets into a file to examine.
-\end{itemize}
-
-\subsubsection*{Environment Variables \& PATH}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__environment-variables--path}
-
-Environment variables configure your session. \texttt{PATH} tells the shell where to find executables.
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-echo $PATH
-echo $HOME
-echo $USER
-
-\end{lstlisting}
-
-To add a directory to PATH for the current session:
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-export PATH="$PATH:/path/to/my/tools"
-
-\end{lstlisting}
-
-To make it permanent, add that line to \texttt{\textasciitilde{}/.bashrc}.
-
-\subsubsection*{Running CLI Applications and Archives}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__running-cli-applications-and-archives}
-
-To extract ZIP archives in Git Bash:
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-# Unzip a file
-unzip file.zip -d destinationfolder
-
-# Or use Windows' built-in tool (from Git Bash):
-powershell.exe Expand-Archive -Path file.zip -DestinationPath folder
-
-\end{lstlisting}
-
-\subsubsection*{Aliases and Cross-Platform Notes}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__aliases-and-cross-platform-notes}
-
-Git Bash provides Unix commands that work identically on Linux and macOS. This means your Git Bash skills transfer directly if you ever work on a Mac or Linux system.
-
-Useful aliases to add to \texttt{\textasciitilde{}/.bashrc}:
-
-\begin{lstlisting}[style=Alabaster, language=bash]
-alias ll='ls -la'
-alias la='ls -1a'
-alias ..='cd ..'
-alias ...='cd ../..'
-
-\end{lstlisting}
-
-\subsubsection*{Step-by-step Tasks (Hands-On)}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__step-by-step-tasks-hands-on}
-
-\begin{enumerate}
-\tightlist
-\item
-  Open Git Bash; listen for the prompt and current path.
-\item
-  Run \texttt{pwd} to confirm your location.
-\item
-  Run \texttt{ls\ -1} in your home directory and note the output.
-\item
-  Practice \texttt{cd\ Documents}, \texttt{cd\ ../}, and \texttt{cd\ \textasciitilde{}} to move between folders.
-\item
-  Create and open a file: \texttt{touch\ example.txt\ \&\&\ notepad\ example.txt} (or \texttt{code\ example.txt}).
-\end{enumerate}
-
-\subsubsection*{Checkpoints}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__checkpoints}
-
-\begin{itemize}
-\tightlist
-\item
-  After step 3 you should be able to state your current directory.
-\item
-  After step 5 you should be able to create and open a text file from Git Bash.
-\end{itemize}
-
-\subsubsection*{Quick Quiz (10 questions)}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__quick-quiz-10-questions}
-
-\begin{enumerate}
-\tightlist
-\item
-  What command prints your current directory?
-\item
-  What does \texttt{\textasciitilde{}} represent?
-\item
-  How do you list only names, one per line?
-\item
-  How do you go up one directory level?
-\item
-  How would you open \texttt{notes.txt} in Notepad from Git Bash?
-\item
-  True or False: The pipe operator \texttt{\textbar{}} sends output to a file.
-\item
-  Explain why running a script requires \texttt{chmod\ +x} first.
-\item
-  What is the difference between running a script with \texttt{./script.sh} versus \texttt{bash\ script.sh}?
-\item
-  Describe how you would handle a very long command output when using a screen reader.
-\item
-  What does the \texttt{PATH} environment variable do, and why is it important when running programs like OpenSCAD?
-\end{enumerate}
-
-\subsubsection*{Extension Problems}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__extension-problems}
-
-\begin{enumerate}
-\tightlist
-\item
-  Create a folder \texttt{OpenSCADProjects} in Documents and verify its contents.
-\item
-  Create three files named \texttt{a.scad}, \texttt{b.scad}, \texttt{c.scad} and list them with a wildcard.
-\item
-  Save \texttt{ls\ -1\ \textasciitilde{}/Documents} output to \texttt{doclist.txt} and open it.
-\item
-  Try tab-completion in a deeply nested folder and note behavior.
-\item
-  Capture \texttt{pwd} output into a file and open it: \texttt{pwd\ \textgreater{}\ cwd.txt\ \&\&\ notepad\ cwd.txt}.
-\item
-  Build an automated setup script that creates a complete project directory structure, initializes placeholder files, and generates a README.
-\item
-  Create a Git Bash cheat sheet for your most-used commands; organize by category (navigation, files, scripting, troubleshooting).
-\item
-  Write a non-visual tutorial for Git Bash basics; use audio descriptions and keyboard-only navigation as the primary learning method.
-\item
-  Develop a workflow automation script: combines multiple Git Bash concepts (folders, aliases, piping) to solve a real 3D printing task.
-\item
-  Create a Git Bash proficiency self-assessment: list all concepts covered, provide test commands for each, and reflect on what you learned.
-\end{enumerate}
-
-\subsubsection*{References}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__references}
-
-\begin{itemize}
-\tightlist
-\item
-  Git for Windows. (2024). \emph{Git Bash}. \url{https://gitforwindows.org/}
-\item
-  GNU. (2024). \emph{Bash reference manual}. \url{https://www.gnu.org/software/bash/manual/bash.html}
-\item
-  The Linux Documentation Project. (2024). \emph{Bash Beginners Guide}. \url{https://tldp.org/LDP/Bash-Beginners-Guide/html/}
-\end{itemize}
-
-\subsubsection*{Helpful Resources}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_tutorial__gitbash_tutorial.md__helpful-resources}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://gitforwindows.org/}{Git for Windows}
-\item
-  \href{https://www.gnu.org/software/bash/manual/bash.html}{Bash Reference Manual (GNU)}
-\item
-  \href{https://tldp.org/LDP/Bash-Beginners-Guide/html/}{Bash Beginners Guide}
-\item
-  \href{https://www.gnu.org/software/coreutils/manual/}{GNU Coreutils}
-\end{itemize}
-
-Other Screen Readers
-
-Dolphin SuperNova (commercial) and Windows Narrator (built-in) are also supported; the workflows and recommendations in this document apply to them. See \url{https://example.com} and \url{https://example.com} for vendor documentation.
 
 \subsection{Screen Reader Accessibility Guide for Git Bash}\label{docs__pandoc__latex__src__gitbash_foundation__screen_reader_accessibility_guide__screen_reader_accessibility_guide.md__screen-reader-accessibility-guide-for-git-bash}
 
@@ -18104,7 +18289,7 @@ echo "All $count files processed!"
   \textbf{Loops:} \url{https://example.com}
 \end{itemize}
 
-\subsection{GitBash Unit Test - Comprehensive Assessment}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_unit_test__gitbash_unit_test.md__gitbash-unit-test---comprehensive-assessment}
+\subsection{Bash Unit Test - Comprehensive Assessment}\label{docs__pandoc__latex__src__gitbash_foundation__gitbash_unit_test__gitbash_unit_test.md__bash-unit-test---comprehensive-assessment}
 
 Estimated time: 60-90 minutes
 
@@ -19783,7 +19968,7 @@ By the end of this lesson you will be able to:
 \item
   Read and interpret \texttt{3dm\ info} output without a visual display
 \item
-  Use the core developer workflow: edit → build → verify
+  Use the core developer workflow: edit -\textgreater{} build -\textgreater{} verify
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -20004,7 +20189,7 @@ Example: 6000 mm³ of PLA (density 1.24 g/cm³), $20/1000g spool
 \subsubsection*{Step 5 --- The Core Developer Workflow}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_1__lessons_3dmake_1.md__step-5--the-core-developer-workflow}
 
 \begin{lstlisting}[style=Alabaster]
-EDIT  →  BUILD  →  VERIFY  →  repeat
+EDIT  ->  BUILD  ->  VERIFY  ->  repeat
 
 Edit:    Change src/main.scad in any text editor
 Build:   3dm build
@@ -20043,7 +20228,7 @@ openscad -D "width=50" -D "height=15" -o build/main_large.stl src/main.scad
 # Loop over multiple sizes
 for w in 20 30 40 50; do
   openscad -D "width=$w" -o "build/main_w${w}.stl" src/main.scad
-  echo "Built: width=$w → build/main_w${w}.stl"
+  echo "Built: width=$w -> build/main_w${w}.stl"
 done
 
 \end{lstlisting}
@@ -25360,13 +25545,13 @@ Date: 2026-03-01
 
 Feature: USB-C slot width
   Designed: 9.5mm wide × 3.5mm tall
-  Verified by: 3dm info bounding box of isolated slot module → 9.5 × 3.5 confirmed ✓
+  Verified by: 3dm info bounding box of isolated slot module -> 9.5 × 3.5 confirmed ✓
   AI description: "rectangular cutout, approximately 10mm wide" (approximate only)
-  Physical: measured with calipers after first test print → 9.4mm (within 0.1mm tolerance) ✓
+  Physical: measured with calipers after first test print -> 9.4mm (within 0.1mm tolerance) ✓
 
 Feature: Mounting feet height
   Designed: 2.0mm
-  Verified by: 3dm info of isolated foot module → 2.0mm ✓
+  Verified by: 3dm info of isolated foot module -> 2.0mm ✓
   AI description: vague ("small protrusion")
   Physical: not yet printed
 
@@ -25746,10 +25931,10 @@ Output format: numbered list of issues, each with severity and fix
 
 \begin{lstlisting}[style=Alabaster]
 1. Write initial design
-2. Run 3dm build → fix compile errors
-3. Run slicer → fix geometry errors (deterministic)
-4. Run 3dm info or AI review → address suggestions (with verification)
-5. Print test piece → compare to spec
+2. Run 3dm build -> fix compile errors
+3. Run slicer -> fix geometry errors (deterministic)
+4. Run 3dm info or AI review -> address suggestions (with verification)
+5. Print test piece -> compare to spec
 6. Iterate on parameters if needed
 
 \end{lstlisting}
@@ -25801,7 +25986,7 @@ Output format: numbered list of issues, each with severity and fix
 \item
   Run \texttt{3dm\ info} on the same STL five times. Document any variation in output. What does this tell you about reproducibility?
 \item
-  Create a structured accept/reject log for one full design cycle (design → AI review → verification → decision). Share the log with a classmate for peer review.
+  Create a structured accept/reject log for one full design cycle (design -\textgreater{} AI review -\textgreater{} verification -\textgreater{} decision). Share the log with a classmate for peer review.
 \item
   Research what "hallucination" means in the context of AI language models. Document two examples of how an AI might hallucinate in a design review context.
 \item
@@ -26342,7 +26527,7 @@ Always estimate cost before printing. Use \texttt{3dm\ info} volume output as th
 \paragraph*{Formula}\label{docs__pandoc__latex__src__3dmake_foundation__lessons_3dmake_5__lessons_3dmake_5.md__formula}
 
 \begin{lstlisting}[style=Alabaster]
-1. Get volume:   3dm info  →  Volume: XXXX mm³
+1. Get volume:   3dm info  ->  Volume: XXXX mm³
 2. Convert:      volume_cm3 = volume_mm3 / 1000
 3. Mass:         mass_g = volume_cm3 × filament_density
                    PLA:  1.24 g/cm³
@@ -27479,7 +27664,7 @@ $fonts | Select-Object Name | Sort-Object Name
 $fonts | Where-Object { $_.Name -like "*Arial*" } | Select-Object Name
 
 # OpenSCAD on Windows also has a Font List viewer:
-# In OpenSCAD: Help menu → Font List
+# In OpenSCAD: Help menu > Font List
 # This shows exact font name strings ready to copy
 
 \end{lstlisting}
@@ -27622,7 +27807,7 @@ translate([0, 20, 0]) {
 
 \begin{lstlisting}[style=Alabaster, language=bash]
 # BUILD COMMANDS
-3dm build                        # build src/main.scad → build/main.stl
+3dm build                        # build src/main.scad -> build/main.stl
 3dm build --clean                # delete build/ first, then rebuild
 3dm build --watch                # auto-rebuild when src/ files change
 
@@ -27665,7 +27850,7 @@ for label in "${LABELS[@]}"; do
   filename=$(echo "$label" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
   output="build/labels/${filename}.stl"
 
-  echo "Generating: $label → $output"
+  echo "Generating: $label -> $output"
   openscad -D "text_label=\"${label}\"" \
            -o "$output" \
            src/main.scad
@@ -27694,7 +27879,7 @@ foreach ($label in $labels) {
     $filename = $label.ToLower() -replace ' ', '_'
     $output   = "build\labels\$filename.stl"
 
-    Write-Host "Generating: $label → $output"
+    Write-Host "Generating: $label -> $output"
 
     # Note: string parameters require escaped quotes inside -D
     $dParam = "text_label=`"$label`""
@@ -27844,7 +28029,8 @@ Output
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\texttt{3dm\ build} & Compile \texttt{.scad} → \texttt{.stl} &
+\texttt{3dm\ build} &
+Compile \texttt{.scad} -\textgreater{} \texttt{.stl} &
 \texttt{build/main.stl} \\
 \texttt{3dm\ info} & AI geometry description & Console text \\
 \texttt{3dm\ preview} & Render model to PNG image &
@@ -29348,7 +29534,7 @@ sphere(r=20, $fn=$fn);
 \item
   Create an ergonomic keyboard wrist rest using \texttt{minkowski()} with an ellipsoid for smooth contouring.
 \item
-  Demonstrate transform order: build a visual example that shows the difference between \texttt{rotate\ →\ translate} and \texttt{translate\ →\ rotate} using colored shapes.
+  Demonstrate transform order: build a visual example that shows the difference between \texttt{rotate\ -\textgreater{}\ translate} and \texttt{translate\ -\textgreater{}\ rotate} using colored shapes.
 \item
   Redesign the phone stand as a wall-mount: replace the base with a plate that has two mounting holes, positioned so the phone faces outward.
 \item
@@ -29410,9 +29596,9 @@ A 10mm hole in OpenSCAD does \textbf{not} produce a 10mm hole in the print. Fuse
 \begin{itemize}
 \tightlist
 \item
-  Slightly overflows (expands laterally) on inner walls → holes come out \textbf{smaller} than designed
+  Slightly overflows (expands laterally) on inner walls -\textgreater{} holes come out \textbf{smaller} than designed
 \item
-  Shrinks slightly as it cools → outer dimensions come out slightly \textbf{smaller} than designed
+  Shrinks slightly as it cools -\textgreater{} outer dimensions come out slightly \textbf{smaller} than designed
 \end{itemize}
 
 The gap you must add to a design to make parts fit together is the \textbf{clearance}. It varies by:
@@ -30674,7 +30860,7 @@ mkdir -p build/variants
 widths=(20 30 40 50 80)
 for w in "${widths[@]}"; do
   output="build/variants/box_w${w}.stl"
-  echo "Building: width=$w → $output"
+  echo "Building: width=$w -> $output"
   openscad -D "width=$w" -o "$output" src/main.scad
   size=$(stat -c%s "$output")
   echo "  OK: ${size} bytes"
@@ -30689,7 +30875,7 @@ declare -A labels=(
 for key in "${!labels[@]}"; do
   label="${labels[$key]}"
   output="build/variants/label_${key}.stl"
-  echo "Building: label=\"$label\" → $output"
+  echo "Building: label=\"$label\" -> $output"
   openscad -D "label=\"${label}\"" -o "$output" src/main.scad
   echo "  OK"
 done
@@ -30709,7 +30895,7 @@ New-Item -ItemType Directory -Force -Path "build\variants" | Out-Null
 $widths = @(20, 30, 40, 50, 80)
 foreach ($w in $widths) {
     $output = "build\variants\box_w$w.stl"
-    Write-Host "Building: width=$w → $output"
+    Write-Host "Building: width=$w -> $output"
     openscad -D "width=$w" -o $output src\main.scad
     if ($LASTEXITCODE -eq 0) {
         $size = (Get-Item $output).Length
@@ -30728,7 +30914,7 @@ $labels = @{
 foreach ($key in $labels.Keys) {
     $label  = $labels[$key]
     $output = "build\variants\label_$key.stl"
-    Write-Host "Building: label=`"$label`" → $output"
+    Write-Host "Building: label=`"$label`" -> $output"
     openscad -D "label=`"$label`"" -o $output src\main.scad
     if ($LASTEXITCODE -eq 0) { Write-Host "  OK" } else { Write-Host "  FAILED" }
 }
@@ -31439,16 +31625,16 @@ repeat_children(n=4, spacing=20) {
 \begin{lstlisting}[style=Alabaster, language=openscad]
 // Temperature-to-fan-speed lookup table
 speed_table = [
-  [0,   0],   //  0°C → fan off
-  [40,  0],   // 40°C → fan off
-  [50, 50],   // 50°C → 50% speed
-  [60, 80],   // 60°C → 80% speed
-  [70, 100]   // 70°C → full speed
+  [0,   0],   //  0°C -> fan off
+  [40,  0],   // 40°C -> fan off
+  [50, 50],   // 50°C -> 50% speed
+  [60, 80],   // 60°C -> 80% speed
+  [70, 100]   // 70°C -> full speed
 ];
 
 temp = 55;
 fan_speed = lookup(temp, speed_table);
-echo("Fan speed at", temp, "°C:", fan_speed, "%");  // → 65%
+echo("Fan speed at", temp, "°C:", fan_speed, "%");  // -> 65%
 
 \end{lstlisting}
 
@@ -42744,7 +42930,7 @@ For accessibility:
   Performance considerations documented to prevent frustration
 \end{itemize}
 
-\section{PTECHNICAL REFERENCE}\label{docs__pandoc__latex__src__backmatter__troubleshooting.md__ptechnical-reference}
+\section{TECHNICAL REFERENCE}\label{docs__pandoc__latex__src__backmatter__troubleshooting.md__technical-reference}
 
 \subsection*{Parametric 3D Fabrication Systems}\label{docs__pandoc__latex__src__backmatter__troubleshooting.md__parametric-3d-fabrication-systems}
 
@@ -42789,7 +42975,7 @@ Physical Object
 Automation Overlay:
 
 \begin{lstlisting}[style=Alabaster]
-CLI → Script → Build Directory → Version Control → Reproducible Artifact
+CLI -> Script -> Build Directory -> Version Control -> Reproducible Artifact
 
 
 \end{lstlisting}
@@ -43711,7 +43897,7 @@ Setup:
 \begin{enumerate}
 \tightlist
 \item
-  Settings → Style Configurator
+  Settings \textgreater{} Style Configurator
 \item
   Select Language: C or C++
 \item
@@ -43757,7 +43943,7 @@ NVDA:
 \begin{itemize}
 \tightlist
 \item
-  Document Formatting → Report line indentation
+  Document Formatting \textgreater{} Report line indentation
 \end{itemize}
 
 JAWS:
@@ -43765,7 +43951,7 @@ JAWS:
 \begin{itemize}
 \tightlist
 \item
-  Settings Center → Reading → Report Indentation
+  Settings Center \textgreater{} Reading \textgreater{} Report Indentation
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
@@ -44337,7 +44523,7 @@ In desktop contexts, this typically refers to FDM (Fused Deposition Modeling).
 
 \subsubsection*{Workflow Position}\label{docs__pandoc__latex__src__backmatter__glossary.md__workflow-position}
 
-OpenSCAD → STL → Slicer → G-code → Printer → Physical object
+OpenSCAD -\textgreater{} STL -\textgreater{} Slicer -\textgreater{} G-code -\textgreater{} Printer -\textgreater{} Physical object
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
@@ -45484,7 +45670,7 @@ Configure:
 \begin{itemize}
 \tightlist
 \item
-  Settings → Preferences → Language
+  Settings \textgreater{} Preferences \textgreater{} Language
 \item
   Select OpenSCAD or C-style syntax
 \end{itemize}
@@ -45595,7 +45781,7 @@ openscad -o output.stl model.scad
 
 \subsection*{Deterministic Modeling}\label{docs__pandoc__latex__src__backmatter__glossary.md__deterministic-modeling}
 
-Same input → same output every time.
+Same input -\textgreater{} same output every time.
 
 OpenSCAD is deterministic.
 
@@ -45771,14 +45957,14 @@ Prevents overwhelming students with complexity.
 Iterative process:
 
 \begin{lstlisting}[style=Alabaster]
-Define → Ideate → Prototype → Test → Refine → Repeat
+Define -> Ideate -> Prototype -> Test -> Refine -> Repeat
 
 \end{lstlisting}
 
 \subsubsection*{In 3dMake Context}\label{docs__pandoc__latex__src__backmatter__teacher-glossary.md__in-3dmake-context}
 
 \begin{lstlisting}[style=Alabaster]
-Edit .scad → 3dm build → 3dm info → Measure print → Adjust parameters
+Edit .scad -> 3dm build -> 3dm info -> Measure print -> Adjust parameters
 
 \end{lstlisting}
 
@@ -45815,7 +46001,7 @@ Learning that connects digital design to physical artifacts.
 \begin{itemize}
 \tightlist
 \item
-  Code → STL → Physical object
+  Code -\textgreater{} STL -\textgreater{} Physical object
 \item
   Reinforces cause-and-effect
 \item
@@ -45962,11 +46148,11 @@ Configure screen readers to verbalize indentation level.
 
 \subsubsection*{NVDA}\label{docs__pandoc__latex__src__backmatter__teacher-glossary.md__nvda}
 
-Settings → Document Formatting → Report line indentation
+Settings \textgreater{} Document Formatting \textgreater{} Report line indentation
 
 \subsubsection*{JAWS}\label{docs__pandoc__latex__src__backmatter__teacher-glossary.md__jaws}
 
-Settings Center → Reading → Report Indentation
+Settings Center \textgreater{} Reading \textgreater{} Report Indentation
 
 Critical for understanding OpenSCAD block structure.
 
@@ -46750,6 +46936,8 @@ Deep appreciation to the OpenSCAD project maintainers and contributors for creat
 
 Finally, this curriculum is part of a broader movement toward open educational resources that prioritize accessibility from the ground up. It reflects the conviction that education should be barrier-free, that students with disabilities bring unique perspectives and strengths, and that accessible design benefits all learners. The work of accessibility advocates, neurodivergent educators, and disability justice activists informed every decision in building this material.
 
+\backmatter
+
 % Print any remaining endnotes
 \ifnum\value{endnote}>0
   \begingroup
@@ -46759,6 +46947,10 @@ Finally, this curriculum is part of a broader movement toward open educational r
   \theendnotes
   \endgroup
 \fi
+
+
+
+
 
 \cleardoublepage
 \phantomsection

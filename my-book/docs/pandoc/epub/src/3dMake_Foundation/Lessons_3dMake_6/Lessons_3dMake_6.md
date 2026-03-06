@@ -58,7 +58,7 @@ $fonts | Select-Object Name | Sort-Object Name
 $fonts | Where-Object { $_.Name -like \"*Arial*\" } | Select-Object Name
 
 # OpenSCAD on Windows also has a Font List viewer:
-# In OpenSCAD: Help menu → Font List
+# In OpenSCAD: Help menu > Font List
 # This shows exact font name strings ready to copy
 ", Header 5 ("windows-cmd", ["unnumbered", "unlisted"], []) [Str "Windows (CMD)"], CodeBlock ("", ["cmd"], []) "REM CMD cannot enumerate fonts directly. Use PowerShell or the OpenSCAD Font List:
 REM OpenSCAD: Help > Font List
@@ -145,7 +145,7 @@ translate([0, 20, 0]) {
       fitted_text(\"WORLD\", 60, 12);
 }
 ", HorizontalRule, Header 4 ("step-5--practical-3dm-commands-reference", ["unnumbered", "unlisted"], []) [Str "Step 5 — Practical ", Code ("", [], []) "3dm", Str " Commands Reference"], CodeBlock ("", ["bash"], []) "# BUILD COMMANDS
-3dm build                        # build src/main.scad → build/main.stl
+3dm build                        # build src/main.scad -> build/main.stl
 3dm build --clean                # delete build/ first, then rebuild
 3dm build --watch                # auto-rebuild when src/ files change
 
@@ -176,7 +176,7 @@ for label in \"${LABELS[@]}\"; do
   filename=$(echo \"$label\" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
   output=\"build/labels/${filename}.stl\"
 
-  echo \"Generating: $label → $output\"
+  echo \"Generating: $label -> $output\"
   openscad -D \"text_label=\\\"${label}\\\"\" \\
            -o \"$output\" \\
            src/main.scad
@@ -199,7 +199,7 @@ foreach ($label in $labels) {
     $filename = $label.ToLower() -replace ' ', '_'
     $output   = \"build\\labels\\$filename.stl\"
 
-    Write-Host \"Generating: $label → $output\"
+    Write-Host \"Generating: $label -> $output\"
 
     # Note: string parameters require escaped quotes inside -D
     $dParam = \"text_label=`\"$label`\"\"
@@ -263,7 +263,7 @@ for (i = [1:5]) {
 
 # Slice the model using your configured slicer settings
 3dm slice
-", Para [Str "Quick Reference:"], Table ("", [], []) (Caption Nothing []) [(AlignDefault, (ColWidth 0.20512820512820512)), (AlignDefault, (ColWidth 0.358974358974359)), (AlignDefault, (ColWidth 0.4358974358974359))] (TableHead ("", [], []) [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Command"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "What It Does"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Output"]]]]) [(TableBody ("", [], []) (RowHeadColumns 0) [] [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm build"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Compile ", Code ("", [], []) ".scad", Str " → ", Code ("", [], []) ".stl"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "build/main.stl"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm info"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "AI geometry description"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Console text"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm preview"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Render model to PNG image"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "build/preview.png"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm orient"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Suggest print orientation"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Console text with recommendation"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm slice"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Call slicer on current STL"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "G-code file"]]]])] (TableFoot ("", [], []) []), Para [Str "Note: ", Code ("", [], []) "3dm info", Str " and ", Code ("", [], []) "3dm orient", Str " both use the AI backend configured in your ", Code ("", [], []) "3dmake.toml", Str ".", Note [Para [Str "3DMake GitHub Repository — Command Reference. ", Link ("", [], []) [Str "https://github.com/tdeck/3dmake"] ("https://github.com/tdeck/3dmake", ""), Str ". See README for full list of available commands."]]], Header 5 ("2-emboss-text-with-text-and-linear_extrude", ["unnumbered", "unlisted"], []) [Str "2. Emboss Text with text() and linear_extrude()"], CodeBlock ("", ["openscad"], []) "// Basic text emboss (text raised above a base). See [^2] for more on text and fonts.
+", Para [Str "Quick Reference:"], Table ("", [], []) (Caption Nothing []) [(AlignDefault, (ColWidth 0.20512820512820512)), (AlignDefault, (ColWidth 0.358974358974359)), (AlignDefault, (ColWidth 0.4358974358974359))] (TableHead ("", [], []) [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Command"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "What It Does"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Output"]]]]) [(TableBody ("", [], []) (RowHeadColumns 0) [] [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm build"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Compile ", Code ("", [], []) ".scad", Str " -> ", Code ("", [], []) ".stl"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "build/main.stl"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm info"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "AI geometry description"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Console text"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm preview"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Render model to PNG image"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "build/preview.png"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm orient"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Suggest print orientation"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Console text with recommendation"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "3dm slice"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Call slicer on current STL"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "G-code file"]]]])] (TableFoot ("", [], []) []), Para [Str "Note: ", Code ("", [], []) "3dm info", Str " and ", Code ("", [], []) "3dm orient", Str " both use the AI backend configured in your ", Code ("", [], []) "3dmake.toml", Str ".", Note [Para [Str "3DMake GitHub Repository — Command Reference. ", Link ("", [], []) [Str "https://github.com/tdeck/3dmake"] ("https://github.com/tdeck/3dmake", ""), Str ". See README for full list of available commands."]]], Header 5 ("2-emboss-text-with-text-and-linear_extrude", ["unnumbered", "unlisted"], []) [Str "2. Emboss Text with text() and linear_extrude()"], CodeBlock ("", ["openscad"], []) "// Basic text emboss (text raised above a base). See [^2] for more on text and fonts.
 module embossed_label(label_text, font_size=8, depth=1.5) {
   linear_extrude(height=depth) {
     text(label_text,

@@ -242,7 +242,7 @@ mkdir -p build/variants
 widths=(20 30 40 50 80)
 for w in "${widths[@]}"; do
   output="build/variants/box_w${w}.stl"
-  echo "Building: width=$w → $output"
+  echo "Building: width=$w -> $output"
   openscad -D "width=$w" -o "$output" src/main.scad
   size=$(stat -c%s "$output")
   echo "  OK: ${size} bytes"
@@ -257,7 +257,7 @@ declare -A labels=(
 for key in "${!labels[@]}"; do
   label="${labels[$key]}"
   output="build/variants/label_${key}.stl"
-  echo "Building: label=\"$label\" → $output"
+  echo "Building: label=\"$label\" -> $output"
   openscad -D "label=\"${label}\"" -o "$output" src/main.scad
   echo "  OK"
 done
@@ -275,7 +275,7 @@ New-Item -ItemType Directory -Force -Path "build\variants" | Out-Null
 $widths = @(20, 30, 40, 50, 80)
 foreach ($w in $widths) {
     $output = "build\variants\box_w$w.stl"
-    Write-Host "Building: width=$w → $output"
+    Write-Host "Building: width=$w -> $output"
     openscad -D "width=$w" -o $output src\main.scad
     if ($LASTEXITCODE -eq 0) {
         $size = (Get-Item $output).Length
@@ -294,7 +294,7 @@ $labels = @{
 foreach ($key in $labels.Keys) {
     $label  = $labels[$key]
     $output = "build\variants\label_$key.stl"
-    Write-Host "Building: label=`"$label`" → $output"
+    Write-Host "Building: label=`"$label`" -> $output"
     openscad -D "label=`"$label`"" -o $output src\main.scad
     if ($LASTEXITCODE -eq 0) { Write-Host "  OK" } else { Write-Host "  FAILED" }
 }

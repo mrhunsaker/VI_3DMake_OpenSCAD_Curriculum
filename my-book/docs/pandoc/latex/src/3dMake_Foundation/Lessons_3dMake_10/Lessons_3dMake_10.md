@@ -205,16 +205,16 @@ repeat_children(n=4, spacing=20) {
 }
 ", BlockQuote [Para [Str "✓ OpenSCAD does ", Strong [Str "not"], Str " expose bounding-box queries at runtime. Always pass dimensions explicitly to container modules rather than trying to compute them from children."]], HorizontalRule, Header 4 ("step-7--advanced-lookup-tables-and-search", ["unnumbered", "unlisted"], []) [Str "Step 7 — Advanced: Lookup Tables and ", Code ("", [], []) "search()"], Para [Code ("", [], []) "search()", Str " finds the index of a value in a list. Combined with lookup tables, this replaces long ", Code ("", [], []) "if", Str "/", Code ("", [], []) "else", Str " chains. ", Code ("", [], []) "lookup()", Str " interpolates a value from a table of ", Code ("", [], []) "[input, output]", Str " pairs."], Header 5 ("example-1-lookup-for-smooth-parametric-curves", ["unnumbered", "unlisted"], []) [Str "Example 1: ", Code ("", [], []) "lookup()", Str " for smooth parametric curves"], CodeBlock ("", ["openscad"], []) "// Temperature-to-fan-speed lookup table
 speed_table = [
-  [0,   0],   //  0°C → fan off
-  [40,  0],   // 40°C → fan off
-  [50, 50],   // 50°C → 50% speed
-  [60, 80],   // 60°C → 80% speed
-  [70, 100]   // 70°C → full speed
+  [0,   0],   //  0°C -> fan off
+  [40,  0],   // 40°C -> fan off
+  [50, 50],   // 50°C -> 50% speed
+  [60, 80],   // 60°C -> 80% speed
+  [70, 100]   // 70°C -> full speed
 ];
 
 temp = 55;
 fan_speed = lookup(temp, speed_table);
-echo(\"Fan speed at\", temp, \"°C:\", fan_speed, \"%\");  // → 65%
+echo(\"Fan speed at\", temp, \"°C:\", fan_speed, \"%\");  // -> 65%
 ", Header 5 ("example-2-search-to-look-up-material-properties", ["unnumbered", "unlisted"], []) [Str "Example 2: ", Code ("", [], []) "search()", Str " to look up material properties"], CodeBlock ("", ["openscad"], []) "materials = [\"PLA\",  \"PETG\", \"ABS\",  \"TPU\",  \"Nylon\"];
 densities = [ 1.24,   1.27,   1.05,   1.20,   1.14];
 

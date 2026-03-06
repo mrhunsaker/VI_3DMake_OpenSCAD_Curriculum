@@ -1,45 +1,71 @@
-# Contributors to this Curriculum {#contributors}
+[Header 3 ("lesson-7--parametric-transforms-and-the-phone-stand-project", [], []) [Str "Lesson 7 — Parametric Transforms and the Phone Stand Project"], Para [Emph [Str "[", Str "CORRECTED — March 2026 Curriculum Revision", Str "]"]], HorizontalRule, Header 4 ("learning-objectives", ["unnumbered", "unlisted"], []) [Str "Learning Objectives"], Para [Str "By the end of this lesson you will be able to:"], BulletList [[Plain [Str "Understand and predict the result of stacked transforms (translate, rotate, scale, mirror)"]], [Plain [Str "Read transform chains correctly by applying them inside-out"]], [Plain [Str "Use ", Code ("", [], []) "multmatrix()", Str " for combined transforms in a single operation"]], [Plain [Str "Design a fully parametric phone stand with validated parameters"]], [Plain [Str "Use defensive programming (", Code ("", [], []) "assert()", Str ", ", Code ("", [], []) "max()", Str ", ", Code ("", [], []) "min()", Str " clamps) to prevent invalid geometry"]]], HorizontalRule, Header 4 ("step-1--the-transform-mental-model", ["unnumbered", "unlisted"], []) [Str "Step 1 — The Transform Mental Model"], Para [Strong [Str "The most important rule in OpenSCAD transforms:"], Str " Transforms are applied from the ", Emph [Str "inside out"], Str " (or equivalently, from the ", Emph [Str "bottom up"], Str " in the code)."], Para [Str "The object starts at the world origin. The innermost transform acts on it first. Each outer transform then acts on the result."], Para [Strong [Str "Think of it like a coordinate system:"], Str " Each transform shifts the local coordinate system of the child. The child is drawn in its own local space, then that space is placed into the world by the transforms."], CodeBlock ("", ["openscad"], []) "// Version A: translate first (outer), then rotate (inner)
+// Reading inside-out: the cube ROTATES first (around world origin),
+// then the rotated cube TRANSLATES to (30, 0, 0)
+translate([30, 0, 0])    // STEP 2: move the result to X=30
+  rotate([0, 0, 45])     // STEP 1: rotate 45° around Z
+    cube([10, 5, 5], center=true);
 
-![Headshot of Michael Ryan Hunsaker, M.Ed., Ph.D.](assets/images/bio-photo.jpg)
+// Version B: rotate first (outer), then translate (inner)
+// Reading inside-out: the cube TRANSLATES first (within its local space),
+// then the translated result ROTATES around the world origin
+// The cube ends up in a completely different position!
+color(\"red\")
+rotate([0, 0, 45])       // STEP 2: rotate the translated result around origin
+  translate([30, 0, 0])  // STEP 1: move cube to X=30 in local space
+    cube([10, 5, 5], center=true);
+", Para [Strong [Str "Compass analogy:"], Str " Imagine you're a courier holding a compass."], BulletList [[Plain [Str "\"Translate then rotate\": You walk 30 steps east, then spin 45° in place. The compass faces northeast but you're at the eastern position."]], [Plain [Str "\"Rotate then translate\": You spin 45° in place first, then walk 30 steps — but \"east\" for you is now northeast! You end up farther from origin than in the first case."]]], CodeBlock ("", ["openscad"], []) "// Practical reading technique: read from BOTTOM to TOP (or innermost to outermost)
+// to trace an object's transformation sequence
 
-Michael Ryan Hunsaker, M.Ed., Ph.D. (he/him)
+color(\"SteelBlue\")
+translate([0, 0, 50])    // 4th: move up 50mm
+  rotate([90, 0, 0])     // 3rd: tip it forward (nose down)
+    translate([0, 0, 20]) // 2nd: move it 20mm along its own Z
+      rotate([0, 0, 30]) // 1st: spin 30° around its own Z
+        cube([10, 5, 3], center=true);
 
-## About Dr. Hunsaker
+// To understand this: start with the cube, apply 1st, then 2nd, etc.
+", HorizontalRule, Header 4 ("step-2--the-mirror-transform", ["unnumbered", "unlisted"], []) [Str "Step 2 — The ", Code ("", [], []) "mirror()", Str " Transform"], CodeBlock ("", ["openscad"], []) "// mirror([x, y, z]) reflects across a plane defined by the normal vector
+// mirror([1,0,0]) reflects across the YZ plane (flips X)
+// mirror([0,1,0]) reflects across the XZ plane (flips Y)
+// mirror([0,0,1]) reflects across the XY plane (flips Z)
 
-Michael Ryan Hunsaker holds a Ph.D. in neuroscience (behavioral/translational neuroscience focus) from UC Davis and a Master's degree in Special Education from the University of Utah with a credential to teach blind and visually impaired students. His career uniquely bridges scientific research, clinical experience, and classroom practice-positioning him to design accessible educational materials grounded in both neuroscience and practical pedagogy.
+module asymmetric_bracket() {
+  difference() {
+    cube([20, 10, 30]);
+    translate([5, 5, -0.001]) cylinder(r=3, h=30.002, $fn=16);
+  }
+}
 
-### Research & Clinical Background
+// Original
+asymmetric_bracket();
 
-Following his doctoral work at UC Davis (2012), Dr. Hunsaker completed postdoctoral research in primate neural development at the UC Davis MIND Institute, where he developed sophisticated research methods to evaluate developmental disorders. During this period, he gained extensive clinical experience working directly with children and adults across a broad spectrum of diagnoses, including autism spectrum disorder, cerebral palsy, genetic conditions (fragile X syndrome, Williams syndrome, 22q11.2DS, Down syndrome), ADHD, and Tourette's syndrome. This diverse exposure to different neurological profiles taught him a crucial lesson: each learner's disability uniquely shapes their cognitive strengths, learning preferences, and educational needs.
+// Mirrored version placed beside it
+translate([25, 0, 0])
+  mirror([1, 0, 0])  // flip left-right
+    asymmetric_bracket();
 
-### Transition to Education
+// ADVANCED PATTERN: use mirror to generate symmetric geometry from one half
+module full_handle(length=60, grip_d=20, end_d=12, wall=2) {
+  // Only design one half; mirror it for the other half
+  // This guarantees perfect symmetry — no rounding errors
+  module half_handle() {
+    translate([0, 0, 0])
+      cylinder(d1=end_d, d2=grip_d, h=length/2, $fn=32);
+  }
 
-In 2013, recognizing the gap between academic research and classroom reality, Dr. Hunsaker made a deliberate career shift to direct education. Rather than pursue traditional academic pathways, he committed to applying his scientific training to help students in real classroom environments. As a special education teacher, he focused on understanding the individual relationship between disability and learning-developing instructional approaches that enable students to access their full potential rather than working around perceived limitations.
+  half_handle();
+  mirror([0, 0, 1])  // flip Z
+    half_handle();
+}
 
-### Expertise in Accessibility & Inclusive Design
+translate([60, 0, 0]) full_handle();
+", HorizontalRule, Header 4 ("step-3--multmatrix--combined-transforms", ["unnumbered", "unlisted"], []) [Str "Step 3 — ", Code ("", [], []) "multmatrix()", Str " — Combined Transforms"], Para [Code ("", [], []) "multmatrix()", Str " applies a 4×4 transformation matrix. This is advanced usage, but understanding it helps you understand ", Emph [Str "why"], Str " transform order matters — and it enables shearing, which translate/rotate/scale cannot do."], CodeBlock ("", ["openscad"], []) "// A 4×4 transformation matrix:
+// [scale_x,  shear_xy, shear_xz, translate_x]
+// [shear_yx, scale_y,  shear_yz, translate_y]
+// [shear_zx, shear_zy, scale_z,  translate_z]
+// [0,        0,        0,        1          ]
 
-His specialization in teaching blind and visually impaired students, particularly those with additional disabilities, has given Dr. Hunsaker deep expertise in accessible pedagogy and non-visual problem-solving. He grounds all curriculum design in evidence-based practice informed by neuroscience, accessibility research, and years of direct classroom experience with diverse learners. He understands that accessibility is not an afterthought or accommodation; it is the foundation upon which effective education for all students is built.
-
-### Creator of Accessible Educational Resources
-
-Motivated by observing persistent gaps in affordable, practical, and culturally responsive accessible educational materials, Dr. Hunsaker created TVI Resources, a collection of free, openly licensed instructional materials designed to meet the real needs of educators and students. This commitment to accessible education informed his development of this curriculum: a comprehensive, text-based approach to 3D design and digital fabrication specifically engineered for blind and visually impaired learners, emphasizing independence, technical mastery, and real-world application.
-
-## Acknowledgements
-
-This curriculum stands on the shoulders of innovators, educators, and open-source maintainers whose commitment to accessibility and open education made this work possible.
-
-### 3DMake
-
-Special thanks to Troy Deck, the creator and maintainer of [3DMake](https://github.com/tdeck/3dmake), an open-source command-line tool that automates the workflow from code-based 3D models to print-ready files. 3DMake is essential to this curriculum-it eliminates the visual GUI entirely and makes parametric 3D design accessible to screen reader users through text-based commands and configuration files. Without 3DMake, a truly non-visual pathway from design to fabrication would not exist.
-
-### Texas School for the Blind and Visually Impaired (TSBVI)
-
-This curriculum was directly inspired by the innovative work at TSBVI, a pioneer in accessible education for blind and visually impaired students. The foundational idea of using text-driven tools and command-line workflows for technical education originated from  collaboration with TSBVI educators. Their commitment to demonstrating that blind and visually impaired students can excel in technical fields provided the vision for this project.
-
-### OpenSCAD Community
-
-Deep appreciation to the OpenSCAD project maintainers and contributors for creating and maintaining a code-driven, parametric 3D modeling system that is inherently more accessible than traditional GUI-based CAD tools. OpenSCAD's text-based programming model and screen-reader-compatible approach to geometry design makes it uniquely suited for learners who use assistive technology. The OpenSCAD community's commitment to open-source principles and accessibility embodies the philosophy that drives this curriculum.
-
-### Open Education & Accessibility Movement
-
-Finally, this curriculum is part of a broader movement toward open educational resources that prioritize accessibility from the ground up. It reflects the conviction that education should be barrier-free, that students with disabilities bring unique perspectives and strengths, and that accessible design benefits all learners. The work of accessibility advocates, neurodivergent educators, and disability justice activists informed every decision in building this material.
+// Identity matrix — no transformation
+multmatrix([
+  [1, 0, 0, 0],
+  [0, 1, 0, 0]

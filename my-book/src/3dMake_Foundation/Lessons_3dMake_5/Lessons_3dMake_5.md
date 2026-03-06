@@ -78,7 +78,7 @@ Always estimate cost before printing. Use `3dm info` volume output as the input.
 ### Formula
 
 ```
-1. Get volume:   3dm info  →  Volume: XXXX mm³
+1. Get volume:   3dm info  ->  Volume: XXXX mm³
 2. Convert:      volume_cm3 = volume_mm3 / 1000
 3. Mass:         mass_g = volume_cm3 × filament_density
                    PLA:  1.24 g/cm³

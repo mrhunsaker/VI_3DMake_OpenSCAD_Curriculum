@@ -1,4 +1,4 @@
-# PTECHNICAL REFERENCE
+# TECHNICAL REFERENCE
 ## Parametric 3D Fabrication Systems  
 ### OpenSCAD • 3dMake • PowerShell • Command Prompt • Git Bash
 
@@ -27,7 +27,7 @@ Physical Object
 Automation Overlay:
 
 ```
-CLI → Script → Build Directory → Version Control → Reproducible Artifact
+CLI -> Script -> Build Directory -> Version Control -> Reproducible Artifact
 ```
 
 ---
@@ -671,7 +671,7 @@ Fix:
 ## J.2 Notepad++ Syntax Highlighting
 
 Setup:
-1. Settings → Style Configurator
+1. Settings > Style Configurator
 2. Select Language: C or C++
 3. Apply to `.scad` files
 
@@ -700,10 +700,10 @@ Settings:
 ### Indent Announcement
 
 NVDA:
-- Document Formatting → Report line indentation
+- Document Formatting > Report line indentation
 
 JAWS:
-- Settings Center → Reading → Report Indentation
+- Settings Center > Reading > Report Indentation
 
 ---
 

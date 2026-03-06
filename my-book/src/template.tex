@@ -3,34 +3,43 @@
 $if(colorlinks)$
 \PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 $endif$
+
 \documentclass[
-  $if(fontsize)$$fontsize$$else$10pt$endif$,
-  twoside,
-  $for(babel-otherlangs)$
-    $babel-otherlangs$,
-  $endfor$
-  $if(babel-lang)$
-    $babel-lang$,
-  $endif$
-  $if(papersize)$
-    $papersize$paper,
-  $endif$
-  $for(classoption)$
-    $classoption$$sep$,
-  $endfor$
-]{$if(documentclass)$$documentclass$$else$book$endif$}
-$if(beamerarticle)$
-\usepackage{beamerarticle} % needs to be loaded first
-$endif$
+  $if(fontsize)$$fontsize$$else$11pt$endif$,twoside,$if(papersize)$$papersize$paper$else$letterpaper$endif$$for(classoption)$,$classoption$$endfor$]{$if(documentclass)$$documentclass$$else$book$endif$}
+
 \usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\usepackage{etoolbox}
+\usepackage{pdflscape} 
+\usepackage{calc}
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{upquote}
+\usepackage{showframe}
+
+% Hyperlink Color Configuration
+\definecolor{linkblue}{HTML}{0055AA} 
+\definecolor{exturl}{HTML}{008000}   
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    citecolor=linkblue,
+    filecolor=linkblue,
+    urlcolor=exturl,
+    pdfnewwindow=true,
+    breaklinks=true
+}
+
 $if(geometry)$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $endif$
-\usepackage{amsmath,amssymb}
-$if(cancel)$
-\usepackage{cancel}
-$endif$
-\usepackage{iftex}
+
 \ifLuaTeX
   \usepackage{fontspec}
   \usepackage[sfdefault]{atkinson}
@@ -41,17 +50,6 @@ $endif$
     ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic
   ]
-\ifLuaTeX
-  \usepackage{fontspec}
-  \usepackage[sfdefault]{atkinson}
-  \setmonofont{AtkinsonHyperlegibleMono}[
-    Extension=.otf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
-  ]
-  % Fallback for glyphs missing from Atkinson (e.g. → U+2192)
   \directlua{
     luaotfload.add_fallback("symbolsfallback", {
       "DejaVuSans:mode=harf;",
@@ -69,17 +67,7 @@ $endif$
     ItalicFeatures={RawFeature={fallback=symbolsfallback}},
     BoldItalicFeatures={RawFeature={fallback=symbolsfallback}}
   ]
-\else\ifXeTeX
-  \usepackage{fontspec}
-  \usepackage[sfdefault]{atkinson}
-  \setmonofont{AtkinsonHyperlegibleMono}[
-    Extension=.otf,
-    UprightFont=*-Regular,
-    BoldFont=*-Bold,
-    ItalicFont=*-Italic,
-    BoldItalicFont=*-BoldItalic
-  ]
-\fi\fi
+\fi
 
 \newfontfamily\listingfont{AtkinsonHyperlegibleMono}[
   Extension=.otf,
@@ -89,13 +77,12 @@ $endif$
   BoldItalicFont=*-BoldItalic
 ]
 
-% Convert footnotes to chapter endnotes
+% Footnotes to Endnotes Configuration
 \usepackage{endnotes}
 \let\footnote=\endnote
 \renewcommand{\notesname}{Notes}
 
 % Automatically print endnotes at the end of each chapter
-\usepackage{etoolbox}
 \preto\chapter{%
   \ifnum\value{endnote}>0
     \begingroup
@@ -106,17 +93,15 @@ $endif$
     \endgroup
   \fi
 }
-\usepackage{listings}
-\usepackage{upquote}
-\usepackage{tabularray}
-\UseTblrLibrary{booktabs}
 
+% Code Highlighting Colors (Alabaster)
 \definecolor{alabaster-bg}{HTML}{FAFAFA}
 \definecolor{alabaster-keyword}{HTML}{C92C2C}
 \definecolor{alabaster-string}{HTML}{008000}
 \definecolor{alabaster-comment}{HTML}{0078D7}
 \definecolor{alabaster-number}{HTML}{333333}
 \definecolor{alabaster-identifier}{HTML}{000000}
+\definecolor{BrickRed}{HTML}{B22222}
 
 \newlength{\AlabasterTabWidth}
 \settowidth{\AlabasterTabWidth}{{\listingfont\footnotesize\ \ \ \ }}
@@ -233,15 +218,13 @@ $endif$
 \lstalias{batch}{cmd}
 \lstalias{powershell}{powershell}
 \lstalias{json}{json}
-\usepackage{longtable}
-\usepackage{booktabs}
-\usepackage{array}
 
 $if(numbersections)$
 \setcounter{secnumdepth}{$if(secnumdepth)$$secnumdepth$$else$5$endif$}
 $else$
 \setcounter{secnumdepth}{-\maxdimen}
 $endif$
+
 $fonts.latex()$
 $font-settings.latex()$
 $common.latex()$
@@ -250,6 +233,7 @@ $header-includes$
 $endfor$
 $after-header-includes.latex()$
 $hypersetup.latex()$
+
 $if(pdf-trailer-id)$
 \ifXeTeX
 \special{pdf:trailerid [ $pdf-trailer-id$ ]}
@@ -267,7 +251,6 @@ $if(title)$
 \title{$title$$if(thanks)$\thanks{$thanks$}$endif$}
 $endif$
 $if(subtitle)$
-\usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{%
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}%
@@ -278,21 +261,58 @@ $endif$
 \author{$for(author)$$author$$sep$ \and $endfor$}
 \date{$date$}
 
+% Configure longtable for better PDF output
+% Don't automatically wrap in landscape - causes nesting errors with document environment
+% Tables will resize columns as needed with LuaTeX's text width handling
+\setlength\LTpost{0pt}
+\setlength\LTpre{0pt}
+
+% Define \tightlist macro for Pandoc-generated lists
+% Provides proper spacing for bullet and numbered lists
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}%
+  \setlength{\parskip}{0pt}%
+}
+
 \begin{document}
+
+% --- HARDCODED COVER SECTION ---
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\Huge\bfseries 3D Printing Course for Blind and Visually Impaired Learners\par}
+    \vspace{1.5cm}
+    {\Large Michael Ryan Hunsaker, M.Ed., Ph.D.}
+    \vfill
+    {\large Updated: $date$}
+\end{titlepage}
+
+% Copyright Page (Verso)
+\newpage
+\thispagestyle{empty}
+\vspace*{\fill}
+{\small \textcopyright\ 2026 Michael Ryan Hunsaker, M.Ed., Ph.D. 
+All rights reserved.}
+
+\vspace{1em}
+{\small Creative Commons CC BY-NC-ND license. To view a copy of this license, visit \url{https://creativecommons.org/licenses/by-nc-nd/4.0/}\par}
+
+{\small Book URL: \url{https://mrhunsaker.github.io/VI_3DMake_OpenSCAD_Curriculum/}}
+\newpage
+% --- END COVER SECTION ---
+
 $if(has-frontmatter)$
 \frontmatter
 $endif$
+
 $if(abstract)$
 \begin{abstract}
 $abstract$
 \end{abstract}
 $endif$
 
-$for(include-before)$
-$include-before$
-
-$endfor$
 $if(toc)$
+\cleardoublepage 
 $if(toc-title)$
 \renewcommand*\contentsname{$toc-title$}
 $endif$
@@ -306,23 +326,28 @@ $endif$
 \tableofcontents
 }
 $endif$
+
 $if(lof)$
 \listoffigures
 $endif$
 $if(lot)$
 \listoftables
 $endif$
+
 $if(linestretch)$
 \setstretch{$linestretch$}
 $endif$
+
 $if(has-frontmatter)$
 \mainmatter
 $endif$
+
 $body$
 
 $if(has-frontmatter)$
 \backmatter
 $endif$
+
 % Print any remaining endnotes
 \ifnum\value{endnote}>0
   \begingroup
@@ -332,9 +357,11 @@ $endif$
   \theendnotes
   \endgroup
 \fi
+
 $if(nocite-ids)$
 \nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
 $endif$
+
 $if(natbib)$
 $if(bibliography)$
 $if(biblio-title)$
@@ -345,13 +372,13 @@ $else$
 $endif$
 $endif$
 \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
+$endif$
+$endif$
 
-$endif$
-$endif$
 $if(biblatex)$
 \printbibliography$if(biblio-title)$[title=$biblio-title$]$endif$
-
 $endif$
+
 $for(include-after)$
 $include-after$
 $endfor$

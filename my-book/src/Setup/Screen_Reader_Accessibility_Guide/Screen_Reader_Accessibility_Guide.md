@@ -87,7 +87,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 | **NVDA+Numpad 5**          | Announce the character under the review cursor |
 | **NVDA+Shift+Numpad 5**    | Announce the word under the review cursor      |
 
-> **Note on NVDA key:** On desktop keyboards the NVDA modifier is typically the **Insert** key. On laptops without a numpad the NVDA key is often **CapsLock**. You can change this in NVDA Preferences → Keyboard.
+> **Note on NVDA key:** On desktop keyboards the NVDA modifier is typically the **Insert** key. On laptops without a numpad the NVDA key is often **CapsLock**. You can change this in NVDA Preferences > Keyboard.
 
 ### Example: Reading Long Output
 
@@ -101,7 +101,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 ### NVDA Settings for Terminals
 
 1. Press **NVDA+N** to open the NVDA menu.
-2. Go to **Preferences → Settings → Speech**.
+2. Go to **Preferences > Settings > Speech**.
 3. Increase or decrease verbosity to taste.
 4. Under **Document Formatting**, enable **"Report indentation"** (important for reading code).
 5. Under **Terminal**, enable **"Speak typed characters"** so you hear each key as you type.
@@ -146,7 +146,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 ### JAWS Settings for Terminals
 
 1. Press **Insert+F3** to open the JAWS menu.
-2. Go to **Options → Settings Center** (or **Utilities → Settings Manager** in older versions).
+2. Go to **Options > Settings Center** (or **Utilities > Settings Manager** in older versions).
 3. Search for **"terminal"** or **"console"**.
 4. Enable **"Announce output"** and verify **"Speak when program speaks"** is on.
 5. For indent reporting, search for **"Indent"** and set to **"Tones"** or **"Tones and Speech"**.
@@ -155,7 +155,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 
 ## Windows Narrator-Specific Tips {#narrator-tips}
 
-Windows Narrator is built into Windows 10 and Windows 11 at no extra cost. Enable it via **Settings → Accessibility → Narrator** or press **Windows+Ctrl+Enter**.
+Windows Narrator is built into Windows 10 and Windows 11 at no extra cost. Enable it via **Settings > Accessibility > Narrator** or press **Windows+Ctrl+Enter**.
 
 These tips work across all shells: PowerShell, CMD, and Git Bash.
 
@@ -175,7 +175,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 | **Narrator+F1**               | Open Narrator help                               |
 | **Windows+Ctrl+Enter**        | Start or stop Narrator                           |
 
-> **Note on Narrator key:** The Narrator modifier is **CapsLock** or **Insert** by default. You can change this in **Settings → Accessibility → Narrator → Keyboard shortcuts**.
+> **Note on Narrator key:** The Narrator modifier is **CapsLock** or **Insert** by default. You can change this in **Settings > Accessibility > Narrator > Keyboard shortcuts**.
 
 ### Working with Terminals Using Narrator
 
@@ -189,7 +189,7 @@ Narrator works well in **focus mode** (the default when a terminal is active). I
 
 ### Narrator Settings for Terminals
 
-1. Open **Settings → Accessibility → Narrator**.
+1. Open **Settings > Accessibility > Narrator**.
 2. Under **"Change what you hear when typing"**, enable **"Hear characters as you type"**.
 3. Under **"Change what Narrator reads"**, enable **"Read hints for controls and buttons"**.
 4. Set verbosity level to **3 or 4** for a good balance of detail.
@@ -222,7 +222,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 | **Caps Lock+Page Down**                | Jump to end of document or screen        |
 | **Caps Lock+Page Up**                  | Jump to start of document or screen      |
 
-> **Note on Dolphin key:** Dolphin SuperNova typically uses **Caps Lock** as its modifier key (referred to as the "Dolphin key"). This can be changed in **SuperNova Control Panel → Keyboard**.
+> **Note on Dolphin key:** Dolphin SuperNova typically uses **Caps Lock** as its modifier key (referred to as the "Dolphin key"). This can be changed in **SuperNova Control Panel > Keyboard**.
 
 ### Working with Terminals Using Dolphin SuperNova
 
@@ -234,10 +234,10 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 ### Dolphin SuperNova Settings for Terminals
 
 1. Open **SuperNova Control Panel** (press Caps Lock+SpaceBar, or click the SuperNova icon).
-2. Go to **Speech → Verbosity** and set a comfortable level (3 or 4 recommended for terminal work).
-3. Go to **Speech → Text Processing → Indentation** and enable indentation announcement (important for code).
-4. Go to **Braille → Settings** if you are using a braille display alongside speech.
-5. In **General → Application Settings**, you can set terminal-specific verbosity so SuperNova behaves differently in your terminal versus other programs.
+2. Go to **Speech > Verbosity** and set a comfortable level (3 or 4 recommended for terminal work).
+3. Go to **Speech > Text Processing > Indentation** and enable indentation announcement (important for code).
+4. Go to **Braille > Settings** if you are using a braille display alongside speech.
+5. In **General > Application Settings**, you can set terminal-specific verbosity so SuperNova behaves differently in your terminal versus other programs.
 
 **Note:** Dolphin SuperNova's magnification features can be helpful if you have some remaining vision. Terminal text can be magnified while still receiving speech output.
 
@@ -434,10 +434,10 @@ Press **Ctrl+C** to interrupt any running command.
 
 Proper indent announcement is critical for reading code. Enable it for your screen reader:
 
-- **NVDA:** NVDA Menu → Preferences → Settings → Document Formatting → enable **"Report indentation"**, set to **"Tones and speech"**.
-- **JAWS:** Settings Center → search **"Indent"** → enable **"Announce Indentation"**, set mode to **"Tones"** or **"Tones and Speech"**.
-- **Windows Narrator:** Settings → Accessibility → Narrator → Advanced Options → enable **"Report indentation"** (limited options compared to NVDA/JAWS).
-- **Dolphin SuperNova:** SuperNova Control Panel → Speech → Text Processing → Indentation → enable and set preferred announcement style.
+- **NVDA:** NVDA Menu > Preferences > Settings > Document Formatting > enable **"Report indentation"**, set to **"Tones and speech"**.
+- **JAWS:** Settings Center > search **"Indent"** > enable **"Announce Indentation"**, set mode to **"Tones"** or **"Tones and Speech"**.
+- **Windows Narrator:** Settings > Accessibility > Narrator > Advanced Options > enable **"Report indentation"** (limited options compared to NVDA/JAWS).
+- **Dolphin SuperNova:** SuperNova Control Panel > Speech > Text Processing > Indentation > enable and set preferred announcement style.
 
 ---
 

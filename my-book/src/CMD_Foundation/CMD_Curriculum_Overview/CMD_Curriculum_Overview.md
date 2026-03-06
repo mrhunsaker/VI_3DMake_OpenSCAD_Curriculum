@@ -39,7 +39,7 @@
 
 ## Curriculum Structure
 
-### Phase 1: Absolute Beginner → Comfortable User
+### Phase 1: Absolute Beginner -> Comfortable User
 
 | Lesson                           | Duration    | What You Will Learn                           |
 |----------------------------------|-------------|-----------------------------------------------|
@@ -49,7 +49,7 @@
 
 **Goal:** You can navigate to any folder and see what is in it with your screen reader.
 
-### Phase 2: Intermediate User → Power User
+### Phase 2: Intermediate User -> Power User
 
 | Lesson                                       | Duration    | What You Will Learn                      |
 |----------------------------------------------|-------------|------------------------------------------|
@@ -135,7 +135,7 @@ If your screen reader is not listed in a specific tip, refer to the **Screen Rea
 
 **If you have 45-60 minutes right now:**
 
-1. Open Command Prompt (Windows key → type `cmd` → Enter).
+1. Open Command Prompt (Windows key > type `cmd` > Enter).
 2. Run these commands:
 
    ```cmd

@@ -56,10 +56,10 @@ These actions can be chained together in sequence:
 | `print`  | Send the sliced G-code to the printer (OctoPrint, Bambu LAN, or Bambu Connect) |
 
 ```bash
-3dm build                        # Just compile OpenSCAD → STL
+3dm build                        # Just compile OpenSCAD -> STL
 3dm build orient                 # Compile then auto-orient
 3dm build orient slice           # Compile, orient, then slice
-3dm build orient slice print     # Full pipeline: compile → orient → slice → print
+3dm build orient slice print     # Full pipeline: compile -> orient -> slice -> print
 3dm slice print                  # Slice an already-built model and print it
 3dm print                        # Send an already-sliced file to the printer
 ```
@@ -209,7 +209,7 @@ You can pass an `.stl` or `.scad` file directly instead of running inside a proj
 3dm info model.stl                  # Inspect a standalone STL
 3dm preview model.stl               # Preview a standalone STL
 3dm slice print model.stl           # Slice and print a standalone STL
-3dm build model.scad                # Build a standalone SCAD file → STL
+3dm build model.scad                # Build a standalone SCAD file -> STL
 3dm image model.stl --angle top     # Render image from standalone STL
 ```
 
@@ -317,7 +317,7 @@ Used when `print_mode = "octoprint"`. Test with `3dm test-connect`.
 | Key              | Type   | Default  | Description                                                                                                     |
 | ---------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------- |
 | `octoprint_host` | string | _(none)_ | Full URL to your OctoPrint server, including protocol (e.g. `"http://octopi.local"` or `"http://192.168.1.50"`) |
-| `octoprint_key`  | string | _(none)_ | OctoPrint Application API key. Generate in OctoPrint → Settings → Application Keys                              |
+| `octoprint_key`  | string | _(none)_ | OctoPrint Application API key. Generate in OctoPrint > Settings > Application Keys                              |
 
 ```toml
 # OctoPrint connection (set in defaults.toml, not project toml)
@@ -335,7 +335,7 @@ Used when `print_mode = "bambu_lan"`. Test with `3dm test-connect`.
 | --------------------- | ------ | -------- | ------------------------------------------------------------------------------ |
 | `bambu_host`          | string | _(none)_ | Local IP address of your Bambu printer on your network (e.g. `"192.168.1.42"`) |
 | `bambu_serial_number` | string | _(none)_ | Printer serial number (found in the printer's settings screen or Bambu Studio) |
-| `bambu_access_code`   | string | _(none)_ | Local network access code shown on the printer screen (Settings → WLAN)        |
+| `bambu_access_code`   | string | _(none)_ | Local network access code shown on the printer screen (Settings > WLAN)        |
 
 ```toml
 # Bambu Labs LAN connection (set in defaults.toml, not project toml)
@@ -392,7 +392,7 @@ A fully commented `3dmake.toml` for a real project:
 
 ```toml
 # ── Project identity ──────────────────────────────────────────────
-model_name = "enclosure"           # src/enclosure.scad → build/enclosure.stl
+model_name = "enclosure"           # src/enclosure.scad -> build/enclosure.stl
 project_name = "pi-case"           # Output files named pi-case-enclosure.gcode etc.
 min_3dmake_version = "1.2.0"       # Fail loudly if tool is out of date
 
@@ -870,7 +870,7 @@ orient
   (no implied actions — operates on an already-built STL)
 ```
 
-So running `3dm print` on a project with OpenSCAD source will automatically run `build` → `slice` → `print` in order. You only need to be explicit when you want to **stop partway through** (e.g. `3dm build` to just check compilation without slicing).
+So running `3dm print` on a project with OpenSCAD source will automatically run `build` -> `slice` -> `print` in order. You only need to be explicit when you want to **stop partway through** (e.g. `3dm build` to just check compilation without slicing).
 
 ### `last_in_chain` — Actions That Must Come Last
 
@@ -915,11 +915,11 @@ A separate category called **isolated** means the action cannot be combined with
 When you request multiple actions, they always execute in this fixed internal order regardless of how you type them on the command line:
 
 ```
-setup → new → build → load-mesh* → measure-mesh* → info → orient →
-image → preview → slice → print → list-profiles → list-overlays →
-edit-model → edit-overlay → edit-profile → edit-profile-gcode →
-edit-prompt → edit-global-config → list-libraries → install-libraries →
-test-connect → help → version
+setup -> new -> build -> load-mesh* -> measure-mesh* -> info -> orient ->
+image -> preview -> slice -> print -> list-profiles -> list-overlays ->
+edit-model -> edit-overlay -> edit-profile -> edit-profile-gcode ->
+edit-prompt -> edit-global-config -> list-libraries -> install-libraries ->
+test-connect -> help -> version
 ```
 
 _(Actions marked `_` are internal and cannot be requested directly.)\*
@@ -1153,13 +1153,13 @@ Run with `--debug` to see the full PrusaSlicer stdout output:
 `print_mode` in your config must be exactly one of: `octoprint`, `bambu_lan`, or `bambu_connect`. Check spelling in `defaults.toml`.
 
 **OctoPrint: `ERROR: Authentication failed (401)`**
-Your `octoprint_key` is wrong or expired. In OctoPrint, go to Settings → Application Keys and generate a new key, then update `defaults.toml` via `3dm edit-global-config`.
+Your `octoprint_key` is wrong or expired. In OctoPrint, go to Settings > Application Keys and generate a new key, then update `defaults.toml` via `3dm edit-global-config`.
 
 **OctoPrint: `ERROR: Could not connect to server`**
 Check that `octoprint_host` is correct and includes the protocol (`http://` or `https://`). Verify OctoPrint is running and the machine running 3DMake is on the same network. Run `3dm test-connect` for a detailed diagnosis.
 
 **Bambu: FTP or MQTT connection fails.**
-Verify `bambu_host` is the printer's current local IP (it may change if your router assigns IPs dynamically — consider setting a static IP for the printer). Check `bambu_access_code` on the printer screen under Settings → WLAN. Run `3dm test-connect` for step-by-step diagnosis.
+Verify `bambu_host` is the printer's current local IP (it may change if your router assigns IPs dynamically — consider setting a static IP for the printer). Check `bambu_access_code` on the printer screen under Settings > WLAN. Run `3dm test-connect` for step-by-step diagnosis.
 
 **Bambu Connect mode:** `3dm print` with `print_mode = "bambu_connect"` does **not** connect directly to the printer. It packages your G-code into a `.3mf` file and opens the Bambu Connect desktop application via a URI handoff. Bambu Connect must be installed and running on your machine. `3dm test-connect` will report that it cannot test this mode — this is expected.
 

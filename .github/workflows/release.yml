@@ -1,117 +1,95 @@
-name: Build and Release mdBook with Pandoc and LaTeX
+<!DOCTYPE HTML>
+<html lang="en" class="rust sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Common Issues and Solutions - 3D Printing Course for Blind and Visually Impaired Learners</title>
 
-on:
-  push:
-    tags:
-      - "v*"
-  workflow_dispatch:
 
-permissions:
-  contents: write
+        <!-- Custom HTML head -->
+        <script>
+          (function(){
+            // Load Atkinson Hyperlegible fonts from the book assets (injected at runtime so paths are correct on GitHub Pages)
+            try {
+              const link = Array.from(document.getElementsByTagName('link')).find(l => l.href && l.href.match(/\/css\/variables-.*\.css$/));
+              const base = (function(){
+                if (!link) return (window.location.origin||'') + '/';
+                const u = new URL(link.href, window.location.href);
+                const basePath = u.pathname.replace(/\/css\/.*$/,'');
+                return u.origin + basePath + (basePath.endsWith('/') ? '' : '/');
+              })();
+        
+              const css = `\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Next';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf') format('truetype');\
+          font-weight: 400; font-style: normal; font-display: swap;\
+        }\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Mono';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-SemiBold.ttf') format('truetype');\
+          font-weight: 600; font-style: normal; font-display: swap;\
+        }\
+        @font-face {\
+          font-family: 'Atkinson Hyperlegible Mono';\
+          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-Regular.otf') format('opentype');\
+          font-weight: 400; font-style: normal; font-display: swap;\
+        }\
+        pre, code, .hljs, .leftbar { font-family: 'Atkinson Hyperlegible Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Courier New", monospace !important; }\
+        body { font-family: 'Atkinson Hyperlegible Next', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }\
+        `;
+        
+              const style = document.createElement('style');
+              style.appendChild(document.createTextNode(css));
+              document.head.appendChild(style);
+            } catch (e) { console.warn('Font injection failed', e); }
+          })();
+        </script>
+        
+        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+        <script>
+          document.addEventListener("DOMContentLoaded", () => {
+            mermaid.initialize({ startOnLoad: true });
+          });
+        </script>
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+        <meta name="description" content="An introduction to 3D printing for blind and visually impaired learners, using OpenSCAD and 3DMake to create accessible 3D models.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        <link rel="icon" href="../../favicon-de23e50b.svg">
+        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
+        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
+        <link rel="stylesheet" href="../../css/general-2459343d.css">
+        <link rel="stylesheet" href="../../css/chrome-ae938929.css">
+        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
 
-      - name: Install Pandoc 3.6.4
-        run: |
-          wget -q https://github.com/jgm/pandoc/releases/download/3.6.4/pandoc-3.6.4-1-amd64.deb
-          sudo dpkg -i pandoc-3.6.4-1-amd64.deb
-          pandoc --version
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-493f70e1.css">
+        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-4c0ae647.css">
+        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-3fdfc3ac.css">
 
-      - name: Add cargo bin to PATH
-        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="../../src/assets/custom-19d70d6b.css">
 
-      - name: Install mdBook and mdbook-pandoc
-        run: |
-          cargo install mdbook --locked
-          cargo install mdbook-pandoc --locked
 
-      - name: Install TeX Live
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-fonts-extra \
-            texlive-luatex \
-            texlive-xetex \
-            lmodern\
-            fonts-dejavu
-
-      - name: Install Atkinson Hyperlegible fonts
-        run: |
-          FONT_DIR=~/.local/share/fonts/atkinson-hyperlegible
-          mkdir -p "$FONT_DIR"
-
-          # --- Atkinson Hyperlegible (regular family) ---
-          BASE="https://github.com/googlefonts/atkinson-hyperlegible-next/raw/main/fonts/otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Bold.otf"       -O "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Italic.otf"     -O "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-BoldItalic.otf" -O "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"
-
-          # --- Atkinson Hyperlegible Mono (separate repo) ---
-          MONO="https://github.com/googlefonts/atkinson-hyperlegible-next-mono/raw/main/fonts/otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"    \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"         "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Bold.otf"        -O "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"       \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"            "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Italic.otf"      -O "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"     \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"          "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-BoldItalic.otf"  -O "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf" \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"      "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf"
-
-          fc-cache -fv || true
-          fc-list | grep -i atkinson || echo "Warning: Atkinson fonts may not be properly installed"
-
-      # IDENTICAL to deploy.yml
-      - name: Build book (all backends)
-        run: |
-          cd my-book
-          mdbook build
-
-      - name: Copy source assets into latex output directory
-        run: |
-          cp -r my-book/src my-book/docs/pandoc/latex/src
-
-      - name: Compile LaTeX → PDF
-        run: |
-          OUT_DIR="my-book/docs/pandoc/latex"
-          TEX="OpenSCAD_Curriculum.tex"
-
-          cd "$OUT_DIR"
-
-          # Pass 1
-          lualatex --interaction=nonstopmode "$TEX"
-
-          # Build index
-          makeindex "OpenSCAD_Curriculum.idx" || true
-
-          # Pass 2
-          lualatex --interaction=nonstopmode "$TEX"
-
-      - name: Verify release artifacts exist
-        run: |
-          test -f my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub
-          test -f my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex
-          test -f my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf
-
-      - name: Upload release assets
-        uses: softprops/action-gh-release@v2
-        with:
-          files: |
-            my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub
-            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex
-            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+            const path_to_root = "../../";
+            const default_light_theme = "rust";
+            const default_dark_theme = "navy";
+            window.path_to_searchindex_js = "../../searchindex-c3fdb52a.js";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../../toc-816984a7.js"></script>
+    </head>
+    <body>
+    <div id="mdbook-help-container">
+        <div id="mdbook-help-popup">
+            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
+            <div>
+                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
+                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to searc
