@@ -108,13 +108,13 @@ jobs:
           cd "$OUT_DIR"
 
           # Pass 1 — generates .aux, .toc, .idx
-          lualatex --interaction=nonstopmode --file-line-error -halt-on-error "$TEX"
+          lualatex --interaction=nonstopmode "$TEX"
 
           # Build index from .idx produced in pass 1
           makeindex "OpenSCAD_Curriculum.idx" || true
 
           # Pass 2 — embeds TOC, cross-references, and index
-          lualatex --interaction=nonstopmode --file-line-error -halt-on-error "$TEX"
+          lualatex --interaction=nonstopmode "$TEX"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
