@@ -1,120 +1,145 @@
-<!DOCTYPE HTML>
-<html lang="en" class="rust sidebar-visible" dir="ltr">
-    <head>
-        <!-- Book generated using mdBook -->
-        <meta charset="UTF-8">
-        <title>Measurement Worksheet - 3D Printing Course for Blind and Visually Impaired Learners</title>
+name: Build and Deploy Book
 
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
 
-        <!-- Custom HTML head -->
-        <script>
-          (function(){
-            // Load Atkinson Hyperlegible fonts from the book assets (injected at runtime so paths are correct on GitHub Pages)
-            try {
-              const link = Array.from(document.getElementsByTagName('link')).find(l => l.href && l.href.match(/\/css\/variables-.*\.css$/));
-              const base = (function(){
-                if (!link) return (window.location.origin||'') + '/';
-                const u = new URL(link.href, window.location.href);
-                const basePath = u.pathname.replace(/\/css\/.*$/,'');
-                return u.origin + basePath + (basePath.endsWith('/') ? '' : '/');
-              })();
-        
-              const css = `\
-        @font-face {\
-          font-family: 'Atkinson Hyperlegible Next';\
-          src: url('${base}assets/fonts/AtkinsonHyperlegibleNext-Regular.ttf') format('truetype');\
-          font-weight: 400; font-style: normal; font-display: swap;\
-        }\
-        @font-face {\
-          font-family: 'Atkinson Hyperlegible Mono';\
-          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-SemiBold.ttf') format('truetype');\
-          font-weight: 600; font-style: normal; font-display: swap;\
-        }\
-        @font-face {\
-          font-family: 'Atkinson Hyperlegible Mono';\
-          src: url('${base}assets/fonts/AtkinsonHyperlegibleMono-Regular.otf') format('opentype');\
-          font-weight: 400; font-style: normal; font-display: swap;\
-        }\
-        pre, code, .hljs, .leftbar { font-family: 'Atkinson Hyperlegible Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Courier New", monospace !important; }\
-        body { font-family: 'Atkinson Hyperlegible Next', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; }\
-        `;
-        
-              const style = document.createElement('style');
-              style.appendChild(document.createTextNode(css));
-              document.head.appendChild(style);
-            } catch (e) { console.warn('Font injection failed', e); }
-          })();
-        </script>
-        
-        <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
-        <script>
-          document.addEventListener("DOMContentLoaded", () => {
-            mermaid.initialize({ startOnLoad: true });
-          });
-        </script>
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
-        <meta name="description" content="An introduction to 3D printing for blind and visually impaired learners, using OpenSCAD and 3DMake to create accessible 3D models.">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="theme-color" content="#ffffff">
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
-        <link rel="icon" href="../../favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="../../favicon-8114d1fc.png">
-        <link rel="stylesheet" href="../../css/variables-8adf115d.css">
-        <link rel="stylesheet" href="../../css/general-2459343d.css">
-        <link rel="stylesheet" href="../../css/chrome-ae938929.css">
-        <link rel="stylesheet" href="../../css/print-9e4910d8.css" media="print">
+jobs:
+  build:
+    runs-on: ubuntu-latest
 
-        <!-- Fonts -->
-        <link rel="stylesheet" href="../../fonts/fonts-9644e21d.css">
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-        <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="../../highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="../../tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="../../ayu-highlight-3fdfc3ac.css">
+      - name: Install Pandoc 3.6.4
+        run: |
+          wget -q https://github.com/jgm/pandoc/releases/download/3.6.4/pandoc-3.6.4-1-amd64.deb
+          sudo dpkg -i pandoc-3.6.4-1-amd64.deb
+          pandoc --version
 
-        <!-- Custom theme stylesheets -->
-        <link rel="stylesheet" href="../../src/assets/custom-19d70d6b.css">
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
 
+      - name: Add cargo bin to PATH
+        run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-        <!-- Provide site root and default themes to javascript -->
-        <script>
-            const path_to_root = "../../";
-            const default_light_theme = "rust";
-            const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "../../searchindex-c3fdb52a.js";
-        </script>
-        <!-- Start loading toc.js asap -->
-        <script src="../../toc-816984a7.js"></script>
-    </head>
-    <body>
-    <div id="mdbook-help-container">
-        <div id="mdbook-help-popup">
-            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
-            <div>
-                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
-                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
-                <p>Press <kbd>?</kbd> to show this help</p>
-                <p>Press <kbd>Esc</kbd> to hide this help</p>
-            </div>
-        </div>
-    </div>
-    <div id="mdbook-body-container">
-        <!-- Work around some values being stored in localStorage wrapped in quotes -->
-        <script>
-            try {
-                let theme = localStorage.getItem('mdbook-theme');
-                let sidebar = localStorage.getItem('mdbook-sidebar');
+      - name: Install mdBook and mdbook-pandoc
+        run: |
+          cargo install mdbook --locked
+          cargo install mdbook-pandoc --locked
 
-                if (theme.startsWith('"') && theme.endsWith('"')) {
-                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
-                }
+      - name: Install TeX Live
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            texlive-fonts-extra \
+            texlive-luatex \
+            texlive-xetex \
+            lmodern \
+            fonts-dejavu
 
-                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
-                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
-                }
-            } catch (e) { }
-        </script>
+      - name: Install Atkinson Hyperlegible fonts
+        run: |
+          FONT_DIR=~/.local/share/fonts/atkinson-hyperlegible
+          mkdir -p "$FONT_DIR"
 
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script>
-            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark
+          # --- Atkinson Hyperlegible (regular family) ---
+          BASE="https://github.com/googlefonts/atkinson-hyperlegible-next/raw/main/fonts/otf"
+          wget -q "${BASE}/AtkinsonHyperlegibleNext-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"
+          wget -q "${BASE}/AtkinsonHyperlegibleNext-Bold.otf"       -O "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"
+          wget -q "${BASE}/AtkinsonHyperlegibleNext-Italic.otf"     -O "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"
+          wget -q "${BASE}/AtkinsonHyperlegibleNext-BoldItalic.otf" -O "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"
+
+          # --- Atkinson Hyperlegible Mono (separate repo) ---
+          MONO="https://github.com/googlefonts/atkinson-hyperlegible-next-mono/raw/main/fonts/otf"
+          wget -q "${MONO}/AtkinsonHyperlegibleMono-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"    \
+            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"         "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"
+          wget -q "${MONO}/AtkinsonHyperlegibleMono-Bold.otf"        -O "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"       \
+            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"            "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"
+          wget -q "${MONO}/AtkinsonHyperlegibleMono-Italic.otf"      -O "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"     \
+            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"          "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"
+          wget -q "${MONO}/AtkinsonHyperlegibleMono-BoldItalic.otf"  -O "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf" \
+            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"      "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf"
+
+          fc-cache -fv || true
+          fc-list | grep -i atkinson || echo "Warning: Atkinson fonts may not be properly installed"
+
+      # mdbook build triggers ALL backends defined in book.toml in one shot:
+      #   output.html   → docs/html/
+      #   output.pandoc → docs/pandoc/epub/  and  docs/pandoc/latex/
+      # Never call mdbook-pandoc directly — it only works when piped from mdbook.
+      - name: Build book (all backends)
+        run: |
+          cd my-book
+          mdbook build
+
+      # Pandoc writes the .tex file but does NOT copy images alongside it.
+      # lualatex resolves \includegraphics relative to the .tex file's directory,
+      # so we mirror the repo's src/ tree into the latex output dir first.
+      - name: Copy source assets into latex output directory
+        run: |
+          cp -r my-book/src my-book/docs/pandoc/latex/src
+
+      # lualatex MUST run from the directory containing the .tex file so that
+      # relative \includegraphics paths (e.g. src/assets/images/bio-photo.jpg)
+      # resolve correctly.
+      - name: Compile LaTeX → PDF
+        run: |
+          OUT_DIR="my-book/docs/pandoc/latex"
+          TEX="OpenSCAD_Curriculum.tex"
+
+          cd "$OUT_DIR"
+
+          # Pass 1 — generates .aux, .toc, .idx
+          lualatex --interaction=nonstopmode "$TEX"
+
+          # Build index from .idx produced in pass 1
+          makeindex "OpenSCAD_Curriculum.idx" || true
+
+          # Pass 2 — embeds TOC, cross-references, and index
+          lualatex --interaction=nonstopmode "$TEX"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: my-book/docs/html
+
+      - name: Upload pandoc outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: pandoc-outputs
+          path: |
+            my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub
+            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex
+            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf
+          if-no-files-found: warn
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
