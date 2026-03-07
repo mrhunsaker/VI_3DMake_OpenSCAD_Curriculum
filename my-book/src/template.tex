@@ -91,14 +91,13 @@ $endif$
 % Symbol fallback font (uses system DejaVu Sans if available)
 \newfontfamily\symbolfont{DejaVu Sans}[Scale=MatchLowercase]
 % Fallback mappings: render specific unicode glyphs using \symbolfont
-\newunicodechar{`}{{\symbolfont\textasciigrave}}
 \newunicodechar{↓}{{\symbolfont↓}}
 \newunicodechar{←}{{\symbolfont←}}
 \newunicodechar{─}{{\symbolfont─}}
 \newunicodechar{⚠}{{\symbolfont⚠}}
-\newunicodechar{✓}{{\symbolfont✓}}
 \newunicodechar{✗}{{\symbolfont✗}}
 \newunicodechar{□}{{\symbolfont□}}
+\newunicodechar{✓}{\checkmark}
 
 % Footnotes to Endnotes Configuration
 \usepackage{endnotes}
