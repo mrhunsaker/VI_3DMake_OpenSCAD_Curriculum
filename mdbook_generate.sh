@@ -43,10 +43,9 @@ RUST_BACKTRACE=full mdbook build --dest-dir "$BUILDOUTPUT"
 
 echo "building pdf in root directory with lualatex"
 cd "$SCRIPTDIR"
-# Use --file-line-error and -halt-on-error so failures show file:line and stop on fatal errors
-lualatex -interaction=nonstopmode --file-line-error -halt-on-error "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.tex"
+lualatex -interaction=nonstopmode "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.tex"
 # makeindex "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.idx"
-lualatex -interaction=nonstopmode --file-line-error -halt-on-error "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.tex"
+lualatex -interaction=nonstopmode "$BUILDOUTPUT/pandoc/latex/OpenSCAD_Curriculum.tex"
 
 echo ""
 echo "All Builds complete!"
