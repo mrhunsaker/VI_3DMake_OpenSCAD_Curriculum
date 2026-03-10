@@ -28,9 +28,11 @@ While powerful, current LLMs do not possess a true "3D world model" — they are
 
 - **Detached Geometry:** The AI might describe a "table" even if the legs are hovering below the tabletop.[^10]
 - **Scale Misinterpretation:** Without a reference object in the render, the AI may misjudge scale, leading to inappropriate feedback on wall thickness.[^1]
-- **Hallucination of Detail:** The AI may describe features it expects to see (like "engraved text") even if the student's code failed to render them.[^10]
+>[!CAUTION]
+>**Hallucination of Detail:** The AI may describe features it expects to see (like "engraved text") even if the student's code failed to render them.[^10]
 
-For students, the key takeaway is that **AI is a verification assistant, not a source of truth.** The deterministic rendering of OpenSCAD remains the final authority on geometry. AI is most useful as a "sanity check" to catch obvious mistakes before wasting filament.[^1]
+>[!IMPORTANT]
+>**AI is a verification assistant, not a source of truth.** The deterministic rendering of OpenSCAD remains the final authority on geometry. AI is most useful as a "sanity check" to catch obvious mistakes before wasting filament.[^1]
 
 ## Occupational Health and Safety
 
@@ -42,6 +44,9 @@ The melting of plastic filament is a thermal degradation process. ABS releases s
 
 | Emission Component | Primary Source Filaments | Mitigation Strategy |
 | :--- | :--- | :--- |
+>[!WARNING]
+>ABS and ASA filaments release styrene — a respiratory irritant and potential carcinogen. Always use an enclosed printer with carbon filtration for these materials.
+
 | Styrene | ABS, ASA | Enclosed printer with carbon filtration.[^12] |
 | Formaldehyde | POM, Nylon | High-efficiency external ventilation.[^12] |
 | Ultrafine Particles | All filaments | HEPA filtration and "20-minute" settling period.[^14] |
@@ -62,11 +67,13 @@ OpenSCAD's declarative nature and unique rendering kernel present specific hurdl
 
 ### Immutable State
 
-Variables in OpenSCAD are more like constants within a scope. If a student writes `x = 5; x = 10;`, OpenSCAD will use the last assigned value (`x = 10`) for the entire script.[^20] This requires adopting a functional programming mindset where geometry is defined by its state rather than a sequence of movements.
+>[!NOTE]
+>Variables in OpenSCAD are more like constants within a scope. If a student writes `x = 5; x = 10;`, OpenSCAD will use the last assigned value (`x = 10`) for the entire script.[^20] This requires adopting a functional programming mindset where geometry is defined by its state rather than a sequence of movements.
 
 ### Performance Bottlenecks
 
-OpenSCAD uses the CGAL geometry kernel, which is highly accurate but slow for certain operations. Minkowski sums (used for rounding corners) can take minutes at high `$fn` values.[^21] OpenSCAD also has no native "fillet" command — students must construct these manually using boolean subtractions or libraries like BOSL2.[^4]
+>[!NOTE]
+>OpenSCAD's CGAL geometry kernel is highly accurate but slow for certain operations. **Minkowski sums** (used for rounding corners) can take minutes at high `$fn` values. Keep `$fn` low while developing and only raise it for final renders.[^21] OpenSCAD also has no native "fillet" command — students must construct these manually using boolean subtractions or libraries like BOSL2.[^4]
 
 ### The Absolute Coordinate Barrier
 
@@ -77,11 +84,15 @@ OpenSCAD has no concept of relative constraints — every object is positioned i
 | Limitation | Technical Root Cause | Educational Impact |
 | :--- | :--- | :--- |
 | CLI Barrier | No graphical interface for configuration | Steep learning curve for students with zero terminal experience.[^1] |
+>[!CAUTION]
+>AI features (`3dm info` descriptions, `3dm orient`) require an active internet connection and a configured API key. These features will fail silently on offline school networks — plan accordingly.
+
 | API Dependency | AI features require external internet and API keys | Advanced features fail in offline school networks.[^1] |
 | Slicer Lock-in | Reliant on external templates for G-code generation | Students may not learn the nuance of slicing settings.[^1] |
 | Feedback Latency | No real-time "live" preview in the editor | The edit-compile-view cycle is slower than GUI-based CAD.[^1] |
 
-A recurring challenge is **non-manifold geometry**: STLs with zero-thickness walls or improperly closed polyhedrons. 3DMake's `build` command will generate the STL without warning, but the `slice` command may then fail or produce corrupt G-code.[^24] Students must learn mesh verification skills using tools like MeshLab or PrusaSlicer's repair functions.[^28]
+>[!CAUTION]
+>**Non-manifold geometry** (zero-thickness walls or improperly closed polyhedrons) will generate an STL without warning from `3dm build`, but the `slice` command may then fail or produce corrupt G-code. Always verify mesh integrity before printing.[^24] Students must learn mesh verification skills using tools like MeshLab or PrusaSlicer's repair functions.[^28]
 
 ## Local Resources — Utah Makerspaces
 
@@ -500,7 +511,10 @@ color("green") translate([0, 25, 0]) cylinder(r=0.5, h=1, $fn=8);  // +Y
 color("blue")  cylinder(r=0.5, h=25, $fn=8);                        // +Z
 ```
 
-Build this code and run `3dm info` to read the bounding boxes. Notice how the centered cube has negative Y coordinates in its bounding box — that's the underground half. In a real project, you'd use `translate()` to lift it up so its bottom is at Z=0.
+>[!NOTE]
+>When using `center=true`, notice how the bounding box may show negative coordinates — that's geometry underground. In a real project, always use `translate()` to lift centered objects so their bottom is at Z=0.
+
+Build this code and run `3dm info` to read the bounding boxes.
 
 ---
 
@@ -519,7 +533,8 @@ my_project/
   3dmake.toml   ← project configuration file (created when you initialize the project)
 ```
 
-The most important rule: **never manually edit files in the `build/` folder**. Everything in there is generated automatically. If you make changes to a build file, they'll be overwritten the next time you run `3dm build`. All your actual work goes in `src/`.
+>[!IMPORTANT]
+>Never manually edit files in the `build/` folder. Everything in there is generated automatically — changes will be overwritten the next time you run `3dm build`. All your actual work goes in `src/`.
 
 ### Creating the Project
 
@@ -639,7 +654,8 @@ Let's understand each piece.
 
 **Description:** The plain-English description comes from an AI analysis of the geometry. It's useful for a quick sanity check, but it's not a replacement for checking the bounding box numbers yourself.
 
-**What if the bounding box shows 0 × 0 × 0?** This means the build failed and no geometry was produced. Go back and look at the output from `3dm build` — the error messages will point you to the specific line in your code where something went wrong.
+>[!CAUTION]
+>If the bounding box shows **0 × 0 × 0**, the build failed and no geometry was produced. Check the output from `3dm build` — error messages will point to the specific line in your code.
 
 ### Estimating Material Cost from Volume
 
@@ -694,7 +710,8 @@ As each layer is deposited, it needs to cool and bond to the layer below it. Thi
 
 ### First Prints Are Tests, Not Final Products
 
-You will almost never get a perfect-fitting part on the first print. Tolerances vary between printers, filament brands, and slicer settings. The professional approach — which this course teaches systematically in Lesson 8 — is to treat the first print of any new feature as a **test print**: a quick, small print specifically designed to tell you what needs to be adjusted. This saves time and material because you're testing deliberately, not accidentally printing a large part only to find out the hole is 0.3 mm too small.
+>[!TIP]
+>You will almost never get a perfect-fitting part on the first print. Treat the first print of any new feature as a **test print**: a quick, small print specifically designed to tell you what needs to be adjusted. This saves time and material by testing deliberately rather than accidentally printing a large part only to find the hole is 0.3 mm too small.
 
 ---
 
@@ -713,7 +730,8 @@ Verify: 3dm info    → confirms bounding box and volume match your design inten
         (optional)  → open build/main.stl in your slicer for a visual check
 ```
 
-The most important habit to build is **verifying after every meaningful change** — not just when you think you're done. When you verify frequently, any problem you find is always close to the last thing you changed, which makes it easy to identify and fix. When you verify only at the end of a long work session, you may have dozens of changes to sift through to find one small mistake.
+>[!TIP]
+>**Verify after every meaningful change**, not just when you think you're done. Frequent verification means any problem is always close to the last thing you changed. Verifying only at the end of a long session means sifting through dozens of changes to find one small mistake.
 
 ### Watch Mode: Automatic Rebuilds
 
@@ -750,11 +768,16 @@ You can use a shell loop to generate a whole family of variants automatically:
 **Linux / macOS (bash):**
 
 ```bash
+>[!TIP]
+>Use shell loops to generate multiple parametric variants automatically. Each run creates a separate STL file — a fast way to produce a tolerance test matrix without manually editing the source file.
+
+```bash
 # Build four width variants — generates four separate STL files
 for w in 20 30 40 50; do
   openscad -D "width=$w" -o "build/main_w${w}.stl" src/main.scad
   echo "Built: width=${w}mm → build/main_w${w}.stl"
 done
+```
 ```
 
 **Windows (PowerShell):**
@@ -1172,7 +1195,8 @@ This is the first physical print extension project in the course. Its primary pu
 
 **Model selection discipline.** The most common mistake at this stage is selecting a model that is too complex, too large, or has features that will fail (overhangs without supports, very thin walls, very fine detail). Push students to justify their selection in terms of printability, not just aesthetics.
 
-**The first 15 minutes rule.** Students must stay and watch. A print that lifts off the bed in the first few layers becomes a tangled failure that wastes material and time. Students should not start a print and walk away.
+>[!IMPORTANT]
+>**The first 15 minutes rule:** students must stay and watch the printer for the first 15 minutes of every print. A print that lifts off the bed in the first few layers becomes a tangled failure — you must be present to catch it early.
 
 **Documentation enables iteration.** A student who records their slicer settings has something to start from on the next print. A student who doesn't has to guess. Reinforce this constantly.
 
@@ -1826,7 +1850,8 @@ difference() {
 }
 ```
 
-The most common mistake beginners make with `difference()` is accidentally listing the cutting tool first and the base second — in that case, the entire result is empty or backwards. Always check: is the first child in your `difference()` the piece you want to _keep_?
+>[!CAUTION]
+>The most common mistake with `difference()` is accidentally listing the cutting tool first and the base second — the result will be empty or backwards. Always check: is the first child in your `difference()` the piece you want to **keep**?
 
 ### `intersection()` — Keep Only What Overlaps
 
@@ -1901,7 +1926,10 @@ This problem is called a **co-planar face problem**, and it's one of the most co
 
 ### The Fix
 
-The solution is simple and absolute: whenever you're subtracting a shape, extend the cutting shape slightly beyond the surface it needs to cut through. Specifically, move it **0.001 mm past the face on the entry side** and make it **0.002 mm longer total**.
+>[!IMPORTANT]
+>**The 0.001 mm offset rule:** whenever subtracting a shape, extend the cutting shape **0.001 mm past each face** it needs to pass through (0.002 mm total extra length). This eliminates co-planar face ambiguity that causes rendering artifacts and slicer errors.
+
+Specifically, move it **0.001 mm past the face on the entry side** and make it **0.002 mm longer total**.
 
 Why 0.001 mm? It's large enough to eliminate the ambiguity entirely — the cutting shape now unambiguously passes through the surface. It's also small enough that no printer in the world can detect it. The 0.001 mm offset is invisible in the physical print.
 
@@ -1958,7 +1986,8 @@ difference() {
   cube([30, 30, 5]);   // ghost of a lid that will sit on top
 ```
 
-**F5 vs F6 in OpenSCAD (if using the GUI):** F5 runs a fast approximate preview that isn't manifold-safe. It's good for quickly seeing your shape while you type. F6 runs the full CGAL geometric kernel — slower, but accurate and manifold-safe. Always use F6 (or `3dm build`) before sending anything to print.
+>[!IMPORTANT]
+>**F5 vs F6:** F5 runs a fast approximate preview that is NOT manifold-safe — good for quick visual checks only. F6 runs the full CGAL geometric kernel: slower, but accurate and manifold-safe. Always use **F6** (or `3dm build`) before sending anything to print.
 
 ---
 
@@ -2290,7 +2319,8 @@ rotate_extrude()                        // solid of revolution
 |   `!`    | Render ONLY this shape            | Isolating one component for inspection       |
 |   `*`    | Disable (ignore) this shape       | Temporarily removing geometry                |
 
-**Always remove all modifiers before exporting your final STL.**
+>[!WARNING]
+>Always remove all modifier characters (`#`, `%`, `!`, `*`) before exporting your final STL. Leaving them in can alter or omit geometry in the exported file.
 
 ---
 
@@ -2800,7 +2830,8 @@ name(value1, value2);
 
 ### The DRY Principle
 
-**DRY** stands for **Don't Repeat Yourself**. It's a fundamental principle of good programming, and it applies directly to OpenSCAD design.
+>[!TIP]
+>**DRY — Don't Repeat Yourself.** If geometry is defined in one module, changing it once updates everywhere it's used. Copy-pasting the same geometry multiple times means one missed update creates inconsistency across your design.
 
 If you need four mounting holes in a plate, you could write the cylinder code four times — once for each hole. But now if you need to change the hole size, you have to change it in four places. If you miss one, your design is inconsistent. If you need to add a fifth hole later, you have to remember the pattern and paste it again.
 
@@ -2876,7 +2907,8 @@ safe_cylinder(5, 20);          // fine
 
 The `str()` function assembles a string from multiple values — very useful for error messages that include the bad value so the user knows exactly what to fix.
 
-**Best practice:** add `assert()` statements to every module you write, at the very top of the module body, before any geometry. This turns bad-input problems into clear messages instead of mysterious rendering failures.
+>[!TIP]
+>Add `assert()` statements to every module at the very top of the module body, before any geometry. This turns bad-input problems into clear, descriptive messages instead of mysterious rendering failures.
 
 ---
 
@@ -2892,7 +2924,8 @@ There are two ways to load a library:
 
 **`include <filename.scad>`** — executes the **entire file**, including any top-level geometry statements. If the library file has a `cube([10,10,10]);` at the top level, that cube will appear in your model. Use this sparingly and intentionally.
 
-The mental model: `use` is like importing a Python module to get its functions. `include` is like copy-pasting the entire file into your code.
+>[!NOTE]
+>`use <file.scad>` imports only module/function **definitions** — top-level geometry in the file is ignored. `include <file.scad>` executes the **entire file** including any top-level geometry. Prefer `use` for libraries to avoid unexpected geometry.
 
 ```openscad
 // === lib/hardware.scad ===
@@ -3035,7 +3068,8 @@ Before we look at examples, there is an important rule in OpenSCAD that trips up
 
 **Modules create geometry. They cannot return values.**
 
-This is a hard boundary. A function with a `cylinder()` call inside it won't work — you need a module for that. A module that tries to return a value won't work — you need a function for that.
+>[!IMPORTANT]
+>This is a hard boundary in OpenSCAD: **Functions return values — they cannot create geometry. Modules create geometry — they cannot return values.** A function with a `cylinder()` call inside it won't work, and a module cannot return a value.
 
 ```openscad
 // FUNCTION — computes and returns a value
@@ -3154,6 +3188,9 @@ max(3, 7, 2)    // 7    — largest of all arguments
 min(3, 7, 2)    // 2    — smallest of all arguments
 pow(2, 8)       // 256  — 2 raised to the power 8
 sqrt(144)       // 12   — square root
+
+>[!IMPORTANT]
+>OpenSCAD trigonometry uses **degrees, not radians**. `sin(90)` = 1 (correct). If you pass radians by mistake, your geometry will be wildly wrong.
 
 // Trigonometry — CRITICAL: OpenSCAD uses DEGREES, not radians
 sin(90)         // 1    — sine of 90 degrees
@@ -4353,7 +4390,8 @@ Fire safety protocols:
 
 - Use a **surge protector** to protect the printer's control board from voltage spikes
 - Inspect all wiring periodically, especially the flexible cable bundle that runs to the heated bed — this bundle flexes with every print and can crack the insulation over time
-- **Thermal runaway protection must be enabled.** This firmware feature monitors the temperature sensor and shuts the heater off if the temperature climbs unexpectedly or the sensor fails. A printer without thermal runaway protection can overheat catastrophically. Never disable this protection. If your printer doesn't have it, do not use it.
+>[!WARNING]
+>**Thermal runaway protection must be enabled.** This firmware feature monitors the temperature sensor and shuts the heater off if the temperature climbs unexpectedly or the sensor fails. A printer without thermal runaway protection can overheat catastrophically. Never disable this protection. If your printer doesn't have it, do not use it.
 - Never open the power supply enclosure or work on any electrical component while the printer is plugged in. The power supply contains mains voltage (120V or 240V) that can kill.
 
 ---
@@ -4368,6 +4406,9 @@ All FDM printing produces some airborne emissions. These fall into two categorie
 | ---------------- | ---------- | --------------------------------------------------------------------------------------------------- |
 | PLA              | Low        | Good room ventilation (open window or HVAC on)                                                      |
 | PETG             | Low–Medium | Active ventilation; avoid enclosed spaces without air exchange                                      |
+>[!WARNING]
+>ABS and ASA are **NOT safe for open classrooms** without a dedicated fume enclosure with HEPA + activated carbon filtration. Do not print ABS or ASA in any space without proper exhaust infrastructure.
+
 | ABS              | High       | Dedicated fume enclosure with HEPA + activated carbon filter required; NOT safe for open classrooms |
 | ASA              | High       | Same as ABS                                                                                         |
 | TPU              | Medium     | Active ventilation; keep nozzle temperature at the minimum needed                                   |
@@ -4375,7 +4416,8 @@ All FDM printing produces some airborne emissions. These fall into two categorie
 
 ### The Safe Choice: PLA
 
-**PLA (Polylactic Acid) is the safest classroom filament available.** It is made from bio-derived sources (corn starch or sugarcane), prints at relatively low temperatures (190–220°C), produces the lowest emissions of any common FDM material, and is forgiving of settings variations. For any classroom project where the mechanical requirements don't specifically demand a different material, default to PLA.
+>[!TIP]
+>**PLA is the safest classroom filament available.** Made from bio-derived sources, it prints at low temperatures (190–220°C) and produces the lowest emissions of any common FDM material. Default to PLA for any project where mechanical requirements don't specifically demand something else.
 
 ### What "Good Ventilation" Actually Means
 
@@ -4407,7 +4449,8 @@ The right material for a project depends on what the part needs to do and where 
 
 When a material is listed as "hard," that means it requires one or more of the following: a higher nozzle temperature, a heated enclosure to prevent warping, special bed adhesion (glue stick, hairspray, specialized plates), slower print speeds, or more careful tuning of retraction settings. Starting with a difficult material before you have PLA dialed in is a recipe for frustration and wasted filament.
 
-**The practical rule:** use PLA until you have a specific reason not to. When you need better heat resistance, try PETG next. ABS and specialty materials come later, with appropriate safety infrastructure.
+>[!TIP]
+>**The practical material rule:** use PLA until you have a specific functional reason not to. Need better heat resistance? Try PETG next. Reserve ABS and specialty materials for when you have the appropriate safety infrastructure.
 
 ### PLA and Sustainability — A Realistic Picture
 
@@ -4421,7 +4464,8 @@ The most sustainable approach to FDM printing is not any particular material —
 
 ### Always Estimate First
 
-Sending a model to print without checking the cost is like placing a restaurant order without looking at the price. For short prints of small parts, the filament cost is trivial (often under $0.50). But for large, high-infill parts, it can be several dollars — and more importantly, it represents several hours of printer time that you can't get back if the part turns out to need revision.
+>[!TIP]
+>Always estimate filament cost and print time **before** sending a model to print. For small parts the cost is trivial, but large high-infill parts can cost several dollars and several hours — time you can't recover if the part needs revision.
 
 The estimate formula from Lesson 1 applies here:
 
@@ -4522,7 +4566,8 @@ PRINTER STARTUP CHECKLIST
 
 ### Why Each Item Matters
 
-**Bed leveling** is the single most critical setting for successful prints. The first layer needs to be squished gently against the bed — close enough to bond, but not so close that filament can't flow. A bed that's 0.1 mm too high or too low can cause every print to fail. Most modern printers have automatic bed leveling (ABL), but you should still understand how it works and check that it's running correctly.
+>[!IMPORTANT]
+>**Bed leveling is the single most critical setting for successful prints.** A bed that is just 0.1 mm too high or too low can cause every print to fail. Always verify leveling before each print session. Most modern printers have automatic bed leveling (ABL), but you should still understand how it works and check that it's running correctly.
 
 **Clean build plate** prevents adhesion failures. Skin oils from touching the plate are invisible but dramatically reduce how well plastic sticks. An isopropyl alcohol (IPA) wipe before every print takes 30 seconds and prevents a common failure mode.
 
@@ -4538,15 +4583,18 @@ PRINTER STARTUP CHECKLIST
 
 Checking in periodically during a print takes only a few seconds each time and lets you catch problems early. A problem caught at layer 10 is a minor inconvenience. The same problem discovered at layer 100 means you've wasted 90 layers of material and print time.
 
-**Spaghetti** — when the part lifts off the bed and the nozzle starts dragging filament through the air instead of depositing it in layers. The result looks like a pile of plastic spaghetti. This is the most common failure mode and the most important to catch early. If you see it, pause or cancel the print immediately.
+>[!WARNING]
+>**Spaghetti** is the most common print failure: the part lifts off the bed and the nozzle drags filament through the air. If you see this, **pause or cancel the print immediately** — catching it at layer 10 is a minor inconvenience; catching it at layer 100 wastes 90 layers of material and time.
 
-**Layer shifts** — a horizontal displacement somewhere in the print, where part of the model is offset from the rest. This usually indicates a mechanical problem (belt tension, loose pulley, or a motor missing steps). Cancel the print and diagnose the cause before trying again.
+>[!CAUTION]
+>**Layer shifts** (horizontal displacements in the print) usually indicate a mechanical problem — belt tension, loose pulley, or a motor skipping steps. Cancel the print and diagnose the cause before trying again.
 
 **Nozzle clog** — the extruder starts making a clicking or ticking sound as the gear slips because material isn't flowing. Filament may start grinding. Pause the print and clear the clog before restarting.
 
 **Stringing** — thin wisps of filament connecting different parts of the print. Usually a retraction or temperature setting issue rather than an emergency, but it may require post-processing cleanup.
 
-**Smoke — immediate emergency.** Cut power. Do not attempt to continue or diagnose while the printer is running. Notify your instructor. Do not restart the printer until the cause has been fully identified and corrected.
+>[!WARNING]
+>**Smoke is an immediate emergency.** Cut power immediately. Do not attempt to continue or diagnose while the printer is running. Notify your instructor. Do not restart the printer until the cause has been fully identified and corrected.
 
 ---
 
@@ -4556,13 +4604,17 @@ Checking in periodically during a print takes only a few seconds each time and l
 
 A print ending doesn't mean the work is done. Follow these steps after every print:
 
-1. **Wait for the nozzle to cool below 50°C** before reaching anywhere near the hot end. The nozzle can reach 200°C+ during printing and retains heat for several minutes after shutdown.
+>[!CAUTION]
+>**Wait for the nozzle to cool below 50°C** before reaching anywhere near the hot end. The nozzle can reach 200°C+ during printing and retains heat for several minutes after shutdown.
+
+1. **Wait for the nozzle to cool below 50°C** before reaching anywhere near the hot end.
 
 2. **Wait for the bed to cool below 30°C** before removing the part. Parts printed on a hot bed can warp slightly if removed while the bed is still warm. Many PEI-coated beds release parts naturally as they cool — you may not even need tools.
 
 3. **Use a spatula or palette knife** to gently separate the part from the build plate. Never force parts off with your fingers — the edge of a part against a spring steel bed can cut skin. Apply the spatula at a low angle and use a gentle rocking motion.
 
-4. **Store filament in a sealed bag with desiccant.** Filament absorbs moisture from the air (this is called hygroscopy), and moisture in filament causes bubbling, popping, and reduced mechanical properties during extrusion. This is especially important for Nylon and PETG. A small silica gel desiccant packet inside a ziplock bag is sufficient for short-term storage.
+>[!NOTE]
+>**Store filament in a sealed bag with desiccant.** Filament absorbs moisture (hygroscopy), causing bubbling, popping sounds, and reduced mechanical properties during extrusion. This is especially critical for Nylon and PETG. A silica gel desiccant packet in a ziplock bag is sufficient for short-term storage.
 
 ---
 
@@ -4574,7 +4626,8 @@ The decisions you make in OpenSCAD directly affect how safe and reliable the pri
 
 **Minimize overhangs.** Any geometry that extends more than about 45° from vertical needs supports — temporary scaffolding that the printer adds automatically. Supports increase print time, use more material, often leave rough marks where they're removed, and increase the risk of print failure due to tangled support material. Good design reorients parts or modifies geometry to eliminate or reduce overhangs.
 
-**Maintain minimum wall thickness.** For a 0.4 mm nozzle, walls below 0.8 mm (two nozzle widths) may not print reliably. Walls below 1.2 mm (three nozzle widths) are marginal for any kind of structural use. Walls below about 0.8 mm may not appear in the sliced output at all — the slicer simply omits them as too small.
+>[!CAUTION]
+>**Minimum wall thickness for a 0.4 mm nozzle:** walls below 0.8 mm (2× nozzle width) may not print reliably, and walls below ~0.8 mm may be omitted entirely by the slicer. Use at least 1.2 mm (3× nozzle width) for any structural wall.
 
 **Use the safest material that meets requirements.** If PLA is strong enough, use PLA. Don't introduce PETG, ABS, or specialty materials unless you have a specific reason and the appropriate safety infrastructure.
 
@@ -5350,7 +5403,8 @@ These fonts are widely pre-installed and safe to use in code you'll share with c
 - `Liberation Mono` — monospaced, excellent for part numbers and code
 - `DejaVu Serif` — serif font with good contrast for labels
 
-If OpenSCAD can't find the font you specified, it prints `WARNING: No match for requested font family` in the console. If your text looks wrong or uses a different font than intended, look for this warning.
+>[!NOTE]
+>If OpenSCAD can't find your specified font, it prints `WARNING: No match for requested font family` in the console. Font availability varies by OS — if text looks wrong, check the console for this warning and substitute an available font.
 
 ---
 
@@ -11801,33 +11855,33 @@ all: build test archive
 build: $(OUTPUT)
 
 $(OUTPUT): $(SRC) | build/
-	openscad -o $@ $<
-	3dm info
+  openscad -o $@ $<
+  3dm info
 
 build/:
-	mkdir -p build build/variants build/logs
+  mkdir -p build build/variants build/logs
 
 clean:
-	rm -rf build/
+  rm -rf build/
 
 variants: build/
-	@for w in $(WIDTHS); do \
-	  echo "Building width=$$w..."; \
-	  openscad -D "width=$$w" -o "build/variants/main_w$$w.stl" $(SRC); \
-	done
+  @for w in $(WIDTHS); do \
+    echo "Building width=$$w..."; \
+    openscad -D "width=$$w" -o "build/variants/main_w$$w.stl" $(SRC); \
+  done
 
 archive: build/
-	$(eval TS := $(shell date +%Y%m%d_%H%M%S))
-	mkdir -p "archives/$(TS)"
-	cp $(OUTPUT) "archives/$(TS)/"
-	cp $(SRC)    "archives/$(TS)/"
-	3dm info > "archives/$(TS)/BUILD_INFO.txt"
+  $(eval TS := $(shell date +%Y%m%d_%H%M%S))
+  mkdir -p "archives/$(TS)"
+  cp $(OUTPUT) "archives/$(TS)/"
+  cp $(SRC)    "archives/$(TS)/"
+  3dm info > "archives/$(TS)/BUILD_INFO.txt"
 
 test: build/
-	@for w in 10 30 80; do \
-	  openscad -D "width=$$w" -o "/tmp/test_w$$w.stl" $(SRC) && \
-	  echo "  width=$$w: OK" || echo "  width=$$w: FAILED"; \
-	done
+  @for w in 10 30 80; do \
+    openscad -D "width=$$w" -o "/tmp/test_w$$w.stl" $(SRC) && \
+    echo "  width=$$w: OK" || echo "  width=$$w: FAILED"; \
+  done
 ```
 
 #### PowerShell (Windows)
@@ -12322,6 +12376,9 @@ Solution:
 
 ### Debugging
 
+>[!TIP]
+>Lower `$fn` to **8–12 during development** for fast renders, then raise it to 32–64 for final export. High `$fn` values (especially with Minkowski) can make renders take minutes.
+
 - Lower `$fn` to 8-12 for faster renders during development
 - Use `3dm info` frequently to catch issues early
 - Test components individually before assembling
@@ -12342,6 +12399,9 @@ Solution:
 - Archive successful builds with timestamps
 
 ### Accessibility
+
+>[!IMPORTANT]
+>For accessible design, always use `3dm info` to verify non-visual usability and `3dm preview` to generate a tactile inspection image. Document all measurements clearly and test assembly without visual guidance.
 
 - Always use `3dm info` to verify non-visual usability
 - Generate `3dm preview` for tactile inspection
@@ -12372,6 +12432,9 @@ A: Use the tolerance testing matrix; print variants with different parameters
 
 Q: What should I measure after printing?  
 A: Critical dimensions and compare to design specifications
+
+>[!TIP]
+>**Non-manifold fix:** Use the 0.001 offset rule — `translate([0, 0, -0.001])` before subtracting and add 0.002 to the cutting shape's height.
 
 Q: How do I fix non-manifold geometry?  
 A: Use the 0.001 offset rule: `translate([0, 0, 0.001])` before subtracting
