@@ -4,7 +4,6 @@
 [Syllabus](Syllabus.md)
 [Setup & Accessibility Fundamentals](Setup_Accessibility_Complete.md)
 [3D Printing Safety Protocols and the Physical Fabrication Interface](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md)
-
 - [Foundation of Command Line Tools](Command_Line_Interface_Selection/Command_Line_Interface_Selection.md)
   - [PowerShell](PS_Complete_Curriculum.md)
   - [Windows Command Prompt (CMD)](CMD_Complete_Curriculum.md)
