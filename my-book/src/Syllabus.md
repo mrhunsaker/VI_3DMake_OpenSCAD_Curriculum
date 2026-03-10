@@ -28,16 +28,16 @@ Accessibility is not an add-on. It is the foundation of every tool, workflow, an
 
 ### Setup & Accessibility Fundamentals (Prerequisite - 2-3 hours)
 
-Start here: [Screen Reader Accessibility Guide](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md)
+Start here: [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide)
 
 Before choosing a command-line pathway, students optimize their screen reader setup for terminal work.
 
 | Component                                                                                                         | Duration    | Content                                                                   |
 |-------------------------------------------------------------------------------------------------------------------|-------------|---------------------------------------------------------------------------|
-| [Screen Reader Accessibility Guide](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) | 1-1.5 hours | NVDA/JAWS reference for PowerShell, CMD, and Git Bash; keyboard shortcuts |
-| [Screen Reader Choice: Windows CLI](Setup/Screen_Reader_Choice/Screen_Reader_Choice.md)                           | 30 min      | Comparing NVDA, JAWS, Narrator, and Dolphin; choosing the right tool      |
-| [Braille Display & Terminal Mode](Setup/Braille_Displays/Braille_Displays.md)                                     | 30 min      | Optional: configuring refreshable braille displays for terminal work      |
-| [Editor Selection and Setup](Setup/Editor_Selection_Setup/Editor_Selection_Setup.md)                              | 30 min      | Choosing Notepad, Notepad++, or VS Code; configuring indent announcement  |
+| [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) | 1-1.5 hours | NVDA/JAWS reference for PowerShell, CMD, and Git Bash; keyboard shortcuts |
+| [Screen Reader Choice: Windows CLI](Setup_Accessibility_Complete.md#screen-reader-choice)                           | 30 min      | Comparing NVDA, JAWS, Narrator, and Dolphin; choosing the right tool      |
+| [Braille Display & Terminal Mode](Setup_Accessibility_Complete.md#braille-displays)                                     | 30 min      | Optional: configuring refreshable braille displays for terminal work      |
+| [Editor Selection and Setup](Setup_Accessibility_Complete.md#editor-setup)                              | 30 min      | Choosing Notepad, Notepad++, or VS Code; configuring indent announcement  |
 
 ### Command-Line Foundation (Choose Your Path)
 
@@ -51,62 +51,62 @@ Students master terminal/command-line fundamentals before learning 3D design. Ch
 #### Pathway A: PowerShell Foundation (Recommended for Windows)
 
 Total Duration: 30-45 hours
-Start here: [PowerShell Curriculum Overview](PowerShell_Foundation/PowerShell_Curriculum_Overview/PowerShell_Curriculum_Overview.md)
+Start here: [PowerShell Curriculum Overview](PS_Complete_Curriculum.md#part-1-powershell)
 
 | Component                                                                                                                                          | Duration    | Content                                                                     |
 |----------------------------------------------------------------------------------------------------------------------------------------------------|-------------|-----------------------------------------------------------------------------|
-| [PowerShell Introduction](PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md)                                                | 20-30 min   | Screen-reader-friendly quick-start (JAWS/NVDA); essential commands overview |
-| [PowerShell Tutorial](PowerShell_Foundation/Powershell_Tutorial/Powershell_Tutorial.md)                                                            | 30-45 min   | Hands-on tutorial: paths, navigation, wildcards, running scripts            |
-| [Powershell Lesson Pre: Your First Terminal](PowerShell_Foundation/PS_Pre_Your_First_Terminal/PS_Pre_Your_First_Terminal.md)                                      | 2-2.5 hours | Opening PowerShell, first commands, basic navigation, screen reader tricks  |
-| [Powershell Lesson 0: Getting Started](PowerShell_Foundation/PS_0_getting_started_layout_paths/PS_0_getting_started_layout_paths.md)                              | 1.5 hours   | Paths, shortcuts, tab completion                                            |
-| [Powershell Lesson 1: Navigation](PowerShell_Foundation/PS_1_navigation/PS_1_navigation.md)                                                                       | 2-2.5 hours | Moving around the file system confidently                                   |
-| [Powershell Lesson 2: File & Folder Manipulation](PowerShell_Foundation/PS_2_file_folder_manipulation_modification/PS_2_file_folder_manipulation_modification.md) | 2.5-3 hours | Creating, editing, moving, copying, deleting files and directories          |
-| [Powershell Lesson 3: Input, Output & Piping](PowerShell_Foundation/PS_3_input_output_piping/PS_3_input_output_piping.md)                                         | 2.5-3 hours | Redirecting output, piping commands, understanding data flow                |
-| [Powershell Lesson 4: Environment Variables & Aliases](PowerShell_Foundation/PS_4_environment_variables_aliases/PS_4_environment_variables_aliases.md)            | 2-2.5 hours | Setting variables, creating shortcuts, persistent configurations            |
-| [Powershell Lesson 5: Filling in the Gaps](PowerShell_Foundation/PS_5_filling_in_the_gaps/PS_5_filling_in_the_gaps.md)                                            | 2.5-3 hours | Control flow, profiles, useful tricks, scripting fundamentals               |
-| [Powershell Lesson 6: Advanced Terminal Techniques](PowerShell_Foundation/PS_6_Advanced_Techniques/PS_6_Advanced_Techniques.md)                                   | 4-4.5 hours | Scripts, functions, loops, professional workflows, automation patterns      |
-| [PowerShell Unit Test & Practice](PowerShell_Foundation/PS_Unit_Test/PS_Unit_Test.md)                                                              | 2-3 hours   | Practice exercises, assessment, reinforcement                               |
+| [PowerShell Introduction](PS_Complete_Curriculum.md#part-1-powershell)                                                | 20-30 min   | Screen-reader-friendly quick-start (JAWS/NVDA); essential commands overview |
+| [PowerShell Tutorial](PS_Complete_Curriculum.md#part-1-powershell)                                                            | 30-45 min   | Hands-on tutorial: paths, navigation, wildcards, running scripts            |
+| [Powershell Lesson Pre: Your First Terminal](PS_Complete_Curriculum.md#ps-lesson-pre)                                      | 2-2.5 hours | Opening PowerShell, first commands, basic navigation, screen reader tricks  |
+| [Powershell Lesson 0: Getting Started](PS_Complete_Curriculum.md#ps-lesson-0)                              | 1.5 hours   | Paths, shortcuts, tab completion                                            |
+| [Powershell Lesson 1: Navigation](PS_Complete_Curriculum.md#ps-lesson-1)                                                                       | 2-2.5 hours | Moving around the file system confidently                                   |
+| [Powershell Lesson 2: File & Folder Manipulation](PS_Complete_Curriculum.md#ps-lesson-2) | 2.5-3 hours | Creating, editing, moving, copying, deleting files and directories          |
+| [Powershell Lesson 3: Input, Output & Piping](PS_Complete_Curriculum.md#ps-lesson-3)                                         | 2.5-3 hours | Redirecting output, piping commands, understanding data flow                |
+| [Powershell Lesson 4: Environment Variables & Aliases](PS_Complete_Curriculum.md#ps-lesson-4)            | 2-2.5 hours | Setting variables, creating shortcuts, persistent configurations            |
+| [Powershell Lesson 5: Filling in the Gaps](PS_Complete_Curriculum.md#ps-lesson-5)                                            | 2.5-3 hours | Control flow, profiles, useful tricks, scripting fundamentals               |
+| [Powershell Lesson 6: Advanced Terminal Techniques](PS_Complete_Curriculum.md#ps-lesson-6)                                   | 4-4.5 hours | Scripts, functions, loops, professional workflows, automation patterns      |
+| [PowerShell Unit Test & Practice](PS_Complete_Curriculum.md#ps-unit-exam)                                                              | 2-3 hours   | Practice exercises, assessment, reinforcement                               |
 
 Outcomes: Terminal fluency, file system mastery, basic scripting, screen reader optimization, automation readiness
 
 #### Pathway B: Windows Command Prompt (CMD) (Simpler alternative)
 
 Total Duration: 30-45 hours
-Start here: [CMD Curriculum Overview](CMD_Foundation/CMD_Curriculum_Overview/CMD_Curriculum_Overview.md)
+Start here: [CMD Curriculum Overview](CMD_Complete_Curriculum.md#part-2-cmd)
 
 | Component                                                                                                                                      | Duration    | Content                                                             |
 |------------------------------------------------------------------------------------------------------------------------------------------------|-------------|---------------------------------------------------------------------|
-| [Command Line Lesson Pre: Your First Terminal](CMD_Foundation/CMD_Pre_Your_First_Terminal/CMD_Pre_Your_First_Terminal.md)                                      | 2-2.5 hours | Opening CMD, first commands, basic navigation, screen reader tricks |
-| [Command Line Lesson 0: Getting Started](CMD_Foundation/CMD_0_getting_started_layout_paths/CMD_0_getting_started_layout_paths.md)                              | 1.5 hours   | Paths, shortcuts, command basics                                    |
-| [Command Line Lesson 1: Navigation](CMD_Foundation/CMD_1_navigation/CMD_1_navigation.md)                                                                       | 2-2.5 hours | Moving around the file system confidently                           |
-| [Command Line Lesson 2: File & Folder Manipulation](CMD_Foundation/CMD_2_file_folder_manipulation_modification/CMD_2_file_folder_manipulation_modification.md) | 2.5-3 hours | Creating, editing, moving, copying, deleting files and directories  |
-| [Command Line Lesson 3: Input, Output & Redirection](CMD_Foundation/CMD_3_input_output_piping/CMD_3_input_output_piping.md)                                    | 2-2.5 hours | Redirecting output, piping commands, understanding data flow        |
-| [Command Line Lesson 4: Environment Variables & Shortcuts](CMD_Foundation/CMD_4_environment_variables_aliases/CMD_4_environment_variables_aliases.md)          | 2-2.5 hours | Setting variables, creating shortcuts, persistent configurations    |
-| [Command Line Lesson 5: Filling in the Gaps](CMD_Foundation/CMD_5_filling_in_the_gaps/CMD_5_filling_in_the_gaps.md)                                            | 2.5-3 hours | Batch files, advanced techniques, scripting fundamentals            |
-| [Command Line Lesson 6: Advanced Terminal Techniques](CMD_Foundation/CMD_6_Advanced_Techniques/CMD_6_Advanced_Techniques.md)                                   | 3-3.5 hours | Scripts, automation patterns, professional workflows                |
-| [CMD Unit Test & Practice](CMD_Foundation/CMD_Unit_Test/CMD_Unit_Test.md)                                                                      | 2-3 hours   | Practice exercises, assessment, reinforcement                       |
+| [Command Line Lesson Pre: Your First Terminal](CMD_Complete_Curriculum.md#cmd-lesson-pre)                                      | 2-2.5 hours | Opening CMD, first commands, basic navigation, screen reader tricks |
+| [Command Line Lesson 0: Getting Started](CMD_Complete_Curriculum.md#cmd-lesson-0)                              | 1.5 hours   | Paths, shortcuts, command basics                                    |
+| [Command Line Lesson 1: Navigation](CMD_Complete_Curriculum.md#cmd-lesson-1)                                                                       | 2-2.5 hours | Moving around the file system confidently                           |
+| [Command Line Lesson 2: File & Folder Manipulation](CMD_Complete_Curriculum.md#cmd-lesson-2) | 2.5-3 hours | Creating, editing, moving, copying, deleting files and directories  |
+| [Command Line Lesson 3: Input, Output & Redirection](CMD_Complete_Curriculum.md#cmd-lesson-3)                                    | 2-2.5 hours | Redirecting output, piping commands, understanding data flow        |
+| [Command Line Lesson 4: Environment Variables & Shortcuts](CMD_Complete_Curriculum.md#cmd-lesson-4)          | 2-2.5 hours | Setting variables, creating shortcuts, persistent configurations    |
+| [Command Line Lesson 5: Filling in the Gaps](CMD_Complete_Curriculum.md#cmd-lesson-5)                                            | 2.5-3 hours | Batch files, advanced techniques, scripting fundamentals            |
+| [Command Line Lesson 6: Advanced Terminal Techniques](CMD_Complete_Curriculum.md#cmd-lesson-6)                                   | 3-3.5 hours | Scripts, automation patterns, professional workflows                |
+| [CMD Unit Test & Practice](CMD_Complete_Curriculum.md#cmd-unit-exam)                                                                      | 2-3 hours   | Practice exercises, assessment, reinforcement                       |
 
 Outcomes: Terminal fluency, file system mastery, batch scripting, screen reader optimization, automation readiness
 
 #### Pathway C: Git Bash (Best for macOS/Linux or cross-platform development)
 
 Total Duration: 20-25 hours
-Start here: [Git Bash Curriculum Overview](GitBash_Foundation/GitBash_Curriculum_Overview/GitBash_Curriculum_Overview.md)
+Start here: [Git Bash Curriculum Overview](GitBash_Complete_Curriculum.md#part-3-git-bash)
 
 | Component                                                                                                                                                        | Duration      | Content                                                                  |
 |------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|--------------------------------------------------------------------------|
-| [Git Bash Introduction](GitBash_Foundation/GitBash_Introduction/GitBash_Introduction.md)                                                                         | 20-30 min     | Screen-reader-friendly quick-start (JAWS/NVDA); essential commands       |
-| [Git Bash Tutorial](GitBash_Foundation/GitBash_Tutorial/GitBash_Tutorial.md)                                                                                     | 30-45 min     | Hands-on tutorial: paths, navigation, wildcards, running scripts         |
-| [Screen Reader Accessibility Guide for Git Bash](GitBash_Foundation/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md)                      | 30-45 min     | NVDA and JAWS configuration specific to Git Bash                         |
-| [Bash Lesson Pre: Your First Terminal](GitBash_Foundation/GitBash_Pre_Your_First_Terminal/GitBash_Pre_Your_First_Terminal.md)                                        | 2-2.5 hours   | Opening Git Bash, first commands, basic navigation, screen reader tricks |
-| [Bash Lesson 0: Getting Started](GitBash_Foundation/GitBash_0_getting_started_layout_paths/GitBash_0_getting_started_layout_paths.md)                                | 1.5 hours     | Unix-style paths, shortcuts, command basics, Windows path conversion     |
-| [Bash Lesson 1: Navigation](GitBash_Foundation/GitBash_1_navigation/GitBash_1_navigation.md)                                                                         | 2-2.5 hours   | Moving around the file system confidently                                |
-| [Bash Lesson 2: File and Folder Manipulation](GitBash_Foundation/GitBash_2_file_folder_manipulation_modification/GitBash_2_file_folder_manipulation_modification.md) | 2-2.5 hours   | Creating, editing, moving, copying, deleting files and directories       |
-| [Bash Lesson 3: Input, Output & Piping](GitBash_Foundation/GitBash_3_input_output_piping/GitBash_3_input_output_piping.md)                                           | 2-2.5 hours   | Redirecting output, piping with grep/sort/wc, understanding data flow    |
-| [Bash Lesson 4: Environment Variables & Aliases](GitBash_Foundation/GitBash_4_environment_variables_aliases/GitBash_4_environment_variables_aliases.md)              | 1.5-2 hours   | Setting variables, creating aliases, editing .bashrc                     |
-| [Bash Lesson 5: Filling in the Gaps](GitBash_Foundation/GitBash_5_filling_in_the_gaps/GitBash_5_filling_in_the_gaps.md)                                              | 2-2.5 hours   | Shell profiles, command history, debugging                               |
-| [Bash Lesson 6: Advanced Terminal Techniques](GitBash_Foundation/GitBash_6_Advanced_Techniques/GitBash_6_Advanced_Techniques.md)                                     | 2.5-3.5 hours | Shell scripts, functions, loops, professional workflows                  |
-| [GitBash Unit Test & Practice](GitBash_Foundation/GitBash_Unit_Test/GitBash_Unit_Test.md)                                                                        | 2-2.5 hours   | Practice exercises, assessment, reinforcement                            |
+| [Git Bash Introduction](GitBash_Complete_Curriculum.md#part-3-git-bash)                                                                         | 20-30 min     | Screen-reader-friendly quick-start (JAWS/NVDA); essential commands       |
+| [Git Bash Tutorial](GitBash_Complete_Curriculum.md#gb-tutorial)                                                                                     | 30-45 min     | Hands-on tutorial: paths, navigation, wildcards, running scripts         |
+| [Screen Reader Accessibility Guide for Git Bash](GitBash_Complete_Curriculum.md#gb-accessibility-guide)                      | 30-45 min     | NVDA and JAWS configuration specific to Git Bash                         |
+| [Bash Lesson Pre: Your First Terminal](GitBash_Complete_Curriculum.md#gb-lesson-pre)                                        | 2-2.5 hours   | Opening Git Bash, first commands, basic navigation, screen reader tricks |
+| [Bash Lesson 0: Getting Started](GitBash_Complete_Curriculum.md#gb-lesson-0)                                | 1.5 hours     | Unix-style paths, shortcuts, command basics, Windows path conversion     |
+| [Bash Lesson 1: Navigation](GitBash_Complete_Curriculum.md#gb-lesson-1)                                                                         | 2-2.5 hours   | Moving around the file system confidently                                |
+| [Bash Lesson 2: File and Folder Manipulation](GitBash_Complete_Curriculum.md#gb-lesson-2) | 2-2.5 hours   | Creating, editing, moving, copying, deleting files and directories       |
+| [Bash Lesson 3: Input, Output & Piping](GitBash_Complete_Curriculum.md#gb-lesson-3)                                           | 2-2.5 hours   | Redirecting output, piping with grep/sort/wc, understanding data flow    |
+| [Bash Lesson 4: Environment Variables & Aliases](GitBash_Complete_Curriculum.md#gb-lesson-4)              | 1.5-2 hours   | Setting variables, creating aliases, editing .bashrc                     |
+| [Bash Lesson 5: Filling in the Gaps](GitBash_Complete_Curriculum.md#gb-lesson-5)                                              | 2-2.5 hours   | Shell profiles, command history, debugging                               |
+| [Bash Lesson 6: Advanced Terminal Techniques](GitBash_Complete_Curriculum.md#gb-lesson-6)                                     | 2.5-3.5 hours | Shell scripts, functions, loops, professional workflows                  |
+| [GitBash Unit Test & Practice](GitBash_Complete_Curriculum.md#gb-unit-exam)                                                                        | 2-2.5 hours   | Practice exercises, assessment, reinforcement                            |
 
 Outcomes: Terminal fluency, file system mastery, bash scripting, version control basics, automation readiness
 
@@ -128,37 +128,37 @@ Start here: [3dMake Introduction](3dMake_Foundation/3dMake_Intro/3dMake_Intro.md
 
 | Lesson                                                             | Focus                                                           | Duration   | Project |
 |--------------------------------------------------------------------|-----------------------------------------------------------------|------------|---------|
-| [Lesson 1](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md) | Environmental Configuration + Code Documentation Standards      | 60-90 min  | None    |
-| [Lesson 2](3dMake_Foundation/Lessons_3dMake_2/Lessons_3dMake_2.md) | Primitives & Boolean Operations + Modifier Characters Debugging | 75-90 min  | None    |
-| [Lesson 3](3dMake_Foundation/Lessons_3dMake_3/Lessons_3dMake_3.md) | Parametric Architecture + Advanced Programming Concepts         | 90-120 min | None    |
+| [Lesson 1](3dMake_All_Lessons.md) | Environmental Configuration + Code Documentation Standards      | 60-90 min  | None    |
+| [Lesson 2](3dMake_All_Lessons.md) | Primitives & Boolean Operations + Modifier Characters Debugging | 75-90 min  | None    |
+| [Lesson 3](3dMake_All_Lessons.md) | Parametric Architecture + Advanced Programming Concepts         | 90-120 min | None    |
 
 #### Verification & Safety (Lessons 4-5 | ~2 hours)
 
 | Lesson                                                             | Focus                                    | Duration  | Project |
 |--------------------------------------------------------------------|------------------------------------------|-----------|---------|
-| [Lesson 4](3dMake_Foundation/Lessons_3dMake_4/Lessons_3dMake_4.md) | AI-Enhanced Verification & Feedback      | 45-60 min | None    |
+| [Lesson 4](3dMake_All_Lessons.md) | AI-Enhanced Verification & Feedback      | 45-60 min | None    |
 | [Lesson 5](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) | Safety Protocols & Material Introduction | 60-90 min | None    |
 
 #### Applied Projects (Lessons 6-8 | ~5-6 hours)
 
 | Lesson                                                             | Focus                                     | Duration    | Project             |
 |--------------------------------------------------------------------|-------------------------------------------|-------------|---------------------|
-| [Lesson 6](3dMake_Foundation/Lessons_3dMake_6/Lessons_3dMake_6.md) | Practical 3dm Commands + String Functions | 75-105 min  | Customizable Keycap |
-| [Lesson 7](3dMake_Foundation/Lessons_3dMake_7/Lessons_3dMake_7.md) | Parametric Transforms + Math Functions    | 90-120 min  | Phone Stand         |
-| [Lesson 8](3dMake_Foundation/Lessons_3dMake_8/Lessons_3dMake_8.md) | Advanced Design + Assembly Best Practices | 105-150 min | Stackable Bins      |
+| [Lesson 6](3dMake_All_Lessons.md) | Practical 3dm Commands + String Functions | 75-105 min  | Customizable Keycap |
+| [Lesson 7](3dMake_All_Lessons.md) | Parametric Transforms + Math Functions    | 90-120 min  | Phone Stand         |
+| [Lesson 8](3dMake_All_Lessons.md) | Advanced Design + Assembly Best Practices | 105-150 min | Stackable Bins      |
 
 #### Advanced Topics (Lessons 9-10 | ~3-4 hours)
 
 | Lesson                                                                | Focus                                                     | Duration    | Project                          |
 |-----------------------------------------------------------------------|-----------------------------------------------------------|-------------|----------------------------------|
-| [Lesson 9](3dMake_Foundation/Lessons_3dMake_9/Lessons_3dMake_9.md)    | Automation + File Import/Export (requires CLI Foundation) | 75-105 min  | Batch Processing Automation      |
-| [Lesson 10](3dMake_Foundation/Lessons_3dMake_10/Lessons_3dMake_10.md) | Troubleshooting & Mastery with Measurement                | 120-150 min | QA Testing + Accessibility Audit |
+| [Lesson 9](3dMake_All_Lessons.md)    | Automation + File Import/Export (requires CLI Foundation) | 75-105 min  | Batch Processing Automation      |
+| [Lesson 10](3dMake_All_Lessons.md) | Troubleshooting & Mastery with Measurement                | 120-150 min | QA Testing + Accessibility Audit |
 
 #### Leadership (Lesson 11 | ~2 hours)
 
 | Lesson                                                                | Focus                                        | Duration   | Project               |
 |-----------------------------------------------------------------------|----------------------------------------------|------------|-----------------------|
-| [Lesson 11](3dMake_Foundation/Lessons_3dMake_11/Lessons_3dMake_11.md) | Stakeholder-Centric Design & Design Thinking | 90-120 min | Beaded Jewelry Holder |
+| [Lesson 11](3dMake_All_Lessons.md) | Stakeholder-Centric Design & Design Thinking | 90-120 min | Beaded Jewelry Holder |
 
 Total: 16-20 hours of instruction + projects
 
@@ -175,9 +175,9 @@ Located in `Command_Line_Interface_Selection/`:
 
 | Appendix                                                                                                                | Title                                           | Use When                                                     |
 |-------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|--------------------------------------------------------------|
-| [Appendix A](Command_Line_Interface_Selection/Appendix_A_CommandLine_Integration.md)                                    | CMD/Batch Integration for SCAD Workflows        | Automating with Windows Command Prompt and batch files       |
-| [Appendix B](Command_Line_Interface_Selection/Appendix_B_PowerShell_Integration.md)                                     | PowerShell Integration for SCAD Workflows       | Automating with PowerShell scripts and advanced workflows    |
-| [Appendix C](Command_Line_Interface_Selection/Appendix_C_GitBash_Integration.md)                                        | Git Bash / POSIX Shell Integration for SCAD     | Automating with Unix/bash shell scripts for cross-platform   |
+| [Appendix A](CLI_Appendices_Complete.md#appendix-a)                                    | CMD/Batch Integration for SCAD Workflows        | Automating with Windows Command Prompt and batch files       |
+| [Appendix B](CLI_Appendices_Complete.md#appendix-b)                                     | PowerShell Integration for SCAD Workflows       | Automating with PowerShell scripts and advanced workflows    |
+| [Appendix C](CLI_Appendices_Complete.md#appendix-c)                                        | Git Bash / POSIX Shell Integration for SCAD     | Automating with Unix/bash shell scripts for cross-platform   |
 
 #### 3dMake & OpenSCAD Appendices
 
@@ -185,11 +185,11 @@ Located in `3dMake_Foundation/`:
 
 | Appendix                                                                                | Title                                        | Use When                                                 |
 |-----------------------------------------------------------------------------------------|----------------------------------------------|----------------------------------------------------------|
-| [3DMake Cheat Sheet](3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md)                | Complete 3dm CLI Reference                   | Quick command lookup, troubleshooting 3dm commands       |
-| [Appendix A](3dMake_Foundation/Appendix_B_Comprehensive_Slicing_Guide.md)               | Comprehensive Slicing Guide                  | Slicing questions, switching slicers, quality issues     |
-| [Appendix B](3dMake_Foundation/Appendix_C_Material_Properties.md)                       | Material Properties & Selection Guide        | Choosing material, troubleshooting prints, cost analysis |
-| [Appendix C](3dMake_Foundation/Appendix_D_Tolerance_QA.md)                              | Tolerance Testing & Quality Assurance Matrix | Starting a project, verifying dimensions, quality issues |
-| [Appendix D](3dMake_Foundation/Appendix_E_Advanced_OpenSCAD_Concepts.md)                | Advanced OpenSCAD Concepts                   | Building mechanical systems, optimizing complex models   |
+| [3DMake Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a)                | Complete 3dm CLI Reference                   | Quick command lookup, troubleshooting 3dm commands       |
+| [Appendix A](3DMake_Appendices_Complete.md#appendix-b)               | Comprehensive Slicing Guide                  | Slicing questions, switching slicers, quality issues     |
+| [Appendix B](3DMake_Appendices_Complete.md#appendix-c)                       | Material Properties & Selection Guide        | Choosing material, troubleshooting prints, cost analysis |
+| [Appendix C](3DMake_Appendices_Complete.md#appendix-d)                              | Tolerance Testing & Quality Assurance Matrix | Starting a project, verifying dimensions, quality issues |
+| [Appendix D](3DMake_Appendices_Complete.md#appendix-e)                | Advanced OpenSCAD Concepts                   | Building mechanical systems, optimizing complex models   |
 | [Code Examples & Assets](assets/3dMake_Foundation/README.md)                            | 3dMake Code Examples & Assets                | Reference designs, working code examples                 |
 
 ### Project Templates & Assessment Materials
@@ -232,7 +232,7 @@ Each teacher template includes the 0-9 rubric scoring guide, common issues to wa
 
 #### Final Assessment
 
-**[3dMake Foundation Final Exam](3dMake_Foundation/3dMake_Final_Exam.md)** - Comprehensive 25-question assessment (100 points total) covering:
+**[3dMake Foundation Final Exam](3dMake_All_Lessons.md)** - Comprehensive 25-question assessment (100 points total) covering:
 
 - Section 1: Error Detection & Code Analysis (Problems 1-10)  
 - Section 2: Design Challenges & Real-World Application (Problems 11-25)  
@@ -241,24 +241,24 @@ Questions include error identification, code explanation, behavioral analysis, a
 
 #### Master Rubric
 
-**[Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md)** - Unified assessment framework used across all projects, providing detailed criteria for the three scoring categories (Problem & Solution, Design & Code Quality, Documentation).
+**[Master Rubric](3DMake_Appendices_Complete.md#appendix-d)** - Unified assessment framework used across all projects, providing detailed criteria for the three scoring categories (Problem & Solution, Design & Code Quality, Documentation).
 
 ### Reference Materials for Students & Teachers
 
 #### Glossaries
 
-- **[Student Glossary](Backmatter/glossary.md)** - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI  
-- **[Teacher Glossary](Backmatter/teacher-glossary.md)** - Pedagogical framework, instructional design strategies, assessment concepts, and accessibility terminology
+- **[Student Glossary](Backmatter_Complete.md#student-glossary)** - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI  
+- **[Teacher Glossary](Backmatter_Complete.md#teacher-glossary)** - Pedagogical framework, instructional design strategies, assessment concepts, and accessibility terminology
 
 #### Technical References
 
-- **[Technical Reference & Troubleshooting](Backmatter/troubleshooting.md)** - Advanced systems architecture, OpenSCAD professional modeling reference, 3DMake professional usage, CLI references (CMD, PowerShell, Git Bash), and comprehensive troubleshooting compendium  
-- **[Further Reading & References](Backmatter/Further_Reading.md)** - Peer-reviewed research and scholarly works supporting curriculum design
+- **[Technical Reference & Troubleshooting](Backmatter_Complete.md#troubleshooting)** - Advanced systems architecture, OpenSCAD professional modeling reference, 3DMake professional usage, CLI references (CMD, PowerShell, Git Bash), and comprehensive troubleshooting compendium  
+- **[Further Reading & References](Backmatter_Complete.md#further-reading)** - Peer-reviewed research and scholarly works supporting curriculum design
 
 #### Quick References
 
 - **[3dMake Foundation Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md)** - Detailed lesson-by-lesson breakdown with objectives and timing  
-- **[3dMake Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md)** - At-a-glance command and syntax reference
+- **[3dMake Quick Reference](3DMake_Appendices_Complete.md#appendix-a)** - At-a-glance command and syntax reference
 
 ## Learning Progression: Student Roles
 
@@ -382,18 +382,18 @@ OpenSCAD
 
 - [OpenSCAD Download](https://openscad.org/downloads.html) - Free, cross-platform CAD (all major OS)
 - [OpenSCAD Documentation](https://openscad.org/documentation.html) - Official reference
-- [OpenSCAD Cheat Sheet](3dMake_Foundation/Lessons_3dMake_2/openscad-cheat-sheet.md) - Quick syntax reference
+- [OpenSCAD Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Quick syntax reference
 
 3DMake
 
 - [3DMake Documentation & Installation](https://github.com/tdeck/3dmake) - Command-line build tool for OpenSCAD
-- [3DMake CLI Cheat Sheet](3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md) - Complete command reference
-- [3dMake Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md) - Command and workflow reference
+- [3DMake CLI Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Complete command reference
+- [3dMake Quick Reference](3DMake_Appendices_Complete.md#appendix-a) - Command and workflow reference
 
 Editors
 - [VS Code Download](https://code.visualstudio.com/) - Free, screen-reader-accessible code editor
 - [Notepad++ Download](https://notepad-plus-plus.org/) - Free, lightweight Windows editor
-- [Editor Selection and Setup Guide](Setup/Editor_Selection_Setup/Editor_Selection_Setup.md) - Accessibility-focused setup guide
+- [Editor Selection and Setup Guide](Setup_Accessibility_Complete.md#editor-setup) - Accessibility-focused setup guide
 
 ### Screen Reader & Accessibility
 
@@ -409,10 +409,10 @@ Note: This curriculum is designed to work with all major screen readers. The wor
 
 Accessibility Configuration
 
-- [Screen Reader Accessibility Guide](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) - Comprehensive terminal accessibility guide
-- [Screen Reader Coding Tips (NVDA & JAWS)](3dMake_Foundation/Lessons_3dMake_1/nvda-jaws-coding-tips.md) - Keyboard shortcuts and configuration
-- [VSCode Setup Guide](3dMake_Foundation/Lessons_3dMake_1/vscode-setup-guide.md) - Accessibility-focused editor configuration
-- [Git Bash Screen Reader Guide](GitBash_Foundation/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) - NVDA and JAWS configuration for Git Bash
+- [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) - Comprehensive terminal accessibility guide
+- [Screen Reader Coding Tips (NVDA & JAWS)](3dMake_All_Lessons.md) - Keyboard shortcuts and configuration
+- [VSCode Setup Guide](3dMake_All_Lessons.md) - Accessibility-focused editor configuration
+- [Git Bash Screen Reader Guide](GitBash_Complete_Curriculum.md#gb-accessibility-guide) - NVDA and JAWS configuration for Git Bash
 
 ### Slicing Software
 
@@ -420,7 +420,7 @@ Accessibility Configuration
 - [Bambu Studio](https://bambulab.com/en/download/studio)
 - [Cura](https://ultimaker.com/software/ultimaker-cura)
 - [OrcaSlicer](https://github.com/SoftFever/OrcaSlicer/releases)
-- [Appendix A: Comprehensive Slicing Guide](3dMake_Foundation/Appendix_B_Comprehensive_Slicing_Guide.md) - Detailed setup guides for all major slicers
+- [Appendix A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b) - Detailed setup guides for all major slicers
 
 ### Supplemental Textbooks & Learning Resources
 
@@ -484,41 +484,41 @@ University of Utah Maker Spaces
 
 **Setup & Configuration:**
 
-- [3dMake Setup Guide](3dMake_Foundation/Lessons_3dMake_1/3dmake-setup-guide.md) - Installation walkthrough
-- [VSCode Setup Guide](3dMake_Foundation/Lessons_3dMake_1/vscode-setup-guide.md) - Accessibility-focused editor configuration
-- [mdBook Navigation Guide](3dMake_Foundation/Lessons_3dMake_1/mdbook-navigation-guide.md) - How to navigate this curriculum
+- [3dMake Setup Guide](3dMake_All_Lessons.md) - Installation walkthrough
+- [VSCode Setup Guide](3dMake_All_Lessons.md) - Accessibility-focused editor configuration
+- [mdBook Navigation Guide](3dMake_All_Lessons.md) - How to navigate this curriculum
 
 **Syntax & Commands:**
 
-- [OpenSCAD Cheat Sheet](3dMake_Foundation/Lessons_3dMake_2/openscad-cheat-sheet.md) - Complete syntax quick-reference
-- [3DMake CLI Cheat Sheet](3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md) - All 3dm commands and options
+- [OpenSCAD Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Complete syntax quick-reference
+- [3DMake CLI Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - All 3dm commands and options
 
 **Materials & Safety:**
 
-- [Filament Comparison Table](3dMake_Foundation/Lessons_3dMake_5/filament-comparison-table.md) - Material selection guide
-- [Safety Checklist](3dMake_Foundation/Lessons_3dMake_5/safety_checklist.md) - Pre-print safety procedures
-- [Maintenance Log](3dMake_Foundation/Lessons_3dMake_5/maintenance_log.md) - Printer maintenance tracking
+- [Filament Comparison Table](3DMake_Appendices_Complete.md#appendix-c) - Material selection guide
+- [Safety Checklist](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) - Pre-print safety procedures
+- [Maintenance Log](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) - Printer maintenance tracking
 
 ### When You're Stuck
 
 **For Technical Issues:**
 
-1. Check [Common Issues and Solutions](3dMake_Foundation/Lessons_3dMake_10/common_issues_and_solutions.md) - Comprehensive troubleshooting guide
-2. Review [Diagnostic Checklist](3dMake_Foundation/Lessons_3dMake_10/diagnostic_checklist.md) - Systematic problem diagnosis
-3. Consult [Technical Reference](Backmatter/troubleshooting.md) - Advanced systems architecture and professional reference
+1. Check [Common Issues and Solutions](Backmatter_Complete.md#troubleshooting) - Comprehensive troubleshooting guide
+2. Review [Diagnostic Checklist](Backmatter_Complete.md#troubleshooting) - Systematic problem diagnosis
+3. Consult [Technical Reference](Backmatter_Complete.md#troubleshooting) - Advanced systems architecture and professional reference
 4. Post in [OpenSCAD Discord](https://discord.gg/F2Nx2VxTB7) or [Reddit r/openscad](https://www.reddit.com/r/openscad/)
 5. Visit your local makerspace for hands-on support
 
 **For Accessibility Support:**
 
 - Contact your NVDA/JAWS vendor directly for technical assistance
-- Refer to the [Screen Reader Accessibility Guide](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md)
-- Review [Screen Reader Coding Tips (NVDA & JAWS)](3dMake_Foundation/Lessons_3dMake_1/nvda-jaws-coding-tips.md)
-- Check the [Git Bash Screen Reader Guide](GitBash_Foundation/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) if using Git Bash
+- Refer to the [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide)
+- Review [Screen Reader Coding Tips (NVDA & JAWS)](3dMake_All_Lessons.md)
+- Check the [Git Bash Screen Reader Guide](GitBash_Complete_Curriculum.md#gb-accessibility-guide) if using Git Bash
 
 **For Design & Concept Questions:**
 
-- Review [Student Glossary](Backmatter/glossary.md) for terminology clarification
+- Review [Student Glossary](Backmatter_Complete.md#student-glossary) for terminology clarification
 - Check project-specific guides in lesson folders
-- Consult the [Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md) for assessment expectations
+- Consult the [Master Rubric](3DMake_Appendices_Complete.md#appendix-d) for assessment expectations
 

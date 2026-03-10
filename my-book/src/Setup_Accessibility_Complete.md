@@ -6,18 +6,14 @@ Everything you need to configure an accessible working environment before starti
 
 ## Contents
 
-| Section | Title |
-|---|---|
-| [Part 1: Choosing a Screen Reader](#screen-reader-choice) | Compare NVDA, JAWS, Windows Narrator, and Dolphin SuperNova for command-line work |
-| [Part 2: Screen Reader Accessibility Guide](#accessibility-guide) | Key commands and terminal strategies for all four screen readers |
-| [Part 3: Braille Display Setup](#braille-displays) | Connecting and configuring a braille display with any screen reader |
-| [Part 4: Editor Selection and Setup](#editor-setup) | Choosing and configuring VS Code or other editors for accessible OpenSCAD work |
+| Section                                                           | Title                                                                             |
+| ----------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [Part 1: Choosing a Screen Reader](#screen-reader-choice)         | Compare NVDA, JAWS, Windows Narrator, and Dolphin SuperNova for command-line work |
+| [Part 2: Screen Reader Accessibility Guide](#accessibility-guide) | Key commands and terminal strategies for all four screen readers                  |
+| [Part 3: Braille Display Setup](#braille-displays)                | Connecting and configuring a braille display with any screen reader               |
+| [Part 4: Editor Selection and Setup](#editor-setup)               | Choosing and configuring VS Code or other editors for accessible OpenSCAD work    |
 
 **Recommended reading order:** Part 1 → Part 2 → Part 3 (if applicable) → Part 4. Parts 3 and 4 can be deferred until you need them.
-
----
-
-
 
 ---
 
@@ -40,6 +36,7 @@ Choosing a screen reader is a personal decision. There is no single reader that 
 NVDA is a free, open-source screen reader developed by NV Access. It is one of the most widely used screen readers in the world.
 
 **Advantages:**
+
 - Free to download and use; supported by donations.
 - Actively developed with frequent updates.
 - Excellent support for Windows terminals (Command Prompt, PowerShell, Windows Terminal, Git Bash).
@@ -48,6 +45,7 @@ NVDA is a free, open-source screen reader developed by NV Access. It is one of t
 - Good braille display support via built-in braille drivers and the BRLTTY/LibLouis library.
 
 **Disadvantages:**
+
 - Advanced paid support is community-driven rather than available from a commercial vendor helpdesk.
 - Some edge-case compatibility differences compared to commercial readers.
 
@@ -64,6 +62,7 @@ NVDA is a free, open-source screen reader developed by NV Access. It is one of t
 JAWS is a commercial screen reader developed by Freedom Scientific (part of Vispero). It is one of the most feature-rich and widely deployed screen readers in enterprise and educational settings.
 
 **Advantages:**
+
 - Mature product with decades of development and broad application compatibility.
 - Extensive scripting system allows deep customization for specific applications.
 - Vendor-provided paid support, training, and documentation.
@@ -71,6 +70,7 @@ JAWS is a commercial screen reader developed by Freedom Scientific (part of Visp
 - Widely used in workplaces and schools, so shared knowledge base is large.
 
 **Disadvantages:**
+
 - Commercial product with significant licensing cost.
 - JAWS demo mode limits session length to approximately 40 minutes before requiring a computer restart or session reset to continue. This can be disruptive during extended practice sessions.
 - Some advanced customization (JAWS scripts) requires a learning curve.
@@ -88,6 +88,7 @@ JAWS is a commercial screen reader developed by Freedom Scientific (part of Visp
 Windows Narrator is Microsoft's built-in screen reader, included with Windows 10 and Windows 11 at no extra cost. It has improved significantly with recent Windows releases.
 
 **Advantages:**
+
 - Already installed on every Windows 10 and Windows 11 computer — no download or installation needed.
 - No cost.
 - Simple to start: press **Windows+Ctrl+Enter** to toggle Narrator on and off.
@@ -95,6 +96,7 @@ Windows Narrator is Microsoft's built-in screen reader, included with Windows 10
 - Integrates tightly with Windows accessibility features.
 
 **Disadvantages:**
+
 - Fewer customization options than JAWS or NVDA for complex command-line workflows.
 - Braille display support exists but is more limited than dedicated screen readers.
 - Less powerful for advanced scripting, code editing, or rapid navigation in large terminal outputs.
@@ -113,6 +115,7 @@ Windows Narrator is Microsoft's built-in screen reader, included with Windows 10
 Dolphin SuperNova (sometimes referred to as "Dolphin Screen Reader" or simply "SuperNova") is a commercial product from Dolphin Computer Access. It is available in several editions: Magnifier, Magnifier & Speech, and Screen Reader. The Screen Reader and Magnifier & Speech editions provide full screen reader functionality.
 
 **Advantages:**
+
 - Commercial product with vendor support, training options, and documentation.
 - Offers combined magnification and speech in a single product — useful for users with low vision who benefit from both.
 - Good braille display support.
@@ -120,6 +123,7 @@ Dolphin SuperNova (sometimes referred to as "Dolphin Screen Reader" or simply "S
 - Full-featured 30-day trial license available for evaluation before purchase.
 
 **Disadvantages:**
+
 - Commercial licensing cost.
 - Less widely used than NVDA or JAWS, so community resources and third-party documentation are more limited.
 - Configuration for some terminal workflows may require additional setup.
@@ -158,7 +162,7 @@ Install NVDA (free, no risk) and try a few lessons. You can always switch later,
 All four screen readers can perform the same tasks in the terminal. The table below shows the key actions and how to perform them with each reader. Exact key names can vary by keyboard layout and screen reader configuration.
 
 | Task                                    | NVDA                                    | JAWS                                     | Windows Narrator                     | Dolphin SuperNova                           |
-|-----------------------------------------|-----------------------------------------|------------------------------------------|--------------------------------------|---------------------------------------------|
+| --------------------------------------- | --------------------------------------- | ---------------------------------------- | ------------------------------------ | ------------------------------------------- |
 | **Read current line or prompt**         | NVDA+Home (reads current line)          | Insert+Up Arrow (re-reads current line)  | Narrator+D (reads current line)      | CapsLock+L (reads current line)             |
 | **Read all output from here**           | NVDA+Down Arrow (read to end of screen) | Insert+Ctrl+Down (read to end of screen) | Narrator+R (read from cursor)        | CapsLock+Numpad Plus (say all)              |
 | **Move to previous line of output**     | Up Arrow in review mode                 | Insert+Up Arrow (line by line)           | Narrator+Up Arrow (scan mode)        | CapsLock+Numpad 8                           |
@@ -170,6 +174,7 @@ All four screen readers can perform the same tasks in the terminal. The table be
 | **Open screen reader settings**         | NVDA+N > Preferences                    | Insert+F3 > Options/Settings             | Windows+Ctrl+N (Narrator settings)   | CapsLock+SpaceBar (SuperNova control panel) |
 
 > **Notes on modifier keys:**
+>
 > - **NVDA key** is Insert by default; can be changed to CapsLock in NVDA Preferences > Keyboard.
 > - **JAWS key** is Insert by default; can be changed to CapsLock in JAWS Settings Center.
 > - **Narrator key** is CapsLock or Insert; configurable in Settings > Accessibility > Narrator > Keyboard shortcuts.
@@ -187,7 +192,7 @@ All four screen readers can perform the same tasks in the terminal. The table be
    command > output.txt
    notepad output.txt
    ```
-   
+
    This works in CMD, PowerShell, and Git Bash, and gives you a stable document that all four screen readers can read comfortably.
 
 3. **Braille display users** can use a braille display alongside any of these four screen readers. See the Braille Display Setup guide for detailed instructions.
@@ -198,13 +203,12 @@ All four screen readers can perform the same tasks in the terminal. The table be
 
 ## Additional Resources
 
-| Screen Reader     | Official Documentation                     | Support / Help                             |
-|-------------------|--------------------------------------------|--------------------------------------------|
-| NVDA              | [https://www.nvaccess.org/](https://www.nvaccess.org/) | [https://www.nvaccess.org/download/](https://www.nvaccess.org/download/) |
+| Screen Reader     | Official Documentation                                                                                                 | Support / Help                                                                                         |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
+| NVDA              | [https://www.nvaccess.org/](https://www.nvaccess.org/)                                                                 | [https://www.nvaccess.org/download/](https://www.nvaccess.org/download/)                               |
 | JAWS              | [https://www.freedomscientific.com/products/software/jaws/](https://www.freedomscientific.com/products/software/jaws/) | [https://www.freedomscientific.com/downloads/jaws/](https://www.freedomscientific.com/downloads/jaws/) |
-| Windows Narrator  | [https://support.microsoft.com/narrator](https://support.microsoft.com/narrator) | [https://support.microsoft.com/narrator](https://support.microsoft.com/narrator) |
-| Dolphin SuperNova | [https://yourdolphin.com/supernova/](https://yourdolphin.com/supernova/) | [https://yourdolphin.com/supernova/](https://yourdolphin.com/supernova/) |
-
+| Windows Narrator  | [https://support.microsoft.com/narrator](https://support.microsoft.com/narrator)                                       | [https://support.microsoft.com/narrator](https://support.microsoft.com/narrator)                       |
+| Dolphin SuperNova | [https://yourdolphin.com/supernova/](https://yourdolphin.com/supernova/)                                               | [https://yourdolphin.com/supernova/](https://yourdolphin.com/supernova/)                               |
 
 ---
 
@@ -237,12 +241,13 @@ This guide is used throughout the Command-Line Foundation curriculum (PowerShell
 
 ---
 
+<a id="which-terminal"></a>
 ## Which Terminal Should I Use?
 
 All three command-line shells (PowerShell, CMD, Git Bash) work well with screen readers. Choose the one that best fits your setup:
 
 | Feature                   | PowerShell           | CMD                    | Git Bash                     |
-|---------------------------|----------------------|------------------------|------------------------------|
+| ------------------------- | -------------------- | ---------------------- | ---------------------------- |
 | **Platform**              | Windows only         | Windows only           | Windows, macOS, Linux        |
 | **Screen Reader Support** | Excellent            | Excellent              | Excellent                    |
 | **Learning Curve**        | Moderate             | Gentle                 | Moderate-Steep               |
@@ -253,6 +258,7 @@ All three command-line shells (PowerShell, CMD, Git Bash) work well with screen 
 
 ---
 
+<a id="getting-started"></a>
 ## Getting Started with Screen Readers
 
 ### Which Screen Reader Should I Use?
@@ -260,7 +266,7 @@ All three command-line shells (PowerShell, CMD, Git Bash) work well with screen 
 NVDA, JAWS, Windows Narrator, and Dolphin SuperNova all work with the three shells covered in this curriculum. Here is a brief comparison:
 
 | Feature              | NVDA                   | JAWS                   | Windows Narrator          | Dolphin SuperNova  |
-|----------------------|------------------------|------------------------|---------------------------|--------------------|
+| -------------------- | ---------------------- | ---------------------- | ------------------------- | ------------------ |
 | **Cost**             | Free (open-source)     | Commercial (paid)      | Free (built into Windows) | Commercial (paid)  |
 | **Installation**     | Simple download        | Complex but thorough   | Already installed         | Standard installer |
 | **Terminal Support** | Excellent (all shells) | Excellent (all shells) | Good (all shells)         | Good (all shells)  |
@@ -278,6 +284,7 @@ NVDA, JAWS, Windows Narrator, and Dolphin SuperNova all work with the three shel
 
 ---
 
+<a id="nvda-tips"></a>
 ## NVDA-Specific Tips
 
 NVDA is free and available from [https://www.nvaccess.org/](https://www.nvaccess.org/)
@@ -287,7 +294,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 ### Key Commands for Terminals
 
 | Command                    | What It Does                                   |
-|----------------------------|------------------------------------------------|
+| -------------------------- | ---------------------------------------------- |
 | **NVDA+Home**              | Read the current line (your command or output) |
 | **NVDA+Down Arrow**        | Read from cursor position to end of screen     |
 | **NVDA+Up Arrow**          | Read from top of screen to cursor              |
@@ -308,6 +315,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 **Scenario:** You ran a command and it listed 50 files. You cannot hear them all at once.
 
 **Solution with NVDA:**
+
 1. After the command finishes, press **NVDA+Home** to read the current line.
 2. Press **NVDA+Down Arrow** repeatedly to read all output line by line.
 3. Or redirect to a file first: `command > output.txt`, then open with `notepad output.txt` for more comfortable reading.
@@ -322,6 +330,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 
 ---
 
+<a id="jaws-tips"></a>
 ## JAWS-Specific Tips
 
 JAWS is a commercial screen reader available from [https://www.freedomscientific.com/products/software/jaws/](https://www.freedomscientific.com/products/software/jaws/)
@@ -331,7 +340,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 ### Key Commands for Terminals
 
 | Command                    | What It Does                            |
-|----------------------------|-----------------------------------------|
+| -------------------------- | --------------------------------------- |
 | **Insert+Down Arrow**      | Read all / say all from cursor downward |
 | **Insert+Up Arrow**        | Re-read current line                    |
 | **Insert+Page Down**       | Read next page of terminal output       |
@@ -352,6 +361,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 **Scenario:** You ran a command and saved output to a file.
 
 **Solution with JAWS:**
+
 1. Open the file in Notepad: `notepad file.txt`
 2. In Notepad, press **Insert+Ctrl+Down** to hear all content from the top.
 3. Use **Insert+Down Arrow** to read line by line at your own pace.
@@ -367,6 +377,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 
 ---
 
+<a id="narrator-tips"></a>
 ## Windows Narrator-Specific Tips
 
 Windows Narrator is built into Windows 10 and Windows 11 at no extra cost. Enable it via **Settings > Accessibility > Narrator** or press **Windows+Ctrl+Enter**.
@@ -376,7 +387,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 ### Key Commands for Terminals
 
 | Command                       | What It Does                                     |
-|-------------------------------|--------------------------------------------------|
+| ----------------------------- | ------------------------------------------------ |
 | **Narrator+D**                | Read current line                                |
 | **Narrator+M**                | Read next line                                   |
 | **Narrator+I**                | Read current item or focused element             |
@@ -396,6 +407,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 Narrator works well in **focus mode** (the default when a terminal is active). In focus mode, arrow keys move through command history and output rather than triggering Narrator navigation.
 
 **Tips:**
+
 - After running a command, press **Narrator+D** to read the current line.
 - Use **Narrator+R** to read all output from the current position.
 - For long outputs, always redirect to a file: `command > output.txt`, then open in Notepad where Narrator's reading experience is more comfortable.
@@ -413,6 +425,7 @@ Narrator works well in **focus mode** (the default when a terminal is active). I
 
 ---
 
+<a id="dolphin-tips"></a>
 ## Dolphin SuperNova-Specific Tips
 
 Dolphin SuperNova is a commercial screen reader (with optional magnification) available from [https://yourdolphin.com/supernova/](https://yourdolphin.com/supernova/)
@@ -422,7 +435,7 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 ### Key Commands for Terminals
 
 | Command                                | What It Does                             |
-|----------------------------------------|------------------------------------------|
+| -------------------------------------- | ---------------------------------------- |
 | **Caps Lock+Down Arrow** (or NumPad 2) | Read current line                        |
 | **Caps Lock+Numpad 5**                 | Read current word                        |
 | **Caps Lock+Numpad 6**                 | Read next word                           |
@@ -457,11 +470,13 @@ These tips work across all shells: PowerShell, CMD, and Git Bash.
 
 ---
 
+<a id="general-terminal"></a>
 ## General Terminal Accessibility
 
 ### Understanding the Terminal Layout
 
 All terminals (PowerShell, CMD, Git Bash) follow the same basic layout:
+
 1. **Title bar:** Window name (e.g., "Windows PowerShell", "Command Prompt", "Git Bash")
 2. **Content area:** Command history and output
 3. **Prompt:** The area where you type (e.g., `PS>`, `C:\>`, `$`)
@@ -471,6 +486,7 @@ All terminals (PowerShell, CMD, Git Bash) follow the same basic layout:
 ### Navigation Sequence
 
 **When you open any terminal:**
+
 1. Your screen reader announces the window title.
 2. Then it announces the prompt line.
 3. Anything before the prompt is previous output.
@@ -479,16 +495,19 @@ All terminals (PowerShell, CMD, Git Bash) follow the same basic layout:
 ### Reading Output Effectively
 
 **Strategy 1: Immediate Output (Small Amount)**
+
 - Run a command.
 - Your screen reader announces output immediately.
 - This works well for short outputs (a few lines).
 
 **Strategy 2: Large Output (Many Lines)**
+
 - Redirect to a file: `command > output.txt`
 - Open the file: `notepad output.txt` (works in all shells on Windows)
 - Read in Notepad — easier and more controllable for all screen readers.
 
 **Strategy 3: Filtering Output**
+
 - Use filtering commands to reduce output.
 - PowerShell: `command | Select-String "pattern"`
 - CMD: `command | find "pattern"`
@@ -496,6 +515,7 @@ All terminals (PowerShell, CMD, Git Bash) follow the same basic layout:
 
 ---
 
+<a id="long-output"></a>
 ## Working with Long Output
 
 This is one of the most common challenges for screen reader users. Here are proven solutions:
@@ -541,12 +561,13 @@ This tells you how many items there are before deciding whether to redirect to a
 
 ---
 
+<a id="shortcuts"></a>
 ## Keyboard Shortcuts Reference
 
 ### Shell Navigation (Works Regardless of Screen Reader)
 
 | Key            | Action                             | Why It Matters                   |
-|----------------|------------------------------------|----------------------------------|
+| -------------- | ---------------------------------- | -------------------------------- |
 | **Up Arrow**   | Show previous command              | Repeat commands without retyping |
 | **Down Arrow** | Show next command                  | Navigate through history         |
 | **Tab**        | Auto-complete path or command name | Faster and more accurate         |
@@ -561,7 +582,7 @@ This tells you how many items there are before deciding whether to redirect to a
 ### Screen Reader Navigation Quick Reference
 
 | Task                    | NVDA                | JAWS              | Windows Narrator  | Dolphin SuperNova    |
-|-------------------------|---------------------|-------------------|-------------------|----------------------|
+| ----------------------- | ------------------- | ----------------- | ----------------- | -------------------- |
 | Read current line       | NVDA+Home           | Insert+Up Arrow   | Narrator+D        | CapsLock+L           |
 | Read all from here      | NVDA+Down Arrow     | Insert+Ctrl+Down  | Narrator+R        | CapsLock+Numpad Plus |
 | Read next line          | Down Arrow (review) | Insert+Down Arrow | Narrator+M        | CapsLock+Numpad 2    |
@@ -572,6 +593,7 @@ This tells you how many items there are before deciding whether to redirect to a
 
 ---
 
+<a id="shell-differences"></a>
 ## Shell-Specific Differences
 
 While all three shells work equally well with screen readers, there are differences in commands and syntax:
@@ -579,7 +601,7 @@ While all three shells work equally well with screen readers, there are differen
 ### File Listing and Navigation
 
 | Task                 | PowerShell              | CMD                | Git Bash           |
-|----------------------|-------------------------|--------------------|--------------------|
+| -------------------- | ----------------------- | ------------------ | ------------------ |
 | **List files**       | `ls` or `Get-ChildItem` | `dir`              | `ls -la`           |
 | **List names only**  | `ls -Name`              | `dir /B`           | `ls -1`            |
 | **Change directory** | `cd path`               | `cd path`          | `cd path`          |
@@ -591,7 +613,7 @@ While all three shells work equally well with screen readers, there are differen
 ### Output Redirection
 
 | Task               | PowerShell                        | CMD                      | Git Bash                     |
-|--------------------|-----------------------------------|--------------------------|------------------------------|
+| ------------------ | --------------------------------- | ------------------------ | ---------------------------- |
 | **Save to file**   | `command > file.txt`              | `command > file.txt`     | `command > file.txt`         |
 | **Append to file** | `command >> file.txt`             | `command >> file.txt`    | `command >> file.txt`        |
 | **Filter output**  | `command \| Select-String "text"` | `command \| find "text"` | `command \| grep "text"`     |
@@ -600,7 +622,7 @@ While all three shells work equally well with screen readers, there are differen
 ### Scripting and Automation
 
 | Feature            | PowerShell          | CMD             | Git Bash      |
-|--------------------|---------------------|-----------------|---------------|
+| ------------------ | ------------------- | --------------- | ------------- |
 | **File extension** | `.ps1`              | `.bat`          | `.sh`         |
 | **Comment**        | `#`                 | `REM` or `::`   | `#`           |
 | **Variable**       | `$var = "value"`    | `set var=value` | `var=value`   |
@@ -717,7 +739,6 @@ NEED HELP?
 - **Git Bash / Git for Windows:** [https://example.com](https://example.com)
 - **Accessibility Best Practices:** [https://example.com](https://example.com)
 
-
 ---
 
 <a id="braille-displays"></a>
@@ -735,6 +756,7 @@ Many blind and low-vision programmers prefer tactile output alongside or instead
 A refreshable braille display uses small pins that rise and fall to form braille characters. When connected to a computer and paired with a screen reader, the display shows the line of text where the screen reader's focus or review cursor is located. You can pan left and right across a long line or press routing buttons to move the screen reader cursor to a specific position.
 
 In a terminal environment:
+
 - The display shows the current command line (what you are typing).
 - After running a command, you can use your screen reader's review cursor and the display's pan keys to read through the output line by line.
 - Routing keys (small buttons above or below each braille cell) let you move the cursor directly to that point in the text — useful for re-running or editing commands from history.
@@ -744,16 +766,19 @@ In a terminal environment:
 ## Connecting a Braille Display
 
 ### USB Connection
+
 1. Plug the display's USB cable into your computer.
 2. Windows will attempt to install drivers automatically. If the display is not recognized, install the vendor's driver software first (see vendor links at the end of this page).
 3. Open your screen reader's braille settings and select the connected display.
 
 ### Bluetooth Connection
+
 1. Put the braille display into pairing mode (refer to the device's quick-start guide).
 2. On Windows, go to **Settings > Bluetooth & devices > Add a device** and pair the display.
 3. Once paired, open your screen reader's braille settings and select the display.
 
 ### Before Opening the Terminal
+
 Always confirm the display is connected and showing output before opening your terminal. A quick test: open Notepad, type a few words, and verify they appear on the display. This confirms the screen reader is routing output correctly before you add the complexity of a terminal session.
 
 ---
@@ -774,6 +799,7 @@ NVDA includes built-in braille support for a wide range of displays without requ
 8. Click **OK** and test by moving the cursor in Notepad.
 
 **Recommended NVDA braille settings for terminal work:**
+
 - Output table: Unified English Braille Grade 1 (uncontracted) is recommended for reading code — contractions in Grade 2 can make code harder to read.
 - Cursor shape: Dots 7 and 8 (underline) is a common choice.
 - Enable **"Word wrap"** to avoid cutting words at the display's edge.
@@ -781,7 +807,7 @@ NVDA includes built-in braille support for a wide range of displays without requ
 **NVDA braille keyboard shortcut reference (while braille display is active):**
 
 | Action                                  | NVDA Command                     |
-|-----------------------------------------|----------------------------------|
+| --------------------------------------- | -------------------------------- |
 | Pan braille display right               | Display's right pan key          |
 | Pan braille display left                | Display's left pan key           |
 | Toggle braille tethered to focus/review | NVDA+Ctrl+T                      |
@@ -805,11 +831,13 @@ JAWS supports a wide range of braille displays through its built-in braille mana
 8. Test in Notepad before moving to a terminal.
 
 **JAWS braille settings for terminal work:**
+
 - Use **Grade 1 (uncontracted) braille** for reading code and terminal output. Grade 2 contractions can make commands and file paths difficult to parse.
 - Enable **"Show active cursor"** in JAWS braille settings.
 - In the JAWS Settings Center, look for **"Braille for Applications"** — you can set different braille behavior for specific applications (e.g., a terminal vs. a word processor).
 
 **Accessing braille settings:**
+
 - **Insert+F3** > Options > Basics > Braille
 - Or: **Insert+F2** (JAWS Manager) > Settings Center > search "braille"
 
@@ -828,6 +856,7 @@ Windows Narrator supports braille output through the **Windows braille service**
 7. Test in Notepad before using in a terminal.
 
 **Important Narrator braille notes:**
+
 - Narrator's braille support uses the **BRLTTY** back-end on Windows, which supports most mainstream displays.
 - If your display is not listed, check for a Windows Update or visit the display vendor's website for a Windows Narrator-compatible driver.
 - Narrator's braille customization is less extensive than NVDA's or JAWS's. If you need more control, consider using NVDA (free) for braille-heavy work.
@@ -848,6 +877,7 @@ Dolphin SuperNova includes integrated braille support as part of its screen read
 7. Click **Apply** and test in Notepad.
 
 **Dolphin SuperNova braille tips for terminal work:**
+
 - SuperNova supports a wide range of displays from Freedom Scientific (Focus), HumanWare (Brailliant, BrailleNote as terminal), HIMS, Optelec, and others.
 - Use **Grade 1 (uncontracted)** braille for terminal and code work.
 - SuperNova's **"Braille cursor tracking"** setting determines whether the braille display follows the text cursor or the screen review cursor — set this to **"Cursor"** when working in a terminal.
@@ -884,6 +914,7 @@ Example: In Grade 2, the letters "cd" might be represented as a contraction mean
 BrailleNote Touch+ (HumanWare) and BrailleSense (HIMS) devices run Android as their primary operating system. **They cannot run `3dMake` or Windows-based terminal workflows natively.** These devices are not supported as standalone authoring environments for this curriculum.
 
 **Workaround — using them as braille terminals:** Both device families can function as a braille display when connected to a Windows computer via USB or Bluetooth. In that configuration:
+
 - The device acts as a standard refreshable braille display.
 - Your Windows screen reader (NVDA, JAWS, Narrator, or SuperNova) drives the output.
 - Commands are typed on the Windows keyboard; the BrailleNote/BrailleSense shows the output as braille.
@@ -919,21 +950,25 @@ Multiline tactile displays from Orbit Research designed for reading text and tac
 ## Troubleshooting
 
 **Display shows nothing / no braille output:**
+
 - Verify the USB or Bluetooth connection and check that the display is powered on.
 - In your screen reader's braille settings, confirm the correct display model is selected.
 - Try disconnecting and reconnecting. Restart the screen reader if needed.
 - Install or reinstall the vendor's display driver.
 
 **Display shows output but navigation is out of sync:**
+
 - Toggle your screen reader's braille mode off and on (usually in the braille settings).
 - Restart the screen reader (not the whole computer) and reopen the terminal.
 - Try a different terminal emulator (Windows Terminal, Command Prompt, PowerShell) to see if the issue is terminal-specific.
 
 **Display driver not found:**
+
 - Go to the vendor's website (links below) and download the latest driver for your operating system version.
 - Some displays require firmware updates to work with newer Windows versions.
 
 **Routing keys not moving the cursor:**
+
 - In your screen reader's braille settings, confirm that cursor routing is enabled.
 - In NVDA, this is under Preferences > Settings > Braille > enable "Move system cursor when routing review cursor".
 - In JAWS, check the routing settings in the JAWS braille configuration.
@@ -942,30 +977,29 @@ Multiline tactile displays from Orbit Research designed for reading text and tac
 
 ## Vendor Resources
 
-| Vendor             | Products                                 | Support / Drivers                          |
-|--------------------|------------------------------------------|--------------------------------------------|
-| HumanWare          | Brailliant, BrailleNote Touch+           | https://www.humanware.com/ |
+| Vendor             | Products                                 | Support / Drivers                                               |
+| ------------------ | ---------------------------------------- | --------------------------------------------------------------- |
+| HumanWare          | Brailliant, BrailleNote Touch+           | https://www.humanware.com/                                      |
 | Freedom Scientific | Focus Blue series                        | https://www.freedomscientific.com/Products/Blindness/FocusBlue/ |
-| HIMS               | BrailleSense, Braille EDGE, Smart Beetle | https://www.hims-inc.com/ |
-| Optelec            | Braille STAR, Easy Link                  | https://www.optelec.com/ |
-| Orbit Research     | Graphiti, Orbit 20/40                    | https://www.orbitresearch.com/ |
-| APH                | Monarch                                  | https://www.aph.org/ |
-| Dot Inc.           | DotPad                                   | https://dotincorp.com/ |
-| Dolphin            | GuideConnect, braille accessories        | https://yourdolphin.com/ |
+| HIMS               | BrailleSense, Braille EDGE, Smart Beetle | https://www.hims-inc.com/                                       |
+| Optelec            | Braille STAR, Easy Link                  | https://www.optelec.com/                                        |
+| Orbit Research     | Graphiti, Orbit 20/40                    | https://www.orbitresearch.com/                                  |
+| APH                | Monarch                                  | https://www.aph.org/                                            |
+| Dot Inc.           | DotPad                                   | https://dotincorp.com/                                          |
+| Dolphin            | GuideConnect, braille accessories        | https://yourdolphin.com/                                        |
 
 ---
 
 ## Connecting a Braille Display: Summary Table
 
 | Screen Reader     | Where to Find Braille Settings                              | Recommended Braille Table for Code     |
-|-------------------|-------------------------------------------------------------|----------------------------------------|
+| ----------------- | ----------------------------------------------------------- | -------------------------------------- |
 | NVDA              | NVDA Menu > Preferences > Settings > Braille                | Unified English Braille Grade 1        |
 | JAWS              | Insert+F3 > Options > Basics > Braille (or Settings Center) | English Braille Grade 1 (uncontracted) |
 | Windows Narrator  | Settings > Accessibility > Narrator > Braille               | English Grade 1 (uncontracted)         |
 | Dolphin SuperNova | CapsLock+SpaceBar > Braille > Display and Translation       | Grade 1 (uncontracted)                 |
 
 This page gives a practical overview. Always consult your braille display vendor's documentation and your screen reader's braille guide for device-specific setup steps and advanced configuration options.
-
 
 ---
 
@@ -976,6 +1010,7 @@ This page gives a practical overview. Always consult your braille display vendor
 ---
 
 ## Table of Contents
+
 1. [Editor Comparison](#editor-comparison)
 2. [Editor Setup for 3dMake](#editor-setup-for-3dmake)
 3. [Screen Reader Indent Announcement Configuration](#screen-reader-indent-announcement-configuration)
@@ -986,7 +1021,7 @@ This page gives a practical overview. Always consult your braille display vendor
 ### Overview Table
 
 | Feature                 | Notepad         | Notepad++                | Visual Studio Code                 |
-|-------------------------|-----------------|--------------------------|------------------------------------|
+| ----------------------- | --------------- | ------------------------ | ---------------------------------- |
 | Cost                    | Free (built-in) | Free                     | Free                               |
 | Learning Curve          | Minimal         | Low                      | Moderate                           |
 | Screen Reader Support   | Good (basic)    | Good (syntax features)   | Excellent (built-in accessibility) |
@@ -1004,7 +1039,9 @@ This page gives a practical overview. Always consult your braille display vendor
 ### Detailed Comparison
 
 #### Notepad
+
 Advantages:
+
 - Minimal interface with no distractions-excellent for absolute beginners
 - Very predictable behavior for screen reader users
 - Extremely fast file operations
@@ -1012,6 +1049,7 @@ Advantages:
 - Pure text editing with no formatting surprises
 
 Disadvantages:
+
 - No syntax highlighting (OpenSCAD code appears as plain text)
 - No keyboard shortcuts for common editing tasks
 - Limited undo/redo capabilities compared to modern editors
@@ -1023,7 +1061,9 @@ Best For: Users who prefer absolute simplicity and want minimal cognitive load d
 Screen Reader Experience: Windows Narrator reads all content clearly; JAWS and NVDA work well with standard keyboard navigation
 
 #### Notepad++
+
 Advantages:
+
 - Lightweight and fast
 - Good syntax highlighting for OpenSCAD code
 - Customizable interface with configurable keyboard shortcuts
@@ -1032,6 +1072,7 @@ Advantages:
 - Good screen reader support for basic operations
 
 Disadvantages:
+
 - No built-in terminal (requires external command prompt)
 - Plugin system is limited compared to VSCode
 - Screen reader experience with syntax highlighting features can be inconsistent
@@ -1043,7 +1084,9 @@ Best For: Users who want a lightweight editor with syntax highlighting but prefe
 Screen Reader Experience: JAWS and NVDA handle navigation well; Windows Narrator works but may struggle with complex UI elements
 
 #### Visual Studio Code
+
 Advantages:
+
 - Extensive built-in accessibility features (accessibility inspector, keyboard navigation shortcuts)
 - Excellent OpenSCAD extension available (scad-preview)
 - Integrated terminal allows running 3dm commands without context switching
@@ -1054,6 +1097,7 @@ Advantages:
 - Excellent search and find/replace functionality
 
 Disadvantages:
+
 - Steeper learning curve than Notepad or Notepad++
 - Requires initial configuration for accessibility
 - More resource-intensive than lighter editors
@@ -1069,11 +1113,11 @@ Screen Reader Experience: Excellent; built specifically with accessibility in mi
 
 The 3dMake tool uses your system default text editor. However it can be changed with an edit to the global configuration file by typing this into any terminal.
 
-```plaintext 
+```plaintext
 3dm edit-global-config
 ```
 
-You get a file like this in your default text edit program, typically notepad on Windows. 
+You get a file like this in your default text edit program, typically notepad on Windows.
 
 ```toml
 view = "3sil"
@@ -1087,7 +1131,6 @@ Add one of the following lines to the end of the file:
 `editor = "code"` for VSCode
 `editor = "notepad"` for notepad (already the default)
 `editor = '''C:\Program Files (x86)\Notepad++\notepad++.exe'''` for Notepad++ (the triple apostrophes mean you do not have to escape the spaces)
-
 
 ### Notepad Setup
 
@@ -1110,6 +1153,7 @@ Configuration Steps:
    - Run 3dMake command: `3dMake render project.scad`
 
 Keyboard Shortcuts:
+
 - `Ctrl+H`: Find and Replace
 - `Ctrl+G`: Go to Line (newer versions)
 - `Ctrl+Z`: Undo
@@ -1142,17 +1186,20 @@ Installation and Configuration:
 Recommended Keyboard Shortcuts (User-Defined):
 
 Create custom shortcuts by:
+
 - Settings -> Shortcut Mapper
 - Add shortcuts for frequently used actions:
   - Save and Switch to Terminal: Alt+T
   - Copy File Path: Ctrl+Shift+C
 
 Tab Management:
+
 - Open multiple files: Each opens in a separate tab
 - Switch between tabs: Ctrl+Tab (next) / Ctrl+Shift+Tab (previous)
 - Close tab: Ctrl+W
 
 Running 3dMake Commands:
+
 - Save file with Ctrl+S
 - Alt-Tab to standalone terminal or command prompt
 - Run: `3dMake render filename.scad`
@@ -1200,6 +1247,7 @@ VSCode Terminal Options:
 4. Note: Switching focus between editor and terminal requires Tab navigation, which can be cumbersome for screen reader users
 
 Keyboard Navigation:
+
 - Ctrl+\` : Toggle terminal visibility
 - Ctrl+Shift+` : Create new terminal
 - Alt+^/v : Switch between terminals
@@ -1218,6 +1266,7 @@ Keyboard Navigation:
    - Continue editing
 
 Why This Is More Accessible:
+
 - Screen reader focus switches clearly between two applications
 - Terminal output is read without VSCode context interference
 - Cleaner context switching for command-line workflows
@@ -1225,17 +1274,17 @@ Why This Is More Accessible:
 
 Keyboard Shortcuts for Common Tasks:
 
-| Action           | Shortcut       |
-|------------------|----------------|
-| Save             | Ctrl+S         |
-| Find             | Ctrl+F         |
-| Find and Replace | Ctrl+H         |
-| Go to Line       | Ctrl+G         |
-| Open File        | Ctrl+O         |
-| Open Folder      | Ctrl+K, Ctrl+O |
-| Open Terminal | Ctrl+` |
-| Alt-Tab to Another Window | Alt+Tab |
-| Command Palette | Ctrl+Shift+P |
+| Action                    | Shortcut       |
+| ------------------------- | -------------- |
+| Save                      | Ctrl+S         |
+| Find                      | Ctrl+F         |
+| Find and Replace          | Ctrl+H         |
+| Go to Line                | Ctrl+G         |
+| Open File                 | Ctrl+O         |
+| Open Folder               | Ctrl+K, Ctrl+O |
+| Open Terminal             | Ctrl+`         |
+| Alt-Tab to Another Window | Alt+Tab        |
+| Command Palette           | Ctrl+Shift+P   |
 
 Project Organization in VSCode:
 
@@ -1277,11 +1326,13 @@ Additional Tab Stop Configuration:
 3. This will announce: "Indent level 4" or similar as you navigate code
 
 Testing:
+
 - Open a `.scad` file with nested code (e.g., difference() { cube(); sphere(); })
 - Press Down Arrow to move line by line
 - NVDA announces indentation level on each new indented line
 
 Keyboard Control:
+
 - NVDA+3 on Numpad: Cycles indent/outline level reporting
 
 ### JAWS (Freedom Scientific)
@@ -1299,17 +1350,20 @@ Enable Indent Announcement:
 Advanced Configuration (Custom Scripts):
 
 If built-in settings don't work:
+
 1. JAWSKey+F2 -> Utilities -> Settings Manager
 2. Search: "Line Breaks" or "Formatting"
 3. Ensure: "Report line indentation" is enabled
 4. Set tone adjustment: Higher pitch for deeper indents
 
 Testing:
+
 - Open `.scad` file with nested code
 - Navigate with arrow keys
 - JAWS announces indent changes with tones or speech
 
 Keyboard Shortcuts:
+
 - JAWSKey+Alt+I: Toggle indent reporting
 - JAWSKey+Alt+Shift+I: Cycle between indent reporting modes (speech/tones/off)
 
@@ -1325,11 +1379,13 @@ Enable Indent Announcement:
 6. Apply settings
 
 Narrator Keyboard Shortcuts:
+
 - Narrator+Page Down: Read from current position to end of window
 - Narrator+Alt+Arrow Keys: Navigate text
 - Narrator+V, I: Customize indentation reporting (in Narrator settings)
 
 Testing:
+
 - Open `.scad` file
 - Use Narrator+Page Down to read through code
 - Listen for indent tone changes or announcements
@@ -1349,16 +1405,19 @@ Enable Indent Announcement:
 7. Apply
 
 ECO (Ease of Cursor Operation) Customization:
+
 1. Dolphin Central -> Utilities -> ECO Settings
 2. Text Options -> Indentation Reporting
 3. Set preferred announcement style
 
 Testing:
+
 - Open `.scad` file with indented code
 - Navigate with arrows
 - Dolphin announces indent changes
 
 Keyboard Shortcuts:
+
 - Ctrl+Dolphin+I: Toggle indent reporting on/off
 - Ctrl+Dolphin+Shift+I: Cycle indent reporting mode
 
@@ -1369,18 +1428,21 @@ Keyboard Shortcuts:
 Recommended: Notepad or Notepad++
 
 Rationale:
+
 - Minimal interface reduces cognitive load
 - Focus stays on learning OpenSCAD syntax, not editor features
 - Keyboard navigation is straightforward
 - Screen reader experience is predictable
 
 Setup:
+
 1. Use Notepad or Notepad++ as default editor
 2. Configure screen reader indent announcement
 3. Keep separate Command Prompt window open for 3dMake commands
 4. Alt-Tab workflow between editor and terminal
 
 Workflow Example:
+
 ```
 1. Open Command Prompt -> Navigate to project folder
 2. Run: 3dMake new myproject
@@ -1398,22 +1460,26 @@ Workflow Example:
 Recommended: Notepad++ or VSCode
 
 Notepad++:
+
 - Adds project organization without overwhelming complexity
 - Tab support for managing multiple files
 - Syntax highlighting improves code understanding
 - Still lightweight and predictable
 
 VSCode:
+
 - Opens doors to more sophisticated workflows
 - Extension system enables advanced features (OpenSCAD preview)
 - Keyboard customization becomes valuable
 - Terminal integration useful but use Alt-Tab method
 
 Setup Decision Tree:
+
 - Choose Notepad++ if: You prefer simplicity and want to focus on code logic
 - Choose VSCode if: You're ready to invest time learning editor features for long-term benefit
 
 Workflow Example with VSCode:
+
 ```
 1. Open VSCode (folder view of project)
 2. Press Ctrl+P to open file search
@@ -1431,6 +1497,7 @@ Workflow Example with VSCode:
 Recommended: Visual Studio Code
 
 Rationale:
+
 - Powerful search/replace across large projects
 - Extension system enables specialized workflows
 - Keyboard customization reaches full potential
@@ -1438,6 +1505,7 @@ Rationale:
 - Debugging capabilities aid troubleshooting
 
 Advanced Setup:
+
 1. Create custom keyboard shortcuts:
    - Ctrl+Alt+R: Save and render current file
    - Ctrl+Alt+P: Preview (if using scad-preview extension)
@@ -1458,6 +1526,7 @@ Advanced Setup:
    - Reopen same workspace configuration automatically
 
 Advanced Workflow Example:
+
 ```
 1. Open VSCode with project workspace
 2. Ctrl+Shift+P -> Run Task -> "3dMake Render Current"
@@ -1471,17 +1540,20 @@ Advanced Workflow Example:
 ## Quick Reference: Editor Comparison for Curriculum
 
 ### Foundations (Lessons 1-2)
+
 - Primary: Notepad or Notepad++
 - Focus: Learn syntax and basic concepts
 - Terminal: Standalone Command Prompt (Alt-Tab)
 
 ### Core Skills (Lessons 3-6)
+
 - Primary: Notepad++ or VSCode
 - New Features: Begin using editor syntax highlighting
 - Terminal: Standalone (continue Alt-Tab method)
 - Skills: File organization, search/replace basics
 
 ### Advanced Projects (Lessons 7-11)
+
 - Primary: VSCode (strongly recommended)
 - Advanced: Use extensions, real-time preview, complex project management
 - Terminal: Choose Alt-Tab or built-in based on preference
@@ -1490,35 +1562,45 @@ Advanced Workflow Example:
 ## Troubleshooting Common Issues
 
 ### Problem: Screen Reader Not Announcing Indent
+
 Solution:
+
 1. Verify indent announcement is enabled in screen reader settings (see above)
 2. Test with existing `.scad` file with clear indentation
 3. Try different announcement modes (tones vs. speech)
 4. Restart screen reader: Alt+Ctrl+N (NVDA) or app restart (JAWS)
 
 ### Problem: 3dMake Commands Not Running from VSCode Terminal
+
 Solution:
+
 1. Ensure 3dMake is in your system PATH
 2. Use standalone terminal instead (Alt-Tab method) - more reliable
 3. In VSCode terminal, manually navigate to correct directory first
 4. Verify command syntax: `3dMake render filename.scad`
 
 ### Problem: File Not Saving in Editor
+
 Solution:
+
 1. Verify you pressed Ctrl+S
 2. Check file permissions on project folder
 3. Try "Save As" instead
 4. Ensure filename includes `.scad` extension
 
 ### Problem: Syntax Highlighting Not Working
+
 Solution:
+
 1. Verify file has `.scad` extension
 2. In Notepad++: Language menu -> select OpenSCAD or C++
 3. In VSCode: Install OpenSCAD extension (search Extensions)
 4. Restart editor
 
 ### Problem: Alt-Tab Not Switching Between Windows
+
 Solution:
+
 1. Ensure Command Prompt is open and minimized (not closed)
 2. Press Alt+Tab and hold briefly to see window switcher
 3. Use Alt+Tab multiple times if more than 2 windows open

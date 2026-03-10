@@ -192,7 +192,7 @@ Answer these questions to find your best match:
 - All core concepts transfer to others
 - Can switch later if needed
 
-[Start CMD Foundation](../CMD_Foundation/CMD_Curriculum_Overview/CMD_Curriculum_Overview.md)
+[Start CMD Foundation](../CMD_Complete_Curriculum.md#part-2-cmd)
 
 ### Goal: "I want power and professional automation"
 
@@ -203,7 +203,7 @@ Answer these questions to find your best match:
 - Better for complex 3D printing workflows
 - Skills are in-demand
 
-[Start PowerShell Foundation](../PowerShell_Foundation/PowerShell_Curriculum_Overview/PowerShell_Curriculum_Overview.md)
+[Start PowerShell Foundation](../PS_Complete_Curriculum.md#part-1-powershell)
 
 ### Goal: "I want skills that work on Windows, Mac, and Linux"
 
@@ -214,7 +214,7 @@ Answer these questions to find your best match:
 - Consistent across all platforms
 - Growing standard in 3D printing tools
 
-[Start Git Bash Foundation](../GitBash_Foundation/GitBash_Curriculum_Overview/GitBash_Curriculum_Overview.md)
+[Start Git Bash Foundation](../GitBash_Complete_Curriculum.md#part-3-git-bash)
 
 ## Can I Switch Paths Later?
 
@@ -246,7 +246,7 @@ Take a moment and choose:
 
 ### 1. I want the simplest path
 
-[Command Prompt Foundation](../CMD_Foundation/Part_1.md)
+[Command Prompt Foundation](../CMD_Complete_Curriculum.md#part-2-cmd)
 
 - Time to first success: ~30 minutes
 - Learning curve: Gentlest
@@ -254,7 +254,7 @@ Take a moment and choose:
 
 ### 2. I want modern, powerful Windows tools
 
-[PowerShell Foundation](../PowerShell_Foundation/Part_1.md)
+[PowerShell Foundation](../PS_Complete_Curriculum.md#part-1-powershell)
 
 - Time to first success: ~45 minutes
 - Learning curve: Moderate
@@ -262,7 +262,7 @@ Take a moment and choose:
 
 ### 3. I want Unix/Linux skills that work everywhere
 
-[Git Bash Foundation](../GitBash_Foundation/Part_1.md)
+[Git Bash Foundation](../GitBash_Complete_Curriculum.md#part-3-git-bash)
 
 - Time to first success: ~1 hour
 - Learning curve: Steeper but rewarding

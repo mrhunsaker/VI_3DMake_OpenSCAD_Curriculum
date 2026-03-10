@@ -1,1 +1,16 @@
-[Header 2 ("appendices-3dmake-appendices", [], []) [Str "Appendices"], Para [Str "Comprehensive reference materials, guides, and supplemental resources for the OpenSCAD and 3dMake curriculum."], Header 3 ("3d-printing-and-makerspace-appendices", ["unnumbered", "unlisted"], []) [Str "3D Printing and Makerspace Appendices"], BulletList [[Plain [Link ("", [], []) [Str "Appendix A: Utah Makerspace Index"] ("docs/pandoc/latex/src/3dMake_Foundation/Utah_Makerspace_Appendix.md", "")]], [Plain [Link ("", [], []) [Str "Appendix B: National Makerspaces"] ("docs/pandoc/latex/src/3dMake_Foundation/National_Makerspace_Appendix.md", "")]]], Header 3 ("3dmake-foundation-appendices", ["unnumbered", "unlisted"], []) [Str "3dMake Foundation Appendices"], BulletList [[Plain [Link ("", [], []) [Str "Appendix A: 3DMake Cheat Sheet"] ("docs/pandoc/latex/src/3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md#3dmake-cli-cheat-sheet", "")]], [Plain [Link ("", [], []) [Str "Appendix B: Comprehensive Slicing Guide - All Major Slicers"] ("https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices/../3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md", ""), Str " - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration"]], [Plain [Link ("", [], []) [Str "Appendix C: Material Properties & Selection Guide"] ("https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices/../3dMake_Foundation/Appendix_B_Material_Properties.md", ""), Str " - Detailed material reference including shrinkage data, print settings, and properties"]], [Plain [Link ("", [], []) [Str "Appendix D: Tolerance Testing & Quality Assurance Matrix"] ("https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices/../3dMake_Foundation/Appendix_C_Tolerance_QA.md", ""), Str " - Comprehensive QA procedures and tolerance validation methods"]], [Plain [Link ("", [], []) [Str "Appendix E: Advanced OpenSCAD Concepts"] ("https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum/Appendices/../3dMake_Foundation/Appendix_D_PowerShell_Integration.md", ""), Str " - Batch processing, automation scripts, and advanced workflow integration"]]]]
+# Appendices {#appendices-3dmake-appendices}
+
+Comprehensive reference materials, guides, and supplemental resources for the OpenSCAD and 3dMake curriculum.
+
+## 3D Printing and Makerspace Appendices
+
+- [Appendix A: Utah Makerspace Index](../3dMake_Foundation/Utah_Makerspace_Appendix.md)
+- [Appendix B: National Makerspaces](../3dMake_Foundation/National_Makerspace_Appendix.md)
+
+## 3dMake Foundation Appendices
+
+- [Appendix A: 3DMake Cheat Sheet](../3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md)
+- [Appendix B: Comprehensive Slicing Guide - All Major Slicers](../3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md) - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
+- [Appendix C: Material Properties & Selection Guide](../3dMake_Foundation/Appendix_B_Material_Properties.md) - Detailed material reference including shrinkage data, print settings, and properties
+- [Appendix D: Tolerance Testing & Quality Assurance Matrix](../3dMake_Foundation/Appendix_C_Tolerance_QA.md) - Comprehensive QA procedures and tolerance validation methods
+- [Appendix E: Advanced OpenSCAD Concepts](../3dMake_Foundation/Appendix_D_PowerShell_Integration.md) - Batch processing, automation scripts, and advanced workflow integration

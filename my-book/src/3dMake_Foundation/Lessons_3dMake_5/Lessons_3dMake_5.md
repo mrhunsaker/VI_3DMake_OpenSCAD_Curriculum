@@ -381,19 +381,13 @@ printable_box(50, 40, 30);
 
 ## References and Helpful Resources
 
-[^1]: OSHA Hierarchy of Controls — https://www.osha.gov/hierarchy-of-controls / NIOSH — https://www.cdc.gov/niosh/topics/hierarchy/default.html
-
-[^2]: UL Research Institutes — 3D Printing Emissions Study — https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study
-
-[^3]: NIOSH Science Blog — Health and Safety Considerations for 3D Printing — https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/
-
-[^4]: PrusaSlicer Documentation — https://docs.prusa3d.com/en/
-
-[^5]: All3DP Filament Types — https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/
-
-[^6]: MatterHackers Filament Compare — https://www.matterhackers.com/3d-printer-filament-compare
-
-[^7]: Prusa Research Materials Guide — https://help.prusa3d.com/materials
+- OSHA Hierarchy of Controls — https://www.osha.gov/hierarchy-of-controls / NIOSH — https://www.cdc.gov/niosh/topics/hierarchy/default.html
+- UL Research Institutes — 3D Printing Emissions Study — https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study
+- NIOSH Science Blog — Health and Safety Considerations for 3D Printing — https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/
+- PrusaSlicer Documentation — https://docs.prusa3d.com/en/
+- All3DP Filament Types — https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/
+- MatterHackers Filament Compare — https://www.matterhackers.com/3d-printer-filament-compare
+- Prusa Research Materials Guide — https://help.prusa3d.com/materials
 
 ### Supplemental Resources
 

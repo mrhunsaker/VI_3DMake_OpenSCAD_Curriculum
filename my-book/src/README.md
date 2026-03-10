@@ -12,10 +12,10 @@ Before choosing a command-line pathway, students learn to optimize their screen 
 
 What's Included:
 
-- [Screen Reader Accessibility Guide](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) - Comprehensive NVDA & JAWS reference with terminal tips for PowerShell, CMD, and Git Bash
-- [Screen Reader Choice: Windows CLI](Setup/Screen_Reader_Choice/Screen_Reader_Choice.md) - Help choosing between NVDA and JAWS
-- [Braille Display & Terminal Mode](Setup/Braille_Displays/Braille_Displays.md) - Advanced accessibility setup with refreshable braille displays
-- [Editor Selection and Setup](Setup/Editor_Selection_Setup/Editor_Selection_Setup.md) - Choosing and configuring an accessible text editor
+- [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) - Comprehensive NVDA & JAWS reference with terminal tips for PowerShell, CMD, and Git Bash
+- [Screen Reader Choice: Windows CLI](Setup_Accessibility_Complete.md#screen-reader-choice) - Help choosing between NVDA and JAWS
+- [Braille Display & Terminal Mode](Setup_Accessibility_Complete.md#braille-displays) - Advanced accessibility setup with refreshable braille displays
+- [Editor Selection and Setup](Setup_Accessibility_Complete.md#editor-setup) - Choosing and configuring an accessible text editor
 
 Why start here? Screen reader optimization is the foundation for all command-line work. Students learn keyboard shortcuts, navigation techniques, and terminal-specific accessibility before diving into any CLI pathway.
 
@@ -37,7 +37,7 @@ This guide provides a comprehensive comparison including:
 
 #### PowerShell Foundation (Recommended for Windows Users)
 
-Where to Start: [PowerShell Curriculum Overview](PowerShell_Foundation/PowerShell_Curriculum_Overview/PowerShell_Curriculum_Overview.md)
+Where to Start: [PowerShell Curriculum Overview](PS_Complete_Curriculum.md#part-1-powershell)
 
 Lessons Included:
 
@@ -57,7 +57,7 @@ Skills: Terminal navigation, piping, advanced scripting, professional automation
 
 #### Windows Command Prompt Foundation (Simplified Alternative)
 
-Where to Start: [CMD Curriculum Overview](CMD_Foundation/CMD_Curriculum_Overview/CMD_Curriculum_Overview.md)
+Where to Start: [CMD Curriculum Overview](CMD_Complete_Curriculum.md#part-2-cmd)
 
 Lessons Included:
 
@@ -77,7 +77,7 @@ Skills: Terminal navigation, file operations, batch scripting, basic automation
 
 #### Git Bash Foundation (Cross-Platform Skills)
 
-Where to Start: [Git Bash Curriculum Overview](GitBash_Foundation/GitBash_Curriculum_Overview/GitBash_Curriculum_Overview.md)
+Where to Start: [Git Bash Curriculum Overview](GitBash_Complete_Curriculum.md#part-3-git-bash)
 
 Introductory & Reference Materials:
 
@@ -121,16 +121,16 @@ Total: 45-55 hours instruction + practice projects
 #### Reference Appendices
 
 **Command Line Tools:**  
-- [Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows](Command_Line_Interface_Selection/Appendix_A_CommandLine_Integration.md) - Batch processing and automation for CMD users
-- [Appendix B: PowerShell Integration for SCAD Workflows](Command_Line_Interface_Selection/Appendix_B_PowerShell_Integration.md) - Batch processing, automation scripts, and advanced workflow integration for PowerShell users
-- [Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows](Command_Line_Interface_Selection/Appendix_C_GitBash_Integration.md) - Shell scripting and automation for Git Bash / Unix shell users
+- [Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-a) - Batch processing and automation for CMD users
+- [Appendix B: PowerShell Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-b) - Batch processing, automation scripts, and advanced workflow integration for PowerShell users
+- [Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-c) - Shell scripting and automation for Git Bash / Unix shell users
 
 **3dMake:**  
-- [3DMake CLI Cheat Sheet](3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md) - Quick reference for 3dm command-line tool
-- [Appendix A: Comprehensive Slicing Guide](3dMake_Foundation/Appendix_B_Comprehensive_Slicing_Guide.md) - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
-- [Appendix B: Material Properties & Selection Guide](3dMake_Foundation/Appendix_C_Material_Properties.md) - Detailed material reference including shrinkage data, print settings, and properties
-- [Appendix C: Tolerance Testing & Quality Assurance Matrix](3dMake_Foundation/Appendix_D_Tolerance_QA.md) - Comprehensive QA procedures and tolerance validation methods
-- [Appendix D: Advanced OpenSCAD Concepts](3dMake_Foundation/Appendix_E_Advanced_OpenSCAD_Concepts.md) - Specialized topics including gears, batch processing, performance, print orientation, and recursion
+- [3DMake CLI Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Quick reference for 3dm command-line tool
+- [Appendix A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b) - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
+- [Appendix B: Material Properties & Selection Guide](3DMake_Appendices_Complete.md#appendix-c) - Detailed material reference including shrinkage data, print settings, and properties
+- [Appendix C: Tolerance Testing & Quality Assurance Matrix](3DMake_Appendices_Complete.md#appendix-d) - Comprehensive QA procedures and tolerance validation methods
+- [Appendix D: Advanced OpenSCAD Concepts](3DMake_Appendices_Complete.md#appendix-e) - Specialized topics including gears, batch processing, performance, print orientation, and recursion
 - [3dMake Code Examples & Assets](assets/3dMake_Foundation/README.md) - OpenSCAD code examples and reference designs
 
 ## The Accessible Toolchain
@@ -144,7 +144,7 @@ This course uses tools designed for screen reader access:
 - 3DMake - Command-line build tool eliminating GUI navigation
 - Accessible text editors - Notepad, VS Code, Notepad++, Nano, Vim, etc. (all keyboard-driven, screen reader friendly)
 
-See [Appendix A: 3DMake Cheat Sheet](3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md) for detailed keyboard shortcuts and configuration.
+See [Appendix A: 3DMake Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) for detailed keyboard shortcuts and configuration.
 
 ### 3DMake: Non-Visual Build Automation
 
@@ -194,52 +194,52 @@ Each project requires:
 ### Primary Navigation & Overview
 
 [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) - Detailed overview of all lessons and appendices  
-[Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md) - At-a-glance command and syntax reference  
-[mdBook Navigation Guide](3dMake_Foundation/Lessons_3dMake_1/mdbook-navigation-guide.md) - How to navigate this curriculum  
+[Quick Reference](3DMake_Appendices_Complete.md#appendix-a) - At-a-glance command and syntax reference  
+[mdBook Navigation Guide](3dMake_All_Lessons.md) - How to navigate this curriculum  
 
 ### Setup & Configuration Guides
 
-[3dMake Setup Guide](3dMake_Foundation/Lessons_3dMake_1/3dmake-setup-guide.md) - Installation walkthrough  
-[VSCode Setup Guide](3dMake_Foundation/Lessons_3dMake_1/vscode-setup-guide.md) - Accessibility configuration  
-[Screen Reader Coding Tips (NVDA & JAWS)](3dMake_Foundation/Lessons_3dMake_1/nvda-jaws-coding-tips.md) - Keyboard shortcuts and coding configuration  
+[3dMake Setup Guide](3dMake_All_Lessons.md) - Installation walkthrough  
+[VSCode Setup Guide](3dMake_All_Lessons.md) - Accessibility configuration  
+[Screen Reader Coding Tips (NVDA & JAWS)](3dMake_All_Lessons.md) - Keyboard shortcuts and coding configuration  
 
 ### Quick Reference Materials
 
-[OpenSCAD Cheat Sheet](3dMake_Foundation/Lessons_3dMake_2/openscad-cheat-sheet.md) - Syntax quick-reference  
-[3DMake CLI Cheat Sheet](3dMake_Foundation/Appendix_A_3DMake_Cheat_Sheet.md) - Complete 3dm command reference  
-[Filament Comparison Table](3dMake_Foundation/Lessons_3dMake_5/filament-comparison-table.md) - Material selection guide  
-[Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md) - Project assessment criteria  
+[OpenSCAD Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Syntax quick-reference  
+[3DMake CLI Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Complete 3dm command reference  
+[Filament Comparison Table](3DMake_Appendices_Complete.md#appendix-c) - Material selection guide  
+[Master Rubric](3DMake_Appendices_Complete.md#appendix-d) - Project assessment criteria  
 
 ### Safety & Maintenance
 
-[Safety Checklist](3dMake_Foundation/Lessons_3dMake_5/safety_checklist.md) - Pre-print safety procedures  
-[Maintenance Log](3dMake_Foundation/Lessons_3dMake_5/maintenance_log.md) - Printer maintenance tracking  
+[Safety Checklist](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) - Pre-print safety procedures  
+[Maintenance Log](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) - Printer maintenance tracking  
 
 ### Troubleshooting & Diagnostics
 
-[Common Issues and Solutions](3dMake_Foundation/Lessons_3dMake_10/common_issues_and_solutions.md) - Comprehensive troubleshooting guide  
-[Diagnostic Checklist](3dMake_Foundation/Lessons_3dMake_10/diagnostic_checklist.md) - Systematic problem diagnosis  
-[Technical Reference](Backmatter/troubleshooting.md) - Advanced systems architecture and professional reference  
+[Common Issues and Solutions](Backmatter_Complete.md#troubleshooting) - Comprehensive troubleshooting guide  
+[Diagnostic Checklist](Backmatter_Complete.md#troubleshooting) - Systematic problem diagnosis  
+[Technical Reference](Backmatter_Complete.md#troubleshooting) - Advanced systems architecture and professional reference  
 
 ### Glossaries & Terminology
 
-[Student Glossary](Backmatter/glossary.md) - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI  
-[Teacher Glossary](Backmatter/teacher-glossary.md) - Pedagogical framework and instructional design terminology  
+[Student Glossary](Backmatter_Complete.md#student-glossary) - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI  
+[Teacher Glossary](Backmatter_Complete.md#teacher-glossary) - Pedagogical framework and instructional design terminology  
 
 ### Command Line Integration Appendices
 
 [CLI Appendices Overview](Appendices/CLI_Appendices.md) - All command line integration guides  
-[Appendix A: CMD/Batch Integration](Command_Line_Interface_Selection/Appendix_A_CommandLine_Integration.md) - Windows CMD automation  
-[Appendix B: PowerShell Integration](Command_Line_Interface_Selection/Appendix_B_PowerShell_Integration.md) - PowerShell workflow automation  
-[Appendix C: Git Bash Integration](Command_Line_Interface_Selection/Appendix_C_GitBash_Integration.md) - Unix shell integration  
+[Appendix A: CMD/Batch Integration](CLI_Appendices_Complete.md#appendix-a) - Windows CMD automation  
+[Appendix B: PowerShell Integration](CLI_Appendices_Complete.md#appendix-b) - PowerShell workflow automation  
+[Appendix C: Git Bash Integration](CLI_Appendices_Complete.md#appendix-c) - Unix shell integration  
 
 ### 3dMake & OpenSCAD Appendices
 
 [3dMake Appendices Overview](Appendices/3DMake_Appendices.md) - All 3dMake reference materials  
-[Appendix A: Comprehensive Slicing Guide](3dMake_Foundation/Appendix_B_Comprehensive_Slicing_Guide.md) - PrusaSlicer, Bambu Studio, Cura, OrcaSlicer  
-[Appendix B: Material Properties & Selection Guide](3dMake_Foundation/Appendix_C_Material_Properties.md) - Detailed material specifications  
-[Appendix C: Tolerance Testing & QA Matrix](3dMake_Foundation/Appendix_D_Tolerance_QA.md) - Quality assurance procedures  
-[Appendix D: Advanced OpenSCAD Concepts](3dMake_Foundation/Appendix_E_Advanced_OpenSCAD_Concepts.md) - Gears, recursion, performance optimization  
+[Appendix A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b) - PrusaSlicer, Bambu Studio, Cura, OrcaSlicer  
+[Appendix B: Material Properties & Selection Guide](3DMake_Appendices_Complete.md#appendix-c) - Detailed material specifications  
+[Appendix C: Tolerance Testing & QA Matrix](3DMake_Appendices_Complete.md#appendix-d) - Quality assurance procedures  
+[Appendix D: Advanced OpenSCAD Concepts](3DMake_Appendices_Complete.md#appendix-e) - Gears, recursion, performance optimization  
 
 ### Code Examples & Assets
 
@@ -247,7 +247,7 @@ Each project requires:
 
 ### Further Reading & References
 
-[References & Further Reading](Backmatter/Further_Reading.md) - Peer-reviewed research and scholarly works  
+[References & Further Reading](Backmatter_Complete.md#further-reading) - Peer-reviewed research and scholarly works  
   
 ## Supplemental Resources & Textbooks
 
@@ -288,18 +288,18 @@ Each project requires:
 
 Before beginning any technical work, optimize your screen reader configuration for command-line and coding work:
 
-- Start with [Screen Reader Accessibility Guide](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) - Configure NVDA/JAWS for terminal work
-- Review [Screen Reader Choice: Windows CLI](Setup/Screen_Reader_Choice/Screen_Reader_Choice.md) - Help choosing between NVDA and JAWS
-- Optional: [Braille Display & Terminal Mode](Setup/Braille_Displays/Braille_Displays.md) - Refreshable braille display configuration
-- Complete [Editor Selection and Setup](Setup/Editor_Selection_Setup/Editor_Selection_Setup.md) - Choose and configure an accessible text editor
+- Start with [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) - Configure NVDA/JAWS for terminal work
+- Review [Screen Reader Choice: Windows CLI](Setup_Accessibility_Complete.md#screen-reader-choice) - Help choosing between NVDA and JAWS
+- Optional: [Braille Display & Terminal Mode](Setup_Accessibility_Complete.md#braille-displays) - Refreshable braille display configuration
+- Complete [Editor Selection and Setup](Setup_Accessibility_Complete.md#editor-setup) - Choose and configure an accessible text editor
 
 **Step 2: Choose Your Command Line Pathway**
 
 Read [Command Line Interface Selection Guide](Command_Line_Interface_Selection/Command_Line_Interface_Selection.md) to compare all three CLI options, then select ONE pathway:
 
-- [PowerShell Curriculum Overview](PowerShell_Foundation/PowerShell_Curriculum_Overview/PowerShell_Curriculum_Overview.md) - Recommended for Windows users
-- [CMD Curriculum Overview](CMD_Foundation/CMD_Curriculum_Overview/CMD_Curriculum_Overview.md) - Simplified alternative for beginners
-- [Git Bash Curriculum Overview](GitBash_Foundation/GitBash_Curriculum_Overview/GitBash_Curriculum_Overview.md) - Cross-platform Unix skills
+- [PowerShell Curriculum Overview](PS_Complete_Curriculum.md#part-1-powershell) - Recommended for Windows users
+- [CMD Curriculum Overview](CMD_Complete_Curriculum.md#part-2-cmd) - Simplified alternative for beginners
+- [Git Bash Curriculum Overview](GitBash_Complete_Curriculum.md#part-3-git-bash) - Cross-platform Unix skills
 
 Complete ALL lessons in your chosen pathway (Pre through Lesson 6 + Unit Test) before moving to Step 3.
 
@@ -308,7 +308,7 @@ Complete ALL lessons in your chosen pathway (Pre through Lesson 6 + Unit Test) b
 Once you've completed your CLI foundation:
 
 1. Read [3dMake Introduction](3dMake_Foundation/3dMake_Intro/3dMake_Intro.md) - Overview of OpenSCAD and 3dMake
-2. Start [Lesson 1: Environmental Configuration](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md) - Install OpenSCAD and 3dMake
+2. Start [Lesson 1: Environmental Configuration](3dMake_All_Lessons.md) - Install OpenSCAD and 3dMake
 3. Progress through Lessons 2-11 sequentially
 4. Complete all project templates as you encounter them
 5. Review [3dMake Foundation Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) for detailed lesson descriptions
@@ -328,7 +328,7 @@ Use the [Student Templates](3dMake_Foundation/Templates/Student/) for all projec
 
 **Step 5: Final Assessment**
 
-Complete [3dMake Foundation Final Exam](3dMake_Foundation/3dMake_Final_Exam.md) to demonstrate mastery of OpenSCAD, 3DMake, and parametric design principles.
+Complete [3dMake Foundation Final Exam](3dMake_All_Lessons.md) to demonstrate mastery of OpenSCAD, 3DMake, and parametric design principles.
 
 ---
 
@@ -338,8 +338,8 @@ Complete [3dMake Foundation Final Exam](3dMake_Foundation/3dMake_Final_Exam.md) 
 
 1. Review [Syllabus](Syllabus.md) - Complete course structure, philosophy, learning objectives, and assessment framework
 2. Read [3dMake Foundation Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) - Detailed lesson-by-lesson breakdown with timing and objectives
-3. Study [Master Rubric](3dMake_Foundation/Lessons_3dMake_11/master-rubric.md) - Comprehensive project assessment criteria
-4. Explore [Teacher Glossary](Backmatter/teacher-glossary.md) - Pedagogical framework and instructional terminology
+3. Study [Master Rubric](3DMake_Appendices_Complete.md#appendix-d) - Comprehensive project assessment criteria
+4. Explore [Teacher Glossary](Backmatter_Complete.md#teacher-glossary) - Pedagogical framework and instructional terminology
 
 **Assessment Materials:**
 
@@ -359,19 +359,19 @@ Use the [Teacher Templates](3dMake_Foundation/Templates/Teacher/) for grading an
 
 **Final Exam:**
 
-Administer [3dMake Foundation Final Exam](3dMake_Foundation/3dMake_Final_Exam.md) - 25-question comprehensive assessment covering error detection, code analysis, design challenges, and real-world application (100 points total).
+Administer [3dMake Foundation Final Exam](3dMake_All_Lessons.md) - 25-question comprehensive assessment covering error detection, code analysis, design challenges, and real-world application (100 points total).
 
 **Accessibility Support:**
 
-- Ensure all students complete [Screen Reader Setup](Setup/Screen_Reader_Accessibility_Guide/Screen_Reader_Accessibility_Guide.md) before beginning coursework
-- Reference [Screen Reader Coding Tips (NVDA & JAWS)](3dMake_Foundation/Lessons_3dMake_1/nvda-jaws-coding-tips.md) for troubleshooting student screen reader issues
-- Provide access to [Student Glossary](Backmatter/glossary.md) for terminology reference
+- Ensure all students complete [Screen Reader Setup](Setup_Accessibility_Complete.md#accessibility-guide) before beginning coursework
+- Reference [Screen Reader Coding Tips (NVDA & JAWS)](3dMake_All_Lessons.md) for troubleshooting student screen reader issues
+- Provide access to [Student Glossary](Backmatter_Complete.md#student-glossary) for terminology reference
 
 **Additional Resources:**
 
-- [Technical Reference](Backmatter/troubleshooting.md) - Advanced troubleshooting and systems architecture
-- [Further Reading](Backmatter/Further_Reading.md) - Peer-reviewed research supporting curriculum design
-- [Quick Reference](3dMake_Foundation/3dMake_Quick_Reference.md) - At-a-glance lesson and command reference for student handouts  
+- [Technical Reference](Backmatter_Complete.md#troubleshooting) - Advanced troubleshooting and systems architecture
+- [Further Reading](Backmatter_Complete.md#further-reading) - Peer-reviewed research supporting curriculum design
+- [Quick Reference](3DMake_Appendices_Complete.md#appendix-a) - At-a-glance lesson and command reference for student handouts  
 
 
 ## Screen Readers

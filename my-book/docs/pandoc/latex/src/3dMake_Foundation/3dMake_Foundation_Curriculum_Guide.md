@@ -1,1 +1,563 @@
-[Header 2 ("3dmake_foundation-3dmake_foundation_curriculum_guide", [], []) [Str "3D Make Foundation: Complete Curriculum Guide"], Para [Str "A comprehensive, hands-on, screenreader accessible introduction to programmatic 3D design using OpenSCAD and 3DMake"], Header 3 ("overview", ["unnumbered", "unlisted"], []) [Str "Overview"], Para [Str "This 11-lesson curriculum + 4 reference appendices teaches non-visual 3D modeling, parametric design principles, and the complete 3D printing workflow through integrated projects. Each lesson builds on prior knowledge, introducing real-world examples and hands-on activities."], Para [Str "Target Audience: High school and early undergraduate students, makers, and anyone interested in programmatic CAD and 3D printing"], Para [Str "Estimated Total Time: 30-40 hours (11 lessons + 4 appendices + projects)"], Para [Str "Contents:"], BulletList [[Plain [Str "11 progressive lessons (Foundations -> Leadership)"]], [Plain [Str "9 hands-on projects (integrated into lessons)"]], [Plain [Str "4 comprehensive reference appendices (1,200-1,500 lines each)"]], [Plain [Str "Complete learning paths for different skill levels"]]], Header 3 ("lesson-structure", ["unnumbered", "unlisted"], []) [Str "Lesson Structure"], Header 4 ("lesson-1-environmental-configuration-and-the-developer-workflow", ["unnumbered", "unlisted"], []) [Str "Lesson 1: Environmental Configuration and the Developer Workflow"], Para [Str "Duration: 2.5-3.5 hours | Level: Beginner"], Para [Str "Learn to install and configure 3dMake, create a project scaffold, and run your first build. This lesson establishes the foundation for all subsequent work."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Installation and tool verification (", Code ("", [], []) "3dm", Str ", ", Code ("", [], []) "openscad", Str ")"]], [Plain [Str "Project structure (", Code ("", [], []) "src/", Str ", ", Code ("", [], []) "build/", Str ", ", Code ("", [], []) "3dmake.toml", Str ")"]], [Plain [Str "Parametric design philosophy"]], [Plain [Str "The ", Code ("", [], []) "3dm build", Str " command"]]], Para [Str "Hands-On Activity:"], BulletList [[Plain [Str "Create a 3dMake project"]], [Plain [Str "Write a simple parametric cube model"]], [Plain [Str "Build and inspect the generated STL"]]], Para [Str "Checkpoint: You can initialize a project, edit a parametric model, and generate an STL file"], Header 4 ("lesson-2-geometric-primitives-and-constructive-solid-geometry", ["unnumbered", "unlisted"], []) [Str "Lesson 2: Geometric Primitives and Constructive Solid Geometry"], Para [Str "Duration: 60 minutes | Level: Beginner"], Para [Str "Discover how to combine basic shapes (cube, sphere, cylinder) using boolean operations (union, difference, intersection). This lesson introduces the mathematical foundation of 3D modeling."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Primitive shapes: ", Code ("", [], []) "cube()", Str ", ", Code ("", [], []) "sphere()", Str ", ", Code ("", [], []) "cylinder()"]], [Plain [Str "CSG operations: ", Code ("", [], []) "union()", Str ", ", Code ("", [], []) "difference()", Str ", ", Code ("", [], []) "intersection()"]], [Plain [Str "The 0.001 offset rule for avoiding non-manifold geometry"]], [Plain [Str "Low-resolution renders for faster debugging"]]], Para [Str "Hands-On Activity:"], BulletList [[Plain [Str "Build three simple CSG examples"]], [Plain [Str "Diagnose and fix a failing boolean operation"]], [Plain [Str "Validate geometry in a slicer"]]], Para [Str "Checkpoint: You understand CSG operations and can diagnose common geometry issues"], Header 4 ("lesson-3-parametric-architecture-and-modular-libraries", ["unnumbered", "unlisted"], []) [Str "Lesson 3: Parametric Architecture and Modular Libraries"], Para [Str "Duration: 2.5 hours | Level: Beginner+"], Para [Str "Learn to create reusable modules and organize code into libraries. This lesson introduces the \"don't repeat yourself\" (DRY) principle for code reuse."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Module definitions with parameters"]], [Plain [Str "Derived calculations from parameters"]], [Plain [Str "Library organization (", Code ("", [], []) "lib/", Str " folder)"]], [Plain [Str "Using external libraries (BOSL2)"]], [Plain [Str "Low-resolution testing with ", Code ("", [], []) "$fn"]]], Para [Str "Hands-On Activity:"], BulletList [[Plain [Str "Create a parametric bracket module"]], [Plain [Str "Build variants by changing parameters"]], [Plain [Str "Move a module into a reusable library"]]], Para [Str "Checkpoint: You can create parametric modules and organize code into libraries"], Header 4 ("lesson-4-ai-enhanced-verification-and-multimodal-feedback", ["unnumbered", "unlisted"], []) [Str "Lesson 4: AI-Enhanced Verification and Multimodal Feedback"], Para [Str "Duration: 2-2.5 hours | Level: Intermediate"], Para [Str "Use ", Code ("", [], []) "3dm info", Str " to generate AI diagnostics and validate designs. This lesson covers verification workflows and the strengths/limitations of AI in design."], Para [Str "Key Topics:"], BulletList [[Plain [Str "The ", Code ("", [], []) "3dm info", Str " command for model analysis"]], [Plain [Str "AI-generated model descriptions"]], [Plain [Str "Comparing AI suggestions to deterministic validation"]], [Plain [Str "Privacy and governance considerations"]], [Plain [Str "Prompt engineering basics"]]], Para [Str "Hands-On Activity:"], BulletList [[Plain [Str "Run ", Code ("", [], []) "3dm info", Str " on a sample model"]], [Plain [Str "Compare AI suggestions to slicer analysis"]], [Plain [Str "Document an AI-assisted design decision"]]], Para [Str "Checkpoint: You can use AI tools to supplement your design validation"], Header 4 ("lesson-5-safety-protocols-and-the-physical-fabrication-interface", ["unnumbered", "unlisted"], []) [Str "Lesson 5: Safety Protocols and the Physical Fabrication Interface"], Para [Str "Duration: 2.5-3.5 hours | Level: Intermediate"], Para [Str "Transition from digital design to physical printing. Learn safety procedures, environmental controls, and the complete print workflow."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Hierarchy of Controls (elimination, engineering, administrative, PPE)"]], [Plain [Str "Chemical and particulate emissions from printing"]], [Plain [Str "Pre-print environmental and equipment checks"]], [Plain [Str "Post-print inspection and measurement"]], [Plain [Str "Spool metadata and documentation"]]], Para [Str "Hands-On Activity:"], BulletList [[Plain [Str "Conduct a safety briefing"]], [Plain [Str "Verify environmental controls"]], [Plain [Str "Perform a pre-print checklist"]], [Plain [Str "Monitor and measure a completed print"]]], Para [Str "Checkpoint: You understand safety procedures and can safely conduct supervised prints"], Header 4 ("lesson-6-practical-3dm-commands-and-text-embossing", ["unnumbered", "unlisted"], []) [Str "Lesson 6: Practical 3dm Commands and Text Embossing"], Para [Str "Duration: 2.5-3.5 hours | Level: Intermediate"], Para [Str "Master the key 3dm commands by building a practical project-a customizable keycap with embossed text. This lesson ties together design and verification."], Para [Str "Key Topics:"], BulletList [[Plain [Code ("", [], []) "3dm info", Str ": Text-based model analysis"]], [Plain [Code ("", [], []) "3dm preview", Str ": Generating 2D tactile prints"]], [Plain [Code ("", [], []) "3dm orient", Str ": Analyzing optimal print orientation"]], [Plain [Code ("", [], []) "3dm slice", Str ": Generating G-code"]], [Plain [Str "Text embossing with ", Code ("", [], []) "linear_extrude()", Str " and ", Code ("", [], []) "text()"]]], Para [Str "Project: Parametric Cube Keycap"], BulletList [[Plain [Str "Customize ", Code ("", [], []) "key_size", Str ", ", Code ("", [], []) "letter", Str ", and ", Code ("", [], []) "emboss_depth"]], [Plain [Str "Generate 3+ variants (small, medium, large)"]], [Plain [Str "Test emboss quality in slicer preview"]]], Para [Str "Checkpoint: You can generate keycaps with embossed text and understand all major 3dm commands"], Header 4 ("lesson-7-parametric-transforms-and-the-phone-stand-project", ["unnumbered", "unlisted"], []) [Str "Lesson 7: Parametric Transforms and the Phone Stand Project"], Para [Str "Duration: 3-3.5 hours | Level: Intermediate+"], Para [Str "Apply transforms (translate, rotate, scale) to build a multi-part assembly. This lesson covers spatial positioning and practical product design."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Transform operations: ", Code ("", [], []) "translate()", Str ", ", Code ("", [], []) "rotate()", Str ", ", Code ("", [], []) "scale()"]], [Plain [Str "Minkowski sum for edge rounding"]], [Plain [Str "Multi-part assemblies"]], [Plain [Str "Parametric angle and position variations"]], [Plain [Str "Testing and validation"]]], Para [Str "Project: Parametric Phone Stand"], BulletList [[Plain [Str "Design base, back, and lip components"]], [Plain [Str "Create configurations for phones, tablets, documents"]], [Plain [Str "Test orientation with ", Code ("", [], []) "3dm orient"]], [Plain [Str "Validate angles and friction after printing"]]], Para [Str "Checkpoint: You can design multi-part assemblies with positioned components"], Header 4 ("lesson-8-advanced-parametric-design-and-interlocking-features", ["unnumbered", "unlisted"], []) [Str "Lesson 8: Advanced Parametric Design and Interlocking Features"], Para [Str "Duration: 90-120 minutes | Level: Advanced"], Para [Str "Design tolerance-critical assemblies where parts snap together. This lesson covers precision manufacturing principles."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Tolerance and clearance management"]], [Plain [Str "Stack-up and cumulative tolerances"]], [Plain [Str "Interlocking rims and snap-fit connectors"]], [Plain [Str "Chamfers for quality finishing"]], [Plain [Str "Tolerance sensitivity testing"]]], Para [Str "Project: Stackable Storage Bins"], BulletList [[Plain [Str "Design bins with interlocking rims"]], [Plain [Str "Test different ", Code ("", [], []) "stack_clear", Str " values"]], [Plain [Str "Create variants: small, medium, large"]], [Plain [Str "Add optional dividers"]], [Plain [Str "Document tolerance data"]]], Para [Str "Checkpoint: You understand tolerance management and can design stackable assemblies"], Header 4 ("lesson-9-automation-and-3dm-workflows", ["unnumbered", "unlisted"], []) [Str "Lesson 9: Automation and 3dm Workflows"], Para [Str "Duration: 2.5-3.5 hours | Level: Advanced"], Para [Str "Automate design workflows using shell scripts. This lesson teaches batch processing and continuous integration concepts."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Chaining 3dm commands with ", Code ("", [], []) "&&"]], [Plain [Str "Shell script basics for batch processing"]], [Plain [Str "Library management (", Code ("", [], []) "3dm lib", Str ")"]], [Plain [Str "Variant testing matrices"]], [Plain [Str "Production build workflows"]]], Para [Str "Activities:"], BulletList [[Plain [Str "Create a batch build script"]], [Plain [Str "Automate parameter variant testing"]], [Plain [Str "Generate production build reports"]], [Plain [Str "Learn library management"]]], Para [Str "Checkpoint: You can automate design workflows and manage parametric variants at scale"], Header 4 ("lesson-10-hands-on-practice-exercises-and-troubleshooting", ["unnumbered", "unlisted"], []) [Str "Lesson 10: Hands-On Practice Exercises and Troubleshooting"], Para [Str "Duration: 5-6 hours | Level: Advanced"], Para [Str "Complete integrated projects and learn to diagnose and fix common issues. This capstone lesson synthesizes all prior learning."], Para [Str "Exercise Sets:"], Para [Str "Set A: Guided Projects"], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Str "Phone Stand (Beginner): Parametric design with weight constraints"]], [Plain [Str "Keycap Set (Intermediate): Family of 5+ customizable caps"]], [Plain [Str "Storage System (Advanced): Stackable bins with tolerance management"]]], Para [Str "Set B: Problem Diagnosis"], BulletList [[Plain [Str "Non-manifold geometry detection and fixes"]], [Plain [Str "Print failure prevention"]], [Plain [Str "Dimensional accuracy troubleshooting"]]], Para [Str "Set C: Validation & Documentation"], BulletList [[Plain [Str "Design review checklists"]], [Plain [Str "Troubleshooting documentation templates"]], [Plain [Str "Quality assurance workflows"]]], Para [Str "Checkpoint: You can complete real projects from concept to verified print"], Header 3 ("learning-progressions", ["unnumbered", "unlisted"], []) [Str "Learning Progressions"], Header 4 ("by-skill-level", ["unnumbered", "unlisted"], []) [Str "By Skill Level"], Para [Str "Beginner Track (Lessons 1-3):"], BulletList [[Plain [Str "Learn tools and project structure"]], [Plain [Str "Understand geometric primitives and boolean operations"]], [Plain [Str "Create your first parametric modules"]]], Para [Str "Intermediate Track (Lessons 4-6):"], BulletList [[Plain [Str "Explore verification and safety"]], [Plain [Str "Master 3dm commands"]], [Plain [Str "Build your first complete project (keycap)"]]], Para [Str "Advanced Track (Lessons 7-10):"], BulletList [[Plain [Str "Design complex assemblies"]], [Plain [Str "Manage tolerances precisely"]], [Plain [Str "Automate workflows and troubleshoot professionally"]]], Header 4 ("by-project-focus", ["unnumbered", "unlisted"], []) [Str "By Project Focus"], Para [Str "Design & Modeling: Lessons 1-3, 7-8", SoftBreak, Str "Verification & Validation: Lessons 4, 6, 10", SoftBreak, Str "Safety & Printing: Lesson 5, 10", SoftBreak, Str "Automation: Lesson 9"], Header 3 ("practice-exercises-quick-reference", ["unnumbered", "unlisted"], []) [Str "Practice Exercises Quick Reference"], Header 4 ("structured-exercises-by-lesson", ["unnumbered", "unlisted"], []) [Str "Structured Exercises by Lesson"], Table ("", [], []) (Caption Nothing []) [(AlignDefault, ColWidthDefault), (AlignDefault, ColWidthDefault), (AlignDefault, ColWidthDefault)] (TableHead ("", [], []) [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lesson"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Exercise Type"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Deliverable"]]]]) [(TableBody ("", [], []) (RowHeadColumns 0) [] [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "1"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Setup & Configuration"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Working project scaffold"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "2"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Geometry Construction"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "3 CSG examples + fixes"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "3"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Modular Design"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Parametric bracket module"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "4"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "AI Verification"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Code ("", [], []) "AI-notes.md", Str " with findings"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "5"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Safety & Printing"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Pre-print checklist + measurements"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "6"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Command Mastery"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "3+ keycap variants"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "7"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Multi-Part Assembly"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Phone stand for 3+ devices"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "8"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Tolerance Design"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Stackable bins + tolerance matrix"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "9"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Automation"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Batch build script + variants"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "10"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Integration"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "3 complete projects + documentation"]]]])] (TableFoot ("", [], []) []), Header 3 ("code-examples-repository", ["unnumbered", "unlisted"], []) [Str "Code Examples Repository"], Para [Str "All code examples from lessons are provided as:"], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Str "Inline OpenSCAD code blocks in each lesson (copy-paste ready)"]], [Plain [Str "Shell script examples for automation tasks"]], [Plain [Str "Documentation templates for reproducible workflows"]]], Header 3 ("accessibility-features", ["unnumbered", "unlisted"], []) [Str "Accessibility Features"], Para [Str "This curriculum is designed for non-visual learners:"], BulletList [[Plain [Str "Text descriptions of all models (", Code ("", [], []) "3dm info", Str ")"]], [Plain [Str "Tactile 2D previews (", Code ("", [], []) "3dm preview", Str ")"]], [Plain [Str "Structured written documentation"]], [Plain [Str "Command-line based (no graphical interface required)"]], [Plain [Str "Parametric organization for clear understanding"]], [Plain [Str "Measurement-based validation without visual inspection"]]], Header 3 ("recommended-reading-order", ["unnumbered", "unlisted"], []) [Str "Recommended Reading Order"], Header 4 ("option-1-linear-complete-foundation", ["unnumbered", "unlisted"], []) [Str "Option 1: Linear (Complete Foundation)"], Para [Str "Lesson 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10"], Para [Str "Best for: First-time learners wanting comprehensive understanding"], Header 4 ("option-2-fast-track-design-focus", ["unnumbered", "unlisted"], []) [Str "Option 2: Fast Track (Design Focus)"], Para [Str "Lesson 1 -> 2 -> 3 -> 6 -> 7 -> 8 -> 9"], Para [Str "Best for: Experienced designers new to programmatic CAD"], Header 4 ("option-3-project-based", ["unnumbered", "unlisted"], []) [Str "Option 3: Project-Based"], Para [Str "Lesson 1 -> 2 -> 3 -> 6 (Keycap Project)", SoftBreak, Str "Then: Lesson 7 (Phone Stand)", SoftBreak, Str "Then: Lesson 8 (Storage Bins)", SoftBreak, Str "Then: Lesson 9 (Automation)"], Para [Str "Best for: Learning by doing with integrated projects"], Header 3 ("assessment-and-completion", ["unnumbered", "unlisted"], []) [Str "Assessment and Completion"], Header 4 ("lesson-completion-criteria", ["unnumbered", "unlisted"], []) [Str "Lesson Completion Criteria"], Para [Str "Each lesson includes:"], BulletList [[Plain [Str "Learning objectives (concepts you'll understand)"]], [Plain [Str "Step-by-step tasks (hands-on activities)"]], [Plain [Str "Checkpoints (verification milestones)"]], [Plain [Str "Quiz (10 self-assessment questions)"]], [Plain [Str "Extension problems (10 advanced challenges)"]]], Header 4 ("project-completion-tracking", ["unnumbered", "unlisted"], []) [Str "Project Completion Tracking"], Table ("", [], []) (Caption Nothing []) [(AlignDefault, (ColWidth 0.19672131147540983)), (AlignDefault, (ColWidth 0.11475409836065574)), (AlignDefault, (ColWidth 0.4426229508196721)), (AlignDefault, (ColWidth 0.2459016393442623))] (TableHead ("", [], []) [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Project"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lessons"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Output Files"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Est. Print Time"]]]]) [(TableBody ("", [], []) (RowHeadColumns 0) [] [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Keycap Set"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "1-6"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "5+ SCAD files, 3+ STL files"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "15-30 min total"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Phone Stand"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "1-7"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "1 SCAD with 3+ variants"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "30-60 min total"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Storage Bins"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "1-8"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "1 parametric SCAD, 3 sizes"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "60-90 min total"]]]])] (TableFoot ("", [], []) []), Header 3 ("troubleshooting-guide", ["unnumbered", "unlisted"], []) [Str "Troubleshooting Guide"], Header 4 ("common-issues-and-references", ["unnumbered", "unlisted"], []) [Str "Common Issues and References"], Table ("", [], []) (Caption Nothing []) [(AlignDefault, (ColWidth 0.18085106382978725)), (AlignDefault, (ColWidth 0.14893617021276595)), (AlignDefault, (ColWidth 0.6702127659574468))] (TableHead ("", [], []) [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Issue"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Related Lesson"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Solution"]]]]) [(TableBody ("", [], []) (RowHeadColumns 0) [] [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Model won't build"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lesson 2"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Check for non-manifold geometry with ", Code ("", [], []) "3dm info"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Parts don't fit"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lesson 8"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Use tolerance testing matrix to find correct ", Code ("", [], []) "stack_clear"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Print fails"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lesson 5"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Verify pre-print checklist and slicer settings"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Dimensions off"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lesson 10"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Conduct tolerance sensitivity study and apply correction factor"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Slow renders"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lesson 3"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lower ", Code ("", [], []) "$fn", Str " for faster debugging"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Script errors"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Lesson 9"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Use ", Code ("", [], []) "&&", Str " to chain commands properly; check file paths"]]]])] (TableFoot ("", [], []) []), Header 3 ("next-steps-after-completion", ["unnumbered", "unlisted"], []) [Str "Next Steps After Completion"], Para [Str "Upon completing this curriculum, you're ready for:"], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Str "Advanced 3D Design: Explore BOSL2 library features, parametric assemblies"]], [Plain [Str "Multi-Material Printing: Design parts for different materials (TPU, Nylon, etc.)"]], [Plain [Str "Functional Design: Create mechanical assemblies with bearings, gears, mechanisms"]], [Plain [Str "Community Contribution: Share your designs and libraries with OpenSCAD community"]], [Plain [Str "Professional Applications: Apply skills to product design, prototyping, manufacturing"]]], Header 3 ("resources-and-references", ["unnumbered", "unlisted"], []) [Str "Resources and References"], Header 4 ("official-documentation", ["unnumbered", "unlisted"], []) [Str "Official Documentation"], BulletList [[Plain [Link ("", [], []) [Str "OpenSCAD Manual"] ("https://en.wikibooks.org/wiki/OpenSCAD_User_Manual", "")]], [Plain [Link ("", [], []) [Str "3DMake GitHub"] ("https://github.com/tdeck/3dmake", "")]], [Plain [Link ("", [], []) [Str "BOSL2 Library"] ("https://github.com/revarbat/BOSL2", "")]]], Header 4 ("printers--slicers", ["unnumbered", "unlisted"], []) [Str "Printers & Slicers"], BulletList [[Plain [Link ("", [], []) [Str "PrusaSlicer Documentation"] ("https://help.prusa3d.com", "")]], [Plain [Link ("", [], []) [Str "Bambu Studio Documentation"] ("https://wiki.bambulab.com", "")]], [Plain [Link ("", [], []) [Str "OrcaSlicer Documentation"] ("https://github.com/SoftFever/OrcaSlicer/wiki", "")]]], Header 4 ("3d-printing-guides", ["unnumbered", "unlisted"], []) [Str "3D Printing Guides"], BulletList [[Plain [Link ("", [], []) [Str "Prusa3D Troubleshooting"] ("https://www.prusa3d.com/support/", "")]], [Plain [Link ("", [], []) [Str "All3DP 3D Printing Guide"] ("https://www.all3dp.com/guides/", "")]]], Header 4 ("community", ["unnumbered", "unlisted"], []) [Str "Community"], BulletList [[Plain [Link ("", [], []) [Str "OpenSCAD Forums"] ("https://forum.openscad.org/", "")]], [Plain [Link ("", [], []) [Str "Prusa Community"] ("https://community.prusa3d.com/", "")]], [Plain [Link ("", [], []) [Str "Reddit r/3Dprinting"] ("https://www.reddit.com/r/3Dprinting/", "")]]], Header 3 ("lesson-11-stakeholder-centric-design-and-the-beaded-jewelry-project", ["unnumbered", "unlisted"], []) [Str "Lesson 11: Stakeholder-Centric Design and the Beaded Jewelry Project"], Para [Str "Duration: 3.5-4.5 hours | Level: Advanced/Leadership"], Para [Str "The final lesson teaches you to design for real users, not just yourself. You'll learn to conduct stakeholder interviews, extract functional requirements, and iterate based on real feedback. This bridges the gap between maker and design professional."], Para [Str "Key Topics:"], BulletList [[Plain [Str "Stakeholder identification and interview techniques"]], [Plain [Str "Open-ended questioning strategies"]], [Plain [Str "Extracting functional requirements from interview data"]], [Plain [Str "Defining measurable acceptance criteria"]], [Plain [Str "Design iteration based on user feedback"]], [Plain [Str "Documentation for reproducibility and accessibility"]]], Para [Str "Project: Beaded Jewelry Bracelet Holder"], BulletList [[Plain [Str "Interview an actual stakeholder (or use provided scenario)"]], [Plain [Str "Extract their specific needs and constraints"]], [Plain [Str "Design a parametric holder based on their requirements"]], [Plain [Str "Test with actual bracelets and iterate based on feedback"]], [Plain [Str "Document the complete design process"]]], Para [Str "Checkpoint: You can conduct a real interview, translate needs into measurable requirements, and iterate a design based on user feedback"], Header 3 ("3d-make-foundation-appendices", ["unnumbered", "unlisted"], []) [Str "3D Make Foundation Appendices"], Header 4 ("appendix-a-comprehensive-slicing-guide---all-major-slicers", ["unnumbered", "unlisted"], []) [Str "Appendix A: Comprehensive Slicing Guide - All Major Slicers"], Para [Str "A complete reference covering multiple major slicers (PrusaSlicer, Bambu Studio, Cura, SuperSlicer, OrcaSlicer, IdeaMaker, Fusion 360 built in slicer)."], Para [Str "What You'll Find:"], BulletList [[Plain [Str "Setup and workflow for each slicer"]], [Plain [Str "Accessible parameter explanations (non-visual)"]], [Plain [Str "Command-line usage for PowerShell integration"]], [Plain [Str "Troubleshooting guide for common problems"]], [Plain [Str "Comparison table for choosing the right slicer"]]], Para [Str "When to Use: Reference whenever slicing, switching slicers, or troubleshooting print quality"], Header 4 ("appendix-b-material-properties--selection-guide", ["unnumbered", "unlisted"], []) [Str "Appendix B: Material Properties & Selection Guide"], Para [Str "Comprehensive reference for 6 common filament materials (PLA, PETG, ABS, TPU, Polycarbonate, Nylon)."], Para [Str "What You'll Find:"], BulletList [[Plain [Str "Properties table (strength, flexibility, temperature, cost)"]], [Plain [Str "Ideal projects and use cases for each material"]], [Plain [Str "Printing parameters and settings"]], [Plain [Str "Quality factors and how to verify filament quality"]], [Plain [Str "Storage and maintenance"]], [Plain [Str "Cost analysis and brand recommendations"]], [Plain [Str "Material selection decision tree"]]], Para [Str "When to Use: Reference when choosing material for a project or troubleshooting print quality issues"], Header 4 ("appendix-c-tolerance-testing--quality-assurance-matrix", ["unnumbered", "unlisted"], []) [Str "Appendix C: Tolerance Testing & Quality Assurance Matrix"], Para [Str "Measurement-based QA methodology designed to be used non-visually (with calipers, scales, and functional tests)."], Para [Str "What You'll Find:"], BulletList [[Plain [Str "Essential measurement tools (digital calipers, scales, go/no-go gauges)"]], [Plain [Str "Step-by-step measurement procedures for all common dimensions"]], [Plain [Str "Functional testing methods (load testing, assembly testing, durability testing)"]], [Plain [Str "Tolerance stack-up calculations for multi-part designs"]], [Plain [Str "Troubleshooting guide for common dimensional problems"]], [Plain [Str "QA checklist template"]], [Plain [Str "Accessibility-focused best practices"]]], Para [Str "When to Use: Reference when starting a new project (create test plan), after printing (verify dimensions), or when troubleshooting quality issues"], Header 4 ("appendix-d-powershell-integration-for-scad-workflows", ["unnumbered", "unlisted"], []) [Str "Appendix D: PowerShell Integration for SCAD Workflows"], Para [Str "Shows how to automate 3D design workflows using PowerShell scripts (from PowerShell_Foundation Lessons 1-6)."], Para [Str "What You'll Find:"], BulletList [[Plain [Str "Basic workflow automation (SCAD -> STL -> G-code)"]], [Plain [Str "Parametric sweep (test 5, 10, or 100 design variations automatically)"]], [Plain [Str "Batch build for multiple files"]], [Plain [Str "Print logging and quality tracking"]], [Plain [Str "Printer communication (USB transfer, network monitoring)"]], [Plain [Str "Complete full workflow integration"]], [Plain [Str "PowerShell skills mapped to SCAD applications"]], [Plain [Str "Accessibility considerations and best practices"]]], Para [Str "When to Use: Reference when automating repetitive tasks, testing parameter variations, or building a batch of designs"], Header 4 ("appendix-e-advanced-openscad-concepts", ["unnumbered", "unlisted"], []) [Str "Appendix E: Advanced OpenSCAD Concepts"], Para [Str "Optional topics for experienced designers tackling specialized applications. Five in-depth modules with complete working examples."], Para [Str "What You'll Find:"], OrderedList (1, DefaultStyle, DefaultDelim) [[Para [Str "Gears and Mechanical Components"], BulletList [[Plain [Str "Gear terminology and tooth geometry"]], [Plain [Str "Involute gear algorithm"]], [Plain [Str "Parametric servo gearbox design"]], [Plain [Str "Belt and pulley systems"]]]], [Para [Str "Batch Processing and Statistical Analysis"], BulletList [[Plain [Str "Automated parameter sweep generation"]], [Plain [Str "Statistical summary scripts"]], [Plain [Str "Data-driven design selection"]], [Plain [Str "Comparison and analysis frameworks"]]]], [Para [Str "Performance Optimization"], BulletList [[Plain [Str "Render time measurement and profiling"]], [Plain [Str "Resolution parameter strategy"]], [Plain [Str "Caching complex calculations"]], [Plain [Str "Preview vs render optimization strategies"]]]], [Para [Str "Print Orientation and Support Structure Algorithms"], BulletList [[Plain [Str "Strength orientation analysis"]], [Plain [Str "Support material minimization"]], [Plain [Str "Bridge span calculations"]], [Plain [Str "Optimal slicing parameter determination"]]]], [Para [Str "Recursive Function Patterns"], BulletList [[Plain [Str "Basic recursion with base cases"]], [Plain [Str "Fractal generation"]], [Plain [Str "Nested component assembly"]], [Plain [Str "Performance considerations for deep recursion"]], [Plain [Str "Practical cable management applications"]]]]], Para [Str "When to Use:"], BulletList [[Plain [Str "When working with mechanical systems requiring gears or synchronized motion"]], [Plain [Str "When testing design variations systematically"]], [Plain [Str "When optimizing complex models for faster iteration"]], [Plain [Str "When designing for specific print orientations or minimizing support"]], [Plain [Str "When building fractal or deeply nested structures"]], [Plain [Str "For advanced library and framework development"]]], Para [Str "Accessibility: Each example includes comprehensive comments, starts with simplified versions before advanced techniques, and documents performance implications for both visual and non-visual users"], Header 3 ("curriculum-revision-history", ["unnumbered", "unlisted"], []) [Str "Curriculum Revision History"], Table ("", [], []) (Caption Nothing []) [(AlignDefault, (ColWidth 0.0673076923076923)), (AlignDefault, (ColWidth 0.07692307692307693)), (AlignDefault, (ColWidth 0.8557692307692307))] (TableHead ("", [], []) [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Version"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Date"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Changes"]]]]) [(TableBody ("", [], []) (RowHeadColumns 0) [] [Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "2.1"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Feb 2026"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Added Appendix E (Advanced OpenSCAD); Enhanced Lessons 3, 6, 7, 8, 9 with advanced topics"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "2.0"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Feb 2026"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Added Lesson 11 (Stakeholder Design) + 4 Appendices; Consolidated Units 0-3 content"]]], Row ("", [], []) [Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "1.0"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Feb 2026"]], Cell ("", [], []) AlignDefault (RowSpan 0) (ColSpan 0) [Plain [Str "Initial comprehensive curriculum with 10 lessons + 5 projects"]]]])] (TableFoot ("", [], []) []), Header 3 ("feedback-and-contributions", ["unnumbered", "unlisted"], []) [Str "Feedback and Contributions"], Para [Str "Have suggestions to improve this curriculum? Found an issue in a lesson or code example?"], Para [Str "Please reach out with:"], BulletList [[Plain [Str "Lesson number and specific content reference"]], [Plain [Str "Description of the issue or suggestion"]], [Plain [Str "Proposed solution (if applicable)"]]], Para [Str "Happy designing!"]]
+# 3D Make Foundation: Complete Curriculum Guide {#3dmake_foundation-3dmake_foundation_curriculum_guide}
+
+A comprehensive, hands-on, screenreader accessible introduction to programmatic 3D design using OpenSCAD and 3DMake
+
+## Overview
+
+This 11-lesson curriculum + 4 reference appendices teaches non-visual 3D modeling, parametric design principles, and the complete 3D printing workflow through integrated projects. Each lesson builds on prior knowledge, introducing real-world examples and hands-on activities.
+
+Target Audience: High school and early undergraduate students, makers, and anyone interested in programmatic CAD and 3D printing
+
+Estimated Total Time: 30-40 hours (11 lessons + 4 appendices + projects)
+
+Contents:
+
+- 11 progressive lessons (Foundations -> Leadership)
+- 9 hands-on projects (integrated into lessons)
+- 4 comprehensive reference appendices (1,200-1,500 lines each)
+- Complete learning paths for different skill levels
+
+## Lesson Structure
+
+### Lesson 1: Environmental Configuration and the Developer Workflow
+
+Duration: 2.5-3.5 hours | Level: Beginner
+
+Learn to install and configure 3dMake, create a project scaffold, and run your first build. This lesson establishes the foundation for all subsequent work.
+
+Key Topics:
+
+- Installation and tool verification (`3dm`, `openscad`)
+- Project structure (`src/`, `build/`, `3dmake.toml`)
+- Parametric design philosophy
+- The `3dm build` command
+
+Hands-On Activity:
+
+- Create a 3dMake project
+- Write a simple parametric cube model
+- Build and inspect the generated STL
+
+Checkpoint: You can initialize a project, edit a parametric model, and generate an STL file
+
+### Lesson 2: Geometric Primitives and Constructive Solid Geometry
+
+Duration: 60 minutes | Level: Beginner
+
+Discover how to combine basic shapes (cube, sphere, cylinder) using boolean operations (union, difference, intersection). This lesson introduces the mathematical foundation of 3D modeling.
+
+Key Topics:
+
+- Primitive shapes: `cube()`, `sphere()`, `cylinder()`
+- CSG operations: `union()`, `difference()`, `intersection()`
+- The 0.001 offset rule for avoiding non-manifold geometry
+- Low-resolution renders for faster debugging
+
+Hands-On Activity:
+
+- Build three simple CSG examples
+- Diagnose and fix a failing boolean operation
+- Validate geometry in a slicer
+
+Checkpoint: You understand CSG operations and can diagnose common geometry issues
+
+### Lesson 3: Parametric Architecture and Modular Libraries
+
+Duration: 2.5 hours | Level: Beginner+
+
+Learn to create reusable modules and organize code into libraries. This lesson introduces the "don't repeat yourself" (DRY) principle for code reuse.
+
+Key Topics:
+
+- Module definitions with parameters
+- Derived calculations from parameters
+- Library organization (`lib/` folder)
+- Using external libraries (BOSL2)
+- Low-resolution testing with `$fn`
+
+Hands-On Activity:
+
+- Create a parametric bracket module
+- Build variants by changing parameters
+- Move a module into a reusable library
+
+Checkpoint: You can create parametric modules and organize code into libraries
+
+### Lesson 4: AI-Enhanced Verification and Multimodal Feedback
+
+Duration: 2-2.5 hours | Level: Intermediate
+
+Use `3dm info` to generate AI diagnostics and validate designs. This lesson covers verification workflows and the strengths/limitations of AI in design.
+
+Key Topics:
+
+- The `3dm info` command for model analysis
+- AI-generated model descriptions
+- Comparing AI suggestions to deterministic validation
+- Privacy and governance considerations
+- Prompt engineering basics
+
+Hands-On Activity:
+
+- Run `3dm info` on a sample model
+- Compare AI suggestions to slicer analysis
+- Document an AI-assisted design decision
+
+Checkpoint: You can use AI tools to supplement your design validation
+
+### Lesson 5: Safety Protocols and the Physical Fabrication Interface
+
+Duration: 2.5-3.5 hours | Level: Intermediate
+
+Transition from digital design to physical printing. Learn safety procedures, environmental controls, and the complete print workflow.
+
+Key Topics:
+
+- Hierarchy of Controls (elimination, engineering, administrative, PPE)
+- Chemical and particulate emissions from printing
+- Pre-print environmental and equipment checks
+- Post-print inspection and measurement
+- Spool metadata and documentation
+
+Hands-On Activity:
+
+- Conduct a safety briefing
+- Verify environmental controls
+- Perform a pre-print checklist
+- Monitor and measure a completed print
+
+Checkpoint: You understand safety procedures and can safely conduct supervised prints
+
+### Lesson 6: Practical 3dm Commands and Text Embossing
+
+Duration: 2.5-3.5 hours | Level: Intermediate
+
+Master the key 3dm commands by building a practical project-a customizable keycap with embossed text. This lesson ties together design and verification.
+
+Key Topics:
+
+- `3dm info`: Text-based model analysis
+- `3dm preview`: Generating 2D tactile prints
+- `3dm orient`: Analyzing optimal print orientation
+- `3dm slice`: Generating G-code
+- Text embossing with `linear_extrude()` and `text()`
+
+Project: Parametric Cube Keycap
+
+- Customize `key_size`, `letter`, and `emboss_depth`
+- Generate 3+ variants (small, medium, large)
+- Test emboss quality in slicer preview
+
+Checkpoint: You can generate keycaps with embossed text and understand all major 3dm commands
+
+### Lesson 7: Parametric Transforms and the Phone Stand Project
+
+Duration: 3-3.5 hours | Level: Intermediate+
+
+Apply transforms (translate, rotate, scale) to build a multi-part assembly. This lesson covers spatial positioning and practical product design.
+
+Key Topics:
+
+- Transform operations: `translate()`, `rotate()`, `scale()`
+- Minkowski sum for edge rounding
+- Multi-part assemblies
+- Parametric angle and position variations
+- Testing and validation
+
+Project: Parametric Phone Stand
+
+- Design base, back, and lip components
+- Create configurations for phones, tablets, documents
+- Test orientation with `3dm orient`
+- Validate angles and friction after printing
+
+Checkpoint: You can design multi-part assemblies with positioned components
+
+### Lesson 8: Advanced Parametric Design and Interlocking Features
+
+Duration: 90-120 minutes | Level: Advanced
+
+Design tolerance-critical assemblies where parts snap together. This lesson covers precision manufacturing principles.
+
+Key Topics:
+
+- Tolerance and clearance management
+- Stack-up and cumulative tolerances
+- Interlocking rims and snap-fit connectors
+- Chamfers for quality finishing
+- Tolerance sensitivity testing
+
+Project: Stackable Storage Bins
+
+- Design bins with interlocking rims
+- Test different `stack_clear` values
+- Create variants: small, medium, large
+- Add optional dividers
+- Document tolerance data
+
+Checkpoint: You understand tolerance management and can design stackable assemblies
+
+### Lesson 9: Automation and 3dm Workflows
+
+Duration: 2.5-3.5 hours | Level: Advanced
+
+Automate design workflows using shell scripts. This lesson teaches batch processing and continuous integration concepts.
+
+Key Topics:
+
+- Chaining 3dm commands with `&&`
+- Shell script basics for batch processing
+- Library management (`3dm lib`)
+- Variant testing matrices
+- Production build workflows
+
+Activities:
+
+- Create a batch build script
+- Automate parameter variant testing
+- Generate production build reports
+- Learn library management
+
+Checkpoint: You can automate design workflows and manage parametric variants at scale
+
+### Lesson 10: Hands-On Practice Exercises and Troubleshooting
+
+Duration: 5-6 hours | Level: Advanced
+
+Complete integrated projects and learn to diagnose and fix common issues. This capstone lesson synthesizes all prior learning.
+
+Exercise Sets:
+
+Set A: Guided Projects
+
+1. Phone Stand (Beginner): Parametric design with weight constraints
+2. Keycap Set (Intermediate): Family of 5+ customizable caps
+3. Storage System (Advanced): Stackable bins with tolerance management
+
+Set B: Problem Diagnosis
+
+- Non-manifold geometry detection and fixes
+- Print failure prevention
+- Dimensional accuracy troubleshooting
+
+Set C: Validation & Documentation
+
+- Design review checklists
+- Troubleshooting documentation templates
+- Quality assurance workflows
+
+Checkpoint: You can complete real projects from concept to verified print
+
+## Learning Progressions
+
+### By Skill Level
+
+Beginner Track (Lessons 1-3):
+
+- Learn tools and project structure
+- Understand geometric primitives and boolean operations
+- Create your first parametric modules
+
+Intermediate Track (Lessons 4-6):
+
+- Explore verification and safety
+- Master 3dm commands
+- Build your first complete project (keycap)
+
+Advanced Track (Lessons 7-10):
+
+- Design complex assemblies
+- Manage tolerances precisely
+- Automate workflows and troubleshoot professionally
+
+### By Project Focus
+
+Design & Modeling: Lessons 1-3, 7-8
+Verification & Validation: Lessons 4, 6, 10
+Safety & Printing: Lesson 5, 10
+Automation: Lesson 9
+
+## Practice Exercises Quick Reference
+
+### Structured Exercises by Lesson
+
+| Lesson | Exercise Type         | Deliverable                         |
+| ------ | --------------------- | ----------------------------------- |
+| 1      | Setup & Configuration | Working project scaffold            |
+| 2      | Geometry Construction | 3 CSG examples + fixes              |
+| 3      | Modular Design        | Parametric bracket module           |
+| 4      | AI Verification       | `AI-notes.md` with findings         |
+| 5      | Safety & Printing     | Pre-print checklist + measurements  |
+| 6      | Command Mastery       | 3+ keycap variants                  |
+| 7      | Multi-Part Assembly   | Phone stand for 3+ devices          |
+| 8      | Tolerance Design      | Stackable bins + tolerance matrix   |
+| 9      | Automation            | Batch build script + variants       |
+| 10     | Integration           | 3 complete projects + documentation |
+
+## Code Examples Repository
+
+All code examples from lessons are provided as:
+
+1. Inline OpenSCAD code blocks in each lesson (copy-paste ready)
+2. Shell script examples for automation tasks
+3. Documentation templates for reproducible workflows
+
+## Accessibility Features
+
+This curriculum is designed for non-visual learners:
+
+- Text descriptions of all models (`3dm info`)
+- Tactile 2D previews (`3dm preview`)
+- Structured written documentation
+- Command-line based (no graphical interface required)
+- Parametric organization for clear understanding
+- Measurement-based validation without visual inspection
+
+## Recommended Reading Order
+
+### Option 1: Linear (Complete Foundation)
+
+Lesson 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10
+
+Best for: First-time learners wanting comprehensive understanding
+
+### Option 2: Fast Track (Design Focus)
+
+Lesson 1 -> 2 -> 3 -> 6 -> 7 -> 8 -> 9
+
+Best for: Experienced designers new to programmatic CAD
+
+### Option 3: Project-Based
+
+Lesson 1 -> 2 -> 3 -> 6 (Keycap Project)
+Then: Lesson 7 (Phone Stand)
+Then: Lesson 8 (Storage Bins)
+Then: Lesson 9 (Automation)
+
+Best for: Learning by doing with integrated projects
+
+## Assessment and Completion
+
+### Lesson Completion Criteria
+
+Each lesson includes:
+
+- Learning objectives (concepts you'll understand)
+- Step-by-step tasks (hands-on activities)
+- Checkpoints (verification milestones)
+- Quiz (10 self-assessment questions)
+- Extension problems (10 advanced challenges)
+
+### Project Completion Tracking
+
+| Project      | Lessons | Output Files                | Est. Print Time |
+| ------------ | ------- | --------------------------- | --------------- |
+| Keycap Set   | 1-6     | 5+ SCAD files, 3+ STL files | 15-30 min total |
+| Phone Stand  | 1-7     | 1 SCAD with 3+ variants     | 30-60 min total |
+| Storage Bins | 1-8     | 1 parametric SCAD, 3 sizes  | 60-90 min total |
+
+## Troubleshooting Guide
+
+### Common Issues and References
+
+| Issue             | Related Lesson | Solution                                                        |
+| ----------------- | -------------- | --------------------------------------------------------------- |
+| Model won't build | Lesson 2       | Check for non-manifold geometry with `3dm info`                 |
+| Parts don't fit   | Lesson 8       | Use tolerance testing matrix to find correct `stack_clear`      |
+| Print fails       | Lesson 5       | Verify pre-print checklist and slicer settings                  |
+| Dimensions off    | Lesson 10      | Conduct tolerance sensitivity study and apply correction factor |
+| Slow renders      | Lesson 3       | Lower `$fn` for faster debugging                                |
+| Script errors     | Lesson 9       | Use `&&` to chain commands properly; check file paths           |
+
+## Next Steps After Completion
+
+Upon completing this curriculum, you're ready for:
+
+1. Advanced 3D Design: Explore BOSL2 library features, parametric assemblies
+2. Multi-Material Printing: Design parts for different materials (TPU, Nylon, etc.)
+3. Functional Design: Create mechanical assemblies with bearings, gears, mechanisms
+4. Community Contribution: Share your designs and libraries with OpenSCAD community
+5. Professional Applications: Apply skills to product design, prototyping, manufacturing
+
+## Resources and References
+
+### Official Documentation
+
+- [OpenSCAD Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
+- [3DMake GitHub](https://github.com/tdeck/3dmake)
+- [BOSL2 Library](https://github.com/revarbat/BOSL2)
+
+### Printers & Slicers
+
+- [PrusaSlicer Documentation](https://help.prusa3d.com)
+- [Bambu Studio Documentation](https://wiki.bambulab.com)
+- [OrcaSlicer Documentation](https://github.com/SoftFever/OrcaSlicer/wiki)
+
+### 3D Printing Guides
+
+- [Prusa3D Troubleshooting](https://www.prusa3d.com/support/)
+- [All3DP 3D Printing Guide](https://www.all3dp.com/guides/)
+
+### Community
+
+- [OpenSCAD Forums](https://forum.openscad.org/)
+- [Prusa Community](https://community.prusa3d.com/)
+- [Reddit r/3Dprinting](https://www.reddit.com/r/3Dprinting/)
+
+## Lesson 11: Stakeholder-Centric Design and the Beaded Jewelry Project
+
+Duration: 3.5-4.5 hours | Level: Advanced/Leadership
+
+The final lesson teaches you to design for real users, not just yourself. You'll learn to conduct stakeholder interviews, extract functional requirements, and iterate based on real feedback. This bridges the gap between maker and design professional.
+
+Key Topics:
+
+- Stakeholder identification and interview techniques
+- Open-ended questioning strategies
+- Extracting functional requirements from interview data
+- Defining measurable acceptance criteria
+- Design iteration based on user feedback
+- Documentation for reproducibility and accessibility
+
+Project: Beaded Jewelry Bracelet Holder
+
+- Interview an actual stakeholder (or use provided scenario)
+- Extract their specific needs and constraints
+- Design a parametric holder based on their requirements
+- Test with actual bracelets and iterate based on feedback
+- Document the complete design process
+
+Checkpoint: You can conduct a real interview, translate needs into measurable requirements, and iterate a design based on user feedback
+
+## 3D Make Foundation Appendices
+
+### Appendix A: Comprehensive Slicing Guide - All Major Slicers
+
+A complete reference covering multiple major slicers (PrusaSlicer, Bambu Studio, Cura, SuperSlicer, OrcaSlicer, IdeaMaker, Fusion 360 built in slicer).
+
+What You'll Find:
+
+- Setup and workflow for each slicer
+- Accessible parameter explanations (non-visual)
+- Command-line usage for PowerShell integration
+- Troubleshooting guide for common problems
+- Comparison table for choosing the right slicer
+
+When to Use: Reference whenever slicing, switching slicers, or troubleshooting print quality
+
+### Appendix B: Material Properties & Selection Guide
+
+Comprehensive reference for 6 common filament materials (PLA, PETG, ABS, TPU, Polycarbonate, Nylon).
+
+What You'll Find:
+
+- Properties table (strength, flexibility, temperature, cost)
+- Ideal projects and use cases for each material
+- Printing parameters and settings
+- Quality factors and how to verify filament quality
+- Storage and maintenance
+- Cost analysis and brand recommendations
+- Material selection decision tree
+
+When to Use: Reference when choosing material for a project or troubleshooting print quality issues
+
+### Appendix C: Tolerance Testing & Quality Assurance Matrix
+
+Measurement-based QA methodology designed to be used non-visually (with calipers, scales, and functional tests).
+
+What You'll Find:
+
+- Essential measurement tools (digital calipers, scales, go/no-go gauges)
+- Step-by-step measurement procedures for all common dimensions
+- Functional testing methods (load testing, assembly testing, durability testing)
+- Tolerance stack-up calculations for multi-part designs
+- Troubleshooting guide for common dimensional problems
+- QA checklist template
+- Accessibility-focused best practices
+
+When to Use: Reference when starting a new project (create test plan), after printing (verify dimensions), or when troubleshooting quality issues
+
+### Appendix D: PowerShell Integration for SCAD Workflows
+
+Shows how to automate 3D design workflows using PowerShell scripts (from PowerShell_Foundation Lessons 1-6).
+
+What You'll Find:
+
+- Basic workflow automation (SCAD -> STL -> G-code)
+- Parametric sweep (test 5, 10, or 100 design variations automatically)
+- Batch build for multiple files
+- Print logging and quality tracking
+- Printer communication (USB transfer, network monitoring)
+- Complete full workflow integration
+- PowerShell skills mapped to SCAD applications
+- Accessibility considerations and best practices
+
+When to Use: Reference when automating repetitive tasks, testing parameter variations, or building a batch of designs
+
+### Appendix E: Advanced OpenSCAD Concepts
+
+Optional topics for experienced designers tackling specialized applications. Five in-depth modules with complete working examples.
+
+What You'll Find:
+
+1. Gears and Mechanical Components
+   - Gear terminology and tooth geometry
+   - Involute gear algorithm
+   - Parametric servo gearbox design
+   - Belt and pulley systems
+
+2. Batch Processing and Statistical Analysis
+   - Automated parameter sweep generation
+   - Statistical summary scripts
+   - Data-driven design selection
+   - Comparison and analysis frameworks
+
+3. Performance Optimization
+   - Render time measurement and profiling
+   - Resolution parameter strategy
+   - Caching complex calculations
+   - Preview vs render optimization strategies
+
+4. Print Orientation and Support Structure Algorithms
+   - Strength orientation analysis
+   - Support material minimization
+   - Bridge span calculations
+   - Optimal slicing parameter determination
+
+5. Recursive Function Patterns
+   - Basic recursion with base cases
+   - Fractal generation
+   - Nested component assembly
+   - Performance considerations for deep recursion
+   - Practical cable management applications
+
+When to Use:
+
+- When working with mechanical systems requiring gears or synchronized motion
+- When testing design variations systematically
+- When optimizing complex models for faster iteration
+- When designing for specific print orientations or minimizing support
+- When building fractal or deeply nested structures
+- For advanced library and framework development
+
+Accessibility: Each example includes comprehensive comments, starts with simplified versions before advanced techniques, and documents performance implications for both visual and non-visual users
+
+## Curriculum Revision History
+
+| Version | Date     | Changes                                                                                   |
+| ------- | -------- | ----------------------------------------------------------------------------------------- |
+| 2.1     | Feb 2026 | Added Appendix E (Advanced OpenSCAD); Enhanced Lessons 3, 6, 7, 8, 9 with advanced topics |
+| 2.0     | Feb 2026 | Added Lesson 11 (Stakeholder Design) + 4 Appendices; Consolidated Units 0-3 content       |
+| 1.0     | Feb 2026 | Initial comprehensive curriculum with 10 lessons + 5 projects                             |
+
+## Feedback and Contributions
+
+Have suggestions to improve this curriculum? Found an issue in a lesson or code example?
+
+Please reach out with:
+
+- Lesson number and specific content reference
+- Description of the issue or suggestion
+- Proposed solution (if applicable)
+
+Happy designing!
