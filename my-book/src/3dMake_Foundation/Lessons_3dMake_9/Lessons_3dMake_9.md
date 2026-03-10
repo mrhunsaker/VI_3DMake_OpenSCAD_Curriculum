@@ -1,5 +1,15 @@
 # Lesson 9 — Automation and 3dm Workflows
 
+**Estimated time:** 90–120 minutes
+
+---
+
+## Before You Start
+
+In Lessons 1–8, you built real, functional 3D models — phone stands, keycaps, stackable bins — and learned how parametric design lets a single `.scad` file produce many different variants just by changing numbers. You've been running builds manually: open a terminal, type `3dm build`, check the output, repeat. That's fine when you're developing one part. But what happens when you need to build 20 variants of a part for a batch test? Or when you need to _prove_ that every commit to your project builds correctly before you send files to a printer?
+
+This lesson is about the next step: **automation**. You'll learn to write scripts that build, verify, archive, and iterate without you sitting at the keyboard. These are real software engineering skills — the same techniques used in companies that ship physical products with embedded software. By the end of this lesson, you'll understand how professional fabrication workflows work and be able to apply those patterns to your own projects.
+
 ---
 
 ## Learning Objectives
@@ -10,100 +20,192 @@ By the end of this lesson you will be able to:
 - Use proper error handling, logging, and trap/exit patterns for unattended builds
 - Pass string and numeric parameters correctly to `openscad -D` from all three shells
 - Automate batch builds, archiving, and variant generation
-- Integrate 3dMake automation into CI/CD pipelines
+- Implement a watch mode that rebuilds automatically when source files change
+- Integrate 3dMake automation into CI/CD pipelines with GitHub Actions
+
+---
+
+## Concept: Why Automation Matters
+
+Before writing any code, let's understand the problem automation solves.
+
+### The Manual Build Problem
+
+Suppose you're building a parametric shelf bracket that needs to be tested at three different wall thicknesses (1.2 mm, 1.6 mm, 2.0 mm) across four different bracket widths (60 mm, 80 mm, 100 mm, 120 mm). That's 12 combinations. Running each build manually means:
+
+1. Open terminal
+2. Type the command with the right parameter values
+3. Wait for OpenSCAD to render
+4. Check that the output exists
+5. Rename the file so it doesn't overwrite the last one
+6. Repeat 11 more times
+
+This takes time, introduces human error (typos in parameter values, forgetting to rename files), and produces results that are hard to reproduce later — "which settings did I use for the 80mm bracket again?"
+
+### Automation Solves Four Problems
+
+**Repeatability:** A script runs exactly the same way every time. Parameter values, file names, output locations — all defined once in code, not typed by hand each time.
+
+**Error detection:** A good script notices when something goes wrong and stops immediately, rather than silently producing broken output and continuing.
+
+**Documentation:** A build script _is_ documentation. Reading a well-written script tells you exactly how the project is supposed to be built — what parameters matter, what the expected output looks like, how things are organized.
+
+**Scalability:** Whether you need 12 builds or 1,200, the automation works the same way.
+
+### Automation Is a Safety Net
+
+Think of build automation like the safety rails on a mountain trail. The trail was perfectly safe without them — but the rails mean you can focus on the view instead of watching every step. Automation removes the tedious, error-prone parts of your workflow so you can focus on design.
 
 ---
 
 ## Step 1 — The OpenSCAD `-D` Flag and Parameter Passing
 
-The `-D` flag overrides any variable in your `.scad` file at build time. No file editing required.
+### What the `-D` Flag Does
 
-### Numeric parameters — all shells
+OpenSCAD's `-D` flag overrides any variable in your `.scad` file at the command line. This is the bridge between your automation scripts and your parametric models. Instead of editing the `.scad` file to change a value, you pass the new value directly when you run the build.
+
+Think of it like a recipe where the recipe card has the default quantities written in pencil. The `-D` flag lets you write different numbers in the margin for this particular batch — without erasing the original recipe.
+
 ```bash
-# Linux/macOS/Windows — identical syntax for numbers
+# The .scad file has: width = 40;
+# The -D flag overrides it to 60 for this build
+openscad -D "width=60" -o output.stl src/main.scad
+```
+
+### Numeric Parameters: Straightforward
+
+For numeric values, the syntax is identical on all platforms:
+
+```bash
+# Works the same on Linux/macOS/Windows
 openscad -D "width=50" -D "height=15" -o output.stl src/main.scad
 openscad -D "width=50" -D "height=15" -D "wall=2.5" -o output.stl src/main.scad
 ```
 
-### String parameters — quoting rules differ by shell
+You can pass as many `-D` flags as you need. Each one overrides one variable.
 
-**This is the #1 source of silent failures.** Strings need quotes inside the `-D` value, but those quotes must survive shell expansion.
+### String Parameters: The Hard Part
+
+String values are much trickier, and this is where most beginners get tripped up. In OpenSCAD, a string value must be surrounded by double quotes: `label="FRONT"`. But you're passing this string _inside another string_ on the command line, which creates a quoting conflict.
+
+**This is the #1 source of silent failures in automation scripts.** If you get the quoting wrong, OpenSCAD may accept the command without error but produce a model where the label is empty or incorrect. No error message. No warning. Just wrong output.
+
+#### Why Quoting Is Different on Each Platform
+
+Each shell — bash (Linux/macOS), PowerShell (Windows), and CMD (Windows legacy) — has its own rules for how quotes work inside quotes. There's no single universal syntax. You need to learn the rule for each environment you use.
+
+The underlying goal is always the same: you need OpenSCAD to receive the string `label="FRONT"` with the double quotes intact. Each shell provides a different way to achieve that.
 
 #### Linux / macOS (bash)
+
+**The rule:** Use single quotes around the entire `-D` value to protect inner double quotes. Single-quoted strings in bash are completely literal — nothing inside them is interpreted.
+
 ```bash
-# CORRECT: single quotes around the whole -D value preserve the inner double quotes
-openscad -D 'label="FRONT"' -o out.stl src.main.scad
+# CORRECT: single quotes around the entire -D value protect inner double quotes
+openscad -D 'label="FRONT"' -o out.stl src/main.scad
 
-# CORRECT: escaped double quotes inside double-quoted string
-openscad -D "label=\"FRONT\"" -o out.stl src.main.scad
+# CORRECT: backslash-escaped double quotes inside a double-quoted string
+openscad -D "label=\"FRONT\"" -o out.stl src/main.scad
 
-# CORRECT: use a variable and escape it
+# CORRECT: variable with proper escaping
 LABEL="FRONT PANEL"
-openscad -D "label=\"${LABEL}\"" -o out.stl src.main.scad
+openscad -D "label=\"${LABEL}\"" -o out.stl src/main.scad
 
-# VERIFY: always echo the command before running for debugging
-echo "openscad -D 'label=\"${LABEL}\"' -o out.stl src.main.scad"
+# DEBUGGING TIP: echo the command before running to verify quoting
+echo "openscad -D 'label=\"${LABEL}\"' -o out.stl src/main.scad"
 
-# WRONG — the string parameter will be malformed
-openscad -D "label=FRONT" -o out.stl src.main.scad    # missing quotes around value
-openscad -D 'label=FRONT' -o out.stl src.main.scad    # same problem
+# WRONG — string value will be malformed; OpenSCAD may use an empty string
+openscad -D "label=FRONT" -o out.stl src/main.scad    # missing inner quotes
 ```
 
+**Debugging trick:** Before running a command, `echo` it first to see exactly what your shell will send to OpenSCAD. If the echoed command looks wrong, it _is_ wrong — fix the quoting before running it for real.
+
 #### Windows (PowerShell)
+
+**The rule:** Single quotes work the same way as in bash — they protect inner double quotes. PowerShell also supports backtick (`` ` ``) as an escape character inside double-quoted strings.
+
 ```powershell
-# CORRECT: use escaped backtick-quotes for inner quotes in PowerShell
+# CORRECT: single quotes protect inner double quotes
 openscad -D 'label="FRONT"' -o out.stl src\main.scad
 
-# CORRECT: explicit escape with backtick
+# CORRECT: backtick escapes for double quotes inside a double-quoted string
 $label = "FRONT PANEL"
 openscad -D "label=`"$label`"" -o out.stl src\main.scad
 
-# CORRECT: build the argument string first, then pass it
+# CORRECT: build the argument string explicitly
 $dArg = 'label="' + $label + '"'
 openscad -D $dArg -o out.stl src\main.scad
 
-# VERIFY: display the argument before using it
+# DEBUGGING TIP: display the argument before using it
 Write-Host "D argument: $dArg"
 ```
 
 #### Windows (CMD)
+
+**The rule:** CMD uses doubled double-quotes (`""`) to produce a single literal double quote inside a string. This is the most visually confusing notation — `""FRONT""` means: open double-quote, then the word FRONT, then close double-quote.
+
 ```cmd
-REM CMD double-quote rule: use two double-quotes inside a quoted string to produce one
+REM CMD uses doubled double-quotes to produce a literal double-quote inside a string
 openscad -D "label=""FRONT""" -o out.stl src\main.scad
 
 REM With a variable
 SET LABEL=FRONT
 openscad -D "label=""%LABEL%""" -o out.stl src\main.scad
 
-REM VERIFY: echo first
+REM DEBUGGING: echo first to verify
 echo label=""%LABEL%""
 ```
+
+### Common Mistake: Assuming Silent Success
+
+OpenSCAD will often not report an error when string quoting is wrong. The variable just gets an empty string or `undef` as its value. If your label text disappears from the rendered model, check your quoting before anything else.
 
 ---
 
 ## Step 2 — Robust Error Handling
 
-### Linux / macOS (bash)
+### What "Robust" Means
+
+A script is _robust_ if it handles failure gracefully: it detects when something went wrong, reports the failure clearly, and stops before making things worse. A _fragile_ script ignores errors and continues — which often means you end up with a folder full of broken or empty output files.
+
+### The Three Failure Modes to Guard Against
+
+**Silent failure:** The command runs, returns an error code, but the script doesn't check and keeps going. You discover the problem later when the output files don't work.
+
+**Partial output:** The build starts, produces a partially-written file, then crashes. The file exists but is corrupted. Your script needs to check that the output is complete and has a reasonable size.
+
+**Cascade failure:** One failure causes subsequent steps to fail too, making the error messages confusing. Stop at the first failure — don't keep running.
+
+### Error Handling in bash
+
+Bash has three critical safety settings that should be at the top of every automation script:
+
+- `set -e` — exit immediately if any command returns a non-zero exit code (non-zero = failure)
+- `set -u` — error if you reference a variable that was never defined (catches typos in variable names)
+- `set -o pipefail` — catch errors inside pipelines, not just the last command in the pipe
+
+Think of these as your script's "safety mode." Without them, bash will happily continue running after errors. With them, the first problem causes an immediate stop.
+
 ```bash
 #!/bin/bash
 # build.sh — robust build script with logging and error handling
 
-set -e    # exit immediately on any error
-set -u    # treat unset variables as errors
-set -o pipefail  # catch errors inside pipes
+set -e           # exit immediately if any command returns a non-zero exit code
+set -u           # error on use of any unset variable
+set -o pipefail  # catch errors inside pipelines (not just the last command)
 
 LOG_DIR="build/logs"
 LOG_FILE="$LOG_DIR/build_$(date +%Y%m%d_%H%M%S).log"
 mkdir -p "$LOG_DIR" build
 
-# Logging function
+# Logging function: prints with timestamp and appends to log file
 log() {
   local level="$1"
   shift
   echo "[$(date +%H:%M:%S)] [$level] $*" | tee -a "$LOG_FILE"
 }
 
-# Trap: runs on any ERR signal — prints which line failed
+# Trap: runs when any error occurs, reports which line failed
 on_error() {
   log "ERROR" "Build failed at line $1. Check: $LOG_FILE"
   exit 1
@@ -113,13 +215,13 @@ trap 'on_error $LINENO' ERR
 log "INFO" "=== Build started ==="
 log "INFO" "Source: src/main.scad"
 
-# Build — capture stderr to log, also show on screen
+# Build — capture stderr, show on screen, and append to log
 if ! openscad -o build/main.stl src/main.scad 2>&1 | tee -a "$LOG_FILE"; then
   log "ERROR" "OpenSCAD exited with error"
   exit 1
 fi
 
-# Verify output exists and is non-trivial
+# Verify the output file was actually created and has reasonable size
 STL_PATH="build/main.stl"
 if [ ! -f "$STL_PATH" ]; then
   log "ERROR" "STL file not created: $STL_PATH"
@@ -128,18 +230,18 @@ fi
 
 STL_SIZE=$(stat -c%s "$STL_PATH")
 if [ "$STL_SIZE" -lt 1000 ]; then
-  log "WARN" "STL file is suspiciously small: ${STL_SIZE} bytes — check for empty geometry"
+  log "WARN" "STL file suspiciously small: ${STL_SIZE} bytes — may be empty geometry"
 fi
 
 log "INFO" "Build complete: $STL_PATH (${STL_SIZE} bytes)"
-
-# Run 3dm info and log the result
 3dm info 2>&1 | tee -a "$LOG_FILE"
-
 log "INFO" "=== Build finished ==="
 ```
 
-### Windows (PowerShell)
+### Error Handling in PowerShell
+
+PowerShell uses try/catch blocks and checks the `$LASTEXITCODE` variable (which holds the exit code of the last external command) to detect failures. The key difference from bash: PowerShell doesn't automatically stop on error — you must check `$LASTEXITCODE` yourself after every external command.
+
 ```powershell
 # build.ps1 — robust build script for Windows
 
@@ -149,7 +251,6 @@ param(
     [string]$LogDir    = "build\logs"
 )
 
-# Setup
 $timestamp = Get-Date -Format "yyyyMMdd_HHmmss"
 New-Item -ItemType Directory -Force -Path $LogDir, "build" | Out-Null
 $logFile = Join-Path $LogDir "build_$timestamp.log"
@@ -164,7 +265,6 @@ function Write-Log {
 Write-Log "INFO" "=== Build started ==="
 Write-Log "INFO" "Source: $Source"
 
-# Run OpenSCAD — capture output
 try {
     $buildOutput = & openscad -o $Output $Source 2>&1
     $buildOutput | Tee-Object -FilePath $logFile -Append | Write-Host
@@ -174,7 +274,6 @@ try {
     exit 1
 }
 
-# Validate output
 if (-not (Test-Path $Output)) {
     Write-Log "ERROR" "STL file not created: $Output"
     exit 1
@@ -186,280 +285,221 @@ if ($stlSize -lt 1000) {
 }
 
 Write-Log "INFO" "Build complete: $Output ($stlSize bytes)"
-& 3dm info 2>&1 | Tee-Object -FilePath $logFile -Append | Write-Host
+3dm info 2>&1 | Tee-Object -FilePath $logFile -Append
 Write-Log "INFO" "=== Build finished ==="
-```
-
-### Windows (CMD)
-```cmd
-@echo off
-REM build.cmd — minimal build script for CMD
-REM For production use, prefer PowerShell (build.ps1)
-
-setlocal
-
-SET SOURCE=src\main.scad
-SET OUTPUT=build\main.stl
-SET LOGFILE=build\build.log
-
-echo [%TIME%] Build started >> %LOGFILE%
-echo [%TIME%] Source: %SOURCE% >> %LOGFILE%
-
-openscad -o %OUTPUT% %SOURCE% >> %LOGFILE% 2>&1
-
-IF %ERRORLEVEL% NEQ 0 (
-    echo [%TIME%] ERROR: OpenSCAD failed >> %LOGFILE%
-    echo Build FAILED. Check %LOGFILE%
-    exit /b 1
-)
-
-IF NOT EXIST %OUTPUT% (
-    echo [%TIME%] ERROR: STL not created >> %LOGFILE%
-    echo Build FAILED: STL file missing
-    exit /b 1
-)
-
-echo [%TIME%] Build complete: %OUTPUT% >> %LOGFILE%
-echo Build OK.
-3dm info >> %LOGFILE% 2>&1
-type %LOGFILE%
 ```
 
 ---
 
-## Step 3 — Batch Build: Generate Parameter Variants
+## Step 3 — Batch Builds and Variant Generation
 
-### Linux / macOS (bash)
+### The Concept: Parametric Variants at Scale
+
+Now that you can build reliably with error handling, you can automate the generation of multiple variants. The pattern is simple: loop over a list of parameter combinations, run a build for each, name the output file to reflect the parameters used.
+
+Good output naming is critical. A file called `main.stl` tells you nothing. A file called `bracket_w80_h60_wall2.stl` tells you exactly what parameters produced it — you can reconstruct the build command just from the filename.
+
+### Batch Build in bash
+
 ```bash
 #!/bin/bash
-# batch_variants.sh — generate multiple STL variants from one source
+# batch_variants.sh
 
 set -e
+set -u
+set -o pipefail
 
-mkdir -p build/variants
+OUTPUT_DIR="build/variants"
+mkdir -p "$OUTPUT_DIR"
 
-# Numeric variant: different sizes
-widths=(20 30 40 50 80)
-for w in "${widths[@]}"; do
-  output="build/variants/box_w${w}.stl"
-  echo "Building: width=$w -> $output"
-  openscad -D "width=$w" -o "$output" src/main.scad
-  size=$(stat -c%s "$output")
-  echo "  OK: ${size} bytes"
+SUCCESS=0
+FAIL=0
+FAILED_BUILDS=()
+
+for WIDTH in 60 80 100 120; do
+  for WALL in 1.2 1.6 2.0; do
+    NAME="bracket_w${WIDTH}_wall${WALL/./_}"
+    OUT="$OUTPUT_DIR/${NAME}.stl"
+
+    echo "Building: $NAME ..."
+    if openscad -D "width=${WIDTH}" -D "wall=${WALL}" \
+                -o "$OUT" src/main.scad 2>/dev/null; then
+      echo "  OK: $OUT"
+      SUCCESS=$((SUCCESS + 1))
+    else
+      echo "  FAILED: $NAME"
+      FAIL=$((FAIL + 1))
+      FAILED_BUILDS+=("$NAME")
+    fi
+  done
 done
 
-# String variant: different labels
-declare -A labels=(
-  ["front"]="FRONT"
-  ["back"]="BACK"
-  ["top"]="TOP"
-)
-for key in "${!labels[@]}"; do
-  label="${labels[$key]}"
-  output="build/variants/label_${key}.stl"
-  echo "Building: label=\"$label\" -> $output"
-  openscad -D "label=\"${label}\"" -o "$output" src/main.scad
-  echo "  OK"
-done
-
-echo "Done: $(ls build/variants/*.stl | wc -l) files in build/variants/"
+echo ""
+echo "=== Batch complete: $SUCCESS succeeded, $FAIL failed ==="
+if [ ${#FAILED_BUILDS[@]} -gt 0 ]; then
+  echo "Failed builds:"
+  for b in "${FAILED_BUILDS[@]}"; do
+    echo "  - $b"
+  done
+  exit 1
+fi
 ```
 
-### Windows (PowerShell)
+### Batch Build in PowerShell
+
 ```powershell
-# batch_variants.ps1 — generate parameter variants on Windows
+# batch_variants.ps1
 
-New-Item -ItemType Directory -Force -Path "build\variants" | Out-Null
+$outputDir = "build\variants"
+New-Item -ItemType Directory -Force -Path $outputDir | Out-Null
 
-# Numeric variants
-$widths = @(20, 30, 40, 50, 80)
-foreach ($w in $widths) {
-    $output = "build\variants\box_w$w.stl"
-    Write-Host "Building: width=$w -> $output"
-    openscad -D "width=$w" -o $output src\main.scad
-    if ($LASTEXITCODE -eq 0) {
-        $size = (Get-Item $output).Length
-        Write-Host "  OK: $size bytes"
+$success = 0
+$fail    = 0
+$failed  = @()
+
+foreach ($width in @(60, 80, 100, 120)) {
+  foreach ($wall in @(1.2, 1.6, 2.0)) {
+    $wallStr = "$wall" -replace '\.', '_'
+    $name    = "bracket_w${width}_wall${wallStr}"
+    $out     = "$outputDir\${name}.stl"
+
+    Write-Host "Building: $name ..."
+    & openscad -D "width=$width" -D "wall=$wall" -o $out src\main.scad 2>$null
+    if ($LASTEXITCODE -eq 0 -and (Test-Path $out)) {
+      Write-Host "  OK: $out"
+      $success++
     } else {
-        Write-Host "  FAILED"
+      Write-Host "  FAILED: $name"
+      $fail++
+      $failed += $name
     }
+  }
 }
 
-# String variants
-$labels = @{
-    "front" = "FRONT"
-    "back"  = "BACK"
-    "top"   = "TOP"
+Write-Host ""
+Write-Host "=== Batch complete: $success succeeded, $fail failed ==="
+if ($failed.Count -gt 0) {
+  Write-Host "Failed builds:"
+  $failed | ForEach-Object { Write-Host "  - $_" }
+  exit 1
 }
-foreach ($key in $labels.Keys) {
-    $label  = $labels[$key]
-    $output = "build\variants\label_$key.stl"
-    Write-Host "Building: label=`"$label`" -> $output"
-    openscad -D "label=`"$label`"" -o $output src\main.scad
-    if ($LASTEXITCODE -eq 0) { Write-Host "  OK" } else { Write-Host "  FAILED" }
-}
-
-$count = (Get-ChildItem "build\variants\*.stl").Count
-Write-Host "Done: $count files in build\variants\"
-```
-
-### Windows (CMD)
-```cmd
-@echo off
-REM batch_variants.cmd — numeric and string variants in CMD
-
-mkdir build\variants 2>nul
-
-REM Numeric variants
-FOR %%W IN (20 30 40 50 80) DO (
-    echo Building: width=%%W
-    openscad -D "width=%%W" -o "build\variants\box_w%%W.stl" src\main.scad
-    IF %ERRORLEVEL% EQU 0 (echo   OK) ELSE (echo   FAILED)
-)
-
-REM String variants — CMD requires doubled quotes
-FOR %%L IN (FRONT BACK TOP) DO (
-    echo Building: label=%%L
-    openscad -D "label=""%%L""" -o "build\variants\label_%%L.stl" src\main.scad
-    IF %ERRORLEVEL% EQU 0 (echo   OK) ELSE (echo   FAILED)
-)
-echo Done.
 ```
 
 ---
 
 ## Step 4 — Timestamped Archiving
 
-Archive a successful build with a timestamp so you can roll back to any previous version.
+### Why Archive Builds?
 
-### Linux / macOS (bash)
+Imagine you printed a part two weeks ago that fit perfectly. Now you've made some changes to the model, and the new version doesn't fit. You need to go back to the version that worked — but you only have one `build/main.stl` file, which has been overwritten.
+
+Timestamped archiving solves this. Every successful build is saved with a timestamp in its filename. You can always go back to any previous version. Over time, you build a history of exactly when each change was made.
+
+### Archive Script
+
 ```bash
 #!/bin/bash
-# archive.sh — archive a successful build
+# archive_build.sh
 
 set -e
+set -u
 
-TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
-ARCHIVE_DIR="archives/$TIMESTAMP"
-
+ARCHIVE_DIR="build/archive"
 mkdir -p "$ARCHIVE_DIR"
 
-# Copy build artifacts and source
-cp build/main.stl  "$ARCHIVE_DIR/"
-cp src/main.scad   "$ARCHIVE_DIR/"
+TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+ARCHIVE_NAME="main_${TIMESTAMP}.stl"
 
-# Write metadata
-cat > "$ARCHIVE_DIR/BUILD_INFO.txt" <<EOF
-Build timestamp: $TIMESTAMP
-Source:          src/main.scad
-Git commit:      $(git rev-parse --short HEAD 2>/dev/null || echo "no git")
-3dm info output:
-$(3dm info)
-EOF
+# Build
+3dm build
 
-echo "Archived to: $ARCHIVE_DIR"
-echo "Contents:"
-ls -lh "$ARCHIVE_DIR/"
-```
+# Archive the successful result
+cp build/main.stl "$ARCHIVE_DIR/$ARCHIVE_NAME"
+echo "Archived: $ARCHIVE_DIR/$ARCHIVE_NAME"
 
-### Windows (PowerShell)
-```powershell
-# archive.ps1 — timestamped build archive
-
-$timestamp  = Get-Date -Format "yyyyMMdd_HHmmss"
-$archiveDir = "archives\$timestamp"
-
-New-Item -ItemType Directory -Force -Path $archiveDir | Out-Null
-
-Copy-Item "build\main.stl" $archiveDir
-Copy-Item "src\main.scad"  $archiveDir
-
-# Write metadata
-$gitHash = try { git rev-parse --short HEAD 2>$null } catch { "no git" }
-$info    = & 3dm info 2>&1 | Out-String
-
-@"
-Build timestamp: $timestamp
-Source:          src/main.scad
-Git commit:      $gitHash
-3dm info output:
-$info
-"@ | Out-File "$archiveDir\BUILD_INFO.txt" -Encoding UTF8
-
-Write-Host "Archived to: $archiveDir"
-Get-ChildItem $archiveDir | Format-Table Name, Length
-```
-
-### Windows (CMD)
-```cmd
-@echo off
-REM archive.cmd — basic timestamped archive in CMD
-
-REM Build timestamp from date/time (format varies by locale)
-FOR /f "tokens=2 delims==" %%D IN ('wmic os get localdatetime /value') DO SET DT=%%D
-SET TIMESTAMP=%DT:~0,8%_%DT:~8,6%
-SET ARCHIVE=archives\%TIMESTAMP%
-
-mkdir %ARCHIVE% 2>nul
-copy build\main.stl %ARCHIVE%\
-copy src\main.scad  %ARCHIVE%\
-
-echo Build timestamp: %TIMESTAMP% > %ARCHIVE%\BUILD_INFO.txt
-3dm info >> %ARCHIVE%\BUILD_INFO.txt 2>&1
-
-echo Archived to: %ARCHIVE%
-dir %ARCHIVE%
+# Optional: remove archives older than 30 days
+find "$ARCHIVE_DIR" -name "*.stl" -mtime +30 -delete
+echo "Old archives cleaned."
 ```
 
 ---
 
-## Step 5 — Watch Mode and Continuous Build
+## Step 5 — Watch Mode
 
-For an iterative design workflow, watch for changes and rebuild automatically.
+### The Concept: Automatic Rebuild on Save
 
-### Linux / macOS (bash)
+Watch mode is a script that monitors your source files and automatically runs a build whenever a file changes. Instead of switching to your terminal and running `3dm build` every time you save a change in your editor, the script does it for you.
+
+This creates a tight feedback loop: save your `.scad` file, glance at the terminal, and the new build result is already there. It's like having an assistant who runs the build the instant you save.
+
+### How Watch Mode Works
+
+There are two approaches:
+
+**Poll-based:** Check the file's modification timestamp every few seconds. If it changed since the last check, trigger a rebuild. Simple to implement; works everywhere. Slightly wasteful — you're checking constantly even when nothing changes.
+
+**Event-based:** The operating system notifies you the instant a file changes (using `inotify` on Linux, `FSEvents` on macOS, `FileSystemWatcher` on Windows). More efficient; responds immediately. More complex to set up.
+
+For development workflows, the poll-based approach is usually good enough.
+
 ```bash
 #!/bin/bash
-# watch.sh — rebuild whenever src/ changes (requires inotifywait or entr)
+# watch_and_build.sh — poll-based watch mode
 
-# Method 1: Using 3dm watch (built-in)
-3dm watch
+set -u
 
-# Method 2: Using entr (install with: apt install entr / brew install entr)
-# ls src/*.scad | entr -c bash -c '3dm build && 3dm info'
+WATCH_FILE="src/main.scad"
+POLL_INTERVAL=2   # seconds between checks
 
-# Method 3: Poll-based fallback (works anywhere)
-PREV=""
+echo "Watching: $WATCH_FILE (Ctrl+C to stop)"
+
+LAST_MOD=""
+
 while true; do
-  CURR=$(find src/ -name "*.scad" -newer /tmp/last_build 2>/dev/null | head -1)
-  if [ -n "$CURR" ]; then
-    echo "[$(date +%H:%M:%S)] Change detected: $CURR"
-    3dm build && 3dm info
-    touch /tmp/last_build
+  CURRENT_MOD=$(stat -c%Y "$WATCH_FILE" 2>/dev/null || echo "0")
+
+  if [ "$CURRENT_MOD" != "$LAST_MOD" ]; then
+    LAST_MOD="$CURRENT_MOD"
+    if [ -n "$LAST_MOD" ] && [ "$LAST_MOD" != "0" ]; then
+      echo ""
+      echo "[$(date +%H:%M:%S)] Change detected — rebuilding..."
+      3dm build && echo "  Build OK" || echo "  Build FAILED"
+    fi
   fi
-  sleep 2
+
+  sleep "$POLL_INTERVAL"
 done
 ```
 
-### Windows (PowerShell)
 ```powershell
-# watch.ps1 — poll for changes and rebuild
+# watch_and_build.ps1 — poll-based watch mode for Windows
 
-$watcher = New-Object System.IO.FileSystemWatcher
-$watcher.Path   = "src"
-$watcher.Filter = "*.scad"
-$watcher.EnableRaisingEvents = $true
+$watchFile    = "src\main.scad"
+$pollInterval = 2  # seconds
 
-Write-Host "Watching src/*.scad for changes. Press Ctrl+C to stop."
+Write-Host "Watching: $watchFile (Ctrl+C to stop)"
+
+$lastMod = $null
 
 while ($true) {
-    $changed = Wait-Event -SourceIdentifier FileSystemWatcher -Timeout 2
-    if ($changed) {
-        Remove-Event -SourceIdentifier FileSystemWatcher
-        Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Change detected — rebuilding..."
-        & 3dm build
-        & 3dm info
+    if (Test-Path $watchFile) {
+        $currentMod = (Get-Item $watchFile).LastWriteTime
+
+        if ($currentMod -ne $lastMod) {
+            $lastMod = $currentMod
+            if ($null -ne $lastMod) {
+                Write-Host ""
+                Write-Host "[$(Get-Date -Format 'HH:mm:ss')] Change detected — rebuilding..."
+                & 3dm build
+                if ($LASTEXITCODE -eq 0) {
+                    Write-Host "  Build OK"
+                } else {
+                    Write-Host "  Build FAILED"
+                }
+            }
+        }
     }
+    Start-Sleep -Seconds $pollInterval
 }
 ```
 
@@ -467,19 +507,35 @@ while ($true) {
 
 ## Step 6 — CI/CD Integration
 
-Integrate 3dMake builds into a CI pipeline (GitHub Actions example shown, adaptable to others).
+### What CI/CD Means
+
+CI/CD stands for **Continuous Integration / Continuous Deployment**. In software development, CI/CD means that every time you push code to a shared repository, an automated system builds and tests your project in a clean environment — not on your computer, but on a server in the cloud.
+
+For a 3D printing project, CI/CD means:
+
+- Every time you commit a change to your `.scad` files, GitHub automatically builds your STL
+- If the build fails (syntax error, empty geometry, etc.), you get an email notification immediately
+- The built STL is saved as a downloadable artifact — you can prove to anyone that this exact commit produced this exact file
+- You can track exactly when changes were made and whether they broke anything
+
+This sounds like overkill for a hobby project — but even for personal projects, CI/CD is a useful safety net. It catches problems you might miss locally, and it creates a reliable record of your design history.
+
+### How GitHub Actions Works
+
+GitHub Actions is a CI/CD system built into GitHub. You define a "workflow" in a YAML file inside your repository. The workflow runs automatically on events you specify — such as every push to the `main` branch.
+
+The workflow runs on a fresh Ubuntu virtual machine in GitHub's cloud. It has no memory of previous builds. Every run starts from scratch: clone the repository, install dependencies, run the build, save the output.
 
 ```yaml
 # .github/workflows/build.yml
-name: 3dMake Build
+# This file tells GitHub Actions what to do on every push.
+
+name: Build STL
 
 on:
   push:
     paths:
-      - 'src/**'
-  pull_request:
-    paths:
-      - 'src/**'
+      - "src/**" # only trigger when .scad files change
 
 jobs:
   build:
@@ -500,7 +556,7 @@ jobs:
           3dm build
           3dm info
 
-      - name: Verify STL exists and has size
+      - name: Verify STL exists and has reasonable size
         run: |
           test -f build/main.stl
           SIZE=$(stat -c%s build/main.stl)
@@ -514,16 +570,88 @@ jobs:
           path: build/main.stl
 ```
 
+When this is set up, every push to the repository triggers a fresh build in GitHub's cloud. If the build fails, you get an email notification. The built STL is saved as an artifact you can download directly from the GitHub interface.
+
+### What Each Section Does
+
+**`on: push: paths:`** — Only run the workflow when files in the `src/` directory change. This prevents the workflow from running when you update the README, for example.
+
+**`runs-on: ubuntu-latest`** — Use GitHub's latest Ubuntu virtual machine. This is a standard Linux environment with nothing pre-installed.
+
+**`actions/checkout@v4`** — Clone your repository into the virtual machine. Without this, the machine has no idea what your project looks like.
+
+**`Install OpenSCAD` / `Install 3dMake`** — Install your build tools. Every run starts fresh, so tools must be installed every time.
+
+**`Build`** — Run your build. If this fails (non-zero exit code), the whole workflow fails.
+
+**`Verify STL exists and has reasonable size`** — An explicit sanity check. `test -f` verifies the file exists. `test "$SIZE" -gt 1000` verifies it's not empty.
+
+**`Upload artifact`** — Save the built STL so you can download it from GitHub. The `${{ github.sha }}` part includes the commit hash in the artifact name, so you always know which commit produced which STL.
+
 ---
 
 ## Exercises
 
-**Exercise 9.1:** Adapt the `batch_variants.sh`/`.ps1`/`.cmd` script to your platform. Generate your phone stand at 5 different `stand_angle` values (30°, 45°, 60°, 70°, 80°). Log the bounding box for each to a file.
+**Exercise 9.1:** Adapt the batch_variants script to your platform. Generate your phone stand at 5 different `stand_angle` values (30°, 45°, 60°, 70°, 80°). Log the bounding box for each to a file.
 
-**Exercise 9.2:** Write a build script in your preferred shell that:
-1. Builds the model
-2. Verifies the STL size is > 10,000 bytes
-3. Archives the result with a timestamp if the build succeeds
-4. Sends a failure message to the console (and optionally an email) if it fails
+**Exercise 9.2:** Write a build script in your preferred shell that: (1) builds the model, (2) verifies the STL size is > 10,000 bytes, (3) archives the result with a timestamp if the build succeeds, (4) prints a failure message to the console if it fails.
 
-**Exercise 9.3 (Advanced):** Create a parametric `Makefile` (Linux/macOS) and/or a PowerShell `Invoke-Build` task file (Windows) that has separate targets: `build`, `clean`, `variants`, `archive`, and `test` (runs batch_verify). Running `make all` or `Invoke-Build all` should run all targets in the correct order.
+**Exercise 9.3 (Advanced):** Create a parametric `Makefile` (Linux/macOS) or a PowerShell `Invoke-Build` task file (Windows) with separate targets: `build`, `clean`, `variants`, `archive`, and `test`. Running `make all` should run all targets in the correct order.
+
+---
+
+## Quiz — Lesson 3dMake.9 (15 questions)
+
+1. What does `set -e` do in a bash script?
+2. Why is passing string parameters with `-D` more complex than passing numeric parameters?
+3. What does `trap 'on_error $LINENO' ERR` do in a bash script?
+4. What is the correct way to pass `label="FRONT"` as an OpenSCAD `-D` argument in bash?
+5. What does `set -u` protect against?
+6. How would you verify that an output STL was actually created in a build script?
+7. What is a "silent failure" in the context of automation, and how do you prevent one?
+8. In PowerShell, what character is used to escape a double quote inside a double-quoted string?
+9. What does `$LASTEXITCODE` contain in a PowerShell script after running an external command?
+10. Describe the purpose of a timestamped build archive and when you would use it.
+11. What is CI/CD, and how does it apply to a 3D printing project workflow?
+12. True or False: In CMD, doubled double-quotes inside a quoted string produce a single literal double-quote.
+13. Explain the difference between a poll-based file watcher and an event-based file watcher. What are the trade-offs?
+14. In a GitHub Actions workflow, what does `on: push: paths: - 'src/**'` specify?
+15. If a batch build script runs 10 builds and each may succeed or fail independently, describe the logic for reporting: total built, total failed, and which specific builds failed.
+
+---
+
+## Extension Problems (15)
+
+1. Write a batch build script that tests 10 parameter combinations and generates a summary report with pass/fail status for each.
+2. Create a "golden master" verification script: build your reference model, save the bounding box, then verify that future builds match those dimensions within 0.1 mm.
+3. Implement the timestamped archive system and add a rotation policy: automatically delete archives older than 30 days.
+4. Build a Git pre-commit hook that runs `3dm build` and fails the commit if the build doesn't succeed.
+5. Create a build dashboard: a script that runs all your projects' builds, collects their `3dm info` outputs, and formats them into a summary report.
+6. Implement parallel builds: run multiple OpenSCAD builds simultaneously using background processes or PowerShell jobs. Measure the speedup.
+7. Create a "changelog" generator: compare the bounding boxes of all archived builds and generate a list of which builds had dimension changes.
+8. Write a CI/CD pipeline configuration for GitLab CI or Bitbucket Pipelines (instead of GitHub Actions).
+9. Build a build notification system: send a Slack message or email when a build fails.
+10. Create a "test suite" of deliberately bad `.scad` files (empty geometry, non-manifold shapes, syntax errors) and verify your build script catches all of them.
+11. Implement semantic versioning in your build system: automatically increment a patch version number on each successful build.
+12. Write a multi-platform build script that detects the current OS and uses the appropriate commands (bash on Linux/macOS, PowerShell on Windows).
+13. Create a build matrix: for each of 5 designs × 4 materials, build the design with material-specific parameters and verify each output.
+14. Implement a "regression test": store the bounding box of each successful build, and flag any build where the bounding box changes unexpectedly.
+15. Research and implement "build caching": skip rebuilds when the source file hasn't changed since the last successful build.
+
+---
+
+## References and Helpful Resources
+
+[^1]: Bash Reference Manual — https://www.gnu.org/software/bash/manual/bash.html
+
+[^2]: PowerShell Documentation — https://docs.microsoft.com/en-us/powershell/
+
+[^3]: GitHub Actions Documentation — https://docs.github.com/en/actions
+
+[^4]: 3DMake GitHub Repository — https://github.com/tdeck/3dmake
+
+### Supplemental Resources
+
+- Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub
+- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
+- OpenSCAD User Manual — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual

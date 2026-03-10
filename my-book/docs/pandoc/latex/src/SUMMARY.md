@@ -67,6 +67,7 @@
       - [Dice-Dice-Dice Project](3dMake_Foundation/Lessons_3dMake_4/Dice_Dice_Dice.md)
       - [Dice-Dice-Dice - Student Template](3dMake_Foundation/Lessons_3dMake_4/dice_dice_dice_student_template.md)
       - [Dice-Dice-Dice - Teacher Template](3dMake_Foundation/Lessons_3dMake_4/dice_dice_dice_teacher_template.md)
+    - [AI Appendix for Lesson 4: AI Guidance & Flawed OpenSCAD Examples](3dMake_Foundation/Lessons_3dMake_4/Lessons_3dMake_4_appendix.md)
     - [Lesson 5: Safety Protocols and the Physical Fabrication Interface](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md)
       - [Safety Checklist](3dMake_Foundation/Lessons_3dMake_5/safety_checklist.md)
       - [Maintenance Log](3dMake_Foundation/Lessons_3dMake_5/maintenance_log.md)

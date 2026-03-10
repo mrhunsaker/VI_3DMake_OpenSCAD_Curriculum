@@ -53,7 +53,7 @@ $endif$
     Extension=.otf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-RegularItalic,
+    ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic
   ]
   \directlua{
@@ -63,10 +63,10 @@ $endif$
     })
   }
   \setmainfont{AtkinsonHyperlegibleNext}[
-    Extension=.otf,
+    Extension=.ttf,
     UprightFont=*-Regular,
     BoldFont=*-Bold,
-    ItalicFont=*-RegularItalic,
+    ItalicFont=*-Italic,
     BoldItalicFont=*-BoldItalic,
     BoldFeatures={RawFeature={fallback=symbolsfallback}},
     UprightFeatures={RawFeature={fallback=symbolsfallback}},
@@ -79,7 +79,7 @@ $endif$
   Extension=.otf,
   UprightFont=*-Regular,
   BoldFont=*-Bold,
-  ItalicFont=*-RegularItalic,
+  ItalicFont=*-Italic,
   BoldItalicFont=*-BoldItalic
 ]
 
@@ -91,14 +91,13 @@ $endif$
 % Symbol fallback font (uses system DejaVu Sans if available)
 \newfontfamily\symbolfont{DejaVu Sans}[Scale=MatchLowercase]
 % Fallback mappings: render specific unicode glyphs using \symbolfont
-\newunicodechar{`}{{\symbolfont\textasciigrave}}
 \newunicodechar{↓}{{\symbolfont↓}}
 \newunicodechar{←}{{\symbolfont←}}
 \newunicodechar{─}{{\symbolfont─}}
 \newunicodechar{⚠}{{\symbolfont⚠}}
-\newunicodechar{✓}{{\symbolfont✓}}
 \newunicodechar{✗}{{\symbolfont✗}}
 \newunicodechar{□}{{\symbolfont□}}
+\newunicodechar{✓}{\checkmark}
 
 % Footnotes to Endnotes Configuration
 \usepackage{endnotes}

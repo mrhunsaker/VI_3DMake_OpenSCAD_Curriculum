@@ -1,3 +1,5 @@
+
+
 # Instructional Framework for 3DMake and OpenSCAD in Secondary STEM Education
 
 The transition from traditional, direct-manipulation computer-aided design (CAD) to programmatic, declarative modeling represents a fundamental shift in how physical objects are conceptualized and engineered. For the high school junior, this transition is not merely a change in software but a pivot toward computational thinking, where geometry is derived from mathematical logic rather than visual approximation. The 3DMake ecosystem, an open-source command-line toolchain, serves as the critical connective tissue in this lifecycle, automating the translation of source code into physical matter.[^1] By integrating OpenSCADs script-based modeling with 3DMakes automation of rendering, slicing, and verification, students engage with a workflow that mirrors professional DevOps and industrial manufacturing pipelines.[^1] This report provides an exhaustive pedagogical guide, safety background, and technical analysis of this ecosystem, tailored for an advanced secondary education environment.
@@ -79,12 +81,12 @@ While 3DMake provides a powerful automation layer, it introduces its own set of 
 
 The power of 3DMake lies in its ability to string together actions: 3dm build slice print.[^1] This "one-command" fabrication is efficient but dangerous if the student bypasses visual verification. If the OpenSCAD code contains a subtle error that results in a "non-manifold" mesh, the slicer may still produce a G-code file that causes the printer to behave erratically-such as extruding into mid-air.[^24]
 
-| Limitation       | Technical Root Cause                                 | Educational Impact                                                   |
-| :--------------- | :--------------------------------------------------- | :------------------------------------------------------------------- |
+| Limitation       | Technical Root Cause                                 | Educational Impact                                           |
+| :--------------- | :--------------------------------------------------- | :----------------------------------------------------------- |
 | CLI Barrier      | No graphical interface for configuration.            | Steep learning curve for students with zero terminal experience.[^1] |
-| API Dependency   | AI features require external internet and API keys.  | Advanced features fail in offline school networks.[^1]               |
-| Slicer Lock-in   | Reliant on external templates for G-code generation. | Students may not learn the nuance of slicing settings.[^1]           |
-| Feedback Latency | No real-time "live" preview in the editor.           | The "edit-compile-view" cycle is slower than GUI-based CAD.[^1]      |
+| API Dependency   | AI features require external internet and API keys.  | Advanced features fail in offline school networks.[^1]       |
+| Slicer Lock-in   | Reliant on external templates for G-code generation. | Students may not learn the nuance of slicing settings.[^1]   |
+| Feedback Latency | No real-time "live" preview in the editor.           | The "edit-compile-view" cycle is slower than GUI-based CAD.[^1] |
 
 ### Non-Manifold Geometry and Slicing Errors
 
@@ -141,16 +143,16 @@ The **Utah STEM Action Center’s Innovation Hub Network** maintains a statewide
 To locate makerspaces outside Utah—including Fab Labs, hackerspaces, school labs, library makerspaces, and community workshops—the following directories provide comprehensive national coverage:
 
 - **Nation of Makers – U.S. Maker Organization Map**  
-   A crowdsourced, actively maintained map of U.S. makerspaces, hackerspaces, library labs, Fab Labs, and STEM organizations.[^turn1search2]
+    A crowdsourced, actively maintained map of U.S. makerspaces, hackerspaces, library labs, Fab Labs, and STEM organizations.[^turn1search2]
 
 - **Makerspace.com Global Directory**  
-   Worldwide directory listing makerspaces with search and filtering tools.[^turn1search3]
+    Worldwide directory listing makerspaces with search and filtering tools.[^turn1search3]
 
 - **Makerspace Directory (Makerspacedir.com)**  
-   U.S.-focused database covering 3D printing services, FabLabs, coworking/maker hybrids, youth programs, and more.[^turn1search4]
+    U.S.-focused database covering 3D printing services, FabLabs, coworking/maker hybrids, youth programs, and more.[^turn1search4]
 
 - **WorkMakeCreate – Free &amp; Public Makerspace Finder**  
-   Helps locate public, free‑to‑use makerspaces, tool libraries, community workshops, and fabrication labs by ZIP code.[^turn1search5]
+    Helps locate public, free‑to‑use makerspaces, tool libraries, community workshops, and fabrication labs by ZIP code.[^turn1search5]
 
 ---
 

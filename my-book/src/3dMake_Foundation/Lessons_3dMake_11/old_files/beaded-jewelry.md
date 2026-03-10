@@ -1,4 +1,4 @@
-# Project 3: Beaded Jewelry - OpenSCAD Design  {#3dmake_foundation_lessons_3dmake_11-beaded-jewelry}
+# Project 3: Beaded Jewelry - OpenSCAD Design {#3dmake_foundation_lessons_3dmake_11-beaded-jewelry}
 
 Accessibility: When including images or diagrams, add short alt-text and provide a comment-based walkthrough for any `.scad` examples so screen-reader users can follow the design steps.
 
@@ -24,19 +24,26 @@ Design and produce a wearable beaded jewelry piece that includes at least eight 
 - Document design decisions and printing notes for reproducibility
 - Evaluate designs against measurable functional requirements
 
-## StepbyStep Milestones 
+## StepbyStep Milestones
 
 1. Project setup (Day 1)
-  - Read this briefing and the Unit 3 lessons.
-  - Create a folder for your project and initialize a short Design Notes document.
+
+- Read this briefing and the Unit 3 lessons.
+- Create a folder for your project and initialize a short Design Notes document.
+
 2. Bead module development (Days 1-2)
-  - Implement `bead_A(size, detail)` and `bead_B(size, detail)` parametric modules.
-  - Test-print a single bead from each module; record optimal print temperature/bed settings.
+
+- Implement `bead_A(size, detail)` and `bead_B(size, detail)` parametric modules.
+- Test-print a single bead from each module; record optimal print temperature/bed settings.
+
 3. Assembly and iteration (Days 3-4)
-  - Create an assembly script that arranges at least 8 beads and tests fit/tolerances.
-  - Iterate bead hole diameter and test-strung spacing until beads slide but do not fall off.
+
+- Create an assembly script that arranges at least 8 beads and tests fit/tolerances.
+- Iterate bead hole diameter and test-strung spacing until beads slide but do not fall off.
+
 4. Final prototype & documentation (Day 5)
-  - Print final beads, assemble the piece, photograph the result, and prepare the deliverables.
+
+- Print final beads, assemble the piece, photograph the result, and prepare the deliverables.
 
 ## Deliverables
 
@@ -78,6 +85,7 @@ Submit both digitally and physically as instructed:
 10. Reflection: Describe how the iterative design process (design -> print -> test -> modify) applies specifically to creating a functional wearable. Why is rapid testing and documentation critical for jewelry design?
 
 Answer key (instructor use):
+
 1. To allow repeatable, adjustable geometry and quick global changes.
 2. Print a small tolerance test piece and measure fit; record results.
 3. `for()` loops, `module` parameters, `translate()` and `rotate()`; `scale()`.

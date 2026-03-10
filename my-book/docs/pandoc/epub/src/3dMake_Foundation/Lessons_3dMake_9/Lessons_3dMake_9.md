@@ -365,10 +365,10 @@ name: 3dMake Build
 on:
   push:
     paths:
-      - 'src/**'
+      - \"src/**\"
   pull_request:
     paths:
-      - 'src/**'
+      - \"src/**\"
 
 jobs:
   build:

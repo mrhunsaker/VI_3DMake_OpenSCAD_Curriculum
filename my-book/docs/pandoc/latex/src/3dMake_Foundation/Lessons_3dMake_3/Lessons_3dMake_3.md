@@ -1,316 +1,232 @@
-[Header 3 ("lesson-3--parametric-architecture-and-modular-libraries", [], []) [Str "Lesson 3 — Parametric Architecture and Modular Libraries"], Para [Emph [Str "[", Str "CORRECTED — March 2026 Curriculum Revision", Str "]"]], HorizontalRule, Header 4 ("learning-objectives", ["unnumbered", "unlisted"], []) [Str "Learning Objectives"], Para [Str "By the end of this lesson you will be able to:"], BulletList [[Plain [Str "Understand OpenSCAD's unique variable scoping rules (the \"last-wins\" model)"]], [Plain [Str "Write parametric modules with validated inputs using ", Code ("", [], []) "assert()"]], [Plain [Str "Organize reusable geometry into library files using ", Code ("", [], []) "use", Str " and ", Code ("", [], []) "include"]], [Plain [Str "Write recursive functions for mathematical and spatial computations"]], [Plain [Str "Apply list comprehensions and vector operations for advanced parametric design"]]], HorizontalRule, Header 4 ("step-1--how-openscad-variables-work-its-different", ["unnumbered", "unlisted"], []) [Str "Step 1 — How OpenSCAD Variables Work (It's Different!)"], Para [Str "OpenSCAD variables do ", Strong [Str "not"], Str " work like variables in Python, JavaScript, or C. Understanding this prevents one of the most common beginner bugs."], Para [Strong [Str "The three rules:"]], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Strong [Str "There is no assignment during execution."], Str " Variables are bound at parse time (when the file is read), not when the geometry is drawn."]], [Plain [Strong [Str "The last assignment in a scope wins."], Str " If you write ", Code ("", [], []) "x = 5;", Str " and then ", Code ("", [], []) "x = 10;", Str ", ", Code ("", [], []) "x", Str " is always ", Code ("", [], []) "10", Str " — the first line is silently overridden."]], [Plain [Strong [Str "Variables inside modules are local."], Str " They do not affect global variables with the same name."]]], CodeBlock ("", ["openscad"], []) "// COMMON MISTAKE: thinking x changes value during execution
+[Header 3 ("lesson-3--parametric-architecture-and-modular-libraries", [], []) [Str "Lesson 3 — Parametric Architecture and Modular Libraries"], Para [Strong [Str "Estimated Time:"], Str " 90–120 minutes", LineBreak, Strong [Str "Course:"], Str " 3dMake Certification — High School Distance Learning Track"], HorizontalRule, Header 4 ("before-you-start", ["unnumbered", "unlisted"], []) [Str "Before You Start"], Para [Str "You can now create shapes and combine them using CSG. That's the vocabulary. Now it's time to learn the ", Emph [Str "grammar"], Str " — how to organize and generalize your code so it's maintainable, reusable, and professional."], Para [Str "The difference between a beginner OpenSCAD file and a professional one isn't usually the shapes — it's the structure. A beginner file has magic numbers scattered throughout, the same geometry copy-pasted in three places, and no indication of what any variable is for. A professional file has clearly named parameters at the top, organized modules, validation that catches errors before they become bad prints, and code you could hand to someone else and they'd immediately understand."], Para [Str "This lesson introduces the complete system for professional OpenSCAD structure: modules, functions, libraries, and the DRY principle. It also covers one of the most confusing aspects of OpenSCAD for programmers coming from other languages: how variables work here is completely different from Python, JavaScript, or Java — and understanding that difference upfront will save you hours of debugging."], HorizontalRule, Header 4 ("learning-objectives", ["unnumbered", "unlisted"], []) [Str "Learning Objectives"], Para [Str "By the end of this lesson you will be able to:"], BulletList [[Plain [Str "Understand and work with OpenSCAD's unique \"last-wins\" variable scoping rules"]], [Plain [Str "Write parametric modules with validated inputs using ", Code ("", [], []) "assert()"]], [Plain [Str "Organize reusable geometry into library files using ", Code ("", [], []) "use", Str " and ", Code ("", [], []) "include"]], [Plain [Str "Write recursive functions for mathematical and spatial computations"]], [Plain [Str "Apply list comprehensions and vector operations for advanced parametric design"]], [Plain [Str "Apply the DRY (Don't Repeat Yourself) principle through modules and functions"]], [Plain [Str "Use ", Code ("", [], []) "for", Str " loops, conditionals, and list comprehensions to generate repetitive geometry"]], [Plain [Str "Write type-safe modules using ", Code ("", [], []) "is_number()", Str ", ", Code ("", [], []) "is_list()", Str ", and ", Code ("", [], []) "is_string()"]]], HorizontalRule, Header 4 ("concept-1-how-variables-work-in-openscad-its-different", ["unnumbered", "unlisted"], []) [Str "Concept 1: How Variables Work in OpenSCAD (It's Different)"], Header 5 ("the-most-important-thing-to-understand-in-this-lesson", ["unnumbered", "unlisted"], []) [Str "The Most Important Thing to Understand in This Lesson"], Para [Str "If you've ever programmed in Python, JavaScript, Java, or almost any other language, you have a mental model of variables that works a certain way: you assign a value, the program runs, and that variable holds that value until you change it. Variables are like buckets — you put a value in, you can read what's in there, and you can put a new value in later."], Para [Strong [Str "OpenSCAD does not work this way."], Str " The difference is fundamental and will cause bugs if you misunderstand it. Let's dig in."], Header 5 ("how-openscad-actually-works", ["unnumbered", "unlisted"], []) [Str "How OpenSCAD Actually Works"], Para [Str "OpenSCAD processes your file in two distinct passes:"], Para [Strong [Str "Pass 1 — Parse:"], Str " OpenSCAD reads the entire file from top to bottom, collects every variable assignment and module/function definition, and resolves what every variable equals. No geometry is created during this pass."], Para [Strong [Str "Pass 2 — Render:"], Str " OpenSCAD creates geometry using the values that were determined in Pass 1."], Para [Str "This two-pass system leads to three rules that govern all OpenSCAD code:"], Para [Strong [Str "Rule 1: There is no assignment during execution."], Str " You cannot update a variable while the geometry is being computed. Variables are set during parse time and then read during render time. \"Updating\" a variable mid-computation isn't a concept in OpenSCAD."], Para [Strong [Str "Rule 2: The last assignment in a scope wins — everywhere in that scope."], Str " This is the most confusing rule. If you write ", Code ("", [], []) "x = 5;", Str " on line 3 and then ", Code ("", [], []) "x = 10;", Str " on line 20, the value of ", Code ("", [], []) "x", Str " is ", Code ("", [], []) "10", Str " ", Emph [Str "everywhere"], Str " in that scope — including on line 3, even though you hadn't written the second assignment yet. It's as if OpenSCAD reads the entire file first, decides what everything equals, and then uses those final values. Writing ", Code ("", [], []) "x = 5; echo(x); x = 10;", Str " will print ", Code ("", [], []) "10", Str ", not ", Code ("", [], []) "5", Str "."], Para [Strong [Str "Rule 3: Variables inside modules are local."], Str " A variable declared inside a module exists only within that module. The global variable with the same name is unchanged."], CodeBlock ("", ["openscad"], []) "// COMMON MISTAKE — expecting x to change during execution
 x = 5;
-echo(\"x = \", x);  // Prints 10, NOT 5 — last assignment wins at parse time
+echo(\"x =\", x);   // This prints 10, NOT 5 — because the last assignment wins
 x = 10;
 
-// WHY: OpenSCAD reads the ENTIRE file before rendering anything.
-// By the time it renders, x has already been resolved to 10.
-
-// CORRECT PATTERN: use distinct names, not reassignment
-base_size    = 20;
-padded_size  = base_size + 10;   // 30 — this is fine
-doubled_size = base_size * 2;    // 40 — fine too
+// CORRECT PATTERN — each value gets its own name
+base_size    = 20;          // 20
+padded_size  = base_size + 10;   // 30 — computed from base_size
+doubled_size = base_size * 2;    // 40 — computed from base_size
 echo(base_size, padded_size, doubled_size);  // 20, 30, 40
 
-// Module scope: variables inside a module are LOCAL
+// MODULE SCOPE — variables inside a module are completely separate
 wall_t = 3;   // global wall thickness
 
 module demo_box(size) {
-  wall_t = 1;           // LOCAL — does not affect the global wall_t
-  cube([size, size, wall_t]);  // uses local wall_t = 1
+  wall_t = 1;           // This is a DIFFERENT variable — local to this module
+  cube([size, size, wall_t]);   // uses the local wall_t = 1
 }
 
 demo_box(20);
-echo(\"Global wall_t is still:\", wall_t);  // still 3 — not changed
+echo(\"Global wall_t is still:\", wall_t);  // Still 3 — unchanged by the module
 
-// PRACTICAL IMPLICATION: to conditionally vary a parameter, use a ternary
+// CHOOSING BETWEEN VALUES conditionally — use a ternary expression
 mode = \"large\";
-box_size = (mode == \"large\") ? 40 : 20;  // ternary — correct pattern
+box_size = (mode == \"large\") ? 40 : 20;   // If mode is \"large\", 40; otherwise 20
 cube([box_size, box_size, 5]);
-", HorizontalRule, Header 4 ("step-2--assert-for-parameter-validation", ["unnumbered", "unlisted"], []) [Str "Step 2 — ", Code ("", [], []) "assert()", Str " for Parameter Validation"], Para [Code ("", [], []) "assert()", Str " is the correct tool for validating module parameters. It halts rendering immediately with a descriptive error message if a condition is false. This is far better than ", Code ("", [], []) "echo()", Str ", which only warns and allows bad geometry to continue rendering."], CodeBlock ("", ["openscad"], []) "// assert(condition, message)
-// If condition is false: rendering stops; message is shown in the console
+", Header 5 ("what-this-means-in-practice", ["unnumbered", "unlisted"], []) [Str "What This Means in Practice"], Para [Str "Because you can't update a variable during execution, you can't accumulate a total like ", Code ("", [], []) "total = total + item", Str ". Instead, you describe ", Emph [Str "relationships"], Str " between values mathematically. If the width of your inner wall depends on the outer wall and the wall thickness, you write that as a formula: ", Code ("", [], []) "inner_width = outer_width - 2 * wall_t;", Str ". The system computes the value once, and that value is used everywhere."], Para [Str "This is actually quite elegant once you adjust to it. You're writing equations, not instructions. Each variable is defined once and means exactly one thing."], Para [Str "For cases where you genuinely need to choose between values or compute something iteratively, OpenSCAD provides ", Strong [Str "ternary expressions"], Str " (condition ? value_if_true : value_if_false), ", Strong [Str "recursive functions"], Str ", and ", Strong [Str "list comprehensions"], Str " — all covered in this lesson."], HorizontalRule, Header 4 ("step-1--modules-named-reusable-geometry", ["unnumbered", "unlisted"], []) [Str "Step 1 — Modules: Named, Reusable Geometry"], Header 5 ("what-a-module-is", ["unnumbered", "unlisted"], []) [Str "What a Module Is"], Para [Str "A ", Strong [Str "module"], Str " is a named, reusable piece of geometry. When you find yourself writing the same shape code in multiple places, that's the signal to create a module. Modules accept parameters — just like functions in other languages — so you can write one module that creates many different variations of the same shape."], Para [Str "The syntax is:"], CodeBlock ("", ["openscad"], []) "module name(param1, param2=default_value) {
+  // geometry code here
+  // uses param1 and param2
+}
+", Para [Str "Parameters with default values (", Code ("", [], []) "param2=default_value", Str ") are optional — callers can omit them and the default will be used. Parameters without defaults are required."], Para [Str "You call a module just like a statement:"], CodeBlock ("", ["openscad"], []) "name(value1, value2);
+", Header 5 ("the-dry-principle", ["unnumbered", "unlisted"], []) [Str "The DRY Principle"], Para [Strong [Str "DRY"], Str " stands for ", Strong [Str "Don't Repeat Yourself"], Str ". It's a fundamental principle of good programming, and it applies directly to OpenSCAD design."], Para [Str "If you need four mounting holes in a plate, you could write the cylinder code four times — once for each hole. But now if you need to change the hole size, you have to change it in four places. If you miss one, your design is inconsistent. If you need to add a fifth hole later, you have to remember the pattern and paste it again."], Para [Str "The DRY approach: write a module ", Code ("", [], []) "mounting_hole(r, depth)", Str " once, then call it four times. Now the hole geometry is defined in exactly one place. Change it once, every hole updates. Add more holes as easily as one line each."], CodeBlock ("", ["openscad"], []) "// WRONG — copy-pasted, hard to maintain
+difference() {
+  cube([60, 40, 5]);
+  translate([5,  5,  -0.001]) cylinder(r=2, h=5.002, $fn=16);
+  translate([55, 5,  -0.001]) cylinder(r=2, h=5.002, $fn=16);
+  translate([5,  35, -0.001]) cylinder(r=2, h=5.002, $fn=16);
+  translate([55, 35, -0.001]) cylinder(r=2, h=5.002, $fn=16);
+}
 
-module safe_cylinder(r, h, fn=32) {
-  // Validate every parameter before it can produce invalid geometry
+// CORRECT — DRY: one module, used multiple times
+module mounting_hole(r=2, depth=5) {
+  // The 0.001 offsets prevent co-planar face problems (Lesson 2)
+  translate([0, 0, -0.001])
+    cylinder(r=r, h=depth + 0.002, $fn=16);
+}
+
+difference() {
+  cube([60, 40, 5]);
+  translate([5,  5,  0]) mounting_hole();
+  translate([55, 5,  0]) mounting_hole();
+  translate([5,  35, 0]) mounting_hole();
+  translate([55, 35, 0]) mounting_hole();
+}
+", Para [Str "The second version is easier to read, easier to change, and scales effortlessly. If you need a larger hole, change ", Code ("", [], []) "r=2", Str " to ", Code ("", [], []) "r=3", Str " in one place, and all four holes update."], HorizontalRule, Header 4 ("step-2--assert-for-parameter-validation", ["unnumbered", "unlisted"], []) [Str "Step 2 — ", Code ("", [], []) "assert()", Str " for Parameter Validation"], Header 5 ("why-your-modules-should-validate-their-inputs", ["unnumbered", "unlisted"], []) [Str "Why Your Modules Should Validate Their Inputs"], Para [Str "In a parametric design, other people (and future-you) will change parameter values. What happens if someone sets ", Code ("", [], []) "wall_thickness = 0", Str "? Or ", Code ("", [], []) "cylinder_radius = -5", Str "? Depending on the code, it might silently produce garbage geometry, or it might produce a cryptic error that doesn't explain what went wrong."], Para [Code ("", [], []) "assert()", Str " is OpenSCAD's built-in validation statement. It takes a condition and an optional message. If the condition is false, OpenSCAD ", Emph [Str "stops rendering immediately"], Str " and displays your message in the console. This is vastly better than allowing invalid values to silently produce a broken model."], Para [Str "Think of ", Code ("", [], []) "assert()", Str " as making your design constraints machine-enforceable. Instead of just knowing that ", Code ("", [], []) "wall_t", Str " must be at least 1.2 mm for a 0.4 mm nozzle, you write it as an assertion and the tool enforces it automatically."], Header 5 ("how-assert-works", ["unnumbered", "unlisted"], []) [Str "How ", Code ("", [], []) "assert()", Str " Works"], CodeBlock ("", ["openscad"], []) "assert(condition, \"message if condition is false\");
+", Para [Str "If ", Code ("", [], []) "condition", Str " evaluates to true, nothing happens — the code continues normally. If ", Code ("", [], []) "condition", Str " is false, the render stops and the message is printed. The message should be descriptive enough that anyone reading it immediately understands what went wrong."], CodeBlock ("", ["openscad"], []) "module safe_cylinder(r, h, fn=32) {
+  // Validate all inputs before creating any geometry
   assert(is_num(r) && r > 0,
-    str(\"safe_cylinder: r must be a positive number, got: \", r));
+    str(\"safe_cylinder: radius must be a positive number, got: \", r));
   assert(is_num(h) && h > 0,
-    str(\"safe_cylinder: h must be a positive number, got: \", h));
+    str(\"safe_cylinder: height must be a positive number, got: \", h));
   assert(fn >= 3,
-    str(\"safe_cylinder: $fn must be >= 3, got: \", fn));
+    str(\"safe_cylinder: fn must be at least 3, got: \", fn));
   assert(r < 500,
-    str(\"safe_cylinder: r=\", r, \"mm seems wrong — did you use cm instead of mm?\"));
+    str(\"safe_cylinder: radius \", r, \"mm seems wrong — did you enter cm instead of mm?\"));
 
   cylinder(r=r, h=h, $fn=fn);
 }
 
-safe_cylinder(5, 20);         // works fine
-// safe_cylinder(-3, 20);     // STOPS with: \"r must be a positive number, got: -3\"
-// safe_cylinder(0, 20);      // STOPS with: \"r must be a positive number, got: 0\"
+safe_cylinder(5, 20);          // fine
+// safe_cylinder(-3, 20);      // STOPS: \"radius must be a positive number, got: -3\"
+// safe_cylinder(5, 20, fn=1); // STOPS: \"fn must be at least 3, got: 1\"
+", Para [Str "The ", Code ("", [], []) "str()", Str " function assembles a string from multiple values — very useful for error messages that include the bad value so the user knows exactly what to fix."], Para [Strong [Str "Best practice:"], Str " add ", Code ("", [], []) "assert()", Str " statements to every module you write, at the very top of the module body, before any geometry. This turns bad-input problems into clear messages instead of mysterious rendering failures."], HorizontalRule, Header 4 ("step-3--library-files-use-vs-include", ["unnumbered", "unlisted"], []) [Str "Step 3 — Library Files: ", Code ("", [], []) "use", Str " vs. ", Code ("", [], []) "include"], Header 5 ("organizing-code-across-multiple-files", ["unnumbered", "unlisted"], []) [Str "Organizing Code Across Multiple Files"], Para [Str "Once you have a collection of useful modules — mounting holes, standoffs, snap clips, text labels — you'll want to reuse them across multiple projects without copy-pasting them every time. The solution is a ", Strong [Str "library file"], Str ": a separate ", Code ("", [], []) ".scad", Str " file containing only module and function definitions, which you can import into any project."], Para [Str "There are two ways to load a library:"], Para [Strong [Code ("", [], []) "use <filename.scad>"], Str " — imports only the module and function ", Strong [Str "definitions"], Str " from the file. Any top-level geometry statements in the file (bare ", Code ("", [], []) "cube()", Str ", ", Code ("", [], []) "cylinder()", Str ", etc.) are ", Emph [Str "not"], Str " executed. This is almost always what you want: you want the tools, not any leftover test geometry the library file might contain."], Para [Strong [Code ("", [], []) "include <filename.scad>"], Str " — executes the ", Strong [Str "entire file"], Str ", including any top-level geometry statements. If the library file has a ", Code ("", [], []) "cube([10,10,10]);", Str " at the top level, that cube will appear in your model. Use this sparingly and intentionally."], Para [Str "The mental model: ", Code ("", [], []) "use", Str " is like importing a Python module to get its functions. ", Code ("", [], []) "include", Str " is like copy-pasting the entire file into your code."], CodeBlock ("", ["openscad"], []) "// === lib/hardware.scad ===
+// A reusable hardware library. Load with: use <../lib/hardware.scad>
 
-// Compare with echo() — only warns, does NOT stop rendering:
-module unsafe_cylinder(r, h) {
-  if (r <= 0) echo(\"WARNING: r should be positive\");  // continues anyway!
-  cylinder(r=r, h=h, $fn=32);  // produces invalid geometry
-}
-
-// ADVANCED: Multi-condition assert with compound expressions
-module slot(length, width, depth) {
-  assert(length > width,
-    str(\"slot: length (\", length, \") must be greater than width (\", width, \")\"));
-  assert(depth > 0 && depth <= 50,
-    \"slot: depth must be between 0 and 50mm\");
-
-  translate([-length/2, -width/2, -0.001])
-    cube([length, width, depth + 0.001]);
-}
-", HorizontalRule, Header 4 ("step-3--modules-and-library-files", ["unnumbered", "unlisted"], []) [Str "Step 3 — Modules and Library Files"], Para [Str "Modules are reusable geometry factories. Put shared modules in a separate file and load them with ", Code ("", [], []) "use", Str " or ", Code ("", [], []) "include", Str "."], CodeBlock ("", ["openscad"], []) "// === lib/hardware.scad ===
-
-// Standard M3 bolt hole (adds 0.2mm clearance for real M3 bolts)
 module m3_bolt_hole(depth=10, countersink=false) {
+  // M3 clearance hole: 3.4mm diameter (ISO standard M3 clearance)
   assert(depth > 0, \"m3_bolt_hole: depth must be positive\");
   translate([0, 0, -0.001]) {
-    cylinder(d=3.4, h=depth + 0.002, $fn=16);  // M3 clearance
+    cylinder(d=3.4, h=depth + 0.002, $fn=16);
     if (countersink) {
+      // Add a countersunk cone for flat-head screws
       translate([0, 0, depth - 2.5])
-        cylinder(d1=3.4, d2=7.0, h=3, $fn=16);  // countersink cone
+        cylinder(d1=3.4, d2=7.0, h=3, $fn=32);
     }
   }
 }
 
-// Standard M3 standoff (for PCB mounting)
 module m3_standoff(height=5, outer_d=6) {
+  // Hollow cylindrical standoff with M3 hole through center
   assert(height > 2, \"m3_standoff: height must be > 2mm\");
   difference() {
     cylinder(d=outer_d, h=height, $fn=16);
-    m3_bolt_hole(depth=height);
+    m3_bolt_hole(depth=height);  // Modules can call other modules from the library
   }
 }
 ", CodeBlock ("", ["openscad"], []) "// === src/main.scad ===
+use <../lib/hardware.scad>   // loads definitions; no top-level geometry executes
 
-// use: loads module/function definitions but does NOT execute top-level geometry
-use <../lib/hardware.scad>
-
-// include: loads AND executes everything (use sparingly — can cause geometry conflicts)
-// include <../lib/settings.scad>
-
-// Now m3_bolt_hole and m3_standoff are available
-difference() {
-  cube([40, 30, 5]);
-  // Place 4 bolt holes at PCB mounting pattern
-  for (pos = [[5,5], [35,5], [5,25], [35,25]]) {
-    translate([pos[0], pos[1], 0])
-      m3_bolt_hole(depth=5);
-  }
+// Place M3 standoffs at all four corners of a mounting plate
+cube([60, 40, 5]);
+for (pos = [[5,5], [55,5], [5,35], [55,35]]) {
+  translate([pos[0], pos[1], 0])
+    m3_standoff(height=8);
 }
-", HorizontalRule, Header 4 ("step-4--recursive-functions", ["unnumbered", "unlisted"], []) [Str "Step 4 — Recursive Functions"], Para [Str "Recursive functions compute values by calling themselves with a smaller input. OpenSCAD supports recursion for ", Strong [Str "value computation"], Str " (not for geometry directly)."], CodeBlock ("", ["openscad"], []) "// Factorial: n! = n × (n-1) × ... × 1
-// Base case: factorial(0) = 1 or factorial(1) = 1
-function factorial(n) = (n <= 1) ? 1 : n * factorial(n - 1);
+", Header 5 ("structuring-a-good-library", ["unnumbered", "unlisted"], []) [Str "Structuring a Good Library"], Para [Str "A well-organized library groups related modules, documents each one, and validates inputs. Here's a template:"], CodeBlock ("", ["openscad"], []) "// ============================================================
+// fasteners.scad — Parametric fastener library
+// Usage: use <fasteners.scad>
+// All dimensions follow ISO metric standards.
+// ============================================================
 
-echo(factorial(1));   // 1
-echo(factorial(5));   // 120
-echo(factorial(10));  // 3628800
-
-// Fibonacci sequence: each term is the sum of the two before it
-// fib(0)=0, fib(1)=1, fib(2)=1, fib(3)=2, fib(4)=3, fib(5)=5 ...
-function fib(n) = (n <= 1) ? n : fib(n-1) + fib(n-2);
-
-// Use Fibonacci spacing to place pegs — natural, visually pleasing distribution
-for (i = [2:9]) {
-  translate([fib(i) * 4, 0, 0])
-    cylinder(r=1.5, h=5, $fn=16);
+module m3_hole(depth=10) {
+  // M3 clearance hole: 3.2mm diameter
+  cylinder(r=1.6, h=depth + 0.001, $fn=16);
 }
 
-// ADVANCED: Recursive list building — generate evenly-spaced points
-// This replaces a for loop when you need a VALUE (list) rather than geometry
-function linspace(start, stop, n) =
-  (n <= 1)
-    ? [start]
-    : concat([start], linspace(start + (stop - start) / (n - 1), stop, n - 1));
-
-positions = linspace(0, 50, 6);  // [0, 10, 20, 30, 40, 50]
-echo(\"Positions:\", positions);
-
-for (p = positions) {
-  translate([p, 0, 0]) sphere(r=2, $fn=16);
-}
-", HorizontalRule, Header 4 ("step-5--list-comprehensions-and-vector-math", ["unnumbered", "unlisted"], []) [Str "Step 5 — List Comprehensions and Vector Math"], Para [Str "List comprehensions let you generate lists of values or geometry positions using compact functional syntax."], CodeBlock ("", ["openscad"], []) "// List comprehension: [expression for variable in range if condition]
-
-// Generate a list of cylinder heights: [5, 10, 15, 20, 25]
-heights = [for (i = [1:5]) i * 5];
-echo(\"Heights:\", heights);  // [5, 10, 15, 20, 25]
-
-// Place cylinders at computed positions
-positions = [for (i = [0:7]) [i * 12, 0, 0]];
-for (pos = positions) {
-  translate(pos)
-    cylinder(h = 5 + pos[0] * 0.3, r=3, $fn=16);  // height grows with X position
+module m4_hole(depth=10) {
+  // M4 clearance hole: 4.3mm diameter
+  cylinder(r=2.15, h=depth + 0.001, $fn=16);
 }
 
-// Filter with a condition: only even-indexed items
-even_positions = [for (i = [0:9]) if (i % 2 == 0) i * 15];
-echo(\"Even positions:\", even_positions);  // [0, 15, 30, 45, 60]
-
-// 2D grid of points
-grid = [for (x = [0:3]) for (y = [0:3]) [x * 20, y * 20, 0]];
-for (pt = grid) {
-  translate(pt)
-    cylinder(r=2, h=8, $fn=16);
+module m3_nut_trap(extra_depth=0) {
+  // M3 hex nut trap: 6.4mm across-flats, 2.4mm thick
+  cylinder(r=3.2, h=2.4 + extra_depth, $fn=6);  // $fn=6 makes a hexagon
 }
-
-// Geometric series — rapidly growing spacing (useful for logarithmic layouts)
-geo_series = [for (i = [0:5]) pow(2, i) * 3];  // [3, 6, 12, 24, 48, 96]
-echo(\"Geometric series:\", geo_series);
-", HorizontalRule, Header 4 ("step-6--working-with-vectors-and-math-functions", ["unnumbered", "unlisted"], []) [Str "Step 6 — Working with Vectors and Math Functions"], CodeBlock ("", ["openscad"], []) "// Vector arithmetic is built in
-v1 = [10, 20, 5];
-v2 = [3, 4, 0];
-
-sum   = v1 + v2;         // [13, 24, 5]
-diff  = v1 - v2;         // [7, 16, 5]
-scaled = v1 * 2;         // [20, 40, 10]  (scalar multiplication)
-
-echo(\"sum:\", sum, \"diff:\", diff, \"scaled:\", scaled);
-
-// Dot product and norm (vector length)
-dot_product = v1 * v2;          // 10*3 + 20*4 + 5*0 = 110
-length_v1   = norm(v1);         // sqrt(10²+20²+5²) ≈ 22.9
-echo(\"dot:\", dot_product, \"norm:\", length_v1);
-
-// Built-in math functions
-echo(abs(-5));      // 5
-echo(ceil(3.2));    // 4
-echo(floor(3.8));   // 3
-echo(round(3.5));   // 4
-echo(max(3,7,2));   // 7
-echo(min(3,7,2));   // 2
-echo(pow(2, 8));    // 256
-echo(sqrt(144));    // 12
-echo(log(100));     // 2 (log base 10)
-echo(ln(exp(1)));   // 1 (natural log)
-
-// Trigonometry — angles in DEGREES (not radians)
-echo(sin(90));      // 1
-echo(cos(0));       // 1
-echo(tan(45));      // 1
-echo(atan2(1, 1));  // 45 — two-argument arctangent (safe for all quadrants)
-
-// Cross product (needed for surface normals)
-cross_v = cross(v1, v2);
-echo(\"cross:\", cross_v);
-", HorizontalRule, Header 4 ("step-7--fn-fa-fs--controlling-curve-resolution", ["unnumbered", "unlisted"], []) [Str "Step 7 — ", Code ("", [], []) "$fn", Str ", ", Code ("", [], []) "$fa", Str ", ", Code ("", [], []) "$fs", Str " — Controlling Curve Resolution"], CodeBlock ("", ["openscad"], []) "// $fn: fixed number of faces (overrides $fa and $fs)
-// $fa: minimum angle per face in degrees (default 12)
-// $fs: minimum size of each face in mm (default 2)
-
-// LOW $fn — fast to render, blocky (use during development)
-sphere(r=10, $fn=8);
-
-// HIGH $fn — slow to render, smooth (use for final export only)
-translate([30, 0, 0]) sphere(r=10, $fn=64);
-
-// GLOBAL defaults — set once at the top of your file
-$fa = 5;    // faces no more than 5° apart
-$fs = 0.5;  // faces no smaller than 0.5mm
-// All subsequent curves use these defaults
-
-// Per-shape override — finer control
-translate([70, 0, 0])
-  cylinder(h=20, r=10, $fn=24);   // this one uses 24 faces regardless of globals
-
-// PRACTICAL GUIDELINE:
-// During development: $fn=16 or $fn=24
-// For final export:   $fn=64 or higher for visible smooth curves
-//                     $fn=32 is usually sufficient for functional parts
-", HorizontalRule, Header 4 ("exercises", ["unnumbered", "unlisted"], []) [Str "Exercises"], Para [Strong [Str "Exercise 3.1:"], Str " Write a module ", Code ("", [], []) "safe_box(w, d, h, wall=2)", Str " that validates all parameters with ", Code ("", [], []) "assert()", Str " and creates a hollow box. The wall thickness must be less than half of the smallest dimension."], Para [Strong [Str "Exercise 3.2:"], Str " Create a library file ", Code ("", [], []) "lib/fasteners.scad", Str " with modules for M2, M3, and M4 bolt holes. Use ", Code ("", [], []) "use", Str " to load it in a main file and place bolt holes at the corners of a 60 × 40 mm plate."], Para [Strong [Str "Exercise 3.3:"], Str " Write a recursive function ", Code ("", [], []) "sum_list(lst, i=0)", Str " that returns the sum of all elements in a list. Use it to compute the total material volume of a set of cylinders."], Para [Strong [Str "Exercise 3.4 (Advanced):"], Str " Use a list comprehension to generate a 5 × 5 grid of cylinders where each cylinder's height equals ", Code ("", [], []) "row + column + 1", Str " (so heights go from 1 to 9). Use ", Code ("", [], []) "echo()", Str " to verify the maximum height."], Header 3 ("lesson-3-parametric-architecture-and-modular-libraries", ["unnumbered", "unlisted"], []) [Str "Lesson 3: Parametric Architecture and Modular Libraries"], Para [Str "Estimated time: 90–120 minutes"], Header 4 ("learning-objectives-1", ["unnumbered", "unlisted"], []) [Str "Learning Objectives"], BulletList [[Plain [Str "Understand and apply the DRY (Don't Repeat Yourself) principle through modules and functions"]], [Plain [Str "Use ", Code ("", [], []) "include", Str " vs ", Code ("", [], []) "use", Str " for library files"]], [Plain [Str "Apply ", Code ("", [], []) "for", Str " loops, conditionals, and list comprehensions"]], [Plain [Str "Write type-safe modules using ", Code ("", [], []) "is_number()", Str ", ", Code ("", [], []) "is_list()", Str ", and ", Code ("", [], []) "is_string()"]], [Plain [Str "Build a reusable module library"]]], Header 4 ("materials", ["unnumbered", "unlisted"], []) [Str "Materials"], BulletList [[Plain [Str "3dMake project from Lessons 1–2"]], [Plain [Str "Terminal and editor"]]], Header 4 ("step-by-step-tasks", ["unnumbered", "unlisted"], []) [Str "Step-by-step Tasks"], Header 5 ("1-define-a-reusable-module", ["unnumbered", "unlisted"], []) [Str "1. Define a Reusable Module"], Para [Str "Modules create named geometry. They accept parameters and can be called anywhere in the file. See ", Note [Para [Str "OpenSCAD User Manual — Modules - ", Link ("", [], []) [Str "https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules"] ("https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules", "")]], Str "."], CodeBlock ("", ["openscad"], []) "// Modules create geometry; calling them produces shapes
-module rounded_box(w, d, h, r=2) {
-  // r is the corner rounding radius, defaulting to 2mm
-  minkowski() {
-    cube([w - 2*r, d - 2*r, h], center=true);
-    cylinder(r=r, h=0.01, $fn=32);
-  }
-}
-
-// Call the module with different sizes
-rounded_box(50, 30, 20);
-translate([60, 0, 0]) rounded_box(40, 40, 15, r=5);
-", Header 5 ("2-write-a-function-computes-a-value-no-geometry", ["unnumbered", "unlisted"], []) [Str "2. Write a Function (Computes a Value, No Geometry)"], CodeBlock ("", ["openscad"], []) "// Functions return values, never geometry
-function clearance_fit(nominal) = nominal + 0.2;
-function tight_fit(nominal)    = nominal - 0.1;
-
-hole_diameter = clearance_fit(8);   // = 8.2
-peg_diameter  = tight_fit(8);       // = 7.9
-
-cylinder(r=hole_diameter/2, h=10, $fn=64);
-", Header 5 ("3-use-include-and-use-for-libraries", ["unnumbered", "unlisted"], []) [Str "3. Use include and use for Libraries"], CodeBlock ("", ["openscad"], []) "// include: executes the file (modules, functions, AND top-level geometry)
-include <BOSL2/std.scad>
-
-// use: imports modules and functions only — no top-level geometry executes
-use <my_library.scad>
-", Para [Str "Key distinction: ", Code ("", [], []) "include", Str " will also render any top-level geometry in the library file; ", Code ("", [], []) "use", Str " imports only the module and function definitions.", SoftBreak, Str "For more on ", Code ("", [], []) "include", Str " and ", Code ("", [], []) "use", Str ", see ", Note [Para [Str "OpenSCAD User Manual — Include and Use - ", Link ("", [], []) [Str "https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement"] ("https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement", "")]], Str "."], Header 5 ("4-apply-for-loops-and-conditionals", ["unnumbered", "unlisted"], []) [Str "4. Apply For Loops and Conditionals"], Para [Str "For loop and conditional syntax is described in ", Note [Para [Str "OpenSCAD User Manual — For Loops and Conditionals - ", Link ("", [], []) [Str "https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#for_loop"] ("https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#for_loop", "")]], Str "."], CodeBlock ("", ["openscad"], []) "// Array of peg positions
+", HorizontalRule, Header 4 ("step-4--for-loops-and-conditionals", ["unnumbered", "unlisted"], []) [Str "Step 4 — ", Code ("", [], []) "for", Str " Loops and Conditionals"], Header 5 ("repeating-geometry-with-for", ["unnumbered", "unlisted"], []) [Str "Repeating Geometry with ", Code ("", [], []) "for"], Para [Str "OpenSCAD's ", Code ("", [], []) "for", Str " loop iterates over a list or range and creates geometry for each iteration. Each iteration is ", Strong [Str "independent"], Str " — you can't pass values between iterations. But you can create geometry in each one."], Para [Str "Three forms:"], Para [Code ("", [], []) "for (variable = list)", Str " — iterates over every element in a list."], Para [Code ("", [], []) "for (variable = [start : end])", Str " — iterates over a range with a step of 1. ", Code ("", [], []) "[0:5]", Str " gives 0, 1, 2, 3, 4, 5."], Para [Code ("", [], []) "for (variable = [start : step : end])", Str " — iterates over a range with a specified step. ", Code ("", [], []) "[0:45:315]", Str " gives 0, 45, 90, 135, 180, 225, 270, 315."], CodeBlock ("", ["openscad"], []) "// Place pegs at four specific positions
 peg_positions = [[0,0], [20,0], [40,0], [20,20]];
 
 for (pos = peg_positions) {
   translate([pos[0], pos[1], 0]) cylinder(r=3, h=10, $fn=32);
 }
 
-// Conditional: only add a lid if show_lid is true
+// Place cylinders every 45° around a circle (8 cylinders total)
+for (angle = [0 : 45 : 315]) {
+  rotate([0, 0, angle])
+    translate([20, 0, 0])
+      cylinder(r=2, h=5, $fn=16);
+}
+
+// Conditional: if show_lid is true, draw a lid
 show_lid = true;
 if (show_lid) {
   translate([0, 0, 30]) cube([50, 30, 3]);
 }
-
-// For loop with range [start:step:end]
-for (i = [0 : 5 : 45]) {
-  rotate([0, 0, i]) translate([20, 0, 0]) cylinder(r=2, h=5, $fn=16);
+", Para [Strong [Str "Evenly spacing around a circle:"], Str " If you want N objects evenly spaced, the angular step is ", Code ("", [], []) "360 / N", Str ". For 12 objects, that's 30° each. Use ", Code ("", [], []) "[0 : 360/N : 360 - 360/N]", Str " to avoid duplicating the first position at 360°."], Header 5 ("using-for-with-multiple-variables", ["unnumbered", "unlisted"], []) [Str "Using ", Code ("", [], []) "for", Str " with Multiple Variables"], Para [Str "You can use multiple ", Code ("", [], []) "for", Str " clauses in a single statement to create grids:"], CodeBlock ("", ["openscad"], []) "// 4×4 grid of cylinders — nested for in a single statement
+for (x = [0:3], y = [0:3]) {
+  translate([x * 20, y * 20, 0]) cylinder(r=3, h=5, $fn=16);
 }
-", Header 5 ("5-use-type-testing-and-list-comprehensions", ["unnumbered", "unlisted"], []) [Str "5. Use Type Testing and List Comprehensions"], Para [Str "The BOSL2 library provides many advanced parametric modules and functions ", Note [Para [Str "BOSL2 Library Documentation - ", Link ("", [], []) [Str "https://github.com/BelfrySCAD/BOSL2/wiki"] ("https://github.com/BelfrySCAD/BOSL2/wiki", "")]], Str "."], CodeBlock ("", ["openscad"], []) "// Type testing prevents hard-to-debug errors
-module validated_cylinder(r, h) {
-  if (!is_number(r)) echo(\"WARNING: r must be a number\");
-  if (!is_number(h)) echo(\"WARNING: h must be a number\");
-  cylinder(r=r, h=h, $fn=64);
-}
+", Para [Str "This is equivalent to two nested ", Code ("", [], []) "for", Str " loops but more compact."], HorizontalRule, Header 4 ("step-5--recursive-functions", ["unnumbered", "unlisted"], []) [Str "Step 5 — Recursive Functions"], Header 5 ("why-openscad-needs-recursion", ["unnumbered", "unlisted"], []) [Str "Why OpenSCAD Needs Recursion"], Para [Str "Most programming languages let you write a loop that accumulates a value: ", Code ("", [], []) "total = 0; for item in list: total += item", Str ". OpenSCAD doesn't allow this — variables are fixed after parse time. So when you need to compute something iteratively, you use ", Strong [Str "recursive functions"], Str "."], Para [Str "A recursive function is one that calls itself with a smaller version of the problem. Every recursive function has two parts:"], Para [Strong [Str "The base case"], Str " — the input is simple enough to handle directly, so return an answer without recursing."], Para [Strong [Str "The recursive case"], Str " — reduce the problem slightly and call yourself with the smaller version, then combine the result."], Header 5 ("functions-vs-modules--a-critical-distinction", ["unnumbered", "unlisted"], []) [Str "Functions vs. Modules — A Critical Distinction"], Para [Str "Before we look at examples, there is an important rule in OpenSCAD that trips up almost every programmer coming from other languages:"], Para [Strong [Str "Functions return values (numbers, strings, lists). They cannot create geometry."]], Para [Strong [Str "Modules create geometry. They cannot return values."]], Para [Str "This is a hard boundary. A function with a ", Code ("", [], []) "cylinder()", Str " call inside it won't work — you need a module for that. A module that tries to return a value won't work — you need a function for that."], CodeBlock ("", ["openscad"], []) "// FUNCTION — computes and returns a value
+// This is a function because it's defined with \"function\" and uses \"=\"
+function factorial(n) = (n <= 1) ? 1 : n * factorial(n - 1);
 
-// List comprehension: create a list of computed values
-angles = [for (i = [0:10:350]) i];
-echo(angles);  // [0, 10, 20, ..., 350]
+echo(factorial(5));   // prints 120
+echo(factorial(0));   // prints 1
 
-// Use list comprehension to build geometry positions
-positions = [for (i=[0:3]) i * 25];
-for (x = positions) {
-  translate([x, 0, 0]) cube([20, 20, 5]);
-}
-", Header 5 ("checkpoint", ["unnumbered", "unlisted"], []) [Str "Checkpoint"], BulletList [[Plain [Str "After step 1: calling ", Code ("", [], []) "rounded_box(50, 30, 20)", Str " builds a rounded box. Verify in preview."]], [Plain [Str "After step 3: ", Code ("", [], []) "include", Str " vs ", Code ("", [], []) "use", Str " behavior should be tested by placing a top-level ", Code ("", [], []) "cube()", Str " in a library file and using both import methods."]], [Plain [Str "After step 5: ", Code ("", [], []) "echo()", Str " output appears in the OpenSCAD console window."]]], Header 4 ("building-a-practical-library", ["unnumbered", "unlisted"], []) [Str "Building a Practical Library"], Para [Str "A well-designed module library is the backbone of efficient parametric design. Here is a starter library structure:"], CodeBlock ("", ["openscad"], []) "// ============================================================
-// fasteners.scad — Parametric fastener library
-// Usage: use <fasteners.scad>
-// ============================================================
+// Another function: Fibonacci sequence
+function fib(n) = (n <= 1) ? n : fib(n-1) + fib(n-2);
 
-// M3 clearance hole (ISO standard: 3.2mm diameter)
-module m3_hole(depth=10) {
-  cylinder(r=1.6, h=depth + 0.001, $fn=16);
+// Use the function to space pegs with Fibonacci spacing
+// fib(2)=1, fib(3)=2, fib(4)=3, fib(5)=5, fib(6)=8, fib(7)=13, fib(8)=21, fib(9)=34
+for (i = [2:9]) {
+  translate([fib(i) * 4, 0, 0])
+    cylinder(r=1.5, h=5, $fn=16);
 }
 
-// M4 clearance hole (ISO standard: 4.3mm diameter)
-module m4_hole(depth=10) {
-  cylinder(r=2.15, h=depth + 0.001, $fn=16);
+// A useful function: generate N evenly-spaced values between start and stop
+function linspace(start, stop, n) =
+  (n <= 1)
+    ? [start]
+    : concat([start], linspace(start + (stop - start) / (n - 1), stop, n - 1));
+
+positions = linspace(0, 50, 6);   // evaluates to [0, 10, 20, 30, 40, 50]
+echo(\"Positions:\", positions);
+
+for (p = positions) {
+  translate([p, 0, 0]) sphere(r=2, $fn=16);
+}
+", Header 5 ("reading-a-recursive-function", ["unnumbered", "unlisted"], []) [Str "Reading a Recursive Function"], Para [Str "The ", Code ("", [], []) "factorial", Str " function works like this:"], BulletList [[Plain [Code ("", [], []) "factorial(5)", Str " → is ", Code ("", [], []) "n <= 1", Str "? No. → return ", Code ("", [], []) "5 * factorial(4)"]], [Plain [Code ("", [], []) "factorial(4)", Str " → is ", Code ("", [], []) "n <= 1", Str "? No. → return ", Code ("", [], []) "4 * factorial(3)"]], [Plain [Str "...and so on until..."]], [Plain [Code ("", [], []) "factorial(1)", Str " → is ", Code ("", [], []) "n <= 1", Str "? Yes. → return ", Code ("", [], []) "1"]]], Para [Str "Then the chain unwinds: ", Code ("", [], []) "1 * 2 * 3 * 4 * 5 = 120", Str "."], Para [Str "The ternary expression ", Code ("", [], []) "(condition) ? value_if_true : value_if_false", Str " is the standard way to write the base-case branch in OpenSCAD functions."], HorizontalRule, Header 4 ("step-6--list-comprehensions", ["unnumbered", "unlisted"], []) [Str "Step 6 — List Comprehensions"], Header 5 ("what-a-list-comprehension-is", ["unnumbered", "unlisted"], []) [Str "What a List Comprehension Is"], Para [Str "A ", Strong [Str "list comprehension"], Str " is a compact way to generate a list by applying an expression to every element of a range or existing list, optionally filtering elements. Instead of writing a loop that builds a list step by step, you describe the entire list in one expression."], Para [Str "The syntax:"], CodeBlock ("", [""], []) "[for (variable = range_or_list) expression]
+[for (variable = range_or_list) if (condition) expression]
+", Para [Str "List comprehensions are OpenSCAD's answer to the fact that you can't use ", Code ("", [], []) "for", Str " loops to accumulate values. If you need a list of computed values, a comprehension gives you the entire list at once."], CodeBlock ("", ["openscad"], []) "// Generate heights: [5, 10, 15, 20, 25]
+heights = [for (i = [1:5]) i * 5];
+echo(heights);   // [5, 10, 15, 20, 25]
+
+// Generate 8 evenly-spaced positions along the X axis
+positions = [for (i = [0:7]) [i * 12, 0, 0]];
+for (pos = positions) {
+  translate(pos)
+    cylinder(h = 5 + pos[0] * 0.3, r=3, $fn=16);  // height increases with X position
 }
 
-// Countersink pocket for M3 flat-head screw
-module m3_countersink(depth=3) {
-  union() {
-    cylinder(r=1.6, h=10, $fn=16);  // shaft
-    cylinder(r1=3.2, r2=1.6, h=depth, $fn=32);  // conical seat
-  }
-}
+// Filter: generate only even numbers from 0 to 18
+evens = [for (i = [0:9]) if (i % 2 == 0) i * 2];
+echo(evens);   // [0, 4, 8, 12, 16]
 
-// Hex nut trap (for embedding M3 hex nut)
-module m3_nut_trap(extra_depth=0) {
-  // M3 nut: 5.5mm across flats, 2.4mm thick
-  cylinder(r=3.2, h=2.4 + extra_depth, $fn=6);
+// 2D grid of points — nested comprehension generates a flat list of [x,y,0] vectors
+grid = [for (x = [0:3]) for (y = [0:3]) [x * 20, y * 20, 0]];
+for (pt = grid) {
+  translate(pt) cylinder(r=2, h=8, $fn=16);
 }
-", Para [Str "Using the library:"], CodeBlock ("", ["openscad"], []) "use <fasteners.scad>
+", Para [Str "List comprehensions are the preferred way in OpenSCAD to generate lists of positions, sizes, or other computed values that drive the placement of geometry. Master them and you'll be able to generate complex repetitive patterns with very compact code."], HorizontalRule, Header 4 ("step-7--vector-math-and-math-functions", ["unnumbered", "unlisted"], []) [Str "Step 7 — Vector Math and Math Functions"], Header 5 ("working-with-vectors", ["unnumbered", "unlisted"], []) [Str "Working with Vectors"], Para [Str "Positions and dimensions in 3D space are naturally expressed as vectors — lists of three numbers representing X, Y, and Z. OpenSCAD supports arithmetic directly on vectors, which makes geometric calculations much more readable."], CodeBlock ("", ["openscad"], []) "v1 = [10, 20, 5];
+v2 = [3, 4, 0];
 
-difference() {
-  cube([40, 30, 10]);
-  translate([10, 15, -0.001]) m3_hole(depth=10.002);
-  translate([30, 15, -0.001]) m3_hole(depth=10.002);
-}
-", Header 4 ("quiz--lesson-3dmake3-15-questions", ["unnumbered", "unlisted"], []) [Str "Quiz — Lesson 3dMake.3 (15 questions)"], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Str "What is the DRY principle and why is it important in parametric design?"]], [Plain [Str "What is the difference between a module and a function in OpenSCAD?"]], [Plain [Str "What does ", Code ("", [], []) "include <library.scad>", Str " do differently from ", Code ("", [], []) "use <library.scad>", Str "?"]], [Plain [Str "Write a ", Code ("", [], []) "for", Str " loop that places a sphere every 30° around a circle of radius 20."]], [Plain [Str "What does ", Code ("", [], []) "is_number()", Str " return, and give one example of when to use it."]], [Plain [Str "What does a list comprehension ", Code ("", [], []) "[for (i=[0:5:20]) i*2]", Str " evaluate to?"]], [Plain [Str "What does the ", Code ("", [], []) "echo()", Str " function do in OpenSCAD?"]], [Plain [Str "True or False: a function in OpenSCAD can create geometry."]], [Plain [Str "How do you specify a default parameter value in an OpenSCAD module?"]], [Plain [Str "What does the ", Code ("", [], []) "$preview", Str " special variable allow you to do in OpenSCAD?"]], [Plain [Str "Write an OpenSCAD ", Code ("", [], []) "for", Str " loop that creates 8 evenly spaced holes around a circle using ", Code ("", [], []) "for (i = [0:45:315])", Str "."]], [Plain [Str "What is the difference between ", Code ("", [], []) "[0:10]", Str " and ", Code ("", [], []) "[0:2:10]", Str " in an OpenSCAD range expression?"]], [Plain [Str "Explain why you might use type testing (", Code ("", [], []) "is_number()", Str ", ", Code ("", [], []) "is_list()", Str ") in a module rather than relying on the caller to pass correct types."]], [Plain [Str "Describe how recursive functions work in OpenSCAD and give a simple example."]], [Plain [Str "What would happen if you accidentally used ", Code ("", [], []) "include", Str " instead of ", Code ("", [], []) "use", Str " for a library that contains a top-level ", Code ("", [], []) "cube([10,10,10]);", Str " statement?"]]], Header 4 ("extension-problems-15", ["unnumbered", "unlisted"], []) [Str "Extension Problems (15)"], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Str "Create a ", Code ("", [], []) "bolts.scad", Str " library with at least M3, M4, and M5 clearance holes and nut traps; use it in a test plate."]], [Plain [Str "Build a parametric pegboard using a ", Code ("", [], []) "for", Str " loop. Parameters: ", Code ("", [], []) "cols", Str ", ", Code ("", [], []) "rows", Str ", ", Code ("", [], []) "spacing", Str ", ", Code ("", [], []) "peg_r", Str ", ", Code ("", [], []) "peg_h", Str "."]], [Plain [Str "Implement a recursive function that generates a Fibonacci sequence up to ", Code ("", [], []) "n", Str " terms and use it to space pegs."]], [Plain [Str "Build a module that validates all its inputs using ", Code ("", [], []) "assert()", Str " and logs warnings with ", Code ("", [], []) "echo()", Str "; document when ", Code ("", [], []) "assert()", Str " halts rendering vs. ", Code ("", [], []) "echo()", Str "."]], [Plain [Str "Create two library files—one for mechanical fasteners and one for artistic decorations—and include both in a combined project."]], [Plain [Str "Design a parametric gear profile module. Parameters: ", Code ("", [], []) "teeth", Str ", ", Code ("", [], []) "module_size", Str ", ", Code ("", [], []) "thickness", Str ". (You don't need to compute true involute gear geometry — a simplified triangular-tooth approximation is fine.)"]], [Plain [Str "Build a \"shelf peg\" system: a board with N parametrically positioned holes and matching pegs that press-fit into them."]], [Plain [Str "Use a list comprehension to generate a spiral path of points and place a small cylinder at each point."]], [Plain [Str "Extend the ", Code ("", [], []) "fasteners.scad", Str " library with threaded insert pockets for M3, M4, and M5 heat-set inserts (look up brass insert dimensions)."]], [Plain [Str "Write a module that draws a parametric text label with a surrounding bordered frame; parameters: ", Code ("", [], []) "text_str", Str ", ", Code ("", [], []) "font_size", Str ", ", Code ("", [], []) "padding", Str ", ", Code ("", [], []) "border_thickness", Str "."]], [Plain [Str "Build a parametric snap-fit lid for a rectangular box: the lid uses ", Code ("", [], []) "for", Str " loops to generate evenly-spaced snap clips, and all dimensions are parameters."]], [Plain [Str "Write a module that takes a list of coordinate pairs as input and draws a connecting chain of cylinders between consecutive points."]], [Plain [Str "Create a parametric honeycomb panel module using a ", Code ("", [], []) "for", Str " loop and ", Code ("", [], []) "rotate()", Str "; parameters: ", Code ("", [], []) "rows", Str ", ", Code ("", [], []) "cols", Str ", ", Code ("", [], []) "cell_r", Str ", ", Code ("", [], []) "wall_t", Str ", ", Code ("", [], []) "depth", Str "."]], [Plain [Str "Research BOSL2's ", Code ("", [], []) "regular_ngon()", Str " and ", Code ("", [], []) "bezier_path()", Str " modules. Build a shape that uses both and document what each does."]], [Plain [Str "Design a test suite: build 10 small parametric shapes, each testing a different OpenSCAD feature (extrusion, rotation, for loop, intersection, etc.), and export them all from one main file."]]], Header 4 ("references-and-helpful-resources", ["unnumbered", "unlisted"], []) [Str "References and Helpful Resources"], Header 5 ("supplemental-resources", ["unnumbered", "unlisted"], []) [Str "Supplemental Resources"], BulletList [[Plain [Link ("", [], []) [Str "Programming with OpenSCAD EPUB Textbook"] ("docs/pandoc/latex/src/assets/Programming_with_OpenSCAD.epub", ""), Str " — Chapters on modules, functions, and libraries"]], [Plain [Link ("", [], []) [Str "CodeSolutions Repository"] ("https://github.com/ProgrammingWithOpenSCAD/CodeSolutions", ""), Str " — Worked examples for parametric architecture"]], [Plain [Link ("", [], []) [Str "BOSL2 GitHub Repository"] ("https://github.com/BelfrySCAD/BOSL2", ""), Str " — Comprehensive parametric library"]], [Plain [Link ("", [], []) [Str "3DMake GitHub Repository"] ("https://github.com/tdeck/3dmake", ""), Str " — Build workflow reference"]]]]
+sum    = v1 + v2;    // [13, 24, 5]  — add matching components
+diff   = v1 - v2;    // [7,  16, 5]  — subtract matching components
+scaled = v1 * 2;     // [20, 40, 10] — multiply each component by a scalar
+dot    = v1 * v2;    // 110          — dot product: v1·v2 = 10*3 + 20*4 + 5*0
+length = norm(v1);   // ≈ 22.9       — Euclidean length (√(10² + 20² + 5²))
+", Header 5 ("important-math-functions", ["unnumbered", "unlisted"], []) [Str "Important Math Functions"], CodeBlock ("", ["openscad"], []) "abs(-5)         // 5    — absolute value
+ceil(3.2)       // 4    — round up to nearest integer
+floor(3.8)      // 3    — round down to nearest integer
+round(3.5)      // 4    — round to nearest integer
+max(3, 7, 2)    // 7    — largest of all arguments
+min(3, 7, 2)    // 2    — smallest of all arguments
+pow(2, 8)       // 256  — 2 raised to the power 8
+sqrt(144)       // 12   — square root
+
+// Trigonometry — CRITICAL: OpenSCAD uses DEGREES, not radians
+sin(90)         // 1    — sine of 90 degrees
+cos(0)          // 1    — cosine of 0 degrees
+tan(45)         // 1    — tangent of 45 degrees
+atan2(1, 1)     // 45   — arctangent of y/x, safe for all quadrants
+", Para [Str "The ", Code ("", [], []) "atan2(y, x)", Str " function deserves special attention. When you need to convert a (x, y) position to an angle, the naive approach ", Code ("", [], []) "atan(y/x)", Str " fails when ", Code ("", [], []) "x", Str " is zero or negative (wrong quadrant). ", Code ("", [], []) "atan2(y, x)", Str " handles all cases correctly by taking both components separately."], HorizontalRule, Header 4 ("step-8--controlling-curve-quality-with-fn-fa-fs", ["unnumbered", "unlisted"], []) [Str "Step 8 — Controlling Curve Quality with ", Code ("", [], []) "$fn", Str ", ", Code ("", [], []) "$fa", Str ", ", Code ("", [], []) "$fs"], Header 5 ("why-you-need-to-think-about-this", ["unnumbered", "unlisted"], []) [Str "Why You Need to Think About This"], Para [Str "Spheres, cylinders, and circles in OpenSCAD are approximations — they're actually polygons with many flat faces. The more faces, the smoother the curve looks, but the longer the render takes and the larger the file."], Para [Strong [Code ("", [], []) "$fn"], Str " (facets number) — sets the exact number of faces. ", Code ("", [], []) "$fn=8", Str " gives a rough octagon. ", Code ("", [], []) "$fn=64", Str " gives a very smooth circle. Setting it on a single shape overrides the global value for that shape only."], Para [Strong [Code ("", [], []) "$fa"], Str " (minimum angle per face) — the smaller this is, the more faces large curves get. Default: 12°."], Para [Strong [Code ("", [], []) "$fs"], Str " (minimum face size in mm) — very small features automatically use more faces. Default: 2 mm."], Para [Str "When all three are specified, OpenSCAD uses whichever produces the ", Emph [Str "most"], Str " faces."], CodeBlock ("", ["openscad"], []) "// During development: low $fn for fast rendering
+sphere(r=10, $fn=8);     // rough but fast
+
+// For final export: high $fn for smooth curves
+translate([30, 0, 0])
+  sphere(r=10, $fn=64);  // smooth for printing
+
+// Set globally at the top of a file:
+$fa = 5;    // max 5 degrees per face
+$fs = 0.5;  // minimum 0.5mm face size (more faces on small features)
+", Para [Strong [Str "Recommended practice:"], Str " set ", Code ("", [], []) "$fn=16", Str " or ", Code ("", [], []) "$fn=24", Str " during development for fast iteration. Use ", Code ("", [], []) "$fn=64", Str " or higher for spheres and visible curves in the final exported file. Use ", Code ("", [], []) "$fn=32", Str " for functional cylindrical features like bolt holes — it's smooth enough for function without being slow to render."], HorizontalRule, Header 4 ("exercises", ["unnumbered", "unlisted"], []) [Str "Exercises"], Para [Strong [Str "Exercise 3.1:"], Str " Write a module ", Code ("", [], []) "safe_box(w, d, h, wall=2)", Str " that validates all parameters with ", Code ("", [], []) "assert()", Str " and creates a hollow box. Add a constraint that ", Code ("", [], []) "wall", Str " must be less than half of the smallest dimension."], Para [Strong [Str "Exercise 3.2:"], Str " Create a library file ", Code ("", [], []) "lib/fasteners.scad", Str " with modules for M2, M3, and M4 bolt holes. Use ", Code ("", [], []) "use", Str " to load it in a main file and place holes at the four corners of a 60 × 40 mm plate."], Para [Strong [Str "Exercise 3.3:"], Str " Write a recursive function ", Code ("", [], []) "sum_list(lst, i=0)", Str " that returns the sum of all elements in a list. Use it to compute the total volume of a set of cylinders."], Para [Strong [Str "Exercise 3.4 (Advanced):"], Str " Use a list comprehension to generate a 5×5 grid of cylinders where each cylinder's height equals ", Code ("", [], []) "row_index + col_index + 1", Str ". Use ", Code ("", [], []) "echo()", Str " to verify the maximum and minimum height values."], HorizontalRule, Header 4 ("quiz--lesson-3-15-questions", ["unnumbered", "unlisted"], []) [Str "Quiz — Lesson 3 (15 questions)"], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Str "What is the DRY principle and why is it important in parametric OpenSCAD design?"]], [Plain [Str "What is the difference between a module and a function in OpenSCAD?"]], [Plain [Str "What does ", Code ("", [], []) "include <library.scad>", Str " do differently from ", Code ("", [], []) "use <library.scad>", Str "? When would you use each?"]], [Plain [Str "If you write ", Code ("", [], []) "x = 5;", Str " on line 3 and ", Code ("", [], []) "x = 10;", Str " on line 20 in the same file, what is the value of ", Code ("", [], []) "x", Str " everywhere in that file? Why?"]], [Plain [Str "What does ", Code ("", [], []) "is_number()", Str " return, and give one example of when to use it in a module."]], [Plain [Str "What does the list comprehension ", Code ("", [], []) "[for (i=[0:5:20]) i*2]", Str " evaluate to?"]], [Plain [Str "What does the ", Code ("", [], []) "echo()", Str " function do in OpenSCAD, and where does its output appear?"]], [Plain [Str "True or False: a function in OpenSCAD can contain a ", Code ("", [], []) "cylinder()", Str " call and create geometry."]], [Plain [Str "How do you specify a default parameter value in an OpenSCAD module? Write an example."]], [Plain [Str "What is the ternary operator in OpenSCAD? Write an example that picks a box size based on a ", Code ("", [], []) "\"small\"", Str " or ", Code ("", [], []) "\"large\"", Str " variable."]], [Plain [Str "Write an OpenSCAD ", Code ("", [], []) "for", Str " loop that places 8 cylinders evenly spaced around a circle of radius 25."]], [Plain [Str "What is the difference between ", Code ("", [], []) "[0:10]", Str " and ", Code ("", [], []) "[0:2:10]", Str " as OpenSCAD range expressions?"]], [Plain [Str "Explain why you might use ", Code ("", [], []) "assert()", Str " in a module rather than relying on the caller to pass correct values."]], [Plain [Str "Describe how a recursive function works. What are the two required parts of any recursive function?"]], [Plain [Str "A library file called ", Code ("", [], []) "shapes.scad", Str " contains a ", Code ("", [], []) "module rounded_box(...)", Str " and also a top-level ", Code ("", [], []) "cube([5,5,5]);", Str ". What happens when you load it with ", Code ("", [], []) "use", Str "? What happens when you load it with ", Code ("", [], []) "include", Str "?"]]], HorizontalRule, Header 4 ("extension-problems-15", ["unnumbered", "unlisted"], []) [Str "Extension Problems (15)"], OrderedList (1, DefaultStyle, DefaultDelim) [[Plain [Str "Create a ", Code ("", [], []) "bolts.scad", Str " library with M3, M4, and M5 clearance holes and nut traps. Use it in a test plate with one of each type."]], [Plain [Str "Build a parametric pegboard using a ", Code ("", [], []) "for", Str " loop. Parameters: ", Code ("", [], []) "cols", Str ", ", Code ("", [], []) "rows", Str ", ", Code ("", [], []) "spacing", Str ", ", Code ("", [], []) "peg_r", Str ", ", Code ("", [], []) "peg_h", Str ". Every parameter should have an ", Code ("", [], []) "assert()", Str " validation."]], [Plain [Str "Implement a recursive function that generates a Fibonacci sequence up to ", Code ("", [], []) "n", Str " terms and use it to space objects with Fibonacci distances."]], [Plain [Str "Build a module that validates all its inputs using ", Code ("", [], []) "assert()", Str " and logs informational output with ", Code ("", [], []) "echo()", Str ". Document when ", Code ("", [], []) "assert()", Str " halts rendering vs. what ", Code ("", [], []) "echo()", Str " does."]], [Plain [Str "Create two library files — one for mechanical fasteners and one for decorative shapes — and use both in one combined project."]], [Plain [Str "Design a parametric gear profile module with ", Code ("", [], []) "teeth", Str ", ", Code ("", [], []) "module_size", Str ", and ", Code ("", [], []) "thickness", Str " parameters. Use ", Code ("", [], []) "assert()", Str " to validate that the number of teeth is at least 8."]], [Plain [Str "Build a \"shelf peg\" system: a board with N parametrically positioned holes and matching pegs sized to press-fit into them."]], [Plain [Str "Use a list comprehension to generate a spiral path of evenly-spaced points and place a small sphere at each point on the spiral."]], [Plain [Str "Extend a fastener library with threaded insert pockets for M3, M4, and M5 heat-set inserts, with the insert dimensions as parameters."]], [Plain [Str "Write a module that draws a text label with a surrounding rectangular border frame. Parameters: ", Code ("", [], []) "text_str", Str ", ", Code ("", [], []) "font_size", Str ", ", Code ("", [], []) "padding", Str ", ", Code ("", [], []) "border_thickness", Str "."]], [Plain [Str "Build a parametric snap-fit lid for a rectangular box using ", Code ("", [], []) "for", Str " loops to generate evenly-spaced snap clips around the perimeter."]], [Plain [Str "Write a module that takes a list of 3D coordinate vectors as input and draws a connecting chain of cylinders between consecutive points."]], [Plain [Str "Create a parametric honeycomb panel module. Parameters: ", Code ("", [], []) "rows", Str ", ", Code ("", [], []) "cols", Str ", ", Code ("", [], []) "cell_r", Str ", ", Code ("", [], []) "wall_t", Str ", ", Code ("", [], []) "depth", Str ". Each cell should be a hexagonal through-hole."]], [Plain [Str "Research the BOSL2 library (https://github.com/BelfrySCAD/BOSL2). Find two modules that solve problems you've encountered in this course, and write a documented example using each."]], [Plain [Str "Design a comprehensive test suite: build 10 small parametric shapes each specifically testing a different OpenSCAD feature from this lesson. Export them all from one main file that uses a ", Code ("", [], []) "for", Str " loop."]]], HorizontalRule, Header 4 ("references-and-helpful-resources", ["unnumbered", "unlisted"], []) [Str "References and Helpful Resources"], Header 5 ("supplemental-resources", ["unnumbered", "unlisted"], []) [Str "Supplemental Resources"], BulletList [[Plain [Link ("", [], []) [Str "Programming with OpenSCAD EPUB Textbook"] ("docs/pandoc/latex/src/assets/Programming_with_OpenSCAD.epub", ""), Str " — Chapters on modules, functions, and libraries"]], [Plain [Link ("", [], []) [Str "CodeSolutions Repository"] ("https://github.com/ProgrammingWithOpenSCAD/CodeSolutions", ""), Str " — Worked examples for parametric architecture"]], [Plain [Link ("", [], []) [Str "BOSL2 GitHub Repository"] ("https://github.com/BelfrySCAD/BOSL2", ""), Str " — Comprehensive parametric library"]], [Plain [Link ("", [], []) [Str "3DMake GitHub Repository"] ("https://github.com/tdeck/3dmake", ""), Str " — Build workflow reference"]]]]
