@@ -240,6 +240,9 @@ Example: If you learn CMD first, then later want PowerShell's power, you'll find
 - Output is naturally readable
 - Keyboard-only workflows
 
+>[!NOTE]
+>All three shells — CMD, PowerShell, and Git Bash — work perfectly with NVDA, JAWS, Dolphin SuperNova, and Windows Narrator. Don't let accessibility concerns influence your choice.
+
 Don't let accessibility concerns influence your choice. All are fully accessible.
 
 ## Getting Started: Your Decision
@@ -274,7 +277,8 @@ Take a moment and choose:
 
 If you're reading this and unsure:
 
-> Start with Command Prompt (CMD). It's the gentlest introduction. You'll be productive quickly and can always switch to PowerShell or Git Bash later. The skills transfer completely.
+>[!TIP]
+>Start with Command Prompt (CMD). It's the gentlest introduction, and you'll be productive quickly. You can always switch to PowerShell or Git Bash later — the concepts transfer completely.
 
 After completing CMD:
 
@@ -304,6 +308,9 @@ A: Mix of all three, but Git Bash/Linux is most common in cross-platform teams.
 Choose your path above and click to start. Remember:
 
 - Each lesson includes practice exercises
+>[!TIP]
+>You can't break your computer by typing a wrong command. The worst that happens is an error message. Mistakes are learning opportunities — just read the message and try again.
+
 - You can't break anything
 - Mistakes are learning opportunities
 - Ask for help if stuck
@@ -894,6 +901,9 @@ These work in PowerShell and are crucial for screen reader users:
 | Up Arrow        | Shows your previous command (press again to go further back) |
 | Down Arrow      | Shows your next command (if you went back)                   |
 | Tab             | Auto-completes folder/file names                             |
+>[!IMPORTANT]
+>**Ctrl+C** stops any running command immediately. If a command seems frozen or is producing endless output, press Ctrl+C to regain control of the prompt.
+
 | Ctrl+C          | Stops a running command                                      |
 | Ctrl+L          | Clears the screen                                            |
 | Enter           | Runs the command                                             |
@@ -1001,6 +1011,9 @@ You should be able to answer all 10 with confidence before moving to Lesson 0.
 
 Q: Do I need to use PowerShell? Can I use Command Prompt (cmd.exe)?
 A: PowerShell is more powerful and works better with modern tools. We recommend PowerShell, but Command Prompt basics are similar.
+
+>[!TIP]
+>If your screen reader isn't announcing terminal output, use `command > file.txt` to save output to a file, then open it with `notepad.exe file.txt` for reliable reading. This trick works with all four screen readers throughout the curriculum.
 
 Q: Why is my screen reader not reading the output?
 A: This is common. Use `command > file.txt` to save output to a file, then open it with Notepad for reliable reading.
@@ -1446,6 +1459,9 @@ Checkpoints
 8. If you delete a file with `rm`, can you recover it from PowerShell?
 9. Write a command that would copy an entire folder and all its contents to a new location.
 10. Describe a practical safety check you would perform before running `rm -r` on a folder.
+>[!CAUTION]
+>By default, `cp` **silently overwrites** an existing file at the destination with no warning. Use `cp -i` (interactive) to get a confirmation prompt before overwriting, especially when working with important files.
+
 11. What happens if you `cp` a file to a destination where a file with the same name already exists? How would you handle this safely?
 12. Compare `mv old_name.txt new_name.txt` vs `mv old_name.txt ~/Documents/new_name.txt`. What is the key difference?
 13. Design a workflow to safely delete 50 files matching the pattern `*.bak` from a folder containing 500 files. What commands and verifications would you use?
@@ -1841,6 +1857,9 @@ Checkpoints
 11. Explain how to re-run the 5th command from your history, and what would happen if that command had file operations (creates/deletes).
 12. Design a profile initialization strategy that separates utilities for different projects; explain how you would switch between them.
 13. Walk through a troubleshooting workflow: your screen reader stops announcing output after running a long command. What steps would you take to diagnose and resolve the issue?
+>[!CAUTION]
+>Before any destructive operation — mass delete, bulk overwrite, or recursive removal — use history review (`Get-History`) and dry-run techniques (e.g., `What-If`) to verify the command is correct. A single mistaken path in a bulk delete can be unrecoverable.
+
 14. Create a safety checkpoint system: before any destructive operation (mass delete, overwrite), how would you use profile functions and history to verify the command is correct?
 15. Develop a comprehensive capstone scenario: integrate everything from Lessons 0–5 (navigation, file operations, piping, environment setup, history) to design an automated 3D printing project workflow with error handling and logging.
 
@@ -1977,6 +1996,9 @@ What happens:
 PowerShell runs each command in sequence and shows output.
 
 ### Important: Script Execution Policy
+
+>[!CAUTION]
+>If you get an "execution policy" error when running a `.ps1` script, PowerShell's security is blocking unsigned scripts. Use `-Scope Process` to bypass it only for the current session — this is safer than changing the policy machine-wide.
 
 On some Windows systems, you might get an error about "execution policy". This is a security feature.
 
@@ -2227,6 +2249,9 @@ Fix: Verify path exists
 Test-Path -Path "C:\Users\YourName\Documents"
 # If false, the path is wrong
 ```
+
+>[!WARNING]
+>**"Access denied"** means PowerShell doesn't have permission to perform the operation. Always understand *why* you need administrator privileges before elevating — running everything as admin creates unnecessary security risk.
 
 #### Error 4: "Access denied"
 
@@ -2594,6 +2619,9 @@ Select the best answer for each question. Each question is worth 1 point.
    - C) `touch filename`
    - D) `echo filename`
 
+>[!IMPORTANT]
+>`>` **overwrites** a file completely — all previous content is lost. `>>` **appends** to the end of a file, preserving existing content. Using `>` when you meant `>>` will permanently destroy the file's previous contents.
+
 6. What is the difference between `>` and `>>`?
    - A) `>` redirects to file, `>>` displays on screen
    - B) `>` overwrites a file, `>>` appends to a file
@@ -2693,6 +2721,9 @@ Answer each question in one to two sentences. Each question is worth 2 points.
 2. Why is `ls -n` preferred over `ls` for screen reader users? Describe what flag you would use to list only files.
 
 3. What is the purpose of redirecting output to a file, and give an example of when you would use `>` instead of `>>`?
+
+>[!WARNING]
+>`rm -r ~/Documents/my_folder` permanently deletes the folder and **everything inside it** — all files, all subdirectories — with no confirmation and no undo. Always verify the path with `ls -1` first and consider making a backup with `cp -r` before running recursive deletions.
 
 4. Describe what would happen if you ran `rm -r ~/Documents/my_folder` and why this command should be used carefully.
 
@@ -2815,14 +2846,26 @@ Passing Score: 49 points (70%)
 
 ## Curriculum Rules (Read These First)
 
+>[!IMPORTANT]
+>**Rule 1 — Always know where you are.** Start every session with `cd` (no arguments) to print your current location. If you don't know your path, you will get lost and may operate on the wrong files.
+
 **Rule 1 — Always know where you are.**  
 Every session, first thing: `cd` (with no arguments). If you do not know your path, you will get lost.
+
+>[!WARNING]
+>**Files deleted from CMD do not go to the Recycle Bin.** They are permanently gone immediately. Always run `dir /B` to confirm exactly what you are about to delete before running `del` or `rmdir /S`.
 
 **Rule 2 — Check before you delete.**  
 Before any `del` or `rmdir` command: `dir /B` to confirm exactly what you are about to remove. Deleted files do not go to the Recycle Bin from CMD.
 
+>[!TIP]
+>Always use `dir /B` — never bare `dir`. The `/B` (bare) flag outputs one name per line, which screen readers can follow reliably. Bare `dir` outputs multi-column details that can be difficult to navigate audibly.
+
 **Rule 3 — Use `dir /B` for listings.**  
 Always `dir /B` — never bare `dir`. The `/B` flag gives one name per line, which all screen readers can follow reliably.
+
+>[!TIP]
+>When terminal output is confusing or overwhelming, redirect it to a file: `command > output.txt`, then open it with `notepad.exe output.txt`. This is clearer than reading raw terminal output and works with all four screen readers.
 
 **Rule 4 — When output is confusing, redirect to a file.**  
 `command > output.txt` then `notepad.exe output.txt`. This works with all four screen readers.
@@ -3952,13 +3995,17 @@ move *.txt archive\                      :: Move all .txt files to archive folde
 
 ### Delete Files: `del`
 
+>[!CAUTION]
+>The `/Q` flag suppresses the confirmation prompt — `del /Q` deletes immediately and silently. Only use `/Q` in scripts where you have already verified the targets; never use it interactively when learning.
+
 ```cmd
 del filename.txt                         :: Delete one specific file
 del *.txt                                :: Delete all .txt files in current folder
 del /Q *.tmp                             :: Delete quietly (no confirmation prompt)
 ```
 
-**Warning:** `del` does not send files to the Recycle Bin. Deleted files are gone immediately.
+>[!WARNING]
+>`del` does **not** send files to the Recycle Bin. Deleted files are permanently gone with no undo. Always verify the target with `dir /B` before deleting.
 
 ### Delete Folders: `rmdir`
 
@@ -3967,11 +4014,15 @@ rmdir foldername                         :: Delete an empty folder
 rmdir /S /Q foldername                   :: Delete a folder and ALL its contents (no undo)
 ```
 
-**Warning:** `rmdir /S` is permanent. Always verify the folder name before running this command.
+>[!WARNING]
+>`rmdir /S /Q` permanently deletes a folder and **all its contents** with no confirmation and no undo. Always verify the exact folder name with `dir /B` first — one wrong character can delete the wrong folder entirely.
 
 ---
 
 ## Safe File Operations
+
+>[!CAUTION]
+>**Check, then delete.** Never run `del` or `rmdir` without first running `dir /B` to confirm exactly what you're about to remove. Wildcards like `del *.txt` will delete every matching file instantly and permanently.
 
 ### Rule 1: Always Check Before Deleting
 
@@ -4186,6 +4237,9 @@ After file operations, run `dir /B` and press **Narrator+R** to read from the cu
 ### Dolphin SuperNova Users
 
 After file operations, run `dir /B` and press **CapsLock+Numpad Plus** to read results. For long output: `dir /B > check.txt`, then `notepad.exe check.txt`.
+
+>[!IMPORTANT]
+>After any `copy`, `move`, or `del` operation, always verify with `dir /B` to confirm the expected result. Never assume an operation succeeded without checking — silent failures do occur.
 
 ### General Tip for All Screen Readers
 
@@ -5529,6 +5583,9 @@ Answer each question in one to two sentences. Each question is worth 2 points.
 
 3. What is the purpose of redirecting output to a file, and give an example of when you would use `>` instead of `>>`?
 
+>[!WARNING]
+>`rmdir /S /Q C:\Documents\my_folder` permanently deletes the folder and **all its contents** with no confirmation prompt and no undo. Always run `dir /B C:\Documents\my_folder` first to confirm what you're about to destroy.
+
 4. Describe what would happen if you ran `rmdir /S /Q C:\Documents\my_folder` and why this command should be used carefully.
 
 5. How would you search for all files with a `.scad` extension in your current directory? Write the command.
@@ -5660,14 +5717,26 @@ Complete each task and capture evidence (screenshots, output files, or command t
 
 ## Curriculum Rules (Read These First)
 
+>[!IMPORTANT]
+>**Rule 1 — Always know where you are.** Start every session with `pwd`. If you don't know your current path, you risk operating on the wrong files or folders.
+
 **Rule 1 — Always know where you are.**  
 Every session, first thing: `pwd`. If you do not know your path, you will get lost.
+
+>[!WARNING]
+>**There is no Recycle Bin in the terminal.** Files deleted with `rm` are permanently gone immediately — no undo, no recovery. Always run `ls -1` to confirm exactly what you're about to delete before running any `rm` command.
 
 **Rule 2 — Check before you delete.**  
 Before any `rm` or `rm -r` command: `ls -1` to confirm exactly what you are about to remove. Deleted files are gone immediately — there is no Recycle Bin in the terminal.
 
+>[!TIP]
+>Always use `ls -1` (the number **1**, not the letter L) — never bare `ls`. The `-1` flag outputs one name per line, which screen readers can follow reliably. Bare `ls` outputs a multi-column grid that is difficult to navigate audibly.
+
 **Rule 3 — Use `ls -1` for listings.**  
 Always `ls -1` — never bare `ls`. The `-1` flag gives one name per line, which all screen readers can follow reliably. (That is the number one, not the letter L.)
+
+>[!TIP]
+>When output is long or confusing, redirect it to a file: `command > output.txt`, then open with `notepad.exe output.txt`. This is always clearer than reading raw terminal output and works with all four screen readers.
 
 **Rule 4 — When output is confusing, redirect to a file.**  
 `command > output.txt` then `notepad.exe output.txt`. This works with all four screen readers and is always clearer than reading raw terminal output.
@@ -6701,12 +6770,18 @@ You just used `mkdir`, `cd`, and `ls -1` on a real project. You are ready to pri
 3. How do you autocomplete a path?
 4. How do you go up one directory?
 5. What command lists file names?
+>[!NOTE]
+>Git Bash uses **forward slashes** (`/`) in paths, not Windows-style backslashes (`\`). For example: `/c/Users/YourName/Documents`. This is the Unix convention and transfers directly to macOS and Linux.
+
 6. True or False: Git Bash uses backslashes (`\`) in paths like Windows CMD.
 7. Explain the difference between an absolute path and a relative path.
 8. If you are in `/c/Users/YourName/Documents` and you type `cd ../`, where do you end up?
 9. What happens when you press Tab while typing a folder name in Git Bash?
 10. Describe a practical reason why understanding paths is important for a 3D printing workflow.
 11. What does `./` mean in a path, and when would you use it?
+>[!NOTE]
+>When a folder name contains spaces, always wrap the full path in **double quotes**: `cd "My Projects"`. Without quotes, the shell interprets the space as a separator between two separate arguments.
+
 12. If a folder path contains spaces (e.g., `My Projects`), how do you navigate to it with `cd`?
 13. Explain what the prompt `YourName@COMPUTER MINGW64 ~/Documents $` tells you about your current state.
 14. How would you navigate to your home directory from any location using a single command?
@@ -7044,6 +7119,9 @@ ls -1 build/
 2. What command copies a file?
 3. How do you rename a file?
 4. What does `rm -r` do?
+>[!WARNING]
+>`rm` permanently deletes files with no undo and no Recycle Bin. There is no recovery from Git Bash. Always run `ls -1` first to confirm exactly what you're targeting, especially when using wildcards.
+
 5. Why is `rm` potentially dangerous?
 6. True or False: `cp` requires the `-r` flag to copy both files and folders.
 7. Explain the difference between `rm` and `rmdir`.
@@ -7556,6 +7634,9 @@ done
 echo "Batch complete."
 ```
 
+>[!TIP]
+>Save as `batch_print.sh`, run `chmod +x batch_print.sh` once to make it executable, then run with `./batch_print.sh`. If you forget `chmod +x` you'll get "Permission denied" — just run the `chmod` command and try again.
+
 Save as `batch_print.sh`, make executable with `chmod +x batch_print.sh`, then run with `./batch_print.sh`. This script uses loops, conditionals, and redirection — all from this lesson.
 
 
@@ -7610,6 +7691,9 @@ echo "Script is done!"
 - Make sure filename ends in `.sh`
 - Save in an easy-to-find location (like Documents)
 
+>[!NOTE]
+>Before you can run a `.sh` script, you must make it executable with `chmod +x scriptname.sh`. This is a one-time step per script. Without it, running `./script.sh` will produce a "Permission denied" error even though the file exists.
+
 **Step 4: Make it executable and run the script**
 ```bash
 chmod +x my-first-script.sh
@@ -7618,6 +7702,9 @@ chmod +x my-first-script.sh
 
 **What happens:**
 Bash runs each command in sequence and shows output.
+
+>[!IMPORTANT]
+>Always start shell scripts with `#!/bin/bash` (the "shebang" line). Without it, the system may use a different shell to run your script, which can cause unexpected errors — especially on systems where `/bin/sh` is not bash.
 
 ### Important: The Shebang Line
 
@@ -7649,6 +7736,9 @@ ls -1
 
 **Breaking it down:**
 - `mypath="..."` assigns the variable (no spaces around `=`)
+>[!TIP]
+>Always quote variables that contain file paths: use `"$mypath"` not `$mypath`. Without quotes, spaces in folder names will break your script. This is one of the most common bash scripting mistakes.
+
 - `"$mypath"` uses the variable (quote it to handle spaces in paths)
 - Variables in bash are always referenced with `$`
 
@@ -8341,6 +8431,9 @@ Select the best answer for each question. Each question is worth 1 point.
     - C) `copy filename`
     - D) `cat filename | paste`
 
+>[!TIP]
+>Use `which programname` to check whether a program is in your PATH and find its full path. If `which openscad` returns nothing, OpenSCAD is not in your PATH and you'll need to add it or call it by its full path.
+
 13. What does `which openscad` do?
     - A) Opens the OpenSCAD application
     - B) Gets help about the openscad command
@@ -8365,11 +8458,17 @@ Select the best answer for each question. Each question is worth 1 point.
     - C) `new-alias preview openscad`
     - D) `preview = openscad`
 
+>[!IMPORTANT]
+>Aliases saved only in the terminal session are lost when you close Git Bash. To make an alias permanent, add it to `~/.bashrc`. After editing `.bashrc`, run `source ~/.bashrc` to apply changes without restarting.
+
 17. Where is a Git Bash alias typically stored to persist across sessions?
     - A) `C:\Program Files\Git\profile.sh`
     - B) In the `~/.bashrc` file
     - C) `~/bash_profile`
     - D) Aliases cannot be made permanent
+
+>[!IMPORTANT]
+>**Ctrl+C** is the universal "abort" key — it stops any running command immediately and returns you to the prompt. This works in Git Bash, CMD, and PowerShell. Use it whenever a command hangs, loops unexpectedly, or produces unwanted output.
 
 18. How do you abort a long-running command in Git Bash?
     - A) Press `Escape`
@@ -8382,6 +8481,9 @@ Select the best answer for each question. Each question is worth 1 point.
     - B) `get-history`
     - C) `show-history`
     - D) `bash-history`
+
+>[!TIP]
+>After editing `~/.bashrc`, run `source ~/.bashrc` to apply your changes immediately without restarting Git Bash. Without this step, new aliases and variables won't take effect until the next time you open a terminal.
 
 20. How do you reload your `.bashrc` without restarting Git Bash?
     - A) Use `reload ~/.bashrc` in the terminal

@@ -5,10 +5,11 @@
 \contentsline {section}{Safety Protocols and the Physical Fabrication Interface}{79}{section*.222}%
 \contentsline {chapter}{Command-Line Fundamentals - Choose Your Path}{109}{chapter*.285}%
 \contentsline {section}{Foundation of Command Line Tools --- Complete Curriculum}{117}{section*.317}%
-\contentsline {chapter}{3dMake-Accessible Design with OpenSCAD}{339}{chapter*.1076}%
-\contentsline {section}{3dMake Foundation \& Design --- Complete Course Compendium}{339}{section*.1077}%
-\contentsline {chapter}{BackMatter}{757}{chapter*.1992}%
-\contentsline {section}{Command Line Appendices --- Complete Reference}{757}{section*.1993}%
-\contentsline {section}{3dMake and OpenSCAD Appendices --- Complete Reference}{780}{section*.2064}%
-\contentsline {section}{Back Matter --- Complete Reference}{881}{section*.2392}%
-\contentsline {section}{Contributors to this Curriculum}{946}{section*.2735}%
+\contentsline {chapter}{3dMake-Accessible Design with OpenSCAD}{343}{chapter*.1076}%
+\contentsline {section}{3dMake Foundation \& Design --- Complete Course Compendium}{343}{section*.1077}%
+\contentsline {chapter}{BackMatter}{761}{chapter*.1992}%
+\contentsline {section}{Advanced Study Guide}{761}{section*.1993}%
+\contentsline {section}{Command Line Appendices --- Complete Reference}{839}{section*.2104}%
+\contentsline {section}{3dMake and OpenSCAD Appendices --- Complete Reference}{862}{section*.2175}%
+\contentsline {section}{Back Matter --- Complete Reference}{964}{section*.2503}%
+\contentsline {section}{Contributors to this Curriculum}{1029}{section*.2846}%

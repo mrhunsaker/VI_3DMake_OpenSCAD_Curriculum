@@ -9,6 +9,7 @@
 - [3dMake Foundation & Design](3dMake_Foundation/Part_2.md)
   - [3D Make Lessons](3dMake_All_Lessons.md)
 - [BackMatter](Backmatter/backmatter.md)
+  - [Advanced Problem Sets](advanced_study_guide.md)
   - [Command Line Appendices](CLI_Appendices_Complete.md)
   - [3D Make and OpenSCAD Appendices](3DMake_Appendices_Complete.md)
   - [Technical References and Troubleshooting](Backmatter_Complete.md)
