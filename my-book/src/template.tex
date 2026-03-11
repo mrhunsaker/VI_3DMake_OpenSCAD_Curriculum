@@ -28,6 +28,89 @@ $endif$
 \usepackage{upquote}
 \usepackage{showframe}
 
+% ============================================================
+% Admonition Boxes (NOTE, TIP, IMPORTANT, WARNING, CAUTION)
+% Used by the admonitions.lua Pandoc filter to render
+% GitHub/mdbook-style >  [!NOTE] block-quotes in LaTeX.
+% ============================================================
+\usepackage[most]{tcolorbox}
+
+% Shared base style — override colors per environment below
+\tcbset{
+  admonitionbase/.style={
+    enhanced,
+    breakable,
+    left=6pt, right=6pt, top=4pt, bottom=4pt,
+    fonttitle=\bfseries\small,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={
+      sharp corners,
+      interior style={fill=white},
+      frame hidden,
+      top=1pt, bottom=1pt, left=2pt, right=2pt,
+    },
+    sharp corners,
+    boxrule=0.6pt,
+    parbox=false,
+  }
+}
+
+% ---- NOTE (blue) ----
+\definecolor{noteframe}{HTML}{0055AA}
+\definecolor{notebg}{HTML}{EEF4FF}
+\newtcolorbox{noteenv}{
+  admonitionbase,
+  colframe=noteframe,
+  colback=notebg,
+  title={\textcolor{noteframe}{ℹ\ NOTE}},
+  boxed title style={colback=notebg},
+}
+
+% ---- TIP (green) ----
+\definecolor{tipframe}{HTML}{2E7D32}
+\definecolor{tipbg}{HTML}{F0FAF0}
+\newtcolorbox{tipenv}{
+  admonitionbase,
+  colframe=tipframe,
+  colback=tipbg,
+  title={\textcolor{tipframe}{✦\ TIP}},
+  boxed title style={colback=tipbg},
+}
+
+% ---- IMPORTANT (purple) ----
+\definecolor{importantframe}{HTML}{6A0DAD}
+\definecolor{importantbg}{HTML}{F5EEFF}
+\newtcolorbox{importantenv}{
+  admonitionbase,
+  colframe=importantframe,
+  colback=importantbg,
+  title={\textcolor{importantframe}{★\ IMPORTANT}},
+  boxed title style={colback=importantbg},
+}
+
+% ---- WARNING (amber) ----
+\definecolor{warningframe}{HTML}{B45309}
+\definecolor{warningbg}{HTML}{FFFBEB}
+\newtcolorbox{warningenv}{
+  admonitionbase,
+  colframe=warningframe,
+  colback=warningbg,
+  title={\textcolor{warningframe}{⚠\ WARNING}},
+  boxed title style={colback=warningbg},
+}
+
+% ---- CAUTION (red) ----
+\definecolor{cautionframe}{HTML}{B22222}
+\definecolor{cautionbg}{HTML}{FFF0F0}
+\newtcolorbox{cautionenv}{
+  admonitionbase,
+  colframe=cautionframe,
+  colback=cautionbg,
+  title={\textcolor{cautionframe}{✗\ CAUTION}},
+  boxed title style={colback=cautionbg},
+}
+% ============================================================
+
 % Hyperlink Color Configuration
 \definecolor{linkblue}{HTML}{0055AA} 
 \definecolor{exturl}{HTML}{008000}   

@@ -14,8 +14,9 @@ create-missing = true
 use-default-preprocessors = true
 
 [output.html]
-additional-css = ["src/assets/custom.css"]
-default-theme = "rust"
+additional-css = ["./theme/catppuccin.css"]
+default-theme = "latte"
+preferred-dark-theme = "mocha"
 site-url = "https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum"
 theme = "theme"
 
@@ -54,8 +55,7 @@ to = "latex"
 number-sections = false
 toc-depth = 3
 template = "src/template.tex"
-filters = ["src/code-to-listings.lua", "src/pagebreak-chapters.lua"]
-
+filters = ["src/admonitions.lua", "src/code-to-listings.lua", "src/pagebreak-chapters.lua"]
 [output.pandoc.profile.latex.variables]
 date = "2026-02-24"
 title-meta = "3D Printing Course for Blind and Visually Impaired Learners"

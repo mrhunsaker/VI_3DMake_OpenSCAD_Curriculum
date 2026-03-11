@@ -26,6 +26,89 @@
 \usepackage{upquote}
 \usepackage{showframe}
 
+% ============================================================
+% Admonition Boxes (NOTE, TIP, IMPORTANT, WARNING, CAUTION)
+% Used by the admonitions.lua Pandoc filter to render
+% GitHub/mdbook-style >  [!NOTE] block-quotes in LaTeX.
+% ============================================================
+\usepackage[most]{tcolorbox}
+
+% Shared base style — override colors per environment below
+\tcbset{
+  admonitionbase/.style={
+    enhanced,
+    breakable,
+    left=6pt, right=6pt, top=4pt, bottom=4pt,
+    fonttitle=\bfseries\small,
+    attach boxed title to top left={yshift=-2mm, xshift=4mm},
+    boxed title style={
+      sharp corners,
+      interior style={fill=white},
+      frame hidden,
+      top=1pt, bottom=1pt, left=2pt, right=2pt,
+    },
+    sharp corners,
+    boxrule=0.6pt,
+    parbox=false,
+  }
+}
+
+% ---- NOTE (blue) ----
+\definecolor{noteframe}{HTML}{0055AA}
+\definecolor{notebg}{HTML}{EEF4FF}
+\newtcolorbox{noteenv}{
+  admonitionbase,
+  colframe=noteframe,
+  colback=notebg,
+  title={\textcolor{noteframe}{ℹ\ NOTE}},
+  boxed title style={colback=notebg},
+}
+
+% ---- TIP (green) ----
+\definecolor{tipframe}{HTML}{2E7D32}
+\definecolor{tipbg}{HTML}{F0FAF0}
+\newtcolorbox{tipenv}{
+  admonitionbase,
+  colframe=tipframe,
+  colback=tipbg,
+  title={\textcolor{tipframe}{✦\ TIP}},
+  boxed title style={colback=tipbg},
+}
+
+% ---- IMPORTANT (purple) ----
+\definecolor{importantframe}{HTML}{6A0DAD}
+\definecolor{importantbg}{HTML}{F5EEFF}
+\newtcolorbox{importantenv}{
+  admonitionbase,
+  colframe=importantframe,
+  colback=importantbg,
+  title={\textcolor{importantframe}{★\ IMPORTANT}},
+  boxed title style={colback=importantbg},
+}
+
+% ---- WARNING (amber) ----
+\definecolor{warningframe}{HTML}{B45309}
+\definecolor{warningbg}{HTML}{FFFBEB}
+\newtcolorbox{warningenv}{
+  admonitionbase,
+  colframe=warningframe,
+  colback=warningbg,
+  title={\textcolor{warningframe}{⚠\ WARNING}},
+  boxed title style={colback=warningbg},
+}
+
+% ---- CAUTION (red) ----
+\definecolor{cautionframe}{HTML}{B22222}
+\definecolor{cautionbg}{HTML}{FFF0F0}
+\newtcolorbox{cautionenv}{
+  admonitionbase,
+  colframe=cautionframe,
+  colback=cautionbg,
+  title={\textcolor{cautionframe}{✗\ CAUTION}},
+  boxed title style={colback=cautionbg},
+}
+% ============================================================
+
 % Hyperlink Color Configuration
 \definecolor{linkblue}{HTML}{0055AA} 
 \definecolor{exturl}{HTML}{008000}   
@@ -423,7 +506,7 @@ This guide provides a comprehensive comparison including:
 
 \subsubsection*{PowerShell Foundation (Recommended for Windows Users)}\label{docs__pandoc__latex__src__readme.md__powershell-foundation-recommended-for-windows-users}
 
-Where to Start: \href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Curriculum Overview}
+Where to Start: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Curriculum Overview}
 
 Lessons Included:
 
@@ -455,7 +538,7 @@ Skills: Terminal navigation, piping, advanced scripting, professional automation
 
 \subsubsection*{Windows Command Prompt Foundation (Simplified Alternative)}\label{docs__pandoc__latex__src__readme.md__windows-command-prompt-foundation-simplified-alternative}
 
-Where to Start: \href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#part-2-cmd}{CMD Curriculum Overview}
+Where to Start: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#part-2-cmd}{CMD Curriculum Overview}
 
 Lessons Included:
 
@@ -487,7 +570,7 @@ Skills: Terminal navigation, file operations, batch scripting, basic automation
 
 \subsubsection*{Git Bash Foundation (Cross-Platform Skills)}\label{docs__pandoc__latex__src__readme.md__git-bash-foundation-cross-platform-skills}
 
-Where to Start: \href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Curriculum Overview}
+Where to Start: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Curriculum Overview}
 
 Introductory \& Reference Materials:
 
@@ -525,7 +608,7 @@ Choose ONE pathway and complete it fully. All three teach identical fundamental 
 
 \subsection*{3dMake Foundation \& Design (11 Lessons + 6 Appendices)}\label{docs__pandoc__latex__src__readme.md__3dmake-foundation--design-11-lessons--6-appendices}
 
-Where to Start: \href{docs/pandoc/latex/src/3dMake_Foundation/3dMake_Intro/3dMake_Intro.md}{3dMake Introduction}
+Where to Start: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5C3dMake_Intro\%5C3dMake_Intro.md}{3dMake Introduction}
 
 Students build parametric 3D designs using OpenSCAD and automate the workflow with 3DMake.
 
@@ -596,7 +679,7 @@ Total: 45-55 hours instruction + practice projects
 \item
   \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-e]{Appendix D: Advanced OpenSCAD Concepts} - Specialized topics including gears, batch processing, performance, print orientation, and recursion
 \item
-  \href{docs/pandoc/latex/src/assets/3dMake_Foundation/README.md}{3dMake Code Examples \& Assets} - OpenSCAD code examples and reference designs
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{3dMake Code Examples \& Assets} - OpenSCAD code examples and reference designs
 \end{itemize}
 
 \section*{The Accessible Toolchain}\label{docs__pandoc__latex__src__readme.md__the-accessible-toolchain}
@@ -698,7 +781,7 @@ Each project requires:
 
 \subsection*{Primary Navigation \& Overview}\label{docs__pandoc__latex__src__readme.md__primary-navigation--overview}
 
-\href{docs/pandoc/latex/src/3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md}{Curriculum Guide} - Detailed overview of all lessons and appendices\\
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5C3dMake_Foundation_Curriculum_Guide.md}{Curriculum Guide} - Detailed overview of all lessons and appendices\\
 \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-a]{Quick Reference} - At-a-glance command and syntax reference\\
 \hyperref[docs__pandoc__latex__src__3dmake_all_lessons.md__3dmake-foundation--design--complete-course-compendium]{mdBook Navigation Guide} - How to navigate this curriculum
 
@@ -733,14 +816,14 @@ Each project requires:
 
 \subsection*{Command Line Integration Appendices}\label{docs__pandoc__latex__src__readme.md__command-line-integration-appendices}
 
-\href{docs/pandoc/latex/src/Appendices/CLI_Appendices.md}{CLI Appendices Overview} - All command line integration guides\\
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CAppendices\%5CCLI_Appendices.md}{CLI Appendices Overview} - All command line integration guides\\
 \hyperref[docs__pandoc__latex__src__cli_appendices_complete.md__appendix-a]{Appendix A: CMD/Batch Integration} - Windows CMD automation\\
 \hyperref[docs__pandoc__latex__src__cli_appendices_complete.md__appendix-b]{Appendix B: PowerShell Integration} - PowerShell workflow automation\\
 \hyperref[docs__pandoc__latex__src__cli_appendices_complete.md__appendix-c]{Appendix C: Git Bash Integration} - Unix shell integration
 
 \subsection*{3dMake \& OpenSCAD Appendices}\label{docs__pandoc__latex__src__readme.md__3dmake--openscad-appendices}
 
-\href{docs/pandoc/latex/src/Appendices/3DMake_Appendices.md}{3dMake Appendices Overview} - All 3dMake reference materials\\
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CAppendices\%5C3DMake_Appendices.md}{3dMake Appendices Overview} - All 3dMake reference materials\\
 \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-b]{Appendix A: Comprehensive Slicing Guide} - PrusaSlicer, Bambu Studio, Cura, OrcaSlicer\\
 \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-c]{Appendix B: Material Properties \& Selection Guide} - Detailed material specifications\\
 \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-d]{Appendix C: Tolerance Testing \& QA Matrix} - Quality assurance procedures\\
@@ -748,7 +831,7 @@ Each project requires:
 
 \subsection*{Code Examples \& Assets}\label{docs__pandoc__latex__src__readme.md__code-examples--assets}
 
-\href{docs/pandoc/latex/src/assets/3dMake_Foundation/README.md}{3dMake Code Examples \& Assets} - OpenSCAD code examples and reference designs
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{3dMake Code Examples \& Assets} - OpenSCAD code examples and reference designs
 
 \subsection*{Further Reading \& References}\label{docs__pandoc__latex__src__readme.md__further-reading--references}
 
@@ -831,11 +914,11 @@ Read \hyperref[docs__pandoc__latex__src__command_line_interface_selection__comma
 \begin{itemize}
 \tightlist
 \item
-  \href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Curriculum Overview} - Recommended for Windows users
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Curriculum Overview} - Recommended for Windows users
 \item
-  \href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#part-2-cmd}{CMD Curriculum Overview} - Simplified alternative for beginners
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#part-2-cmd}{CMD Curriculum Overview} - Simplified alternative for beginners
 \item
-  \href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Curriculum Overview} - Cross-platform Unix skills
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Curriculum Overview} - Cross-platform Unix skills
 \end{itemize}
 
 Complete ALL lessons in your chosen pathway (Pre through Lesson 6 + Unit Test) before moving to Step 3.
@@ -847,7 +930,7 @@ Once you\textquotesingle ve completed your CLI foundation:
 \begin{enumerate}
 \tightlist
 \item
-  Read \href{docs/pandoc/latex/src/3dMake_Foundation/3dMake_Intro/3dMake_Intro.md}{3dMake Introduction} - Overview of OpenSCAD and 3dMake
+  Read \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5C3dMake_Intro\%5C3dMake_Intro.md}{3dMake Introduction} - Overview of OpenSCAD and 3dMake
 \item
   Start \hyperref[docs__pandoc__latex__src__3dmake_all_lessons.md__3dmake-foundation--design--complete-course-compendium]{Lesson 1: Environmental Configuration} - Install OpenSCAD and 3dMake
 \item
@@ -855,12 +938,12 @@ Once you\textquotesingle ve completed your CLI foundation:
 \item
   Complete all project templates as you encounter them
 \item
-  Review \href{docs/pandoc/latex/src/3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md}{3dMake Foundation Curriculum Guide} for detailed lesson descriptions
+  Review \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5C3dMake_Foundation_Curriculum_Guide.md}{3dMake Foundation Curriculum Guide} for detailed lesson descriptions
 \end{enumerate}
 
 \textbf{Step 4: Projects \& Documentation}
 
-Use the \href{docs/pandoc/latex/src/3dMake_Foundation/Templates/Student}{Student Templates} for all project documentation:
+Use the \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CTemplates\%5CStudent}{Student Templates} for all project documentation:
 
 \begin{itemize}
 \tightlist
@@ -897,7 +980,7 @@ Complete \hyperref[docs__pandoc__latex__src__3dmake_all_lessons.md__3dmake-found
 \item
   Review \hyperref[docs__pandoc__latex__src__syllabus.md__syllabus]{Syllabus} - Complete course structure, philosophy, learning objectives, and assessment framework
 \item
-  Read \href{docs/pandoc/latex/src/3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md}{3dMake Foundation Curriculum Guide} - Detailed lesson-by-lesson breakdown with timing and objectives
+  Read \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5C3dMake_Foundation_Curriculum_Guide.md}{3dMake Foundation Curriculum Guide} - Detailed lesson-by-lesson breakdown with timing and objectives
 \item
   Study \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-d]{Master Rubric} - Comprehensive project assessment criteria
 \item
@@ -906,7 +989,7 @@ Complete \hyperref[docs__pandoc__latex__src__3dmake_all_lessons.md__3dmake-found
 
 \textbf{Assessment Materials:}
 
-Use the \href{docs/pandoc/latex/src/3dMake_Foundation/Templates/Teacher}{Teacher Templates} for grading and feedback:
+Use the \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CTemplates\%5CTeacher}{Teacher Templates} for grading and feedback:
 
 \begin{itemize}
 \tightlist
@@ -1049,7 +1132,7 @@ Choose ONE pathway and complete it fully. All three teach identical fundamental 
 \paragraph*{Pathway A: PowerShell Foundation (Recommended for Windows)}\label{docs__pandoc__latex__src__syllabus.md__pathway-a-powershell-foundation-recommended-for-windows}
 
 Total Duration: 30-45 hours
-Start here: \href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Curriculum Overview}
+Start here: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Curriculum Overview}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -1068,35 +1151,35 @@ Content
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Introduction}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Introduction}
 & 20-30 min &
 Screen-reader-friendly quick-start (JAWS/NVDA); essential commands overview \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Tutorial}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Tutorial}
 & 30-45 min &
 Hands-on tutorial: paths, navigation, wildcards, running scripts \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-pre}{Powershell Lesson Pre: Your First Terminal}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-pre}{Powershell Lesson Pre: Your First Terminal}
 & 2-2.5 hours &
 Opening PowerShell, first commands, basic navigation, screen reader tricks \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-0}{Powershell Lesson 0: Getting Started}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-0}{Powershell Lesson 0: Getting Started}
 & 1.5 hours & Paths, shortcuts, tab completion \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-1}{Powershell Lesson 1: Navigation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-1}{Powershell Lesson 1: Navigation}
 & 2-2.5 hours & Moving around the file system confidently \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-2}{Powershell Lesson 2: File \& Folder Manipulation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-2}{Powershell Lesson 2: File \& Folder Manipulation}
 & 2.5-3 hours &
 Creating, editing, moving, copying, deleting files and directories \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-3}{Powershell Lesson 3: Input, Output \& Piping}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-3}{Powershell Lesson 3: Input, Output \& Piping}
 & 2.5-3 hours &
 Redirecting output, piping commands, understanding data flow \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-4}{Powershell Lesson 4: Environment Variables \& Aliases}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-4}{Powershell Lesson 4: Environment Variables \& Aliases}
 & 2-2.5 hours &
 Setting variables, creating shortcuts, persistent configurations \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-5}{Powershell Lesson 5: Filling in the Gaps}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-5}{Powershell Lesson 5: Filling in the Gaps}
 & 2.5-3 hours &
 Control flow, profiles, useful tricks, scripting fundamentals \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-lesson-6}{Powershell Lesson 6: Advanced Terminal Techniques}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-lesson-6}{Powershell Lesson 6: Advanced Terminal Techniques}
 & 4-4.5 hours &
 Scripts, functions, loops, professional workflows, automation patterns \\
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#ps-unit-exam}{PowerShell Unit Test \& Practice}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#ps-unit-exam}{PowerShell Unit Test \& Practice}
 & 2-3 hours & Practice exercises, assessment, reinforcement \\
 \end{longtable}
 }
@@ -1106,7 +1189,7 @@ Outcomes: Terminal fluency, file system mastery, basic scripting, screen reader 
 \paragraph*{Pathway B: Windows Command Prompt (CMD) (Simpler alternative)}\label{docs__pandoc__latex__src__syllabus.md__pathway-b-windows-command-prompt-cmd-simpler-alternative}
 
 Total Duration: 30-45 hours
-Start here: \href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#part-2-cmd}{CMD Curriculum Overview}
+Start here: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#part-2-cmd}{CMD Curriculum Overview}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -1125,28 +1208,28 @@ Content
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-pre}{Command Line Lesson Pre: Your First Terminal}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-pre}{Command Line Lesson Pre: Your First Terminal}
 & 2-2.5 hours &
 Opening CMD, first commands, basic navigation, screen reader tricks \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-0}{Command Line Lesson 0: Getting Started}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-0}{Command Line Lesson 0: Getting Started}
 & 1.5 hours & Paths, shortcuts, command basics \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-1}{Command Line Lesson 1: Navigation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-1}{Command Line Lesson 1: Navigation}
 & 2-2.5 hours & Moving around the file system confidently \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-2}{Command Line Lesson 2: File \& Folder Manipulation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-2}{Command Line Lesson 2: File \& Folder Manipulation}
 & 2.5-3 hours &
 Creating, editing, moving, copying, deleting files and directories \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-3}{Command Line Lesson 3: Input, Output \& Redirection}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-3}{Command Line Lesson 3: Input, Output \& Redirection}
 & 2-2.5 hours &
 Redirecting output, piping commands, understanding data flow \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-4}{Command Line Lesson 4: Environment Variables \& Shortcuts}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-4}{Command Line Lesson 4: Environment Variables \& Shortcuts}
 & 2-2.5 hours &
 Setting variables, creating shortcuts, persistent configurations \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-5}{Command Line Lesson 5: Filling in the Gaps}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-5}{Command Line Lesson 5: Filling in the Gaps}
 & 2.5-3 hours &
 Batch files, advanced techniques, scripting fundamentals \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-lesson-6}{Command Line Lesson 6: Advanced Terminal Techniques}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-lesson-6}{Command Line Lesson 6: Advanced Terminal Techniques}
 & 3-3.5 hours & Scripts, automation patterns, professional workflows \\
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#cmd-unit-exam}{CMD Unit Test \& Practice}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#cmd-unit-exam}{CMD Unit Test \& Practice}
 & 2-3 hours & Practice exercises, assessment, reinforcement \\
 \end{longtable}
 }
@@ -1156,7 +1239,7 @@ Outcomes: Terminal fluency, file system mastery, batch scripting, screen reader 
 \paragraph*{Pathway C: Git Bash (Best for macOS/Linux or cross-platform development)}\label{docs__pandoc__latex__src__syllabus.md__pathway-c-git-bash-best-for-macoslinux-or-cross-platform-development}
 
 Total Duration: 20-25 hours
-Start here: \href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Curriculum Overview}
+Start here: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Curriculum Overview}
 
 {\def\LTcaptype{none} % do not increment counter
 \begin{longtable}[]{@{}
@@ -1175,36 +1258,36 @@ Content
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Introduction}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Introduction}
 & 20-30 min &
 Screen-reader-friendly quick-start (JAWS/NVDA); essential commands \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-tutorial}{Git Bash Tutorial}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-tutorial}{Git Bash Tutorial}
 & 30-45 min &
 Hands-on tutorial: paths, navigation, wildcards, running scripts \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-accessibility-guide}{Screen Reader Accessibility Guide for Git Bash}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-accessibility-guide}{Screen Reader Accessibility Guide for Git Bash}
 & 30-45 min & NVDA and JAWS configuration specific to Git Bash \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-pre}{Bash Lesson Pre: Your First Terminal}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-pre}{Bash Lesson Pre: Your First Terminal}
 & 2-2.5 hours &
 Opening Git Bash, first commands, basic navigation, screen reader tricks \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-0}{Bash Lesson 0: Getting Started}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-0}{Bash Lesson 0: Getting Started}
 & 1.5 hours &
 Unix-style paths, shortcuts, command basics, Windows path conversion \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-1}{Bash Lesson 1: Navigation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-1}{Bash Lesson 1: Navigation}
 & 2-2.5 hours & Moving around the file system confidently \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-2}{Bash Lesson 2: File and Folder Manipulation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-2}{Bash Lesson 2: File and Folder Manipulation}
 & 2-2.5 hours &
 Creating, editing, moving, copying, deleting files and directories \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-3}{Bash Lesson 3: Input, Output \& Piping}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-3}{Bash Lesson 3: Input, Output \& Piping}
 & 2-2.5 hours &
 Redirecting output, piping with grep/sort/wc, understanding data flow \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-4}{Bash Lesson 4: Environment Variables \& Aliases}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-4}{Bash Lesson 4: Environment Variables \& Aliases}
 & 1.5-2 hours & Setting variables, creating aliases, editing .bashrc \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-5}{Bash Lesson 5: Filling in the Gaps}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-5}{Bash Lesson 5: Filling in the Gaps}
 & 2-2.5 hours & Shell profiles, command history, debugging \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-lesson-6}{Bash Lesson 6: Advanced Terminal Techniques}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-lesson-6}{Bash Lesson 6: Advanced Terminal Techniques}
 & 2.5-3.5 hours &
 Shell scripts, functions, loops, professional workflows \\
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-unit-exam}{GitBash Unit Test \& Practice}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-unit-exam}{GitBash Unit Test \& Practice}
 & 2-2.5 hours & Practice exercises, assessment, reinforcement \\
 \end{longtable}
 }
@@ -1229,7 +1312,7 @@ Outcomes: Terminal fluency, file system mastery, bash scripting, version control
 
 \subsubsection*{3dMake Foundation (Main Curriculum - 16-20 hours)}\label{docs__pandoc__latex__src__syllabus.md__3dmake-foundation-main-curriculum---16-20-hours}
 
-Start here: \href{docs/pandoc/latex/src/3dMake_Foundation/3dMake_Intro/3dMake_Intro.md}{3dMake Introduction}
+Start here: \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5C3dMake_Intro\%5C3dMake_Intro.md}{3dMake Introduction}
 
 11 progressive lessons building from foundational concepts to leadership-level design thinking, organized in 5 parts. Version 2.1 adds comprehensive advanced programming and design topics throughout.
 
@@ -1397,9 +1480,9 @@ Total: 16-20 hours of instruction + projects
 \begin{itemize}
 \tightlist
 \item
-  \textbf{\href{docs/pandoc/latex/src/Appendices/CLI_Appendices.md}{CLI Appendices Overview}} - Summary of all command line integration guides
+  \textbf{\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CAppendices\%5CCLI_Appendices.md}{CLI Appendices Overview}} - Summary of all command line integration guides
 \item
-  \textbf{\href{docs/pandoc/latex/src/Appendices/3DMake_Appendices.md}{3dMake Appendices Overview}} - Summary of all 3dMake reference materials
+  \textbf{\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CAppendices\%5C3DMake_Appendices.md}{3dMake Appendices Overview}} - Summary of all 3dMake reference materials
 \end{itemize}
 
 \paragraph*{Command Line Integration Appendices}\label{docs__pandoc__latex__src__syllabus.md__command-line-integration-appendices}
@@ -1471,7 +1554,7 @@ Starting a project, verifying dimensions, quality issues \\
 \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-e]{Appendix D}
 & Advanced OpenSCAD Concepts &
 Building mechanical systems, optimizing complex models \\
-\href{docs/pandoc/latex/src/assets/3dMake_Foundation/README.md}{Code Examples \& Assets}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CREADME.md}{Code Examples \& Assets}
 & 3dMake Code Examples \& Assets &
 Reference designs, working code examples \\
 \end{longtable}
@@ -1588,7 +1671,7 @@ Questions include error identification, code explanation, behavioral analysis, a
 \begin{itemize}
 \tightlist
 \item
-  \textbf{\href{docs/pandoc/latex/src/3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md}{3dMake Foundation Curriculum Guide}} - Detailed lesson-by-lesson breakdown with objectives and timing
+  \textbf{\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5C3dMake_Foundation_Curriculum_Guide.md}{3dMake Foundation Curriculum Guide}} - Detailed lesson-by-lesson breakdown with objectives and timing
 \item
   \textbf{\hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__appendix-a]{3dMake Quick Reference}} - At-a-glance command and syntax reference
 \end{itemize}
@@ -1940,7 +2023,7 @@ Accessibility Configuration
 \item
   \hyperref[docs__pandoc__latex__src__3dmake_all_lessons.md__3dmake-foundation--design--complete-course-compendium]{VSCode Setup Guide} - Accessibility-focused editor configuration
 \item
-  \href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-accessibility-guide}{Git Bash Screen Reader Guide} - NVDA and JAWS configuration for Git Bash
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-accessibility-guide}{Git Bash Screen Reader Guide} - NVDA and JAWS configuration for Git Bash
 \end{itemize}
 
 \subsubsection*{Slicing Software}\label{docs__pandoc__latex__src__syllabus.md__slicing-software}
@@ -2138,7 +2221,7 @@ University of Utah Maker Spaces
 \item
   Review \hyperref[docs__pandoc__latex__src__3dmake_all_lessons.md__3dmake-foundation--design--complete-course-compendium]{Screen Reader Coding Tips (NVDA \& JAWS)}
 \item
-  Check the \href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#gb-accessibility-guide}{Git Bash Screen Reader Guide} if using Git Bash
+  Check the \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#gb-accessibility-guide}{Git Bash Screen Reader Guide} if using Git Bash
 \end{itemize}
 
 \textbf{For Design \& Concept Questions:}
@@ -6881,7 +6964,7 @@ Answer these questions to find your best match:
   Can switch later if needed
 \end{itemize}
 
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#part-2-cmd}{Start CMD Foundation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#part-2-cmd}{Start CMD Foundation}
 
 \subsection*{Goal: "I want power and professional automation"}\label{docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__goal-i-want-power-and-professional-automation}
 
@@ -6899,7 +6982,7 @@ Answer these questions to find your best match:
   Skills are in-demand
 \end{itemize}
 
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#part-1-powershell}{Start PowerShell Foundation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#part-1-powershell}{Start PowerShell Foundation}
 
 \subsection*{Goal: "I want skills that work on Windows, Mac, and Linux"}\label{docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__goal-i-want-skills-that-work-on-windows-mac-and-linux}
 
@@ -6917,7 +7000,7 @@ Answer these questions to find your best match:
   Growing standard in 3D printing tools
 \end{itemize}
 
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#part-3-git-bash}{Start Git Bash Foundation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#part-3-git-bash}{Start Git Bash Foundation}
 
 \section*{Can I Switch Paths Later?}\label{docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__can-i-switch-paths-later}
 
@@ -6963,7 +7046,7 @@ Take a moment and choose:
 
 \subsection*{1. I want the simplest path}\label{docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__1-i-want-the-simplest-path}
 
-\href{docs/pandoc/latex/src/CMD_Complete_Curriculum.md\#part-2-cmd}{Command Prompt Foundation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CCMD_Complete_Curriculum.md\#part-2-cmd}{Command Prompt Foundation}
 
 \begin{itemize}
 \tightlist
@@ -6977,7 +7060,7 @@ Take a moment and choose:
 
 \subsection*{2. I want modern, powerful Windows tools}\label{docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__2-i-want-modern-powerful-windows-tools}
 
-\href{docs/pandoc/latex/src/PS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Foundation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CPS_Complete_Curriculum.md\#part-1-powershell}{PowerShell Foundation}
 
 \begin{itemize}
 \tightlist
@@ -6991,7 +7074,7 @@ Take a moment and choose:
 
 \subsection*{3. I want Unix/Linux skills that work everywhere}\label{docs__pandoc__latex__src__command_line_interface_selection__command_line_interface_selection.md__3-i-want-unixlinux-skills-that-work-everywhere}
 
-\href{docs/pandoc/latex/src/GitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Foundation}
+\href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5CGitBash_Complete_Curriculum.md\#part-3-git-bash}{Git Bash Foundation}
 
 \begin{itemize}
 \tightlist
@@ -20536,9 +20619,9 @@ The \textbf{Utah STEM Action Center\textquotesingle s Innovation Hub Network} ma
 \begin{itemize}
 \tightlist
 \item
-  \href{docs/pandoc/latex/src/bbfff66c2e91120d.epub}{Programming with OpenSCAD: A Beginner\textquotesingle s Guide to Coding 3D-Printable Objects} --- Complete reference covering syntax, geometry concepts, design patterns, and best practices
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C943ee2446365181c.epub}{Programming with OpenSCAD: A Beginner\textquotesingle s Guide to Coding 3D-Printable Objects} --- Complete reference covering syntax, geometry concepts, design patterns, and best practices
 \item
-  \href{docs/pandoc/latex/src/53b37f0b5f96bdbc.epub}{Simplifying 3D Printing with OpenSCAD} --- Focused guide to practical workflows, optimization, and real-world printing
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cee8ec7d1b3e2cc7c.epub}{Simplifying 3D Printing with OpenSCAD} --- Focused guide to practical workflows, optimization, and real-world printing
 \item
   \href{https://github.com/ProgrammingWithOpenSCAD/CodeSolutions}{CodeSolutions Repository} --- Working OpenSCAD examples organized by topic and difficulty
 \item
@@ -21602,9 +21685,9 @@ Temporary scaffolding for overhangs; minimize them in your design \\
 \begin{itemize}
 \tightlist
 \item
-  \href{docs/pandoc/latex/src/3dMake_Foundation/Templates/Student/your_first_print_student_template.md}{Your First Print guide}
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C3dMake_Foundation\%5CTemplates\%5CStudent\%5Cyour_first_print_student_template.md}{Your First Print guide}
 \item
-  \href{docs/pandoc/latex/src/assets/3dMake_Foundation/Lessons_3dMake_1/basic_project_scaffold.scad}{Basic project scaffold template}
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5Cassets\%5C3dMake_Foundation\%5CLessons_3dMake_1\%5Cbasic_project_scaffold.scad}{Basic project scaffold template}
 \end{itemize}
 
 \subsubsection*{\texorpdfstring{Learning Series Sample Projects (\texttt{3dmake\_learning\_series/})}{Learning Series Sample Projects (3dmake\_learning\_series/)}}\label{docs__pandoc__latex__src__3dmake_all_lessons.md__learning-series-sample-projects-3dmake_learning_series}
@@ -25356,7 +25439,7 @@ $fs = 0.5;  // minimum 0.5mm face size (more faces on small features)
 \begin{itemize}
 \tightlist
 \item
-  \href{docs/pandoc/latex/src/bbfff66c2e91120d.epub}{Programming with OpenSCAD EPUB Textbook} --- Chapters on modules, functions, and libraries
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C943ee2446365181c.epub}{Programming with OpenSCAD EPUB Textbook} --- Chapters on modules, functions, and libraries
 \item
   \href{https://github.com/ProgrammingWithOpenSCAD/CodeSolutions}{CodeSolutions Repository} --- Worked examples for parametric architecture
 \item
@@ -31129,7 +31212,7 @@ echo("Cross:", c);   // [0, 0, 1] — the Z axis
 \begin{itemize}
 \tightlist
 \item
-  \href{docs/pandoc/latex/src/bbfff66c2e91120d.epub}{Programming with OpenSCAD EPUB Textbook} --- Transforms chapter
+  \href{docs\%5Cpandoc\%5Clatex\%5Csrc\%5C943ee2446365181c.epub}{Programming with OpenSCAD EPUB Textbook} --- Transforms chapter
 \item
   \href{https://github.com/ProgrammingWithOpenSCAD/CodeSolutions}{CodeSolutions Repository} --- Phone stand worked example
 \item
@@ -40617,6 +40700,22 @@ A: Use \texttt{3dm\ info} and \texttt{3dm\ preview} and include written measurem
 \newpage
 
 \chapter{BackMatter}\label{docs__pandoc__latex__src__backmatter__backmatter.md__backmatter}
+
+This BackMatter section collects supplementary materials, appendices, and reference content for the book.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Advanced Problem Sets:} \hyperref[docs__pandoc__latex__src__advanced_study_guide.md__advanced-study-guide]{Advanced Problem Sets} --- Extended practice and challenge exercises for instructors and students.
+\item
+  \textbf{Command Line Appendices:} \hyperref[docs__pandoc__latex__src__cli_appendices_complete.md__command-line-appendices--complete-reference]{Command Line Appendices} --- Reference material and in-depth command-line guides.
+\item
+  \textbf{3D Make \& OpenSCAD Appendices:} \hyperref[docs__pandoc__latex__src__3dmake_appendices_complete.md__3dmake-and-openscad-appendices--complete-reference]{3D Make and OpenSCAD Appendices} --- Additional tutorials, patterns, and design references.
+\item
+  \textbf{Technical References \& Troubleshooting:} \hyperref[docs__pandoc__latex__src__backmatter_complete.md__back-matter--complete-reference]{Technical References and Troubleshooting} --- Troubleshooting notes, technical tips, and reference tables.
+\item
+  \textbf{About the Author:} \hyperref[docs__pandoc__latex__src__contributors.md__contributors]{About the Author} --- Contributor and author information.
+\end{itemize}
 
 \section{Advanced Study Guide}\label{docs__pandoc__latex__src__advanced_study_guide.md__advanced-study-guide}
 
