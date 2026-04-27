@@ -21,6 +21,7 @@ my-book/docs/
 *.aux
 *.log
 *.tex
+*.toc
 
 textbooks/
 admonitions_mdbook.md

@@ -1,7 +1,7 @@
 # Safety Protocols and the Physical Fabrication Interface
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -381,18 +381,18 @@ printable_box(50, 40, 30);
 
 ## References and Helpful Resources
 
-- OSHA Hierarchy of Controls — https://www.osha.gov/hierarchy-of-controls / NIOSH — https://www.cdc.gov/niosh/topics/hierarchy/default.html
-- UL Research Institutes — 3D Printing Emissions Study — https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study
-- NIOSH Science Blog — Health and Safety Considerations for 3D Printing — https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/
-- PrusaSlicer Documentation — https://docs.prusa3d.com/en/
-- All3DP Filament Types — https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/
-- MatterHackers Filament Compare — https://www.matterhackers.com/3d-printer-filament-compare
-- Prusa Research Materials Guide — https://help.prusa3d.com/materials
+- OSHA Hierarchy of Controls — [https://www.osha.gov/hierarchy-of-controls](https://www.osha.gov/hierarchy-of-controls) / NIOSH — [https://www.cdc.gov/niosh/topics/hierarchy/default.html](https://www.cdc.gov/niosh/topics/hierarchy/default.html)
+- UL Research Institutes — 3D Printing Emissions Study — [https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study](https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study)
+- NIOSH Science Blog — Health and Safety Considerations for 3D Printing — [https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/](https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/)
+- PrusaSlicer Documentation — [https://docs.prusa3d.com/en/](https://docs.prusa3d.com/en/)
+- All3DP Filament Types — [https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/](https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/)
+- MatterHackers Filament Compare — [https://www.matterhackers.com/3d-printer-filament-compare](https://www.matterhackers.com/3d-printer-filament-compare)
+- Prusa Research Materials Guide — [https://help.prusa3d.com/materials](https://help.prusa3d.com/materials)
 
 ### Supplemental Resources
 
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
-- OpenSCAD User Manual — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+- OpenSCAD User Manual — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---

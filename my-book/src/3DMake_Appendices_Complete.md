@@ -335,23 +335,23 @@ Below is a national omnibus index generated from directories that explicitly lis
 
 # Endnotes
 
-[^turn6search24]: https://www.nationofmakers.us/find-a-maker-organization
+[^turn6search24]: [https://www.nationofmakers.us/find-a-maker-organization](https://www.nationofmakers.us/find-a-maker-organization)
 
-[^turn6search19]: https://makerspace.com/directory/
+[^turn6search19]: [https://makerspace.com/directory/](https://makerspace.com/directory/)
 
-[^turn6search20]: https://makerspacedir.com/
+[^turn6search20]: [https://makerspacedir.com/](https://makerspacedir.com/)
 
-[^turn6search30]: https://www.poidata.io/report/makerspace/united-states
+[^turn6search30]: [https://www.poidata.io/report/makerspace/united-states](https://www.poidata.io/report/makerspace/united-states)
 
-[^turn6search32]: https://workmakecreate.com/
+[^turn6search32]: [https://workmakecreate.com/](https://workmakecreate.com/)
 
-[^turn6search31]: https://www.globalspec.com/local/6383/C_US
+[^turn6search31]: [https://www.globalspec.com/local/6383/C_US](https://www.globalspec.com/local/6383/C_US)
 
-[^turn6search28]: https://makerspace.com/
+[^turn6search28]: [https://makerspace.com/](https://makerspace.com/)
 
-[^turn6search21]: https://www.makerdirectory.com/makerspace-directory/
+[^turn6search21]: [https://www.makerdirectory.com/makerspace-directory/](https://www.makerdirectory.com/makerspace-directory/)
 
-[^turn6search23]: https://www.maker-works.com/local-makerspaces
+[^turn6search23]: [https://www.maker-works.com/local-makerspaces](https://www.maker-works.com/local-makerspaces)
 
 
 ---
@@ -678,7 +678,7 @@ Used when `print_mode = "octoprint"`. Test with `3dm test-connect`.
 
 | Key              | Type   | Default  | Description                                                                                                     |
 | ---------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------- |
-| `octoprint_host` | string | _(none)_ | Full URL to your OctoPrint server, including protocol (e.g. `"http://octopi.local"` or `"http://192.168.1.50"`) |
+| `octoprint_host` | string | _(none)_ | Full URL to your OctoPrint server, including protocol (e.g. `"[http://octopi.local](http://octopi.local)"` or `"[http://192.168.1.50](http://192.168.1.50)"`) |
 | `octoprint_key`  | string | _(none)_ | OctoPrint Application API key. Generate in OctoPrint > Settings > Application Keys                              |
 
 ```toml
@@ -1518,7 +1518,7 @@ Run with `--debug` to see the full PrusaSlicer stdout output:
 Your `octoprint_key` is wrong or expired. In OctoPrint, go to Settings > Application Keys and generate a new key, then update `defaults.toml` via `3dm edit-global-config`.
 
 **OctoPrint: `ERROR: Could not connect to server`**
-Check that `octoprint_host` is correct and includes the protocol (`http://` or `https://`). Verify OctoPrint is running and the machine running 3DMake is on the same network. Run `3dm test-connect` for a detailed diagnosis.
+Check that `octoprint_host` is correct and includes the protocol (`[http://`](http://`) or `[https://`](https://`)). Verify OctoPrint is running and the machine running 3DMake is on the same network. Run `3dm test-connect` for a detailed diagnosis.
 
 **Bambu: FTP or MQTT connection fails.**
 Verify `bambu_host` is the printer's current local IP (it may change if your router assigns IPs dynamically — consider setting a static IP for the printer). Check `bambu_access_code` on the printer screen under Settings > WLAN. Run `3dm test-connect` for step-by-step diagnosis.

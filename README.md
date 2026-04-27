@@ -1,463 +1,151 @@
-# VI-Friendly OpenSCAD Lessons Using 3D Make - Complete Curriculum
+# 3D Printing Course for Blind and Visually Impaired Learners
 
-## What This Is
+This repository is the publishing workspace for an accessible ebook and web edition of a full 3D printing curriculum built around OpenSCAD and 3DMake. The source manuscript lives in `my-book/src`, the book is built with mdBook plus Pandoc output profiles, and the release artifacts include HTML, EPUB, LaTeX, and PDF outputs.
 
-A comprehensive, accessible 3D design and printing curriculum organized into:
+The project is designed for blind and visually impaired learners and instructors. The content emphasizes screen-reader-friendly workflows, command-line toolchains, text-based CAD, and non-visual verification practices.
 
-- 11 progressive lessons (Foundations -> Leadership)
-- 4 comprehensive appendices (Reference materials)
-- 9 integrated projects (Hands-on learning)
-- 6 PowerShell foundation lessons (Command-line automation)
-- Screen reader friendly (All text-based, measurement-based verification)
-- 2 supplemental EPUB textbooks (Programming with OpenSCAD, Simplifying 3D Printing)
+## What This Repository Produces
 
-## Quick Start
+- A multi-page HTML book in `my-book/docs/html/`
+- A distributable EPUB in `my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub`
+- LaTeX source in `my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex`
+- A PDF build generated from the LaTeX output and written to the repository root as `OpenSCAD_Curriculum.pdf`
 
-### For Students
+The book metadata is defined in `my-book/book.toml`:
 
-### Start here
+- Title: `3D Printing Course for Blind and Visually Impaired Learners`
+- Author: `Michael Ryan Hunsaker, M.Ed., Ph.D.`
+- Current repo version: `1.0.0`
 
-1. Read [Syllabus](Syllabus.md)
-2. Read [How to Navigate This Book](Reference_Materials/mdbook-navigation-guide.md)
-3. Read [Screen Reader Coding Tips](Reference_Materials/nvda-jaws-coding-tips.md)
-4. Start Lesson 1: [Environmental Configuration](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md)
-5. Follow Lessons 1-11 in order
+## Source Of Truth
 
-### Use appendices for reference
+The root `README.md` is for contributors and maintainers of the publishing project. The actual book content starts in `my-book/src`.
 
-- Appendix A: [Comprehensive Slicing Guide](3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md)
-- Appendix B: [Material Properties](3dMake_Foundation/Appendix_B_Material_Properties.md) - 6 materials (PLA, PETG, ABS, TPU, PC, Nylon)
-- Appendix C: [Tolerance Testing & QA](3dMake_Foundation/Appendix_C_Tolerance_QA.md) - Measurement-based quality assurance
-- Appendix D: [PowerShell Integration](3dMake_Foundation/Appendix_D_PowerShell_Integration.md) - 5 complete automation scripts
+Key manuscript files:
 
-### For Instructors
+- `my-book/src/README.md` - book introduction
+- `my-book/src/SUMMARY.md` - mdBook table of contents
+- `my-book/src/Syllabus.md` - course syllabus
+- `my-book/src/3dMake_All_Lessons.md` - consolidated lesson compendium
+- `my-book/src/3DMake_Appendices_Complete.md` - appendices and reference material
+- `my-book/src/CLI_Appendices_Complete.md` - shell and automation appendices
+- `my-book/src/Backmatter_Complete.md` - glossary, troubleshooting, references
 
-### Use these resources
+Supporting directories:
 
-1. [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) - Full overview of all 11 lessons
-2. [11 Teacher Templates](3dMake_Foundation/Templates/Teacher/) - Ready-to-use assessment rubrics
-3. [SUMMARY.md](SUMMARY.md) - Navigation structure
-4. [Resource Integration Map](RESOURCEINTEGRATIONMAP.md) - Complete resource ecosystem
+- `my-book/theme` - custom mdBook theme assets
+- `my-book/scripts` - book-processing helper scripts
+- `CodeSolutions` - example OpenSCAD code used alongside the curriculum
+- `textbooks` - supplemental EPUB textbooks bundled with the project
 
-## Curriculum Structure
+## Repository Layout
 
-### PowerShell Foundation (Prerequisite)
-
-Before starting 3dMake Lesson 9, complete the PowerShell Foundation curriculum:
-
-- [PS Introduction](/PowerShell_Foundation/Powershell_Introduction/Powershell_Introduction.md) - Before your first terminal
-- [PS.0 - PS.5](/PowerShell_Foundation/) - 6 progressive lessons (PS.0: Basic Commands through PS.5: Error Handling)
-- [PowerShell Curriculum Overview](PowerShell_Foundation/PowerShell_Curriculum_Overview.md) - Complete guide with screen reader tips
-- [Screen Reader Accessibility Guide](Setup/ScreenReader_Accessibility_Guide/ScreenReader_Accessibility_Guide.md) - NVDA & JAWS reference
-
-Time commitment: ~6 hours  
-Note: PowerShell is foundation for Lesson 9+, doesn't block starting Lessons 1-8
-
-### Foundations (Lessons 1-3 | ~3 hours)
-
-| Lesson                                                             | Focus                                       | Duration  | Project |
-|--------------------------------------------------------------------|---------------------------------------------|-----------|---------|
-| [Lesson 1](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md) | Environment Setup + How 3D Printing Works   | 60-90 min | None    |
-| [Lesson 2](3dMake_Foundation/Lessons_3dMake_2/Lessons_3dMake_2.md) | Primitives & Boolean Operations + Debugging | 60 min    | None    |
-| [Lesson 3](3dMake_Foundation/Lessons_3dMake_3/Lessons_3dMake_3.md) | Parametric Architecture & Modules           | 60 min    | None    |
-
-### Verification & Safety (Lessons 4-5 | ~2 hours)
-
-| Lesson                                                             | Focus                               | Duration  | Project |
-|--------------------------------------------------------------------|-------------------------------------|-----------|---------|
-| [Lesson 4](3dMake_Foundation/Lessons_3dMake_4/Lessons_3dMake_4.md) | AI-Enhanced Verification & Feedback | 45-60 min | None    |
-| [Lesson 5](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) | Safety Protocols & Material Intro   | 60-90 min | None    |
-
-### Applied Projects (Lessons 6-8 | ~4 hours)
-
-| Lesson                                                             | Focus                      | Duration   | Project        |
-|--------------------------------------------------------------------|----------------------------|------------|----------------|
-| [Lesson 6](3dMake_Foundation/Lessons_3dMake_6/Lessons_3dMake_6.md) | Practical 3dm Commands     | 60-90 min  | Keycap         |
-| [Lesson 7](3dMake_Foundation/Lessons_3dMake_7/Lessons_3dMake_7.md) | Parametric Transforms      | 75-90 min  | Phone Stand    |
-| [Lesson 8](3dMake_Foundation/Lessons_3dMake_8/Lessons_3dMake_8.md) | Advanced Parametric Design | 90-120 min | Stackable Bins |
-
-### Advanced Topics (Lessons 9-10 | ~3 hours)
-
-| Lesson                                                                | Focus                      | Duration    | Project                                  |
-|-----------------------------------------------------------------------|----------------------------|-------------|------------------------------------------|
-| [Lesson 9](3dMake_Foundation/Lessons_3dMake_9/Lessons_3dMake_9.md)    | Automation & 3dm Workflows | 60-90 min   | [key] Keychain Automation                |
-| [Lesson 10](3dMake_Foundation/Lessons_3dMake_10/Lessons_3dMake_10.md) | Troubleshooting & Mastery  | 120-150 min | [dice] QA Testing +  Accessibility Audit |
-
-### Leadership (Lesson 11 | ~2 hours)
-
-| Lesson                                                                | Focus                      | Duration   | Project                       |
-|-----------------------------------------------------------------------|----------------------------|------------|-------------------------------|
-| [Lesson 11](3dMake_Foundation/Lessons_3dMake_11/Lessons_3dMake_11.md) | Stakeholder-Centric Design | 90-120 min | [beads] Beaded Jewelry Holder |
-
-Total: 14-18 hours of instruction + projects
-
-## Reference Appendices
-
-### Appendix A: Comprehensive Slicing Guide
-
-[Appendix A: Comprehensive Slicing Guide](3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md) 
-
-Complete reference for 7 major slicers
-
-- Coverage: PrusaSlicer, Bambu Studio, Cura, SuperSlicer, OrcaSlicer, IdeaMaker, Fusion 360
-- Content: Setup guides, parameter explanations, troubleshooting, command-line integration
-- Use when: Slicing questions, switching slicers, quality issues, non-visual parameter descriptions
-
-### Appendix B: Material Properties & Selection
-
-[Appendix B: Material Properties & Selection](3dMake_Foundation/Appendix_B_Material_Properties.md) 
-
-Complete material reference
-
-- Coverage: 6 materials (PLA, PETG, ABS, TPU, Polycarbonate, Nylon)
-- Content: Properties tables, printing parameters, quality verification, cost analysis
-- Use when: Choosing material, troubleshooting prints, cost analysis, measurement-based verification
-
-### Appendix C: Tolerance Testing & QA Matrix
-
-[Appendix C: Tolerance Testing & QA Matrix](3dMake_Foundation/Appendix_C_Tolerance_QA.md)
-
-Measurement-based quality assurance procedures
-
-- Coverage: Caliper techniques, weight verification, functional testing, tolerance stack-up
-- Content: Step-by-step procedures, checklist templates, CSV tracking
-- Use when: Starting a project, verifying dimensions, troubleshooting quality issues, accessibility audits
-
-### Appendix D: PowerShell Integration for SCAD Workflows
-
-[Appendix D: PowerShell Integration for SCAD Workflows](3dMake_Foundation/Appendix_D_PowerShell_Integration.md)
-
-Complete automation guide for PowerShell + 3dMake
-
-- Coverage: 5 complete PowerShell scripts for workflow automation
-- Content: Parametric sweeps, batch processing, print logging, printer communication
-- Use when: Automating tasks, testing variations, batch printing, building print queues
-
-## Learning Paths
-
-### Path 1: Sequential (Recommended)
-
-```plaintext
-Lesson 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 11
-(15-20 hours total)
+```text
+.
+├── README.md
+├── mdbook_generate.ps1
+├── mdbook_generate.sh
+├── version.json
+├── versioning.py
+├── my-book/
+│   ├── book.toml
+│   ├── src/
+│   ├── theme/
+│   ├── scripts/
+│   └── docs/
+├── CodeSolutions/
+└── textbooks/
 ```
 
-Best for: Most learners, builds comprehensive skills
+Notes:
 
-### Path 2: Focused (Projects Only)
+- `my-book/src` is the editable manuscript.
+- `my-book/docs` is generated output.
+- `OpenSCAD_Curriculum.aux`, `.toc`, `.ent`, and similar files in the repository root are LaTeX build artifacts.
 
-```plaintext
-Foundations (1-3) -> Lesson 6 (Keycap) -> Lesson 7 (Phone Stand) -> Lesson 8 (Bins)
-(~6 hours)
-```
+## Building The Book
 
-Best for: Busy makers, hands-on learners
+### Requirements
 
-### Path 3: Professional (All Advanced Topics)
+- `mdbook`
+- `mdbook-pandoc`
+- A TeX distribution with `lualatex`
+- Python, for helper scripts such as versioning and content transforms
 
-```plaintext
-All Lessons -> All Appendices + All Projects + Appendix D scripts
-(20-25 hours)
-```
-
-Best for: Instructors, professional makers, automation enthusiasts
-
-## Setup Requirements
-
-### Minimum Installation
-
-- OpenSCAD (for SCAD editing and export)
-- A 3D printer (or access to one)
-- Screen reader (NVDA, JAWS, VoiceOver, etc.)
-- Digital calipers (for measurement verification)
-
-### Recommended
-
-- PowerShell 7+ (for automation scripts)
-- Slicer software (PrusaSlicer, Bambu Studio, Cura, etc.)
-- Digital scale (for weight verification)
-- VSCode (for editor integration)
-
-### References
-
-- [3dMake Setup Guide](Reference_Materials/3dmake-setup-guide.md)
-- [VSCode Setup Guide](Reference_Materials/vscode-setup-guide.md)
-- [Course Setup Guide](Reference_Materials/course-setup-guide.md)
-
-## How to Navigate
-
-### Starting Points
-
-- [SUMMARY.md](SUMMARY.md) - Complete table of contents with all links
-- [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) - Big-picture overview
-- [Syllabus](Syllabus.md) - Course syllabus with grading rubric
-
-### Finding Specific Topics
-
-| Topic               | Look In                                                                     |
-|---------------------|-----------------------------------------------------------------------------|
-| Screen reader tips  | [NVDA/JAWS Guide](Reference_Materials/nvda-jaws-coding-tips.md)             |
-| Slicing questions   | [Appendix A](3dMake_Foundation/Appendix_A_Comprehensive_Slicing_Guide.md)   |
-| Material selection  | [Appendix B](3dMake_Foundation/Appendix_B_Material_Properties.md)           |
-| Tolerance/QA        | [Appendix C](3dMake_Foundation/Appendix_C_Tolerance_QA.md)                  |
-| Automation scripts  | [Appendix D](3dMake_Foundation/Appendix_D_PowerShell_Integration.md)        |
-| Learning objectives | [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) |
-| Assessment rubrics  | [Teacher Templates](3dMake_Foundation/Templates/Teacher/)                   |
-
-## Complete Directory Structure
-
-### 3dMake Foundation Curriculum
+Install mdBook tooling with Cargo:
 
 ```bash
-3dMake_Foundation/
-+------ 3dMake_Foundation_Curriculum_Guide.md          
-+------ 3dMakeQuickReference.md                     
-+------ Lessons_3dMake_1/
-|   +------ Lessons_3dMake_1.md                        
-|   +------ (setup guides, references, assets)
-+------ Lessons_3dMake_2/
-|   +------ Lessons_3dMake_2.md                        
-|   +------ (references, code examples)
-+------ Lessons_3dMake_3/ through Lessons_3dMake_11/
-+------ Appendix_A_Comprehensive_Slicing_Guide.md    
-+------ Appendix_B_Material_Properties.md              
-+------ Appendix_C_Tolerance_QA.md                     
-+------ Appendix_D_PowerShell_Integration.md           
+cargo install mdbook mdbook-pandoc
 ```
 
-### Supporting Materials
+### Windows
 
-```bash
-
-+------ SUMMARY.md                                     
-+------ Syllabus.md                                   
-+------ PowerShell_Foundation/
-|   +------ Powershell_Introduction/                  
-|   +------ PS0throughPS5/                        
-|   +------ ScreenReader_Accessibility_Guide.md       
-|   +------ PowerShell_Curriculum_Overview.md         
-+------ Templates/
-|   +------ Teacher/ (11 assessment rubric templates)
-|   +------ Student/ (11 project templates)
-+------ Reference_Materials/
-|   +------ vscode-setup-guide.md
-|   +------ 3dmake-setup-guide.md
-|   +------ course-setup-guide.md
-|   +------ nvda-jaws-coding-tips.md
-|   +------ openscad-cheat-sheet.md
-|   +------ filament-comparison-table.md
-|   +------ slicing-settings-reference-*.md (3 files)
-|   +------ vocabulary-glossary.md
-+------ assets/
-|   +------ ProgrammingwithOpenSCAD.epub
-|   +------ Simplifying3DPrintingwithOpenSCAD.epub
-|   +------ CodeSolutions/ examples
-+------ Units/ (Legacy reference - archived)
-```
-
-### Root Directory
-
-```bash
-./
-+------ README.md                                     
-+------ mdbook_generate.ps1                          # Windows PowerShell build script
-+------ mdbook_generate.sh                           # Unix/Linux/macOS build script
-+------ version.json                                 # Current version (semantic versioning)
-+------ versioning.py                                # Version management & release script
-+------ my-book/
-|   +------ src/ (all content above)
-+------ CodeSolutions/
-|   +------ 13D-Shapes/
-|   +------ 2More-Ways-To-Transform-Shapes/
-|   +------ ...through 7Designing-Big-Projects/
-|   +------ AppendixBOpenSCAD-Visual-Reference/
-+------ textbooks/
-|   +------ Programming_with_OpenSCAD.epub
-|   +------ Simplifying_3D_Printing_with_OpenSCAD.epub
-+------ .github/
-    +------ workflows/
-        +------ deploy.yml                           # Auto-deploy on push to main
-        +------ release.yml                          # Build & release on version tags
-```
-
-## Welcome
-
-You're now ready to start learning 3D design and printing using accessible, screen reader-friendly methods.
-
-For students: Begin with [Lesson 1: Environmental Configuration](3dMake_Foundation/Lessons_3dMake_1/Lessons_3dMake_1.md)
-
-For instructors: Start with [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md)
-
-## Installation & Build Instructions
-
-### Building with mdBook
-
-This curriculum is built with [mdBook](https://rust-lang.github.io/mdBook/), a static site generator for Markdown documentation.
-
-### Prerequisites
-
-- Rust and Cargo (install from [https://rustup.rs/](https://rustup.rs/))
-- mdBook (install via Cargo)
-
-### Installation
-
-Install mdBook using Cargo:
-
-```bash
-cargo install mdbook
-```
-
-Verify installation:
-
-```bash
-mdbook --version
-```
-
-### Building the Book
-
-Build the complete curriculum:
-
-```bash
-cd my-book
-mdbook build
-```
-
-The generated static site will be available in `my-book/book/` by default.
-
-### Serving Locally
-
-Preview the site locally during development:
-
-```bash
-cd my-book
-mdbook serve -p 3000
-```
-
-The book will be available at `[http://localhost:3000`](http://localhost:3000`) and will auto-reload when you make changes.
-
-Press `Ctrl+C` to stop the server.
-
-### Using the Build Scripts
-
-The repository includes build scripts for both Windows (PowerShell) and Unix-like systems (Bash):
-
-**Windows (PowerShell):**
 ```powershell
 .\mdbook_generate.ps1
 ```
 
-**Linux/macOS/Git Bash:**
+### Linux Or macOS
+
 ```bash
 bash mdbook_generate.sh
 ```
 
-#### What the Build Scripts Do
+What the build scripts do:
 
-Both scripts perform the same operations:
+1. Validate that `mdbook` is installed and `my-book/book.toml` exists.
+2. Build the book from `my-book/src` into `my-book/docs`.
+3. Generate Pandoc outputs configured in `my-book/book.toml`.
+4. Compile the LaTeX output with `lualatex` to produce the PDF.
 
-1. **Validate Dependencies**: Check that mdBook is installed and `book.toml` exists
-2. **Build HTML**: Generate the mdBook HTML site from `my-book/src/` to `my-book/docs/`
-3. **Build PDF**: Compile the LaTeX source to PDF using LuaLaTeX
-   - First pass: Initial compilation
-   - Generate index: Process `OpenSCAD_Curriculum.idx`
-   - Second pass: Final compilation with index
+## Output Paths
 
-**Output Locations:**
-- HTML: `my-book/docs/html/`
+- HTML site: `my-book/docs/html/index.html`
 - EPUB: `my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub`
 - LaTeX: `my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex`
-- PDF: `my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf` (and root directory)
+- PDF: `OpenSCAD_Curriculum.pdf`
 
-**Additional Requirements for PDF:**
-- LuaLaTeX (part of TeX Live or MiKTeX)
-- makeindex (part of TeX distributions)
-- mdbook-pandoc plugin: `cargo install mdbook-pandoc`
+## Editing Guidance
 
-### Deployment
+- Edit manuscript files in `my-book/src`, not generated files in `my-book/docs`.
+- Treat `my-book/docs` as build output.
+- If you change structure or metadata, update `my-book/book.toml` and `my-book/src/SUMMARY.md` as needed.
+- Root-level LaTeX artifacts can be regenerated by rerunning the build scripts.
 
-The generated site in `my-book/docs/html/` is static HTML and can be deployed to any web server:
+## Versioning
 
-- GitHub Pages
-- Netlify
-- Vercel
-- AWS S3
-- Azure Static Web Apps
-- Any traditional web hosting
+Version information is stored in `version.json` and managed with `versioning.py`.
 
-For GitHub Pages deployment, copy the contents of `my-book/book/` to your `docs/` folder or configure your repository to deploy from the `book/` directory, the .github directory has a deploy.yml file that can be cloned to accomplish this.
+Examples:
 
-## Version Management
-
-This project uses semantic versioning managed through a Python script and JSON file.
-
-### Version Files
-
-- **[version.json](version.json)**: Stores current version in JSON format
-- **[versioning.py](versioning.py)**: Python script to manage versions and git tags
-
-### Quick Start
-
-**View current version:**
 ```bash
 python versioning.py --current
-```
-
-**Increment version:**
-```bash
-# Increment patch version (1.0.0 -> 1.0.1)
 python versioning.py patch
-
-# Increment minor version (1.0.1 -> 1.1.0)
 python versioning.py minor
-
-# Increment major version (1.1.0 -> 2.0.0)
 python versioning.py major
+python versioning.py --set 1.2.3
 ```
 
-**Set specific version:**
-```bash
-python versioning.py --set 2.5.3
-```
+## Supplemental Materials
 
-### Creating Releases
+The `textbooks` directory contains companion EPUB references used alongside the course:
 
-The versioning script integrates with the GitHub Actions release workflow defined in [.github/workflows/release.yml](.github/workflows/release.yml).
+- `Programming_with_OpenSCAD.epub`
+- `Simplifying_3D_Printing_with_OpenSCAD.epub`
 
-**Increment and create git tag:**
-```bash
-python versioning.py patch --tag
-```
+These are supplemental texts, separate from the curriculum ebook generated by this repository.
 
-**Increment, tag, and push to trigger release:**
-```bash
-python versioning.py patch --tag --push
-```
+## Practical Entry Points
 
-When you push a version tag (e.g., `v1.0.1`), the GitHub Actions workflow automatically:
-1. Builds the mdBook HTML documentation
-2. Compiles the LaTeX source to PDF
-3. Generates the EPUB version
-4. Creates a GitHub Release with all assets attached:
-   - `OpenSCAD_Curriculum.epub`
-   - `OpenSCAD_Curriculum.tex`
-   - `OpenSCAD_Curriculum.pdf`
+If you are maintaining the publication pipeline, start with:
 
-### Semantic Versioning Guidelines
+- `README.md`
+- `my-book/book.toml`
+- `mdbook_generate.ps1`
+- `mdbook_generate.sh`
 
-Follow [Semantic Versioning 2.0.0](https://semver.org/):
+If you are editing curriculum content, start with:
 
-- **MAJOR** (1.x.x -> 2.x.x): Breaking changes, major curriculum restructuring
-- **MINOR** (x.1.x -> x.2.x): New lessons, significant content additions, backward-compatible changes
-- **PATCH** (x.x.1 -> x.x.2): Bug fixes, typo corrections, minor clarifications
-
-### Manual Release (Alternative)
-
-If you prefer to create tags manually:
-
-```bash
-# Create annotated tag
-git tag -a v1.0.1 -m "Release version 1.0.1"
-
-# Push tag to trigger release workflow
-git push origin v1.0.1
-```
+- `my-book/src/README.md`
+- `my-book/src/SUMMARY.md`
+- `my-book/src/3dMake_All_Lessons.md`
+- `my-book/src/Syllabus.md`

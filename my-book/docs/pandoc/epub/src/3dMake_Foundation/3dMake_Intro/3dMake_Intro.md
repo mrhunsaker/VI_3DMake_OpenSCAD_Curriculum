@@ -186,56 +186,56 @@ This introduction is complemented by comprehensive textbooks and code examples:
 
 ## Works cited
 
-[^1]: Deck, T. (2025). _3DMake: A Command-line Tool for 3D Printing Workflows_. GitHub. https://github.com/tdeck/3dmake (Accessed: 2026-03-06)
+[^1]: Deck, T. (2025). _3DMake: A Command-line Tool for 3D Printing Workflows_. GitHub. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake) (Accessed: 2026-03-06)
 
-[^3]: Programming with OpenSCAD. (2026). _Programming with OpenSCAD_. https://programmingwithopenscad.github.io/ (Accessed: 2026-03-06)
+[^3]: Programming with OpenSCAD. (2026). _Programming with OpenSCAD_. [https://programmingwithopenscad.github.io/](https://programmingwithopenscad.github.io/) (Accessed: 2026-03-06)
 
-[^4]: CadHub. (2026). _OpenSCAD Review — Worth Learning?_ https://learn.cadhub.xyz/blog/openscad-review/ (Accessed: 2026-03-06)
+[^4]: CadHub. (2026). _OpenSCAD Review — Worth Learning?_ [https://learn.cadhub.xyz/blog/openscad-review/](https://learn.cadhub.xyz/blog/openscad-review/) (Accessed: 2026-03-06)
 
-[^6]: Class Central. (2026). _OpenSCAD — Courses & Certifications_. https://www.classcentral.com/subject/openscad (Accessed: 2026-03-06)
+[^6]: Class Central. (2026). _OpenSCAD — Courses & Certifications_. [https://www.classcentral.com/subject/openscad](https://www.classcentral.com/subject/openscad) (Accessed: 2026-03-06)
 
-[^9]: Hacker News. (2026). _Discussion: The great thing about OpenSCAD…_ https://news.ycombinator.com/item?id=46338565 (Accessed: 2026-03-06)
+[^9]: Hacker News. (2026). _Discussion: The great thing about OpenSCAD…_ [https://news.ycombinator.com/item?id=46338565](https://news.ycombinator.com/item?id=46338565) (Accessed: 2026-03-06)
 
-[^10]: ZenML. (2026). _LLM‑Powered 3D Model Generation for 3D Printing_. https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing (Accessed: 2026-03-06)
+[^10]: ZenML. (2026). _LLM‑Powered 3D Model Generation for 3D Printing_. [https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing](https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing) (Accessed: 2026-03-06)
 
-[^12]: The Ohio State University EHS. (2026). _3D Printer Safety_. https://ehs.osu.edu/kb/3d-printer-safety (Accessed: 2026-03-06)
+[^12]: The Ohio State University EHS. (2026). _3D Printer Safety_. [https://ehs.osu.edu/kb/3d-printer-safety](https://ehs.osu.edu/kb/3d-printer-safety) (Accessed: 2026-03-06)
 
-[^13]: Rochester Institute of Technology EHS. (2026). _3‑D Printer Safety_. https://www.rit.edu/ehs/3-d-printer-safety (Accessed: 2026-03-06)
+[^13]: Rochester Institute of Technology EHS. (2026). _3‑D Printer Safety_. [https://www.rit.edu/ehs/3-d-printer-safety](https://www.rit.edu/ehs/3-d-printer-safety) (Accessed: 2026-03-06)
 
-[^14]: CDC/NIOSH. (2024). _Safe 3D Printing is for Everyone, Everywhere_ (NIOSH Blog). https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html (Accessed: 2026-03-06)
+[^14]: CDC/NIOSH. (2024). _Safe 3D Printing is for Everyone, Everywhere_ (NIOSH Blog). [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html) (Accessed: 2026-03-06)
 
-[^15]: Washington State Department of Health. (2026). _3D Printers_. https://doh.wa.gov/community-and-environment/schools/3d-printers (Accessed: 2026-03-06)
+[^15]: Washington State Department of Health. (2026). _3D Printers_. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers) (Accessed: 2026-03-06)
 
-[^16]: University of Tennessee, Knoxville EHS. (2026). _3D Printer Safety_. https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/ (Accessed: 2026-03-06)
+[^16]: University of Tennessee, Knoxville EHS. (2026). _3D Printer Safety_. [https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/](https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/) (Accessed: 2026-03-06)
 
-[^19]: Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). _Understanding the Challenges of OpenSCAD Users for 3D Printing_. https://thomaspietrzak.com/bibliography/gonzalez24.pdf (Accessed: 2026-03-06)
+[^19]: Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). _Understanding the Challenges of OpenSCAD Users for 3D Printing_. [https://thomaspietrzak.com/bibliography/gonzalez24.pdf](https://thomaspietrzak.com/bibliography/gonzalez24.pdf) (Accessed: 2026-03-06)
 
-[^20]: Reddit. (2026). _Why is there so little content and community around OpenSCAD?_ https://www.reddit.com/r/openscad/comments/1fxj8xv/why_is_there_so_little_content_and_community/ (Accessed: 2026-03-06)
+[^20]: Reddit. (2026). _Why is there so little content and community around OpenSCAD?_ [https://www.reddit.com/r/openscad/comments/1fxj8xv/why_is_there_so_little_content_and_community/](https://www.reddit.com/r/openscad/comments/1fxj8xv/why_is_there_so_little_content_and_community/) (Accessed: 2026-03-06)
 
-[^turn1search8]: https://www.weberpl.lib.ut.us/use-your-library/makerspaces (Accessed: 2026-03-06)
+[^turn1search8]: [https://www.weberpl.lib.ut.us/use-your-library/makerspaces](https://www.weberpl.lib.ut.us/use-your-library/makerspaces) (Accessed: 2026-03-06)
 
-[^turn1search9]: https://stem.utah.gov/innovationhubnetwork/ (Accessed: 2026-03-06)
+[^turn1search9]: [https://stem.utah.gov/innovationhubnetwork/](https://stem.utah.gov/innovationhubnetwork/) (Accessed: 2026-03-06)
 
-[^turn1search10]: https://library.loganutah.gov/about_us/services/makerspace.php (Accessed: 2026-03-06)
+[^turn1search10]: [https://library.loganutah.gov/about_us/services/makerspace.php](https://library.loganutah.gov/about_us/services/makerspace.php) (Accessed: 2026-03-06)
 
-[^turn1search11]: https://services.slcpl.org/creativelab (Accessed: 2026-03-06)
+[^turn1search11]: [https://services.slcpl.org/creativelab](https://services.slcpl.org/creativelab) (Accessed: 2026-03-06)
 
-[^turn1search12]: https://www.slcolibrary.org/what-we-have/create (Accessed: 2026-03-06)
+[^turn1search12]: [https://www.slcolibrary.org/what-we-have/create](https://www.slcolibrary.org/what-we-have/create) (Accessed: 2026-03-06)
 
-[^turn1search14]: https://library.washco.utah.gov/st-george/makerspace/ (Accessed: 2026-03-06)
+[^turn1search14]: [https://library.washco.utah.gov/st-george/makerspace/](https://library.washco.utah.gov/st-george/makerspace/) (Accessed: 2026-03-06)
 
-[^turn1search15]: https://www.lib.utah.edu/services/3d-printing.php (Accessed: 2026-03-06)
+[^turn1search15]: [https://www.lib.utah.edu/services/3d-printing.php](https://www.lib.utah.edu/services/3d-printing.php) (Accessed: 2026-03-06)
 
-[^turn1search2]: https://www.nationofmakers.us/find-a-maker-organization (Accessed: 2026-03-06)
+[^turn1search2]: [https://www.nationofmakers.us/find-a-maker-organization](https://www.nationofmakers.us/find-a-maker-organization) (Accessed: 2026-03-06)
 
-[^turn1search3]: https://makerspace.com/directory/ (Accessed: 2026-03-06)
+[^turn1search3]: [https://makerspace.com/directory/](https://makerspace.com/directory/) (Accessed: 2026-03-06)
 
-[^turn1search4]: https://makerspacedir.com/ (Accessed: 2026-03-06)
+[^turn1search4]: [https://makerspacedir.com/](https://makerspacedir.com/) (Accessed: 2026-03-06)
 
-[^turn1search5]: https://workmakecreate.com/ (Accessed: 2026-03-06)
+[^turn1search5]: [https://workmakecreate.com/](https://workmakecreate.com/) (Accessed: 2026-03-06)
 
-[^21]: OpenSCAD Project. (2025). _Performance regression: Concave minkowski slow in Manifold mode_ (Issue #6297). GitHub. https://github.com/openscad/openscad/issues/6297 (Accessed: 2026-03-06)
+[^21]: OpenSCAD Project. (2025). _Performance regression: Concave minkowski slow in Manifold mode_ (Issue #6297). GitHub. [https://github.com/openscad/openscad/issues/6297](https://github.com/openscad/openscad/issues/6297) (Accessed: 2026-03-06)
 
-[^24]: OpenSCAD Project. (2025). _OpenSCAD is creating non-manifold models_ (Issue #6114). GitHub. https://github.com/openscad/openscad/issues/6114 (Accessed: 2026-03-06); and 3DX. (2026). _Fix Non-Manifold Edges in STL Files for 3D Printing_. https://3dx.info/how-to-fix-non-manifold-edges-in-stl-files-for-flawless-3d-prints/ (Accessed: 2026-03-06)
+[^24]: OpenSCAD Project. (2025). _OpenSCAD is creating non-manifold models_ (Issue #6114). GitHub. [https://github.com/openscad/openscad/issues/6114](https://github.com/openscad/openscad/issues/6114) (Accessed: 2026-03-06); and 3DX. (2026). _Fix Non-Manifold Edges in STL Files for 3D Printing_. [https://3dx.info/how-to-fix-non-manifold-edges-in-stl-files-for-flawless-3d-prints/](https://3dx.info/how-to-fix-non-manifold-edges-in-stl-files-for-flawless-3d-prints/) (Accessed: 2026-03-06)
 
-[^28]: Tom's Hardware. (2024). _How to Repair STL Files in MeshLab_. https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab (Accessed: 2026-03-06); and Prusa3D Forum. (2024). _STL errors - how to identify and fix?_ https://forum.prusa3d.com/forum/prusaslicer/stl-errors-how-to-identify-and-fix/ (Accessed: 2026-03-06)
+[^28]: Tom's Hardware. (2024). _How to Repair STL Files in MeshLab_. [https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab](https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab) (Accessed: 2026-03-06); and Prusa3D Forum. (2024). _STL errors - how to identify and fix?_ [https://forum.prusa3d.com/forum/prusaslicer/stl-errors-how-to-identify-and-fix/](https://forum.prusa3d.com/forum/prusaslicer/stl-errors-how-to-identify-and-fix/) (Accessed: 2026-03-06)

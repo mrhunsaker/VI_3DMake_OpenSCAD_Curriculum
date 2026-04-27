@@ -8,7 +8,7 @@
 
 # Part I — Instructional Framework
 
-*A pedagogical overview of the 3DMake and OpenSCAD ecosystem for secondary STEM education.*
+_A pedagogical overview of the 3DMake and OpenSCAD ecosystem for secondary STEM education._
 
 ## The Architecture of Programmatic Design
 
@@ -28,11 +28,12 @@ While powerful, current LLMs do not possess a true "3D world model" — they are
 
 - **Detached Geometry:** The AI might describe a "table" even if the legs are hovering below the tabletop.[^10]
 - **Scale Misinterpretation:** Without a reference object in the render, the AI may misjudge scale, leading to inappropriate feedback on wall thickness.[^1]
->[!CAUTION]
->**Hallucination of Detail:** The AI may describe features it expects to see (like "engraved text") even if the student's code failed to render them.[^10]
 
->[!IMPORTANT]
->**AI is a verification assistant, not a source of truth.** The deterministic rendering of OpenSCAD remains the final authority on geometry. AI is most useful as a "sanity check" to catch obvious mistakes before wasting filament.[^1]
+> [!CAUTION]
+> **Hallucination of Detail:** The AI may describe features it expects to see (like "engraved text") even if the student's code failed to render them.[^10]
+
+> [!IMPORTANT]
+> **AI is a verification assistant, not a source of truth.** The deterministic rendering of OpenSCAD remains the final authority on geometry. AI is most useful as a "sanity check" to catch obvious mistakes before wasting filament.[^1]
 
 ## Occupational Health and Safety
 
@@ -42,15 +43,15 @@ Safety in the 3DMake workflow extends to the physical act of printing, which inv
 
 The melting of plastic filament is a thermal degradation process. ABS releases styrene, a known respiratory irritant and potential carcinogen.[^12] Even PLA emits millions of ultrafine particles (UFPs) per minute during extrusion — particles smaller than 100 nanometers that can penetrate deep into the lungs.[^12]
 
-| Emission Component | Primary Source Filaments | Mitigation Strategy |
-| :--- | :--- | :--- |
->[!WARNING]
->ABS and ASA filaments release styrene — a respiratory irritant and potential carcinogen. Always use an enclosed printer with carbon filtration for these materials.
+| Emission Component         | Primary Source Filaments | Mitigation Strategy                                   |
+| :------------------------- | :----------------------- | :---------------------------------------------------- |
+| Styrene                    | ABS, ASA                 | Enclosed printer with carbon filtration.[^12]         |
+| Formaldehyde               | POM, Nylon               | High-efficiency external ventilation.[^12]            |
+| Ultrafine Particles        | All filaments            | HEPA filtration and "20-minute" settling period.[^14] |
+| Volatile Organic Compounds | All filaments            | Minimum 6 air changes per hour in the room.[^15]      |
 
-| Styrene | ABS, ASA | Enclosed printer with carbon filtration.[^12] |
-| Formaldehyde | POM, Nylon | High-efficiency external ventilation.[^12] |
-| Ultrafine Particles | All filaments | HEPA filtration and "20-minute" settling period.[^14] |
-| Volatile Organic Compounds | All filaments | Minimum 6 air changes per hour in the room.[^15] |
+> [!WARNING]
+> ABS and ASA filaments release styrene — a respiratory irritant and potential carcinogen. Always use an enclosed printer with carbon filtration for these materials.
 
 ### Physical and Mechanical Hazards
 
@@ -63,17 +64,17 @@ The extruder nozzle can reach 260°C and the heated build plate can reach 110°C
 
 ## Challenges Inherent in the OpenSCAD Language
 
-OpenSCAD's declarative nature and unique rendering kernel present specific hurdles for students. Unlike imperative languages, OpenSCAD describes *what* a shape is, not *how* to build it step by step.[^19]
+OpenSCAD's declarative nature and unique rendering kernel present specific hurdles for students. Unlike imperative languages, OpenSCAD describes _what_ a shape is, not _how_ to build it step by step.[^19]
 
 ### Immutable State
 
->[!NOTE]
->Variables in OpenSCAD are more like constants within a scope. If a student writes `x = 5; x = 10;`, OpenSCAD will use the last assigned value (`x = 10`) for the entire script.[^20] This requires adopting a functional programming mindset where geometry is defined by its state rather than a sequence of movements.
+> [!NOTE]
+> Variables in OpenSCAD are more like constants within a scope. If a student writes `x = 5; x = 10;`, OpenSCAD will use the last assigned value (`x = 10`) for the entire script.[^20] This requires adopting a functional programming mindset where geometry is defined by its state rather than a sequence of movements.
 
 ### Performance Bottlenecks
 
->[!NOTE]
->OpenSCAD's CGAL geometry kernel is highly accurate but slow for certain operations. **Minkowski sums** (used for rounding corners) can take minutes at high `$fn` values. Keep `$fn` low while developing and only raise it for final renders.[^21] OpenSCAD also has no native "fillet" command — students must construct these manually using boolean subtractions or libraries like BOSL2.[^4]
+> [!NOTE]
+> OpenSCAD's CGAL geometry kernel is highly accurate but slow for certain operations. **Minkowski sums** (used for rounding corners) can take minutes at high `$fn` values. Keep `$fn` low while developing and only raise it for final renders.[^21] OpenSCAD also has no native "fillet" command — students must construct these manually using boolean subtractions or libraries like BOSL2.[^4]
 
 ### The Absolute Coordinate Barrier
 
@@ -81,18 +82,18 @@ OpenSCAD has no concept of relative constraints — every object is positioned i
 
 ## Technical Limitations of 3DMake
 
-| Limitation | Technical Root Cause | Educational Impact |
-| :--- | :--- | :--- |
-| CLI Barrier | No graphical interface for configuration | Steep learning curve for students with zero terminal experience.[^1] |
->[!CAUTION]
->AI features (`3dm info` descriptions, `3dm orient`) require an active internet connection and a configured API key. These features will fail silently on offline school networks — plan accordingly.
+| Limitation       | Technical Root Cause                                | Educational Impact                                                   |
+| :--------------- | :-------------------------------------------------- | :------------------------------------------------------------------- |
+| CLI Barrier      | No graphical interface for configuration            | Steep learning curve for students with zero terminal experience.[^1] |
+| API Dependency   | AI features require external internet and API keys  | Advanced features fail in offline school networks.[^1]               |
+| Slicer Lock-in   | Reliant on external templates for G-code generation | Students may not learn the nuance of slicing settings.[^1]           |
+| Feedback Latency | No real-time "live" preview in the editor           | The edit-compile-view cycle is slower than GUI-based CAD.[^1]        |
 
-| API Dependency | AI features require external internet and API keys | Advanced features fail in offline school networks.[^1] |
-| Slicer Lock-in | Reliant on external templates for G-code generation | Students may not learn the nuance of slicing settings.[^1] |
-| Feedback Latency | No real-time "live" preview in the editor | The edit-compile-view cycle is slower than GUI-based CAD.[^1] |
+> [!CAUTION]
+> AI features (`3dm info` descriptions, `3dm orient`) require an active internet connection and a configured API key. These features will fail silently on offline school networks — plan accordingly.
 
->[!CAUTION]
->**Non-manifold geometry** (zero-thickness walls or improperly closed polyhedrons) will generate an STL without warning from `3dm build`, but the `slice` command may then fail or produce corrupt G-code. Always verify mesh integrity before printing.[^24] Students must learn mesh verification skills using tools like MeshLab or PrusaSlicer's repair functions.[^28]
+> [!CAUTION]
+> **Non-manifold geometry** (zero-thickness walls or improperly closed polyhedrons) will generate an STL without warning from `3dm build`, but the `slice` command may then fail or produce corrupt G-code. Always verify mesh integrity before printing.[^24] Students must learn mesh verification skills using tools like MeshLab or PrusaSlicer's repair functions.[^28]
 
 ## Local Resources — Utah Makerspaces
 
@@ -140,46 +141,77 @@ The **Utah STEM Action Center's Innovation Hub Network** maintains a statewide d
 
 ## References
 
-Deck, T. (2025). *3DMake: A command-line tool for 3D printing workflows*. GitHub. https://github.com/tdeck/3dmake
-Gohde, J., & Kintel, M. (2021). *Programming with OpenSCAD: A beginner's guide to coding 3D-printable objects*. No Starch Press.
-Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). *Understanding the challenges of OpenSCAD users for 3D printing*. ACM UIST.
-NIOSH. (2024). *Approaches to safe 3D printing*. https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html
-Ohio State University EHS. (2026). *3D printer safety concerns and ventilation*. https://ehs.osu.edu/kb/3d-printer-safety
-Washington State Department of Health. (2026). *3D printer and filament selection for safe school environments*. https://doh.wa.gov/community-and-environment/schools/3d-printers
+Deck, T. (2025). _3DMake: A command-line tool for 3D printing workflows_. GitHub. <https://github.com/tdeck/3dmake>
 
-[^1]: Deck, T. (2025). *3DMake*. GitHub. https://github.com/tdeck/3dmake
-[^3]: Programming with OpenSCAD. https://programmingwithopenscad.github.io/
-[^4]: CadHub. *OpenSCAD Review*. https://learn.cadhub.xyz/blog/openscad-review/
-[^6]: Class Central. *OpenSCAD Courses*. https://www.classcentral.com/subject/openscad
-[^9]: Hacker News. https://news.ycombinator.com/item?id=46338565
-[^10]: ZenML. *LLM-Powered 3D Model Generation*. https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing
-[^12]: Ohio State University EHS. https://ehs.osu.edu/kb/3d-printer-safety
-[^13]: RIT EHS. https://www.rit.edu/ehs/3-d-printer-safety
-[^14]: CDC/NIOSH. https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html
-[^15]: Washington State DoH. https://doh.wa.gov/community-and-environment/schools/3d-printers
-[^16]: UTK EHS. https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/
-[^19]: Gonzalez Avila et al. https://thomaspietrzak.com/bibliography/gonzalez24.pdf
-[^20]: Reddit. https://www.reddit.com/r/openscad/comments/1fxj8xv/
-[^21]: OpenSCAD Issue #6297. https://github.com/openscad/openscad/issues/6297
-[^24]: OpenSCAD Issue #6114. https://github.com/openscad/openscad/issues/6114
-[^28]: Tom's Hardware. https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab
-[^turn1search8]: https://www.weberpl.lib.ut.us/use-your-library/makerspaces
-[^turn1search9]: https://stem.utah.gov/innovationhubnetwork/
-[^turn1search10]: https://library.loganutah.org/about_us/services/makerspace.php
-[^turn1search11]: https://services.slcpl.org/creativelab
-[^turn1search12]: https://www.slcolibrary.org/what-we-have/create
-[^turn1search14]: https://library.washco.utah.gov/st-george/makerspace/
-[^turn1search15]: https://www.lib.utah.edu/services/3d-printing.php
-- https://www.nationofmakers.us/find-a-maker-organization
-- https://makerspace.com/directory/
-- https://makerspacedir.com/
-- https://workmakecreate.com/
+Gohde, J., & Kintel, M. (2021). _Programming with OpenSCAD: A beginner's guide to coding 3D-printable objects_. No Starch Press.
+
+Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). _Understanding the challenges of OpenSCAD users for 3D printing_. ACM UIST.
+
+NIOSH. (2024). _Approaches to safe 3D printing_. <https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html>
+
+Ohio State University EHS. (2026). _3D printer safety concerns and ventilation_. <https://ehs.osu.edu/kb/3d-printer-safety>
+
+Washington State Department of Health. (2026). _3D printer and filament selection for safe school environments_. <https://doh.wa.gov/community-and-environment/schools/3d-printers>
+
+[^1]: Deck, T. (2025). _3DMake_. GitHub. <https://github.com/tdeck/3dmake>
+
+[^3]: Programming with OpenSCAD. <https://programmingwithopenscad.github.io/>
+
+[^4]: CadHub. _OpenSCAD Review_. <https://learn.cadhub.xyz/blog/openscad-review/>
+
+[^6]: Class Central. _OpenSCAD Courses_. <https://www.classcentral.com/subject/openscad>
+
+[^9]: Hacker News. <https://news.ycombinator.com/item?id=46338565>
+
+[^10]: ZenML. _LLM-Powered 3D Model Generation_. <https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing>
+
+[^12]: Ohio State University EHS. <https://ehs.osu.edu/kb/3d-printer-safety>
+
+[^13]: RIT EHS. <https://www.rit.edu/ehs/3-d-printer-safety>
+
+[^14]: CDC/NIOSH. <https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html>
+
+[^15]: Washington State DoH. <https://doh.wa.gov/community-and-environment/schools/3d-printers>
+
+[^16]: UTK EHS. <https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/>
+
+[^19]: Gonzalez Avila et al. <https://thomaspietrzak.com/bibliography/gonzalez24.pdf>
+
+[^20]: Reddit. <https://www.reddit.com/r/openscad/comments/1fxj8xv/>
+
+[^21]: OpenSCAD Issue #6297. <https://github.com/openscad/openscad/issues/6297>
+
+[^24]: OpenSCAD Issue #6114. <https://github.com/openscad/openscad/issues/6114>
+
+[^28]: Tom's Hardware. <https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab>
+
+[^turn1search8]: <https://www.weberpl.lib.ut.us/use-your-library/makerspaces>
+
+[^turn1search9]: <https://stem.utah.gov/innovationhubnetwork/>
+
+[^turn1search10]: <https://library.loganutah.org/about_us/services/makerspace.php>
+
+[^turn1search11]: <https://services.slcpl.org/creativelab>
+
+[^turn1search12]: <https://www.slcolibrary.org/what-we-have/create>
+
+[^turn1search14]: <https://library.washco.utah.gov/st-george/makerspace/>
+
+[^turn1search15]: <https://www.lib.utah.edu/services/3d-printing.php>
+
+- <https://www.nationofmakers.us/find-a-maker-organization>
+
+- <https://makerspace.com/directory/>
+
+- <https://makerspacedir.com/>
+
+- <https://workmakecreate.com/>
 
 ---
 
 # Part II — Curriculum Guide
 
-*Structure, learning paths, and reference material for the complete 11-lesson course.*
+_Structure, learning paths, and reference material for the complete 11-lesson course._
 
 ## Overview
 
@@ -190,19 +222,19 @@ This 11-lesson curriculum (plus 4 reference appendices) teaches non-visual 3D mo
 
 ## Lesson Structure at a Glance
 
-| # | Title | Duration | Level | Key Project |
-|---|-------|----------|-------|-------------|
-| 1 | Environmental Configuration | 2.5–3.5 hrs | Beginner | Project scaffold |
-| 2 | Geometric Primitives & CSG | 60 min | Beginner | 3 CSG examples |
-| 3 | Parametric Architecture | 2.5 hrs | Beginner+ | Parametric bracket |
-| 4 | AI Verification | 2–2.5 hrs | Intermediate | AI-notes.md |
-| 5 | Safety & Physical Interface | 2.5–3.5 hrs | Intermediate | Pre-print checklist |
-| 6 | 3dm Commands & Text Embossing | 2.5–3.5 hrs | Intermediate | Keycap variants |
-| 7 | Parametric Transforms | 3–3.5 hrs | Intermediate+ | Phone Stand |
-| 8 | Advanced Parametric Design | 90–120 min | Advanced | Stackable Bins |
-| 9 | Automation & Workflows | 2.5–3.5 hrs | Advanced | Batch build script |
-| 10 | Troubleshooting & Mastery | 5–6 hrs | Advanced | 3 complete projects |
-| 11 | Stakeholder-Centric Design | 3.5–4.5 hrs | Advanced+ | Jewelry Holder |
+| #   | Title                         | Duration    | Level         | Key Project         |
+| --- | ----------------------------- | ----------- | ------------- | ------------------- |
+| 1   | Environmental Configuration   | 2.5–3.5 hrs | Beginner      | Project scaffold    |
+| 2   | Geometric Primitives & CSG    | 1 hr        | Beginner      | 3 CSG examples      |
+| 3   | Parametric Architecture       | 2.5 hrs     | Beginner+     | Parametric bracket  |
+| 4   | AI Verification               | 2–2.5 hrs   | Intermediate  | AI-notes.md         |
+| 5   | Safety & Physical Interface   | 2.5–3.5 hrs | Intermediate  | Pre-print checklist |
+| 6   | 3dm Commands & Text Embossing | 2.5–3.5 hrs | Intermediate  | Keycap variants     |
+| 7   | Parametric Transforms         | 3–3.5 hrs   | Intermediate+ | Phone Stand         |
+| 8   | Advanced Parametric Design    | 1.5-2 hrs   | Advanced      | Stackable Bins      |
+| 9   | Automation & Workflows        | 2.5–3.5 hrs | Advanced      | Batch build script  |
+| 10  | Troubleshooting & Mastery     | 5–6 hrs     | Advanced      | 3 complete projects |
+| 11  | Stakeholder-Centric Design    | 3.5–4.5 hrs | Advanced+     | Jewelry Holder      |
 
 ## Learning Paths
 
@@ -217,45 +249,56 @@ This 11-lesson curriculum (plus 4 reference appendices) teaches non-visual 3D mo
 ## Detailed Lesson Descriptions
 
 ### Lesson 1: Environmental Configuration and the Developer Workflow
+
 Install and configure 3dMake, create a project scaffold, and run your first build. Covers installation and tool verification, project structure (`src/`, `build/`, `3dmake.toml`), parametric design philosophy, and the `3dm build` command. **Checkpoint:** You can initialize a project, edit a parametric model, and generate an STL file.
 
-### Lesson 2: Geometric Primitives and Constructive Solid Geometry
+### Lesson 2: Geometric Primitives and Constructive Solid Geometry (CSG)
+
 Combine basic shapes using boolean operations. Covers `cube()`, `sphere()`, `cylinder()`; CSG operations (`union()`, `difference()`, `intersection()`); the 0.001 offset rule for non-manifold geometry; and low-resolution renders for faster debugging. **Checkpoint:** You understand CSG operations and can diagnose common geometry issues.
 
 ### Lesson 3: Parametric Architecture and Modular Libraries
+
 Create reusable modules and organize code into libraries using the DRY principle. Covers module definitions, derived calculations, library organization (`lib/` folder), BOSL2, and low-resolution testing with `$fn`. **Checkpoint:** You can create parametric modules and organize code into libraries.
 
 ### Lesson 4: AI-Enhanced Verification and Multimodal Feedback
+
 Use `3dm info` to generate AI diagnostics and validate designs. Covers the `3dm info` command, AI-generated descriptions, AI limitations, privacy and governance, and prompt engineering basics. **Checkpoint:** You can use AI tools to supplement your design validation.
 
 ### Lesson 5: Safety Protocols and the Physical Fabrication Interface
+
 Transition from digital design to physical printing. Covers the Hierarchy of Controls, chemical and particulate emissions, pre-print environmental and equipment checks, post-print inspection, and spool metadata. **Checkpoint:** You understand safety procedures and can safely conduct supervised prints.
 
 ### Lesson 6: Practical 3dm Commands and Text Embossing
+
 Master key 3dm commands by building a customizable keycap. Covers `3dm info`, `3dm preview`, `3dm orient`, `3dm slice`, and text embossing with `linear_extrude()` and `text()`. **Project:** Generate 3+ keycap variants (small, medium, large). **Checkpoint:** You can generate keycaps with embossed text and understand all major 3dm commands.
 
 ### Lesson 7: Parametric Transforms and the Phone Stand Project
+
 Apply transforms to build a multi-part assembly. Covers `translate()`, `rotate()`, `scale()`, Minkowski sum for edge rounding, multi-part assemblies, and parametric angle variations. **Project:** Phone stand with configurations for phones, tablets, and documents. **Checkpoint:** You can design multi-part assemblies with positioned components.
 
 ### Lesson 8: Advanced Parametric Design and Interlocking Features
+
 Design tolerance-critical assemblies where parts snap together. Covers tolerance and clearance management, stack-up error, interlocking rims, snap-fit connectors, and chamfers. **Project:** Stackable storage bins — test different `stack_clear` values, create size variants, add optional dividers. **Checkpoint:** You understand tolerance management and can design stackable assemblies.
 
 ### Lesson 9: Automation and 3dm Workflows
+
 Automate design workflows using shell scripts. Covers chaining 3dm commands with `&&`, shell script batch processing, library management (`3dm lib`), variant testing matrices, and production build workflows. **Checkpoint:** You can automate design workflows and manage parametric variants at scale.
 
 ### Lesson 10: Hands-On Practice Exercises and Troubleshooting
+
 Capstone lesson synthesizing all prior learning across three exercise sets: **Set A** (guided projects: Phone Stand, Keycap Set, Storage System), **Set B** (problem diagnosis: non-manifold geometry, print failure prevention, dimensional accuracy), and **Set C** (validation and documentation templates). **Checkpoint:** You can complete real projects from concept to verified print.
 
 ### Lesson 11: Stakeholder-Centric Design and the Beaded Jewelry Project
+
 Design for real users, not just yourself. Covers stakeholder identification and interview techniques, extracting functional requirements, defining measurable acceptance criteria, design iteration based on feedback, and documentation for reproducibility. **Project:** Beaded jewelry bracelet holder — interview a stakeholder, extract requirements, design parametrically, test with actual bracelets, iterate. **Checkpoint:** You can conduct a real interview, translate needs into measurable requirements, and iterate a design based on user feedback.
 
 ## Project Completion Tracking
 
-| Project | Lessons | Output Files | Est. Print Time |
-| --- | --- | --- | --- |
-| Keycap Set | 1–6 | 5+ SCAD files, 3+ STL files | 15–30 min total |
-| Phone Stand | 1–7 | 1 SCAD with 3+ variants | 30–60 min total |
-| Storage Bins | 1–8 | 1 parametric SCAD, 3 sizes | 60–90 min total |
+| Project      | Lessons | Output Files                | Est. Print Time |
+| ------------ | ------- | --------------------------- | --------------- |
+| Keycap Set   | 1–6     | 5+ SCAD files, 3+ STL files | 15–30 min total |
+| Phone Stand  | 1–7     | 1 SCAD with 3+ variants     | 30–60 min total |
+| Storage Bins | 1–8     | 1 parametric SCAD, 3 sizes  | 60–90 min total |
 
 ## Assessment and Completion
 
@@ -267,13 +310,13 @@ Each lesson includes learning objectives, step-by-step tasks, checkpoints, a 10-
 
 ## Appendices Overview
 
-| Appendix | Focus | Size | Use When |
-|----------|-------|------|----------|
-| A: Comprehensive Slicing Guide | PrusaSlicer, Bambu Studio, Cura, OrcaSlicer, and more | 1,500+ lines | Slicing questions, slicer reference |
-| B: Material Properties & Selection | PLA, PETG, ABS, TPU, Polycarbonate, Nylon — properties, settings, decision tree | 1,200+ lines | Choosing material, troubleshooting prints |
-| C: Tolerance Testing & QA Matrix | Measurement procedures, functional testing, stack-up calculations | 1,200+ lines | Quality verification, measurement techniques |
-| D: PowerShell Integration | Batch processing, automation scripts, workflow integration | 1,100+ lines | Building automation, batch processing |
-| E: Advanced OpenSCAD Concepts | Gears, batch/statistical analysis, performance optimization, recursion | Optional | Specialized/advanced applications |
+| Appendix                           | Focus                                                                           | Use When                                     |
+| ---------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------- |
+| A: Comprehensive Slicing Guide     | PrusaSlicer, Bambu Studio, Cura, OrcaSlicer, and more                           | Slicing questions, slicer reference          |
+| B: Material Properties & Selection | PLA, PETG, ABS, TPU, Polycarbonate, Nylon — properties, settings, decision tree | Choosing material, troubleshooting prints    |
+| C: Tolerance Testing & QA Matrix   | Measurement procedures, functional testing, stack-up calculations               | Quality verification, measurement techniques |
+| D: PowerShell Integration          | Batch processing, automation scripts, workflow integration                      | Building automation, batch processing        |
+| E: Advanced OpenSCAD Concepts      | Gears, batch/statistical analysis, performance optimization, recursion          | Optional                                     | Specialized/advanced applications |
 
 ## Accessibility Features
 
@@ -283,23 +326,14 @@ This curriculum is designed for non-visual learners: text descriptions of all mo
 
 Upon completing this curriculum, students are ready for: advanced BOSL2 library features and parametric assemblies; multi-material printing (TPU, Nylon, etc.); mechanical assemblies with bearings, gears, and mechanisms; community contribution via shared designs and libraries; and professional applications in product design, prototyping, and manufacturing.
 
-## Curriculum Revision History
-
-| Version | Date | Changes |
-| --- | --- | --- |
-| 2.1 | Feb 2026 | Added Appendix E (Advanced OpenSCAD); Enhanced Lessons 3, 6, 7, 8, 9 with advanced topics |
-| 2.0 | Feb 2026 | Added Lesson 11 (Stakeholder Design) + 4 Appendices; Consolidated Units 0–3 content |
-| 1.0 | Feb 2026 | Initial comprehensive curriculum with 10 lessons + 5 projects |
-
 ---
 
-# Part III — All 11 Lessons
-
+# Part III — Using OpenSCAD for 3D Printing Curriculum
 
 # Lesson 1 — Environmental Configuration and the Developer Workflow
 
 **Estimated Time:** 60–90 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -319,7 +353,7 @@ Take your time here. The concepts in this first lesson are the foundation everyt
 
 By the end of this lesson you will be able to:
 
-- Install and verify the 3dMake toolchain on Windows, macOS, and Linux
+- Install and verify the 3dMake toolchain on Windows and Linux (MacOS requires a build from scratch and official support is not yet finalized)
 - Understand the OpenSCAD coordinate system and unit conventions
 - Write and build your first parametric `.scad` file
 - Read and interpret `3dm info` output without a visual display
@@ -355,7 +389,7 @@ Think of it this way: OpenSCAD is the engine, and 3dMake is the dashboard. You c
 
 You're going to be working with the **command line** throughout this course. If you've mostly used computers by clicking icons and menus, the command line can feel strange at first — but it's really just a different way to talk to your computer.
 
-Here is the basic idea: the command line is a text box where you type an instruction, press Enter, and the computer does something and prints a response. That's the whole interaction model. Type a command. Press Enter. Read the result. Repeat.
+Here is the basic idea: the command line is a text box where you type an instruction, press Enter, and the computer does something and prints a response. That's the whole interaction model. Type a command. Press Enter. Read the result. Repeat. The challenge is being sure that you and the command line are speaking the same language.
 
 For example, if you type `3dm build` and press Enter, the computer finds the 3dMake program, tells it to build your project, and then prints either a success message with your model's dimensions, or an error message with a line number pointing to the problem. This feedback loop is tight, fast, and precise — which is exactly what you want when you're designing and testing.
 
@@ -363,18 +397,19 @@ The command line has another advantage: it's repeatable. If you type a command t
 
 ### Which Terminal to Use
 
-**Windows users:** You have two options. **PowerShell** is the modern choice and the one we recommend — it's more powerful and consistent with what you'll find in professional environments. To open it, press the Windows key, type `PowerShell`, and press Enter. Alternatively, **Command Prompt (CMD)** is an older option that still works for basic tasks. This course provides code examples for both.
+**Windows users:** You have three options, two are built-in and one you have to install. **PowerShell** is the modern choice and the one we recommend — it's more powerful and consistent with what you'll find in professional environments. To open it, press the Windows key, type `PowerShell`, and press Enter. Alternatively, **Command Prompt (CMD)** is an older option that still works for basic tasks. There also is a version of `bash` that has been poreted from Linux to Windows as part of using a program called `git`. This course provides code examples and curriculum paths for each.
 
-**macOS users:** Open **Terminal** by going to Applications → Utilities → Terminal. It runs a shell called `bash` (or `zsh` on newer Macs — both work for this course).
+**macOS users:** Open **Terminal** by going to Applications → Utilities → Terminal. It runs a shell called `bash` (`zsh` is default on newer Macs — both `bash` and `zsh` work for this course and at the level we are working the syntax is the same).
 
-**Linux users:** You almost certainly already know how to open a terminal. If not, look for "Terminal" in your applications menu.
+**Linux users:** You almost certainly already know how to open a terminal. If not, look for "Terminal" in your applications menu. This course assumes you are using `bash` or `zsh`. I do not cover dsh or fish in this course.
 
 ### A Few Things to Know Before We Start
 
-- On macOS and Linux, **file paths use forward slashes**: `src/main.scad`
-- On Windows, **file paths use backslashes**: `src\main.scad`
-- Commands are **case-sensitive on macOS and Linux** — `3DM` and `3dm` are different things, and only the lowercase version will work
-- When a command says it "isn't found," it almost never means the software isn't installed — it usually means the terminal opened before the installation updated its search path (we'll cover how to fix this in Step 1)
+- On macOS, Linux, and Git Bash on Windows, **file paths use forward slashes**: `src/main.scad`
+- On Windows Powershell and COmmand Line, **file paths use backslashes**: `src\main.scad`
+- Commands are **case-sensitive on macOS and Linux** — `3DM` and `3dm` are different things, and only the lowercase version will work.
+  - On Windows some commands are case sensitive and some are not. So common sense is to treat them as all case sensitive.
+- When a command says a program "isn't found" but you did install it, it does not mean the software isn't installed — it usually means the terminal opened before the installation updated its search path (we'll cover how to fix this in Step 1)
 
 ---
 
@@ -394,10 +429,17 @@ The installer sets up both. Run the appropriate command for your operating syste
 
 **Linux and macOS (bash terminal):**
 
-```bash
-# Download and run the official installer
-curl -fsSL https://get.3dmake.dev | bash
+Download and run the most recent official insallation file from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
 
+I recommend choosing a location like `~/Applications/3dmake` as the target for extracting the files
+
+Do the following at the command line:
+
+```bash
+# Navigate to the file
+cd ~/Applications/3dmake
+# Run the initial setup to "install" the program
+./3dm setup
 # After it finishes, verify both tools are installed correctly.
 # Both of these commands should print version numbers, not errors.
 3dm --version
@@ -406,14 +448,18 @@ openscad --version
 
 **Windows (PowerShell):**
 
+Download and run the most recent official insallation file from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
+
+I recommend choosing a location like `~/3dmake` as the target for extracting the files
+
+Do the following at the command line:
+
 ```powershell
-# Install using Windows Package Manager
-winget install 3dMake.3dMake
-
-# If winget isn't available, download the installer directly:
-# https://3dmake.dev/install
-# Run the downloaded installer, then open a NEW PowerShell window.
-
+# Navigate to the file
+cd ~/3dmake
+# Run the initial setup to "install" the program
+./3dm.exe setup
+# After it finishes, verify both tools are installed correctly.
 # Verify the installation:
 3dm --version
 openscad --version
@@ -421,18 +467,31 @@ openscad --version
 
 **Windows (Command Prompt / CMD):**
 
-```cmd
+Download and run the most recent official insallation file from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
+
+I recommend choosing a location like `~/3dmake` as the target for extracting the files
+
+Do the following at the command line:
+
+```batch
+REM Navigate to the file
+cd ~/3dmake
+REM Run the initial setup to "install" the program
+./3dm.exe setup
 REM After installation, open a NEW CMD window and verify:
 3dm --version
 openscad --version
-
-REM If you see "not recognized as an internal or external command",
-REM see the troubleshooting section below.
 ```
 
 ### What the Version Numbers Mean
 
-When you run `3dm --version`, you should see output like `3dMake v1.4.2` (the exact number doesn't matter as long as something prints). When you run `openscad --version`, you should see `OpenSCAD version 2021.01` or later. If either command produces an error instead of a version number, something went wrong with the installation. Read the troubleshooting section before moving on.
+When you run `3dm --version`, you will see output like
+
+```pwsh
+3dm v0.9
+```
+
+The exact number doesn't matter as long as something prints. When you run `openscad --version`, you should see `OpenSCAD version 2021.01` or later. If either command produces an error instead of a version number, something went wrong with the installation. Read the troubleshooting section before moving on.
 
 ### Troubleshooting Installation
 
@@ -474,6 +533,8 @@ The **origin** — the point (0, 0, 0) — sits at the front-left corner of the 
 
 Because the Z axis points up and the origin is at bed level, any geometry with a negative Z coordinate would be "underground" — below the build plate. The printer can't print there. Part of your job when designing is to make sure your entire model lives in positive Z space (Z ≥ 0) so it sits on the bed correctly.
 
+If you use a negative Z in your build, slicing programs treat the lowest Z value as (Z = 0) by moving the entire model upwards in Z until the lowest Z value = 0.
+
 ### Units: Always Millimeters
 
 OpenSCAD has no built-in concept of units — it just works with numbers. The convention in this course (and in the 3D printing community generally) is that **all dimensions are in millimeters**. This is not optional or adjustable — it's a universal agreement.
@@ -491,6 +552,8 @@ Every 3D primitive in OpenSCAD has a `center` parameter. This is one of the most
 Neither option is wrong. You choose based on which makes your math simpler. For parts that should sit on the build plate, `center=false` is more natural. For parts you want to rotate around their center, `center=true` is much cleaner.
 
 ```openscad
+// "Note that in OpenSCAD code a "//" starts a comment. Any code to the right of this is ignored by the program
+//
 // Demonstrating center=false vs center=true
 // Build this and use 3dm info to see the bounding box of each shape.
 
@@ -500,7 +563,7 @@ cube([20, 20, 10]);                    // corner at origin; occupies X:0–20, Y
 // This cube straddles the origin — half of it is underground!
 // Move it sideways with translate() so it doesn't overlap the first one.
 translate([35, 0, 0])
-  cube([20, 20, 10], center=true);     // center at origin; occupies X:25–45, Y:-10–10, Z:-5–5
+  cube([20, 20, 10], center=true);     // center at origin (0,0,0); occupies X:25–45, Y:-10–10, Z:-5–5
 
 // A small red sphere marks where the origin is.
 color("red") sphere(r=1.5, $fn=16);
@@ -511,10 +574,19 @@ color("green") translate([0, 25, 0]) cylinder(r=0.5, h=1, $fn=8);  // +Y
 color("blue")  cylinder(r=0.5, h=25, $fn=8);                        // +Z
 ```
 
->[!NOTE]
->When using `center=true`, notice how the bounding box may show negative coordinates — that's geometry underground. In a real project, always use `translate()` to lift centered objects so their bottom is at Z=0.
+> [!NOTE]
+> When using `center=true`, notice how the bounding box may show negative coordinates — that's geometry underground.
 
-Build this code and run `3dm info` to read the bounding boxes.
+Build this code usifn `3dm build` and run `3dm info` to read the bounding boxes.
+
+You should get this result (AI description of the project has been turned off for this output):
+
+```pwsh
+Examining...
+    Mesh size: x=46.47, y=35.50, z=30.00
+    Mesh center: x=21.76, y=7.75, z=10.00
+Done.
+```
 
 ---
 
@@ -528,13 +600,13 @@ Here is what a project folder looks like:
 
 ```
 my_project/
-  src/          ← your .scad source files live here (YOU write and edit these)
-  build/        ← generated STL files go here (3dMake creates these automatically)
+  src/          ← your .scad source files live here (YOU write and edit these when you call `3dm edit-model`)
+  build/        ← generated STL files go here (3dMake creates these when you call `3dm build`)
   3dmake.toml   ← project configuration file (created when you initialize the project)
 ```
 
->[!IMPORTANT]
->Never manually edit files in the `build/` folder. Everything in there is generated automatically — changes will be overwritten the next time you run `3dm build`. All your actual work goes in `src/`.
+> [!IMPORTANT]
+> Never manually edit files in the `build/` folder. Everything in there is generated automatically — changes will be overwritten the next time you run `3dm build`. All your actual work goes in `src/`.
 
 ### Creating the Project
 
@@ -654,8 +726,8 @@ Let's understand each piece.
 
 **Description:** The plain-English description comes from an AI analysis of the geometry. It's useful for a quick sanity check, but it's not a replacement for checking the bounding box numbers yourself.
 
->[!CAUTION]
->If the bounding box shows **0 × 0 × 0**, the build failed and no geometry was produced. Check the output from `3dm build` — error messages will point to the specific line in your code.
+> [!CAUTION]
+> If the bounding box shows **0 × 0 × 0**, the build failed and no geometry was produced. Check the output from `3dm build` — error messages will point to the specific line in your code.
 
 ### Estimating Material Cost from Volume
 
@@ -689,7 +761,7 @@ Understanding how 3D printing actually works changes how you design. The printin
 When you run `3dm build`, OpenSCAD converts your `.scad` code into an STL file. STL stands for **Standard Triangle Language** (sometimes called Standard Tessellation Language). An STL file describes the _surface_ of your 3D model as a mesh of tiny triangles — like wrapping a shape in a piece of paper made of triangles. It contains no color, no material information, no internal structure — just the outer surface geometry.
 
 **Stage 2 — Slicing**
-A program called a **slicer** (PrusaSlicer and Cura are popular options) reads the STL and slices the model into horizontal layers, like cutting through a loaf of bread to see the shape of each slice. The thickness of each slice is the **layer height** — typically 0.15 to 0.30 mm.
+A program called a **slicer** (PrusaSlicer and Cura are popular options, 3dm uses a CLI version of PrusaSlicer internally) reads the STL and slices the model into horizontal layers, like cutting through a loaf of bread to see the shape of each slice. The thickness of each slice is the **layer height** — typically 0.15 to 0.30 mm.
 
 **Stage 3 — G-code**
 The slicer converts those layer slices into a file of **G-code** — a language of machine instructions telling the printer exactly what to do. G-code commands look like: "move the print head to X=50, Y=30; heat the nozzle to 215°C; extrude 2.3 mm of filament." The printer reads these instructions literally and executes them in sequence.
@@ -708,10 +780,8 @@ As each layer is deposited, it needs to cool and bond to the layer below it. Thi
 
 **Supports** — if your design has overhanging geometry (parts that extend horizontally without anything underneath them), the slicer can add temporary scaffolding called supports. These get removed after printing. The problem is that supports can leave rough surfaces and add both print time and material cost. Good design minimizes overhangs, which reduces or eliminates the need for supports.
 
-### First Prints Are Tests, Not Final Products
-
->[!TIP]
->You will almost never get a perfect-fitting part on the first print. Treat the first print of any new feature as a **test print**: a quick, small print specifically designed to tell you what needs to be adjusted. This saves time and material by testing deliberately rather than accidentally printing a large part only to find the hole is 0.3 mm too small.
+> [!TIP]
+> You will almost never get a perfect-fitting part on the first print. Treat the first print of any new feature as a **test print**: a quick, small print specifically designed to tell you what needs to be adjusted. This saves time and material by testing deliberately rather than accidentally printing a large part only to find the hole is 0.3 mm too small.
 
 ---
 
@@ -721,27 +791,17 @@ As each layer is deposited, it needs to cool and bond to the layer below it. Thi
 
 Professional software development runs on a tight feedback cycle: write some code, run it, check the result, fix any problems, and repeat. The shorter each cycle is, the faster you learn and the fewer problems pile up. Parametric 3D design works exactly the same way:
 
-```
 EDIT → BUILD → VERIFY → repeat
 
-Edit:   Change src/main.scad in any text editor. Save the file.
-Build:  3dm build   → compiles your .scad code into build/main.stl
-Verify: 3dm info    → confirms bounding box and volume match your design intent
-        (optional)  → open build/main.stl in your slicer for a visual check
-```
+- Edit: Change src/main.scad in any text editor. Save the file.
+- Build: 3dm build → compiles your .scad code into build/main.stl
+- Verify: 3dm info → confirms bounding box and volume match your design intent
+  - (optional) → open build/main.stl in your slicer for a visual check
 
->[!TIP]
->**Verify after every meaningful change**, not just when you think you're done. Frequent verification means any problem is always close to the last thing you changed. Verifying only at the end of a long session means sifting through dozens of changes to find one small mistake.
+````
 
-### Watch Mode: Automatic Rebuilds
-
-If you're iterating quickly on a design, you can tell 3dMake to automatically rebuild every time you save your source file:
-
-```bash
-3dm watch
-```
-
-Run this in one terminal window, keep your text editor open in another. Every time you save `src/main.scad`, the terminal automatically runs `3dm build` and reports the result. This creates a nearly real-time feedback loop: you save the file and, a few seconds later, see whether it built successfully and what the new dimensions are.
+> [!TIP]
+> **Verify after every meaningful change**, not just when you think you're done. Frequent verification means any problem is always close to the last thing you changed. Verifying only at the end of a long session means sifting through dozens of changes to find one small mistake.
 
 ---
 
@@ -753,7 +813,7 @@ Once your design uses variables for all its dimensions, you can generate differe
 
 ```bash
 openscad -D "width=50" -o build/main_wide.stl src/main.scad
-```
+````
 
 This builds a version with `width=50` instead of the `width=30` in the file — without changing the file. You can combine multiple overrides:
 
@@ -767,9 +827,8 @@ You can use a shell loop to generate a whole family of variants automatically:
 
 **Linux / macOS (bash):**
 
-```bash
->[!TIP]
->Use shell loops to generate multiple parametric variants automatically. Each run creates a separate STL file — a fast way to produce a tolerance test matrix without manually editing the source file.
+> [!TIP]
+> Use shell loops to generate multiple parametric variants automatically. Each run creates a separate STL file — a fast way to produce a tolerance test matrix without manually editing the source file.
 
 ```bash
 # Build four width variants — generates four separate STL files
@@ -777,7 +836,6 @@ for w in 20 30 40 50; do
   openscad -D "width=$w" -o "build/main_w${w}.stl" src/main.scad
   echo "Built: width=${w}mm → build/main_w${w}.stl"
 done
-```
 ```
 
 **Windows (PowerShell):**
@@ -811,7 +869,7 @@ When you return to a file weeks later, you will not remember what every variable
 
 OpenSCAD documentation has three levels:
 
-**File Header Comments** — a block comment at the very top of the file explaining: what this part is, what it's used for, print recommendations (layer height, infill, supports needed?), and which parameters are meant to be customized. This is the first thing anyone reads.
+**File Header Comments** — a block comment at the very top of the file explaining: what this part is, what it's used for, print recommendations (layer height, infill, supports needed?), and which parameters are meant to be customized. This is the first thing anyone reads. There is no standard for this, but I like to surround these in multiline commend indicators `/* multiline comments here */`
 
 **Parameter Line Comments** — every variable declaration should have a comment stating the unit and a reasonable range. This:
 
@@ -834,15 +892,15 @@ is dramatically more useful than just `wall = 2;`.
 // Material:    ~6 g PLA
 //
 // PARAMETERS TO CUSTOMIZE:
-// - box_width:   width of the matching box (default: 60 mm)
-// - box_depth:   depth of the matching box (default: 40 mm)
-// - lip_height:  how deep the lid lip fits into the box (default: 3 mm)
+//   box_width:   width of the matching box (default: 60 mm)
+//   box_depth:   depth of the matching box (default: 40 mm)
+//   lip_height:  how deep the lid lip fits into the box (default: 3 mm)
 //
 // PRINT RECOMMENDATIONS:
-// - Layer height: 0.20 mm
-// - Infill:       15%
-// - Supports:     not needed
-// - Orientation:  print flat, face-down
+//   Layer height: 0.20 mm
+//   Infill:       15%
+//   Supports:     not needed
+//   Orientation:  print flat, face-down
 // ==============================================================
 
 box_width  = 60;   // mm — must match box.scad box_width
@@ -873,7 +931,6 @@ This header comment takes about two minutes to write and saves many minutes of c
 | `center=true`     | Object straddles the specified position (center is at that point)           |
 | `3dm build`       | Compiles `src/main.scad` → `build/main.stl`                                 |
 | `3dm info`        | Reports bounding box, volume, triangle count, AI description                |
-| `3dm watch`       | Auto-rebuilds whenever you save a `.scad` file                              |
 | Bounding box      | Smallest rectangle containing the whole model — your #1 verification metric |
 | STL file          | Triangle-mesh representation of surface geometry                            |
 | FDM pipeline      | STL → Slicer → G-code → Print → Cool                                        |
@@ -947,27 +1004,20 @@ This header comment takes about two minutes to write and saves many minutes of c
 
 ## References and Helpful Resources
 
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
-
-- OpenSCAD Manual — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual
-
-- OpenSCAD Parametric Design — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#Variables
-
-- OpenSCAD Review — CadHub — https://learn.cadhub.xyz/blog/openscad-review/
-
-- PrusaSlicer Validation Tools — https://docs.prusa3d.com/en/guide/39012-validation-tools/
-
-- 3dmake e2e_test.py — https://github.com/tdeck/3dmake/blob/main/e2e_test.py
-
-- PrusaSlicer Documentation — https://docs.prusa3d.com/en/
-
-- OpenSCAD Non-Manifold FAQ — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/FAQ#Why_is_my_model_not_manifold.3F
+- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
+- OpenSCAD Manual — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual>
+- OpenSCAD Parametric Design — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#Variables>
+- OpenSCAD Review — CadHub — <https://learn.cadhub.xyz/blog/openscad-review/>
+- PrusaSlicer Validation Tools — <https://docs.prusa3d.com/en/guide/39012-validation-tools/>
+- 3dmake e2e_test.py — <https://github.com/tdeck/3dmake/blob/main/e2e_test.py>
+- PrusaSlicer Documentation — <https://docs.prusa3d.com/en/>
+- OpenSCAD Non-Manifold FAQ — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/FAQ#Why_is_my_model_not_manifold.3F>
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub
-- CodeSolutions Repository — https://github.com/ProgrammingWithOpenSCAD/CodeSolutions
-- OpenSCAD Quick Reference — https://programmingwithopenscad.github.io/quick-reference.html
+- CodeSolutions Repository — <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions>
+- OpenSCAD Quick Reference — <https://programmingwithopenscad.github.io/quick-reference.html>
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -1003,13 +1053,9 @@ By completing this project, you will:
 ### Tasks
 
 1. **Choose a simple model** (under 2 hours estimated print time) from Thingiverse or Printables. Download the STL.
-
 2. **Inspect the model** before loading it in the slicer. Look at it from all angles. Note any overhangs, thin features, or very small details. Write two short reasons why this model is appropriate for a first print — specifically, why it is not risky.
-
 3. **Load the model in your slicer**, select the classroom profile, and adjust settings only if necessary. Record the final print time estimate, layer height, infill %, and filament weight estimate.
-
 4. **Perform safety checks** using the checklist in Lesson 5 Appendix A (or the condensed checklist below). Start the print and **remain present and watching for the first 15 minutes**. Note what you observe about first-layer adhesion and extrusion quality.
-
 5. **After the print cools**, measure three critical dimensions using calipers (or by comparing against the model's stated dimensions). Record the measured values and any deviations.
 
 ### Condensed Pre-Print Safety Checklist
@@ -1078,7 +1124,9 @@ hollow_version();
 ## Appendix B: Your First Print — Student Documentation Template
 
 **Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
+
 **Date:** \_\_\_\_\_\_\_\_\_\_
+
 **Description:** Select a simple 3D model, configure slicer settings, and complete your first independent print job.
 
 ---
@@ -1105,16 +1153,16 @@ hollow_version();
 
 ### Printer Setup Log
 
-| Parameter          | Value |
-| ------------------ | ----- |
-| Printer model      |       |
-| Nozzle diameter    | mm    |
-| Nozzle temperature | °C    |
-| Bed temperature    | °C    |
-| Layer height       | mm    |
-| Infill %           |       |
-| Support settings   |       |
-| Print speed        | mm/s  |
+| Parameter          | Value | Units |
+| ------------------ | ----- | ----- |
+| Printer model      |       |       |
+| Nozzle diameter    |       | mm    |
+| Nozzle temperature |       | °C    |
+| Bed temperature    |       | °C    |
+| Layer height       |       | mm    |
+| Infill %           |       |       |
+| Support settings   |       |       |
+| Print speed        |       | mm/s  |
 
 ---
 
@@ -1181,7 +1229,7 @@ Measure three features on the printed part and compare to the model's stated dim
 | Reflection — measurements recorded; reflection is specific and shows learning |             |       |
 | **Total (0–9)**                                                               |             |       |
 
-**Resubmission:** If resubmitting, attach a paragraph explaining what was changed and why. The resubmission score replaces the original.
+**Resubmission:** If resubmitting, attach a paragraph explaining what was changed and why. The higher of the resubmission and the original will be kept.
 
 ---
 
@@ -1195,8 +1243,8 @@ This is the first physical print extension project in the course. Its primary pu
 
 **Model selection discipline.** The most common mistake at this stage is selecting a model that is too complex, too large, or has features that will fail (overhangs without supports, very thin walls, very fine detail). Push students to justify their selection in terms of printability, not just aesthetics.
 
->[!IMPORTANT]
->**The first 15 minutes rule:** students must stay and watch the printer for the first 15 minutes of every print. A print that lifts off the bed in the first few layers becomes a tangled failure — you must be present to catch it early.
+> [!IMPORTANT]
+> **The first 15 minutes rule:** students must stay and watch the printer for the first 15 minutes of every print. A print that lifts off the bed in the first few layers becomes a tangled failure — you must be present to catch it early.
 
 **Documentation enables iteration.** A student who records their slicer settings has something to start from on the next print. A student who doesn't has to guess. Reinforce this constantly.
 
@@ -1217,40 +1265,6 @@ This is the first physical print extension project in the course. Its primary pu
 
 ## Appendix D: 3dMake Setup and Workflow Guide
 
-### Installing 3dMake
-
-#### Prerequisites
-
-Before installing 3dMake, you need:
-
-- **Node.js** version 18 or higher — download from https://nodejs.org
-- **OpenSCAD** — download from https://openscad.org/downloads.html
-
-To verify both are installed, open a terminal (PowerShell on Windows, Terminal on macOS/Linux) and run:
-
-```bash
-node --version    # should print v18.0.0 or higher
-openscad --version  # should print a version number
-```
-
-If either command returns "not found," install that software first before continuing.
-
-#### Installing 3dMake
-
-```bash
-npm install -g 3dmake
-```
-
-Verify the installation:
-
-```bash
-3dm --version
-```
-
-You should see a version number. If you get "command not found," check that npm's global bin directory is in your PATH (see Troubleshooting below).
-
----
-
 ### Creating Your First Project
 
 ```bash
@@ -1259,10 +1273,10 @@ mkdir my_project
 cd my_project
 
 # Initialize a 3dMake project
-3dm init
+3dm setup
 ```
 
-`3dm init` creates this project structure:
+`3dm setup` creates this project structure:
 
 ```
 my_project/
@@ -1282,16 +1296,12 @@ my_project/
 
 Every design session follows this cycle:
 
-```
-edit src/main.scad  →  3dm build  →  3dm info  →  review / repeat
-```
+edit src/main.scad → 3dm build → 3dm info → review / repeat
 
 **`3dm build`** — compiles your `.scad` source into an STL file in the `build/` folder.
 
 ```bash
 3dm build              # standard build
-3dm build --clean      # delete build/ first, then rebuild
-3dm build --watch      # auto-rebuild whenever you save src/main.scad
 ```
 
 **`3dm info`** — reports on the most recently built STL: bounding box, volume, triangle count, and an AI-generated description.
@@ -1302,11 +1312,58 @@ edit src/main.scad  →  3dm build  →  3dm info  →  review / repeat
 3dm info --view top,front,isometric
 ```
 
-**`3dm preview`** — renders an image of your model to `build/preview.png`.
+**`3dm preview`** — renders a 2d image of your model to `build/main-3sil.svg`.
 
 **`3dm orient`** — recommends a print orientation based on your model's geometry.
 
 **`3dm slice`** — calls your configured slicer on the current STL.
+
+This returns information such as the following (note the recommendation I add supports as this file will not print correctly as designed without supports):
+
+```pwsh
+Using 3DMake project in parent directory...
+
+Slicing...
+    10 => Processing triangulated mesh
+    20 => Generating perimeters
+    30 => Preparing infill
+    45 => Making infill
+    65 => Searching support spots
+    69 => Alert if supports needed
+    print warning: Detected print stability issues:
+
+    main.stl
+    Floating object part, Floating bridge anchors, Loose extrusions, Long bridging extrusions
+
+    Consider enabling supports.
+    89 => Calculating overhanging perimeters
+    88 => Generating skirt and brim
+    90 => Exporting G-code to C:\Users\Ryan Hunsaker\test\build\test-main.gcode
+    [2026-04-27 10:17:03.967105] [0x00007ffc] [error]   GCodeProcessor encountered an invalid toolchange (T1000).
+    [2026-04-27 10:17:03.967105] [0x00007ffc] [error]   GCodeProcessor encountered an invalid toolchange (T1000).
+    [2026-04-27 10:17:04.014849] [0x00007ffc] [error]   GCodeProcessor encountered an invalid toolchange, maybe from a custom gcode (T255).
+    Slicing result exported to C:\Users\Ryan Hunsaker\test\build\test-main.gcode
+    print warning: Detected print stability issues:
+
+    main.stl
+    Floating object part, Floating bridge anchors, Loose extrusions, Long bridging extrusions
+
+    Consider enabling supports.
+
+    Hotend temperature: 220 Celsius
+    Estimated print time: 14 minutes 59 seconds
+    Filament used: about 1.54 meters (4.66 grams)
+    Extrusion stats (longest time first):
+        Internal infill               7 minutes 28 seconds (397 mm)
+        Solid infill                  5 minutes 39 seconds (314 mm)
+        Perimeter                     4 minutes 37 seconds (249 mm)
+        External perimeter            4 minutes 29 seconds (246 mm)
+        Bridge infill                 1 minute 22 seconds (108 mm)
+        Top solid infill              1 minute 1 second (56 mm)
+        Custom                        11 seconds (163 mm)
+        Overhang perimeter            6 seconds (5 mm)
+Done.
+```
 
 ---
 
@@ -1314,7 +1371,7 @@ edit src/main.scad  →  3dm build  →  3dm info  →  review / repeat
 
 | Command                  | Purpose                              | Notes                                    |
 | ------------------------ | ------------------------------------ | ---------------------------------------- |
-| `3dm init`               | Initialize a new project             | Run once per project                     |
+| `3dm setup`              | Initialize a new project             | Run once per project                     |
 | `3dm build`              | Compile source → STL                 | Run after every code change              |
 | `3dm info`               | Report dimensions and AI description | Always run before sending to print       |
 | `3dm preview`            | Render model image                   | Use for quick visual check               |
@@ -1324,63 +1381,11 @@ edit src/main.scad  →  3dm build  →  3dm info  →  review / repeat
 
 ---
 
-### Configuring Your Slicer
-
-Edit `3dmake.toml` in your project folder and add your slicer path:
-
-**Windows (PrusaSlicer):**
-
-```toml
-[slicer]
-path = "C:/Program Files/Prusa3D/PrusaSlicer/prusa-slicer.exe"
-```
-
-**macOS (PrusaSlicer):**
-
-```toml
-[slicer]
-path = "/Applications/PrusaSlicer.app/Contents/MacOS/PrusaSlicer"
-```
-
-**Linux:**
-
-```toml
-[slicer]
-path = "/usr/bin/prusa-slicer"
-```
-
----
-
-### Configuring Cost Estimation
-
-To use the cost estimation feature, set your filament density and spool price:
-
-```toml
-[filament]
-density = 1.24        # g/cm³ — PLA default (see Lesson 5 Appendix C for other materials)
-spool_weight = 1000   # grams per spool
-spool_price = 22.00   # dollars per spool
-```
-
-3dMake will then include cost estimates in `3dm info` output.
-
----
-
 ### Troubleshooting
 
 **`3dm: command not found` after installation**
 
-npm's global bin directory isn't in your PATH. Find the directory:
-
-```bash
-npm config get prefix
-```
-
-Add the `bin` subdirectory of that path to your PATH. On Windows, this is usually `C:\Users\YourName\AppData\Roaming\npm`. On macOS/Linux, it's usually `~/.npm-global/bin` or `/usr/local/bin`.
-
-**`No such file or directory: src/main.scad`**
-
-You either haven't run `3dm init`, or you're in the wrong folder. Run `pwd` to confirm your current location, and `ls` (or `dir` on Windows) to see if `src/` exists.
+You either haven't run `3dm setup`, or you're in the wrong folder. Run `pwd` to confirm your current location, and `ls` (or `dir` on Windows) to see if `src/` exists.
 
 **`OpenSCAD: command not found` during build**
 
@@ -1462,7 +1467,7 @@ _This curriculum is published as a web book using mdBook. This guide explains ho
 
 ### General Principles
 
-**Turn punctuation up.** All OpenSCAD syntax — semicolons, brackets, parentheses, commas — is meaningful. If your screen reader skips punctuation, you will miss syntax errors. Set to Most or All before coding.
+**Increase Level of Reported Punctuation** All OpenSCAD syntax — semicolons, brackets, parentheses, commas — is meaningful. If your screen reader skips punctuation, you will miss syntax errors. Set to Most or All before coding.
 
 **Navigate by line.** Arrow up and down through code one line at a time. Use `Ctrl + Left/Right` to move word by word within a line.
 
@@ -1497,7 +1502,7 @@ _This curriculum is published as a web book using mdBook. This guide explains ho
 | Find text           | `Ctrl + F`                       |
 | Toggle line comment | `Ctrl + /`                       |
 
-If NVDA stops reading the editor: press `NVDA + Space` to toggle between Browse and Application mode. For code editors, you want Application mode.
+If NVDA stops reading the content of the editor: press `NVDA + Space` to toggle between Browse and Application mode. For code editors, you want Application mode. Sometimes F6 then Shift+F6 quickly will also fix this issue.
 
 ---
 
@@ -1517,14 +1522,14 @@ If NVDA stops reading the editor: press `NVDA + Space` to toggle between Browse 
 
 **Navigation in VSCode with JAWS:**
 
-| Action            | Keys                        |
-| ----------------- | --------------------------- |
-| Move by character | `Left / Right Arrow`        |
-| Move by word      | `Ctrl + Left / Right Arrow` |
-| Move by line      | `Up / Down Arrow`           |
-| Go to line number | `Ctrl + G`                  |
-| Find text         | `Ctrl + F`                  |
-| Toggle comment    | `Ctrl + /`                  |
+| Action            | Keys                                        |
+| ----------------- | ------------------------------------------- |
+| Move by character | `Left Arrow` or `Right Arrow`               |
+| Move by word      | `Ctrl + Left Arrow` or `Ctrl + Right Arrow` |
+| Move by line      | `Up Arrow` or `Down Arrow`                  |
+| Go to line number | `Ctrl + G`                                  |
+| Find text         | `Ctrl + F`                                  |
+| Toggle comment    | `Ctrl + /`                                  |
 
 If JAWS stops reading the editor: press `JAWS Key + Z` to toggle Virtual mode off. You want Virtual mode OFF in VSCode.
 
@@ -1569,10 +1574,10 @@ You write code in VSCode. OpenSCAD runs in the background to render the preview.
 
 ### Install Required Software
 
-**Install VSCode** — download from https://code.visualstudio.com/
+**Install VSCode** — download from <https://code.visualstudio.com/>
 During installation: check "Add to PATH" and "Register Code as an editor for supported file types."
 
-**Install OpenSCAD** — download from https://openscad.org/downloads.html
+**Install OpenSCAD** — download from <https://openscad.org/downloads.html>
 Use the installer version (not portable). After installing, verify it's in your PATH:
 
 ```powershell
@@ -1654,35 +1659,31 @@ Save with `Ctrl + S`.
 
 ### Workflow Summary
 
-```
-1. Open VSCode workspace          code ~/Documents/OpenSCAD_Projects
-2. Open or create a .scad file    Ctrl + P → type filename
+1. Open VSCode workspace code ~/Documents/OpenSCAD_Projects
+2. Open or create a .scad file Ctrl + P → type filename
 3. Write OpenSCAD code
-4. Preview in OpenSCAD            Ctrl + Shift + B
-5. Export STL                     Ctrl + Shift + P → Tasks: Run Task → Export STL
+4. Preview in OpenSCAD Ctrl + Shift + B
+5. Export STL Ctrl + Shift + P → Tasks: Run Task → Export STL
 6. Open slicer, import STL, slice, export G-code
 7. Print
-```
 
 ---
 
 ### Troubleshooting
 
-| Problem                          | Solution                                                                                             |
-| -------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| OpenSCAD doesn't open            | Confirm `openscad --version` works in PowerShell                                                     |
-| VSCode not read by screen reader | JAWS: press `JAWS Key + Z` to exit Virtual mode; NVDA: click inside the editor once to confirm focus |
-| Can't find error in code         | Error includes a line number — use `Ctrl + G` to jump to it                                          |
-| `.scad` has an error             | `Alt + Tab` to OpenSCAD to read the console; arrow through the error message                         |
--e 
+| Problem                          | Solution                                                                                                                           |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| OpenSCAD doesn't open            | Confirm `openscad --version` works in PowerShell                                                                                   |
+| VSCode not read by screen reader | JAWS: press `JAWS Key + Z` to exit Virtual mode; NVDA: `NVDA Key + Spacebar` Either: click inside the editor once to confirm focus |
+| Can't find error in code         | Error includes a line number — use `Ctrl + G` to jump to it                                                                        |
+| `.scad` has an error             | `Alt + Tab` to OpenSCAD to read the console; arrow through the error message                                                       |
 
 ---
-
 
 # Lesson 2 — Geometric Primitives and Constructive Solid Geometry
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -1700,7 +1701,7 @@ By the end of this lesson you will be able to:
 
 - Use all core OpenSCAD 3D primitives: `cube`, `sphere`, `cylinder`, `polygon`
 - Combine shapes with `union()`, `difference()`, and `intersection()`
-- Apply the 0.001 mm offset rule and understand exactly why it exists
+- Apply the +/- 0.001 mm offset rule and understand exactly why it exists
 - Create 2D profiles with `polygon()` and extrude them into 3D geometry
 - Use `rotate_extrude()` and `linear_extrude()` to create complex rotational shapes
 - Use the four debugging modifier characters (`#`, `%`, `!`, `*`)
@@ -1724,7 +1725,7 @@ OpenSCAD has four main 3D primitives. Every complex shape you'll ever design in 
 
 Despite the name `cube`, this primitive creates any rectangular box — it doesn't have to be a perfect cube. The three numbers you provide are the dimensions along the X, Y, and Z axes respectively. `cube([30, 20, 10])` creates a box that is 30 mm wide (X), 20 mm deep (Y), and 10 mm tall (Z).
 
-The `center=true` option (which you learned about in Lesson 1) centers the box on the origin rather than placing one corner there. Remember: `center=false` is the default, and it's usually what you want for parts that should sit on the build plate.
+The `center=true` option (which you learned about in Lesson 1) centers the box on the origin rather than placing one corner there. Remember: `center=false` is the default, and it's usually what you want for parts that should sit on the build plate. It also makes math a lot easier if trying to connect multiple cubes together or dubtract one from another.
 
 ### `sphere(r=radius)` — The Round Ball
 
@@ -1765,7 +1766,7 @@ translate([40, 0, 10])
 
 // 3. A standard cylinder
 translate([70, 0, 0])
-  cylinder(h=20, r=8, $fn=32);
+  cylinder(h=20, r=8, $fn=32); //$fn=6 gives a hexagonal cylinder
 
 // 4. A tapered cylinder (cone) — wider at the bottom
 translate([100, 0, 0])
@@ -1800,7 +1801,7 @@ Think about how you'd make a box with a cylindrical hole drilled through it. You
 
 1. Create a box
 2. Create a cylinder the size of the hole
-3. Subtract the cylinder from the box
+3. **Subtract** the cylinder from the box
 
 That's `difference()`. Most real-world parts are designed exactly this way: start with a basic solid shape, then cut, drill, and hollow it using additional shapes as "tools."
 
@@ -1850,8 +1851,21 @@ difference() {
 }
 ```
 
->[!CAUTION]
->The most common mistake with `difference()` is accidentally listing the cutting tool first and the base second — the result will be empty or backwards. Always check: is the first child in your `difference()` the piece you want to **keep**?
+> [!CAUTION]
+> The most common mistake with `difference()` is accidentally listing the cutting tool first and the base second — the result will be empty or backwards. Always check: is the first item in your `difference()` the piece you want to **keep**?
+
+Make this and identify the problem
+
+```openscad
+// difference() — a cube with a cylindrical hole drilled through it
+// The cube is the base. The cylinder is the cutting tool.
+difference() {
+  translate([10, 10, -0.001])       // see Step 4 for why this -0.001 matters
+    cylinder(h=20.002, r=5, $fn=32);
+      cube([20, 20, 20]);
+
+}
+```
 
 ### `intersection()` — Keep Only What Overlaps
 
@@ -1903,7 +1917,7 @@ bracket_profile = [
   [0,  30]    // top-left
 ];
 
-// Extrude 5 mm along Z — this produces a 3D L-bracket
+// Extrude 5 mm along Z — this produces a 3D L-bracket that is 5 mm tall
 linear_extrude(height=5)
   polygon(bracket_profile);
 ```
@@ -1920,18 +1934,23 @@ Walk through those coordinates: starting at the bottom-left, moving right along 
 
 When you use `difference()` to cut one shape with another, there's a subtle problem that occurs when the cutting shape shares an exact face with the base shape — for example, when the bottom face of a cutting cylinder sits at exactly Z=0, the same as the bottom face of the box it's cutting.
 
-At that shared boundary, OpenSCAD faces an ambiguity: does this face belong to the outer solid or the inner (cutting) solid? The geometry engine can't make that decision cleanly, and the result is **undefined behavior** — sometimes a rendering artifact, sometimes a non-manifold edge that crashes the slicer, sometimes output that looks fine in preview but is broken in the exported STL.
+> [!TIP]
+> Reason through this idea using a thought experiment. Students 1-5 are in group A and students 5-9 are in group B. What group is student 5 in? This is what the computer tries and fails to solve when a cut shape and a shape to be cut share a plane.
+
+At that shared boundary, OpenSCAD faces an ambiguity: does this face belong to the outer solid or the inner (cutting) solid? The geometry engine can't make that decision cleanly, and the result is **undefined behavior** — sometimes a rendering artifact, sometimes a non-manifold edge that crashes the slicer, sometimes output that looks fine in preview but is broken in the exported STL. Visually, it looks like a shimmering sometimes transparent and sometimes opaque in the OpenSCAD Gui.
 
 This problem is called a **co-planar face problem**, and it's one of the most common sources of mysterious errors in OpenSCAD files.
 
 ### The Fix
 
->[!IMPORTANT]
->**The 0.001 mm offset rule:** whenever subtracting a shape, extend the cutting shape **0.001 mm past each face** it needs to pass through (0.002 mm total extra length). This eliminates co-planar face ambiguity that causes rendering artifacts and slicer errors.
+> [!IMPORTANT]
+> **The 0.001 mm offset rule:** whenever subtracting a shape, extend the cutting shape **0.001 mm past each face** it needs to pass through (0.002 mm total extra length). This eliminates co-planar face ambiguity that causes rendering artifacts and slicer errors.
 
-Specifically, move it **0.001 mm past the face on the entry side** and make it **0.002 mm longer total**.
+Specifically, move it **0.001 mm outside the face on the entry side** and make it **0.002 mm longer total** so it extends **0.001 mm past the exit side**.
 
 Why 0.001 mm? It's large enough to eliminate the ambiguity entirely — the cutting shape now unambiguously passes through the surface. It's also small enough that no printer in the world can detect it. The 0.001 mm offset is invisible in the physical print.
+
+Counterexample and Example of the 0.001 mm rule.
 
 ```openscad
 // WRONG — co-planar faces: the cutting shape is exactly as tall as the base
@@ -1941,7 +1960,9 @@ difference() {
   translate([1, 1, 0])      // cutting shape's bottom at Z=0, same as base
     cube([18, 18, 10]);     // cutting shape's top at Z=10, same as base's top
 }
+```
 
+```openscad
 // CORRECT — the 0.001 offset rule applied
 // The cutting shape starts 0.001 mm BELOW the base bottom
 // and extends 0.001 mm ABOVE the base top.
@@ -1952,7 +1973,7 @@ difference() {
 }
 ```
 
-**The pattern to memorize:** when cutting along the Z axis, use `translate([x, y, -0.001])` to start the cut 0.001 mm below the floor, and add 0.002 to the cutting shape's height (0.001 below + 0.001 above = 0.002 total extra). For cuts along the X or Y axis, apply the same logic to those dimensions instead.
+**The pattern to memorize:** when cutting along the Z axis, use `translate([x, y, -0.001])` to start the cut 0.001 mm below the floor, and add 0.002 to the cutting shape's height (0.001 below + 0.001 above = 0.002 total extra). For cuts along the X or Y axis, apply the same logic to those dimensions instead (e.g., `translate([-0.001, y, z])` for X axis and `translate([x, -0.001, z])` for Y axis).
 
 ---
 
@@ -1986,8 +2007,8 @@ difference() {
   cube([30, 30, 5]);   // ghost of a lid that will sit on top
 ```
 
->[!IMPORTANT]
->**F5 vs F6:** F5 runs a fast approximate preview that is NOT manifold-safe — good for quick visual checks only. F6 runs the full CGAL geometric kernel: slower, but accurate and manifold-safe. Always use **F6** (or `3dm build`) before sending anything to print.
+> [!IMPORTANT]
+> **F5 vs F6:** F5 runs a fast approximate preview that is NOT manifold-safe — good for quick visual checks only. F6 runs the full CGAL geometric kernel: slower, but accurate and manifold-safe. Always use **F6** (or `3dm build`) to create the necessary information to save the file as an stl using **F7** (also part of `3dm build`).
 
 ---
 
@@ -2009,7 +2030,7 @@ Two important optional parameters:
 The profile for `rotate_extrude()` must be positioned in **positive X space** — to the right of the Z axis. The X distance from the Z axis becomes the radius of the resulting shape. If you place a small circle at X=15 and rotate-extrude it, you get a torus (donut) with a 15 mm ring radius.
 
 ```openscad
-// linear_extrude: circle pushed straight up = a cylinder
+// linear_extrude: circle extruded straight up = a cylinder
 linear_extrude(height=20) {
   circle(r=10, $fn=32);
 }
@@ -2139,7 +2160,7 @@ Try changing `hole_r`, `slot_w`, or `width` and rebuilding. Watch how every feat
 10. True or False: the `*` modifier renders a shape as a transparent ghost for debugging purposes.
 11. Describe what `linear_extrude()` does and explain what the `twist` parameter changes.
 12. What is a co-planar face, and what problem does it cause in a `difference()` operation?
-13. If you want to subtract a cylinder from a cube and the cylinder is exactly as tall as the cube, what two adjustments do you need to make to ensure a clean cut?
+13. If you want to subtract a cylinder from a cube and the cylinder is exactly as tall as the cube, what two adjustments do you need to make to ensure a clean cut? Does the order matter?
 14. When using `polygon()`, what order should points be listed in, and why?
 15. What is the difference between combining two overlapping shapes with `union()` versus rendering two separate overlapping objects without any CSG operation?
 
@@ -2167,20 +2188,17 @@ Try changing `hole_r`, `slot_w`, or `width` and rebuilding. Watch how every feat
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Primitive Solids and Boolean Operations — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Primitive_Solids
-
-- OpenSCAD User Manual — CSG Modelling — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling
-
-- OpenSCAD User Manual — Transformations and Extrusions — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_the_2D_Subsystem
-
-- OpenSCAD User Manual — Modifier Characters — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Modifier_Characters
+- OpenSCAD User Manual — Primitive Solids and Boolean Operations — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Primitive_Solids>
+- OpenSCAD User Manual — CSG Modelling — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling>
+- OpenSCAD User Manual — Transformations and Extrusions — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_the_2D_Subsystem>
+- OpenSCAD User Manual — Modifier Characters — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Modifier_Characters>
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub — Chapters on CSG and primitives
-- CodeSolutions Repository — https://github.com/ProgrammingWithOpenSCAD/CodeSolutions — Worked examples for CSG, hull, and extrusions
-- OpenSCAD Quick Reference — https://programmingwithopenscad.github.io/quick-reference.html — All primitive and CSG syntax at a glance
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake — Build workflow reference
+- CodeSolutions Repository — <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions> — Worked examples for CSG, hull, and extrusions
+- OpenSCAD Quick Reference — <https://programmingwithopenscad.github.io/quick-reference.html> — All primitive and CSG syntax at a glance
+- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake> — Build workflow reference
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -2193,7 +2211,7 @@ _All supporting documents for Lesson 2 are included below. You do not need to op
 
 ## Appendix A: OpenSCAD Quick Reference — Cheat Sheet
 
-_Keep this handy during all OpenSCAD work. For full documentation: https://openscad.org/documentation.html_
+_Keep this handy during all OpenSCAD work. For full documentation: <https://openscad.org/documentation.html>_
 
 ---
 
@@ -2319,21 +2337,8 @@ rotate_extrude()                        // solid of revolution
 |   `!`    | Render ONLY this shape            | Isolating one component for inspection       |
 |   `*`    | Disable (ignore) this shape       | Temporarily removing geometry                |
 
->[!WARNING]
->Always remove all modifier characters (`#`, `%`, `!`, `*`) before exporting your final STL. Leaving them in can alter or omit geometry in the exported file.
-
----
-
-### Useful Functions
-
-```openscad
-len([a, b, c])     // returns 3 — length of a vector
-sqrt(25)           // returns 5
-pow(2, 8)          // returns 256 (2^8)
-abs(-5)            // returns 5
-min(3, 5, 1)       // returns 1
-max(3, 5, 1)       // returns 5
-```
+> [!WARNING]
+> Always remove all modifier characters (`#`, `%`, `!`, `*`) before exporting your final STL. Leaving them in can alter or omit geometry in the exported file.
 
 ---
 
@@ -2343,7 +2348,8 @@ max(3, 5, 1)       // returns 5
 | ---------- | -------------------------------------------------------------- |
 | `F5`       | Preview — fast, approximate (use for checking while designing) |
 | `F6`       | Full render — exact, required before export                    |
-| `Ctrl + S` | Save                                                           |
+| `F7`       | Export as STL formatted file                                   |
+| `Ctrl + S` | Save the .scad file                                            |
 | `Ctrl + Z` | Undo                                                           |
 | `F3`       | Reset camera view                                              |
 
@@ -2352,7 +2358,7 @@ max(3, 5, 1)       // returns 5
 ### Export Workflow
 
 1. Press `F6` (full render — wait for it to complete)
-2. File → Export → Export as STL
+2. File → Export → Export as STL (or `F7`)
 3. Save with a descriptive filename: `projectname_v2.stl`
 4. Run `3dm info` on the exported file to verify dimensions before slicing
 
@@ -2377,7 +2383,7 @@ By completing this project, you will:
 
 ### Materials
 
-- Online repository access (Thingiverse, Printables), slicer, printer, filament
+- Online repository access (Thingiverse, Printables, Yeggi, Cults3d), slicer, printer, filament
 
 ### Tasks
 
@@ -2405,9 +2411,9 @@ If adapting a model using OpenSCAD, use this scaling scaffold as a starting poin
 // Import an STL and apply modifications parametrically.
 
 // ---- Parameters ----
-scale_factor  = 1.5;    // 1.0 = original, 1.5 = 50% larger, 0.75 = 25% smaller
-add_mount     = true;   // set false to skip the mount hole
-mount_r       = 2.5;    // mm — mount hole radius (for M5 screw: 2.75mm)
+scale_factor  = 1.5;        // 1.0 = original, 1.5 = 50% larger, 0.75 = 25% smaller
+add_mount     = true;       // set false to skip the mount hole
+mount_r       = 2.5;        // mm — mount hole radius (for M5 screw: 2.75mm)
 mount_pos     = [25, 0, 0]; // mm — position of mount hole center
 
 // ---- Base Model ----
@@ -2436,8 +2442,8 @@ difference() {
 
 ## Appendix C: Bonus Print — Student Documentation Template
 
-**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-**Date:** \_\_\_\_\_\_\_\_\_\_
+**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+**Date:** \_\_\_\_\_\_\_\_\_\_  
 **Description:** Modify an existing 3D model and document the design changes and print outcomes.
 
 ---
@@ -2463,7 +2469,7 @@ difference() {
 
 |        Variant         | Scale or Change | Est. print time | Est. filament (g) | Key dimensions |
 | :--------------------: | --------------- | :-------------: | :---------------: | -------------- |
-|  Original (reference)  | —               |                 |                   |                |
+|  Original (reference)  |                 |                 |                   |                |
 | V1 (your modification) |                 |                 |                   |                |
 |     V2 (optional)      |                 |                 |                   |                |
 
@@ -2541,13 +2547,9 @@ By completing this project, you will:
 ### Tasks
 
 1. **Write a problem statement.** Interview a potential user (yourself counts) and write one paragraph that describes: what the person is trying to do, what gets in their way, and what a successful solution would let them do. Be specific — "it's inconvenient" is not a problem statement; "my headphones fall off the desk and the cable gets tangled" is.
-
 2. **Research candidate models.** Search Thingiverse or Printables for at least three options that could address your problem. List all three in your documentation, explain why each could or couldn't work, and justify your final selection.
-
 3. **Adapt the model.** Make at least one modification — scale it, add or remove features, combine it with another model, or change the material or infill for durability. Document your changes in a short changelog with one entry per change.
-
 4. **Print and test.** Run a supervised test of the prototype. Log any failures and what corrective actions you took. If the first print fails or doesn't work as intended, print again with documented changes.
-
 5. **Write a final report** summarizing: how well the prototype performed, measured deviations from specifications, any remaining limitations, and what you would change in the next iteration.
 
 ### Probing Questions
@@ -2559,8 +2561,8 @@ By completing this project, you will:
 
 ## Appendix E: Real-Life Problem Solver — Student Documentation Template
 
-**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-**Date:** \_\_\_\_\_\_\_\_\_\_
+**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+**Date:** \_\_\_\_\_\_\_\_\_\_  
 **Description:** Adapt an existing 3D model to solve a real problem, with documented design changes and test results.
 
 ---
@@ -2579,7 +2581,7 @@ Write one paragraph. Who is the user? What are they trying to do? What gets in t
 |  2  |                       |                   |                       |
 |  3  |                       |                   |                       |
 
-**Selected model:** \_\_\_\_\_ **Reason for selection:**
+**Selected model:** \_\_\_\_\_ **Reason for selection:** \_\_\_\_\_
 
 ---
 
@@ -2673,7 +2675,7 @@ How did you test whether the prototype solves the problem? What did you observe?
 | Documentation — changelog complete; test results recorded; reflection specific |             |       |
 | **Total (0–9)**                                                                |             |       |
 
-**Resubmission:** attach a paragraph explaining what was changed and why. Resubmission score replaces original.
+**Resubmission:** attach a paragraph explaining what was changed and why. Highest score of resubmission score and original is kept.
 
 ---
 
@@ -2705,15 +2707,13 @@ This is the most demanding extension project in Lessons 1–2. It requires stude
 **Common weak areas:** problem statements that are really solution statements, modification changelogs with a single vague entry, and test sections that say "it worked fine" without any specifics. Push back on all three in feedback.
 
 **Extension for advanced students:** have them repeat the design loop with a second user who is different from themselves. Designing for yourself and discovering that a different person has different constraints is a powerful experience.
--e 
 
 ---
-
 
 # Lesson 3 — Parametric Architecture and Modular Libraries
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -2830,8 +2830,8 @@ name(value1, value2);
 
 ### The DRY Principle
 
->[!TIP]
->**DRY — Don't Repeat Yourself.** If geometry is defined in one module, changing it once updates everywhere it's used. Copy-pasting the same geometry multiple times means one missed update creates inconsistency across your design.
+> [!TIP]
+> **DRY — Don't Repeat Yourself.** If geometry is defined in one module, changing it once updates everywhere it's used. Copy-pasting the same geometry multiple times means one missed update creates inconsistency across your design.
 
 If you need four mounting holes in a plate, you could write the cylinder code four times — once for each hole. But now if you need to change the hole size, you have to change it in four places. If you miss one, your design is inconsistent. If you need to add a fifth hole later, you have to remember the pattern and paste it again.
 
@@ -2905,10 +2905,21 @@ safe_cylinder(5, 20);          // fine
 // safe_cylinder(5, 20, fn=1); // STOPS: "fn must be at least 3, got: 1"
 ```
 
+If I run safe_cylinder(-3, 20) as the last line, I get the following in my Console:
+
+```pwsh
+Compiling design (CSG Tree generation)...
+ERROR: Assertion '(is_num(r) && (r > 0))' failed: "safe_cylinder: radius must be a positive number, got: -5" in file ., line 3
+TRACE: called by 'assert' in file ., line 3
+TRACE: call of 'safe_cylinder(r = -5, h = 20, fn = 32)' in file ., line 1
+TRACE: called by 'safe_cylinder' in file ., line 15
+Compiling design (CSG Products generation)...
+```
+
 The `str()` function assembles a string from multiple values — very useful for error messages that include the bad value so the user knows exactly what to fix.
 
->[!TIP]
->Add `assert()` statements to every module at the very top of the module body, before any geometry. This turns bad-input problems into clear, descriptive messages instead of mysterious rendering failures.
+> [!TIP]
+> Add `assert()` statements to every module at the very top of the module body, before any geometry. This turns bad-input problems into clear, descriptive messages instead of mysterious rendering failures.
 
 ---
 
@@ -2924,8 +2935,10 @@ There are two ways to load a library:
 
 **`include <filename.scad>`** — executes the **entire file**, including any top-level geometry statements. If the library file has a `cube([10,10,10]);` at the top level, that cube will appear in your model. Use this sparingly and intentionally.
 
->[!NOTE]
->`use <file.scad>` imports only module/function **definitions** — top-level geometry in the file is ignored. `include <file.scad>` executes the **entire file** including any top-level geometry. Prefer `use` for libraries to avoid unexpected geometry.
+> [!NOTE]
+> `use <file.scad>` imports only module/function **definitions** — top-level geometry in the file is ignored. `include <file.scad>` executes the **entire file** including any top-level geometry. Prefer `use` for libraries to avoid unexpected geometry.
+
+The file with definitions I will use later:
 
 ```openscad
 // === lib/hardware.scad ===
@@ -2953,6 +2966,8 @@ module m3_standoff(height=5, outer_d=6) {
   }
 }
 ```
+
+I call `use` to import the definitions from the above file without accidentally importing any actual bolts/screws that may exist later on in the file.
 
 ```openscad
 // === src/main.scad ===
@@ -3068,8 +3083,8 @@ Before we look at examples, there is an important rule in OpenSCAD that trips up
 
 **Modules create geometry. They cannot return values.**
 
->[!IMPORTANT]
->This is a hard boundary in OpenSCAD: **Functions return values — they cannot create geometry. Modules create geometry — they cannot return values.** A function with a `cylinder()` call inside it won't work, and a module cannot return a value.
+> [!IMPORTANT]
+> This is a hard boundary in OpenSCAD: **Functions return values — they cannot create geometry. Modules create geometry — they cannot return values.** A function with a `cylinder()` call inside it won't work, and a module cannot return a value.
 
 ```openscad
 // FUNCTION — computes and returns a value
@@ -3126,7 +3141,7 @@ A **list comprehension** is a compact way to generate a list by applying an expr
 
 The syntax:
 
-```
+```openscad
 [for (variable = range_or_list) expression]
 [for (variable = range_or_list) if (condition) expression]
 ```
@@ -3189,9 +3204,6 @@ min(3, 7, 2)    // 2    — smallest of all arguments
 pow(2, 8)       // 256  — 2 raised to the power 8
 sqrt(144)       // 12   — square root
 
->[!IMPORTANT]
->OpenSCAD trigonometry uses **degrees, not radians**. `sin(90)` = 1 (correct). If you pass radians by mistake, your geometry will be wildly wrong.
-
 // Trigonometry — CRITICAL: OpenSCAD uses DEGREES, not radians
 sin(90)         // 1    — sine of 90 degrees
 cos(0)          // 1    — cosine of 0 degrees
@@ -3199,9 +3211,10 @@ tan(45)         // 1    — tangent of 45 degrees
 atan2(1, 1)     // 45   — arctangent of y/x, safe for all quadrants
 ```
 
-The `atan2(y, x)` function deserves special attention. When you need to convert a (x, y) position to an angle, the naive approach `atan(y/x)` fails when `x` is zero or negative (wrong quadrant). `atan2(y, x)` handles all cases correctly by taking both components separately.
+> [!IMPORTANT]
+> OpenSCAD trigonometry uses **degrees, not radians**. `sin(90)` = 1 (correct). If you pass radians by mistake, your geometry will be wildly wrong.
 
----
+## The `atan2(y, x)` function deserves special attention. When you need to convert a (x, y) position to an angle, the naive approach `atan(y/x)` fails when `x` is zero or negative (wrong quadrant). `atan2(y, x)` handles all cases correctly by taking both components separately
 
 ## Step 8 — Controlling Curve Quality with `$fn`, `$fa`, `$fs`
 
@@ -3281,20 +3294,20 @@ $fs = 0.5;  // minimum 0.5mm face size (more faces on small features)
 11. Build a parametric snap-fit lid for a rectangular box using `for` loops to generate evenly-spaced snap clips around the perimeter.
 12. Write a module that takes a list of 3D coordinate vectors as input and draws a connecting chain of cylinders between consecutive points.
 13. Create a parametric honeycomb panel module. Parameters: `rows`, `cols`, `cell_r`, `wall_t`, `depth`. Each cell should be a hexagonal through-hole.
-14. Research the BOSL2 library (https://github.com/BelfrySCAD/BOSL2). Find two modules that solve problems you've encountered in this course, and write a documented example using each.
+14. Research the BOSL2 library [https://github.com/BelfrySCAD/BOSL2](https://github.com/BelfrySCAD/BOSL2). Find two modules that solve problems you've encountered in this course, and write a documented example using each.
 15. Design a comprehensive test suite: build 10 small parametric shapes each specifically testing a different OpenSCAD feature from this lesson. Export them all from one main file that uses a `for` loop.
 
 ---
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Modules — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules
+- OpenSCAD User Manual — Modules — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules>
 
-- OpenSCAD User Manual — For Loops and Conditionals — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#for_loop
+- OpenSCAD User Manual — For Loops and Conditionals — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#for_loop>
 
-- BOSL2 Library Documentation — https://github.com/BelfrySCAD/BOSL2/wiki
+- BOSL2 Library Documentation — <https://github.com/BelfrySCAD/BOSL2/wiki>
 
-- OpenSCAD User Manual — Include and Use — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement
+- OpenSCAD User Manual — Include and Use — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement>
 
 ### Supplemental Resources
 
@@ -3302,15 +3315,14 @@ $fs = 0.5;  // minimum 0.5mm face size (more faces on small features)
 - [CodeSolutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) — Worked examples for parametric architecture
 - [BOSL2 GitHub Repository](https://github.com/BelfrySCAD/BOSL2) — Comprehensive parametric library
 - [3DMake GitHub Repository](https://github.com/tdeck/3dmake) — Build workflow reference
--e 
+  -e
 
 ---
-
 
 # Lesson 4 — AI-Enhanced Verification and Multimodal Feedback
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -3426,7 +3438,7 @@ The very first thing to check after every build. If these numbers don't match yo
 
 **Level 2 — Slicer Layer Preview**
 
-Open `build/main.stl` in your slicer (PrusaSlicer, Cura, etc.) and step through layers one at a time. Each layer is a cross-section through your model at a specific height — like slicing a loaf of bread and looking at each slice. This reveals:
+Open `build/main.stl` in your slicer (PrusaSlicer, Cura, etc.) and step through layers one at a time. Each layer is a cross-section through your model at a specific height — like slicing a loaf of bread and looking at each slice. This can be taking screenshots and feeding into an AI or using a friend or coworker. This reveals:
 
 - Wall thicknesses that the bounding box can't show
 - Internal geometry and cavities
@@ -3464,7 +3476,7 @@ When you verify a design feature, record which method you used and what it confi
 
 Here's a simple verification log format:
 
-```
+```plaintext
 DESIGN VERIFICATION LOG
 Project: phone_stand_v2.scad
 Date: 2026-03-10
@@ -3494,11 +3506,11 @@ This log takes a few minutes to fill in, and it demonstrates exactly the kind of
 
 AI tools like Claude or ChatGPT can write OpenSCAD code from a plain-English description. This is a genuinely useful way to get a first draft of a design quickly. But **AI-generated OpenSCAD code is frequently wrong in subtle ways.** The code will look plausible, it may even build without errors, and it can still produce geometry that doesn't match your intent or that will fail in the slicer.
 
-The most common errors AI makes in OpenSCAD:
+The most common errors AI makes in OpenSCAD (As of April 2026 using Anthropic Claude, OpenAI ChatGPT, and Google Gemini):
 
 **Forgetting the 0.001 co-planar rule.** The AI writes a `difference()` with touching surfaces and omits the critical offset. The code looks correct, but the cut may produce rendering artifacts or non-manifold geometry.
 
-**Python-style variable reassignment.** The AI writes `x = 5; x = x + 1;` as if variables work like Python, which doesn't work in OpenSCAD (remember from Lesson 3: last assignment wins at parse time).
+**Python-style variable reassignment.** The AI writes `x = 5; x = x + 1;` or `x = 5; x = x++;` as if variables work like Python, which doesn't work in OpenSCAD (remember from Lesson 3: last assignment wins at parse time).
 
 **Wrong transform order.** The AI reverses the order of `translate()` and `rotate()`, producing geometry in the wrong location. In OpenSCAD, transforms are applied in reverse order — `rotate()` then `translate()` is not the same as `translate()` then `rotate()`.
 
@@ -3510,7 +3522,7 @@ The most common errors AI makes in OpenSCAD:
 
 Apply these checks to every piece of AI-generated OpenSCAD code before treating it as correct:
 
-```
+```plaintext
 AI CODE VERIFICATION CHECKLIST
 Run each check in order. Do not proceed if a check fails.
 
@@ -3549,7 +3561,7 @@ The quality of AI output depends heavily on the quality of your input prompt. A 
 
 **Weak prompt:**
 
-```
+```plaintext
 Review my OpenSCAD code.
 ```
 
@@ -3557,7 +3569,7 @@ This gives the AI almost no information about what to look for. The response wil
 
 **Strong prompt:**
 
-```
+```plaintext
 I have an OpenSCAD model of a parametric mounting bracket with two M3 bolt holes.
 Parameters: width=40, height=30, depth=8, hole_r=3.2.
 
@@ -3695,20 +3707,20 @@ For the purposes of this certification course, all your projects are learning wo
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Manifold and Geometry Validation — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language
+- OpenSCAD User Manual — Manifold and Geometry Validation — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language>
 
-- Anthropic Prompt Engineering Guide — https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
+- Anthropic Prompt Engineering Guide — <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview>
 
 - Data Privacy — Review your AI provider's terms of service and data retention policy before submitting proprietary design files.
 
-- NIST AI Risk Management Framework (AI RMF 1.0) — https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf
+- NIST AI Risk Management Framework (AI RMF 1.0) — <https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf>
 
 ### Supplemental Resources
 
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
-- Anthropic Prompt Engineering Overview — https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview
-- NIST AI RMF — https://airc.nist.gov/Home
-- PrusaSlicer Documentation — https://docs.prusa3d.com/en/
+- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
+- Anthropic Prompt Engineering Overview — <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview>
+- NIST AI RMF — <https://airc.nist.gov/Home>
+- PrusaSlicer Documentation — <https://docs.prusa3d.com/en/>
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -3727,7 +3739,10 @@ _All supporting documents for Lesson 4 are included below. You do not need to op
 
 This extension project connects the verification and AI-assisted feedback skills from Lesson 4 to a physical object where design precision is directly measurable: a six-sided die. A fair die is one of the most demanding manufactured objects you can design — it requires uniform geometry, controlled mass distribution, and a randomness that can be tested statistically. The design is straightforward. The verification is where the real learning happens.
 
-This project also inverts the lesson's AI-skepticism lesson in a productive way: it uses AI as part of the design ideation process, then requires _you_ to verify every claim with physical testing and statistical analysis. A die that the AI describes as "balanced and symmetric" should be tested with 100+ real rolls. If the data disagrees with the description, the data wins.
+This project also inverts the lesson's AI-skepticism lesson in a productive way: it uses AI as part of the design ideation process, then requires _you_ to verify every claim with physical testing and statistical analysis. A die that the AI describes as "balanced and symmetric" should be tested with 100+ real rolls.
+
+> [!IMPORTANT]
+> If real world data disagrees with an AI generated description, the data wins.
 
 ### Learning Objectives
 
@@ -3869,15 +3884,15 @@ die();
 6. True or False: A perfectly fair die must have uniform weight distribution throughout, including the internal structure.
 7. Describe two design approaches for rendering the face numbers: one using `difference()` to create sunken pips, one using `linear_extrude()` for raised numbers.
 8. Your die lands on face 1 significantly more often than any other face in 100 rolls. Name two possible physical causes and describe how you would diagnose each.
-9. If you increase infill from 15% to 50%, what is the primary effect? (A) Dramatically longer print time, same weight (B) Significantly longer print time and higher weight (C) Same weight, different surface finish. Answer: B
+9. If you increase infill from 15% to 50%, what is the primary effect? (A) Dramatically longer print time, same weight (B) Significantly longer print time and higher weight (C) Same weight, different surface finish.
 10. Explain why a fair die is an excellent test of manufacturing precision. How does this project connect design decisions to real-world measurable outcomes?
 
 ---
 
 ## Appendix B: Dice, Dice, Dice — Student Documentation Template
 
-**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-**Date:** \_\_\_\_\_\_\_\_\_\_
+**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+**Date:** \_\_\_\_\_\_\_\_\_\_  
 **Description:** Design parametric 3D-printed dice and test for fairness through physical testing and statistical analysis.
 
 ---
@@ -4093,7 +4108,7 @@ Use each example below as a debugging exercise. Identify the flaw, fix it, and v
 The AI claims OpenSCAD has a `rounded_cube()` built-in. It does not.
 
 ```openscad
-// ❌ FLAWED — rounded_cube() does not exist in OpenSCAD
+// FLAWED — rounded_cube() does not exist in OpenSCAD. Somewhere on GitHub someone has developed a personal project with that name
 module enclosure() {
   rounded_cube(size=[60, 40, 20], r=3);
   translate([10, 10, 0]) cylinder(h=20, r=2, center=false);
@@ -4104,7 +4119,7 @@ enclosure();
 **Fixed version** — use `minkowski()` with a `sphere()` instead:
 
 ```openscad
-// ✅ CORRECT — native minkowski approach for rounded corners
+// CORRECT — native minkowski approach for rounded corners
 module rounded_box(x=60, y=40, z=20, r=3) {
   minkowski() {
     cube([x - 2*r, y - 2*r, z - 2*r]);
@@ -4123,7 +4138,7 @@ _What to learn from this:_ If an AI gives you OpenSCAD code that uses a function
 When the subtracted shape shares an exact face with the outer shape, some renderers produce Z-fighting artifacts and unreliable geometry.
 
 ```openscad
-// ❌ FLAWED — bottom faces are coplanar (Z=0 on both shapes)
+// FLAWED — bottom faces are coplanar (Z=0 on both shapes)
 difference() {
   cube([30, 30, 10]);
   translate([5, 5, 0]) cube([20, 20, 10]);
@@ -4133,7 +4148,7 @@ difference() {
 **Fixed version** — extend the subtracted shape by 0.001 mm past each coplanar face:
 
 ```openscad
-// ✅ CORRECT — 0.001 overshoot on both Z faces
+// CORRECT — 0.001 overshoot on both Z faces
 difference() {
   cube([30, 30, 10]);
   translate([5, 5, -0.001]) cube([20, 20, 10 + 0.002]);
@@ -4149,7 +4164,7 @@ _What to learn from this:_ Any time a `difference()` subtraction should go all t
 Rotate-then-translate and translate-then-rotate produce different results. AI often gets this wrong.
 
 ```openscad
-// ❌ FLAWED — rotate applied before translate; hole ends up in wrong position
+// FLAWED — rotate applied before translate; hole ends up in wrong position
 module bracket(width=40, height=20, th=3, hole_r=3) {
   difference() {
     cube([width, th, height]);
@@ -4164,7 +4179,7 @@ bracket();
 **Fixed version** — the translate sets the center, then the rotate orients correctly:
 
 ```openscad
-// ✅ CORRECT — translate to center, then rotate into the correct plane
+// CORRECT — translate to center, then rotate into the correct plane
 module bracket(width=40, height=20, th=3, hole_r=3) {
   difference() {
     cube([width, th, height]);
@@ -4185,7 +4200,7 @@ _What to learn from this:_ Always check hole placement in the slicer layer view.
 OpenSCAD is a declarative language — variables are not mutable. AI trained on Python, JavaScript, or other imperative languages sometimes generates code that assumes variables can be updated.
 
 ```openscad
-// ❌ FLAWED — OpenSCAD does not allow reassignment of variables
+// FLAWED — OpenSCAD does not allow reassignment of variables
 width = 60;
 width = width + 10; // This silently uses the LAST assignment; the first is ignored
 cube([width, 20, 10]);
@@ -4194,7 +4209,7 @@ cube([width, 20, 10]);
 **Fixed version** — use distinct names for derived values:
 
 ```openscad
-// ✅ CORRECT — derive a new variable from the base value
+// CORRECT — derive a new variable from the base value
 base_w  = 60;
 final_w = base_w + 10;
 cube([final_w, 20, 10]);
@@ -4209,7 +4224,7 @@ _What to learn from this:_ In OpenSCAD, a variable that appears assigned twice w
 AI-generated modules often lack parameter validation. When given edge-case values, the geometry inverts silently.
 
 ```openscad
-// ❌ FLAWED — no validation; wall=12 on a w=20 box inverts the geometry
+// FLAWED — no validation; wall=12 on a w=20 box inverts the geometry
 module box(w=30, d=30, h=20, wall=3) {
   difference() {
     cube([w, d, h]);
@@ -4223,7 +4238,7 @@ box(w=20, d=20, h=15, wall=12); // wall larger than half the width — silent fa
 **Fixed version** — add `assert()` to catch invalid combinations:
 
 ```openscad
-// ✅ CORRECT — assert() catches invalid parameters before geometry is computed
+// CORRECT — assert() catches invalid parameters before geometry is computed
 module box(w=30, d=30, h=20, wall=3) {
   assert(w > 0 && d > 0 && h > 0, "All dimensions must be positive");
   assert(wall > 0 && wall < min(w, d) / 2,
@@ -4246,7 +4261,7 @@ _What to learn from this:_ `assert()` is your safety net for parametric designs.
 Two compound errors: a function that doesn't exist (`fillet_text()`), and a text position that extends outside the model face.
 
 ```openscad
-// ❌ FLAWED — fillet_text() does not exist; second translate puts text outside the body
+// FLAWED — fillet_text() does not exist; second translate puts text outside the body
 difference() {
   cube([80, 40, 6]);
   translate([0, 0, 0])
@@ -4259,7 +4274,7 @@ difference() {
 **Fixed version** — use standard `text()` with `linear_extrude()`, centered on the face:
 
 ```openscad
-// ✅ CORRECT — centered debossed text using standard OpenSCAD functions
+// CORRECT — centered debossed text using standard OpenSCAD functions
 module top_deboss(txt="RYAN", size=10, depth=1) {
   translate([40, 20, 6 + 0.001])  // position at center of top face
     linear_extrude(height=depth)
@@ -4281,7 +4296,7 @@ _What to learn from this:_ Text positioning requires knowing the face center, no
 AI-generated box and lid designs often omit clearance, making the lid impossible to remove after printing.
 
 ```openscad
-// ❌ FLAWED — zero clearance means the lid walls will fuse to the box walls
+// FLAWED — zero clearance means the lid walls will fuse to the box walls
 module box_outer(sz=[60, 40, 20], wall=2) { cube(sz); }
 module box_inner(sz=[60, 40, 20], wall=2) { cube([sz[0]-2*wall, sz[1]-2*wall, sz[2]]); }
 
@@ -4294,7 +4309,7 @@ difference() {
 **Fixed version** — add a clearance parameter to the socket dimensions:
 
 ```openscad
-// ✅ CORRECT — clearance creates the physical gap needed for the lid to fit and move
+// CORRECT — clearance creates the physical gap needed for the lid to fit and move
 module box_with_clearance(w=60, d=40, h=20, wall=2, clr=0.25) {
   assert(clr > 0 && clr < 1.0, "Clearance should be between 0 and 1mm for most FDM fits");
   difference() {
@@ -4307,15 +4322,13 @@ box_with_clearance();
 ```
 
 _What to learn from this:_ FDM-printed parts that are designed to fit together always need clearance. A nominal 0mm gap at design time produces a stuck or impossible fit after printing. Typical clearance for a slip fit is 0.2–0.3 mm; for a press fit, 0.0–0.1 mm. This topic is covered in depth in Lesson 8.
--e 
 
 ---
 
-
-# Safety Protocols and the Physical Fabrication Interface
+# Lesson 5: Safety Protocols and the Physical Fabrication Interface
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -4390,9 +4403,10 @@ Fire safety protocols:
 
 - Use a **surge protector** to protect the printer's control board from voltage spikes
 - Inspect all wiring periodically, especially the flexible cable bundle that runs to the heated bed — this bundle flexes with every print and can crack the insulation over time
->[!WARNING]
->**Thermal runaway protection must be enabled.** This firmware feature monitors the temperature sensor and shuts the heater off if the temperature climbs unexpectedly or the sensor fails. A printer without thermal runaway protection can overheat catastrophically. Never disable this protection. If your printer doesn't have it, do not use it.
 - Never open the power supply enclosure or work on any electrical component while the printer is plugged in. The power supply contains mains voltage (120V or 240V) that can kill.
+
+> [!WARNING]
+> **Thermal runaway protection must be enabled.** This firmware feature monitors the temperature sensor and shuts the heater off if the temperature climbs unexpectedly or the sensor fails. A printer without thermal runaway protection can overheat catastrophically. Never disable this protection. If your printer doesn't have it, do not use it.
 
 ---
 
@@ -4406,18 +4420,24 @@ All FDM printing produces some airborne emissions. These fall into two categorie
 | ---------------- | ---------- | --------------------------------------------------------------------------------------------------- |
 | PLA              | Low        | Good room ventilation (open window or HVAC on)                                                      |
 | PETG             | Low–Medium | Active ventilation; avoid enclosed spaces without air exchange                                      |
->[!WARNING]
->ABS and ASA are **NOT safe for open classrooms** without a dedicated fume enclosure with HEPA + activated carbon filtration. Do not print ABS or ASA in any space without proper exhaust infrastructure.
-
 | ABS              | High       | Dedicated fume enclosure with HEPA + activated carbon filter required; NOT safe for open classrooms |
 | ASA              | High       | Same as ABS                                                                                         |
 | TPU              | Medium     | Active ventilation; keep nozzle temperature at the minimum needed                                   |
 | Resin (SLA/MSLA) | Very High  | Full enclosure; nitrile gloves; UV-blocking goggles; no open-workspace use                          |
 
+> [!WARNING]
+> ABS and ASA are **NOT safe for open classrooms** without a dedicated fume enclosure with HEPA + activated carbon filtration. Do not print ABS or ASA in any space without proper exhaust infrastructure.
+
 ### The Safe Choice: PLA
 
->[!TIP]
->**PLA is the safest classroom filament available.** Made from bio-derived sources, it prints at low temperatures (190–220°C) and produces the lowest emissions of any common FDM material. Default to PLA for any project where mechanical requirements don't specifically demand something else.
+PLA is generally considered the safer choice for classroom 3D printing when there is no dedicated HVAC system because it prints at lower temperatures and typically releases fewer and less concerning airborne emissions than PET-G or ABS. ABS is the main material of concern in this comparison: when heated, it can release higher levels of ultrafine particles and volatile organic compounds, including styrene, which is associated with irritation and is a poor fit for enclosed learning spaces. PET-G is often viewed as a middle-ground material, but it still prints hotter than PLA and can produce noticeable fumes and particles, especially during long print jobs or if temperatures are set too high.
+
+PLA also tends to have a milder odor and is less likely to create the kind of air-quality complaints that matter in classrooms, libraries, makerspaces, and other shared indoor environments. That does not mean PLA is fume-free or completely harmless. Any filament printing process creates some airborne particles, and good practice still includes ventilation, keeping printers away from students’ breathing zone, and avoiding unnecessary time around active prints. But if the choice is between PLA, PET-G, and ABS in a space without dedicated fume mitigation, PLA is usually the lowest-risk option for routine educational use.
+
+For that reason, PLA is often the default recommendation for schools and other lightly ventilated settings: it is easier to print, requires less heat, and presents fewer air-quality concerns than PET-G or ABS. ABS is usually the least appropriate option in such spaces because of its emissions profile, while PET-G may be acceptable in some cases but still does not match PLA for fume safety. In a classroom without dedicated HVAC, PLA is typically the most practical and safety-conscious filament choice.
+
+> [!TIP]
+> **PLA is the safest classroom filament available.** Made from bio-derived sources, it prints at low temperatures (190–220°C) and produces the lowest emissions of any common FDM material. Default to PLA for any project where mechanical requirements don't specifically demand something else.
 
 ### What "Good Ventilation" Actually Means
 
@@ -4449,8 +4469,8 @@ The right material for a project depends on what the part needs to do and where 
 
 When a material is listed as "hard," that means it requires one or more of the following: a higher nozzle temperature, a heated enclosure to prevent warping, special bed adhesion (glue stick, hairspray, specialized plates), slower print speeds, or more careful tuning of retraction settings. Starting with a difficult material before you have PLA dialed in is a recipe for frustration and wasted filament.
 
->[!TIP]
->**The practical material rule:** use PLA until you have a specific functional reason not to. Need better heat resistance? Try PETG next. Reserve ABS and specialty materials for when you have the appropriate safety infrastructure.
+> [!TIP]
+> **The practical material rule:** use PLA until you have a specific functional reason not to. Need better heat resistance? Try PETG next. Reserve ABS and specialty materials for when you have the appropriate safety infrastructure.
 
 ### PLA and Sustainability — A Realistic Picture
 
@@ -4464,12 +4484,12 @@ The most sustainable approach to FDM printing is not any particular material —
 
 ### Always Estimate First
 
->[!TIP]
->Always estimate filament cost and print time **before** sending a model to print. For small parts the cost is trivial, but large high-infill parts can cost several dollars and several hours — time you can't recover if the part needs revision.
+> [!TIP]
+> Always estimate filament cost and print time **before** sending a model to print. For small parts the cost is trivial, but large high-infill parts can cost several dollars and several hours — time you can't recover if the part needs revision.
 
 The estimate formula from Lesson 1 applies here:
 
-```
+```plaintext
 mass (grams)  = (volume_mm³ ÷ 1000) × filament_density_g_per_cm³
 cost ($)      = mass × (spool_price_$ ÷ spool_weight_g)
 ```
@@ -4551,7 +4571,7 @@ Write-Host "Approved. Send to slicer."
 
 Use this checklist before starting any print. It takes about 5 minutes and prevents the most common causes of print failure.
 
-```
+```markdown
 PRINTER STARTUP CHECKLIST
 □ Bed level verified (run auto-level, or manually check at all four corners)
 □ Build plate clean (wipe with IPA — remove finger oils and dust)
@@ -4566,8 +4586,8 @@ PRINTER STARTUP CHECKLIST
 
 ### Why Each Item Matters
 
->[!IMPORTANT]
->**Bed leveling is the single most critical setting for successful prints.** A bed that is just 0.1 mm too high or too low can cause every print to fail. Always verify leveling before each print session. Most modern printers have automatic bed leveling (ABL), but you should still understand how it works and check that it's running correctly.
+> [!IMPORTANT]
+> **Bed leveling is the single most critical setting for successful prints.** A bed that is just 0.1 mm too high or too low can cause every print to fail. Always verify leveling before each print session. Most modern printers have automatic bed leveling (ABL), but you should still understand how it works and check that it's running correctly.
 
 **Clean build plate** prevents adhesion failures. Skin oils from touching the plate are invisible but dramatically reduce how well plastic sticks. An isopropyl alcohol (IPA) wipe before every print takes 30 seconds and prevents a common failure mode.
 
@@ -4583,18 +4603,18 @@ PRINTER STARTUP CHECKLIST
 
 Checking in periodically during a print takes only a few seconds each time and lets you catch problems early. A problem caught at layer 10 is a minor inconvenience. The same problem discovered at layer 100 means you've wasted 90 layers of material and print time.
 
->[!WARNING]
->**Spaghetti** is the most common print failure: the part lifts off the bed and the nozzle drags filament through the air. If you see this, **pause or cancel the print immediately** — catching it at layer 10 is a minor inconvenience; catching it at layer 100 wastes 90 layers of material and time.
+> [!WARNING]
+> **Spaghetti** is the most common print failure: the part lifts off the bed and the nozzle drags filament through the air. If you see this, **pause or cancel the print immediately** — catching it at layer 10 is a minor inconvenience; catching it at layer 100 wastes 90 layers of material and time.
 
->[!CAUTION]
->**Layer shifts** (horizontal displacements in the print) usually indicate a mechanical problem — belt tension, loose pulley, or a motor skipping steps. Cancel the print and diagnose the cause before trying again.
+> [!CAUTION]
+> **Layer shifts** (horizontal displacements in the print) usually indicate a mechanical problem — belt tension, loose pulley, or a motor skipping steps. Cancel the print and diagnose the cause before trying again.
 
 **Nozzle clog** — the extruder starts making a clicking or ticking sound as the gear slips because material isn't flowing. Filament may start grinding. Pause the print and clear the clog before restarting.
 
 **Stringing** — thin wisps of filament connecting different parts of the print. Usually a retraction or temperature setting issue rather than an emergency, but it may require post-processing cleanup.
 
->[!WARNING]
->**Smoke is an immediate emergency.** Cut power immediately. Do not attempt to continue or diagnose while the printer is running. Notify your instructor. Do not restart the printer until the cause has been fully identified and corrected.
+> [!WARNING]
+> **Smoke is an immediate emergency.** Cut power immediately. Do not attempt to continue or diagnose while the printer is running. Notify your instructor. Do not restart the printer until the cause has been fully identified and corrected.
 
 ---
 
@@ -4604,17 +4624,15 @@ Checking in periodically during a print takes only a few seconds each time and l
 
 A print ending doesn't mean the work is done. Follow these steps after every print:
 
->[!CAUTION]
->**Wait for the nozzle to cool below 50°C** before reaching anywhere near the hot end. The nozzle can reach 200°C+ during printing and retains heat for several minutes after shutdown.
+> [!CAUTION]
+> **Wait for the nozzle to cool below 50°C** before reaching anywhere near the hot end. The nozzle can reach 200°C+ during printing and retains heat for several minutes after shutdown.
 
 1. **Wait for the nozzle to cool below 50°C** before reaching anywhere near the hot end.
-
 2. **Wait for the bed to cool below 30°C** before removing the part. Parts printed on a hot bed can warp slightly if removed while the bed is still warm. Many PEI-coated beds release parts naturally as they cool — you may not even need tools.
-
 3. **Use a spatula or palette knife** to gently separate the part from the build plate. Never force parts off with your fingers — the edge of a part against a spring steel bed can cut skin. Apply the spatula at a low angle and use a gentle rocking motion.
 
->[!NOTE]
->**Store filament in a sealed bag with desiccant.** Filament absorbs moisture (hygroscopy), causing bubbling, popping sounds, and reduced mechanical properties during extrusion. This is especially critical for Nylon and PETG. A silica gel desiccant packet in a ziplock bag is sufficient for short-term storage.
+> [!NOTE]
+> **Store filament in a sealed bag with desiccant.** Filament absorbs moisture (hygroscopy), causing bubbling, popping sounds, and reduced mechanical properties during extrusion. This is especially critical for Nylon and PETG. A silica gel desiccant packet in a ziplock bag is sufficient for short-term storage.
 
 ---
 
@@ -4626,8 +4644,8 @@ The decisions you make in OpenSCAD directly affect how safe and reliable the pri
 
 **Minimize overhangs.** Any geometry that extends more than about 45° from vertical needs supports — temporary scaffolding that the printer adds automatically. Supports increase print time, use more material, often leave rough marks where they're removed, and increase the risk of print failure due to tangled support material. Good design reorients parts or modifies geometry to eliminate or reduce overhangs.
 
->[!CAUTION]
->**Minimum wall thickness for a 0.4 mm nozzle:** walls below 0.8 mm (2× nozzle width) may not print reliably, and walls below ~0.8 mm may be omitted entirely by the slicer. Use at least 1.2 mm (3× nozzle width) for any structural wall.
+> [!CAUTION]
+> **Minimum wall thickness for a 0.4 mm nozzle:** walls below 0.8 mm (2× nozzle width) may not print reliably, and walls below ~0.8 mm may be omitted entirely by the slicer. Use at least 1.2 mm (3× nozzle width) for any structural wall.
 
 **Use the safest material that meets requirements.** If PLA is strong enough, use PLA. Don't introduce PETG, ABS, or specialty materials unless you have a specific reason and the appropriate safety infrastructure.
 
@@ -4711,24 +4729,24 @@ printable_box(50, 40, 30);
 
 ## References and Helpful Resources
 
-- OSHA Hierarchy of Controls — https://www.osha.gov/hierarchy-of-controls / NIOSH — https://www.cdc.gov/niosh/topics/hierarchy/default.html
+- OSHA Hierarchy of Controls — <https://www.osha.gov/hierarchy-of-controls> / NIOSH — <https://www.cdc.gov/niosh/topics/hierarchy/default.html>
 
-- UL Research Institutes — 3D Printing Emissions Study — https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study
+- UL Research Institutes — 3D Printing Emissions Study — <https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study>
 
-- NIOSH Science Blog — Health and Safety Considerations for 3D Printing — https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/
+- NIOSH Science Blog — Health and Safety Considerations for 3D Printing — <https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/>
 
-- PrusaSlicer Documentation — https://docs.prusa3d.com/en/
+- PrusaSlicer Documentation — <https://docs.prusa3d.com/en/>
 
-- All3DP Filament Types — https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/
+- All3DP Filament Types — <https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/>
 
-- MatterHackers Filament Compare — https://www.matterhackers.com/3d-printer-filament-compare
+- MatterHackers Filament Compare — <https://www.matterhackers.com/3d-printer-filament-compare>
 
-- Prusa Research Materials Guide — https://help.prusa3d.com/materials
+- Prusa Research Materials Guide — <https://help.prusa3d.com/materials>
 
 ### Supplemental Resources
 
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
-- OpenSCAD User Manual — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual
+- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
+- OpenSCAD User Manual — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual>
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -4889,7 +4907,7 @@ _Quick reference for choosing the right filament. All temperature values are typ
 | **Print speed**                | Normal        | Normal                | Slow (20–30 mm/s) | Normal                    |
 | **Stringing tendency**         | Low           | Medium–High           | High              | Low                       |
 | **Approximate cost**           | $15–25/kg     | $15–30/kg             | $20–40/kg         | $15–25/kg                 |
-| **Recommended for beginners?** | ✅ Yes        | After PLA             | After experience  | ❌ No                     |
+| **Recommended for beginners?** | Yes           | After PLA             | After experience  | No                        |
 
 ---
 
@@ -5206,15 +5224,13 @@ Record your tested settings for each material on this specific printer. Publishe
 |       |                    |               |                    |
 
 _Last log entry:_ \_\_\_\_\_\_\_\_\_\_ _Logged by:_ \_\_\_\_\_\_\_\_\_\_
--e 
 
 ---
-
 
 # Lesson 6 — Practical 3dm Commands and Text Embossing
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -5252,9 +5268,9 @@ You've been using two commands. Here's the complete set:
 | ------------- | ----------------------------------------- | --------------------------- |
 | `3dm build`   | Compiles `.scad` source → `.stl` geometry | `build/main.stl`            |
 | `3dm info`    | Reports dimensions and AI description     | Console text                |
-| `3dm preview` | Renders model to an image file            | `build/preview.png`         |
+| `3dm preview` | Renders model to an image file            | `build/main-3Sil.svg`       |
 | `3dm orient`  | AI-suggested print orientation            | Console text recommendation |
-| `3dm slice`   | Calls your slicer on the current STL      | G-code file                 |
+| `3dm slice`   | Calls your slicer on the current STL      | G-code file, console text   |
 
 ```bash
 # BUILD VARIANTS
@@ -5269,7 +5285,7 @@ You've been using two commands. Here's the complete set:
 3dm info --view top,front,isometric  # generate from multiple views
 
 # ORIENTATION, PREVIEW, SLICING
-3dm preview                        # render model to build/preview.png
+3dm preview                        # render model to build/mail-3sil.svg
 3dm orient                         # AI recommendation for best print orientation
 3dm slice                          # call slicer on build/main.stl
 ```
@@ -5403,8 +5419,8 @@ These fonts are widely pre-installed and safe to use in code you'll share with c
 - `Liberation Mono` — monospaced, excellent for part numbers and code
 - `DejaVu Serif` — serif font with good contrast for labels
 
->[!NOTE]
->If OpenSCAD can't find your specified font, it prints `WARNING: No match for requested font family` in the console. Font availability varies by OS — if text looks wrong, check the console for this warning and substitute an available font.
+> [!NOTE]
+> If OpenSCAD can't find your specified font, it prints `WARNING: No match for requested font family` in the console. Font availability varies by OS — if text looks wrong, check the console for this warning and substitute an available font.
 
 ---
 
@@ -5704,15 +5720,15 @@ echo Done.
 
 ## References and Helpful Resources
 
-- 3DMake GitHub Repository — Command Reference — https://github.com/tdeck/3dmake
+- 3DMake GitHub Repository — Command Reference — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
-- OpenSCAD User Manual — Text and Fonts — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Text
+- OpenSCAD User Manual — Text and Fonts — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Text](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Text)
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub — String functions and text embossing examples
-- OpenSCAD Quick Reference — https://programmingwithopenscad.github.io/quick-reference.html — All string function syntax
-- CodeSolutions Repository — https://github.com/ProgrammingWithOpenSCAD/CodeSolutions — Worked text embossing examples
+- OpenSCAD Quick Reference — [https://programmingwithopenscad.github.io/quick-reference.html](https://programmingwithopenscad.github.io/quick-reference.html) — All string function syntax
+- CodeSolutions Repository — [https://github.com/ProgrammingWithOpenSCAD/CodeSolutions](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) — Worked text embossing examples
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -5952,8 +5968,8 @@ linear_extrude(height=2)
 
 ## Appendix B: Parametric Keychain — Student Documentation Template
 
-**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-**Date:** \_\_\_\_\_\_\_\_\_\_
+**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+**Date:** \_\_\_\_\_\_\_\_\_\_  
 **Description:** Design a fully parametric keychain that supports personalization and customization through top-level variables.
 
 ---
@@ -6111,7 +6127,7 @@ This extension project reinforces the core text embossing and parametric design 
 
 ### Assessment Notes
 
-**Strong submissions** show: text that scales proportionally with `text_size` as a variable, a ring attachment that has been tested with a real key ring, and a customization guide that actually tells a non-programmer how to make their own version.
+**Strong submissions show:** text that scales proportionally with `text_size` as a variable, a ring attachment that has been tested with a real key ring, and a customization guide that actually tells a non-programmer how to make their own version.
 
 **Common weak areas:** Text overflow not detected until printing (add `assert()` or preview check to starter code reminder), attachment loop too thin to be durable (check `ring_wall >= 1.2 mm`), and documentation that describes the final design but doesn't guide future customization.
 
@@ -6245,7 +6261,7 @@ _Sources: Anycubic official documentation (anycubic.com); Ultimaker Cura guide (
 
 ---
 
-### D3 — Bambu Studio / X1 Series
+### D3 — Bambu Studio / X and P Series
 
 #### Recommended Settings by Use Case
 
@@ -6303,15 +6319,13 @@ _Check Bambu's material database for current profile updates — these are dynam
 - [ ] Web upload or USB export ready
 
 _Sources: Bambu Lab documentation (bambulab.com); Bambu Lab Community forums (community.bambulab.com)_
--e 
 
 ---
-
 
 # Lesson 7 — Parametric Transforms and the Phone Stand Project
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -6741,26 +6755,25 @@ echo("Cross:", c);   // [0, 0, 1] — the Z axis
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Transformations — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Transformations
+- OpenSCAD User Manual — Transformations — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Transformations>
 
-- OpenSCAD User Manual — Mathematical Functions — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Mathematical_Functions
+- OpenSCAD User Manual — Mathematical Functions — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Mathematical_Functions>
 
-- OpenSCAD User Manual — Minkowski and Hull — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull
+- OpenSCAD User Manual — Minkowski and Hull — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull>
 
 ### Supplemental Resources
 
 - [Programming with OpenSCAD EPUB Textbook](../../textbooks/Programming_with_OpenSCAD.epub) — Transforms chapter
 - [CodeSolutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) — Phone stand worked example
 - [OpenSCAD Quick Reference](https://programmingwithopenscad.github.io/quick-reference.html) — Math and transform functions
--e 
+  -e
 
 ---
-
 
 # Lesson 8 — Advanced Parametric Design and Interlocking Features
 
 **Estimated Time:** 90–120 minutes  
-**Course:** 3dMake Certification — High School Distance Learning Track
+**Course:** 3D Printing for the Blind
 
 ---
 
@@ -7244,16 +7257,16 @@ translate([60, 0, 0])
 
 ## References and Helpful Resources
 
-- Snap-Fit Design Principles — Bayer MaterialScience Snap-Fit Design Manual
+- Snap-Fit Design Principles — Bayer Material Science Snap-Fit Design Manual — <https://solutions.covestro.com/-/media/covestro/solution-center/brands/downloads/imported/1556891135.pdf>
 
-- OpenSCAD User Manual — Difference and Boolean Operations — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling
+- OpenSCAD User Manual — Difference and Boolean Operations — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling>
 
-- Tolerance and Fit in FDM Printing — All3DP Guide — https://all3dp.com/2/fdm-3d-printing-tolerances/
+- Tolerance and Fit in FDM Printing — All3DP Guide — <https://all3dp.com/2/fdm-3d-printing-tolerances/>
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub — Assemblies and interlocking features
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
+- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -7424,8 +7437,8 @@ translate([(base_w - beam_w) / 2, 0, base_h])
 
 ## Appendix B: Snap-Fit Clip — Student Documentation Template
 
-**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
-**Date:** \_\_\_\_\_\_\_\_\_\_
+**Author:** \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_  
+**Date:** \_\_\_\_\_\_\_\_\_\_  
 **Description:** Design a snap-fit connector that joins two 3D-printed parts without external fasteners.
 
 ---
@@ -7592,10 +7605,8 @@ This extension project reinforces the core tolerance and snap-fit content of Les
 **Common weak areas:** Single-variant testing ("it worked so I stopped"), vague reflection ("I would make it thicker"), and tolerance values with no rationale. Push back on these in feedback.
 
 **Extension opportunity:** Students who finish early can investigate material property comparisons — print the same geometry in PLA and PETG (if available) and compare flex behavior and cycle durability. This connects directly to the material selection content in Lesson 5.
--e 
 
 ---
-
 
 # Lesson 9 — Automation and 3dm Workflows
 
@@ -8241,23 +8252,21 @@ When this is set up, every push to the repository triggers a fresh build in GitH
 
 ## References and Helpful Resources
 
-- Bash Reference Manual — https://www.gnu.org/software/bash/manual/bash.html
+- Bash Reference Manual — <https://www.gnu.org/software/bash/manual/bash.html>
 
-- PowerShell Documentation — https://docs.microsoft.com/en-us/powershell/
+- PowerShell Documentation — <https://docs.microsoft.com/en-us/powershell/>
 
-- GitHub Actions Documentation — https://docs.github.com/en/actions
+- GitHub Actions Documentation — <https://docs.github.com/en/actions>
 
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
+- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub
-- 3DMake GitHub Repository — https://github.com/tdeck/3dmake
-- OpenSCAD User Manual — https://en.wikibooks.org/wiki/OpenSCAD_User_Manual
--e 
+- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
+- OpenSCAD User Manual — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual>
 
 ---
-
 
 # Lesson 10 — Hands-On Practice Exercises and Troubleshooting
 
@@ -9061,21 +9070,20 @@ rounded_hull();
 
 ## References and Helpful Resources
 
-- 
-    OpenSCAD User Manual — Hull and Minkowski.
-    https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull
+- OpenSCAD User Manual — Hull and Minkowski.
+  <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull>
 
 [^111]: Digital Calipers Measurement Technique — see Appendix B of this document.
 
 [^112]:
     3DMake GitHub Repository — Command reference including `3dm info`.
-    https://github.com/tdeck/3dmake
+    <https://github.com/tdeck/3dmake>
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub
-- CodeSolutions Repository: https://github.com/ProgrammingWithOpenSCAD/CodeSolutions
-- OpenSCAD Quick Reference: https://programmingwithopenscad.github.io/quick-reference.html
+- CodeSolutions Repository: <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions>
+- OpenSCAD Quick Reference: <https://programmingwithopenscad.github.io/quick-reference.html>
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -9837,10 +9845,8 @@ Answer in complete sentences:
 | Design & Code Quality — testing methodology rigorous, findings specific |             |       |
 | Documentation — template complete, recommendations prioritized          |             |       |
 | **Total (0–9)**                                                         |             |       |
--e 
 
 ---
-
 
 # Lesson 11 — Stakeholder-Centric Design and the Final Project
 
@@ -10578,9 +10584,9 @@ Use this checklist to verify you've applied required curriculum concepts:
 
 - Master Rubric: Part 3 of this document / `assets/3dMake_Foundation/master-rubric.md`
 - Programming with OpenSCAD EPUB Textbook: `assets/Programming_with_OpenSCAD.epub`
-- OpenSCAD Quick Reference: https://programmingwithopenscad.github.io/quick-reference.html
-- 3DMake GitHub Repository: https://github.com/tdeck/3dmake
-- CodeSolutions Repository: https://github.com/ProgrammingWithOpenSCAD/CodeSolutions
+- OpenSCAD Quick Reference: <https://programmingwithopenscad.github.io/quick-reference.html>
+- 3DMake GitHub Repository: <https://github.com/tdeck/3dmake>
+- CodeSolutions Repository: <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions>
 
 ---
 
@@ -10636,13 +10642,13 @@ _These templates are referenced throughout Lesson 11. Complete them as part of y
 
 ### Section 2: Current Situation (10 minutes)
 
-4. "How do you currently handle this problem — what do you do today?"
+1. "How do you currently handle this problem — what do you do today?"
    - _Notes:_
 
-5. "What works well about what you do now?"
+2. "What works well about what you do now?"
    - _Notes:_
 
-6. "What frustrates you most about the current situation?"
+3. "What frustrates you most about the current situation?"
    - _Notes (listen for exact words — these often become requirements):_
 
 **Pain Points Summary:**
@@ -10656,13 +10662,13 @@ _These templates are referenced throughout Lesson 11. Complete them as part of y
 
 _Use open-ended questions only. Do not suggest dimensions or shapes._
 
-7. "Ideally, what would a perfect solution do for you?"
+1. "Ideally, what would a perfect solution do for you?"
    - _Notes:_
 
-8. "Walk me through how you'd use it in a typical situation."
+2. "Walk me through how you'd use it in a typical situation."
    - _Notes:_
 
-9. "Where would it live — what space does it need to fit into?"
+3. "Where would it live — what space does it need to fit into?"
    - _Notes:_
 
 **Constraints heard (fill in as they come up):**
@@ -10680,22 +10686,22 @@ _Use open-ended questions only. Do not suggest dimensions or shapes._
 
 ### Section 4: Usage Patterns (10 minutes)
 
-10. "How often would you use this?"
-    - [ ] Daily [ ] Weekly [ ] Monthly [ ] Occasionally
-    - _Notes:_
+1. "How often would you use this?"
+   - [ ] Daily [ ] Weekly [ ] Monthly [ ] Occasionally
+   - _Notes:_
 
-11. "Who else might use it? Are there any accessibility considerations I should know about?"
-    - _Notes:_
+2. "Who else might use it? Are there any accessibility considerations I should know about?"
+   - _Notes:_
 
 ---
 
 ### Section 5: Success Criteria (10 minutes)
 
-12. "If this design worked perfectly, how would you know? What would be different about your day?"
-    - _Notes:_
+1. "If this design worked perfectly, how would you know? What would be different about your day?"
+   - _Notes:_
 
-13. "What would make you say this design failed?"
-    - _Notes:_
+2. "What would make you say this design failed?"
+   - _Notes:_
 
 **Success Criteria (draft):**
 
@@ -10707,10 +10713,10 @@ _Use open-ended questions only. Do not suggest dimensions or shapes._
 
 ### Section 6: Priorities (10 minutes)
 
-14. "If you could only have three features, which three would matter most to you?"
-    1. _(Priority: /10)_
-    2. _(Priority: /10)_
-    3. _(Priority: /10)_
+1. "If you could only have three features, which three would matter most to you?"
+   1. _(Priority: /10)_
+   2. _(Priority: /10)_
+   3. _(Priority: /10)_
 
 ---
 
@@ -10988,11 +10994,11 @@ _Ask them to demonstrate using it as they normally would. Do not explain how it 
 
 **Observations** (hesitations, workarounds, confusion):
 
-4. "Was it easy to figure out how to use?"
+1. "Was it easy to figure out how to use?"
    - [ ] Very easy [ ] Easy [ ] Neutral [ ] Difficult [ ] Very difficult
    - _What was confusing:_
 
-5. "Are there any parts that don't work well together?"
+2. "Are there any parts that don't work well together?"
    - _Response:_
 
 **Usability Issues Observed:**
@@ -11014,24 +11020,24 @@ Test each Functional Requirement explicitly.
 | FR2:        | [ ] Pass [ ] Partial [ ] Fail |       |
 | FR3:        | [ ] Pass [ ] Partial [ ] Fail |       |
 
-6. "What's missing that you expected to be there?"
+1. "What's missing that you expected to be there?"
    - _Response:_
 
 ---
 
 ### Section 4: Physical Assessment (10 minutes)
 
-7. Size: [ ] Too large [ ] Just right [ ] Too small
+1. Size: [ ] Too large [ ] Just right [ ] Too small
    - _Notes:_
 
-8. Weight: [ ] Too heavy [ ] Just right [ ] Too light
+2. Weight: [ ] Too heavy [ ] Just right [ ] Too light
    - _Notes:_
 
-9. "Does the material / finish feel appropriate?"
+3. "Does the material / finish feel appropriate?"
    - _Response:_
 
-10. "Any parts that feel fragile or rough?"
-    - _Response:_
+4. "Any parts that feel fragile or rough?"
+   - _Response:_
 
 ---
 
@@ -11050,11 +11056,11 @@ _(1 = Poor, 5 = Excellent)_
 
 ### Section 6: Suggestions (10 minutes)
 
-11. "What one change would have the biggest positive impact?"
-    - _Response:_
+1. "What one change would have the biggest positive impact?"
+   - _Response:_
 
-12. "What should we keep exactly as-is?"
-    - _Response:_
+2. "What should we keep exactly as-is?"
+   - _Response:_
 
 ---
 
@@ -11065,9 +11071,9 @@ _(1 = Poor, 5 = Excellent)_
 1.
 2.
 
-## **Critical Issues** (block use):
+## **Critical Issues** (block use)
 
-## **Should-fix Issues** (reduce satisfaction):
+## **Should-fix Issues** (reduce satisfaction)
 
 **Design Changes Resulting from This Session:**
 
@@ -11145,14 +11151,10 @@ Projects are scored 0–9 across three categories, 3 points each:
 ### Resubmission Policy
 
 Students may resubmit any project as many times as needed to improve their score. Resubmissions must include a one-paragraph explanation of what was changed and why. The resubmission score replaces the original score.
--e 
 
 ---
 
--e 
-
 ---
-
 
 ---
 
@@ -12000,11 +12002,8 @@ EXIT /b 0
 | Date/time          | `date +%Y%m%d_%H%M%S`             | `Get-Date -Format "yyyyMMdd_HHmmss"`      | `wmic os get localdatetime`             |
 | File size (bytes)  | `stat -c%s file`                  | `(Get-Item file).Length`                  | `FOR /F "tokens=4" %%S IN ('dir file')` |
 | Watch for changes  | `ls src/*.scad \| entr 3dm build` | (see Lesson 9 watcher)                    | (use PowerShell)                        |
--e 
 
 ---
-
-
 
 ---
 
@@ -12018,30 +12017,30 @@ Fast lookup for lessons, projects, resources, and common tasks
 
 ### All 11 Lessons at a Glance
 
-| #  | Title                       | Duration | Level         | Main Topics                                    | Key Project            |
-|----|-----------------------------|----------|---------------|------------------------------------------------|------------------------|
-| 1  | Environmental Configuration | 60-90m   | Beginner      | Setup, project structure, `3dm build`          | None                   |
-| 2  | Geometric Primitives & CSG  | 60m      | Beginner      | Primitives, CSG operations, debugging          | None                   |
-| 3  | Parametric Architecture     | 60m      | Beginner+     | Modules, libraries, parameters                 | None                   |
-| 4  | AI Verification             | 45-60m   | Intermediate  | `3dm info`, validation, design documentation   | None                   |
-| 5  | Safety & Physical Interface | 60-90m   | Intermediate  | Safety protocols, materials, pre-print checks  | None                   |
-| 6  | 3dm Commands & Text         | 60-90m   | Intermediate  | `3dm info/preview/orient/slice`, embossing | Keycap                 |
-| 7  | Parametric Transforms       | 75-90m   | Intermediate+ | Transforms, multi-part design, assembly        | Phone Stand            |
-| 8  | Advanced Parametric Design  | 90-120m  | Advanced      | Tolerance, interlocking features, snap-fits    | Stackable Bins         |
-| 9  | Automation & Workflows      | 60-90m   | Advanced      | PowerShell scripting, batch processing, CI/CD  | [key] Batch Automation |
-| 10 | Troubleshooting & Mastery   | 120-150m | Advanced      | Measurement, QA testing, diagnostics           | [dice] QA +  Audit     |
-| 11 | Stakeholder-Centric Design  | 90-120m  | Advanced+     | Design thinking, user research, iteration      | [beads] Jewelry Holder |
+| #   | Title                       | Duration | Level         | Main Topics                                   | Key Project            |
+| --- | --------------------------- | -------- | ------------- | --------------------------------------------- | ---------------------- |
+| 1   | Environmental Configuration | 60-90m   | Beginner      | Setup, project structure, `3dm build`         | None                   |
+| 2   | Geometric Primitives & CSG  | 60m      | Beginner      | Primitives, CSG operations, debugging         | None                   |
+| 3   | Parametric Architecture     | 60m      | Beginner+     | Modules, libraries, parameters                | None                   |
+| 4   | AI Verification             | 45-60m   | Intermediate  | `3dm info`, validation, design documentation  | None                   |
+| 5   | Safety & Physical Interface | 60-90m   | Intermediate  | Safety protocols, materials, pre-print checks | None                   |
+| 6   | 3dm Commands & Text         | 60-90m   | Intermediate  | `3dm info/preview/orient/slice`, embossing    | Keycap                 |
+| 7   | Parametric Transforms       | 75-90m   | Intermediate+ | Transforms, multi-part design, assembly       | Phone Stand            |
+| 8   | Advanced Parametric Design  | 90-120m  | Advanced      | Tolerance, interlocking features, snap-fits   | Stackable Bins         |
+| 9   | Automation & Workflows      | 60-90m   | Advanced      | PowerShell scripting, batch processing, CI/CD | [key] Batch Automation |
+| 10  | Troubleshooting & Mastery   | 120-150m | Advanced      | Measurement, QA testing, diagnostics          | [dice] QA + Audit      |
+| 11  | Stakeholder-Centric Design  | 90-120m  | Advanced+     | Design thinking, user research, iteration     | [beads] Jewelry Holder |
 
 ## 4 Reference Appendices
 
 Quick links to comprehensive reference materials:
 
-| Appendix                                                                                      | Focus                  | Size         | Use When                                     |
-|-----------------------------------------------------------------------------------------------|------------------------|--------------|----------------------------------------------|
-| [A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b)                   | PrusaSlicer, Bambu Studio, Cura, OrcaSlicer configuration | 1,500+ lines | Slicing questions, slicer reference          |
-| [B: Material Properties & Selection Guide](3DMake_Appendices_Complete.md#appendix-c)                  | Shrinkage data, print settings, material properties       | 1,200+ lines | Choosing material, troubleshooting prints    |
-| [C: Tolerance Testing & Quality Assurance Matrix](3DMake_Appendices_Complete.md#appendix-d)                  | QA procedures, tolerance validation methods               | 1,200+ lines | Quality verification, measurement techniques |
-| [D: PowerShell Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-b)           | Batch processing, automation scripts, workflow integration| 1,100+ lines | Building automation, batch processing        |
+| Appendix                                                                                    | Focus                                                      | Size         | Use When                                     |
+| ------------------------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------ | -------------------------------------------- |
+| [A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b)                  | PrusaSlicer, Bambu Studio, Cura, OrcaSlicer configuration  | 1,500+ lines | Slicing questions, slicer reference          |
+| [B: Material Properties & Selection Guide](3DMake_Appendices_Complete.md#appendix-c)        | Shrinkage data, print settings, material properties        | 1,200+ lines | Choosing material, troubleshooting prints    |
+| [C: Tolerance Testing & Quality Assurance Matrix](3DMake_Appendices_Complete.md#appendix-d) | QA procedures, tolerance validation methods                | 1,200+ lines | Quality verification, measurement techniques |
+| [D: PowerShell Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-b)       | Batch processing, automation scripts, workflow integration | 1,100+ lines | Building automation, batch processing        |
 
 ## Learning Paths
 
@@ -12188,7 +12187,7 @@ lip_height = 15;    // mm
 Configurations:
 
 | Phone  | Width | Angle | Result            |
-|--------|-------|-------|-------------------|
+| ------ | ----- | ----- | ----------------- |
 | iPhone | 60mm  | 60    | Portrait viewing  |
 | iPad   | 100mm | 40    | Landscape viewing |
 | Tablet | 150mm | 35    | Document viewing  |
@@ -12221,7 +12220,7 @@ stack_clear = 0.8mm  -> Too loose (unstable)
 Files:
 
 - Code: Lesson 8 (Bins section)
-- Output: bin_*.stl, tolerance_matrix.md
+- Output: bin\_\*.stl, tolerance_matrix.md
 
 ## Code Template Library
 
@@ -12376,8 +12375,8 @@ Solution:
 
 ### Debugging
 
->[!TIP]
->Lower `$fn` to **8–12 during development** for fast renders, then raise it to 32–64 for final export. High `$fn` values (especially with Minkowski) can make renders take minutes.
+> [!TIP]
+> Lower `$fn` to **8–12 during development** for fast renders, then raise it to 32–64 for final export. High `$fn` values (especially with Minkowski) can make renders take minutes.
 
 - Lower `$fn` to 8-12 for faster renders during development
 - Use `3dm info` frequently to catch issues early
@@ -12400,8 +12399,8 @@ Solution:
 
 ### Accessibility
 
->[!IMPORTANT]
->For accessible design, always use `3dm info` to verify non-visual usability and `3dm preview` to generate a tactile inspection image. Document all measurements clearly and test assembly without visual guidance.
+> [!IMPORTANT]
+> For accessible design, always use `3dm info` to verify non-visual usability and `3dm preview` to generate a tactile inspection image. Document all measurements clearly and test assembly without visual guidance.
 
 - Always use `3dm info` to verify non-visual usability
 - Generate `3dm preview` for tactile inspection
@@ -12411,7 +12410,7 @@ Solution:
 ## Glossary
 
 | Term       | Definition                                                            |
-|------------|-----------------------------------------------------------------------|
+| ---------- | --------------------------------------------------------------------- |
 | CSG        | Constructive Solid Geometry - combining shapes using union/difference |
 | Manifold   | Water-tight geometry with clear inside/outside                        |
 | Parametric | Driven by variables; changing parameters updates design               |
@@ -12433,8 +12432,8 @@ A: Use the tolerance testing matrix; print variants with different parameters
 Q: What should I measure after printing?  
 A: Critical dimensions and compare to design specifications
 
->[!TIP]
->**Non-manifold fix:** Use the 0.001 offset rule — `translate([0, 0, -0.001])` before subtracting and add 0.002 to the cutting shape's height.
+> [!TIP]
+> **Non-manifold fix:** Use the 0.001 offset rule — `translate([0, 0, -0.001])` before subtracting and add 0.002 to the cutting shape's height.
 
 Q: How do I fix non-manifold geometry?  
 A: Use the 0.001 offset rule: `translate([0, 0, 0.001])` before subtracting

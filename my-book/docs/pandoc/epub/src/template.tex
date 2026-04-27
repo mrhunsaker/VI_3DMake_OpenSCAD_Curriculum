@@ -26,7 +26,7 @@ $endif$
 \usepackage{hyperref}
 \usepackage{listings}
 \usepackage{upquote}
-\usepackage{showframe}
+%\usepackage{showframe}
 
 % ============================================================
 % Admonition Boxes (NOTE, TIP, IMPORTANT, WARNING, CAUTION)
@@ -182,22 +182,29 @@ $endif$
 \newunicodechar{□}{{\symbolfont□}}
 \newunicodechar{✓}{\checkmark}
 
-% Footnotes to Endnotes Configuration
-\usepackage{endnotes}
+\usepackage{enotez}
+\setenotez{
+  list-name = {Notes},
+  reset     = true,
+}
+\renewcommand*\enmarkstyle[1]{\textsuperscript{#1}}
 \let\footnote=\endnote
-\renewcommand{\notesname}{Notes}
+
+% Guard flag to prevent recursive triggering
+\newif\ifprintingendnotes
+\printingendnotesfalse
 
 % Automatically print endnotes at the end of each chapter
 \preto\chapter{%
-  \ifnum\value{endnote}>0
-    \begingroup
-    \parindent 0pt
-    \parskip 2ex
-    \def\enotesize{\normalsize}
-    \theendnotes
-    \endgroup
+  \ifprintingendnotes\else
+    \ifnum\value{endnote}>0
+      \printingendnotestrue
+      \printendnotes
+      \printingendnotesfalse
+    \fi
   \fi
 }
+
 
 % Code Highlighting Colors (Alabaster)
 \definecolor{alabaster-bg}{HTML}{FAFAFA}
@@ -453,15 +460,7 @@ $if(has-frontmatter)$
 \backmatter
 $endif$
 
-% Print any remaining endnotes
-\ifnum\value{endnote}>0
-  \begingroup
-  \parindent 0pt
-  \parskip 2ex
-  \def\enotesize{\normalsize}
-  \theendnotes
-  \endgroup
-\fi
+\printendnotes
 
 $if(nocite-ids)$
 \nocite{$for(nocite-ids)$$it$$sep$, $endfor$}
