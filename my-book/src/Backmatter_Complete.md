@@ -1,6 +1,6 @@
 # Back Matter — Complete Reference
 
-Supplementary reference material for *Accessible {{hi:3D printing}}3D Printing with OpenSCAD and 3dMake*. These sections are designed for lookup rather than linear reading — consult them as needed throughout the curriculum.
+Supplementary {{i:reference}} {{i:material}} for *Accessible {{hi:3D {{i:printing}}}}3D Printing with {{i:OpenSCAD}} and 3dMake*. These sections are designed for lookup rather than linear reading — consult them as needed throughout the curriculum.
 
 ---
 
@@ -8,10 +8,10 @@ Supplementary reference material for *Accessible {{hi:3D printing}}3D Printing w
 
 | Section | Title | Purpose |
 |---|---|---|
-| [Technical Reference and Troubleshooting](#troubleshooting) | Systems architecture, {{hi:CLI}}CLI reference, and fault-by-fault troubleshooting compendium | Diagnose and resolve errors in OpenSCAD, 3dMake, {{hi:CMD}}CMD, {{hi:PowerShell}}PowerShell, {{hi:Git Bash}}Git Bash, slicers, and printers |
-| [Student Glossary](#student-glossary) | Terms, definitions, and code examples across all curriculum systems | Look up any term encountered in lessons, with syntax examples for each shell |
-| [Teacher Glossary](#teacher-glossary) | Pedagogical frameworks, instructional strategies, and assessment rubrics | Instructors: curriculum design, scaffolding, {{hi:Computational thinking}}computational thinking, and cross-curricular connections |
-| [Further Reading and References](#further-reading) | Scholarly works, official documentation, industry resources, and community links | Continue learning; cite sources; find community support |
+| [Technical Reference and Troubleshooting](#troubleshooting) | Systems architecture, {{hi:CLI}}CLI {{i:reference}}, and fault-by-fault troubleshooting compendium | Diagnose and resolve errors in {{i:OpenSCAD}}, 3dMake, {{hi:CMD}}CMD, {{hi:{{i:PowerShell}}}}{{i:PowerShell}}, {{hi:{{i:Git}} {{i:Bash}}}}{{i:Git}} {{i:Bash}}, slicers, and printers |
+| [Student Glossary](#student-glossary) | Terms, definitions, and {{i:code}} examples across all curriculum systems | Look up any term encountered in lessons, with syntax examples for {{i:each}} {{i:shell}} |
+| [Teacher Glossary](#teacher-glossary) | Pedagogical frameworks, instructional strategies, and assessment rubrics | Instructors: curriculum {{i:design}}, scaffolding, {{hi:Computational thinking}}computational thinking, and cross-curricular connections |
+| [Further Reading and References](#further-reading) | Scholarly works, official documentation, industry resources, and community links | Continue learning; cite sources; find community {{i:support}} |
 
 ---
 
@@ -57,7 +57,7 @@ CLI -> Script -> Build Directory -> Version Control -> Reproducible Artifact
 
 ## 2.1 Language Architecture
 
-OpenSCAD is:
+{{i:OpenSCAD}} is:
 
 - Declarative
 - CSG-based
@@ -137,9 +137,9 @@ projection(cut=true)
 
 ---
 
-## 2.3 CLI Operation of OpenSCAD
+## 2.3 CLI Operation of {{i:OpenSCAD}}
 
-### Render STL (All shells)
+### Render {{i:STL}} (All shells)
 
 ```bash
 openscad -o output.stl input.scad
@@ -161,9 +161,9 @@ openscad -D width=50 -o model.stl model.scad
 
 Core capabilities:
 
-- Batch STL generation
+- Batch {{i:STL}} generation
 - File processing pipelines
-- Integration with OpenSCAD CLI
+- Integration with {{i:OpenSCAD}} CLI
 - Script-driven builds
 
 Repository:
@@ -171,7 +171,7 @@ Repository:
 
 ---
 
-## 3.2 Example Automated Pipeline (PowerShell)
+## 3.2 Example Automated Pipeline ({{i:PowerShell}})
 
 ```powershell
 New-Item -ItemType Directory -Force build
@@ -189,7 +189,7 @@ for %%f in (src\*.scad) do openscad -o build\%%~nf.stl %%f
 
 ---
 
-## 3.4 Batch Processing (Git Bash)
+## 3.4 Batch Processing ({{i:Git}} {{i:Bash}})
 
 ```bash
 for f in src/*.scad; do
@@ -216,7 +216,7 @@ C:\Windows\System32\cmd.exe
 
 ## 4.2 File System Operations
 
-### List Files
+### {{i:List}} Files
 
 ```cmd
 dir
@@ -250,7 +250,7 @@ openscad.exe -o model.stl model.scad
 
 ---
 
-## 4.4 PATH Inspection
+## 4.4 {{i:PATH}} Inspection
 
 ```cmd
 echo %PATH%
@@ -282,7 +282,7 @@ if %ERRORLEVEL% NEQ 0 echo Build failed
 
 ## 4.7 Batch Files (.bat)
 
-Example build.bat:
+Example {{i:build}}.bat:
 
 ```cmd
 @echo off
@@ -299,7 +299,7 @@ if %ERRORLEVEL% NEQ 0 exit /b 1
 
 - Object-based pipeline
 - .NET-backed
-- Strong scripting support
+- Strong scripting {{i:support}}
 
 ---
 
@@ -338,7 +338,7 @@ rm -rf build
 
 ---
 
-## 6.2 Shell Variables
+## 6.2 {{i:Shell}} Variables
 
 ```bash
 VAR=value
@@ -351,7 +351,7 @@ echo $VAR
 
 ---
 
-# A. OpenSCAD Failures
+# A. {{i:OpenSCAD}} Failures
 
 ## A.1 Segmentation Fault
 
@@ -361,11 +361,11 @@ Cause:
 
 Fix:
 - Reduce $fn
-- Simplify geometry
+- Simplify {{i:geometry}}
 
 ---
 
-## A.2 Empty STL Output
+## A.2 Empty {{i:STL}} Output
 
 Cause:
 - Geometry evaluates to null
@@ -403,13 +403,13 @@ cube([10,10,10]);
 
 ### Unmatched Brackets
 
-Common errors:
+{{i:Common}} errors:
 - `{ }` curly brackets
 - `[ ]` square brackets
 - `( )` parentheses
 
 Diagnosis:
-Check error line number in console.
+Check {{i:error}} line number in console.
 
 ---
 
@@ -445,7 +445,7 @@ if (x > 5 || y < 10) {
 }
 ```
 
-Missing parentheses can cause evaluation errors.
+Missing parentheses {{i:can}} cause evaluation errors.
 
 ---
 
@@ -488,7 +488,7 @@ where 3dm
 
 ## B.2 Silent Failure
 
-Check exit code:
+Check exit {{i:code}}:
 
 ```cmd
 echo %ERRORLEVEL%
@@ -496,12 +496,12 @@ echo %ERRORLEVEL%
 
 ---
 
-## B.3 3dm build Failures
+## B.3 3dm {{i:build}} Failures
 
-Common causes:
-- Source file not found
+{{i:Common}} causes:
+- Source {{i:file}} not found
 - Syntax errors in .scad
-- OpenSCAD not in PATH
+- {{i:OpenSCAD}} not in {{i:PATH}}
 
 Diagnosis:
 ```bash
@@ -513,7 +513,7 @@ Diagnosis:
 ## B.4 3dm info Not Working
 
 Requirements:
-- Valid STL file
+- Valid {{i:STL}} {{i:file}}
 - Network connection (for AI service)
 
 Check:
@@ -539,13 +539,13 @@ Run as Administrator.
 
 ## C.2 Incorrect Variable Expansion in Loop
 
-In batch files use:
+In batch {{i:files}} use:
 
 ```
 %%f
 ```
 
-In interactive shell use:
+In interactive {{i:shell}} use:
 
 ```
 %f
@@ -553,7 +553,7 @@ In interactive shell use:
 
 ---
 
-# D. PowerShell-Specific Failures
+# D. {{i:PowerShell}}-Specific Failures
 
 ## D.1 Script Not Running
 
@@ -575,9 +575,9 @@ Test-Path build\model.stl
 
 ---
 
-# E. Git Bash Issues
+# E. {{i:Git}} {{i:Bash}} Issues
 
-## E.1 Windows Path Confusion
+## E.1 {{i:Windows}} Path Confusion
 
 Use forward slashes:
 
@@ -592,7 +592,7 @@ openscad -o build/model.stl src/model.scad
 ## F.1 Warping
 
 Solutions:
-- Increase bed temp
+- Increase {{i:bed}} temp
 - Use enclosure
 - Add brim
 
@@ -608,7 +608,7 @@ Cause:
 
 ## F.3 Dimensional Error
 
-Test with calibration cube.
+Test with calibration {{i:cube}}.
 
 ---
 
@@ -619,7 +619,7 @@ Test with calibration cube.
 Reduce:
 - $fn
 - Minkowski usage
-- Nested difference()
+- Nested {{i:difference}}()
 
 ---
 
@@ -660,13 +660,13 @@ Use hull() when possible.
 
 # H. SYSTEM DIAGNOSTIC CHECKLIST
 
-1. Is OpenSCAD in PATH?
-2. Does CLI produce STL?
-3. Is STL manifold?
+1. Is {{i:OpenSCAD}} in {{i:PATH}}?
+2. Does CLI produce {{i:STL}}?
+3. Is {{i:STL}} manifold?
 4. Does slicer preview correctly?
-5. Is G-code generated?
-6. Does printer firmware accept G-code?
-7. Is first layer adhering?
+5. Is G-{{i:code}} generated?
+6. Does {{i:printer}} firmware accept G-{{i:code}}?
+7. Is {{i:first}} {{i:layer}} adhering?
 8. Are dimensions within tolerance?
 9. Are all brackets matched?
 10. Are comments properly closed?
@@ -677,15 +677,15 @@ Use hull() when possible.
 
 # J. EDITOR AND IDE TROUBLESHOOTING
 
-## J.1 VS Code OpenSCAD Extension Issues
+## J.1 VS Code {{i:OpenSCAD}} Extension Issues
 
 Symptom:
 - No syntax highlighting
 
 Fix:
-1. Install "OpenSCAD" extension
+1. Install "{{i:OpenSCAD}}" extension
 2. Restart {{hi:VS Code}}VS Code
-3. Check file extension is `.scad`
+3. Check {{i:file}} extension is `.scad`
 
 ---
 
@@ -694,7 +694,7 @@ Fix:
 Setup:
 1. Settings > Style Configurator
 2. Select Language: C or C++
-3. Apply to `.scad` files
+3. Apply to `.scad` {{i:files}}
 
 ---
 
@@ -710,9 +710,9 @@ Set indent to 4 spaces
 
 ---
 
-## J.4 Screen Reader + Editor Issues
+## J.4 {{i:Screen}} Reader + Editor Issues
 
-### NVDA with VS Code
+### {{i:NVDA}} with VS Code
 
 Settings:
 - Enable "Editor > Accessibility: Support"
@@ -720,10 +720,10 @@ Settings:
 
 ### Indent Announcement
 
-NVDA:
+{{i:NVDA}}:
 - Document Formatting > Report line {{hi:Indentation}}indentation
 
-JAWS:
+{{i:JAWS}}:
 - Settings Center > Reading > Report Indentation
 
 ---
@@ -733,12 +733,12 @@ JAWS:
 ## K.1 PrusaSlicer Import Failures
 
 Symptom:
-- STL won't load
+- {{i:STL}} won't load
 
 Causes:
-- Non-manifold geometry
+- Non-manifold {{i:geometry}}
 - File corruption
-- Incorrect file path
+- Incorrect {{i:file}} path
 
 Fix:
 ```bash
@@ -749,8 +749,8 @@ openscad -o model.stl model.scad --check
 
 ## K.2 Cura Slicing Errors
 
-Common:
-- Model outside build volume
+{{i:Common}}:
+- {{i:Model}} outside {{i:build}} volume
 - Unsupported overhangs
 
 Fix:
@@ -762,8 +762,8 @@ Fix:
 ## K.3 Bambu Studio Issues
 
 Plate adhesion:
-- Clean build plate
-- Increase bed temperature
+- Clean {{i:build}} plate
+- Increase {{i:bed}} temperature
 - Add brim/raft
 
 ---
@@ -789,15 +789,15 @@ Fix:
 
 ### Stringing
 
-Common with {{hi:PETG}}PETG.
+{{i:Common}} with {{hi:PETG}}PETG.
 
 Fix:
 - Increase retraction distance
 - Lower temperature
 
-### Bed Adhesion
+### {{i:Bed}} Adhesion
 
-Too good — may damage bed.
+Too good — may damage {{i:bed}}.
 
 Use:
 - Glue stick as release agent
@@ -809,7 +809,7 @@ Use:
 ### Under-extrusion
 
 Cause:
-- Too fast print speed
+- Too fast {{i:print}} speed
 
 Fix:
 - Reduce to 20-30 mm/s
@@ -827,7 +827,7 @@ Major challenge.
 
 Required:
 - Heated enclosure
-- 100°C+ bed temp
+- 100°C+ {{i:bed}} temp
 - Large brim
 
 ---
@@ -862,14 +862,14 @@ Total: +0.27mm
 ```
 
 Fix:
-- Adjust design tolerances
-- Print test pieces first
+- Adjust {{i:design}} tolerances
+- Print {{i:test}} pieces {{i:first}}
 
 ---
 
 ## M.3 Dimensional Accuracy Check
 
-Print calibration cube:
+Print calibration {{i:cube}}:
 ```openscad
 cube([20,20,20]);
 ```
@@ -912,12 +912,12 @@ WARNING: No match for font family
 ```
 
 Cause:
-- Font name incorrect
+- Font {{i:name}} incorrect
 - Font not installed
 
 Fix:
 
-Windows (PowerShell):
+{{i:Windows}} ({{i:PowerShell}}):
 ```powershell
 [System.Drawing.Text.InstalledFontCollection]::new().Families | Select-Object Name
 ```
@@ -950,7 +950,7 @@ linear_extrude(height=2)
 ## N.3 Text Size Too Large/Small
 
 Cause:
-- Size parameter is cap height in mm
+- Size {{i:parameter}} is cap {{i:height}} in mm
 
 Fix:
 ```openscad
@@ -993,7 +993,7 @@ scale([2, 1, 1])  // 2x wider only
     cube([10,10,10]);
 ```
 
-Result: 20×10×10 cube
+Result: 20×10×10 {{i:cube}}
 
 ---
 
@@ -1009,7 +1009,7 @@ mirror([1, 0, 0])  // Mirror across YZ plane
 
 # P. IMPORT AND EXPORT ERRORS
 
-## P.1 Import STL Failed
+## P.1 Import {{i:STL}} Failed
 
 Cause:
 - File path incorrect
@@ -1020,7 +1020,7 @@ Fix:
 import("path/to/file.stl");
 ```
 
-Use forward slashes even on Windows.
+Use forward slashes even on {{i:Windows}}.
 
 ---
 
@@ -1029,7 +1029,7 @@ Use forward slashes even on Windows.
 Check:
 1. Write permissions
 2. Sufficient disk space
-3. Valid file path
+3. Valid {{i:file}} path
 
 ---
 
@@ -1038,7 +1038,7 @@ Check:
 ## Q.1 rands() Not Random
 
 Cause:
-- Same seed produces same output
+- Same seed produces same {{i:output}}
 
 ```openscad
 vals = rands(0, 100, 10, 42);  // Seed = 42
@@ -1061,11 +1061,11 @@ Need collision detection logic.
 
 <a id="student-glossary"></a>
 
-# Student Glossary — OpenSCAD • 3dMake • 3D Printing • PowerShell • Command Prompt • Git Bash
+# Student Glossary — {{i:OpenSCAD}} • 3dMake • 3D Printing • {{i:PowerShell}} • Command Prompt • {{i:Git}} {{i:Bash}}
 
 ---
 
-*OpenSCAD • 3dMake • 3D Printing • PowerShell • Command Prompt • Git Bash*
+*{{i:OpenSCAD}} • 3dMake • 3D Printing • {{i:PowerShell}} • Command Prompt • {{i:Git}} {{i:Bash}}*
 
 This glossary provides:
 
@@ -1073,7 +1073,7 @@ This glossary provides:
 - Operational context  
 - Cross-system distinctions  
 - CLI examples  
-- Practical implications in 3D printing workflows  
+- Practical implications in 3D {{i:printing}} workflows  
 
 ---
 
@@ -1081,28 +1081,28 @@ This glossary provides:
 
 ## Additive Manufacturing
 
-A manufacturing methodology in which objects are fabricated layer-by-layer from digital models.  
+A manufacturing methodology in which objects are fabricated {{i:layer}}-by-{{i:layer}} from digital models.  
 In desktop contexts, this typically refers to FDM (Fused Deposition Modeling).
 
 ### Technical Characteristics
 - Layer-based deposition
-- Toolpath-generated geometry
-- STL-to-G-code workflow
+- Toolpath-generated {{i:geometry}}
+- {{i:STL}}-to-G-{{i:code}} {{i:workflow}}
 - Thermoplastic extrusion (in FDM)
 
 ### Workflow Position
-OpenSCAD -> STL -> Slicer -> G-code -> Printer -> Physical object
+{{i:OpenSCAD}} -> {{i:STL}} -> {{i:Slicer}} -> G-{{i:code}} -> Printer -> Physical object
 
 ---
 
 ## FDM (Fused Deposition Modeling)
 
-A thermoplastic extrusion process in which filament is melted and deposited in sequential layers.
+A thermoplastic extrusion process in which {{i:filament}} is melted and deposited in sequential layers.
 
 ### Critical Variables
-- Nozzle temperature
-- Bed temperature
-- Layer height
+- {{i:Nozzle}} temperature
+- {{i:Bed}} temperature
+- Layer {{i:height}}
 - Print speed
 - Cooling rate
 
@@ -1110,7 +1110,7 @@ A thermoplastic extrusion process in which filament is melted and deposited in s
 
 ## Layer Height
 
-The vertical thickness of each printed layer.
+The vertical thickness of {{i:each}} printed {{i:layer}}.
 
 - Smaller values increase surface fidelity.
 - Larger values increase speed.
@@ -1135,7 +1135,7 @@ Typical values:
 
 ### PLA (Polylactic Acid)
 
-- Easy to print
+- Easy to {{i:print}}
 - Low warping
 - Biodegradable
 - Not heat-resistant
@@ -1150,7 +1150,7 @@ Typical values:
 
 - Flexible
 - Rubber-like
-- Requires slow printing
+- Requires slow {{i:printing}}
 
 ### ABS (Acrylonitrile Butadiene Styrene)
 
@@ -1170,22 +1170,22 @@ A 10mm peg may require a 10.2mm hole for clearance.
 
 ---
 
-## Manifold (Watertight Model)
+## Manifold (Watertight {{i:Model}})
 
 A printable model with:
 - No self-intersections
 - No zero-thickness faces
 - No holes in mesh
 
-Non-manifold geometry causes slicer failure.
+Non-manifold {{i:geometry}} causes slicer failure.
 
 ---
 
-# SECTION II — OpenSCAD (Parametric Modeling)
+# SECTION II — {{i:OpenSCAD}} (Parametric Modeling)
 
-## OpenSCAD
+## {{i:OpenSCAD}}
 
-A script-based solid modeling system using Constructive Solid Geometry (CSG).
+A {{i:script}}-based solid modeling system {{i:using}} Constructive Solid Geometry (CSG).
 
 Official site:
 [https://openscad.org](https://openscad.org)
@@ -1194,7 +1194,7 @@ Official site:
 
 ## Constructive Solid Geometry (CSG)
 
-Modeling technique combining primitives using {{hi:Boolean operations}}Boolean operations.
+Modeling technique combining primitives {{i:using}} {{hi:Boolean operations}}Boolean operations.
 
 ---
 
@@ -1214,7 +1214,7 @@ cylinder(h=20, d=10);
 
 ## Cone
 
-A tapered cylinder created using different top and bottom diameters.
+A tapered cylinder created {{i:using}} different top and bottom diameters.
 
 ```openscad
 cylinder(h=20, d1=10, d2=0);
@@ -1224,7 +1224,7 @@ cylinder(h=20, d1=10, d2=0);
 
 ## 2D Shapes
 
-Flat geometry that can be extruded to 3D.
+Flat {{i:geometry}} that {{i:can}} be extruded to 3D.
 
 Examples:
 
@@ -1248,7 +1248,7 @@ polygon(points=[[0,0], [10,0], [10,10], [0,10]]);
 
 ## Text Commands
 
-Create text geometry for embossing or debossing.
+Create {{i:text}} {{i:geometry}} for embossing or debossing.
 
 ```openscad
 linear_extrude(height=2)
@@ -1272,7 +1272,7 @@ union() {
 
 ---
 
-### difference()
+### {{i:difference}}()
 
 Subtracts shapes.
 
@@ -1287,7 +1287,7 @@ difference() {
 
 ### intersection()
 
-Keeps overlapping geometry.
+Keeps overlapping {{i:geometry}}.
 
 ```openscad
 intersection() {
@@ -1302,7 +1302,7 @@ intersection() {
 
 ### Translate
 
-Move geometry in 3D space.
+Move {{i:geometry}} in 3D space.
 
 ```openscad
 translate([10, 20, 30])
@@ -1313,7 +1313,7 @@ translate([10, 20, 30])
 
 ### Rotate
 
-Rotate geometry around axes.
+Rotate {{i:geometry}} around axes.
 
 ```openscad
 rotate([0, 0, 45])
@@ -1324,7 +1324,7 @@ rotate([0, 0, 45])
 
 ### Scale
 
-Resize geometry by multiplier.
+Resize {{i:geometry}} by multiplier.
 
 ```openscad
 scale([2, 1, 1])
@@ -1335,7 +1335,7 @@ scale([2, 1, 1])
 
 ### Mirror
 
-Flip geometry across a plane.
+Flip {{i:geometry}} across a plane.
 
 ```openscad
 mirror([1, 0, 0])
@@ -1361,7 +1361,7 @@ hull() {
 
 ### Minkowski Sum
 
-Expands geometry by rolling one shape around another.
+Expands {{i:geometry}} by rolling {{i:one}} shape around another.
 
 ```openscad
 minkowski() {
@@ -1376,7 +1376,7 @@ Warning: Computationally expensive.
 
 ### Linear Extrude
 
-Extends {{hi:2D shapes}}2D shapes into 3D.
+Extends {{hi:2D shapes}}2D shapes {{i:into}} 3D.
 
 ```openscad
 linear_extrude(height=10)
@@ -1398,7 +1398,7 @@ offset(r=2)
 
 ## Variable
 
-A named parameter used to control geometry.
+A named {{i:parameter}} used to control {{i:geometry}}.
 
 ```openscad
 width = 30;
@@ -1407,9 +1407,9 @@ cube([width,10,5]);
 
 ---
 
-## Parametric Design
+## Parametric {{i:Design}}
 
-Geometry controlled by {{hi:Variables}}variables.
+Geometry controlled by {{hi:Variables}}{{i:variables}}.
 
 Advantages:
 - Rapid iteration
@@ -1418,9 +1418,9 @@ Advantages:
 
 ---
 
-## Module
+## {{i:Module}}
 
-Reusable geometry block.
+Reusable {{i:geometry}} block.
 
 ```openscad
 module peg(d, h) {
@@ -1501,7 +1501,7 @@ positions = rands(0, 100, 5);
 
 ## Import
 
-Load external STL or other files.
+Load external {{i:STL}} or other {{i:files}}.
 
 ```openscad
 import("model.stl");
@@ -1518,25 +1518,25 @@ $fn = 100;
 sphere(10);
 ```
 
-Higher values increase smoothness and render time.
+Higher values increase smoothness and render {{i:time}}.
 
 ---
 
 ## # (Hash Mark - Debug Modifier)
 
-Highlights geometry in transparent red during preview.
+Highlights {{i:geometry}} in transparent red during preview.
 
 ```openscad
 #cube([10,10,10]);
 ```
 
-Used for {{hi:Debugging}}debugging geometry positions.
+Used for {{hi:Debugging}}debugging {{i:geometry}} positions.
 
 ---
 
 ## Comments
 
-Non-executable text for documentation.
+Non-executable {{i:text}} for documentation.
 
 ### Single-line Comments
 
@@ -1594,7 +1594,7 @@ cube([10,10,10]);
 
 ### { } (Curly Brackets)
 
-Define code blocks.
+Define {{i:code}} blocks.
 
 ```openscad
 if (x > 5) {
@@ -1612,9 +1612,9 @@ if (x < 10 && y > 5) { }
 
 ---
 
-## Preview vs Render
+## {{i:Preview}} vs Render
 
-- F5 = Preview (OpenGL approximation)
+- F5 = {{i:Preview}} (OpenGL approximation)
 - F6 = Render (full CSG evaluation)
 
 CLI equivalent:
@@ -1629,16 +1629,16 @@ openscad -o model.stl model.scad
 
 ## 3dMake
 
-A command-line tool for automating 3D model generation and processing.
+A {{i:command}}-line tool for automating 3D model generation and processing.
 
 Repository:
 [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
 ---
 
-## 3dm build
+## 3dm {{i:build}}
 
-Command to generate STL from OpenSCAD source.
+Command to generate {{i:STL}} from {{i:OpenSCAD}} source.
 
 ```bash
 3dm build
@@ -1660,7 +1660,7 @@ AI-powered geometric description for non-visual validation.
 
 ## Headless Rendering
 
-Running OpenSCAD without GUI.
+Running {{i:OpenSCAD}} without GUI.
 
 ```bash
 openscad -o output.stl input.scad
@@ -1670,13 +1670,13 @@ openscad -o output.stl input.scad
 
 ## Automated Build Pipeline
 
-Example PowerShell pipeline:
+Example {{i:PowerShell}} pipeline:
 
 ```powershell
 openscad -o model.stl model.scad
 ```
 
-Example Bash:
+Example {{i:Bash}}:
 
 ```bash
 openscad -o model.stl model.scad
@@ -1688,26 +1688,26 @@ openscad -o model.stl model.scad
 
 # CLI (Command-Line Interface)
 
-A text-based interface for interacting with the operating system.
+A {{i:text}}-based interface for interacting with the operating system.
 
 ---
 
-# Shell
+# {{i:Shell}}
 
-A program that interprets commands.
+A program that interprets {{i:commands}}.
 
 Examples:
-- PowerShell
+- {{i:PowerShell}}
 - Command Prompt
-- Git Bash
+- {{i:Git}} {{i:Bash}}
 
 ---
 
-# PowerShell
+# {{i:PowerShell}}
 
-Object-oriented Windows shell.
+Object-oriented {{i:Windows}} {{i:shell}}.
 
-### List Files
+### {{i:List}} Files
 
 ```powershell
 Get-ChildItem
@@ -1735,9 +1735,9 @@ $LASTEXITCODE
 
 # Command Prompt (cmd.exe)
 
-Traditional Windows shell.
+Traditional {{i:Windows}} {{i:shell}}.
 
-### List Files
+### {{i:List}} Files
 
 ```cmd
 dir
@@ -1763,11 +1763,11 @@ echo %ERRORLEVEL%
 
 ---
 
-# Git Bash
+# {{i:Git}} {{i:Bash}}
 
-Unix-like shell for Windows.
+Unix-like {{i:shell}} for {{i:Windows}}.
 
-### List Files
+### {{i:List}} Files
 
 ```bash
 ls
@@ -1789,7 +1789,7 @@ mkdir builds
 
 # Working Directory
 
-The directory in which commands execute.
+The directory in which {{i:commands}} execute.
 
 ### Print Working Directory
 
@@ -1803,17 +1803,17 @@ Get-Location
 
 ---
 
-# PATH (Environment Variable)
+# {{i:PATH}} (Environment Variable)
 
 Tells system where executables are located.
 
-### View PATH (PowerShell)
+### View {{i:PATH}} ({{i:PowerShell}})
 
 ```powershell
 $env:PATH
 ```
 
-### View PATH (cmd)
+### View {{i:PATH}} (cmd)
 
 ```cmd
 echo %PATH%
@@ -1825,7 +1825,7 @@ echo %PATH%
 
 A system-level configuration variable.
 
-### Set Temporarily (PowerShell)
+### Set Temporarily ({{i:PowerShell}})
 
 ```powershell
 $env:TESTVAR="hello"
@@ -1841,7 +1841,7 @@ set TESTVAR=hello
 
 # Exit Code
 
-Numeric status returned by command.
+Numeric status returned by {{i:command}}.
 
 - 0 = Success
 - Non-zero = Error
@@ -1860,7 +1860,7 @@ if [ $? -ne 0 ]; then echo "Build Failed"; fi
 
 # Pipe
 
-Pass output from one command to another.
+Pass {{i:output}} from {{i:one}} {{i:command}} to another.
 
 ```powershell
 Get-ChildItem | Select-String ".scad"
@@ -1872,9 +1872,9 @@ ls | grep ".scad"
 
 ---
 
-# SECTION V — Git & Version Control
+# SECTION V — {{i:Git}} & Version Control
 
-## Git
+## {{i:Git}}
 
 Distributed version control system.
 
@@ -1934,9 +1934,9 @@ git status
 
 # SECTION VI — File Formats
 
-## STL
+## {{i:STL}}
 
-Triangle mesh file used in 3D printing.
+Triangle mesh {{i:file}} used in 3D {{i:printing}}.
 
 Generated by:
 
@@ -1946,9 +1946,9 @@ openscad -o model.stl model.scad
 
 ---
 
-## Slicer Software
+## {{i:Slicer}} Software
 
-Converts STL to G-code.
+Converts {{i:STL}} to G-{{i:code}}.
 
 ### PrusaSlicer
 
@@ -1960,11 +1960,11 @@ User-friendly slicer by Ultimaker.
 
 ### Bambu Studio
 
-Slicer for {{hi:Bambu}}Bambu Lab printers.
+{{i:Slicer}} for {{hi:Bambu}}Bambu Lab printers.
 
 ---
 
-## G-code
+## G-{{i:code}}
 
 Machine instructions generated by slicer.
 
@@ -1991,11 +1991,11 @@ Examples:
 
 ## Debugging
 
-Process of finding and fixing errors in code.
+Process of finding and fixing errors in {{i:code}}.
 
 Techniques:
 - Use `echo()` statements
-- Use `#` modifier to highlight geometry
+- Use `#` modifier to highlight {{i:geometry}}
 - Test {{hi:Modules}}modules independently
 - Check console for warnings
 
@@ -2009,9 +2009,9 @@ Ability to regenerate identical outputs from identical inputs.
 
 ## Automation
 
-Using scripts instead of manual steps.
+Using {{i:scripts}} instead of manual steps.
 
-Example build script (PowerShell):
+Example {{i:build}} {{i:script}} ({{i:PowerShell}}):
 
 ```powershell
 openscad -o build/model.stl src/model.scad
@@ -2053,7 +2053,7 @@ Important for screen readers.
 ### VS Code
 
 Recommended extensions:
-- OpenSCAD Language Support
+- {{i:OpenSCAD}} Language Support
 - Bracket Pair Colorizer
 
 ---
@@ -2064,13 +2064,13 @@ Lightweight editor with syntax highlighting.
 
 Configure:
 - Settings > Preferences > Language
-- Select OpenSCAD or C-style syntax
+- Select {{i:OpenSCAD}} or C-style syntax
 
 ---
 
 ## Indentation
 
-Proper code formatting for readability.
+Proper {{i:code}} formatting for readability.
 
 ```openscad
 module example() {
@@ -2084,19 +2084,19 @@ Use consistent spacing (2 or 4 spaces per level).
 
 ---
 
-## Screen Reader
+## {{i:Screen}} Reader
 
-Software that reads text aloud.
+Software that reads {{i:text}} aloud.
 
 Examples:
-- NVDA
-- JAWS
+- {{i:NVDA}}
+- {{i:JAWS}}
 - Orca
 - VoiceOver
 
 ---
 
-# SECTION IX — Mechanical Design Concepts
+# SECTION IX — Mechanical {{i:Design}} Concepts
 
 ## Clearance Fit
 
@@ -2108,7 +2108,7 @@ Tight fit requiring force.
 
 ## Overhang
 
-Unsupported geometry exceeding safe angle (≈45° for FDM).
+Unsupported {{i:geometry}} exceeding safe angle (≈45° for FDM).
 
 ---
 
@@ -2139,7 +2139,7 @@ Accuracy: ±0.01mm typical
 
 ## Headless CI Build
 
-Automated rendering using scripts or CI tools.
+Automated rendering {{i:using}} {{i:scripts}} or CI tools.
 
 ```bash
 openscad -o output.stl model.scad
@@ -2149,18 +2149,18 @@ openscad -o output.stl model.scad
 
 ## Deterministic Modeling
 
-Same input -> same output every time.
+Same input -> same {{i:output}} every {{i:time}}.
 
-OpenSCAD is deterministic.
+{{i:OpenSCAD}} is deterministic.
 
 ---
 
 ## Dependency
 
-External program required for workflow.
+External program required for {{i:workflow}}.
 
 Example:
-- OpenSCAD must be in PATH.
+- {{i:OpenSCAD}} must be in {{i:PATH}}.
 
 ---
 
@@ -2169,18 +2169,18 @@ Example:
 
 <a id="teacher-glossary"></a>
 
-# Teacher Glossary — Pedagogical Concepts for 3D Design and Computational Thinking Instruction
+# Teacher Glossary — Pedagogical Concepts for 3D {{i:Design}} and Computational Thinking Instruction
 
 ---
 
-*Pedagogical Concepts for {{hi:3D design}}3D Design & Computational Thinking Instruction*
+*Pedagogical Concepts for {{hi:3D {{i:design}}}}3D {{i:Design}} & Computational Thinking Instruction*
 
 This glossary provides instructors with:
 - Pedagogical frameworks
 - Teaching strategies
 - Assessment concepts
 - Accessibility guidance
-- Curriculum design principles
+- Curriculum {{i:design}} principles
 
 ---
 
@@ -2188,33 +2188,33 @@ This glossary provides instructors with:
 
 ## Computational Thinking
 
-Problem-solving approach using concepts fundamental to computer science.
+Problem-solving approach {{i:using}} concepts fundamental to computer science.
 
 Core pillars:
-- **{{hi:Decomposition}}Decomposition** — Breaking problems into smaller parts
+- **{{hi:Decomposition}}Decomposition** — Breaking problems {{i:into}} smaller parts
 - **Pattern Recognition** — Identifying similarities
 - **{{hi:Abstraction}}Abstraction** — Focusing on relevant details
 - **{{hi:Algorithms}}Algorithms** — Creating step-by-step solutions
 
-Application in OpenSCAD:
-Students decompose complex models into primitive shapes, recognize geometric patterns, abstract {{hi:Parameters}}parameters, and write algorithmic module definitions.
+Application in {{i:OpenSCAD}}:
+Students decompose complex models {{i:into}} primitive shapes, recognize geometric patterns, abstract {{hi:Parameters}}{{i:parameters}}, and {{i:write}} algorithmic {{i:module}} definitions.
 
 ---
 
 ## Decomposition
 
-Breaking a complex problem into manageable sub-problems.
+Breaking a complex problem {{i:into}} manageable sub-problems.
 
-### In 3D Design Context
+### In 3D {{i:Design}} Context
 
 Example:
-A phone stand is decomposed into:
+A phone stand is decomposed {{i:into}}:
 1. Base plate
 2. Support angle
 3. Lip to hold phone
 4. Optional cable slot
 
-Each component becomes a separate module.
+Each component becomes a separate {{i:module}}.
 
 ---
 
@@ -2222,7 +2222,7 @@ Each component becomes a separate module.
 
 Removing unnecessary details to focus on essential features.
 
-### In Parametric Design
+### In Parametric {{i:Design}}
 
 ```openscad
 module bolt(diameter, length) {
@@ -2231,7 +2231,7 @@ module bolt(diameter, length) {
 }
 ```
 
-Students learn to identify which details matter and which can be parameterized.
+Students learn to identify which details matter and which {{i:can}} be parameterized.
 
 ---
 
@@ -2239,11 +2239,11 @@ Students learn to identify which details matter and which can be parameterized.
 
 Identifying repeating structures or concepts.
 
-### Examples in OpenSCAD
+### Examples in {{i:OpenSCAD}}
 
 - Repeated geometric elements (array of holes)
 - Similar transformation sequences
-- Common parameter relationships
+- {{i:Common}} {{i:parameter}} relationships
 
 ---
 
@@ -2264,17 +2264,17 @@ for (i = [0:teeth-1]) {
 
 ---
 
-# SECTION II — Instructional Design Strategies
+# SECTION II — Instructional {{i:Design}} Strategies
 
 ## Walking Skeleton Approach
 
-Agile development practice: build minimal working version first, then iterate.
+Agile development practice: {{i:build}} minimal working version {{i:first}}, then iterate.
 
-### In 3D Design Curriculum
+### In 3D {{i:Design}} Curriculum
 
-1. Create basic cube
-2. Add one parameter
-3. Add one transformation
+1. Create basic {{i:cube}}
+2. Add {{i:one}} {{i:parameter}}
+3. Add {{i:one}} transformation
 4. Build and verify
 5. Repeat
 
@@ -2282,7 +2282,7 @@ Prevents overwhelming students with complexity.
 
 ---
 
-## Design Cycle
+## {{i:Design}} Cycle
 
 Iterative process:
 
@@ -2300,10 +2300,10 @@ Edit .scad -> 3dm build -> 3dm info -> Measure print -> Adjust parameters
 
 ## Scaffolding
 
-Temporary support structures that enable learning.
+Temporary {{i:support}} structures that enable learning.
 
 Examples:
-- Starter code templates
+- Starter {{i:code}} templates
 - Pre-defined modules
 - Graduated exercises
 - Checklists
@@ -2314,16 +2314,16 @@ Remove scaffolding as competency increases.
 
 ## Physical Computing
 
-Learning that connects digital design to physical artifacts.
+Learning that connects digital {{i:design}} to physical artifacts.
 
-3D printing provides immediate tangible feedback:
-- Code -> STL -> Physical object
+3D {{i:printing}} provides immediate tangible feedback:
+- Code -> {{i:STL}} -> Physical object
 - Reinforces cause-and-effect
 - Engages kinesthetic learners
 
 ---
 
-## Stakeholder-Centric Design
+## Stakeholder-Centric {{i:Design}}
 
 Designing with end-user needs in focus.
 
@@ -2332,10 +2332,10 @@ Designing with end-user needs in focus.
 Have students:
 1. Interview stakeholders
 2. Define requirements
-3. Create design constraints
+3. Create {{i:design}} constraints
 4. Iterate based on feedback
 
-Example: Design assistive device for specific user needs.
+Example: {{i:Design}} assistive device for {{i:specific}} user needs.
 
 ---
 
@@ -2343,12 +2343,12 @@ Example: Design assistive device for specific user needs.
 
 ## Code Review Criteria
 
-Assess student code on:
+Assess student {{i:code}} on:
 
-1. **Functionality** — Does it work?
+1. **Functionality** — Does it {{i:work}}?
 2. **Parametrization** — Are values abstracted?
 3. **Documentation** — Are comments clear?
-4. **Modularity** — Is code reusable?
+4. **Modularity** — Is {{i:code}} reusable?
 5. **Efficiency** — Is approach optimal?
 
 ---
@@ -2362,7 +2362,7 @@ Systematic verification process.
 - Measure with calipers
 - Compare to specification
 - Document deviations
-- Adjust parameters
+- Adjust {{i:parameters}}
 - Retest
 
 Teaches scientific method and iterative refinement.
@@ -2382,29 +2382,29 @@ Required instruction:
 
 ---
 
-# SECTION IV — Accessibility & Universal Design
+# SECTION IV — Accessibility & Universal {{i:Design}}
 
-## Screen Reader Accessibility Guide
+## {{i:Screen}} Reader Accessibility Guide
 
-Ensure all students can access curriculum.
+Ensure all students {{i:can}} access curriculum.
 
 ### Key Principles
 
 1. **Semantic HTML/Markdown** — Proper heading structure
-2. **Alt text for images** — Describe geometric concepts
-3. **CLI-first workflows** — Reduce GUI dependence
-4. **Descriptive output** — `3dm info` provides text descriptions
+2. **Alt {{i:text}} for images** — Describe geometric concepts
+3. **CLI-{{i:first}} workflows** — Reduce GUI dependence
+4. **Descriptive {{i:output}}** — `3dm info` provides {{i:text}} descriptions
 
 ---
 
 ## Braille Display Setup
 
-For students using refreshable braille displays:
+For students {{i:using}} refreshable {{i:braille}} displays:
 
-1. Ensure code editors support screen readers
+1. Ensure {{i:code}} editors {{i:support}} screen readers
 2. Use semantic indentation (not tabs)
-3. Provide geometric descriptions in text
-4. Test commands with NVDA/JAWS
+3. Provide geometric descriptions in {{i:text}}
+4. Test {{i:commands}} with {{i:NVDA}}/{{i:JAWS}}
 
 ---
 
@@ -2412,15 +2412,15 @@ For students using refreshable braille displays:
 
 Configure screen readers to verbalize indentation level.
 
-### NVDA
+### {{i:NVDA}}
 
 Settings > Document Formatting > Report line indentation
 
-### JAWS
+### {{i:JAWS}}
 
 Settings Center > Reading > Report Indentation
 
-Critical for understanding OpenSCAD block structure.
+Critical for understanding {{i:OpenSCAD}} block structure.
 
 ---
 
@@ -2428,9 +2428,9 @@ Critical for understanding OpenSCAD block structure.
 
 Guide blind/low-vision students through:
 
-1. CLI navigation (`pwd`, `ls`, `cd`)
+1. CLI {{i:navigation}} (`pwd`, `ls`, `cd`)
 2. Text {{hi:Editor Setup}}editor setup (VS Code with extensions)
-3. `3dm build` command
+3. `3dm build` {{i:command}}
 4. `3dm info` for validation
 5. Caliper measurement techniques (tactile)
 
@@ -2441,16 +2441,16 @@ Guide blind/low-vision students through:
 ### VS Code
 
 Recommended extensions:
-- Screen Reader Optimized
+- {{i:Screen}} Reader Optimized
 - Bracket Pair Colorizer (announces nesting)
-- OpenSCAD Language Support
+- {{i:OpenSCAD}} Language Support
 
 ### Notepad++
 
 Lightweight alternative:
 - Configure indentation announcement
 - Enable line number reading
-- Set up hotkeys for navigation
+- Set up hotkeys for {{i:navigation}}
 
 ---
 
@@ -2458,12 +2458,12 @@ Lightweight alternative:
 
 ## Parametric Architecture
 
-Design philosophy where dimensions are variables, not fixed values.
+{{i:Design}} philosophy where dimensions are {{i:variables}}, not fixed values.
 
 ### Why Teach This
 
 - Promotes computational thinking
-- Enables design reuse
+- Enables {{i:design}} reuse
 - Teaches variable scope
 - Reinforces algebra concepts
 
@@ -2490,10 +2490,10 @@ Critical mechanical engineering concept.
 
 ### Teaching Approach
 
-1. Print test parts
+1. Print {{i:test}} parts
 2. Measure with calipers
-3. Calculate error
-4. Adjust tolerance parameters
+3. Calculate {{i:error}}
+4. Adjust tolerance {{i:parameters}}
 5. Reprint and verify
 
 Teaches:
@@ -2520,21 +2520,21 @@ Requires understanding of:
 
 ---
 
-# SECTION VI — Curriculum Design Elements
+# SECTION VI — Curriculum {{i:Design}} Elements
 
-## Design Mode vs Print Mode
+## {{i:Design}} Mode vs Print Mode
 
-OpenSCAD workflows:
-- **{{hi:Design mode}}Design Mode** (F5) — Fast preview
-- **{{hi:Print mode}}Print Mode** (F6) — Full render for STL export
+{{i:OpenSCAD}} workflows:
+- **{{hi:{{i:Design}} mode}}{{i:Design}} Mode** (F5) — Fast preview
+- **{{hi:Print mode}}Print Mode** (F6) — Full render for {{i:STL}} export
 
 Teach distinction early to avoid confusion.
 
 ---
 
-## Editor Window vs Preview Window
+## Editor Window vs {{i:Preview}} Window
 
-OpenSCAD interface:
+{{i:OpenSCAD}} interface:
 - Left: Code editor
 - Right: 3D preview
 
@@ -2544,9 +2544,9 @@ Non-visual students use editor + CLI tools instead of preview.
 
 ## File Format Progression
 
-Teach file types in order:
+Teach {{i:file}} types in order:
 
-1. `.scad` — Source code
+1. `.scad` — Source {{i:code}}
 2. `.stl` — 3D mesh
 3. `.gcode` — Machine instructions
 
@@ -2560,10 +2560,10 @@ Systematic approaches to finding errors.
 
 ### For Students
 
-1. Read error messages carefully
-2. Use `echo()` to print values
+1. Read {{i:error}} messages carefully
+2. Use `echo()` to {{i:print}} values
 3. Test modules independently
-4. Use `#` modifier to highlight geometry
+4. Use `#` modifier to highlight {{i:geometry}}
 5. Simplify to minimal failing case
 
 ---
@@ -2572,10 +2572,10 @@ Systematic approaches to finding errors.
 
 ## Mathematics Integration
 
-3D design reinforces:
-- Coordinate geometry (X, Y, Z axes)
+3D {{i:design}} reinforces:
+- Coordinate {{i:geometry}} (X, Y, Z axes)
 - Trigonometry (rotation angles)
-- Algebra (parametric equations)
+- Algebra ({{i:parametric}} equations)
 - Measurement & units
 
 ---
@@ -2589,17 +2589,17 @@ Systematic approaches to finding errors.
 
 ---
 
-## Engineering Design Process
+## Engineering {{i:Design}} Process
 
-Professional workflow:
+Professional {{i:workflow}}:
 1. Define problem
 2. Research requirements
 3. Brainstorm solutions
 4. Build prototype
 5. Test and evaluate
-6. Refine design
+6. Refine {{i:design}}
 
-3D printing makes this tangible.
+3D {{i:printing}} makes this tangible.
 
 ---
 
@@ -2610,9 +2610,9 @@ Professional workflow:
 ### PrusaSlicer
 
 Recommended teaching slicer:
-- Visual layer preview
+- Visual {{i:layer}} preview
 - Built-in supports
-- Print time estimates
+- Print {{i:time}} estimates
 
 ### Cura
 
@@ -2624,7 +2624,7 @@ Alternative:
 
 For Bambu Lab printers:
 - Automated features
-- Multi-color support
+- Multi-color {{i:support}}
 
 ---
 
@@ -2633,7 +2633,7 @@ For Bambu Lab printers:
 ### PLA
 
 Start here:
-- Easiest to print
+- Easiest to {{i:print}}
 - Lowest temperature
 - Minimal warping
 
@@ -2675,7 +2675,7 @@ cube([10,10,10]);  // One statement
 Teach commenting best practices:
 
 1. Explain **why**, not **what**
-2. Document parameters
+2. Document {{i:parameters}}
 3. Include units
 4. Note constraints
 
@@ -2694,14 +2694,14 @@ spacing = width * 1.5;  // Arithmetic
 
 # SECTION X — Assessment Rubrics
 
-## Parametric Design Rubric
+## Parametric {{i:Design}} Rubric
 
 | Criterion | Novice | Developing | Proficient | Advanced |
 |-----------|--------|------------|------------|----------|
-| Parameterization | Hard-coded values | Some parameters | Most values parameterized | Full {{hi:Parametric Architecture}}parametric architecture |
-| Documentation | No comments | Minimal comments | Clear parameter docs | Comprehensive documentation |
-| Modularity | No modules | Basic modules | Reusable modules | Library-quality modules |
-| Functionality | Doesn't build | Builds with errors | Meets requirements | Exceeds requirements |
+| Parameterization | Hard-coded values | Some {{i:parameters}} | Most values parameterized | Full {{hi:Parametric Architecture}}{{i:parametric}} architecture |
+| Documentation | No comments | Minimal comments | Clear {{i:parameter}} docs | Comprehensive documentation |
+| Modularity | No modules | Basic modules | Reusable modules | Library-{{i:quality}} modules |
+| Functionality | Doesn't {{i:build}} | Builds with errors | Meets requirements | Exceeds requirements |
 
 ---
 
@@ -2709,7 +2709,7 @@ spacing = width * 1.5;  // Arithmetic
 
 | Criterion | Assessment |
 |-----------|------------|
-| Manifold geometry | Pass/Fail |
+| Manifold {{i:geometry}} | Pass/Fail |
 | Tolerance specified | Pass/Fail |
 | Documentation complete | Pass/Fail |
 | Quality measurements recorded | Pass/Fail |
@@ -2721,15 +2721,15 @@ spacing = width * 1.5;  // Arithmetic
 ## Teaching Debugging
 
 Framework:
-1. **Reproduce** — Can you make it fail consistently?
+1. **Reproduce** — Can {{i:you}} make it fail consistently?
 2. **Isolate** — What's the minimal failing case?
 3. **Hypothesize** — What might cause this?
-4. **Test** — How can you verify?
-5. **Document** — What did you learn?
+4. **Test** — How {{i:can}} {{i:you}} verify?
+5. **Document** — What did {{i:you}} learn?
 
 ---
 
-## Common Student Errors
+## {{i:Common}} Student Errors
 
 ### Syntax Errors
 
@@ -2739,14 +2739,14 @@ Framework:
 
 ### Logical Errors
 
-- Wrong parameter order
+- Wrong {{i:parameter}} order
 - Incorrect units
 - Transform order confusion
 
 ### Practical Errors
 
-- Model too large for print bed
-- Overhangs without support
+- {{i:Model}} too large for {{i:print}} {{i:bed}}
+- Overhangs without {{i:support}}
 - Wall thickness too thin
 
 ---
@@ -2756,9 +2756,9 @@ Framework:
 ## Scaffolded Project Sequence
 
 1. **Week 1-2:** Primitives and transformations
-2. **Week 3-4:** Modules and parameters
+2. **Week 3-4:** Modules and {{i:parameters}}
 3. **Week 5-6:** Boolean operations
-4. **Week 7-8:** Multi-part assemblies
+4. **Week 7-8:** Multi-{{i:part}} assemblies
 5. **Week 9-10:** Student-designed project
 
 ---
@@ -2766,7 +2766,7 @@ Framework:
 ## Portfolio Assessment
 
 Students maintain portfolio showing:
-- Design evolution
+- {{i:Design}} evolution
 - Failed prototypes (with analysis)
 - Final products
 - Measurements and QA data
@@ -2785,29 +2785,29 @@ Students maintain portfolio showing:
 
 ## Peer-Reviewed and Scholarly Works
 
-Gonzalez Avila, J. F., Pietrzak, T., Girouard, A., & Casiez, G. (2024). *Understanding the challenges of OpenSCAD users for 3D printing.* In *Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI ’24)* (Article 351, pp. 1–20). Association for Computing Machinery. [https://doi.org/10.1145/3613904.3642566](https://doi.org/10.1145/3613904.3642566)
+Gonzalez Avila, J. F., Pietrzak, T., Girouard, A., & Casiez, G. (2024). *Understanding the challenges of {{i:OpenSCAD}} users for 3D {{i:printing}}.* In *Proceedings of the CHI Conference on Human Factors in Computing Systems (CHI ’24)* (Article 351, pp. 1–20). Association for Computing Machinery. [https://doi.org/10.1145/3613904.3642566](https://doi.org/10.1145/3613904.3642566)
 
-Li, G. (2024). *Chinese dragon modeling based on OpenSCAD.* *Applied and Computational Engineering, 67*, 1–12. [https://doi.org/10.54254/2755-2721/67/20240585](https://doi.org/10.54254/2755-2721/67/20240585)
+Li, G. (2024). *Chinese dragon modeling based on {{i:OpenSCAD}}.* *Applied and Computational Engineering, 67*, 1–12. [https://doi.org/10.54254/2755-2721/67/20240585](https://doi.org/10.54254/2755-2721/67/20240585)
 
-Kwon, N., Sun, T., Gao, Y., Zhao, L., Wang, X., Kim, J., & Hong, S. R. (2024). *3DPFIX: Improving remote novices’ 3D printing troubleshooting through human-AI collaboration.* arXiv. [https://doi.org/10.48550/arXiv.2401.15877](https://doi.org/10.48550/arXiv.2401.15877) :contentReference[oaicite:2]{index=2}
+Kwon, N., Sun, T., Gao, Y., Zhao, L., Wang, X., Kim, J., & Hong, S. R. (2024). *3DPFIX: Improving remote novices’ 3D {{i:printing}} troubleshooting through human-AI collaboration.* arXiv. [https://doi.org/10.48550/arXiv.2401.15877](https://doi.org/10.48550/arXiv.2401.15877) :contentReference[oaicite:2]{index=2}
 
 ## Government & Standards
 
-Centers for Disease Control and Prevention, National Institute for Occupational Safety and Health. (2020, May 14). *Health and safety considerations for 3D printing.* [https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/](https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/)  
+Centers for Disease Control and Prevention, National Institute for Occupational Safety and Health. (2020, May 14). *Health and safety considerations for 3D {{i:printing}}.* [https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-{{i:printing}}/](https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-{{i:printing}}/)  
 
-Centers for Disease Control and Prevention, National Institute for Occupational Safety and Health. (2024). *Approaches to safe 3D printing.* [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html)  
+Centers for Disease Control and Prevention, National Institute for Occupational Safety and Health. (2024). *Approaches to safe 3D {{i:printing}}.* [https://www.cdc.gov/niosh/blogs/2024/safe-3d-{{i:printing}}.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-{{i:printing}}.html)  
 
-National Institute of Standards and Technology. (2023). *Artificial Intelligence Risk Management Framework (AI RMF 1.0).* [https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf](https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf)  
+National Institute of Standards and Technology. (2023). *Artificial Intelligence Risk Management Framework (AI RMF 1.0).* [https://www.nist.gov/system/{{i:files}}/documents/2023/01/26/AI%20RMF%201.0.pdf](https://www.nist.gov/system/{{i:files}}/documents/2023/01/26/AI%20RMF%201.0.pdf)  
 
 Occupational Safety and Health Administration. (n.d.). *Hierarchy of controls.* [https://www.osha.gov/hierarchy-of-controls](https://www.osha.gov/hierarchy-of-controls)  
 
-Washington State Department of Health. (n.d.). *3D printers in schools.* [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)  
+Washington State Department of Health. (n.d.). *3D printers in schools.* [https://doh.wa.gov/community-and-{{i:environment}}/schools/3d-printers](https://doh.wa.gov/community-and-{{i:environment}}/schools/3d-printers)  
 
 ## Industry & Commercial Documentation
 
-All3DP. (n.d.). *3D printer filament types explained.* [https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/](https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/)  
+All3DP. (n.d.). *3D {{i:printer}} {{i:filament}} types explained.* [https://all3dp.com/1/3d-{{i:printer}}-{{i:filament}}-types-3d-{{i:printing}}-3d-{{i:filament}}/](https://all3dp.com/1/3d-{{i:printer}}-{{i:filament}}-types-3d-{{i:printing}}-3d-{{i:filament}}/)  
 
-All3DP. (n.d.). *FDM 3D printing tolerances.* [https://all3dp.com/2/fdm-3d-printing-tolerances/](https://all3dp.com/2/fdm-3d-printing-tolerances/)  
+All3DP. (n.d.). *FDM 3D {{i:printing}} tolerances.* [https://all3dp.com/2/fdm-3d-{{i:printing}}-tolerances/](https://all3dp.com/2/fdm-3d-{{i:printing}}-tolerances/)  
 
 Anycubic. (n.d.). *Anycubic.* [https://www.anycubic.com/](https://www.anycubic.com/)  
 
@@ -2819,93 +2819,93 @@ Bambu Lab. (n.d.). *Bambu Studio.* [https://bambulab.com/en/download/studio](htt
 
 Bambu Lab Wiki. (n.d.). *Bambu Lab Wiki.* [https://wiki.bambulab.com](https://wiki.bambulab.com)  
 
-Hubs. (n.d.). *What is FDM 3D printing?* [https://www.hubs.com/knowledge-base/what-is-fdm-3d-printing/](https://www.hubs.com/knowledge-base/what-is-fdm-3d-printing/)  
+Hubs. (n.d.). *What is FDM 3D {{i:printing}}?* [https://www.hubs.com/knowledge-base/what-is-fdm-3d-{{i:printing}}/](https://www.hubs.com/knowledge-base/what-is-fdm-3d-{{i:printing}}/)  
 
 IDEA Maker (Raise3D). (n.d.). *ideaMaker.* [https://www.raise3d.com/ideamaker](https://www.raise3d.com/ideamaker)  
 
-MatterHackers. (n.d.). *3D printer filament comparison.* [https://www.matterhackers.com/3d-printer-filament-compare](https://www.matterhackers.com/3d-printer-filament-compare)  
+MatterHackers. (n.d.). *3D {{i:printer}} {{i:filament}} comparison.* [https://www.matterhackers.com/3d-{{i:printer}}-{{i:filament}}-compare](https://www.matterhackers.com/3d-{{i:printer}}-{{i:filament}}-compare)  
 
 Prusa Research. (n.d.). *{{hi:PrusaSlicer}}PrusaSlicer 4.2.4.* [https://www.prusa3d.com/page/prusaslicer424/](https://www.prusa3d.com/page/prusaslicer424/)  
 
 Prusa Research. (n.d.). *PrusaSlicer 4.1.0.* [https://www.prusa3d.com/page/prusaslicer_410/](https://www.prusa3d.com/page/prusaslicer_410/)  
 
-Prusa Research. (n.d.). *Support.* [https://www.prusa3d.com/support/](https://www.prusa3d.com/support/)  
+Prusa Research. (n.d.). *Support.* [https://www.prusa3d.com/{{i:support}}/](https://www.prusa3d.com/{{i:support}}/)  
 
 Stratasys. (n.d.). *Stratasys.* [https://stratasys.com/](https://stratasys.com/)  
 
-UL Research Institutes. (n.d.). *3D printing emissions study.* [https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study](https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study)  
+UL Research Institutes. (n.d.). *3D {{i:printing}} emissions study.* [https://www.ul.com/news/ul-research-institutes-releases-3d-{{i:printing}}-emissions-study](https://www.ul.com/news/ul-research-institutes-releases-3d-{{i:printing}}-emissions-study)  
 
 Ultimaker. (n.d.). *Ultimaker {{hi:Cura}}Cura.* [https://ultimaker.com/software/ultimaker-cura](https://ultimaker.com/software/ultimaker-cura)  
 
-ZenML. (n.d.). *LLM-powered 3D model generation for 3D printing.* [https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing](https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing)  
+ZenML. (n.d.). *LLM-powered 3D model generation for 3D {{i:printing}}.* [https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-{{i:printing}}](https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-{{i:printing}})  
 
 ## Open-Source Software & Technical Documentation
 
-Anthropic. (n.d.). *Prompt engineering overview.* [https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)  
+Anthropic. (n.d.). *Prompt engineering overview.* [https://docs.anthropic.com/en/docs/{{i:build}}-with-claude/prompt-engineering/overview](https://docs.anthropic.com/en/docs/{{i:build}}-with-claude/prompt-engineering/overview)  
 
 Apache Software Foundation. (2004). *Apache License, Version 2.0.* [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)  
 
 BelfrySCAD. (n.d.). *BOSL2.* [https://github.com/BelfrySCAD/BOSL2](https://github.com/BelfrySCAD/BOSL2)  
 
-Deck, T. (2025). *3DMake repository.* [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)  
+Deck, T. (2025). *{{i:3DMake}} repository.* [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)  
 
-Free Software Foundation. (n.d.). *GNU Bash manual.* [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)  
+Free Software Foundation. (n.d.). *GNU {{i:Bash}} manual.* [https://www.gnu.org/software/bash/manual/](https://www.gnu.org/software/bash/manual/)  
 
 Free Software Foundation. (n.d.). *GNU Coreutils manual.* [https://www.gnu.org/software/coreutils/manual/](https://www.gnu.org/software/coreutils/manual/)  
 
 Free Software Foundation. (n.d.). *GNU Grep manual.* [https://www.gnu.org/software/grep/manual/grep.html](https://www.gnu.org/software/grep/manual/grep.html)  
 
-Git SCM. (n.d.). *Git documentation.* [https://git-scm.com/docs](https://git-scm.com/docs)  
+{{i:Git}} SCM. (n.d.). *{{i:Git}} documentation.* [https://{{i:git}}-scm.com/docs](https://{{i:git}}-scm.com/docs)  
 
 Google Cloud. (2025). *Get started with Gemini models.* [https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/get-started-with-gemini-3](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/get-started-with-gemini-3)  
 
-Microsoft. (n.d.). *PowerShell documentation.* [https://learn.microsoft.com/powershell/](https://learn.microsoft.com/powershell/)  
+Microsoft. (n.d.). *{{i:PowerShell}} documentation.* [https://learn.microsoft.com/powershell/](https://learn.microsoft.com/powershell/)  
 
-Microsoft. (n.d.). *Windows commands documentation.* [https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/)  
+Microsoft. (n.d.). *{{i:Windows}} {{i:commands}} documentation.* [https://learn.microsoft.com/en-us/windows-server/administration/windows-{{i:commands}}/](https://learn.microsoft.com/en-us/windows-server/administration/windows-{{i:commands}}/)  
 
-OpenSCAD. (n.d.). *OpenSCAD documentation.* [https://openscad.org/documentation.html](https://openscad.org/documentation.html)  
+{{i:OpenSCAD}}. (n.d.). *{{i:OpenSCAD}} documentation.* [https://openscad.org/documentation.html](https://openscad.org/documentation.html)  
 
-OpenSCAD User Manual Contributors. (n.d.). *OpenSCAD User Manual.* [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)  
+{{i:OpenSCAD}} User Manual Contributors. (n.d.). *{{i:OpenSCAD}} User Manual.* [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)  
 
-Programming with OpenSCAD. (n.d.). *Programming with OpenSCAD.* [https://programmingwithopenscad.github.io/](https://programmingwithopenscad.github.io/)  
+Programming with {{i:OpenSCAD}}. (n.d.). *Programming with {{i:OpenSCAD}}.* [https://programmingwithopenscad.github.io/](https://programmingwithopenscad.github.io/)  
 
 Rust Project Developers. (n.d.). *mdBook.* [https://rust-lang.github.io/mdBook/](https://rust-lang.github.io/mdBook/)  
 
 SuperSlicer. (n.d.). *SuperSlicer repository.* [https://github.com/supermerill/SuperSlicer](https://github.com/supermerill/SuperSlicer)  
 
-The Linux Documentation Project. (n.d.). *Bash Beginner’s Guide.* [https://tldp.org/LDP/Bash-Beginners-Guide/html/](https://tldp.org/LDP/Bash-Beginners-Guide/html/)  
+The Linux Documentation Project. (n.d.). *{{i:Bash}} Beginner’s Guide.* [https://tldp.org/LDP/{{i:Bash}}-Beginners-Guide/html/](https://tldp.org/LDP/{{i:Bash}}-Beginners-Guide/html/)  
 
 ## Educational & Community Resources
 
-A11Y-101. (n.d.). *Inclusive documentation design.* [https://www.a11y-101.com/design/inclusive-documentation](https://www.a11y-101.com/design/inclusive-documentation)  
+A11Y-101. (n.d.). *Inclusive documentation {{i:design}}.* [https://www.a11y-101.com/{{i:design}}/inclusive-documentation](https://www.a11y-101.com/{{i:design}}/inclusive-documentation)  
 
-Class Central. (n.d.). *OpenSCAD courses.* [https://www.classcentral.com/subject/openscad](https://www.classcentral.com/subject/openscad)  
+Class Central. (n.d.). *{{i:OpenSCAD}} courses.* [https://www.classcentral.com/subject/openscad](https://www.classcentral.com/subject/openscad)  
 
 Khan Academy. (n.d.). *Algorithms.* [https://www.khanacademy.org/computing/computer-science/algorithms](https://www.khanacademy.org/computing/computer-science/algorithms)  
 
 Salt Lake City Public Library. (n.d.). *Creative Lab.* [https://services.slcpl.org/creativelab](https://services.slcpl.org/creativelab)  
 
-Salt Lake County Library. (n.d.). *Create spaces.* [https://www.slcolibrary.org/what-we-have/create](https://www.slcolibrary.org/what-we-have/create)  
+Salt Lake County Library. (n.d.). *Create spaces.* [https://www.slcolibrary.org/what-we-have/{{i:create}}](https://www.slcolibrary.org/what-we-have/{{i:create}})  
 
 University of Utah. (n.d.). *ProtoSpace.* [https://lib.utah.edu/protospace.php](https://lib.utah.edu/protospace.php)  
 
 ### Accessibility & Assistive Tech
 
-Freedom Scientific. (n.d.). *JAWS screen reader.* [https://www.freedomscientific.com/products/software/jaws/](https://www.freedomscientific.com/products/software/jaws/)  
+Freedom Scientific. (n.d.). *{{i:JAWS}} screen {{i:reader}}.* [https://www.freedomscientific.com/products/software/jaws/](https://www.freedomscientific.com/products/software/jaws/)  
 
-Microsoft. (n.d.). *Narrator guide.* [https://support.microsoft.com/narrator](https://support.microsoft.com/narrator)  
+Microsoft. (n.d.). *Narrator guide.* [https://{{i:support}}.microsoft.com/narrator](https://{{i:support}}.microsoft.com/narrator)  
 
-NV Access. (n.d.). *NVDA screen reader.* [https://www.nvaccess.org/](https://www.nvaccess.org/)  
+NV Access. (n.d.). *{{i:NVDA}} screen {{i:reader}}.* [https://www.nvaccess.org/](https://www.nvaccess.org/)  
 
 Your Dolphin. (n.d.). *SuperNova.* [https://yourdolphin.com/supernova/](https://yourdolphin.com/supernova/)  
 
 ### Community & Media
 
-Discord. (n.d.). *3D printing community server.* [https://discord.gg/F2Nx2VxTB7](https://discord.gg/F2Nx2VxTB7)  
+Discord. (n.d.). *3D {{i:printing}} community server.* [https://discord.gg/F2Nx2VxTB7](https://discord.gg/F2Nx2VxTB7)  
 
 Reddit. (n.d.). *r/3Dprinting subreddit.* [https://www.reddit.com/r/3Dprinting/](https://www.reddit.com/r/3Dprinting/)  
 
-Reddit. (n.d.). *r/OpenSCAD subreddit.* [https://www.reddit.com/r/openscad/](https://www.reddit.com/r/openscad/)  
+Reddit. (n.d.). *r/{{i:OpenSCAD}} subreddit.* [https://www.reddit.com/r/openscad/](https://www.reddit.com/r/openscad/)  
 
 YouTube. (n.d.). *Luke’s Lab channel.* [https://www.youtube.com/@LukesBlab](https://www.youtube.com/@LukesBlab)  
 

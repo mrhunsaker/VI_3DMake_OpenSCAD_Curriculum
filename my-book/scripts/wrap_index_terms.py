@@ -118,6 +118,41 @@ def process_file(path, terms, dry_run=False):
     }
 
 
+def get_summary_linked_md_files(src_root):
+    """Return existing markdown files linked directly from SUMMARY.md."""
+    summary_path = src_root / "SUMMARY.md"
+    if not summary_path.exists():
+        raise FileNotFoundError(f"SUMMARY.md not found at {summary_path}")
+
+    summary_text = summary_path.read_text(encoding="utf-8")
+    # Capture markdown links and ignore URL fragments.
+    raw_targets = re.findall(r"\[[^\]]+\]\(([^)]+)\)", summary_text)
+
+    files = []
+    for target in raw_targets:
+        clean = target.split("#", 1)[0].strip()
+        if not clean:
+            continue
+        lower = clean.lower()
+        if lower.startswith(("http://", "https://", "mailto:")):
+            continue
+
+        candidate = (summary_path.parent / clean).resolve()
+        if candidate.is_file() and candidate.suffix.lower() == ".md":
+            files.append(candidate)
+
+    # Keep deterministic order while removing duplicates.
+    deduped = []
+    seen = set()
+    for f in files:
+        key = str(f)
+        if key not in seen:
+            seen.add(key)
+            deduped.append(f)
+
+    return deduped
+
+
 def main():
     parser = argparse.ArgumentParser(description="Wrap configured terms with index tags.")
     parser.add_argument(
@@ -128,7 +163,7 @@ def main():
     args = parser.parse_args()
 
     root = Path(__file__).resolve().parents[1] / "src"
-    md_files = list(root.rglob("*.md"))
+    md_files = get_summary_linked_md_files(root)
     changed = []
     total_replacements = 0
 
@@ -142,6 +177,7 @@ def main():
             print(f"Error processing {f}: {e}")
 
     mode = "would modify" if args.dry_run else "modified"
+    print("Scope: files linked directly from SUMMARY.md")
     print(f"Processed {len(md_files)} files, {mode} {len(changed)} files.")
     print(f"Inserted {total_replacements} new index entries.")
     if changed:

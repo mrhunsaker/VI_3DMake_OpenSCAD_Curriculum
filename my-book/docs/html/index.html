@@ -56,7 +56,7 @@
         <meta name="description" content="An introduction to 3D printing for blind and visually impaired learners, using OpenSCAD and 3DMake to create accessible 3D models.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
-
+<link rel="stylesheet" href="catppuccin.css">
         <link rel="icon" href="favicon-de23e50b.svg">
         <link rel="shortcut icon" href="favicon-8114d1fc.png">
         <link rel="stylesheet" href="css/variables-8adf115d.css">
@@ -75,14 +75,17 @@
         <!-- Custom theme stylesheets -->
         <link rel="stylesheet" href="./theme/catppuccin.css">
 
-
-        <!-- Provide site root and default themes to javascript -->
         <script>
             const path_to_root = "";
             const default_light_theme = "latte";
             const default_dark_theme = "mocha";
-            window.path_to_searchindex_js = "searchindex-ab689c25.js";
+            window.path_to_searchindex_js = "searchindex-b4cfe439.js";
         </script>
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+    const default_theme = window.localStorage.getItem('mdbook-theme') || default_light_theme;
+    document.documentElement.classList.add(default_theme);
+</script>
         <!-- Start loading toc.js asap -->
         <script src="toc-9fe2040a.js"></script>
     </head>
@@ -115,18 +118,6 @@
             } catch (e) { }
         </script>
 
-        <!-- Set the theme before any content is loaded, prevents flash -->
-        <script>
-            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
-            let theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
-            const html = document.documentElement;
-            html.classList.remove('latte')
-            html.classList.add(theme);
-            html.classList.add("js");
-        </script>
-
         <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
@@ -143,7 +134,7 @@
             if (sidebar === 'visible') {
                 sidebar_toggle.checked = true;
             } else {
-                html.classList.remove('sidebar-visible');
+                document.documentElement.classList.remove('sidebar-visible');
             }
         </script>
 
@@ -170,12 +161,18 @@
                         <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
                         </button>
-                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
-                        </ul>
+
+<ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
+    <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+    <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+    <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+    <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+
+    <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
+    <li role="none"><button role="menuitem" class="theme" id="frappe">Frappe</button></li>
+    <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+    <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+</ul>
                         <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
                             <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
                         </button>
@@ -222,90 +219,90 @@
                 <div id="mdbook-content" class="content">
                     <main>
                         <h1 id="readme"><a class="header" href="#readme">Introduction</a></h1>
-<p>This course teaches <a name="a001"></a>3D design and digital fabrication using a fully accessible, command-line-driven toolchain centered on OpenSCAD (text-based CAD), 3DMake (non-visual build automation), and accessible editors (<a name="a002"></a>VS Code, <a name="a003"></a>Notepad++, command-line editors) with screen reader support.</p>
-<p>The curriculum is explicitly designed for blind and visually impaired learners who use screen readers (NVDA, JAWS, Orca, VoiceOver). It eliminates GUI navigation and visual feedback in favor of keyboard-driven, text-based workflows that screen readers can fully access. Accessibility is not an add-on. It is the foundation of every tool, workflow, and lesson in this curriculum.</p>
+<p>This course teaches <a name="a001"></a>}}3D <a name="a002"></a>design and digital fabrication <a name="a003"></a>using a fully accessible, <a name="a004"></a>command-line-driven toolchain centered on <a name="a005"></a>OpenSCAD (<a name="a006"></a>text-based CAD), <a name="a007"></a>3DMake (non-visual <a name="a008"></a>build automation), and accessible editors (<a name="a009"></a>VS Code, <a name="a010"></a>Notepad++, <a name="a011"></a>command-line editors) with screen <a name="a012"></a>reader <a name="a013"></a>support.</p>
+<p>The curriculum is explicitly designed for blind and visually impaired learners who use screen readers (<a name="a014"></a>NVDA, <a name="a015"></a>JAWS, Orca, VoiceOver). It eliminates GUI <a name="a016"></a>navigation and visual feedback in favor of keyboard-driven, <a name="a017"></a>text-based workflows that screen readers <a name="a018"></a>can fully access. Accessibility is not an add-on. It is the foundation of every tool, <a name="a019"></a>workflow, and lesson in this curriculum.</p>
 <h2 id="curriculum-structure"><a class="header" href="#curriculum-structure">Curriculum Structure</a></h2>
-<h3 id="screen-reader-setup--accessibility-fundamentals"><a class="header" href="#screen-reader-setup--accessibility-fundamentals">Screen Reader Setup &amp; Accessibility Fundamentals</a></h3>
-<p>Before choosing a command-line pathway, students learn to optimize their screen reader setup for terminal work and understand accessibility options.</p>
+<h3 id="screen-reader-setup--accessibility-fundamentals"><a class="header" href="#screen-reader-setup--accessibility-fundamentals"><a name="a020"></a>Screen Reader Setup &amp; Accessibility Fundamentals</a></h3>
+<p>Before choosing a <a name="a021"></a>command-line pathway, students learn to optimize their screen <a name="a022"></a>reader setup for terminal <a name="a023"></a>work and understand <a name="a024"></a>accessibility options.</p>
 <p>What’s Included:</p>
 <ul>
-<li><a href="Setup_Accessibility_Complete.html#accessibility-guide">Screen Reader Accessibility Guide</a> - Comprehensive NVDA &amp; JAWS reference with terminal tips for <a name="a004"></a>PowerShell, <a name="a005"></a>CMD, and <a name="a006"></a>Git Bash</li>
-<li><a href="Setup_Accessibility_Complete.html#screen-reader-choice">Screen Reader Choice: Windows CLI</a> - Help choosing between NVDA and JAWS</li>
-<li><a href="Setup_Accessibility_Complete.html#braille-displays">Braille Display &amp; Terminal Mode</a> - Advanced accessibility setup with refreshable braille displays</li>
-<li><a href="Setup_Accessibility_Complete.html#editor-setup">Editor Selection and Setup</a> - Choosing and configuring an accessible text editor</li>
+<li>[<a name="a025"></a>Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#<a name="a026"></a>accessibility-guide) - Comprehensive <a name="a027"></a>NVDA &amp; <a name="a028"></a>JAWS <a name="a029"></a>reference with terminal tips for <a name="a030"></a>}}<a name="a031"></a>PowerShell, <a name="a032"></a>CMD, and <a name="a033"></a> <a name="a034"></a>Bash}}<a name="a035"></a>Git <a name="a036"></a>Bash</li>
+<li>[<a name="a037"></a>Screen Reader Choice: <a name="a038"></a>Windows CLI](Setup_Accessibility_Complete.md#screen-<a name="a039"></a>reader-choice) - Help choosing <a name="a040"></a>between <a name="a041"></a>NVDA and <a name="a042"></a>JAWS</li>
+<li>[Braille Display &amp; Terminal Mode](Setup_Accessibility_Complete.md#<a name="a043"></a>braille-displays) - Advanced <a name="a044"></a>accessibility setup with refreshable <a name="a045"></a>braille displays</li>
+<li><a href="Setup_Accessibility_Complete.html#editor-setup">Editor Selection and Setup</a> - Choosing and configuring an accessible <a name="a046"></a>text editor</li>
 </ul>
-<p>Why start here? Screen reader optimization is the foundation for all command-line work. Students learn keyboard shortcuts, navigation techniques, and terminal-specific accessibility before diving into any <a name="a007"></a>CLI pathway.</p>
+<p>Why start here? <a name="a047"></a>Screen <a name="a048"></a>reader optimization is the foundation for all <a name="a049"></a>command-line <a name="a050"></a>work. Students learn keyboard shortcuts, <a name="a051"></a>navigation techniques, and terminal-<a name="a052"></a>specific <a name="a053"></a>accessibility <a name="a054"></a>before diving <a name="a055"></a>into any <a name="a056"></a>CLI pathway.</p>
 <h3 id="command-line-foundation-choose-your-path"><a class="header" href="#command-line-foundation-choose-your-path">Command-Line Foundation (Choose Your Path)</a></h3>
-<p>Students master terminal/command-line fundamentals before learning 3D design. You choose between three equivalent pathways based on your operating system and learning preferences.</p>
+<p>Students master terminal/<a name="a057"></a>command-line fundamentals <a name="a058"></a>before learning 3D <a name="a059"></a>design. You choose <a name="a060"></a>between three equivalent pathways based on your operating system and learning preferences.</p>
 <h4 id="compare-all-three-pathways"><a class="header" href="#compare-all-three-pathways">Compare All Three Pathways</a></h4>
 <p><a href="Command_Line_Interface_Selection/Command_Line_Interface_Selection.html">Command Line Interface Selection Guide</a></p>
 <p>This guide provides a comprehensive comparison including:</p>
 <ul>
 <li>Feature matrix comparing all three shells</li>
-<li>Command comparison table (navigation, file operations, scripting)</li>
-<li>Learner profiles to help you choose</li>
+<li>Command comparison table (<a name="a061"></a>navigation, <a name="a062"></a>file operations, scripting)</li>
+<li>Learner profiles to help <a name="a063"></a>you choose</li>
 <li>Goal-based recommendations</li>
-<li>FAQ addressing common questions</li>
+<li>FAQ addressing <a name="a064"></a>common questions</li>
 </ul>
-<h4 id="powershell-foundation-recommended-for-windows-users"><a class="header" href="#powershell-foundation-recommended-for-windows-users">PowerShell Foundation (Recommended for Windows Users)</a></h4>
-<p>Where to Start: <a href="PS_Complete_Curriculum.html#part-1-powershell">PowerShell Curriculum Overview</a></p>
+<h4 id="powershell-foundation-recommended-for-windows-users"><a class="header" href="#powershell-foundation-recommended-for-windows-users"><a name="a065"></a>PowerShell Foundation (Recommended for <a name="a066"></a>Windows Users)</a></h4>
+<p>Where to Start: [<a name="a067"></a>PowerShell Curriculum Overview](PS_Complete_Curriculum.md#<a name="a068"></a>part-1-powershell)</p>
 <p>Lessons Included:</p>
 <ul>
-<li>Powershell Lesson Pre: Your First Terminal - Opening PowerShell, first commands, screen reader tricks</li>
+<li>Powershell Lesson Pre: Your First Terminal - Opening <a name="a069"></a>PowerShell, <a name="a070"></a>first <a name="a071"></a>commands, screen <a name="a072"></a>reader tricks</li>
 <li>Powershell Lesson 0: Getting Started - Paths, shortcuts, tab completion</li>
-<li>Powershell Lesson 1: Navigation - Moving around the file system confidently</li>
-<li>Powershell Lesson 2: <a name="a008"></a>File and Folder Manipulation - Creating, editing, moving files</li>
-<li>Powershell Lesson 3: <a name="a009"></a>Input, Output, and Piping - Redirecting output, piping commands</li>
-<li>Powershell Lesson 4: Environment <a name="a010"></a>Variables and Aliases - Setting variables, creating shortcuts</li>
+<li>Powershell Lesson 1: Navigation - Moving around the <a name="a073"></a>file system confidently</li>
+<li>Powershell Lesson 2: <a name="a074"></a>File and Folder Manipulation - Creating, editing, moving <a name="a075"></a>files</li>
+<li>Powershell Lesson 3: <a name="a076"></a>Input, Output, and Piping - Redirecting <a name="a077"></a>output, piping <a name="a078"></a>commands</li>
+<li>Powershell Lesson 4: Environment <a name="a079"></a>Variables and Aliases - Setting <a name="a080"></a>variables, creating shortcuts</li>
 <li>Powershell Lesson 5: Filling in the Gaps - Control flow, profiles, useful tricks</li>
 <li>Powershell Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows</li>
-<li>PowerShell Unit Test &amp; Practice - Comprehensive self-assessment</li>
+<li><a name="a081"></a>PowerShell Unit Test &amp; Practice - Comprehensive self-assessment</li>
 </ul>
-<p>Time commitment: 30-45 hours (for screen reader users)
-Best for: Users who want modern Windows features and advanced automation
-Skills: Terminal navigation, piping, advanced scripting, professional automation</p>
-<h4 id="windows-command-prompt-foundation-simplified-alternative"><a class="header" href="#windows-command-prompt-foundation-simplified-alternative">Windows Command Prompt Foundation (Simplified Alternative)</a></h4>
-<p>Where to Start: <a href="CMD_Complete_Curriculum.html#part-2-cmd">CMD Curriculum Overview</a></p>
+<p>Time commitment: 30-45 hours (for screen <a name="a082"></a>reader users)
+Best for: Users who want modern <a name="a083"></a>Windows features and advanced automation
+Skills: Terminal <a name="a084"></a>navigation, piping, advanced scripting, professional automation</p>
+<h4 id="windows-command-prompt-foundation-simplified-alternative"><a class="header" href="#windows-command-prompt-foundation-simplified-alternative"><a name="a085"></a>Windows Command Prompt Foundation (Simplified Alternative)</a></h4>
+<p>Where to Start: [CMD Curriculum Overview](CMD_Complete_Curriculum.md#<a name="a086"></a>part-2-cmd)</p>
 <p>Lessons Included:</p>
 <ul>
-<li>Command Line Lesson Pre: Your First Terminal - Opening CMD, first commands, screen reader tricks</li>
-<li>Command Line Lesson 0: Getting Started - Paths, shortcuts, command basics</li>
-<li>Command Line Lesson 1: Navigation - Moving around the file system confidently</li>
-<li>Command Line Lesson 2: File and Folder Manipulation - Creating, editing, moving files</li>
-<li>Command Line Lesson 3: Input, Output &amp; Redirection - Redirecting output, piping commands</li>
-<li>Command Line Lesson 4: Environment Variables &amp; Shortcuts - Setting variables, shortcuts</li>
-<li>Command Line Lesson 5: Filling in the Gaps - Batch files, advanced techniques</li>
+<li>Command Line Lesson Pre: Your First Terminal - Opening CMD, <a name="a087"></a>first <a name="a088"></a>commands, screen <a name="a089"></a>reader tricks</li>
+<li>Command Line Lesson 0: Getting Started - Paths, shortcuts, <a name="a090"></a>command basics</li>
+<li>Command Line Lesson 1: Navigation - Moving around the <a name="a091"></a>file system confidently</li>
+<li>Command Line Lesson 2: File and Folder Manipulation - Creating, editing, moving <a name="a092"></a>files</li>
+<li>Command Line Lesson 3: Input, Output &amp; Redirection - Redirecting <a name="a093"></a>output, piping <a name="a094"></a>commands</li>
+<li>Command Line Lesson 4: Environment Variables &amp; Shortcuts - Setting <a name="a095"></a>variables, shortcuts</li>
+<li>Command Line Lesson 5: Filling in the Gaps - Batch <a name="a096"></a>files, advanced techniques</li>
 <li>Command Line Lesson 6: Advanced Terminal Techniques - Scripts, automation, professional workflows</li>
 <li>CMD Unit Test &amp; Practice - Comprehensive self-assessment</li>
 </ul>
-<p>Time commitment: 30-45 hours (for screen reader users)
+<p>Time commitment: 30-45 hours (for screen <a name="a097"></a>reader users)
 Best for: Absolute beginners or users who prefer simplicity
-Skills: Terminal navigation, file operations, batch scripting, basic automation</p>
-<h4 id="git-bash-foundation-cross-platform-skills"><a class="header" href="#git-bash-foundation-cross-platform-skills">Git Bash Foundation (Cross-Platform Skills)</a></h4>
-<p>Where to Start: <a href="GitBash_Complete_Curriculum.html#part-3-git-bash">Git Bash Curriculum Overview</a></p>
+Skills: Terminal <a name="a098"></a>navigation, <a name="a099"></a>file operations, batch scripting, basic automation</p>
+<h4 id="git-bash-foundation-cross-platform-skills"><a class="header" href="#git-bash-foundation-cross-platform-skills"><a name="a100"></a>Git <a name="a101"></a>Bash Foundation (Cross-Platform Skills)</a></h4>
+<p>Where to Start: [<a name="a102"></a>Git <a name="a103"></a>Bash Curriculum Overview](GitBash_Complete_Curriculum.md#<a name="a104"></a>part-3-<a name="a105"></a>git-bash)</p>
 <p>Introductory &amp; Reference Materials:</p>
 <p>Lessons Included:</p>
 <ul>
-<li>Bash Lesson Pre: Your First Terminal - Opening Git Bash, first commands, screen reader tricks</li>
-<li>Bash Lesson 0: Getting Started - Paths, shortcuts, Unix path notation</li>
-<li>Bash Lesson 1: Navigation - Moving around the file system confidently</li>
-<li>Bash Lesson 2: File and Folder Manipulation - Creating, editing, moving files</li>
-<li>Bash Lesson 3: Input, Output &amp; Piping - Redirecting output, piping commands</li>
-<li>Bash Lesson 4: Environment Variables &amp; Aliases - Setting variables, creating shortcuts</li>
-<li>Bash Lesson 5: Filling in the Gaps - Shell profiles, history, <a name="a011"></a>debugging</li>
-<li>Bash Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows</li>
+<li><a name="a106"></a>Bash Lesson Pre: Your First Terminal - Opening <a name="a107"></a>Git <a name="a108"></a>Bash, <a name="a109"></a>first <a name="a110"></a>commands, screen <a name="a111"></a>reader tricks</li>
+<li><a name="a112"></a>Bash Lesson 0: Getting Started - Paths, shortcuts, Unix path notation</li>
+<li><a name="a113"></a>Bash Lesson 1: Navigation - Moving around the <a name="a114"></a>file system confidently</li>
+<li><a name="a115"></a>Bash Lesson 2: File and Folder Manipulation - Creating, editing, moving <a name="a116"></a>files</li>
+<li><a name="a117"></a>Bash Lesson 3: Input, Output &amp; Piping - Redirecting <a name="a118"></a>output, piping <a name="a119"></a>commands</li>
+<li><a name="a120"></a>Bash Lesson 4: Environment Variables &amp; Aliases - Setting <a name="a121"></a>variables, creating shortcuts</li>
+<li><a name="a122"></a>Bash Lesson 5: Filling in the Gaps - <a name="a123"></a>Shell profiles, history, <a name="a124"></a>debugging</li>
+<li><a name="a125"></a>Bash Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows</li>
 <li>GitBash Unit Test &amp; Practice - Comprehensive self-assessment</li>
 </ul>
-<p>Time commitment: 30-45 hours (for screen reader users)
-Best for: Users who want cross-platform skills (Windows, macOS, Linux)
-Skills: Unix/bash commands, shell scripting, cross-platform automation</p>
+<p>Time commitment: 30-45 hours (for screen <a name="a126"></a>reader users)
+Best for: Users who want cross-platform skills (<a name="a127"></a>Windows, macOS, Linux)
+Skills: Unix/bash <a name="a128"></a>commands, <a name="a129"></a>shell scripting, cross-platform automation</p>
 <blockquote class="blockquote-tag blockquote-tag-important">
 <p class="blockquote-tag-title"><svg viewbox="0 0 16 16" width="18" height="18"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"></path></svg>Important</p>
-<p>Choose ONE pathway and complete it fully. All three teach identical fundamental concepts using different tools. Each integrates fully with 3D design workflows.</p>
+<p>Choose ONE pathway and complete it fully. All three teach identical fundamental concepts <a name="a130"></a>using different tools. Each integrates fully with 3D <a name="a131"></a>design workflows.</p>
 </blockquote>
-<h3 id="3dmake-foundation--design-11-lessons--6-appendices"><a class="header" href="#3dmake-foundation--design-11-lessons--6-appendices">3dMake Foundation &amp; Design (11 Lessons + 6 Appendices)</a></h3>
+<h3 id="3dmake-foundation--design-11-lessons--6-appendices"><a class="header" href="#3dmake-foundation--design-11-lessons--6-appendices">3dMake Foundation &amp; <a name="a132"></a>Design (11 Lessons + 6 Appendices)</a></h3>
 <p>Where to Start: <a href="3dMake_Foundation/3dMake_Intro/3dMake_Intro.html">3dMake Introduction</a></p>
-<p>Students build parametric 3D designs using OpenSCAD and automate the workflow with 3DMake.</p>
+<p>Students <a name="a133"></a>build <a name="a134"></a>parametric 3D designs <a name="a135"></a>using <a name="a136"></a>OpenSCAD and automate the <a name="a137"></a>workflow with <a name="a138"></a>3DMake.</p>
 <h4 id="main-curriculum-11-progressive-lessons"><a class="header" href="#main-curriculum-11-progressive-lessons">Main Curriculum: 11 Progressive Lessons</a></h4>
 <div class="table-wrapper">
 <table>
@@ -313,11 +310,11 @@ Skills: Unix/bash commands, shell scripting, cross-platform automation</p>
 <tr><th>Part</th><th>Lessons</th><th>Focus</th><th>Duration</th></tr>
 </thead>
 <tbody>
-<tr><td>Foundations</td><td>1-3</td><td>Environment setup, primitives, parametric design + advanced language features</td><td>4-5 hours</td></tr>
+<tr><td>Foundations</td><td>1-3</td><td>Environment setup, primitives, <a name="a139"></a>parametric <a name="a140"></a>design + advanced language features</td><td>4-5 hours</td></tr>
 <tr><td>Verification &amp; Safety</td><td>4-5</td><td>AI verification, safety protocols, materials</td><td>2-3 hours</td></tr>
-<tr><td>Applied Projects</td><td>6-8</td><td>Practical commands, text functions, transforms, assembly patterns</td><td>5-6 hours</td></tr>
-<tr><td>Advanced Topics</td><td>9-10</td><td>Automation with file I/O, troubleshooting, mastery</td><td>3-4 hours</td></tr>
-<tr><td>Leadership</td><td>11</td><td><a name="a012"></a>Stakeholder-centric design</td><td>2-3 hours</td></tr>
+<tr><td>Applied Projects</td><td>6-8</td><td>Practical <a name="a141"></a>commands, <a name="a142"></a>text functions, transforms, assembly patterns</td><td>5-6 hours</td></tr>
+<tr><td>Advanced Topics</td><td>9-10</td><td>Automation with <a name="a143"></a>file I/O, troubleshooting, mastery</td><td>3-4 hours</td></tr>
+<tr><td>Leadership</td><td>11</td><td><a name="a144"></a>}}Stakeholder-centric <a name="a145"></a>design</td><td>2-3 hours</td></tr>
 </tbody>
 </table>
 </div>
@@ -326,136 +323,136 @@ Skills: Unix/bash commands, shell scripting, cross-platform automation</p>
 <p><strong>Command Line Tools:</strong></p>
 <ul>
 <li><a href="CLI_Appendices_Complete.html#appendix-a">Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows</a> - Batch processing and automation for CMD users</li>
-<li><a href="CLI_Appendices_Complete.html#appendix-b">Appendix B: PowerShell Integration for SCAD Workflows</a> - Batch processing, automation scripts, and advanced workflow integration for PowerShell users</li>
-<li><a href="CLI_Appendices_Complete.html#appendix-c">Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows</a> - Shell scripting and automation for Git Bash / Unix shell users</li>
+<li><a href="CLI_Appendices_Complete.html#appendix-b">Appendix B: <a name="a146"></a>PowerShell Integration for SCAD Workflows</a> - Batch processing, automation <a name="a147"></a>scripts, and advanced <a name="a148"></a>workflow integration for <a name="a149"></a>PowerShell users</li>
+<li><a href="CLI_Appendices_Complete.html#appendix-c">Appendix C: <a name="a150"></a>Git <a name="a151"></a>Bash / POSIX <a name="a152"></a>Shell Integration for SCAD Workflows</a> - <a name="a153"></a>Shell scripting and automation for <a name="a154"></a>Git <a name="a155"></a>Bash / Unix <a name="a156"></a>shell users</li>
 </ul>
 <p><strong>3dMake:</strong></p>
 <ul>
-<li><a href="3DMake_Appendices_Complete.html#appendix-a">3DMake CLI Cheat Sheet</a> - Quick reference for 3dm command-line tool</li>
-<li><a href="3DMake_Appendices_Complete.html#appendix-b">Appendix A: Comprehensive Slicing Guide</a> - Complete reference for <a name="a013"></a>PrusaSlicer, <a name="a014"></a>Bambu Studio, <a name="a015"></a>Cura, and OrcaSlicer configuration</li>
-<li><a href="3DMake_Appendices_Complete.html#appendix-c">Appendix B: Material Properties &amp; Selection Guide</a> - Detailed material reference including shrinkage data, print settings, and properties</li>
+<li><a href="3DMake_Appendices_Complete.html#appendix-a"><a name="a157"></a>3DMake CLI Cheat Sheet</a> - Quick <a name="a158"></a>reference for 3dm <a name="a159"></a>command-line tool</li>
+<li><a href="3DMake_Appendices_Complete.html#appendix-b">Appendix A: Comprehensive Slicing Guide</a> - Complete <a name="a160"></a>reference for <a name="a161"></a>PrusaSlicer, <a name="a162"></a>Bambu Studio, <a name="a163"></a>Cura, and OrcaSlicer configuration</li>
+<li><a href="3DMake_Appendices_Complete.html#appendix-c">Appendix B: Material Properties &amp; Selection Guide</a> - Detailed <a name="a164"></a>material <a name="a165"></a>reference including shrinkage data, <a name="a166"></a>print settings, and properties</li>
 <li><a href="3DMake_Appendices_Complete.html#appendix-d">Appendix C: Tolerance Testing &amp; Quality Assurance Matrix</a> - Comprehensive QA procedures and tolerance validation methods</li>
-<li><a href="3DMake_Appendices_Complete.html#appendix-e">Appendix D: Advanced OpenSCAD Concepts</a> - Specialized topics including gears, batch processing, performance, print orientation, and recursion</li>
-<li><a href="assets/3dMake_Foundation/README.html">3dMake Code Examples &amp; Assets</a> - OpenSCAD code examples and reference designs</li>
+<li><a href="3DMake_Appendices_Complete.html#appendix-e">Appendix D: Advanced <a name="a167"></a>OpenSCAD Concepts</a> - Specialized topics including gears, batch processing, performance, <a name="a168"></a>print orientation, and recursion</li>
+<li><a href="assets/3dMake_Foundation/README.html">3dMake Code Examples &amp; Assets</a> - <a name="a169"></a>OpenSCAD <a name="a170"></a>code examples and <a name="a171"></a>reference designs</li>
 </ul>
 <h2 id="the-accessible-toolchain"><a class="header" href="#the-accessible-toolchain">The Accessible Toolchain</a></h2>
-<h3 id="screen-reader-compatibility-throughout"><a class="header" href="#screen-reader-compatibility-throughout">Screen Reader Compatibility Throughout</a></h3>
-<p>This course uses tools designed for screen reader access:</p>
+<h3 id="screen-reader-compatibility-throughout"><a class="header" href="#screen-reader-compatibility-throughout"><a name="a172"></a>Screen Reader Compatibility Throughout</a></h3>
+<p>This course uses tools designed for screen <a name="a173"></a>reader access:</p>
 <ul>
-<li>Terminal/Command line - Text-based, fully accessible to NVDA, JAWS, Orca, VoiceOver</li>
-<li>OpenSCAD - Free, open-source text-based CAD (no visual-only GUI dependency)</li>
-<li>3DMake - Command-line build tool eliminating GUI navigation</li>
-<li>Accessible text editors - Notepad, VS Code, Notepad++, Nano, Vim, etc. (all keyboard-driven, screen reader friendly)</li>
+<li>Terminal/Command line - Text-based, fully accessible to <a name="a174"></a>NVDA, <a name="a175"></a>JAWS, Orca, VoiceOver</li>
+<li><a name="a176"></a>OpenSCAD - Free, open-source <a name="a177"></a>text-based CAD (no visual-only GUI dependency)</li>
+<li><a name="a178"></a>3DMake - Command-line <a name="a179"></a>build tool eliminating GUI <a name="a180"></a>navigation</li>
+<li>Accessible <a name="a181"></a>text editors - Notepad, VS Code, Notepad++, Nano, Vim, etc. (all keyboard-driven, screen <a name="a182"></a>reader friendly)</li>
 </ul>
-<p>See <a href="3DMake_Appendices_Complete.html#appendix-a">Appendix A: 3DMake Cheat Sheet</a> for detailed keyboard shortcuts and configuration.</p>
-<h3 id="3dmake-non-visual-build-automation"><a class="header" href="#3dmake-non-visual-build-automation">3DMake: Non-Visual Build Automation</a></h3>
-<p>3DMake makes the entire design-to-print pipeline accessible:</p>
+<p>See <a href="3DMake_Appendices_Complete.html#appendix-a">Appendix A: <a name="a183"></a>3DMake Cheat Sheet</a> for detailed keyboard shortcuts and configuration.</p>
+<h3 id="3dmake-non-visual-build-automation"><a class="header" href="#3dmake-non-visual-build-automation"><a name="a184"></a>3DMake: Non-Visual Build Automation</a></h3>
+<p><a name="a185"></a>3DMake makes the entire <a name="a186"></a>design-to-<a name="a187"></a>print pipeline accessible:</p>
 <pre><code class="language-bash">3dm build        -&gt; Compiles main.scad to main.stl
 3dm info         -&gt; Validates geometry and runs diagnostics
 3dm slice        -&gt; Prepares model for printing
 </code></pre>
 <ul>
-<li>No GUI navigation needed</li>
+<li>No GUI <a name="a188"></a>navigation needed</li>
 <li>Automation eliminates repetitive manual steps</li>
-<li>Configuration files store <a name="a016"></a>parameters as human-readable text</li>
-<li>Error reporting is text-based (screen reader accessible)</li>
-<li>Works with command-line slicers</li>
+<li>Configuration <a name="a189"></a>files store <a name="a190"></a><a name="a191"></a>parameters as human-readable <a name="a192"></a>text</li>
+<li>Error reporting is <a name="a193"></a>text-based (screen <a name="a194"></a>reader accessible)</li>
+<li>Works with <a name="a195"></a>command-line slicers</li>
 </ul>
-<h3 id="iterative-non-visual-design"><a class="header" href="#iterative-non-visual-design">Iterative, Non-Visual Design</a></h3>
-<p>Students learn to design through code and testing, not visual previews:</p>
+<h3 id="iterative-non-visual-design"><a class="header" href="#iterative-non-visual-design">Iterative, Non-Visual <a name="a196"></a>Design</a></h3>
+<p>Students learn to <a name="a197"></a>design through <a name="a198"></a>code and testing, not visual previews:</p>
 <ul>
-<li>Write parametric OpenSCAD code in accessible editors</li>
-<li>Run <code>3dm build</code> to compile to printable file</li>
-<li>Use measurement-based verification (<a name="a017"></a>calipers, scales, functional testing)</li>
-<li>Iterate by editing parameters and rebuilding</li>
+<li>Write <a name="a199"></a>parametric <a name="a200"></a>OpenSCAD <a name="a201"></a>code in accessible editors</li>
+<li>Run <code>3dm build</code> to compile to printable <a name="a202"></a>file</li>
+<li>Use measurement-based verification (<a name="a203"></a>calipers, scales, functional testing)</li>
+<li>Iterate by editing <a name="a204"></a>parameters and rebuilding</li>
 <li>No reliance on 3D preview or visual feedback</li>
 </ul>
 <h2 id="project-based-learning"><a class="header" href="#project-based-learning">Project-Based Learning</a></h2>
 <p>3dMake lessons include hands-on projects:</p>
 <ul>
-<li>Lesson 6: Keychain with embossed text (3dm commands)</li>
-<li>Lesson 7: Phone stand (<a name="a018"></a>parametric transforms)</li>
+<li>Lesson 6: Keychain with embossed <a name="a205"></a>text (3dm <a name="a206"></a>commands)</li>
+<li>Lesson 7: Phone stand (<a name="a207"></a><a name="a208"></a>parametric transforms)</li>
 <li>Lesson 8: Stackable bins (interlocking features, tolerances)</li>
-<li>Lesson 9: Build automation (PowerShell batch processing)</li>
-<li>Lesson 10: QA testing + accessibility audit (measurement, troubleshooting)</li>
-<li>Lesson 11: Beaded jewelry holder (stakeholder-driven design)</li>
+<li>Lesson 9: Build automation (<a name="a209"></a>PowerShell batch processing)</li>
+<li>Lesson 10: QA testing + <a name="a210"></a>accessibility audit (measurement, troubleshooting)</li>
+<li>Lesson 11: Beaded jewelry holder (stakeholder-driven <a name="a211"></a>design)</li>
 </ul>
 <p>Each project requires:</p>
 <ul>
-<li>Parametric OpenSCAD code (clean, well-commented)</li>
+<li>Parametric <a name="a212"></a>OpenSCAD <a name="a213"></a>code (clean, well-commented)</li>
 <li>Functional prototype (tested, iterated)</li>
 <li>Complete documentation (reflections, measurements, decisions)</li>
 </ul>
 <h2 id="learning-support"><a class="header" href="#learning-support">Learning Support</a></h2>
 <h3 id="primary-navigation--overview"><a class="header" href="#primary-navigation--overview">Primary Navigation &amp; Overview</a></h3>
-<p><a href="3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.html">Curriculum Guide</a> - Detailed overview of all lessons and appendices<br><a href="3DMake_Appendices_Complete.html#appendix-a">Quick Reference</a> - At-a-glance command and syntax reference<br><a href="3dMake_All_Lessons.html">mdBook Navigation Guide</a> - How to navigate this curriculum</p>
+<p><a href="3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.html">Curriculum Guide</a> - Detailed overview of all lessons and appendices<br><a href="3DMake_Appendices_Complete.html#appendix-a">Quick Reference</a> - At-a-glance <a name="a214"></a>command and syntax <a name="a215"></a>reference<br><a href="3dMake_All_Lessons.html">mdBook Navigation Guide</a> - How to navigate this curriculum</p>
 <h3 id="setup--configuration-guides"><a class="header" href="#setup--configuration-guides">Setup &amp; Configuration Guides</a></h3>
-<p><a href="3dMake_All_Lessons.html">3dMake Setup Guide</a> - Installation walkthrough<br><a href="3dMake_All_Lessons.html">VSCode Setup Guide</a> - Accessibility configuration<br><a href="3dMake_All_Lessons.html">Screen Reader Coding Tips (NVDA &amp; JAWS)</a> - Keyboard shortcuts and coding configuration</p>
+<p><a href="3dMake_All_Lessons.html">3dMake Setup Guide</a> - Installation walkthrough<br><a href="3dMake_All_Lessons.html">VSCode Setup Guide</a> - Accessibility configuration<br><a href="3dMake_All_Lessons.html"><a name="a216"></a>Screen Reader Coding Tips (<a name="a217"></a>NVDA &amp; <a name="a218"></a>JAWS)</a> - Keyboard shortcuts and coding configuration</p>
 <h3 id="quick-reference-materials"><a class="header" href="#quick-reference-materials">Quick Reference Materials</a></h3>
-<p><a href="3DMake_Appendices_Complete.html#appendix-a">OpenSCAD Cheat Sheet</a> - Syntax quick-reference<br><a href="3DMake_Appendices_Complete.html#appendix-a">3DMake CLI Cheat Sheet</a> - Complete 3dm command reference<br><a href="3DMake_Appendices_Complete.html#appendix-c">Filament Comparison Table</a> - Material selection guide<br><a href="3DMake_Appendices_Complete.html#appendix-d">Master Rubric</a> - Project assessment criteria</p>
+<p><a href="3DMake_Appendices_Complete.html#appendix-a"><a name="a219"></a>OpenSCAD Cheat Sheet</a> - Syntax quick-<a name="a220"></a>reference<br><a href="3DMake_Appendices_Complete.html#appendix-a"><a name="a221"></a>3DMake CLI Cheat Sheet</a> - Complete 3dm <a name="a222"></a>command <a name="a223"></a>reference<br><a href="3DMake_Appendices_Complete.html#appendix-c">Filament Comparison Table</a> - Material selection guide<br><a href="3DMake_Appendices_Complete.html#appendix-d">Master Rubric</a> - Project assessment criteria</p>
 <h3 id="safety--maintenance"><a class="header" href="#safety--maintenance">Safety &amp; Maintenance</a></h3>
-<p><a href="3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.html">Safety Checklist</a> - Pre-print safety procedures<br><a href="3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.html">Maintenance Log</a> - Printer maintenance tracking</p>
+<p><a href="3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.html">Safety Checklist</a> - Pre-<a name="a224"></a>print safety procedures<br><a href="3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.html">Maintenance Log</a> - Printer maintenance tracking</p>
 <h3 id="troubleshooting--diagnostics"><a class="header" href="#troubleshooting--diagnostics">Troubleshooting &amp; Diagnostics</a></h3>
-<p><a href="Backmatter_Complete.html#troubleshooting">Common Issues and Solutions</a> - Comprehensive troubleshooting guide<br><a href="Backmatter_Complete.html#troubleshooting">Diagnostic Checklist</a> - Systematic problem diagnosis<br><a href="Backmatter_Complete.html#troubleshooting">Technical Reference</a> - Advanced systems architecture and professional reference</p>
+<p><a href="Backmatter_Complete.html#troubleshooting"><a name="a225"></a>Common Issues and Solutions</a> - Comprehensive troubleshooting guide<br><a href="Backmatter_Complete.html#troubleshooting">Diagnostic Checklist</a> - Systematic problem diagnosis<br><a href="Backmatter_Complete.html#troubleshooting">Technical Reference</a> - Advanced systems architecture and professional <a name="a226"></a>reference</p>
 <h3 id="glossaries--terminology"><a class="header" href="#glossaries--terminology">Glossaries &amp; Terminology</a></h3>
-<p><a href="Backmatter_Complete.html#student-glossary">Student Glossary</a> - Complete terminology reference for OpenSCAD, 3dMake, <a name="a019"></a>3D Printing, and CLI<br><a href="Backmatter_Complete.html#teacher-glossary">Teacher Glossary</a> - Pedagogical framework and instructional design terminology</p>
+<p><a href="Backmatter_Complete.html#student-glossary">Student Glossary</a> - Complete terminology <a name="a227"></a>reference for <a name="a228"></a>OpenSCAD, 3dMake, <a name="a229"></a>}}3D Printing, and CLI<br><a href="Backmatter_Complete.html#teacher-glossary">Teacher Glossary</a> - Pedagogical framework and instructional <a name="a230"></a>design terminology</p>
 <h3 id="command-line-integration-appendices"><a class="header" href="#command-line-integration-appendices">Command Line Integration Appendices</a></h3>
-<p><a href="Appendices/CLI_Appendices.html">CLI Appendices Overview</a> - All command line integration guides<br><a href="CLI_Appendices_Complete.html#appendix-a">Appendix A: CMD/Batch Integration</a> - Windows CMD automation<br><a href="CLI_Appendices_Complete.html#appendix-b">Appendix B: PowerShell Integration</a> - PowerShell workflow automation<br><a href="CLI_Appendices_Complete.html#appendix-c">Appendix C: Git Bash Integration</a> - Unix shell integration</p>
-<h3 id="3dmake--openscad-appendices"><a class="header" href="#3dmake--openscad-appendices">3dMake &amp; OpenSCAD Appendices</a></h3>
-<p><a href="Appendices/3DMake_Appendices.html">3dMake Appendices Overview</a> - All 3dMake reference materials<br><a href="3DMake_Appendices_Complete.html#appendix-b">Appendix A: Comprehensive Slicing Guide</a> - PrusaSlicer, Bambu Studio, Cura, OrcaSlicer<br><a href="3DMake_Appendices_Complete.html#appendix-c">Appendix B: Material Properties &amp; Selection Guide</a> - Detailed material specifications<br><a href="3DMake_Appendices_Complete.html#appendix-d">Appendix C: Tolerance Testing &amp; QA Matrix</a> - Quality assurance procedures<br><a href="3DMake_Appendices_Complete.html#appendix-e">Appendix D: Advanced OpenSCAD Concepts</a> - Gears, recursion, performance optimization</p>
+<p><a href="Appendices/CLI_Appendices.html">CLI Appendices Overview</a> - All <a name="a231"></a>command line integration guides<br><a href="CLI_Appendices_Complete.html#appendix-a">Appendix A: CMD/Batch Integration</a> - <a name="a232"></a>Windows CMD automation<br><a href="CLI_Appendices_Complete.html#appendix-b">Appendix B: <a name="a233"></a>PowerShell Integration</a> - <a name="a234"></a>PowerShell <a name="a235"></a>workflow automation<br><a href="CLI_Appendices_Complete.html#appendix-c">Appendix C: <a name="a236"></a>Git <a name="a237"></a>Bash Integration</a> - Unix <a name="a238"></a>shell integration</p>
+<h3 id="3dmake--openscad-appendices"><a class="header" href="#3dmake--openscad-appendices">3dMake &amp; <a name="a239"></a>OpenSCAD Appendices</a></h3>
+<p><a href="Appendices/3DMake_Appendices.html">3dMake Appendices Overview</a> - All 3dMake <a name="a240"></a>reference materials<br><a href="3DMake_Appendices_Complete.html#appendix-b">Appendix A: Comprehensive Slicing Guide</a> - PrusaSlicer, Bambu Studio, Cura, OrcaSlicer<br><a href="3DMake_Appendices_Complete.html#appendix-c">Appendix B: Material Properties &amp; Selection Guide</a> - Detailed <a name="a241"></a>material specifications<br><a href="3DMake_Appendices_Complete.html#appendix-d">Appendix C: Tolerance Testing &amp; QA Matrix</a> - Quality assurance procedures<br><a href="3DMake_Appendices_Complete.html#appendix-e">Appendix D: Advanced <a name="a242"></a>OpenSCAD Concepts</a> - Gears, recursion, performance optimization</p>
 <h3 id="code-examples--assets"><a class="header" href="#code-examples--assets">Code Examples &amp; Assets</a></h3>
-<p><a href="assets/3dMake_Foundation/README.html">3dMake Code Examples &amp; Assets</a> - OpenSCAD code examples and reference designs</p>
+<p><a href="assets/3dMake_Foundation/README.html">3dMake Code Examples &amp; Assets</a> - <a name="a243"></a>OpenSCAD <a name="a244"></a>code examples and <a name="a245"></a>reference designs</p>
 <h3 id="further-reading--references"><a class="header" href="#further-reading--references">Further Reading &amp; References</a></h3>
 <p><a href="Backmatter_Complete.html#further-reading">References &amp; Further Reading</a> - Peer-reviewed research and scholarly works</p>
 <h2 id="supplemental-resources--textbooks"><a class="header" href="#supplemental-resources--textbooks">Supplemental Resources &amp; Textbooks</a></h2>
 <h3 id="textbook-options"><a class="header" href="#textbook-options">Textbook Options</a></h3>
 <p><strong>Beginner-Friendly Textbooks:</strong></p>
 <ul>
-<li><a href="https://nostarch.com/programmingopenscad">Programming with OpenSCAD: A Beginner’s Guide to Coding 3D-Printable Objects</a> by Justin Gohde and Marius Kintel - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Ideal for deep dives into specific topics and as a reference guide throughout the course. Available in EPUB format (screen reader accessible).</li>
-<li><a href="https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174">Simplifying 3D Printing with OpenSCAD</a> by Alicia Noors - Focused on practical workflows, optimization, and real-world printing scenarios. Available in EPUB/PDF formats.</li>
-<li><a href="https://www.apress.com/gp/book/9781484213292">OpenSCAD for 3D Printing</a> by Al Williams - Hands-on introduction to OpenSCAD with practical 3D printing projects. Covers basics through intermediate topics with step-by-step tutorials.</li>
-<li><a href="https://www.amazon.com/Mastering-OpenSCAD-Jochen-Kerdels/dp/1803243538">Mastering OpenSCAD</a> by Jochen Kerdels - Project-based learning approach with emphasis on parametric design and reusable code <a name="a020"></a>modules.</li>
+<li><a href="https://nostarch.com/programmingopenscad">Programming with <a name="a246"></a>OpenSCAD: A Beginner’s Guide to Coding 3D-Printable Objects</a> by Justin Gohde and Marius Kintel - Comprehensive <a name="a247"></a>reference covering <a name="a248"></a>OpenSCAD syntax, <a name="a249"></a>geometry concepts, and <a name="a250"></a>design patterns. Ideal for deep dives <a name="a251"></a>into <a name="a252"></a>specific topics and as a <a name="a253"></a>reference guide throughout the course. Available in EPUB format (screen <a name="a254"></a>reader accessible).</li>
+<li>[Simplifying 3D Printing with <a name="a255"></a>OpenSCAD](https://www.packtpub.com/en-us/product/simplifying-3d-<a name="a256"></a>printing-with-openscad-9781801813174) by Alicia Noors - Focused on practical workflows, optimization, and real-world <a name="a257"></a>printing scenarios. Available in EPUB/PDF formats.</li>
+<li><a href="https://www.apress.com/gp/book/9781484213292"><a name="a258"></a>OpenSCAD for 3D Printing</a> by Al Williams - Hands-on introduction to <a name="a259"></a>OpenSCAD with practical 3D <a name="a260"></a>printing projects. Covers basics through intermediate topics with step-by-step tutorials.</li>
+<li>[Mastering <a name="a261"></a>OpenSCAD](https://www.amazon.com/Mastering-<a name="a262"></a>OpenSCAD-Jochen-Kerdels/dp/1803243538) by Jochen Kerdels - Project-based learning approach with emphasis on <a name="a263"></a>parametric <a name="a264"></a>design and reusable <a name="a265"></a>code <a name="a266"></a>modules.</li>
 </ul>
 <p><strong>Free Online Resources:</strong></p>
 <ul>
-<li><a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual">Official OpenSCAD Documentation</a> - Complete language reference and user manual on Wikibooks. Fully accessible and searchable.</li>
-<li><a href="https://openscad.org/documentation.html">OpenSCAD Tutorial</a> - Official beginner tutorial covering core concepts and syntax.</li>
-<li><a href="https://openscad.org/cheatsheet/">OpenSCAD Cheat Sheet (Official)</a> - Quick reference for all OpenSCAD commands and functions.</li>
+<li><a href="https://en.wikibooks.org/wiki/OpenSCAD_User_Manual">Official <a name="a267"></a>OpenSCAD Documentation</a> - Complete language <a name="a268"></a>reference and user manual on Wikibooks. Fully accessible and searchable.</li>
+<li><a href="https://openscad.org/documentation.html"><a name="a269"></a>OpenSCAD Tutorial</a> - Official beginner tutorial covering core concepts and syntax.</li>
+<li><a href="https://openscad.org/cheatsheet/"><a name="a270"></a>OpenSCAD Cheat Sheet (Official)</a> - Quick <a name="a271"></a>reference for all <a name="a272"></a>OpenSCAD <a name="a273"></a>commands and functions.</li>
 </ul>
 <h3 id="companion-teaching-resources"><a class="header" href="#companion-teaching-resources">Companion Teaching Resources</a></h3>
 <p><strong>Curriculum-Specific Materials:</strong></p>
-<p><a href="https://programmingwithopenscad.github.io/learning.html">Practice Worksheets</a> - Printable worksheets for visualization practice, <a name="a021"></a>decomposition exercises, vocabulary building, and assessment.<br><a href="https://programmingwithopenscad.github.io/quick-reference.html">Visual Quick Reference</a> - Command syntax guides and geometry reference.<br><a href="https://github.com/ProgrammingWithOpenSCAD/CodeSolutions">Code Solutions Repository</a> - Working OpenSCAD examples organized by topic (<a name="a022"></a>3D shapes, transformations, loops, modules, if-statements, advanced techniques).</p>
+<p><a href="https://programmingwithopenscad.github.io/learning.html">Practice Worksheets</a> - Printable worksheets for visualization practice, <a name="a274"></a>decomposition exercises, vocabulary building, and assessment.<br>[Visual Quick Reference](https://programmingwithopenscad.github.io/quick-<a name="a275"></a>reference.html) - Command syntax guides and <a name="a276"></a>geometry <a name="a277"></a>reference.<br><a href="https://github.com/ProgrammingWithOpenSCAD/CodeSolutions">Code Solutions Repository</a> - Working <a name="a278"></a>OpenSCAD examples organized by topic (<a name="a279"></a>3D shapes, transformations, loops, modules, if-statements, advanced techniques).</p>
 <p><strong>Community Resources:</strong></p>
 <ul>
-<li><a href="https://www.thingiverse.com/search?q=openscad&amp;type=things">Thingiverse OpenSCAD Designs</a> - Community-created parametric designs with source code available for study and modification.</li>
-<li><a href="https://forum.openscad.org/">OpenSCAD Forums</a> - Active community support for troubleshooting and learning.</li>
-<li><a href="https://www.youtube.com/results?search_query=openscad+tutorial+beginner">OpenSCAD Tutorials (YouTube)</a> - Video tutorials (note: supplemental to text-based curriculum; transcripts recommended for accessibility).</li>
+<li><a href="https://www.thingiverse.com/search?q=openscad&amp;type=things">Thingiverse <a name="a280"></a>OpenSCAD Designs</a> - Community-created <a name="a281"></a>parametric designs with source <a name="a282"></a>code available for study and modification.</li>
+<li><a href="https://forum.openscad.org/"><a name="a283"></a>OpenSCAD Forums</a> - Active community <a name="a284"></a>support for troubleshooting and learning.</li>
+<li><a href="https://www.youtube.com/results?search_query=openscad+tutorial+beginner"><a name="a285"></a>OpenSCAD Tutorials (YouTube)</a> - Video tutorials (note: supplemental to <a name="a286"></a>text-based curriculum; transcripts recommended for <a name="a287"></a>accessibility).</li>
 </ul>
 <h2 id="getting-started"><a class="header" href="#getting-started">Getting Started</a></h2>
 <h3 id="for-students"><a class="header" href="#for-students">For Students</a></h3>
-<p><strong>Step 1: Screen Reader Setup &amp; Accessibility</strong></p>
-<p>Before beginning any technical work, optimize your screen reader configuration for command-line and coding work:</p>
+<p><strong>Step 1: <a name="a288"></a>Screen Reader Setup &amp; Accessibility</strong></p>
+<p>Before beginning any technical <a name="a289"></a>work, optimize your screen <a name="a290"></a>reader configuration for <a name="a291"></a>command-line and coding <a name="a292"></a>work:</p>
 <ul>
-<li>Start with <a href="Setup_Accessibility_Complete.html#accessibility-guide">Screen Reader Accessibility Guide</a> - Configure NVDA/JAWS for terminal work</li>
-<li>Review <a href="Setup_Accessibility_Complete.html#screen-reader-choice">Screen Reader Choice: Windows CLI</a> - Help choosing between NVDA and JAWS</li>
-<li>Optional: <a href="Setup_Accessibility_Complete.html#braille-displays">Braille Display &amp; Terminal Mode</a> - Refreshable braille display configuration</li>
-<li>Complete <a href="Setup_Accessibility_Complete.html#editor-setup">Editor Selection and Setup</a> - Choose and configure an accessible text editor</li>
+<li>Start with [<a name="a293"></a>Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#<a name="a294"></a>accessibility-guide) - Configure <a name="a295"></a>NVDA/<a name="a296"></a>JAWS for terminal <a name="a297"></a>work</li>
+<li>Review [<a name="a298"></a>Screen Reader Choice: <a name="a299"></a>Windows CLI](Setup_Accessibility_Complete.md#screen-<a name="a300"></a>reader-choice) - Help choosing <a name="a301"></a>between <a name="a302"></a>NVDA and <a name="a303"></a>JAWS</li>
+<li>Optional: [Braille Display &amp; Terminal Mode](Setup_Accessibility_Complete.md#<a name="a304"></a>braille-displays) - Refreshable <a name="a305"></a>braille display configuration</li>
+<li>Complete <a href="Setup_Accessibility_Complete.html#editor-setup">Editor Selection and Setup</a> - Choose and configure an accessible <a name="a306"></a>text editor</li>
 </ul>
 <p><strong>Step 2: Choose Your Command Line Pathway</strong></p>
 <p>Read <a href="Command_Line_Interface_Selection/Command_Line_Interface_Selection.html">Command Line Interface Selection Guide</a> to compare all three CLI options, then select ONE pathway:</p>
 <ul>
-<li><a href="PS_Complete_Curriculum.html#part-1-powershell">PowerShell Curriculum Overview</a> - Recommended for Windows users</li>
-<li><a href="CMD_Complete_Curriculum.html#part-2-cmd">CMD Curriculum Overview</a> - Simplified alternative for beginners</li>
-<li><a href="GitBash_Complete_Curriculum.html#part-3-git-bash">Git Bash Curriculum Overview</a> - Cross-platform Unix skills</li>
+<li>[<a name="a307"></a>PowerShell Curriculum Overview](PS_Complete_Curriculum.md#<a name="a308"></a>part-1-powershell) - Recommended for <a name="a309"></a>Windows users</li>
+<li>[CMD Curriculum Overview](CMD_Complete_Curriculum.md#<a name="a310"></a>part-2-cmd) - Simplified alternative for beginners</li>
+<li>[<a name="a311"></a>Git <a name="a312"></a>Bash Curriculum Overview](GitBash_Complete_Curriculum.md#<a name="a313"></a>part-3-<a name="a314"></a>git-bash) - Cross-platform Unix skills</li>
 </ul>
-<p>Complete ALL lessons in your chosen pathway (Pre through Lesson 6 + Unit Test) before moving to Step 3.</p>
+<p>Complete ALL lessons in your chosen pathway (Pre through Lesson 6 + Unit Test) <a name="a315"></a>before moving to Step 3.</p>
 <p><strong>Step 3: Begin 3dMake Foundation</strong></p>
-<p>Once you’ve completed your CLI foundation:</p>
+<p>Once <a name="a316"></a>you’ve completed your CLI foundation:</p>
 <ol>
-<li>Read <a href="3dMake_Foundation/3dMake_Intro/3dMake_Intro.html">3dMake Introduction</a> - Overview of OpenSCAD and 3dMake</li>
-<li>Start <a href="3dMake_All_Lessons.html">Lesson 1: Environmental Configuration</a> - Install OpenSCAD and 3dMake</li>
+<li>Read <a href="3dMake_Foundation/3dMake_Intro/3dMake_Intro.html">3dMake Introduction</a> - Overview of <a name="a317"></a>OpenSCAD and 3dMake</li>
+<li>Start <a href="3dMake_All_Lessons.html">Lesson 1: Environmental Configuration</a> - Install <a name="a318"></a>OpenSCAD and 3dMake</li>
 <li>Progress through Lessons 2-11 sequentially</li>
-<li>Complete all project templates as you encounter them</li>
+<li>Complete all project templates as <a name="a319"></a>you encounter them</li>
 <li>Review <a href="3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.html">3dMake Foundation Curriculum Guide</a> for detailed lesson descriptions</li>
 </ol>
 <p><strong>Step 4: Projects &amp; Documentation</strong></p>
@@ -471,7 +468,7 @@ Skills: Unix/bash commands, shell scripting, cross-platform automation</p>
 <li>Projects 0, 1, and 3 (Lesson 11)</li>
 </ul>
 <p><strong>Step 5: Final Assessment</strong></p>
-<p>Complete <a href="3dMake_All_Lessons.html">3dMake Foundation Final Exam</a> to demonstrate mastery of OpenSCAD, 3DMake, and parametric design principles.</p>
+<p>Complete <a href="3dMake_All_Lessons.html">3dMake Foundation Final Exam</a> to demonstrate mastery of <a name="a320"></a>OpenSCAD, <a name="a321"></a>3DMake, and <a name="a322"></a>parametric <a name="a323"></a>design principles.</p>
 <hr>
 <h3 id="for-instructors"><a class="header" href="#for-instructors">For Instructors</a></h3>
 <p><strong>Course Setup &amp; Planning:</strong></p>
@@ -497,21 +494,21 @@ Skills: Unix/bash commands, shell scripting, cross-platform automation</p>
 <li>project_3_teacher_template.md</li>
 </ul>
 <p><strong>Final Exam:</strong></p>
-<p>Administer <a href="3dMake_All_Lessons.html">3dMake Foundation Final Exam</a> - 25-question comprehensive assessment covering error detection, code analysis, design challenges, and real-world application (100 points total).</p>
+<p>Administer <a href="3dMake_All_Lessons.html">3dMake Foundation Final Exam</a> - 25-question comprehensive assessment covering <a name="a324"></a>error detection, <a name="a325"></a>code analysis, <a name="a326"></a>design challenges, and real-world application (100 points total).</p>
 <p><strong>Accessibility Support:</strong></p>
 <ul>
-<li>Ensure all students complete <a href="Setup_Accessibility_Complete.html#accessibility-guide">Screen Reader Setup</a> before beginning coursework</li>
-<li>Reference <a href="3dMake_All_Lessons.html">Screen Reader Coding Tips (NVDA &amp; JAWS)</a> for troubleshooting student screen reader issues</li>
-<li>Provide access to <a href="Backmatter_Complete.html#student-glossary">Student Glossary</a> for terminology reference</li>
+<li>Ensure all students complete [<a name="a327"></a>Screen Reader Setup](Setup_Accessibility_Complete.md#<a name="a328"></a>accessibility-guide) <a name="a329"></a>before beginning coursework</li>
+<li>Reference <a href="3dMake_All_Lessons.html"><a name="a330"></a>Screen Reader Coding Tips (<a name="a331"></a>NVDA &amp; <a name="a332"></a>JAWS)</a> for troubleshooting student screen <a name="a333"></a>reader issues</li>
+<li>Provide access to <a href="Backmatter_Complete.html#student-glossary">Student Glossary</a> for terminology <a name="a334"></a>reference</li>
 </ul>
 <p><strong>Additional Resources:</strong></p>
 <ul>
 <li><a href="Backmatter_Complete.html#troubleshooting">Technical Reference</a> - Advanced troubleshooting and systems architecture</li>
-<li><a href="Backmatter_Complete.html#further-reading">Further Reading</a> - Peer-reviewed research supporting curriculum design</li>
-<li><a href="3DMake_Appendices_Complete.html#appendix-a">Quick Reference</a> - At-a-glance lesson and command reference for student handouts</li>
+<li><a href="Backmatter_Complete.html#further-reading">Further Reading</a> - Peer-reviewed research supporting curriculum <a name="a335"></a>design</li>
+<li><a href="3DMake_Appendices_Complete.html#appendix-a">Quick Reference</a> - At-a-glance lesson and <a name="a336"></a>command <a name="a337"></a>reference for student handouts</li>
 </ul>
-<h2 id="screen-readers"><a class="header" href="#screen-readers">Screen Readers</a></h2>
-<p>We know that users of this curriculum will primarily be JAWS and NVDA screenreader users, or else users of Orca if on a Linux-based system. Dolphin SuperNova (commercial) and Windows Narrator (built-in) are also supported; the workflows and recommendations in this document apply to them. See <a href="https://yourdolphin.com/ScreenReader-Training">https://yourdolphin.com/ScreenReader-Training</a> and <a href="https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1">https://support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1</a> for vendor documentation.</p>
+<h2 id="screen-readers"><a class="header" href="#screen-readers"><a name="a338"></a>Screen Readers</a></h2>
+<p>We know that users of this curriculum will primarily be <a name="a339"></a>JAWS and <a name="a340"></a>NVDA screenreader users, or else users of Orca if on a Linux-based system. Dolphin SuperNova (commercial) and <a name="a341"></a>Windows Narrator (built-in) are also supported; the workflows and recommendations in this document apply to them. See [https://yourdolphin.com/<a name="a342"></a>ScreenReader-Training](https://yourdolphin.com/<a name="a343"></a>ScreenReader-Training) and [https://<a name="a344"></a>support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1](https://<a name="a345"></a>support.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1) for vendor documentation.</p>
 
                     </main>
 
@@ -558,7 +555,6 @@ Skills: Unix/bash commands, shell scripting, cross-platform automation</p>
         <script src="book-a0b12cfe.js"></script>
 
         <!-- Custom JS scripts -->
-        <script src="./theme/catppuccin-fix.js"></script>
 
 
 

@@ -1,6 +1,6 @@
-# 3dMake and OpenSCAD Appendices — Complete Reference
+# 3dMake and {{i:OpenSCAD}} Appendices — Complete Reference
 
-Comprehensive reference materials for the 3dMake Foundation and OpenSCAD curriculum, including makerspace locators, tool references, {{hi:Slicing Guides}}slicing guides, material science, quality assurance procedures, and advanced design concepts.
+Comprehensive {{i:reference}} materials for the 3dMake Foundation and {{i:OpenSCAD}} curriculum, including makerspace locators, tool references, {{hi:Slicing Guides}}slicing guides, {{i:material}} science, {{i:quality}} assurance procedures, and advanced {{i:design}} concepts.
 
 ---
 
@@ -10,11 +10,11 @@ Comprehensive reference materials for the 3dMake Foundation and OpenSCAD curricu
 | ------------------------------------------------------- | ------------------------------------------------ |
 | [Makerspace Index: Utah](#makerspace-utah)              | Utah Makerspace Index (By County)                |
 | [Makerspace Index: United States](#makerspace-national) | National Makerspace Guide — State-by-State Index |
-| [Appendix A](#appendix-a)                               | 3DMake {{hi:CLI}}CLI Cheat Sheet                           |
+| [Appendix A](#appendix-a)                               | {{i:3DMake}} {{hi:CLI}}CLI Cheat Sheet                           |
 | [Appendix B](#appendix-b)                               | Comprehensive Slicing Guide — All Major Slicers  |
 | [Appendix C](#appendix-c)                               | {{hi:Material Properties}}Material Properties and Selection Guide          |
 | [Appendix D](#appendix-d)                               | Tolerance Testing and Quality Assurance Matrix   |
-| [Appendix E](#appendix-e)                               | Advanced OpenSCAD Concepts                       |
+| [Appendix E](#appendix-e)                               | Advanced {{i:OpenSCAD}} Concepts                       |
 
 ---
 
@@ -36,7 +36,7 @@ _(No makerspace info discovered.)_
 
 ### Logan Library – Cytiva STEM Makerspace
 
-{{hi:Bambu}}Bambu 3D printers, mini printers, vinyl cutter, sublimation printer, laser engraver, heat presses, craft cutters, and media digitization tools.[^turn1search10]
+{{hi:Bambu}}Bambu 3D printers, mini printers, vinyl cutter, sublimation {{i:printer}}, laser engraver, heat presses, craft cutters, and media digitization tools.[^turn1search10]
 
 ## Carbon County
 
@@ -62,7 +62,7 @@ Campus/community fabrication lab with CNC tools, 3D printers, and electronics be
 
 ### Make Salt Lake
 
-Community makerspace with woodshop, metal shop, laser cutters, electronics benches, and 3D printer lab.[^turn1search9]
+Community makerspace with woodshop, metal shop, laser cutters, electronics benches, and 3D {{i:printer}} lab.[^turn1search9]
 
 ### University of Utah – Marriott Library ProtoSpace
 
@@ -82,7 +82,7 @@ K–12 and community maker training and fabrication tools.[^turn1search9]
 
 ### Weber County Library Makerspaces
 
-Laser cutters, vinyl cutters, laminators, embroidery machines, scanners, and design software stations.[^turn1search8]
+Laser cutters, vinyl cutters, laminators, embroidery machines, scanners, and {{i:design}} software stations.[^turn1search8]
 
 ---
 
@@ -96,7 +96,7 @@ Laser cutters, vinyl cutters, laminators, embroidery machines, scanners, and des
 
 [^turn1search12]: Salt Lake County Library Create Spaces.
 
-[^turn1search15]: University of Utah – Marriott Library ProtoSpace & {{hi:3D printing}}3D Printing.
+[^turn1search15]: University of Utah – Marriott Library ProtoSpace & {{hi:3D {{i:printing}}}}3D Printing.
 
 [^turn1search14]: Washington County Library – Sid Atkin Makerspace.
 
@@ -128,13 +128,13 @@ U.S.-focused listing of makerspaces, hackerspaces, Fab Labs, coworking/maker hyb
 
 ### POIData Makerspace Industry Report (2026)
 
-Lists **1,046 makerspaces in the U.S.**, with counts by state (e.g., CA 84, FL 45, CO 37, OR 35). Useful for statistical and geographical reference.[^turn6search30]
+Lists **1,046 makerspaces in the U.S.**, with counts by state (e.g., CA 84, FL 45, CO 37, OR 35). Useful for statistical and geographical {{i:reference}}.[^turn6search30]
 
 ### WorkMakeCreate – Public & Free-to-Use Makerspace Finder
 
-Locates community workshops, tool libraries, and free/low‑cost makerspaces by ZIP code.[^turn6search32]
+Locates community workshops, tool libraries, and free/low‑cost makerspaces by ZIP {{i:code}}.[^turn6search32]
 
-### GlobalSpec Makerspace Provider List
+### GlobalSpec Makerspace Provider {{i:List}}
 
 Allows filtering of makerspaces by U.S. state with business profiles and categories.[^turn6search31]
 
@@ -378,11 +378,11 @@ Below is a national omnibus index generated from directories that explicitly lis
 
 <a id="appendix-a"></a>
 
-# Appendix A: 3DMake CLI Cheat Sheet
+# Appendix A: {{i:3DMake}} CLI Cheat Sheet
 
 ---
 
-> A comprehensive reference for the `3dm` command-line tool used alongside OpenSCAD for 3D printing.
+> A comprehensive {{i:reference}} for the `3dm` {{i:command}}-line tool used alongside {{i:OpenSCAD}} for 3D {{i:printing}}.
 
 ---
 
@@ -392,7 +392,7 @@ Below is a national omnibus index generated from directories that explicitly lis
 3dm ACTIONS... [OPTIONS]... [INPUT_FILE]
 ```
 
-You can combine multiple actions in a single command, and most single-letter options can be used with a single dash (e.g. `-s 1.5` instead of `--scale 1.5`).
+You {{i:can}} combine multiple actions in a single {{i:command}}, and most single-letter options {{i:can}} be used with a single dash (e.g. `-s 1.5` instead of `--scale 1.5`).
 
 ---
 
@@ -416,8 +416,8 @@ You can combine multiple actions in a single command, and most single-letter opt
 
 | Action  | Description                                                                                                                     |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `setup` | Set up 3DMake for the first time, or overwrite/upgrade existing settings (printer profile, Gemini AI key, OctoPrint connection) |
-| `new`   | Interactively create a new 3DMake project directory structure (`src/`, `build/`, `3dmake.toml`, starter `.scad` file)           |
+| `setup` | Set up {{i:3DMake}} for the {{i:first}} {{i:time}}, or overwrite/upgrade existing settings ({{i:printer}} profile, Gemini AI key, OctoPrint connection) |
+| `new`   | Interactively {{i:create}} a {{i:new}} {{i:3DMake}} project directory structure (`src/`, `build/`, `3dmake.toml`, starter `.scad` {{i:file}})           |
 
 ```bash
 3dm setup       # First-time setup or re-configure
@@ -428,14 +428,14 @@ You can combine multiple actions in a single command, and most single-letter opt
 
 ### Build Pipeline
 
-These actions can be chained together in sequence:
+These actions {{i:can}} be chained together in sequence:
 
 | Action   | Description                                                                    |
 | -------- | ------------------------------------------------------------------------------ |
-| `build`  | Compile the OpenSCAD `.scad` source file into a `.stl` model                   |
+| `build`  | Compile the {{i:OpenSCAD}} `.scad` source {{i:file}} {{i:into}} a `.stl` model                   |
 | `orient` | Auto-orient the model to minimize the need for supports (uses Tweaker3)        |
-| `slice`  | Slice the model into printer-ready G-code using {{hi:PrusaSlicer}}PrusaSlicer                    |
-| `print`  | Send the sliced G-code to the printer (OctoPrint, Bambu LAN, or Bambu Connect) |
+| `slice`  | Slice the model {{i:into}} {{i:printer}}-ready G-{{i:code}} {{i:using}} {{hi:PrusaSlicer}}PrusaSlicer                    |
+| `print`  | Send the sliced G-{{i:code}} to the {{i:printer}} (OctoPrint, Bambu LAN, or Bambu Connect) |
 
 ```bash
 3dm build                        # Just compile OpenSCAD -> STL
@@ -455,8 +455,8 @@ These actions can be chained together in sequence:
 | Action    | Description                                                                                                                                |
 | --------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
 | `info`    | Display mesh dimensions and center point; optionally get an AI description of the model (requires Gemini or OpenRouter API key configured) |
-| `preview` | Produce a 2D silhouette projection of the model (outputs a flat STL for quick reference)                                                   |
-| `image`   | Export one or more rendered PNG images of the model from specified viewpoints                                                              |
+| `preview` | Produce a 2D silhouette projection of the model (outputs a flat {{i:STL}} for quick {{i:reference}})                                                   |
+| `image`   | Export {{i:one}} or more rendered PNG images of the model from specified viewpoints                                                              |
 
 ```bash
 3dm info                         # Show mesh size/center info
@@ -499,12 +499,12 @@ These are all isolated actions (cannot be combined with other actions):
 
 | Action               | Description                                                                   |
 | -------------------- | ----------------------------------------------------------------------------- |
-| `edit-model`         | Open the current model's `.scad` source file in your configured editor        |
-| `edit-profile`       | Open the current printer profile `.ini` file in your editor                   |
-| `edit-overlay`       | Open (or create) a slicer settings overlay file in your editor                |
-| `edit-profile-gcode` | Interactively select and edit a G-code script embedded in the printer profile |
-| `edit-prompt`        | Edit the AI prompt used by the `info` command                                 |
-| `edit-global-config` | Edit the global `defaults.toml` settings file (printer, API keys, etc.)       |
+| `edit-model`         | Open the current model's `.scad` source {{i:file}} in your configured editor        |
+| `edit-profile`       | Open the current {{i:printer}} profile `.ini` {{i:file}} in your editor                   |
+| `edit-overlay`       | Open (or {{i:create}}) a slicer settings overlay {{i:file}} in your editor                |
+| `edit-profile-gcode` | Interactively select and edit a G-{{i:code}} {{i:script}} embedded in the {{i:printer}} profile |
+| `edit-prompt`        | Edit the AI prompt used by the `info` {{i:command}}                                 |
+| `edit-global-config` | Edit the global `defaults.toml` settings {{i:file}} ({{i:printer}}, API keys, etc.)       |
 
 ```bash
 3dm edit-model                    # Edit the default model's .scad file
@@ -524,7 +524,7 @@ These are all isolated actions (cannot be combined with other actions):
 
 | Action              | Description                                                                                          |
 | ------------------- | ---------------------------------------------------------------------------------------------------- |
-| `list-libraries`    | List all available OpenSCAD libraries in the catalog, showing which are installed and their versions |
+| `list-libraries`    | {{i:List}} all available {{i:OpenSCAD}} libraries in the catalog, showing which are installed and their versions |
 | `install-libraries` | Download and install any libraries required by the current project (as specified in `3dmake.toml`)   |
 
 ```bash
@@ -538,8 +538,8 @@ These are all isolated actions (cannot be combined with other actions):
 
 | Action          | Description                                |
 | --------------- | ------------------------------------------ |
-| `list-profiles` | List all available printer profiles        |
-| `list-overlays` | List all available slicer setting overlays |
+| `list-profiles` | {{i:List}} all available {{i:printer}} profiles        |
+| `list-overlays` | {{i:List}} all available slicer setting overlays |
 
 ```bash
 3dm list-profiles         # See all printer profiles
@@ -552,9 +552,9 @@ These are all isolated actions (cannot be combined with other actions):
 
 | Action         | Description                                                                 |
 | -------------- | --------------------------------------------------------------------------- |
-| `test-connect` | Test the connection to the configured print server (OctoPrint or Bambu LAN) |
+| `test-connect` | Test the connection to the configured {{i:print}} server (OctoPrint or Bambu LAN) |
 | `help`         | Display the help message with all actions and options                       |
-| `version`      | Print the 3DMake version, program location, and config directory            |
+| `version`      | Print the {{i:3DMake}} version, program location, and config directory            |
 
 ```bash
 3dm test-connect          # Test printer connection
@@ -580,16 +580,16 @@ Thanks for trying 3DMake!
 | Option           | Short | Type              | Description                                                                       |
 | ---------------- | ----- | ----------------- | --------------------------------------------------------------------------------- |
 | `--scale`        | `-s`  | `float` or `auto` | Scale the model by a decimal factor (e.g. `1.5` for 150%, `0.5` for 50%)          |
-| `--model`        | `-m`  | `string`          | Select a specific model by name in a multi-model project (omit `.scad` extension) |
-| `--profile`      | `-p`  | `string`          | Select a printer profile by name                                                  |
-| `--overlay`      | `-o`  | `string`          | Apply a slicer settings overlay; can be used multiple times                       |
+| `--model`        | `-m`  | `string`          | Select a {{i:specific}} model by {{i:name}} in a multi-model project (omit `.scad` extension) |
+| `--profile`      | `-p`  | `string`          | Select a {{i:printer}} profile by {{i:name}}                                                  |
+| `--overlay`      | `-o`  | `string`          | Apply a slicer settings overlay; {{i:can}} be used multiple times                       |
 | `--view`         | `-v`  | `string`          | Select the preview view type (see view options above)                             |
-| `--angle`        | `-a`  | `string`          | Set a viewpoint for image export; can be used multiple times                      |
-| `--copies`       | `-c`  | `int`             | Number of copies to slice/print (default: `1`)                                    |
-| `--interactive`  | `-i`  | flag              | Start an interactive AI chat after the `info` command                             |
-| `--colorscheme`  | —     | `string`          | Color scheme name for image export                                                |
+| `--angle`        | `-a`  | `string`          | Set a viewpoint for image export; {{i:can}} be used multiple times                      |
+| `--copies`       | `-c`  | `int`             | Number of copies to slice/{{i:print}} (default: `1`)                                    |
+| `--interactive`  | `-i`  | flag              | Start an interactive AI chat after the `info` {{i:command}}                             |
+| `--colorscheme`  | —     | `string`          | Color scheme {{i:name}} for image export                                                |
 | `--image-size`   | —     | `WxH`             | Image dimensions in pixels (e.g. `1920x1080`, default: `1080x720`)                |
-| `--debug`        | —     | flag              | Enable debug output (shows full subprocess logs, raises exceptions)               |
+| `--debug`        | —     | flag              | Enable debug {{i:output}} (shows full subprocess logs, raises exceptions)               |
 | `--help` / `--h` | `-h`  | flag              | Display help and exit                                                             |
 | `--version`      | —     | flag              | Displays version number as `3DMake v0.9`                                          |
 
@@ -597,7 +597,7 @@ Thanks for trying 3DMake!
 
 ## Input Files
 
-You can pass an `.stl` or `.scad` file directly instead of running inside a project directory:
+You {{i:can}} pass an `.stl` or `.scad` {{i:file}} directly instead of running inside a project directory:
 
 ```bash
 3dm info model.stl                  # Inspect a standalone STL
@@ -607,16 +607,16 @@ You can pass an `.stl` or `.scad` file directly instead of running inside a proj
 3dm image model.stl --angle top     # Render image from standalone STL
 ```
 
-> When passing a `.scad` file, `build` is automatically added to the action list.
+> When passing a `.scad` {{i:file}}, `build` is automatically added to the action list.
 
 ---
 
 ## Project File (`3dmake.toml`) & Global Config (`defaults.toml`)
 
-Both files use identical TOML keys. `defaults.toml` lives in the config directory and sets machine-wide defaults. `3dmake.toml` lives in your project root and **overrides** the global defaults for that project only.
+Both {{i:files}} use identical TOML keys. `defaults.toml` lives in the config directory and sets machine-wide defaults. `3dmake.toml` lives in your project root and **overrides** the global defaults for that project only.
 
 > Run `3dm edit-global-config` to open `defaults.toml` in your editor.  
-> Settings set via CLI flags (e.g. `--scale`, `--profile`) override both files at runtime.
+> Settings set via CLI flags (e.g. `--scale`, `--profile`) override both {{i:files}} at runtime.
 
 ---
 
@@ -624,14 +624,14 @@ Both files use identical TOML keys. `defaults.toml` lives in the config director
 
 | Key                  | Type   | Default         | Description                                                                                     |
 | -------------------- | ------ | --------------- | ----------------------------------------------------------------------------------------------- |
-| `model_name`         | string | `"main"`        | The default model name. Maps to `src/<name>.scad` and `build/<name>.stl`                        |
-| `project_name`       | string | _(folder name)_ | Project name used as a prefix on output filenames. Auto-detected from directory name if not set |
+| `model_name`         | string | `"main"`        | The default model {{i:name}}. Maps to `src/<name>.scad` and `build/<name>.stl`                        |
+| `project_name`       | string | _(folder {{i:name}})_ | Project {{i:name}} used as a prefix on {{i:output}} filenames. Auto-detected from directory {{i:name}} if not set |
 | `scale`              | float  | `1.0`           | Scale factor applied during slicing. `1.0` = 100%, `1.5` = 150%, `0.5` = 50%                    |
-| `copies`             | int    | `1`             | Number of copies to slice/print in one run                                                      |
-| `strict_warnings`    | bool   | `false`         | Pass `--hardwarnings` to OpenSCAD — treat all warnings as errors during `build`                 |
-| `min_3dmake_version` | string | _(none)_        | Minimum required 3DMake version to run this project. Prevents running with outdated installs    |
+| `copies`             | int    | `1`             | Number of copies to slice/{{i:print}} in {{i:one}} {{i:run}}                                                      |
+| `strict_warnings`    | bool   | `false`         | Pass `--hardwarnings` to {{i:OpenSCAD}} — treat all warnings as errors during `build`                 |
+| `min_3dmake_version` | string | _(none)_        | Minimum required {{i:3DMake}} version to {{i:run}} this project. Prevents running with outdated installs    |
 | `interactive`        | bool   | `false`         | Default to interactive AI chat mode after `info`                                                |
-| `debug`              | bool   | `false`         | Enable debug/verbose output globally                                                            |
+| `debug`              | bool   | `false`         | Enable debug/verbose {{i:output}} globally                                                            |
 
 ```toml
 # General project settings
@@ -647,12 +647,12 @@ debug = false
 
 ---
 
-### OpenSCAD / Build Settings
+### {{i:OpenSCAD}} / Build Settings
 
 | Key               | Type            | Default | Description                                                                                                                                             |
 | ----------------- | --------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `libraries`       | list of strings | `[]`    | OpenSCAD libraries required by this project. Names must be **lowercase** and match entries in the library catalog. Install with `3dm install-libraries` |
-| `local_libraries` | list of strings | `[]`    | Paths to local library directories (absolute or relative to project root) to add to `OPENSCADPATH` during build                                         |
+| `libraries`       | list of strings | `[]`    | {{i:OpenSCAD}} libraries required by this project. Names must be **lowercase** and match entries in the library catalog. Install with `3dm install-libraries` |
+| `local_libraries` | list of strings | `[]`    | Paths to local library directories (absolute or relative to project root) to add to `OPENSCADPATH` during {{i:build}}                                         |
 
 ```toml
 # OpenSCAD library dependencies
@@ -664,12 +664,12 @@ local_libraries = ["./lib/my-custom-parts", "/home/user/shared-scad-libs"]
 
 ---
 
-### Printer & Slicer Settings
+### Printer & {{i:Slicer}} Settings
 
 | Key               | Type            | Default          | Description                                                                                                                       |
 | ----------------- | --------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| `printer_profile` | string          | _(required)_     | Name of the printer profile `.ini` file to use (without the `.ini` extension). Set during `3dm setup`                             |
-| `overlays`        | list of strings | `[]`             | Default slicer setting overlays to apply on every slice. Profile-specific versions are preferred over default ones when available |
+| `printer_profile` | string          | _(required)_     | Name of the {{i:printer}} profile `.ini` {{i:file}} to use (without the `.ini` extension). Set during `3dm setup`                             |
+| `overlays`        | list of strings | `[]`             | Default slicer setting overlays to apply on every slice. Profile-{{i:specific}} versions are preferred over default ones when available |
 | `view`            | string          | `"3sil"`         | Default preview view type used by the `preview` action                                                                            |
 | `image_angles`    | list of strings | `[]`             | Default viewpoint angles for the `image` action                                                                                   |
 | `colorscheme`     | string          | `"slicer_light"` | Default color scheme for the `image` action                                                                                       |
@@ -693,8 +693,8 @@ image_size = "1920x1080"
 
 | Key                 | Type   | Default               | Description                                                                                |
 | ------------------- | ------ | --------------------- | ------------------------------------------------------------------------------------------ |
-| `print_mode`        | string | _(required to print)_ | How to send prints to the printer. One of: `"octoprint"`, `"bambu_lan"`, `"bambu_connect"` |
-| `auto_start_prints` | bool   | `true`                | When using OctoPrint, automatically start the print after uploading the file               |
+| `print_mode`        | string | _(required to {{i:print}})_ | How to send prints to the {{i:printer}}. One of: `"octoprint"`, `"bambu_lan"`, `"bambu_connect"` |
+| `auto_start_prints` | bool   | `true`                | When {{i:using}} OctoPrint, automatically start the {{i:print}} after uploading the {{i:file}}               |
 
 ```toml
 # Print sending mode
@@ -727,9 +727,9 @@ Used when `print_mode = "bambu_lan"`. Test with `3dm test-connect`.
 
 | Key                   | Type   | Default  | Description                                                                    |
 | --------------------- | ------ | -------- | ------------------------------------------------------------------------------ |
-| `bambu_host`          | string | _(none)_ | Local IP address of your Bambu printer on your network (e.g. `"192.168.1.42"`) |
-| `bambu_serial_number` | string | _(none)_ | Printer serial number (found in the printer's settings screen or Bambu Studio) |
-| `bambu_access_code`   | string | _(none)_ | Local network access code shown on the printer screen (Settings > WLAN)        |
+| `bambu_host`          | string | _(none)_ | Local IP address of your Bambu {{i:printer}} on your network (e.g. `"192.168.1.42"`) |
+| `bambu_serial_number` | string | _(none)_ | Printer serial number (found in the {{i:printer}}'s settings screen or Bambu Studio) |
+| `bambu_access_code`   | string | _(none)_ | Local network access {{i:code}} shown on the {{i:printer}} screen (Settings > WLAN)        |
 
 ```toml
 # Bambu Labs LAN connection (set in defaults.toml, not project toml)
@@ -746,9 +746,9 @@ Used by the `info` action. Set up during `3dm setup` or via `3dm edit-global-con
 
 | Key              | Type   | Default              | Description                                                                                                                                                             |
 | ---------------- | ------ | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `gemini_key`     | string | _(none)_             | Google Gemini API key for AI model descriptions. Free tier allows ~50 requests/day. Get one at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) |
+| `gemini_key`     | string | _(none)_             | Google Gemini API key for AI model descriptions. Free tier allows ~50 requests/day. Get {{i:one}} at [aistudio.google.com/app/apikey](https://aistudio.google.com/app/apikey) |
 | `openrouter_key` | string | _(none)_             | OpenRouter API key (alternative to Gemini for AI descriptions, supports many LLM providers)                                                                             |
-| `llm_name`       | string | _(provider default)_ | Specific LLM model name to use with Gemini or OpenRouter (e.g. `"gemini-1.5-flash"`, `"google/gemini-pro-vision"`)                                                      |
+| `llm_name`       | string | _(provider default)_ | Specific LLM model {{i:name}} to use with Gemini or OpenRouter (e.g. `"gemini-1.5-flash"`, `"google/gemini-pro-vision"`)                                                      |
 
 ```toml
 # AI description keys (set in defaults.toml only — keep out of project toml!)
@@ -763,8 +763,8 @@ llm_name = "gemini-1.5-flash"
 
 | Key                  | Type   | Default            | Description                                                                                                          |
 | -------------------- | ------ | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
-| `editor`             | string | _(system default)_ | Command used to open files for editing (e.g. `"code"`, `"vim"`, `"notepad"`, `"subl"`). Used by all `edit-*` actions |
-| `edit_in_background` | bool   | `false`            | Launch the editor as a background process (non-blocking). Set to `true` on Windows where GUI editors are common      |
+| `editor`             | string | _(system default)_ | Command used to open {{i:files}} for editing (e.g. `"code"`, `"vim"`, `"notepad"`, `"subl"`). Used by all `edit-*` actions |
+| `edit_in_background` | bool   | `false`            | Launch the editor as a background process (non-blocking). Set to `true` on {{i:Windows}} where GUI editors are {{i:common}}      |
 
 ```toml
 # Editor configuration (typically set in defaults.toml)
@@ -856,7 +856,7 @@ cd my-project
 3dm build orient slice print  # Full pipeline
 ```
 
-### Iterate on an Existing Model
+### Iterate on an Existing {{i:Model}}
 
 ```bash
 3dm edit-model             # Edit the .scad source
@@ -866,7 +866,7 @@ cd my-project
 3dm print                  # Send to printer
 ```
 
-### Working with a Standalone STL
+### Working with a Standalone {{i:STL}}
 
 ```bash
 3dm info my-model.stl
@@ -916,13 +916,13 @@ cd my-project
 
 ## Overlays
 
-Overlays are **partial PrusaSlicer `.ini` files** that override specific slicer settings without replacing the entire printer profile. They are the primary way to switch between print quality modes, enable supports, adjust strength, or any other per-print tuning — without touching your base printer profile.
+Overlays are **partial PrusaSlicer `.ini` {{i:files}}** that override {{i:specific}} slicer settings without replacing the entire {{i:printer}} profile. They are the primary way to switch {{i:between}} {{i:print}} {{i:quality}} modes, enable supports, adjust strength, or any other per-{{i:print}} tuning — without touching your base {{i:printer}} profile.
 
 ### How Overlays Work
 
-1. When slicing, 3DMake loads your base printer profile first, then applies each overlay **in order**, with later overlays winning over earlier ones.
-2. Overlay files only need to contain the keys you want to change — all other profile settings are preserved.
-3. 3DMake looks for overlays in two places, preferring the printer-specific version if it exists:
+1. When slicing, {{i:3DMake}} loads your base {{i:printer}} profile {{i:first}}, then applies {{i:each}} overlay **in order**, with later overlays winning over earlier ones.
+2. Overlay {{i:files}} only need to contain the keys {{i:you}} want to change — all other profile settings are preserved.
+3. {{i:3DMake}} looks for overlays in two places, preferring the {{i:printer}}-{{i:specific}} version if it exists:
    - `overlays/<printer_profile>/<name>.ini` ← preferred
    - `overlays/default/<name>.ini` ← fallback
 
@@ -934,7 +934,7 @@ Overlays are **partial PrusaSlicer `.ini` files** that override specific slicer 
 3dm list-overlays                 # See all available overlays
 ```
 
-When creating a new overlay via `3dm edit-overlay`, you can optionally lock it to a specific printer profile. A locked overlay lives under `overlays/<profile>/` and only applies when that profile is active.
+When creating a {{i:new}} overlay via `3dm edit-overlay`, {{i:you}} {{i:can}} optionally lock it to a {{i:specific}} {{i:printer}} profile. A locked overlay lives under `overlays/<profile>/` and only applies when that profile is active.
 
 ### Using Overlays
 
@@ -954,7 +954,7 @@ overlays = ["strong"]
 
 ### Overlay File Format
 
-Overlay `.ini` files use the same key=value format as PrusaSlicer profiles. You only need to include the keys you want to override.
+Overlay `.ini` {{i:files}} use the same key=value format as PrusaSlicer profiles. You only need to include the keys {{i:you}} want to override.
 
 ```ini
 # overlays/default/strong.ini
@@ -974,17 +974,17 @@ fill_pattern = grid
 
 The most useful keys for overlay tuning, with types and sample values:
 
-#### Shell / Wall Strength
+#### {{i:Shell}} / Wall Strength
 
 | Key                          | Description                                                        | Sample Values                             |
 | ---------------------------- | ------------------------------------------------------------------ | ----------------------------------------- |
 | `perimeters`                 | Number of outer wall loops                                         | `2` (draft) · `3` (normal) · `5` (strong) |
 | `top_solid_layers`           | Solid layers on the top surface                                    | `3` (draft) · `5` (normal) · `8` (strong) |
 | `bottom_solid_layers`        | Solid layers on the bottom surface                                 | `3` (draft) · `4` (normal) · `6` (strong) |
-| `top_solid_min_thickness`    | Minimum top skin thickness in mm (overrides layer count if larger) | `0.5` · `0.8` · `1.0`                     |
+| `top_solid_min_thickness`    | Minimum top skin thickness in mm (overrides {{i:layer}} count if larger) | `0.5` · `0.8` · `1.0`                     |
 | `bottom_solid_min_thickness` | Minimum bottom skin thickness in mm                                | `0.5` · `0.8` · `1.0`                     |
-| `external_perimeters_first`  | Print outer walls before inner walls (better surface quality)      | `0` · `1`                                 |
-| `thin_walls`                 | Detect and print thin walls that would otherwise be missed         | `0` · `1`                                 |
+| `external_perimeters_first`  | Print outer walls {{i:before}} inner walls (better surface {{i:quality}})      | `0` · `1`                                 |
+| `thin_walls`                 | Detect and {{i:print}} thin walls that would otherwise be missed         | `0` · `1`                                 |
 
 #### Infill
 
@@ -994,7 +994,7 @@ The most useful keys for overlay tuning, with types and sample values:
 | `fill_pattern`              | Infill pattern                                                 | `grid` · `gyroid` · `honeycomb` · `cubic` · `rectilinear` · `lightning` · `triangles` |
 | `top_fill_pattern`          | Pattern for top solid layers                                   | `rectilinear` · `monotonic` · `concentric` · `smooth`                                 |
 | `bottom_fill_pattern`       | Pattern for bottom solid layers                                | `rectilinear` · `monotonic` · `concentric`                                            |
-| `infill_every_layers`       | Only infill every N layers (speeds up print, reduces strength) | `1` · `2` · `3`                                                                       |
+| `infill_every_layers`       | Only infill every N layers (speeds up {{i:print}}, reduces strength) | `1` · `2` · `3`                                                                       |
 | `solid_infill_every_layers` | Force solid infill every N layers                              | `0` (off) · `5`                                                                       |
 | `infill_overlap`            | How much infill overlaps with perimeters (%)                   | `15%` · `25%`                                                                         |
 
@@ -1002,27 +1002,27 @@ The most useful keys for overlay tuning, with types and sample values:
 
 | Key                        | Description                                             | Sample Values                  |
 | -------------------------- | ------------------------------------------------------- | ------------------------------ |
-| `layer_height`             | Standard layer height in mm                             | `0.1` · `0.15` · `0.2` · `0.3` |
-| `first_layer_height`       | Height of the first layer (absolute mm or %)            | `0.2` · `0.25` · `75%`         |
+| `layer_height`             | Standard {{i:layer}} {{i:height}} in mm                             | `0.1` · `0.15` · `0.2` · `0.3` |
+| `first_layer_height`       | Height of the {{i:first}} {{i:layer}} (absolute mm or %)            | `0.2` · `0.25` · `75%`         |
 | `perimeter_speed`          | Speed for perimeter walls (mm/s)                        | `40` · `60` · `80`             |
-| `external_perimeter_speed` | Speed for outermost wall only (slower = better quality) | `25` · `35` · `50%`            |
+| `external_perimeter_speed` | Speed for outermost wall only (slower = better {{i:quality}}) | `25` · `35` · `50%`            |
 | `infill_speed`             | Speed for infill (mm/s)                                 | `60` · `80` · `120`            |
 | `solid_infill_speed`       | Speed for solid infill layers (mm/s)                    | `50` · `70`                    |
 | `top_solid_infill_speed`   | Speed for top surface layers (slower = smoother)        | `30` · `40` · `50`             |
 | `travel_speed`             | Non-extrusion travel speed (mm/s)                       | `130` · `180` · `250`          |
-| `first_layer_speed`        | First layer speed (mm/s or %)                           | `20` · `30` · `50%`            |
+| `first_layer_speed`        | First {{i:layer}} speed (mm/s or %)                           | `20` · `30` · `50%`            |
 
 #### Supports
 
 | Key                                 | Description                                             | Sample Values                             |
 | ----------------------------------- | ------------------------------------------------------- | ----------------------------------------- |
-| `support_material`                  | Enable support structures                               | `0` · `1`                                 |
+| `support_material`                  | Enable {{i:support}} structures                               | `0` · `1`                                 |
 | `support_material_auto`             | Auto-detect where supports are needed                   | `0` · `1`                                 |
 | `support_material_threshold`        | Overhang angle above which supports are added (degrees) | `40` · `45` · `55`                        |
 | `support_material_pattern`          | Support infill pattern                                  | `rectilinear` · `honeycomb` · `lightning` |
-| `support_material_spacing`          | Distance between support lines (mm)                     | `2` · `2.5` · `3`                         |
-| `support_material_contact_distance` | Z gap between support and part (mm)                     | `0.1` · `0.2` · `0.25`                    |
-| `support_material_interface_layers` | Dense interface layers between support and part         | `0` · `2` · `3`                           |
+| `support_material_spacing`          | Distance {{i:between}} {{i:support}} lines (mm)                     | `2` · `2.5` · `3`                         |
+| `support_material_contact_distance` | Z gap {{i:between}} {{i:support}} and {{i:part}} (mm)                     | `0.1` · `0.2` · `0.25`                    |
+| `support_material_interface_layers` | Dense interface layers {{i:between}} {{i:support}} and {{i:part}}         | `0` · `2` · `3`                           |
 
 #### Cooling & Bridging
 
@@ -1040,7 +1040,7 @@ The most useful keys for overlay tuning, with types and sample values:
 | Key              | Description                            | Sample Values         |
 | ---------------- | -------------------------------------- | --------------------- |
 | `skirts`         | Number of skirt loops                  | `0` · `1` · `3`       |
-| `skirt_distance` | Distance from part to skirt (mm)       | `3` · `5` · `6`       |
+| `skirt_distance` | Distance from {{i:part}} to skirt (mm)       | `3` · `5` · `6`       |
 | `brim_width`     | Brim width in mm (`0` = disabled)      | `0` · `3` · `5` · `8` |
 | `raft_layers`    | Number of raft layers (`0` = disabled) | `0` · `2` · `3`       |
 
@@ -1049,9 +1049,9 @@ The most useful keys for overlay tuning, with types and sample values:
 | Key                           | Description                             | Sample Values            |
 | ----------------------------- | --------------------------------------- | ------------------------ |
 | `temperature`                 | Hotend temperature for all layers (°C)  | `200` · `215` · `230`    |
-| `first_layer_temperature`     | Hotend temperature for first layer only | `215` · `225` · `235`    |
-| `bed_temperature`             | Bed temperature for all layers (°C)     | `0` · `55` · `60` · `80` |
-| `first_layer_bed_temperature` | Bed temperature for first layer only    | `60` · `65` · `85`       |
+| `first_layer_temperature`     | Hotend temperature for {{i:first}} {{i:layer}} only | `215` · `225` · `235`    |
+| `bed_temperature`             | {{i:Bed}} temperature for all layers (°C)     | `0` · `55` · `60` · `80` |
+| `first_layer_bed_temperature` | {{i:Bed}} temperature for {{i:first}} {{i:layer}} only    | `60` · `65` · `85`       |
 
 ---
 
@@ -1092,7 +1092,7 @@ max_fan_speed = 70
 
 ### Sample Overlay: `draft.ini`
 
-For quick test fits, rough prototypes, or checking dimensions before committing to a full print. Faster speeds, minimal walls, low infill, thicker layers.
+For quick {{i:test}} fits, rough prototypes, or checking dimensions {{i:before}} committing to a full {{i:print}}. Faster speeds, minimal walls, low infill, thicker layers.
 
 ```ini
 # overlays/default/draft.ini
@@ -1179,7 +1179,7 @@ brim_width = 3
 
 ### Sample Overlay: `supports.ini`
 
-Enable automatic support structures for models with steep overhangs. Stack with other quality overlays.
+Enable automatic {{i:support}} structures for models with steep overhangs. Stack with other {{i:quality}} overlays.
 
 ```ini
 # overlays/default/supports.ini
@@ -1208,7 +1208,7 @@ support_material_auto = 0
 
 ### Stacking Overlays
 
-Overlays are applied **left to right**, so later overlays win on any conflicting keys. This lets you compose print settings modularly:
+Overlays are applied **left to right**, so later overlays win on any conflicting keys. This lets {{i:you}} compose {{i:print}} settings modularly:
 
 ```bash
 # Fine quality WITH supports
@@ -1221,7 +1221,7 @@ Overlays are applied **left to right**, so later overlays win on any conflicting
 3dm slice -o strong -o supports -o no-brim
 ```
 
-You can also set permanent default overlays for a project in `3dmake.toml`, while adding extra ones at the CLI:
+You {{i:can}} also set permanent default overlays for a project in `3dmake.toml`, while adding extra ones at the CLI:
 
 ```toml
 # 3dmake.toml — always use strong as the base for this project
@@ -1234,7 +1234,7 @@ overlays = ["strong"]
 3dm slice -o fine                 # Only fine — replaces toml default entirely
 ```
 
-> **Tip:** Name your overlays by intent (`strong`, `draft`, `fine`, `supports`, `vase-mode`, `no-brim`) rather than by settings (`40pct-infill`). This keeps the CLI readable and lets you tune the overlay file without renaming references everywhere.
+> **Tip:** Name your overlays by intent (`strong`, `draft`, `fine`, `supports`, `vase-mode`, `no-brim`) rather than by settings (`40pct-infill`). This keeps the CLI readable and lets {{i:you}} tune the overlay {{i:file}} without renaming references everywhere.
 
 ---
 
@@ -1242,7 +1242,7 @@ overlays = ["strong"]
 
 ### Implied Action Dependencies
 
-Some actions automatically trigger prerequisite actions. You never need to spell these out manually — 3DMake inserts them for you.
+Some actions automatically trigger prerequisite actions. You never need to spell these out manually — {{i:3DMake}} inserts them for {{i:you}}.
 
 ```
 print
@@ -1264,17 +1264,17 @@ orient
   (no implied actions — operates on an already-built STL)
 ```
 
-So running `3dm print` on a project with OpenSCAD source will automatically run `build` -> `slice` -> `print` in order. You only need to be explicit when you want to **stop partway through** (e.g. `3dm build` to just check compilation without slicing).
+So running `3dm print` on a project with {{i:OpenSCAD}} source will automatically {{i:run}} `build` -> `slice` -> `print` in order. You only need to be explicit when {{i:you}} want to **stop partway through** (e.g. `3dm build` to just check compilation without slicing).
 
 ### `last_in_chain` — Actions That Must Come Last
 
-Three actions are marked `last_in_chain`, meaning **no other pipeline actions can follow them** in the same command. Attempting to do so is an error.
+Three actions are marked `last_in_chain`, meaning **no other pipeline actions {{i:can}} follow them** in the same {{i:command}}. Attempting to do so is an {{i:error}}.
 
 | Action    | Why it's last                                                 |
 | --------- | ------------------------------------------------------------- |
-| `image`   | Produces image files; nothing meaningful can follow a render  |
-| `info`    | Terminal inspection command; no build artifact is produced    |
-| `preview` | Produces a projection STL; slicing a silhouette is not useful |
+| `image`   | Produces image {{i:files}}; nothing meaningful {{i:can}} follow a render  |
+| `info`    | Terminal inspection {{i:command}}; no {{i:build}} artifact is produced    |
+| `preview` | Produces a projection {{i:STL}}; slicing a silhouette is not useful |
 
 ```bash
 # ✅ Valid — last_in_chain actions used alone or at the end
@@ -1291,7 +1291,7 @@ Three actions are marked `last_in_chain`, meaning **no other pipeline actions ca
 
 ### Isolated Actions
 
-A separate category called **isolated** means the action cannot be combined with _any_ other action at all — it must be the only verb on the command line. All `edit-*` actions, `setup`, `new`, `version`, `help`, `test-connect`, `list-profiles`, `list-overlays`, `list-libraries`, and `install-libraries` are isolated.
+A separate category called **isolated** means the action cannot be combined with _any_ other action at all — it must be the only verb on the {{i:command}} line. All `edit-*` actions, `setup`, `new`, `version`, `help`, `test-connect`, `list-profiles`, `list-overlays`, `list-libraries`, and `install-libraries` are isolated.
 
 ```bash
 # ✅ Valid
@@ -1306,7 +1306,7 @@ A separate category called **isolated** means the action cannot be combined with
 
 ### Full Action Execution Order
 
-When you request multiple actions, they always execute in this fixed internal order regardless of how you type them on the command line:
+When {{i:you}} request multiple actions, they always execute in this fixed internal order regardless of how {{i:you}} type them on the {{i:command}} line:
 
 ```
 setup -> new -> build -> load-mesh* -> measure-mesh* -> info -> orient ->
@@ -1318,13 +1318,13 @@ test-connect -> help -> version
 
 _(Actions marked `_` are internal and cannot be requested directly.)\*
 
-This means `3dm slice build` and `3dm build slice` are identical — order of verbs on the command line does not matter.
+This means `3dm slice build` and `3dm build slice` are identical — order of verbs on the {{i:command}} line does not matter.
 
 ---
 
-## Multi-Model Projects
+## Multi-{{i:Model}} Projects
 
-A single 3DMake project can contain multiple OpenSCAD models. Each model is a separate `.scad` file in the `src/` directory.
+A single {{i:3DMake}} project {{i:can}} contain multiple {{i:OpenSCAD}} models. Each model is a separate `.scad` {{i:file}} in the `src/` directory.
 
 ### Directory Layout
 
@@ -1342,7 +1342,7 @@ my-project/
     └── my-project-main.gcode
 ```
 
-### Selecting a Model
+### Selecting a {{i:Model}}
 
 ```bash
 # Uses model_name from 3dmake.toml (default: "main")
@@ -1357,7 +1357,7 @@ my-project/
 3dm edit-model -m lid
 ```
 
-### Setting a Per-Model Default in `3dmake.toml`
+### Setting a Per-{{i:Model}} Default in `3dmake.toml`
 
 ```toml
 # 3dmake.toml
@@ -1366,7 +1366,7 @@ model_name = "bracket"    # Everyone on this project defaults to the bracket mod
 
 ### Output File Naming
 
-Output G-code files are named using the pattern:
+Output G-{{i:code}} {{i:files}} are named {{i:using}} the pattern:
 
 ```
 <project_name>-<model_name>.gcode          # 1 copy
@@ -1379,11 +1379,11 @@ For example, a project named `pi-case` building the `lid` model with 2 copies pr
 build/pi-case-lid-x2.gcode
 ```
 
-If `project_name` is not set in `3dmake.toml`, it is auto-detected from the directory name.
+If `project_name` is not set in `3dmake.toml`, it is auto-detected from the directory {{i:name}}.
 
 ### Tip: Shared Parameters Across Models
 
-A common OpenSCAD pattern is a shared `params.scad` file included by all models:
+A {{i:common}} {{i:OpenSCAD}} pattern is a shared `params.scad` {{i:file}} included by all models:
 
 ```
 src/
@@ -1393,7 +1393,7 @@ src/
 └── bracket.scad     ← include <params.scad>
 ```
 
-This way changing one dimension in `params.scad` propagates to every model, and you can rebuild all variants with a shell loop:
+This way changing {{i:one}} dimension in `params.scad` propagates to every model, and {{i:you}} {{i:can}} rebuild all variants with a {{i:shell}} loop:
 
 ```bash
 for model in main lid bracket; do
@@ -1407,7 +1407,7 @@ done
 
 ### `3dm_bed_center`
 
-This is a **3DMake-specific** key (not a standard PrusaSlicer key) that you can add to a printer profile or overlay. It works around a PrusaSlicer CLI bug where models are not correctly centered on non-rectangular or offset build volumes.
+This is a **{{i:3DMake}}-{{i:specific}}** key (not a standard PrusaSlicer key) that {{i:you}} {{i:can}} add to a {{i:printer}} profile or overlay. It works around a PrusaSlicer CLI bug where models are not correctly centered on non-rectangular or offset {{i:build}} volumes.
 
 ```ini
 # In a printer profile .ini or overlay .ini
@@ -1418,13 +1418,13 @@ This is a **3DMake-specific** key (not a standard PrusaSlicer key) that you can 
 3dm_bed_center = 175,162.5      # Prusa XL (350x325mm bed)
 ```
 
-When this key is present, 3DMake passes `--center X,Y` to the PrusaSlicer CLI automatically. You should set this in your **printer profile** rather than an overlay, since it is specific to the physical printer's bed geometry.
+When this key is present, {{i:3DMake}} passes `--center X,Y` to the PrusaSlicer CLI automatically. You should set this in your **{{i:printer}} profile** rather than an overlay, since it is {{i:specific}} to the physical {{i:printer}}'s {{i:bed}} {{i:geometry}}.
 
 ---
 
 ## AI Prompt Customization
 
-The `info` action sends rendered images of your model to an AI (Gemini or OpenRouter) along with a text prompt. The default prompt asks for a general physical description of the object. You can customize this prompt to get more targeted or useful output.
+The `info` action sends rendered images of your model to an AI (Gemini or OpenRouter) along with a {{i:text}} prompt. The default prompt asks for a general physical description of the object. You {{i:can}} customize this prompt to get more targeted or useful {{i:output}}.
 
 ### Editing the Prompt
 
@@ -1432,17 +1432,17 @@ The `info` action sends rendered images of your model to an AI (Gemini or OpenRo
 3dm edit-prompt    # Opens the prompt file in your configured editor
 ```
 
-The prompt file lives at:
+The prompt {{i:file}} lives at:
 
 ```
 ~/.config/3dmake/prompt.txt    (or $3DMAKE_CONFIG_DIR/prompt.txt)
 ```
 
-If the file does not exist when you run `3dm edit-prompt`, 3DMake creates it from a built-in default automatically.
+If the {{i:file}} does not exist when {{i:you}} {{i:run}} `3dm edit-prompt`, {{i:3DMake}} creates it from a built-in default automatically.
 
 ### What the Prompt Receives
 
-The AI receives your prompt text **plus six rendered PNG images** of the model taken from these fixed viewpoints: `above_front_left`, `above_front_right`, `above_back_left`, `above_back_right`, `top`, and `bottom`. Each image is 768×768 pixels.
+The AI receives your prompt {{i:text}} **plus six rendered PNG images** of the model taken from these fixed viewpoints: `above_front_left`, `above_front_right`, `above_back_left`, `above_back_right`, `top`, and `bottom`. Each image is 768×768 pixels.
 
 ### Sample Prompts
 
@@ -1454,7 +1454,7 @@ shape, identifying any notable geometric features, symmetry, overhangs, thin
 walls, or small details that might affect printability. Be concise and factual.
 ```
 
-**Printability review — focused on print problems:**
+**Printability review — focused on {{i:print}} problems:**
 
 ```
 You are a 3D printing expert reviewing a model before printing. Examine these
@@ -1476,7 +1476,7 @@ millimeters. Note any features that suggest a specific scale (screw holes,
 finger clearances, standard hardware interfaces, etc.).
 ```
 
-**Design feedback — for iterating on a model:**
+**{{i:Design}} feedback — for iterating on a model:**
 
 ```
 You are reviewing a 3D model for functional and aesthetic design quality.
@@ -1485,7 +1485,7 @@ the geometry looks unintentional or messy, whether any features look like
 they might be too fragile, and one specific improvement suggestion.
 ```
 
-**Interactive mode** (`3dm info --interactive`) lets you follow up with specific questions after the initial AI response, such as asking it to focus on a particular feature or compare proportions.
+**Interactive mode** (`3dm info --interactive`) lets {{i:you}} follow up with {{i:specific}} questions after the initial AI response, such as asking it to focus on a particular feature or compare proportions.
 
 ---
 
@@ -1494,29 +1494,29 @@ they might be too fragile, and one specific improvement suggestion.
 ### Setup & Configuration
 
 **`3DMake settings and print options have not been set up on this machine.`**
-Run `3dm setup` before any other command. This creates the config directory, copies default profiles, and walks you through initial configuration.
+Run `3dm setup` {{i:before}} any other {{i:command}}. This creates the config directory, copies default profiles, and walks {{i:you}} through initial configuration.
 
 **`Printer profile 'X' does not exist.`**
-Run `3dm list-profiles` to see valid profile names. Profile names are case-sensitive and must match the `.ini` filename exactly (without the extension). Set the correct one with `3dm setup` or by editing `defaults.toml` with `3dm edit-global-config`.
+Run `3dm list-profiles` to see valid profile names. Profile names are case-sensitive and must match the `.ini` filename exactly (without the extension). Set the correct {{i:one}} with `3dm setup` or by editing `defaults.toml` with `3dm edit-global-config`.
 
 **`This project requires 3DMake version X or newer.`**
-The `min_3dmake_version` key in `3dmake.toml` is higher than your installed version. Run `3dm version` to check your version, then update 3DMake. If you are the project author, lower `min_3dmake_version` if the feature requirement does not actually apply.
+The `min_3dmake_version` key in `3dmake.toml` is higher than your installed version. Run `3dm version` to check your version, then update {{i:3DMake}}. If {{i:you}} are the project author, lower `min_3dmake_version` if the feature requirement does not actually apply.
 
 ---
 
 ### Build Errors
 
 **`Source file src/main.scad does not exist.`**
-Either you are not in a 3DMake project directory, or `model_name` in your `3dmake.toml` does not match an actual `.scad` file in `src/`. Run `3dm edit-model` to create the file, or correct `model_name`.
+Either {{i:you}} are not in a {{i:3DMake}} project directory, or `model_name` in your `3dmake.toml` does not match an actual `.scad` {{i:file}} in `src/`. Run `3dm edit-model` to {{i:create}} the {{i:file}}, or correct `model_name`.
 
 **`Some needed libraries are not installed: <name>`**
-Run `3dm install-libraries` to download and install the missing libraries listed in your `3dmake.toml` `libraries` key. Run `3dm list-libraries` to verify the library name is spelled correctly (names are lowercase).
+Run `3dm install-libraries` to download and install the missing libraries listed in your `3dmake.toml` `libraries` key. Run `3dm list-libraries` to verify the library {{i:name}} is spelled correctly (names are lowercase).
 
-**OpenSCAD prints warnings but does not fail.**
-Add `strict_warnings = true` to your `3dmake.toml` to treat warnings as errors. This is recommended for all projects to catch issues like undefined {{hi:Variables}}variables and deprecated syntax early.
+**{{i:OpenSCAD}} prints warnings but does not fail.**
+Add `strict_warnings = true` to your `3dmake.toml` to treat warnings as errors. This is recommended for all projects to catch issues like undefined {{hi:Variables}}{{i:variables}} and deprecated syntax early.
 
-**Build succeeds but STL looks wrong / has missing geometry.**
-Run with `--debug` to see the full OpenSCAD output including all warnings:
+**Build succeeds but {{i:STL}} looks wrong / has missing {{i:geometry}}.**
+Run with `--debug` to see the full {{i:OpenSCAD}} {{i:output}} including all warnings:
 
 ```bash
 3dm build --debug
@@ -1527,13 +1527,13 @@ Run with `--debug` to see the full OpenSCAD output including all warnings:
 ### Slicing Errors
 
 **`Could not find overlay 'X' for profile 'Y'.`**
-The overlay file does not exist at `overlays/Y/X.ini` or `overlays/default/X.ini`. Run `3dm list-overlays` to see what is available, or `3dm edit-overlay -o X` to create it.
+The overlay {{i:file}} does not exist at `overlays/Y/X.ini` or `overlays/default/X.ini`. Run `3dm list-overlays` to see what is available, or `3dm edit-overlay -o X` to {{i:create}} it.
 
 **`Could not fit the object outline on the build surface.`**
-The model is larger than the printer's bed, or is being placed off-center. Check your model dimensions with `3dm info`, verify your `printer_profile` is correct for your actual printer, and confirm `3dm_bed_center` is set correctly in your profile if you have a non-standard bed.
+The model is larger than the {{i:printer}}'s {{i:bed}}, or is being placed off-center. Check your model dimensions with `3dm info`, verify your `printer_profile` is correct for your actual {{i:printer}}, and confirm `3dm_bed_center` is set correctly in your profile if {{i:you}} have a non-standard {{i:bed}}.
 
-**Slicer produces unexpected print warnings.**
-Run with `--debug` to see the full PrusaSlicer stdout output:
+**{{i:Slicer}} produces unexpected {{i:print}} warnings.**
+Run with `--debug` to see the full PrusaSlicer stdout {{i:output}}:
 
 ```bash
 3dm slice --debug
@@ -1544,18 +1544,18 @@ Run with `--debug` to see the full PrusaSlicer stdout output:
 ### Print / Connection Errors
 
 **`Unknown print mode 'X'.`**
-`print_mode` in your config must be exactly one of: `octoprint`, `bambu_lan`, or `bambu_connect`. Check spelling in `defaults.toml`.
+`print_mode` in your config must be exactly {{i:one}} of: `octoprint`, `bambu_lan`, or `bambu_connect`. Check spelling in `defaults.toml`.
 
 **OctoPrint: `ERROR: Authentication failed (401)`**
-Your `octoprint_key` is wrong or expired. In OctoPrint, go to Settings > Application Keys and generate a new key, then update `defaults.toml` via `3dm edit-global-config`.
+Your `octoprint_key` is wrong or expired. In OctoPrint, go to Settings > Application Keys and generate a {{i:new}} key, then update `defaults.toml` via `3dm edit-global-config`.
 
 **OctoPrint: `ERROR: Could not connect to server`**
-Check that `octoprint_host` is correct and includes the protocol (`[http://`](http://`) or `[https://`](https://`)). Verify OctoPrint is running and the machine running 3DMake is on the same network. Run `3dm test-connect` for a detailed diagnosis.
+Check that `octoprint_host` is correct and includes the protocol (`[http://`](http://`) or `[https://`](https://`)). Verify OctoPrint is running and the machine running {{i:3DMake}} is on the same network. Run `3dm test-connect` for a detailed diagnosis.
 
 **Bambu: FTP or MQTT connection fails.**
-Verify `bambu_host` is the printer's current local IP (it may change if your router assigns IPs dynamically — consider setting a static IP for the printer). Check `bambu_access_code` on the printer screen under Settings > WLAN. Run `3dm test-connect` for step-by-step diagnosis.
+Verify `bambu_host` is the {{i:printer}}'s current local IP (it may change if your router assigns IPs dynamically — consider setting a static IP for the {{i:printer}}). Check `bambu_access_code` on the {{i:printer}} screen under Settings > WLAN. Run `3dm test-connect` for step-by-step diagnosis.
 
-**Bambu Connect mode:** `3dm print` with `print_mode = "bambu_connect"` does **not** connect directly to the printer. It packages your G-code into a `.3mf` file and opens the Bambu Connect desktop application via a URI handoff. Bambu Connect must be installed and running on your machine. `3dm test-connect` will report that it cannot test this mode — this is expected.
+**Bambu Connect mode:** `3dm print` with `print_mode = "bambu_connect"` does **not** connect directly to the {{i:printer}}. It packages your G-{{i:code}} {{i:into}} a `.3mf` {{i:file}} and opens the Bambu Connect desktop application via a URI handoff. Bambu Connect must be installed and running on your machine. `3dm test-connect` will report that it cannot {{i:test}} this mode — this is expected.
 
 ---
 
@@ -1565,28 +1565,28 @@ Verify `bambu_host` is the printer's current local IP (it may change if your rou
 Action names are lowercase and use hyphens, not underscores (e.g. `edit-model`, not `edit_model`). Run `3dm help` for the full list.
 
 **`The action 'X' can only be used on its own`**
-You combined an isolated action with other actions. Isolated actions (`edit-*`, `setup`, `new`, `version`, `help`, `test-connect`, `list-*`, `install-libraries`) must be run alone.
+You combined an isolated action with other actions. Isolated actions (`edit-*`, `setup`, `new`, `version`, `help`, `test-connect`, `list-*`, `install-libraries`) must be {{i:run}} alone.
 
 **`Action 'X' cannot be followed by other actions`**
-You placed a `last_in_chain` action (`image`, `info`, `preview`) before other pipeline actions. These must be the final (or only) action in your command.
+You placed a `last_in_chain` action (`image`, `info`, `preview`) {{i:before}} other pipeline actions. These must be the final (or only) action in your {{i:command}}.
 
 **`Cannot select a model name when using an input file`**
-`--model` / `-m` and a direct input file path are mutually exclusive. Use one or the other.
+`--model` / `-m` and a direct input {{i:file}} path are mutually exclusive. Use {{i:one}} or the other.
 
 **`Multiple inputs not supported yet`**
-Only one input file can be passed per invocation. To process multiple files, use a shell loop.
+Only {{i:one}} input {{i:file}} {{i:can}} be passed per invocation. To process multiple {{i:files}}, use a {{i:shell}} loop.
 
 ---
 
-## OpenSCAD Tips & Conventions for 3DMake
+## {{i:OpenSCAD}} Tips & Conventions for {{i:3DMake}}
 
 ### Project Conventions
 
-3DMake expects OpenSCAD source files in `src/<model_name>.scad` and writes STL output to `build/<model_name>.stl`. As long as you follow this layout (created automatically by `3dm new`), everything works without extra configuration.
+{{i:3DMake}} expects {{i:OpenSCAD}} source {{i:files}} in `src/<model_name>.scad` and writes {{i:STL}} {{i:output}} to `build/<model_name>.stl`. As long as {{i:you}} follow this layout (created automatically by `3dm new`), everything works without extra configuration.
 
 ### Parameterized Models
 
-The most powerful pattern for 3DMake projects is a fully parameterized model where all key dimensions are defined as variables at the top of the file. This makes it trivial to create variants without duplicating code.
+The most powerful pattern for {{i:3DMake}} projects is a fully parameterized model where all key dimensions are defined as {{i:variables}} at the top of the {{i:file}}. This makes it trivial to {{i:create}} variants without duplicating {{i:code}}.
 
 ```openscad
 // src/box.scad
@@ -1611,9 +1611,9 @@ module box_shell() {
 box_shell();
 ```
 
-### Multi-Model Shared Parameters
+### Multi-{{i:Model}} Shared Parameters
 
-For projects with multiple related models (e.g. a box and its lid), put shared dimensions in a separate include file:
+For projects with multiple related models (e.g. a box and its lid), put shared dimensions in a separate include {{i:file}}:
 
 ```openscad
 // src/params.scad  — shared across all models
@@ -1643,7 +1643,7 @@ include <params.scad>
 cube([outer_length - tolerance*2, outer_width - tolerance*2, lid_height]);
 ```
 
-### Useful OpenSCAD Modules for 3D Printing
+### Useful {{i:OpenSCAD}} Modules for 3D Printing
 
 ```openscad
 // Rounded rectangle (better bed adhesion, less stress concentration)
@@ -1675,13 +1675,13 @@ module snap_tab(length=10, width=4, height=3, overhang=0.8) {
 
 ### `$fn`, `$fa`, `$fs` — Circle Resolution
 
-OpenSCAD renders circles and cylinders as polygons. Control resolution with these special variables:
+{{i:OpenSCAD}} renders circles and cylinders as polygons. Control resolution with these special {{i:variables}}:
 
 | Variable | Meaning                              | Recommended                             |
 | -------- | ------------------------------------ | --------------------------------------- |
 | `$fn`    | Fixed number of fragments            | `32` for small circles, `64`+ for large |
 | `$fa`    | Minimum angle per fragment (degrees) | `1` for smooth curves                   |
-| `$fs`    | Minimum fragment size (mm)           | `0.5` for print resolution              |
+| `$fs`    | Minimum fragment size (mm)           | `0.5` for {{i:print}} resolution              |
 
 ```openscad
 // Set globally at top of file for consistent quality
@@ -1692,7 +1692,7 @@ $fs = 0.4;    // Match your nozzle diameter
 cylinder(r=10, h=5, $fn=64);
 ```
 
-> **Tip:** Use `$fn=16` or `$fn=24` during development for fast preview renders, then raise it to `$fn=64` or higher before your final `3dm build` for export.
+> **Tip:** Use `$fn=16` or `$fn=24` during development for fast preview renders, then raise it to `$fn=64` or higher {{i:before}} your final `3dm build` for export.
 
 ### Designing for Printability
 
@@ -1715,13 +1715,13 @@ hull() {
 | ----------------------------- | ---------------------------------------------- |
 | Wall thickness                | 0.8mm (2× nozzle) — ideally 1.2mm+             |
 | Hole diameter                 | 2mm (smaller holes tend to close up)           |
-| Gap / clearance between parts | 0.2–0.3mm for sliding fit, 0.1mm for press fit |
+| Gap / clearance {{i:between}} parts | 0.2–0.3mm for sliding fit, 0.1mm for press fit |
 | Text / embossed detail        | 0.5mm depth, 4pt font minimum                  |
 | Pin diameter                  | 2mm minimum for structural pins                |
 
-**Orientation matters.** Layer lines are weakest in tension perpendicular to the print direction. Design critical stress paths to run parallel to layer lines, or use the `orient` action to auto-optimize placement.
+**Orientation matters.** Layer lines are weakest in tension perpendicular to the {{i:print}} direction. {{i:Design}} critical stress paths to {{i:run}} parallel to {{i:layer}} lines, or use the `orient` action to auto-optimize placement.
 
-**Tolerance for fits.** {{hi:PLA}}PLA typically needs 0.2–0.3mm clearance for a sliding fit between printed parts. {{hi:PETG}}PETG and {{hi:ABS}}ABS may need slightly more. Build a quick tolerance test into your workflow:
+**Tolerance for fits.** {{hi:PLA}}PLA typically needs 0.2–0.3mm clearance for a sliding fit {{i:between}} printed parts. {{hi:PETG}}PETG and {{hi:ABS}}ABS may need slightly more. Build a quick tolerance {{i:test}} {{i:into}} your {{i:workflow}}:
 
 ```openscad
 // Tolerance test — print this and measure which gap fits your printer
@@ -1734,7 +1734,7 @@ for (i=[0:4])
         }
 ```
 
-### Using OpenSCAD Libraries with 3DMake
+### Using {{i:OpenSCAD}} Libraries with {{i:3DMake}}
 
 Declare library dependencies in `3dmake.toml`, then install them:
 
@@ -1748,7 +1748,7 @@ libraries = ["openscad-threads", "bosl2"]
 3dm list-libraries       # Verify installation
 ```
 
-Then use them in your `.scad` files normally:
+Then use them in your `.scad` {{i:files}} normally:
 
 ```openscad
 // BOSL2 example
@@ -1772,19 +1772,19 @@ metric_thread(diameter=8, pitch=1.25, length=20);
 
 ---
 
-This appendix covers settings, workflows, and troubleshooting for 7 major 3D printer slicers. Each slicer is represented with:
+This appendix covers settings, workflows, and troubleshooting for 7 major 3D {{i:printer}} slicers. Each slicer is represented with:
 
 - Recommended settings for beginners
-- Screen-reader-accessible settings explanation
-- Common troubleshooting
+- {{i:Screen}}-{{i:reader}}-accessible settings explanation
+- {{i:Common}} troubleshooting
 - Accessibility features built-in
-- Command-line usage (for {{hi:PowerShell}}PowerShell integration)
+- Command-line usage (for {{hi:{{i:PowerShell}}}}{{i:PowerShell}} integration)
 
-Referenced in: Lessons 5 (Safety), 8 (Design), 10 (Verification)
+Referenced in: Lessons 5 (Safety), 8 ({{i:Design}}), 10 (Verification)
 
 ## Overview: What is Slicing?
 
-Slicing converts a 3D model into printer instructions:
+Slicing converts a 3D model {{i:into}} {{i:printer}} instructions:
 
 ```
 SCAD Design (bracelet_holder.scad)
@@ -1806,23 +1806,23 @@ Physical part
 
 | Parameter    | What It Does           | Typical Range   | Impact                                    |
 | ------------ | ---------------------- | --------------- | ----------------------------------------- |
-| Nozzle Temp  | Filament melting heat  | 200-250C        | Too cold -> weak; too hot -> oozing       |
-| Bed Temp     | Build plate heat       | 50-110C         | Helps adhesion; prevents warping          |
+| {{i:Nozzle}} Temp  | Filament melting heat  | 200-250C        | Too cold -> weak; too hot -> oozing       |
+| {{i:Bed}} Temp     | Build plate heat       | 50-110C         | Helps adhesion; prevents warping          |
 | Layer Height | Z-axis precision       | 0.1-0.4mm       | Finer = slower, better detail             |
-| Print Speed  | Movement velocity      | 30-150 mm/s     | Faster = worse quality; slower = stronger |
+| Print Speed  | Movement velocity      | 30-150 mm/s     | Faster = worse {{i:quality}}; slower = stronger |
 | Infill %     | Interior density       | 10-100%         | Higher = stronger + heavier               |
 | Support      | Temporary scaffolding  | On/Off          | Required for overhangs >45                |
-| Bed Adhesion | First layer stickiness | Brim/Raft/Skirt | Prevents parts lifting mid-print          |
+| {{i:Bed}} Adhesion | First {{i:layer}} stickiness | Brim/Raft/Skirt | Prevents parts lifting mid-{{i:print}}          |
 
 ## 1. PrusaSlicer (Prusa)
 
 ### Overview
 
 - Developer: Prusa Research (Czech company)
-- Platforms: Windows, Mac, Linux (open-source)
-- Best For: Beginner-friendly, excellent support, strong community
+- Platforms: {{i:Windows}}, Mac, Linux (open-source)
+- Best For: Beginner-friendly, excellent {{i:support}}, strong community
 - Download: [https://www.prusa3d.com/page/prusaslicer_410/](https://www.prusa3d.com/page/prusaslicer_410/)
-- Accessibility: Good font sizes, text-based profiles
+- Accessibility: Good font sizes, {{i:text}}-based profiles
 
 ### Quick Setup for Beginners
 
@@ -1835,7 +1835,7 @@ Step 1: Install & Select Your Printer
 4. Choose default profile (matches printer exactly)
 ```
 
-Step 2: Load Your STL
+Step 2: Load Your {{i:STL}}
 
 ```
 1. Click "File" -> "Open STL Model"
@@ -1849,14 +1849,14 @@ These are the most important adjustments:
 
 | Setting      | Location          | Beginner Value  | Why                         |
 | ------------ | ----------------- | --------------- | --------------------------- |
-| Layer Height | Print Settings    | 0.15mm          | Balance speed & quality     |
-| Infill       | Print Settings    | 20%             | Enough strength; fast print |
+| Layer Height | Print Settings    | 0.15mm          | Balance speed & {{i:quality}}     |
+| Infill       | Print Settings    | 20%             | Enough strength; fast {{i:print}} |
 | Support      | Print Settings    | Yes (if needed) | For overhangs >45           |
-| Nozzle Temp  | Filament Settings | 210C            | Default for PLA             |
-| Bed Temp     | Filament Settings | 60C             | Standard PLA adhesion       |
-| Print Speed  | Print Settings    | 150 mm/s        | Balanced quality            |
+| {{i:Nozzle}} Temp  | Filament Settings | 210C            | Default for PLA             |
+| {{i:Bed}} Temp     | Filament Settings | 60C             | Standard PLA adhesion       |
+| Print Speed  | Print Settings    | 150 mm/s        | Balanced {{i:quality}}            |
 
-Step 4: Preview & Export
+Step 4: {{i:Preview}} & Export
 
 ```
 1. Click "Slice now" (or G-code icon)
@@ -1871,17 +1871,17 @@ Step 4: Preview & Export
 
 ### Accessible Parameter Explanations
 
-When adjusting settings, use these descriptions to understand what each does:
+When adjusting settings, use these descriptions to understand what {{i:each}} does:
 
 Layer Height (0.1-0.4mm)
 
 - Lower (0.1mm): Smoother surface, more layers, slower (best for detail)
 - Higher (0.4mm): Faster, rougher surface (best for speed)
-- Recommendation: 0.15mm for balanced quality
+- Recommendation: 0.15mm for balanced {{i:quality}}
 
 Infill Percentage (10-100%)
 
-- 10%: Fast, uses less filament, weaker (good for prototypes)
+- 10%: Fast, uses less {{i:filament}}, weaker (good for prototypes)
 - 20%: Good balance (recommended for most prints)
 - 50%: Stronger, slower, heavier
 - 100%: Solid interior, strongest, slowest (waste of plastic)
@@ -1889,16 +1889,16 @@ Infill Percentage (10-100%)
 Support Type
 
 - None: Fast, good surface finish, but risky if overhangs exist
-- Linear (Default): Good balance-easy to remove, provides support
-- Grid: Extra strong support, takes longer to remove
+- Linear (Default): Good balance-easy to remove, provides {{i:support}}
+- Grid: Extra strong {{i:support}}, takes longer to remove
 
 First Layer
 
 - Brim: Adds border to help adhesion (recommended for beginners)
-- Raft: Sacrificial platform (good if bed isn't level)
+- Raft: Sacrificial platform (good if {{i:bed}} isn't level)
 - Skirt: Just outline, doesn't help adhesion (fastest)
 
-### Command-Line Usage (PowerShell Integration)
+### Command-Line Usage ({{i:PowerShell}} Integration)
 
 ```powershell
 # Slice a model automatically with PrusaSlicer
@@ -1917,21 +1917,21 @@ Write-Host "Slicing complete: $output"
 
 | Problem                      | Cause                    | Solution                                 |
 | ---------------------------- | ------------------------ | ---------------------------------------- |
-| First layer not sticking     | Bed not level            | Bed leveling procedure in printer manual |
-| Supports everywhere          | No support type selected | Change to "Linear" or "Grid"             |
-| Nozzle drags through model   | Z-offset too low         | Raise Z-offset +0.1mm                    |
-| Oozing strings between parts | Temp too high            | Lower nozzle temp 5-10C                  |
-| Print breaks mid-way         | Adhesion problem         | Add brim; check bed level                |
+| First {{i:layer}} not sticking     | {{i:Bed}} not level            | {{i:Bed}} leveling procedure in {{i:printer}} manual |
+| Supports everywhere          | No {{i:support}} type selected | Change to "Linear" or "Grid"             |
+| {{i:Nozzle}} drags through model   | Z-offset too low         | Raise Z-offset +0.1mm                    |
+| Oozing strings {{i:between}} parts | Temp too high            | Lower nozzle temp 5-10C                  |
+| Print breaks mid-way         | Adhesion problem         | Add brim; check {{i:bed}} level                |
 
 ## 2. Bambu Studio (Bambu Lab)
 
 ### Overview
 
-- Developer: Bambu Lab (printer manufacturer)
-- Platforms: Windows, Mac, Linux
-- Best For: Modern X1-series printers, excellent speed, AMS support
+- Developer: Bambu Lab ({{i:printer}} manufacturer)
+- Platforms: {{i:Windows}}, Mac, Linux
+- Best For: Modern X1-series printers, excellent speed, AMS {{i:support}}
 - Download: [https://bambulab.com/en/download/studio](https://bambulab.com/en/download/studio)
-- Accessibility: Good contrast, keyboard navigation
+- Accessibility: Good contrast, keyboard {{i:navigation}}
 
 ### Quick Setup
 
@@ -1939,24 +1939,24 @@ Step 1: Create Account & Connect Printer
 
 1. Launch Bambu Studio
 2. Sign in with Bambu Lab account
-3. Select printer from network
-4. Studio auto-detects printer settings
+3. Select {{i:printer}} from network
+4. Studio auto-detects {{i:printer}} settings
 
-Step 2: Load Model & Configure
+Step 2: Load {{i:Model}} & Configure
 
-1. Drag STL into workspace
-2. Auto-arranges on bed plate
+1. Drag {{i:STL}} {{i:into}} workspace
+2. Auto-arranges on {{i:bed}} plate
 3. Default profile applied automatically
 
 Step 3: Key Settings (Bambu-Specific)
 
 | Setting         | Default | Adjustment            | Why                         |
 | --------------- | ------- | --------------------- | --------------------------- |
-| AMS Multi-Color | Off     | On (if AMS attached)  | Auto-switch filament        |
+| AMS Multi-Color | Off     | On (if AMS attached)  | Auto-switch {{i:filament}}        |
 | Auto-Leveling   | Enabled | Keep On               | Bambu feature-very reliable |
-| Nozzle Temp     | 220C    | Keep unless specified | Bambu-optimized             |
-| Layer Height    | 0.2mm   | 0.15mm for detail     | Balance speed/quality       |
-| Bed Temp        | 65C     | 60C for PLA           | Standard adhesion           |
+| {{i:Nozzle}} Temp     | 220C    | Keep unless specified | Bambu-optimized             |
+| Layer Height    | 0.2mm   | 0.15mm for detail     | Balance speed/{{i:quality}}       |
+| {{i:Bed}} Temp        | 65C     | 60C for PLA           | Standard adhesion           |
 
 Step 4: Send to Printer
 
@@ -1964,30 +1964,30 @@ Step 4: Send to Printer
 2. Review preview
 3. Click "Send to Device"
 4. Printer receives over WiFi
-5. Start print from printer screen
+5. Start {{i:print}} from {{i:printer}} screen
 
 ### Accessible Parameter Explanations
 
 Auto-Leveling
 
-- Bambu printers automatically level the nozzle before every print
+- Bambu printers automatically level the nozzle {{i:before}} every {{i:print}}
 - Explanation: Saves manual calibration; extremely reliable
-- For VI users: Provides confidence that bed is properly prepared
+- For VI users: Provides confidence that {{i:bed}} is properly prepared
 
 Filament Calibration
 
-- Before first use of new filament color, run "Filament Calibration"
-- This optimizes temperature and speed for that specific filament
+- Before {{i:first}} use of {{i:new}} {{i:filament}} color, {{i:run}} "Filament Calibration"
+- This optimizes temperature and speed for that {{i:specific}} {{i:filament}}
 - Explanation: Ensures consistent color and strength
 
 Multi-Material (AMS)
 
-- If you have Auto Material System (AMS):
-  - Load up to 4 filament colors
-  - Studio auto-switches during print
+- If {{i:you}} have Auto Material System (AMS):
+  - Load up to 4 {{i:filament}} colors
+  - Studio auto-switches during {{i:print}}
   - Explanation: Multi-color prints without manual intervention
 
-### Command-Line Usage (PowerShell)
+### Command-Line Usage ({{i:PowerShell}})
 
 ```powershell
 # Slice with Bambu Studio (command-line interface)
@@ -2006,18 +2006,18 @@ Write-Host "Slice saved: $output"
 
 | Problem                       | Cause                 | Solution                            |
 | ----------------------------- | --------------------- | ----------------------------------- |
-| WiFi not connecting           | Network issue         | Restart printer WiFi; check SSID    |
-| AMS not switching             | Filament not detected | Load filament into AMS; recalibrate |
-| Print quality inconsistent    | Wrong filament type   | Run filament calibration            |
-| Nozzle crashes on first layer | Auto-level failed     | Manually check nozzle height        |
+| WiFi not connecting           | Network issue         | Restart {{i:printer}} WiFi; check SSID    |
+| AMS not switching             | Filament not detected | Load {{i:filament}} {{i:into}} AMS; recalibrate |
+| Print {{i:quality}} inconsistent    | Wrong {{i:filament}} type   | Run {{i:filament}} calibration            |
+| {{i:Nozzle}} crashes on {{i:first}} {{i:layer}} | Auto-level failed     | Manually check nozzle {{i:height}}        |
 
 ## 3. Cura (Ultimaker)
 
 ### Overview
 
 - Developer: Ultimaker (Dutch company, open-source)
-- Platforms: Windows, Mac, Linux
-- Best For: Broad printer support, user-friendly, good documentation
+- Platforms: {{i:Windows}}, Mac, Linux
+- Best For: Broad {{i:printer}} {{i:support}}, user-friendly, good documentation
 - Download: [https://ultimaker.com/software/ultimaker-cura](https://ultimaker.com/software/ultimaker-cura)
 - Accessibility: Clear UI, good contrast
 
@@ -2028,14 +2028,14 @@ Step 1: Add Your Printer
 1. Launch {{hi:Cura}}Cura
 2. Go to "Settings" (top-right)
 3. Click "Printers" -> "Add Printer"
-4. Select your printer model from list
+4. Select your {{i:printer}} model from list
 5. Confirm network connection
 
-Step 2: Load & Prepare Model
+Step 2: Load & Prepare {{i:Model}}
 
-1. Drag STL into workspace
-2. Model auto-scales if needed (confirm size)
-3. Right-click -> "Support" (if overhangs need support)
+1. Drag {{i:STL}} {{i:into}} workspace
+2. {{i:Model}} auto-scales if needed (confirm size)
+3. Right-click -> "Support" (if overhangs need {{i:support}})
 
 Step 3: Recommended Settings
 
@@ -2044,41 +2044,41 @@ Step 3: Recommended Settings
 | Profile              | Standard | Good balance for most prints         |
 | Layer Height         | 0.2mm    | Default; change to 0.15mm for detail |
 | Infill               | 20%      | 100% waste for solid parts           |
-| Support Angle        | 50       | Auto-generates support for overhangs |
-| Build Plate Adhesion | Brim     | Helps first layer stick              |
-| Nozzle Temp          | 200C     | Standard PLA                         |
-| Bed Temp             | 60C      | Standard PLA                         |
+| Support Angle        | 50       | Auto-generates {{i:support}} for overhangs |
+| Build Plate Adhesion | Brim     | Helps {{i:first}} {{i:layer}} stick              |
+| {{i:Nozzle}} Temp          | 200C     | Standard PLA                         |
+| {{i:Bed}} Temp             | 60C      | Standard PLA                         |
 
 Step 4: Print
 
 1. Click "Slice" (bottom right)
-2. Review layer-by-layer preview
+2. Review {{i:layer}}-by-{{i:layer}} preview
 3. Click "Print Over Network" or "Print to File"
-4. Model sends to printer or saves as .gcode
+4. {{i:Model}} sends to {{i:printer}} or saves as .gcode
 
 ### Accessible Settings Explanation
 
 Combing Mode
 
-- Off: Nozzle retracts on every travel (quality)
+- Off: {{i:Nozzle}} retracts on every travel ({{i:quality}})
 - All: Never retracts (faster, possible stringing)
 - Not in Skin: Smart compromise
 - For VI users: Retraction prevents nozzle oozing on visible surfaces
 
 Z-Offset (Z Clearance)
 
-- Adjusts first-layer distance
-- Too low -> nozzle scrapes bed (bad)
-- Too high -> filament doesn't stick (bad)
-- Correct -> thin line of plastic sticks to bed
+- Adjusts {{i:first}}-{{i:layer}} distance
+- Too low -> nozzle scrapes {{i:bed}} (bad)
+- Too high -> {{i:filament}} doesn't stick (bad)
+- Correct -> thin line of plastic sticks to {{i:bed}}
 
 Gradual Infill
 
 - Automatically reduces infill strength away from surface
-- Saves filament while maintaining strength
+- Saves {{i:filament}} while maintaining strength
 - Explanation: The core doesn't need to be solid
 
-### Command-Line Usage (PowerShell)
+### Command-Line Usage ({{i:PowerShell}})
 
 ```powershell
 # Cura engine CLI (CuraEngine)
@@ -2097,9 +2097,9 @@ Write-Host "Sliced: $output"
 
 | Problem                        | Cause               | Solution                       |
 | ------------------------------ | ------------------- | ------------------------------ |
-| Model appears too small on bed | Scale wrong         | Right-click -> Scale to fit    |
-| Stringing between parts        | Retraction disabled | Enable retraction in settings  |
-| Support doesn't generate       | Auto-support off    | Enable "Generate Support"      |
+| {{i:Model}} appears too small on {{i:bed}} | Scale wrong         | Right-click -> Scale to fit    |
+| Stringing {{i:between}} parts        | Retraction disabled | Enable retraction in settings  |
+| Support doesn't generate       | Auto-{{i:support}} off    | Enable "Generate Support"      |
 | Printer not found              | Network/USB issue   | Check connection; restart Cura |
 
 ## 4. SuperSlicer (Modification of Prusa)
@@ -2107,7 +2107,7 @@ Write-Host "Sliced: $output"
 ### Overview
 
 - Developer: Community fork of PrusaSlicer
-- Platforms: Windows, Mac, Linux
+- Platforms: {{i:Windows}}, Mac, Linux
 - Best For: Advanced users wanting more control than Prusa offers
 - Download: [https://github.com/supermerill/SuperSlicer](https://github.com/supermerill/SuperSlicer)
 - Accessibility: Similar to Prusa, more advanced options
@@ -2119,7 +2119,7 @@ Write-Host "Sliced: $output"
 | Arachne Engine        | No              | Yes-better edges           |
 | Seam Position         | Limited options | Full control               |
 | Pressure Equalization | No              | Yes-better bridging        |
-| Stealth Mode          | No              | Yes-quieter/higher quality |
+| Stealth Mode          | No              | Yes-quieter/higher {{i:quality}} |
 
 ### When to Use SuperSlicer
 
@@ -2129,9 +2129,9 @@ Write-Host "Sliced: $output"
 
 ### Quick Start
 
-1. Download SuperSlicer from GitHub
-2. Export profile from PrusaSlicer (if you have it)
-3. {{hi:Import}}Import into SuperSlicer
+1. Download SuperSlicer from {{i:GitHub}}
+2. Export profile from PrusaSlicer (if {{i:you}} have it)
+3. {{hi:Import}}Import {{i:into}} SuperSlicer
 4. All settings are compatible with PrusaSlicer
 
 ### Advanced Settings for SuperSlicer
@@ -2150,7 +2150,7 @@ Seam Positioning
 
 Pressure Equalization
 
-- Helps with bridging (printing across gaps)
+- Helps with bridging ({{i:printing}} across gaps)
 - Reduces sagging on overhangs
 - Recommended: Enable for complex designs
 
@@ -2159,14 +2159,14 @@ Pressure Equalization
 ### Overview
 
 - Developer: Community (independent open-source)
-- Platforms: Windows, Mac, Linux
-- Best For: Users who want Bambu features without Bambu printer
+- Platforms: {{i:Windows}}, Mac, Linux
+- Best For: Users who want Bambu features without Bambu {{i:printer}}
 - Download: [https://github.com/SoftFever/OrcaSlicer](https://github.com/SoftFever/OrcaSlicer)
-- Accessibility: Modern UI, good keyboard support
+- Accessibility: Modern UI, good keyboard {{i:support}}
 
 ### Why Orca?
 
-OrcaSlicer brings Bambu Studio's best features to any printer:
+OrcaSlicer brings Bambu Studio's best features to any {{i:printer}}:
 
 - Excellent defaults
 - Fast slicing
@@ -2176,9 +2176,9 @@ OrcaSlicer brings Bambu Studio's best features to any printer:
 ### Quick Setup
 
 1. Download OrcaSlicer
-2. Select your printer (not just Bambu models)
-3. Load STL
-4. Uses good defaults-usually ready to print
+2. Select your {{i:printer}} (not just Bambu models)
+3. Load {{i:STL}}
+4. Uses good defaults-usually ready to {{i:print}}
 
 ### Key Settings
 
@@ -2188,144 +2188,144 @@ OrcaSlicer brings Bambu Studio's best features to any printer:
 | Internal Solid Layer | 4       | Strength for brackets/connectors |
 | Infill Pattern       | Grid    | Balanced strength                |
 | Line Width           | Auto    | Matches nozzle diameter          |
-| Speed                | 80 mm/s | Balanced quality/speed           |
+| Speed                | 80 mm/s | Balanced {{i:quality}}/speed           |
 
 ### Accessible Features
 
 Filament Manager
 
-- Track filament type, color, weight used
-- Explanation: Know when to buy new filament
+- Track {{i:filament}} type, color, weight used
+- Explanation: Know when to buy {{i:new}} {{i:filament}}
 
 Print Time Estimation
 
-- Accurate prediction of print duration
+- Accurate prediction of {{i:print}} duration
 - Updates during slicing
 
 Material Presets
 
-- Pre-configured settings for common filaments
-- Just select material type; settings auto-apply
+- Pre-configured settings for {{i:common}} filaments
+- Just select {{i:material}} type; settings auto-apply
 
 ## 6. IdeaMaker (Raise3D)
 
 ### Overview
 
 - Developer: Raise3D
-- Platforms: Windows, Mac, Linux
-- Best For: Raise3D printer users; advanced features
+- Platforms: {{i:Windows}}, Mac, Linux
+- Best For: Raise3D {{i:printer}} users; advanced features
 - Download: [https://www.raise3d.com/ideamaker](https://www.raise3d.com/ideamaker)
 - Accessibility: Professional UI, detailed settings
 
 ### When to Use
 
-- Using a Raise3D printer (excellent multi-nozzle support)
+- Using a Raise3D {{i:printer}} (excellent multi-nozzle {{i:support}})
 - Need industrial-strength slicing
-- Want dual-extrusion (2-color) printing
+- Want dual-extrusion (2-color) {{i:printing}}
 
 ### Quick Start
 
 1. Launch IdeaMaker
-2. Add printer (Raise3D models have built-in profiles)
-3. Load STL
-4. Adjust layer height and infill
-5. Slice and send to printer
+2. Add {{i:printer}} (Raise3D models have built-in profiles)
+3. Load {{i:STL}}
+4. Adjust {{i:layer}} {{i:height}} and infill
+5. Slice and send to {{i:printer}}
 
 ### Key Features
 
 Dual Extrusion
 
-- Two nozzles = two colors in one print
+- Two nozzles = two colors in {{i:one}} {{i:print}}
 - Useful for: Bracelets (core + colored rim)
 - Requires: Coordinating two materials
 
 Advanced Support
 
-- Tree support (uses less material)
-- Grid support (stronger for larger parts)
+- Tree {{i:support}} (uses less {{i:material}})
+- Grid {{i:support}} (stronger for larger parts)
 
 Print Balancing
 
 - Optimizes nozzle movement for efficiency
-- Reduces print time without sacrificing quality
+- Reduces {{i:print}} {{i:time}} without sacrificing {{i:quality}}
 
-## 7. Fusion 360 (CAD + Slicer)
+## 7. Fusion 360 (CAD + {{i:Slicer}})
 
 ### Overview
 
 - Developer: Autodesk
-- Platforms: Windows, Mac
-- Best For: If you already use Fusion 360 for CAD
+- Platforms: {{i:Windows}}, Mac
+- Best For: If {{i:you}} already use Fusion 360 for CAD
 - Download: [https://www.autodesk.com/products/fusion-360](https://www.autodesk.com/products/fusion-360)
-- Accessibility: Integrated environment; good for learning CAD+Slicing together
+- Accessibility: Integrated {{i:environment}}; good for learning CAD+Slicing together
 
 ### Why Integrate CAD + Slicing?
 
-Traditional workflow:
+Traditional {{i:workflow}}:
 
 ```plaintext
 Design in CAD -> Export to STL -> Open in Slicer -> Slice -> Print
 ```
 
-Fusion 360 workflow:
+Fusion 360 {{i:workflow}}:
 
 ```plaintext
 Design in Fusion -> Run Print Preparation -> Slice -> Print
 ```
 
-Advantage: Stay in one program; no format conversion
+Advantage: Stay in {{i:one}} program; no format conversion
 
 ### Quick Start
 
-1. Design in Fusion 360 (or import STL)
-2. Select part
+1. {{i:Design}} in Fusion 360 (or import {{i:STL}})
+2. Select {{i:part}}
 3. Go to "3D Print" tab
 4. Click "Print Preparation"
-5. View auto-generated support and alignment
-6. Adjust layer height, infill, etc.
-7. Slice and export G-code
+5. View auto-generated {{i:support}} and alignment
+6. Adjust {{i:layer}} {{i:height}}, infill, etc.
+7. Slice and export G-{{i:code}}
 
 ### Integration with 3dMake
 
-If using Fusion 360 for CAD:
+If {{i:using}} Fusion 360 for CAD:
 
-1. Export SCAD design to STL
-2. 3dm export-stl src/main.scad output/main.stl
-3. Then import into Fusion 360
+1. Export SCAD {{i:design}} to {{i:STL}}
+2. 3dm export-stl src/main.scad {{i:output}}/main.stl
+3. Then import {{i:into}} Fusion 360
 4. For more complex designs that need refinement
 
 ## Universal Troubleshooting Guide
 
 | Problem                                  | Diagnosis                   | Solution                                   |
 | ---------------------------------------- | --------------------------- | ------------------------------------------ |
-| Print won't stick to bed                 | Bed temperature too low     | Raise bed temp +5C; check bed level        |
-|                                          | Bed not level               | Manual leveling procedure (printer manual) |
+| Print won't stick to {{i:bed}}                 | {{i:Bed}} temperature too low     | Raise {{i:bed}} temp +5C; check {{i:bed}} level        |
+|                                          | {{i:Bed}} not level               | Manual leveling procedure ({{i:printer}} manual) |
 |                                          | Build plate dirty           | Clean with isopropyl alcohol               |
-| Nozzle hits model mid-print              | Z-offset wrong              | Adjust Z-offset; re-level bed              |
-|                                          | Model placed too low on bed | Use "Arrange on Bed" tool in slicer        |
-| Supports won't remove                    | Too much support generated  | Reduce support density or angle            |
-|                                          | Support too strong          | Reduce support material percentage         |
-| Stringy/Oozing                           | Nozzle too hot              | Reduce temp by 5-10C                       |
+| {{i:Nozzle}} hits model mid-{{i:print}}              | Z-offset wrong              | Adjust Z-offset; re-level {{i:bed}}              |
+|                                          | {{i:Model}} placed too low on {{i:bed}} | Use "Arrange on {{i:Bed}}" tool in slicer        |
+| Supports won't remove                    | Too much {{i:support}} generated  | Reduce {{i:support}} density or angle            |
+|                                          | Support too strong          | Reduce {{i:support}} {{i:material}} percentage         |
+| Stringy/Oozing                           | {{i:Nozzle}} too hot              | Reduce temp by 5-10C                       |
 |                                          | Retraction disabled         | Enable retraction in settings              |
 |                                          | Travel speed too fast       | Reduce travel speed                        |
-| Layer shifting (X/Y)                     | Belt tension off            | Check belt tension (printer manual)        |
-|                                          | Stepper motor power issue   | Firmware issue-check printer logs          |
-| Model prints poorly but slices look good | Filament quality issue      | Try different filament batch               |
-|                                          | Nozzle clogged              | Unclog nozzle (heat -> purge -> clean)     |
+| Layer shifting (X/Y)                     | Belt tension off            | Check belt tension ({{i:printer}} manual)        |
+|                                          | Stepper motor power issue   | Firmware issue-check {{i:printer}} logs          |
+| {{i:Model}} prints poorly but slices look good | Filament {{i:quality}} issue      | Try different {{i:filament}} batch               |
+|                                          | {{i:Nozzle}} clogged              | Unclog nozzle (heat -> purge -> clean)     |
 
-## Recommended Slicer for Each Situation
+## Recommended {{i:Slicer}} for Each Situation
 
-| Scenario                   | Best Slicer           | Why                                   |
+| Scenario                   | Best {{i:Slicer}}           | Why                                   |
 | -------------------------- | --------------------- | ------------------------------------- |
 | I'm a beginner             | PrusaSlicer           | Clear defaults, excellent UI          |
-| I have a Bambu printer     | Bambu Studio          | Native, best features                 |
-| I have an Ultimaker        | Cura                  | Official support, broad compatibility |
-| I have a Raise3D           | IdeaMaker             | Official, dual-extrusion support      |
+| I have a Bambu {{i:printer}}     | Bambu Studio          | Native, best features                 |
+| I have an Ultimaker        | Cura                  | Official {{i:support}}, broad compatibility |
+| I have a Raise3D           | IdeaMaker             | Official, dual-extrusion {{i:support}}      |
 | I want advanced control    | SuperSlicer           | Maximum customization                 |
-| I want modern/fast slicing | OrcaSlicer            | Great defaults, any printer           |
-| I use Fusion 360 for CAD   | Fusion 360 Print Prep | Integrated workflow                   |
+| I want modern/fast slicing | OrcaSlicer            | Great defaults, any {{i:printer}}           |
+| I use Fusion 360 for CAD   | Fusion 360 Print Prep | Integrated {{i:workflow}}                   |
 
-## PowerShell Integration: Batch Slicing
+## {{i:PowerShell}} Integration: Batch Slicing
 
 ### Slice Multiple Files Automatically
 
@@ -2386,36 +2386,36 @@ Write-Host "Time remaining: $($status.progress.printTimeLeft) seconds"
 ### Testing Sliced Parts
 
 1. Weight Check:
-   - Calculate expected weight from volume + material density
+   - Calculate expected weight from volume + {{i:material}} density
    - Compare to actual printed weight
    - Indicates if infill is correct
 
 2. Dimensional Check:
    - Use {{hi:Calipers}}calipers to verify critical dimensions
-   - Compare to SCAD {{hi:Parameters}}parameters
+   - Compare to SCAD {{hi:Parameters}}{{i:parameters}}
    - Check tolerance stack-up
 
 3. Functional Test:
    - Assemble with other parts
    - Test strength by loading with known weight
-   - Verify support removal didn't damage part
+   - Verify {{i:support}} removal didn't damage {{i:part}}
 
 ## Summary
 
 This appendix provides:
 
 - [YES] 7 slicer workflows, settings, and troubleshooting
-- [YES] Accessible parameter explanations
-- [YES] Command-line integration for PowerShell
+- [YES] Accessible {{i:parameter}} explanations
+- [YES] Command-line integration for {{i:PowerShell}}
 - [YES] Comparison table for choosing a slicer
 - [YES] Batch processing automation examples
 - [YES] Accessibility best practices
 
-Use this guide whenever you:
+Use this guide whenever {{i:you}}:
 
-- Start a new print
+- Start a {{i:new}} {{i:print}}
 - Switch slicers
-- Encounter quality issues
+- Encounter {{i:quality}} issues
 - Want to automate slicing workflows
 - Need troubleshooting help
 
@@ -2427,10 +2427,10 @@ Use this guide whenever you:
 
 ---
 
-This appendix covers material properties, characteristics, and selection criteria for 3D printing filaments. Each material includes:
+This appendix covers {{i:material}} properties, characteristics, and selection criteria for 3D {{i:printing}} filaments. Each {{i:material}} includes:
 
 - Physical properties (strength, flexibility, temperature tolerance)
-- Printing parameters (nozzle temp, bed temp, speed)
+- Printing {{i:parameters}} (nozzle temp, {{i:bed}} temp, speed)
 - Suitability for different projects
 - Accessibility considerations (measurement-based verification)
 - Cost/availability comparison
@@ -2439,9 +2439,9 @@ Referenced in: Lessons 5 (Safety), 6-10 (Projects), 11 (Customer Requirements)
 
 ## Overview: Why Material Matters
 
-The material you choose affects:
+The {{i:material}} {{i:you}} choose affects:
 
-- Strength: Can the part hold weight?
+- Strength: Can the {{i:part}} hold weight?
 - Flexibility: Will it bend or break?
 - Temperature: Can it withstand heat?
 - Durability: Will it last months or years?
@@ -2497,11 +2497,11 @@ What's the primary requirement?
 
 | Parameter    | Value            | Tolerance                     |
 | ------------ | ---------------- | ----------------------------- |
-| Nozzle Temp  | 200C             | 190-210C (varies by brand)    |
-| Bed Temp     | 60C              | 50-65C                        |
+| {{i:Nozzle}} Temp  | 200C             | 190-210C (varies by brand)    |
+| {{i:Bed}} Temp     | 60C              | 50-65C                        |
 | Print Speed  | 50 mm/s          | 40-60 mm/s                    |
 | Retraction   | 5mm @ 40 mm/s    | Yes, prevents stringing       |
-| Cooling Fan  | 100%             | High cooling improves quality |
+| Cooling Fan  | 100%             | High cooling improves {{i:quality}} |
 | First Layer  | Slower (25 mm/s) | Ensures adhesion              |
 | Layer Height | 0.2mm            | 0.1-0.3mm depending on detail |
 
@@ -2509,47 +2509,47 @@ What's the primary requirement?
 
 Standard PLA
 
-- Most common, reliable
+- Most {{i:common}}, reliable
 - Best for beginners
 
 PLA Pro / Enhanced PLA
 
 - Slightly stronger than standard PLA
-- Same temperature parameters
+- Same temperature {{i:parameters}}
 - ~10% cost premium
 
 Silk PLA
 
 - Glossy finish instead of matte
 - Same strength as standard PLA
-- Slightly slower to print
+- Slightly slower to {{i:print}}
 
 Marble or Color-Changing PLA
 
 - Visual effects
-- Same printing parameters
+- Same {{i:printing}} {{i:parameters}}
 - Mostly for aesthetics
 
-### Common Issues & Solutions
+### {{i:Common}} Issues & Solutions
 
 | Problem                    | Cause                           | Solution                                                |
 | -------------------------- | ------------------------------- | ------------------------------------------------------- |
-| Warping on corners         | Bed too hot or cooling too fast | Reduce bed temp to 50C; disable cooling for first layer |
+| Warping on corners         | {{i:Bed}} too hot or cooling too fast | Reduce {{i:bed}} temp to 50C; disable cooling for {{i:first}} {{i:layer}} |
 | Stringing                  | Temp too high                   | Lower nozzle temp 5C                                    |
-| Poor layer adhesion        | Nozzle too high                 | Lower Z-offset 0.1mm                                    |
-| Brittleness after print    | Normal for PLA                  | Not a problem; expected behavior                        |
-| Nozzle clogs on retraction | Temperature inconsistency       | Ensure stable nozzle temp +/- 5C                        |
+| Poor {{i:layer}} adhesion        | {{i:Nozzle}} too high                 | Lower Z-offset 0.1mm                                    |
+| Brittleness after {{i:print}}    | Normal for PLA                  | Not a problem; expected behavior                        |
+| {{i:Nozzle}} clogs on retraction | Temperature inconsistency       | Ensure stable nozzle temp +/- 5C                        |
 
 ### Why PLA for This Course
 
 PLA is recommended for all Lessons 1-11 because:
 
-1. Beginner-friendly: Most forgiving material
+1. Beginner-friendly: Most forgiving {{i:material}}
 2. Predictable: Consistent across different printers
-3. Cost-effective: Maximize printing volume on student budget
-4. Accessibility: Easier to troubleshoot for new users
+3. Cost-effective: Maximize {{i:printing}} volume on student budget
+4. Accessibility: Easier to troubleshoot for {{i:new}} users
 5. Safe: Non-toxic, low fume emission
-6. Available: Found at any 3D printing supplier
+6. Available: Found at any 3D {{i:printing}} supplier
 
 ## 2. PETG (Polyethylene Terephthalate Glycol)
 
@@ -2577,8 +2577,8 @@ PLA is recommended for all Lessons 1-11 because:
 
 | Parameter    | Value            | Tolerance                 |
 | ------------ | ---------------- | ------------------------- |
-| Nozzle Temp  | 235C             | 230-245C                  |
-| Bed Temp     | 80C              | 75-85C                    |
+| {{i:Nozzle}} Temp  | 235C             | 230-245C                  |
+| {{i:Bed}} Temp     | 80C              | 75-85C                    |
 | Print Speed  | 50 mm/s          | 40-60 mm/s (same as PLA)  |
 | Retraction   | 4mm @ 40 mm/s    | Slightly less than PLA    |
 | Cooling Fan  | 30-50%           | Less cooling than PLA     |
@@ -2589,8 +2589,8 @@ PLA is recommended for all Lessons 1-11 because:
 
 | Aspect         | PLA       | PETG                  |
 | -------------- | --------- | --------------------- |
-| Nozzle Temp    | 200C      | 235C                  |
-| Bed Temp       | 60C       | 80C                   |
+| {{i:Nozzle}} Temp    | 200C      | 235C                  |
+| {{i:Bed}} Temp       | 60C       | 80C                   |
 | Strength       | Good      | Better (20% stronger) |
 | Flexibility    | Brittle   | More resilient        |
 | Heat Tolerance | 60C       | 85C                   |
@@ -2601,11 +2601,11 @@ PLA is recommended for all Lessons 1-11 because:
 ### Projects for PETG
 
 - [YES] Phone stand (needs strength)
-- [YES] Bracket or shelf support
+- [YES] Bracket or shelf {{i:support}}
 - [YES] Flexible clip (needs resilience)
 - [YES] Outdoor item
-- [YES] Clear enclosure (if using clear PETG)
-- [NO] Fine detail work (slightly courser finish)
+- [YES] Clear enclosure (if {{i:using}} clear PETG)
+- [NO] Fine detail {{i:work}} (slightly courser finish)
 - [NO] Food-contact items (not food-safe unless specified)
 
 ## 3. ABS (Acrylonitrile Butadiene Styrene)
@@ -2616,8 +2616,8 @@ PLA is recommended for all Lessons 1-11 because:
 | ---------------------- | ------ | --------------------------------------------- |
 | Strength               | [4/5]  | Similar to PETG; good impact resistance       |
 | Flexibility            | [3/5]  | More flexible than PETG                       |
-| Temperature Resistance | [5/5]  | Softens around 105C; best of common materials |
-| Ease of Printing       | [2/5]  | Requires enclosure/heated bed; challenging    |
+| Temperature Resistance | [5/5]  | Softens around 105C; best of {{i:common}} materials |
+| Ease of Printing       | [2/5]  | Requires enclosure/heated {{i:bed}}; challenging    |
 | Cost                   | [4/5]  | ~$25-30/kg                                    |
 | Appearance             | [3/5]  | Rougher than PLA; requires post-processing    |
 | Availability           | [4/5]  | Good availability; not as universal as PLA    |
@@ -2627,15 +2627,15 @@ PLA is recommended for all Lessons 1-11 because:
 - High-temperature environments (near heat sources)
 - Mechanical parts (gears, bearings)
 - Durability (parts lasting years)
-- Post-processing (can be sanded, glued, vapor-smoothed)
+- Post-processing ({{i:can}} be sanded, glued, vapor-smoothed)
 - Professional applications (not toys/decorative)
 
 ### Why ABS is Challenging
 
 ABS requires:
 
-1. Enclosed environment: Minimize temperature fluctuations
-2. Heated bed: 100C+ (much higher than PLA)
+1. Enclosed {{i:environment}}: Minimize temperature fluctuations
+2. Heated {{i:bed}}: 100C+ (much higher than PLA)
 3. Controlled cooling: Too-fast cooling causes warping
 4. Ventilation: ABS emits fumes (acetone-like smell)
 
@@ -2643,8 +2643,8 @@ ABS requires:
 
 | Parameter   | Value          | Tolerance                        |
 | ----------- | -------------- | -------------------------------- |
-| Nozzle Temp | 240C           | 230-250C                         |
-| Bed Temp    | 100C           | 95-105C                          |
+| {{i:Nozzle}} Temp | 240C           | 230-250C                         |
+| {{i:Bed}} Temp    | 100C           | 95-105C                          |
 | Enclosure   | Required       | Maintains heat (reduces warping) |
 | Print Speed | 40 mm/s        | Slower than PLA                  |
 | Retraction  | 3mm @ 30 mm/s  | Very short                       |
@@ -2658,14 +2658,14 @@ ABS requires:
 - [YES] Durable outdoor item
 - [YES] Professional prototypes
 - [NO] Beginner projects (too challenging)
-- [NO] Decorative/aesthetic work (not recommended)
+- [NO] Decorative/aesthetic {{i:work}} (not recommended)
 - [NO] Flexible parts
 
 ### Accessibility Note
 
 ABS is not recommended for this course because:
 
-1. Requires enclosed printer (expensive for beginners)
+1. Requires enclosed {{i:printer}} (expensive for beginners)
 2. High failure rate for inexperienced users
 3. Strong odor (ventilation concerns for some users)
 4. Requires extra equipment (acetone for post-processing)
@@ -2691,18 +2691,18 @@ ABS is not recommended for this course because:
 - Doesn't crack when bent
 - Absorbs impact
 - Returns to original shape
-- Bridges the gap between plastic and rubber
+- Bridges the gap {{i:between}} plastic and rubber
 
 ### Printing Parameters
 
 | Parameter   | Value          | Tolerance                                      |
 | ----------- | -------------- | ---------------------------------------------- |
-| Nozzle Temp | 215C           | 210-225C                                       |
-| Bed Temp    | 60C            | 50-70C                                         |
-| Print Speed | 20-30 mm/s     | VERY SLOW (flexibility needs time)             |
-| Retraction  | Minimal or Off | 0-1mm (flexible material doesn't retract well) |
-| Cooling Fan | 0%             | Off (material needs heat)                      |
-| Line Width  | 0.5mm          | Wider than normal (flexible material bridges)  |
+| {{i:Nozzle}} Temp | 215C           | 210-225C                                       |
+| {{i:Bed}} Temp    | 60C            | 50-70C                                         |
+| Print Speed | 20-30 mm/s     | VERY SLOW (flexibility needs {{i:time}})             |
+| Retraction  | Minimal or Off | 0-1mm (flexible {{i:material}} doesn't retract well) |
+| Cooling Fan | 0%             | Off ({{i:material}} needs heat)                      |
+| Line Width  | 0.5mm          | Wider than normal (flexible {{i:material}} bridges)  |
 
 ### Projects for TPU
 
@@ -2710,23 +2710,23 @@ ABS is not recommended for this course because:
 - [YES] Flex joints / hinges
 - [YES] Gasket or seal
 - [YES] Shoe insert or orthotic
-- [YES] Tactile button (for accessibility)
-- [NO] Fine detail work (too stretchy)
+- [YES] Tactile button (for {{i:accessibility}})
+- [NO] Fine detail {{i:work}} (too stretchy)
 - [NO] Decorative items (usually not aesthetic)
 - [NO] Precision parts
 
 ### Challenges with TPU
 
-1. Very slow printing: 5-10x slower than PLA
-2. Stringing: Flexible material tends to ooze
-3. Flexible bed needed: Standard beds may not work
+1. Very slow {{i:printing}}: 5-10x slower than PLA
+2. Stringing: Flexible {{i:material}} tends to ooze
+3. Flexible {{i:bed}} needed: Standard beds may not {{i:work}}
 4. Post-processing difficult: Hard to sand/glue
 
 ### Why TPU for Accessibility
 
-TPU is excellent for accessibility because:
+TPU is excellent for {{i:accessibility}} because:
 
-- Can create tactile buttons/indicators
+- Can {{i:create}} tactile buttons/indicators
 - Flexible grips for ergonomic handles
 - Gaskets that don't damage delicate equipment
 - Accessible because: Achievable by all users if given proper guidance
@@ -2749,14 +2749,14 @@ TPU is excellent for accessibility because:
 
 - Highest strength required
 - Transparent/bullet-proof enclosure needed
-- Extreme temperature environment
+- Extreme temperature {{i:environment}}
 - Professional/industrial applications
 
 ### Why Polycarbonate is Not for This Course
 
 1. Extreme difficulty (high failure rate)
 2. Very expensive (3-5x cost of PLA)
-3. Requires industrial-grade printer
+3. Requires industrial-grade {{i:printer}}
 4. Post-processing complex
 
 ## 6. Nylon (PA)
@@ -2765,7 +2765,7 @@ TPU is excellent for accessibility because:
 
 | Property               | Rating | Notes                                 |
 | ---------------------- | ------ | ------------------------------------- |
-| Strength               | [5/5]  | Very strong; can be flexible          |
+| Strength               | [5/5]  | Very strong; {{i:can}} be flexible          |
 | Flexibility            | [4/5]  | More flexible than ABS                |
 | Temperature Resistance | [4/5]  | Good; softens around 120C             |
 | Ease of Printing       | [2/5]  | Difficult; very temperature-sensitive |
@@ -2783,7 +2783,7 @@ TPU is excellent for accessibility because:
 
 ## Material Comparison Table
 
-| Material | Nozzle | Bed  | Strength | Flexibility | Heat  | Ease  | Cost | Best For             |
+| Material | {{i:Nozzle}} | {{i:Bed}}  | Strength | Flexibility | Heat  | Ease  | Cost | Best For             |
 | -------- | ------ | ---- | -------- | ----------- | ----- | ----- | ---- | -------------------- |
 | PLA      | 200C   | 60C  | [3/5]    | [1/5]       | [2/5] | [5/5] | $    | Beginners, detail    |
 | PETG     | 235C   | 80C  | [4/5]    | [2/5]       | [3/5] | [4/5] | $$   | Functional parts     |
@@ -2798,14 +2798,14 @@ TPU is excellent for accessibility because:
 
 Diameter Tolerance
 
-- Good filament: +/- 0.03mm
-- Poor filament: +/- 0.1mm or worse
-- Impact: Inconsistent extrusion, layer quality varies
+- Good {{i:filament}}: +/- 0.03mm
+- Poor {{i:filament}}: +/- 0.1mm or worse
+- Impact: Inconsistent extrusion, {{i:layer}} {{i:quality}} varies
 
 Dryness
 
 - PLA absorbs moisture from air
-- Wet filament = weak prints + bubbles
+- Wet {{i:filament}} = weak prints + bubbles
 - Solution: Store in sealed container with desiccant
 
 Color Consistency
@@ -2858,8 +2858,8 @@ Impurities
 
 Temperature
 
-- Store between 15-25C
-- Avoid direct sunlight (fades color, degrades material)
+- Store {{i:between}} 15-25C
+- Avoid direct sunlight (fades color, degrades {{i:material}})
 
 Humidity
 
@@ -2876,7 +2876,7 @@ Organization
 
 | Sign                          | Cause                      | Solution                    |
 | ----------------------------- | -------------------------- | --------------------------- |
-| Weak prints / breaking easily | Filament aged or wet       | Replace with fresh filament |
+| Weak prints / breaking easily | Filament aged or wet       | Replace with fresh {{i:filament}} |
 | Discoloration or spots        | Oxidation or contamination | Not usable; discard safely  |
 | Brittle or crumbly            | Overheated or UV damage    | Not usable; discard         |
 | Slight fading (color)         | UV exposure                | Still usable; just faded    |
@@ -2900,7 +2900,7 @@ vs. ABS at $30/kg: $0.75
 ### Budget Tips
 
 1. Buy bulk: 5kg spool is cheaper per gram than 1kg
-2. Buy sales: 30-40% discounts common during sales
+2. Buy sales: 30-40% discounts {{i:common}} during sales
 3. Brand matters: Premium brands slightly more but more reliable
 4. Generic brands: Often acceptable if reviews are good
 
@@ -2908,11 +2908,11 @@ vs. ABS at $30/kg: $0.75
 
 | Rank | Brand         | Known For                        | Cost | Notes                        |
 | ---- | ------------- | -------------------------------- | ---- | ---------------------------- |
-| 1    | Prusament     | Reliability, Prusa compatibility | $$$  | Best; excellent support      |
+| 1    | Prusament     | Reliability, Prusa compatibility | $$$  | Best; excellent {{i:support}}      |
 | 2    | MatterHackers | Quality, variety                 | $$   | Very good; educational focus |
-| 3    | Fillamentum   | European quality                 | $$   | Excellent; eco-friendly      |
+| 3    | Fillamentum   | European {{i:quality}}                 | $$   | Excellent; eco-friendly      |
 | 4    | Overture      | Value, consistency               | $    | Good budget option           |
-| 5    | eSUN          | Variety, affordable              | $    | Decent; variable quality     |
+| 5    | eSUN          | Variety, affordable              | $    | Decent; variable {{i:quality}}     |
 
 ## Material Selection Decision Tree
 
@@ -2946,7 +2946,7 @@ FINAL CHOICE:
 - If needs heat, use ABS
 ```
 
-## PowerShell Integration: Track Material Usage
+## {{i:PowerShell}} Integration: Track Material Usage
 
 ```powershell
 # Track filament usage across all projects
@@ -2976,11 +2976,11 @@ Write-Host "Estimated cost: $$($totalCost.ToString("F2"))"
 Key Takeaways:
 
 1. Start with PLA: Best for learning; most forgiving
-2. Understand the tradeoffs: Strength vs. ease, cost vs. quality
-3. Match material to project: Decorative = PLA; functional = PETG
+2. Understand the tradeoffs: Strength vs. ease, cost vs. {{i:quality}}
+3. Match {{i:material}} to project: Decorative = PLA; functional = PETG
 4. Store properly: Desiccant, cool, dark location
 5. Track usage: Know what works for future projects
-6. Test before committing: Print small test on new filament
+6. Test {{i:before}} committing: Print small {{i:test}} on {{i:new}} {{i:filament}}
 
 Recommended Progression:
 
@@ -2997,9 +2997,9 @@ Recommended Progression:
 
 ---
 
-This appendix provides measurement-based testing methodology for verifying that 3D-printed parts meet design specifications. It's designed to be used non-visually-focusing on calipers, scales, and functional tests rather than visual inspection.
+This appendix provides measurement-based testing methodology for verifying that 3D-printed parts meet {{i:design}} specifications. It's designed to be used non-visually-focusing on calipers, scales, and functional tests rather than visual inspection.
 
-Referenced in: Lessons 8-10 (Complex Design, Troubleshooting, Mastery)
+Referenced in: Lessons 8-10 (Complex {{i:Design}}, Troubleshooting, Mastery)
 
 ## Overview: What is Tolerance?
 
@@ -3017,7 +3017,7 @@ or            7.2mm [NO] (exceeds tolerance)
 
 1. Assembly: Parts must fit together
 2. Function: Fit too tight = stuck; too loose = falls apart
-3. Safety: Wrong tolerance = part failure
+3. Safety: Wrong tolerance = {{i:part}} failure
 4. Cost: Tight tolerance = slower, more waste
 
 ## Essential Measurement Tools
@@ -3026,29 +3026,29 @@ or            7.2mm [NO] (exceeds tolerance)
 
 What they measure:
 
-- Outside diameter (part width)
+- Outside diameter ({{i:part}} width)
 - Inside diameter (hole width)
 - Depth
 
 How to use non-visually:
 
-1. Gently close calipers until they barely touch the part
+1. Gently close calipers until they barely touch the {{i:part}}
 2. Feel the resistance (should be light, not forced)
 3. Read digital display with audio feedback or manually
 4. Record three measurements at different locations
 5. Average the three measurements
 
-Accuracy: +/-0.05mm (very precise for 3D printing)
+Accuracy: +/-0.05mm (very precise for 3D {{i:printing}})
 
 ### 2. Digital Scale (Kitchen Scale)
 
 What it measures:
 
-- Part weight (indicates infill, material type)
+- Part weight (indicates infill, {{i:material}} type)
 
 How to use non-visually:
 
-1. Place part on scale
+1. Place {{i:part}} on scale
 2. Wait for reading to stabilize (1-2 seconds)
 3. Read digital display (in grams)
 4. Compare to expected weight
@@ -3057,7 +3057,7 @@ Accuracy: +/-1g (good enough for verification)
 
 Why it matters:
 
-- Too light = infill too low or void inside part
+- Too light = infill too low or void inside {{i:part}}
 - Expected weight = indicates proper slicing
 
 ### 3. Test Jig / Go/No-Go Gauge
@@ -3092,25 +3092,25 @@ union() {
 
 Use non-visually:
 
-- Try inserting peg into go-gauge -> Should slide easily
-- Try inserting peg into no-go-gauge -> Should NOT fit
+- Try inserting peg {{i:into}} go-gauge -> Should slide easily
+- Try inserting peg {{i:into}} no-go-gauge -> Should NOT fit
 - If both tests pass = tolerance correct
 
 ## Quality Assurance Testing Matrix
 
 ### Critical Dimensions to Test
 
-Create a Test Plan before printing:
+Create a Test Plan {{i:before}} {{i:printing}}:
 
 | Part            | Dimension        | Spec  | Tolerance | How to Test                             |
 | --------------- | ---------------- | ----- | --------- | --------------------------------------- |
 | Bracelet Holder | Base width       | 127mm | +/-2mm    | Measure with calipers (multiple points) |
 |                 | Peg diameter     | 6mm   | +/-0.5mm  | Test fit with go/no-go gauge            |
-|                 | Peg spacing      | 8mm   | +/-1mm    | Measure distance between pegs           |
-|                 | Back wall height | 120mm | +/-2mm    | Measure with calipers                   |
-| Phone Stand     | Slope angle      | 20    | +/-3      | Calculate from height/depth ratio       |
-|                 | Weight capacity  | 200g  | 150-250g  | Load test (see below)                   |
-|                 | Stability        | N/A   | Pass/fail | 1-hour load test without tipping        |
+|                 | Peg spacing      | 8mm   | +/-1mm    | Measure distance {{i:between}} pegs           |
+|                 | Back wall {{i:height}} | 120mm | +/-2mm    | Measure with calipers                   |
+| Phone Stand     | Slope angle      | 20    | +/-3      | Calculate from {{i:height}}/depth ratio       |
+|                 | Weight capacity  | 200g  | 150-250g  | Load {{i:test}} (see below)                   |
+|                 | Stability        | N/A   | Pass/fail | 1-hour load {{i:test}} without tipping        |
 
 ### Pre-Print Planning
 
@@ -3118,7 +3118,7 @@ Before slicing, define:
 
 1. Critical dimensions: Which measurements matter most?
 2. Acceptable range: What tolerance is realistic?
-3. Test method: How will you verify?
+3. Test method: How will {{i:you}} verify?
 4. Pass/fail criteria: What does "success" look like?
 
 Example Plan for Phone Stand:
@@ -3161,15 +3161,15 @@ Equipment needed: Digital calipers
 
 Steps:
 
-1. Place part on flat surface
+1. Place {{i:part}} on flat surface
 2. Position caliper jaws perpendicular to surface
-3. Gently close jaws until they just touch part
+3. Gently close jaws until they just touch {{i:part}}
 4. Feel for light resistance (not forced)
 5. Read digital display
 6. Record measurement
 7. Repeat at 3 different locations
 8. Average the three readings
-9. Compare to design spec +/- tolerance
+9. Compare to {{i:design}} spec +/- tolerance
 
 Example:
 
@@ -3189,7 +3189,7 @@ Equipment needed: Digital calipers, Go/No-Go gauges (optional)
 
 Method A: Direct Measurement
 
-1. Insert caliper jaws into hole/around peg
+1. Insert caliper jaws {{i:into}} hole/around peg
 2. Adjust jaws to gently touch surfaces
 3. Feel for light resistance on both sides
 4. Read digital display (inside measurement mode)
@@ -3198,16 +3198,16 @@ Method A: Direct Measurement
 
 Method B: Go/No-Go Gauge
 
-1. Print test jigs (go & no-go gauges)
-2. Attempt to insert peg/hole into go-gauge
+1. Print {{i:test}} jigs (go & no-go gauges)
+2. Attempt to insert peg/hole {{i:into}} go-gauge
    -> Should slide through easily with light resistance
-3. Attempt to insert peg/hole into no-go-gauge
+3. Attempt to insert peg/hole {{i:into}} no-go-gauge
    -> Should NOT fit or fit with visible resistance
 4. If both pass -> dimension is acceptable
 
 Example: Peg Diameter
 
-Design spec: 6.0mm
+{{i:Design}} spec: 6.0mm
 Tolerance: +/-0.5mm (acceptable: 5.5-6.5mm)
 Method A (Direct):
 Measurement 1: 5.9mm
@@ -3226,13 +3226,13 @@ Equipment needed: Caliper, ruler, touch/texture assessment
 Step 1: Surface Texture
 
 Run fingers/hand over surface:
-[YES] Smooth -> Good quality
+[YES] Smooth -> Good {{i:quality}}
 Slightly rough -> Acceptable
 [NO] Very rough/bumpy -> Quality issue
 
 Step 2: Layer Line Visibility
 
-Feel horizontal ridges (layer lines):
+Feel horizontal ridges ({{i:layer}} lines):
 [YES] Barely perceptible -> Good (0.2mm layers)
 Noticeable but even -> OK (0.25mm layers)
 [NO] Very pronounced -> Quality issue
@@ -3271,7 +3271,7 @@ Acceptable range: 290-315g (+/-5%)
 
 Step 2: Measure Actual Weight
 
-1. Place part on digital scale
+1. Place {{i:part}} on digital scale
 2. Wait for reading to stabilize (1-2 seconds)
 3. Read display in grams
 4. Compare to expected weight
@@ -3288,7 +3288,7 @@ Step 3: Interpret Result
 
 ### Test 1: Load Testing (Strength)
 
-Purpose: Verify part can hold weight without failure
+Purpose: Verify {{i:part}} {{i:can}} hold weight without failure
 
 Equipment needed:
 
@@ -3298,13 +3298,13 @@ Equipment needed:
 
 Procedure:
 
-1. Measure baseline dimensions (part unloaded)
-   Baseline height: 60mm
-2. Place test weight on part
+1. Measure baseline dimensions ({{i:part}} unloaded)
+   Baseline {{i:height}}: 60mm
+2. Place {{i:test}} weight on {{i:part}}
    Added weight: 200g
-3. Wait 5 minutes (allow part to settle)
+3. Wait 5 minutes (allow {{i:part}} to settle)
 4. Measure dimensions again
-   New height: 59.8mm
+   New {{i:height}}: 59.8mm
    Deflection: 0.2mm (acceptable)
 5. Observe for cracks (visual or tactile)
    No cracks: [YES]
@@ -3312,7 +3312,7 @@ Procedure:
 7. Measure dimensions again (should return to baseline)
    Height after unload: 60.0mm
    Recovery: Complete [YES]
-   Result: PASS (part handles load without permanent deformation)
+   Result: PASS ({{i:part}} handles load without permanent deformation)
 
 Acceptance Criteria for Phone Stand:
 
@@ -3348,16 +3348,16 @@ Part A (Bin body) dimensions:
 
 1. Measure Part A opening: 50.1mm [YES]
 2. Measure Part B base: 49.8mm [YES]
-3. Attempt to nest Part B into Part A
+3. Attempt to nest Part B {{i:into}} Part A
    -> Should fit with light resistance
    -> Feel for smooth insertion (no catching)
-4. Check for rocking (part should sit stable)
+4. Check for rocking ({{i:part}} should sit stable)
 5. Apply 500g load (simulate stacking)
    -> Should hold without slipping
 
 ### Test 3: Durability Testing (Repeated Use)
 
-Purpose: Verify part doesn't fail after repeated cycles
+Purpose: Verify {{i:part}} doesn't fail after repeated cycles
 
 Example: Phone Stand Tilt Cycles
 
@@ -3373,7 +3373,7 @@ Example: Phone Stand Tilt Cycles
 
 When multiple parts are assembled, tolerances add:
 
-Design:
+{{i:Design}}:
 Part A opening: 50mm +/-0.5mm
 Part B base: 50mm +/-0.5mm
 Worst-case fit:
@@ -3397,21 +3397,21 @@ Total = (0.5 + 0.5 + 0.5)
       = 0.87mm
 ```
 
-## Common Dimensional Problems & Fixes
+## {{i:Common}} Dimensional Problems & Fixes
 
 | Problem                             | Typical Cause             | How to Fix                                       | Prevent Next Time                   |
 | ----------------------------------- | ------------------------- | ------------------------------------------------ | ----------------------------------- |
-| Part too small (all dimensions off) | Scale wrong in slicer     | Scale STL up in CAD or slicer                    | Verify scale before slicing         |
-| Holes too small                     | Compensation shrinkage    | Increase hole diameter +0.5mm                    | Add shrinkage factor to design      |
-| Walls too thin                      | Layer squishing           | Check first layer height; may need recalibration | Measure first layer thickness       |
-| Infill showing through (loose fill) | Infill too low            | Increase infill % to 25-30%                      | Recalculate for part type           |
-| Inconsistent across print           | Nozzle clogging mid-print | Clean nozzle; check filament quality             | Use quality filament; monitor print |
-| Z-axis dimensions off               | Z-axis uncalibrated       | Run Z-calibration procedure                      | Calibrate before critical prints    |
-| Dimensions change between prints    | Thermal drift             | Print in stable temperature                      | Use enclosed printer if possible    |
+| Part too small (all dimensions off) | Scale wrong in slicer     | Scale {{i:STL}} up in CAD or slicer                    | Verify scale {{i:before}} slicing         |
+| Holes too small                     | Compensation shrinkage    | Increase hole diameter +0.5mm                    | Add shrinkage factor to {{i:design}}      |
+| Walls too thin                      | Layer squishing           | Check {{i:first}} {{i:layer}} {{i:height}}; may need recalibration | Measure {{i:first}} {{i:layer}} thickness       |
+| Infill showing through (loose fill) | Infill too low            | Increase infill % to 25-30%                      | Recalculate for {{i:part}} type           |
+| Inconsistent across {{i:print}}           | {{i:Nozzle}} clogging mid-{{i:print}} | Clean nozzle; check {{i:filament}} {{i:quality}}             | Use {{i:quality}} {{i:filament}}; monitor {{i:print}} |
+| Z-axis dimensions off               | Z-axis uncalibrated       | Run Z-calibration procedure                      | Calibrate {{i:before}} critical prints    |
+| Dimensions change {{i:between}} prints    | Thermal drift             | Print in stable temperature                      | Use enclosed {{i:printer}} if possible    |
 
 ## Testing Checklist Template
 
-Print this checklist before starting a new project:
+Print this checklist {{i:before}} starting a {{i:new}} project:
 
 ```markdown
 # Quality Assurance Checklist: [Project Name]
@@ -3458,7 +3458,7 @@ Print this checklist before starting a new project:
 [Space for observations]
 ```
 
-## PowerShell Integration: Track Quality Metrics
+## {{i:PowerShell}} Integration: Track Quality Metrics
 
 ```powershell
 # Track print quality across multiple projects
@@ -3494,7 +3494,7 @@ Traditional visual QA (looking at surface finish, checking dimensions by eye) is
 4. Go/No-Go gauges: Tactile pass/fail
 5. Test jigs: Can be shared/standardized
 
-### Screen Reader Integration
+### {{i:Screen}} Reader Integration
 
 When documenting QA results:
 
@@ -3535,11 +3535,11 @@ When documenting QA results:
 
 Key Principles:
 
-1. Plan before printing: Define tolerances and test methods
+1. Plan {{i:before}} {{i:printing}}: Define tolerances and {{i:test}} methods
 2. Measure precisely: Use calibrated tools (digital calipers, scale)
-3. Test functionally: Will parts assemble and work?
+3. Test functionally: Will parts assemble and {{i:work}}?
 4. Document quantitatively: Use numbers, not adjectives
-5. Iterate based on data: If test fails, adjust design or process
+5. Iterate based on data: If {{i:test}} fails, adjust {{i:design}} or process
 
 When to Use Each Test:
 
@@ -3547,9 +3547,9 @@ When to Use Each Test:
 | ------------------------- | --------------------------- |
 | Prototype/mockup          | Linear dimensions only      |
 | Assembly with other parts | Tolerance stack-up analysis |
-| Load-bearing part         | Functional load test        |
-| Repeated-use item         | Durability cycling test     |
-| Multi-part design         | Assembly fit test           |
+| Load-bearing {{i:part}}         | Functional load {{i:test}}        |
+| Repeated-use item         | Durability cycling {{i:test}}     |
+| Multi-{{i:part}} {{i:design}}         | Assembly fit {{i:test}}           |
 
 Accessibility Reminder:
 
@@ -3559,22 +3559,22 @@ All QA testing in this appendix is measurement-based and non-visual, making it e
 
 <a id="appendix-e"></a>
 
-# Appendix E: Advanced OpenSCAD Concepts
+# Appendix E: Advanced {{i:OpenSCAD}} Concepts
 
 ---
 
-This appendix covers specialized topics for experienced users seeking to tackle complex parametric designs. These are optional topics not required for foundational mastery but valuable for professional application development.
+This appendix covers specialized topics for experienced users seeking to tackle complex {{i:parametric}} designs. These are optional topics not required for foundational mastery but valuable for professional application development.
 
 ## Topic 1: Gears and Mechanical Components
 
-Gears are one of the most challenging parametric designs, requiring careful calculation of tooth geometry. Understanding gear mathematics enables creation of mechanical systems-power transmission, speed reduction, or precise positioning.
+Gears are {{i:one}} of the most challenging {{i:parametric}} designs, requiring careful calculation of tooth {{i:geometry}}. Understanding gear mathematics enables creation of mechanical systems-power transmission, speed reduction, or precise positioning.
 
 ### Gear Terminology
 
-- Pitch Diameter (PD): The reference diameter for meshing calculations
-- Module: PD divided by tooth count; determines tooth size
+- Pitch Diameter (PD): The {{i:reference}} diameter for meshing calculations
+- {{i:Module}}: PD divided by tooth count; determines tooth size
 - Pressure Angle: Typically 20deg or 14.5deg; affects tooth shape and strength
-- Clearance: Space between teeth to allow smooth meshing
+- Clearance: Space {{i:between}} teeth to allow smooth meshing
 - Backlash: Intentional gap to prevent binding at tolerance extremes
 
 ### Simple Involute Gear Algorithm
@@ -3683,7 +3683,7 @@ belt_drive_system();
 
 ## Topic 2: Batch Processing and Statistical Analysis
 
-Professional applications often generate many variants and need to analyze results. Batch processing enables systematic exploration of parameter spaces.
+Professional applications often generate many variants and need to analyze results. Batch processing enables systematic exploration of {{i:parameter}} spaces.
 
 ### Parameter Sweep Generation
 
@@ -3790,7 +3790,7 @@ done
 echo "Analysis complete. Results in $REPORT_FILE"
 ```
 
-### Data-Driven Design Selection
+### Data-Driven {{i:Design}} Selection
 
 ```openscad
 // Load results and select optimal configuration
@@ -3818,7 +3818,7 @@ translate([120, 0, 0]) batch_optimized_part(40, "balanced"); // medium walls
 
 ## Topic 3: Performance Optimization
 
-Complex models can take hours to render. Strategic optimization keeps iteration cycles fast.
+Complex models {{i:can}} take hours to render. Strategic optimization keeps iteration cycles fast.
 
 ### Measuring Render Performance
 
@@ -3879,7 +3879,7 @@ module fast_spiral() {
 fast_spiral();
 ```
 
-### Simplification During Preview
+### Simplification During {{i:Preview}}
 
 ```openscad
 // Complex model that simplifies in preview mode
@@ -3922,7 +3922,7 @@ done
 
 ## Topic 4: Print Orientation and Support Structure Algorithms
 
-Strategic orientation dramatically affects support material, print time, and surface quality.
+Strategic orientation dramatically affects {{i:support}} {{i:material}}, {{i:print}} {{i:time}}, and surface {{i:quality}}.
 
 ### Strength Orientation Analysis
 
@@ -4172,15 +4172,15 @@ cable_tray(40, 10, 5, 3, 30);  // 3-level branching cable tray
 | Technique                | Use Case                      | Complexity | Performance      |
 | ------------------------ | ----------------------------- | ---------- | ---------------- |
 | Gears                    | Mechanical power transmission | High       | Medium           |
-| Batch Processing         | Design space exploration      | Medium     | Depends on scope |
-| Performance Optimization | Reducing render time          | Medium     | High payoff      |
+| Batch Processing         | {{i:Design}} space exploration      | Medium     | Depends on scope |
+| Performance Optimization | Reducing render {{i:time}}          | Medium     | High payoff      |
 | Orientation Analysis     | Strength optimization         | Medium     | Simulation cost  |
 | Recursion                | Fractal/nested structures     | High       | Can be expensive |
 
 ## References and Further Learning
 
-- OpenSCAD Documentation - Advanced Features: [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
-- Gear Design Theory: [https://www.mekanizmalar.com/](https://www.mekanizmalar.com/)
+- {{i:OpenSCAD}} Documentation - Advanced Features: [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
+- Gear {{i:Design}} Theory: [https://www.mekanizmalar.com/](https://www.mekanizmalar.com/)
 - 3D Print Orientation Optimization: [https://stratasys.com/](https://stratasys.com/)
 - Fractal Geometry: [https://en.wikipedia.org/wiki/Fractal](https://en.wikipedia.org/wiki/Fractal)
 - Recursive {{hi:Algorithms}}Algorithms: [https://www.khanacademy.org/computing/computer-science/algorithms](https://www.khanacademy.org/computing/computer-science/algorithms)
@@ -4190,14 +4190,14 @@ For Educators and Students
 These advanced topics are intended for:
 
 - Experienced users tackling professional applications
-- Specialized problem domains (robotics, mechanical design, etc.)
-- Research and optimization work
+- Specialized problem domains (robotics, mechanical {{i:design}}, etc.)
+- Research and optimization {{i:work}}
 - Custom library and framework development
 
-For accessibility:
+For {{i:accessibility}}:
 
 - All recursive examples include base cases clearly marked
-- Each section provides simplified versions before advanced variants
+- Each section provides simplified versions {{i:before}} advanced variants
 - Code {{hi:Comments}}comments explain both "what" and "why"
 - Practical examples show real-world applications
 - Performance considerations documented to prevent frustration
