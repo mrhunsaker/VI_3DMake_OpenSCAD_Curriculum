@@ -36,10 +36,11 @@ additional-css = [
   "theme/catppuccin.css",
   "theme/fonts.css"
 ]
-default-theme = "latte"
-preferred-dark-theme = "mocha"
+default-theme = "Rust"
+preferred-dark-theme = "Navy"
 site-url = "https://mrhunsaker.github.io/VI_3DMake_OpenSCAD_Curriculum/"
 git-repository-url = "https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum"
+no-section-label = false
 
 [output.html.search]
 enable = true
