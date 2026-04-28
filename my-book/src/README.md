@@ -1,6 +1,6 @@
 # Introduction {#readme}
 
-This course teaches {{hi:3D {{i:design}}}}3D {{i:design}} and digital fabrication {{i:using}} a fully accessible, {{i:command}}-line-driven toolchain centered on {{i:OpenSCAD}} ({{i:text}}-based CAD), {{i:3DMake}} (non-visual {{i:build}} automation), and accessible editors ({{hi:VS Code}}VS Code, {{hi:Notepad++}}Notepad++, {{i:command}}-line editors) with screen {{i:reader}} {{i:support}}.
+This course teaches {{hi:3D design}}3D design and digital fabrication {{i:using}} a fully accessible, {{i:command}}-line-driven toolchain centered on {{i:OpenSCAD}} ({{i:text}}-based CAD), {{i:3DMake}} (non-visual {{i:build}} automation), and accessible editors ({{hi:VS Code}}VS Code, {{hi:Notepad++}}Notepad++, {{i:command}}-line editors) with screen {{i:reader}} {{i:support}}.
 
 The curriculum is explicitly designed for blind and visually impaired learners who use screen readers ({{i:NVDA}}, {{i:JAWS}}, Orca, VoiceOver). It eliminates GUI {{i:navigation}} and visual feedback in favor of keyboard-driven, {{i:text}}-based workflows that screen readers {{i:can}} fully access. Accessibility is not an add-on. It is the foundation of every tool, {{i:workflow}}, and lesson in this curriculum.
 
@@ -108,24 +108,26 @@ Students {{i:build}} {{i:parametric}} 3D designs {{i:using}} {{i:OpenSCAD}} and 
 
 #### Main Curriculum: 11 Progressive Lessons
 
-| Part                  | Lessons | Focus                                                                         | Duration  |
-|-----------------------|---------|-------------------------------------------------------------------------------|-----------|
+| Part                  | Lessons | Focus                                                                                     | Duration  |
+| --------------------- | ------- | ----------------------------------------------------------------------------------------- | --------- |
 | Foundations           | 1-3     | Environment setup, primitives, {{i:parametric}} {{i:design}} + advanced language features | 4-5 hours |
-| Verification & Safety | 4-5     | AI verification, safety protocols, materials                                  | 2-3 hours |
+| Verification & Safety | 4-5     | AI verification, safety protocols, materials                                              | 2-3 hours |
 | Applied Projects      | 6-8     | Practical {{i:commands}}, {{i:text}} functions, transforms, assembly patterns             | 5-6 hours |
-| Advanced Topics       | 9-10    | Automation with {{i:file}} I/O, troubleshooting, mastery                            | 3-4 hours |
-| Leadership            | 11      | {{hi:Stakeholder-Centric {{i:Design}}}}Stakeholder-centric {{i:design}}                                                    | 2-3 hours |
+| Advanced Topics       | 9-10    | Automation with {{i:file}} I/O, troubleshooting, mastery                                  | 3-4 hours |
+| Leadership            | 11      | {{hi:Stakeholder-Centric {{i:Design}}}}Stakeholder-centric {{i:design}}                   | 2-3 hours |
 
 Total: 45-55 hours instruction + practice projects
 
 #### Reference Appendices
 
-**Command Line Tools:**  
+**Command Line Tools:**
+
 - [Appendix A: Command Line (CMD/Batch) Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-a) - Batch processing and automation for CMD users
 - [Appendix B: {{i:PowerShell}} Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-b) - Batch processing, automation {{i:scripts}}, and advanced {{i:workflow}} integration for {{i:PowerShell}} users
 - [Appendix C: {{i:Git}} {{i:Bash}} / POSIX {{i:Shell}} Integration for SCAD Workflows](CLI_Appendices_Complete.md#appendix-c) - {{i:Shell}} scripting and automation for {{i:Git}} {{i:Bash}} / Unix {{i:shell}} users
 
-**3dMake:**  
+**3dMake:**
+
 - [{{i:3DMake}} CLI Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Quick {{i:reference}} for 3dm {{i:command}}-line tool
 - [Appendix A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b) - Complete {{i:reference}} for {{hi:PrusaSlicer}}PrusaSlicer, {{hi:Bambu}}Bambu Studio, {{hi:Cura}}Cura, and OrcaSlicer configuration
 - [Appendix B: Material Properties & Selection Guide](3DMake_Appendices_Complete.md#appendix-c) - Detailed {{i:material}} {{i:reference}} including shrinkage data, {{i:print}} settings, and properties
@@ -195,43 +197,43 @@ Each project requires:
 
 [Curriculum Guide](3dMake_Foundation/3dMake_Foundation_Curriculum_Guide.md) - Detailed overview of all lessons and appendices  
 [Quick Reference](3DMake_Appendices_Complete.md#appendix-a) - At-a-glance {{i:command}} and syntax {{i:reference}}  
-[mdBook Navigation Guide](3dMake_All_Lessons.md) - How to navigate this curriculum  
+[mdBook Navigation Guide](3dMake_All_Lessons.md) - How to navigate this curriculum
 
 ### Setup & Configuration Guides
 
 [3dMake Setup Guide](3dMake_All_Lessons.md) - Installation walkthrough  
 [VSCode Setup Guide](3dMake_All_Lessons.md) - Accessibility configuration  
-[{{i:Screen}} Reader Coding Tips ({{i:NVDA}} & {{i:JAWS}})](3dMake_All_Lessons.md) - Keyboard shortcuts and coding configuration  
+[{{i:Screen}} Reader Coding Tips ({{i:NVDA}} & {{i:JAWS}})](3dMake_All_Lessons.md) - Keyboard shortcuts and coding configuration
 
 ### Quick Reference Materials
 
 [{{i:OpenSCAD}} Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Syntax quick-{{i:reference}}  
 [{{i:3DMake}} CLI Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Complete 3dm {{i:command}} {{i:reference}}  
 [Filament Comparison Table](3DMake_Appendices_Complete.md#appendix-c) - Material selection guide  
-[Master Rubric](3DMake_Appendices_Complete.md#appendix-d) - Project assessment criteria  
+[Master Rubric](3DMake_Appendices_Complete.md#appendix-d) - Project assessment criteria
 
 ### Safety & Maintenance
 
 [Safety Checklist](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) - Pre-{{i:print}} safety procedures  
-[Maintenance Log](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) - Printer maintenance tracking  
+[Maintenance Log](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md) - Printer maintenance tracking
 
 ### Troubleshooting & Diagnostics
 
 [{{i:Common}} Issues and Solutions](Backmatter_Complete.md#troubleshooting) - Comprehensive troubleshooting guide  
 [Diagnostic Checklist](Backmatter_Complete.md#troubleshooting) - Systematic problem diagnosis  
-[Technical Reference](Backmatter_Complete.md#troubleshooting) - Advanced systems architecture and professional {{i:reference}}  
+[Technical Reference](Backmatter_Complete.md#troubleshooting) - Advanced systems architecture and professional {{i:reference}}
 
 ### Glossaries & Terminology
 
 [Student Glossary](Backmatter_Complete.md#student-glossary) - Complete terminology {{i:reference}} for {{i:OpenSCAD}}, 3dMake, {{hi:3D {{i:printing}}}}3D Printing, and CLI  
-[Teacher Glossary](Backmatter_Complete.md#teacher-glossary) - Pedagogical framework and instructional {{i:design}} terminology  
+[Teacher Glossary](Backmatter_Complete.md#teacher-glossary) - Pedagogical framework and instructional {{i:design}} terminology
 
 ### Command Line Integration Appendices
 
 [CLI Appendices Overview](Appendices/CLI_Appendices.md) - All {{i:command}} line integration guides  
 [Appendix A: CMD/Batch Integration](CLI_Appendices_Complete.md#appendix-a) - {{i:Windows}} CMD automation  
 [Appendix B: {{i:PowerShell}} Integration](CLI_Appendices_Complete.md#appendix-b) - {{i:PowerShell}} {{i:workflow}} automation  
-[Appendix C: {{i:Git}} {{i:Bash}} Integration](CLI_Appendices_Complete.md#appendix-c) - Unix {{i:shell}} integration  
+[Appendix C: {{i:Git}} {{i:Bash}} Integration](CLI_Appendices_Complete.md#appendix-c) - Unix {{i:shell}} integration
 
 ### 3dMake & {{i:OpenSCAD}} Appendices
 
@@ -239,16 +241,16 @@ Each project requires:
 [Appendix A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b) - PrusaSlicer, Bambu Studio, Cura, OrcaSlicer  
 [Appendix B: Material Properties & Selection Guide](3DMake_Appendices_Complete.md#appendix-c) - Detailed {{i:material}} specifications  
 [Appendix C: Tolerance Testing & QA Matrix](3DMake_Appendices_Complete.md#appendix-d) - Quality assurance procedures  
-[Appendix D: Advanced {{i:OpenSCAD}} Concepts](3DMake_Appendices_Complete.md#appendix-e) - Gears, recursion, performance optimization  
+[Appendix D: Advanced {{i:OpenSCAD}} Concepts](3DMake_Appendices_Complete.md#appendix-e) - Gears, recursion, performance optimization
 
 ### Code Examples & Assets
 
-[3dMake Code Examples & Assets](assets/3dMake_Foundation/README.md) - {{i:OpenSCAD}} {{i:code}} examples and {{i:reference}} designs  
+[3dMake Code Examples & Assets](assets/3dMake_Foundation/README.md) - {{i:OpenSCAD}} {{i:code}} examples and {{i:reference}} designs
 
 ### Further Reading & References
 
-[References & Further Reading](Backmatter_Complete.md#further-reading) - Peer-reviewed research and scholarly works  
-  
+[References & Further Reading](Backmatter_Complete.md#further-reading) - Peer-reviewed research and scholarly works
+
 ## Supplemental Resources & Textbooks
 
 ### Textbook Options
@@ -278,7 +280,7 @@ Each project requires:
 
 - [Thingiverse {{i:OpenSCAD}} Designs](https://www.thingiverse.com/search?q=openscad&type=things) - Community-created {{i:parametric}} designs with source {{i:code}} available for study and modification.
 - [{{i:OpenSCAD}} Forums](https://forum.openscad.org/) - Active community {{i:support}} for troubleshooting and learning.
-- [{{i:OpenSCAD}} Tutorials (YouTube)](https://www.youtube.com/results?search_query=openscad+tutorial+beginner) - Video tutorials (note: supplemental to {{i:text}}-based curriculum; transcripts recommended for {{i:accessibility}}).  
+- [{{i:OpenSCAD}} Tutorials (YouTube)](https://www.youtube.com/results?search_query=openscad+tutorial+beginner) - Video tutorials (note: supplemental to {{i:text}}-based curriculum; transcripts recommended for {{i:accessibility}}).
 
 ## Getting Started
 
@@ -371,10 +373,8 @@ Administer [3dMake Foundation Final Exam](3dMake_All_Lessons.md) - 25-question c
 
 - [Technical Reference](Backmatter_Complete.md#troubleshooting) - Advanced troubleshooting and systems architecture
 - [Further Reading](Backmatter_Complete.md#further-reading) - Peer-reviewed research supporting curriculum {{i:design}}
-- [Quick Reference](3DMake_Appendices_Complete.md#appendix-a) - At-a-glance lesson and {{i:command}} {{i:reference}} for student handouts  
-
+- [Quick Reference](3DMake_Appendices_Complete.md#appendix-a) - At-a-glance lesson and {{i:command}} {{i:reference}} for student handouts
 
 ## {{i:Screen}} Readers
 
 We know that users of this curriculum will primarily be {{i:JAWS}} and {{i:NVDA}} screenreader users, or else users of Orca if on a Linux-based system. Dolphin SuperNova (commercial) and {{i:Windows}} Narrator (built-in) are also supported; the workflows and recommendations in this document apply to them. See [https://yourdolphin.com/{{i:ScreenReader}}-Training](https://yourdolphin.com/{{i:ScreenReader}}-Training) and [https://{{i:support}}.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1](https://{{i:support}}.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1) for vendor documentation.
-
