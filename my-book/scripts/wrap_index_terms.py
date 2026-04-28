@@ -4,7 +4,7 @@
 Creates .bak backups for modified files. Skips code blocks, inline code, and
 already-wrapped `...` spans.
 """
-import os
+import argparse
 import re
 from pathlib import Path
 
@@ -38,15 +38,48 @@ def restore_placeholders(text, originals, tag):
     return text
 
 
-def process_file(path, terms):
+def placeholders_for_existing_index_entries(text):
+    """Placeholder existing index entries to keep reruns idempotent.
+
+    Supports both token-only entries (`{{i:key}}`) and token+visible-text
+    entries (`{{i:key}}key`).
+    """
+    originals = []
+    parts = []
+    last = 0
+    token_pattern = re.compile(r"\{\{i:\s*([^}]+?)\s*\}\}", re.IGNORECASE)
+
+    for m in token_pattern.finditer(text):
+        start, end = m.span()
+        key = m.group(1).strip()
+        tail_end = end
+
+        # If entry is in token+visible form, protect both pieces.
+        if key:
+            following = text[end:]
+            key_match = re.match(rf"{re.escape(key)}(?!\w)", following, re.IGNORECASE)
+            if key_match:
+                tail_end = end + key_match.end()
+
+        parts.append(text[last:start])
+        originals.append(text[start:tail_end])
+        parts.append(f"__WRAPPED_{len(originals)-1}__")
+        last = tail_end
+
+    parts.append(text[last:])
+    return "".join(parts), originals
+
+
+def process_file(path, terms, dry_run=False):
     text = path.read_text(encoding="utf-8")
     original = text
+    replacements = 0
 
     # Remove code blocks (``` ... ```) and store them
     text, codeblocks = placeholders_for_spans(text, r"^```.*?^```", "CODEBLOCK")
 
-    # Remove existing wrapped ... spans to avoid double-wrapping
-    text, wrapped = placeholders_for_spans(text, r"\{\{i:[^}]+\}\}", "WRAPPED")
+    # Remove existing index entries to avoid double-wrapping.
+    text, wrapped = placeholders_for_existing_index_entries(text)
 
     # Remove inline code spans `...`
     text, inline = placeholders_for_spans(text, r"`[^`]*?`", "INLINE")
@@ -62,7 +95,8 @@ def process_file(path, terms):
         else:
             pattern = r"(?<!\{\{i:})\b" + re.escape(term) + r"\b"
 
-        text = re.sub(pattern, lambda m: "" + m.group(0) + "", text)
+        text, count = re.subn(pattern, lambda m, term=term: f"{{{{i:{term}}}}}", text)
+        replacements += count
 
     # Restore placeholders
     text = restore_placeholders(text, inline, "INLINE")
@@ -70,28 +104,50 @@ def process_file(path, terms):
     text = restore_placeholders(text, codeblocks, "CODEBLOCK")
 
     if text != original:
-        bak = path.with_suffix(path.suffix + ".bak")
-        bak.write_text(original, encoding="utf-8")
-        path.write_text(text, encoding="utf-8")
-        return True
-    return False
+        if not dry_run:
+            bak = path.with_suffix(path.suffix + ".bak")
+            bak.write_text(original, encoding="utf-8")
+            path.write_text(text, encoding="utf-8")
+        return {
+            "changed": True,
+            "replacements": replacements,
+        }
+    return {
+        "changed": False,
+        "replacements": 0,
+    }
 
 
 def main():
+    parser = argparse.ArgumentParser(description="Wrap configured terms with index tags.")
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="Report changes without writing files or backups.",
+    )
+    args = parser.parse_args()
+
     root = Path(__file__).resolve().parents[1] / "src"
     md_files = list(root.rglob("*.md"))
     changed = []
+    total_replacements = 0
+
     for f in md_files:
         try:
-            if process_file(f, TERMS):
+            result = process_file(f, TERMS, dry_run=args.dry_run)
+            total_replacements += result["replacements"]
+            if result["changed"]:
                 changed.append(str(f.relative_to(Path.cwd())))
-        except Exception as e:
+        except (OSError, UnicodeError, re.error, ValueError) as e:
             print(f"Error processing {f}: {e}")
 
-    print(f"Processed {len(md_files)} files, modified {len(changed)} files.")
+    mode = "would modify" if args.dry_run else "modified"
+    print(f"Processed {len(md_files)} files, {mode} {len(changed)} files.")
+    print(f"Inserted {total_replacements} new index entries.")
     if changed:
         for c in changed:
-            print("Modified:", c)
+            prefix = "Would modify:" if args.dry_run else "Modified:"
+            print(prefix, c)
 
 
 if __name__ == "__main__":

@@ -49,12 +49,6 @@
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
         {{/if}}
-
-        <!-- Provide site root and default themes to javascript -->
-        <script>
-    const default_theme = window.localStorage.getItem('mdbook-theme') || default_light_theme;
-    document.documentElement.classList.add(default_theme);
-</script>
         <script>
             const path_to_root = "{{ path_to_root }}";
             const default_light_theme = "{{ default_theme }}";
@@ -63,6 +57,11 @@
             window.path_to_searchindex_js = "{{ resource "searchindex.js" }}";
         {{/if}}
         </script>
+        <!-- Provide site root and default themes to javascript -->
+        <script>
+    const default_theme = window.localStorage.getItem('mdbook-theme') || default_light_theme;
+    document.documentElement.classList.add(default_theme);
+</script>
         <!-- Start loading toc.js asap -->
         <script src="{{ resource "toc.js" }}"></script>
     </head>
