@@ -1,103 +1,21 @@
-<!DOCTYPE HTML>
-<html lang="{{ language }}" class="{{ default_theme }} sidebar-visible" dir="{{ text_direction }}">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ title }}</title>
+<!-- CSS only -->
+<link rel="stylesheet" href="{{resource 'css/variables.css'}}" />
+<link rel="stylesheet" href="{{resource 'css/general.css'}}" />
+<link rel="stylesheet" href="{{resource 'css/chrome.css'}}" />
 
-    {{#if base_url}}
-    <base href="{{ base_url }}">
-    {{/if}}
+<link rel="stylesheet" href="{{resource 'highlight.css'}}" />
 
-    {{> head}}
+<!-- Your theme CSS (single entry point) -->
+<link rel="stylesheet" href="{{resource 'theme.css'}}" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#ffffff">
+<!-- Core config -->
+<script>
+  const path_to_root = "{{path_to_root}}";
+</script>
 
-    <!-- mdBook core CSS (unchanged) -->
-    <link rel="stylesheet" href="{{ resource "css/variables.css" }}">
-    <link rel="stylesheet" href="{{ resource "css/general.css" }}">
-    <link rel="stylesheet" href="{{ resource "css/chrome.css" }}">
+<!-- Core mdBook scripts -->
+<script src="{{resource 'clipboard.min.js'}}"></script>
+<script src="{{resource 'book.js'}}"></script>
 
-    <!-- ✅ Add Catppuccin AFTER core 
-    <link rel="stylesheet" href="catppuccin.css"> -->
-
-    <!-- Highlight.js styles (unchanged) -->
-    <link rel="stylesheet" id="mdbook-highlight-css" href="{{ resource "highlight.css" }}">
-    <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="{{ resource "tomorrow-night.css" }}">
-    <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="{{ resource "ayu-highlight.css" }}">
-
-    <!-- Required JS config -->
-    <script>
-        const path_to_root = "{{ path_to_root }}";
-        const default_light_theme = "{{ default_theme }}";
-        const default_dark_theme = "{{ preferred_dark_theme }}";
-    </script>
-
-    <!-- Load toc early -->
-    <script src="{{ resource "toc.js" }}"></script>
-</head>
-
-<body>
-<div id="mdbook-body-container">
-
-    <!-- Sidebar -->
-    <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
-        <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
-    </nav>
-
-    <div id="mdbook-page-wrapper" class="page-wrapper">
-        <div class="page">
-
-            <!-- Top bar -->
-            <div id="mdbook-menu-bar" class="menu-bar sticky">
-                <div class="left-buttons">
-
-                    <!-- Sidebar toggle -->
-                    <label id="mdbook-sidebar-toggle" class="icon-button">
-                        {{fa "solid" "bars"}}
-                    </label>
-
-                    <!-- ✅ Theme toggle (paintbrush) -->
-                    <button id="mdbook-theme-toggle"
-                            class="icon-button"
-                            type="button"
-                            title="Change theme">
-                        {{fa "solid" "paintbrush"}}
-                    </button>
-
-                    <!-- ✅ REQUIRED: theme list id must match -->
-                    <ul id="mdbook-theme-list" class="theme-popup">
-                        <li><button class="theme" id="light">Light</button></li>
-                        <li><button class="theme" id="rust">Rust</button></li>
-                        <li><button class="theme" id="coal">Coal</button></li>
-                        <li><button class="theme" id="navy">Navy</button></li>
-
-                        <!-- Catppuccin 
-                        <li><button class="theme" id="latte">Latte</button></li>
-                        <li><button class="theme" id="frappe">Frappe</button></li>
-                        <li><button class="theme" id="macchiato">Macchiato</button></li>
-                        <li><button class="theme" id="mocha">Mocha</button></li>  -->
-                    </ul>
-                </div>
-
-                <h1 class="menu-title">{{ book_title }}</h1>
-            </div>
-
-            <!-- Content -->
-            <div id="mdbook-content" class="content">
-                <main>
-                    {{{ content }}}
-                </main>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<!-- ✅ Required JS (do not modify order) -->
-<script src="{{ resource "clipboard.min.js" }}"></script>
-<script src="{{ resource "highlight.js" }}"></script>
-<script src="{{ resource "book.js" }}"></script>
-
-</body>
-</html>
+<!-- Single entrypoint JS -->
+<script src="{{resource 'init.js'}}"></script>
