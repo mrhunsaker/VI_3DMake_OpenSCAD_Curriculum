@@ -286,7 +286,7 @@ Each project requires:
 
 ### For Students
 
-**Step 1: {{i:Screen}} Reader Setup & Accessibility**
+**Step 1: Screen Reader Setup & Accessibility**
 
 Before beginning any technical {{i:work}}, optimize your screen {{i:reader}} configuration for {{i:command}}-line and coding {{i:work}}:
 
@@ -375,6 +375,6 @@ Administer [3dMake Foundation Final Exam](3dMake_All_Lessons.md) - 25-question c
 - [Further Reading](Backmatter_Complete.md#further-reading) - Peer-reviewed research supporting curriculum {{i:design}}
 - [Quick Reference](3DMake_Appendices_Complete.md#appendix-a) - At-a-glance lesson and {{i:command}} {{i:reference}} for student handouts
 
-## {{i:Screen}} Readers
+## Screen Readers
 
 We know that users of this curriculum will primarily be {{i:JAWS}} and {{i:NVDA}} screenreader users, or else users of Orca if on a Linux-based system. Dolphin SuperNova (commercial) and {{i:Windows}} Narrator (built-in) are also supported; the workflows and recommendations in this document apply to them. See [https://yourdolphin.com/{{i:ScreenReader}}-Training](https://yourdolphin.com/{{i:ScreenReader}}-Training) and [https://{{i:support}}.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1](https://{{i:support}}.microsoft.com/en-us/windows/complete-guide-to-narrator-e4397a0d-ef4f-b386-d8ae-c172f109bdb1) for vendor documentation.
