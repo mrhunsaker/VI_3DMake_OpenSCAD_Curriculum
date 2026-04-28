@@ -33,6 +33,7 @@ use-default-preprocessors = true
 
 [output.html]
 additional-css = ["./theme/catppuccin.css"]
+additional-js = ["./theme/highlight.js"]
 #additional-js = ["./theme/catppuccin-fix.js"]
 default-theme = "latte"
 preferred-dark-theme = "mocha"
