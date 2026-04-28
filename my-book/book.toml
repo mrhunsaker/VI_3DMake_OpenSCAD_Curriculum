@@ -32,10 +32,6 @@ create-missing = true
 use-default-preprocessors = true
 
 [output.html]
-additional-css = [
-  "theme/catppuccin.css",
-  "theme/fonts.css"
-]
 default-theme = "Rust"
 preferred-dark-theme = "Navy"
 site-url = "https://mrhunsaker.github.io/VI_3DMake_OpenSCAD_Curriculum/"
