@@ -52,6 +52,10 @@
 
         <!-- Provide site root and default themes to javascript -->
         <script>
+    const default_theme = window.localStorage.getItem('mdbook-theme') || default_light_theme;
+    document.documentElement.classList.add(default_theme);
+</script>
+        <script>
             const path_to_root = "{{ path_to_root }}";
             const default_light_theme = "{{ default_theme }}";
             const default_dark_theme = "{{ preferred_dark_theme }}";
@@ -109,7 +113,7 @@
             if (sidebar === 'visible') {
                 sidebar_toggle.checked = true;
             } else {
-                html.classList.remove('sidebar-visible');
+                document.documentElement.classList.remove('sidebar-visible');
             }
         </script>
 
