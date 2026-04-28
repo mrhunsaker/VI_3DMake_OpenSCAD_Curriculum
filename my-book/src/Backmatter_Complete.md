@@ -29,7 +29,7 @@ Supplementary {{i:reference}} {{i:material}} for *Accessible {{hi:3D {{i:printin
 
 ## 1.1 Digital Fabrication Pipeline
 
-```
+```plaintext
 Source (.scad)
     ↓
 OpenSCAD Engine
@@ -47,7 +47,7 @@ Physical Object
 
 Automation Overlay:
 
-```
+```plaintext
 CLI -> Script -> Build Directory -> Version Control -> Reproducible Artifact
 ```
 
@@ -208,7 +208,7 @@ done
 - String-based (not object-based)
 
 Executable:
-```
+```plaintext
 C:\Windows\System32\cmd.exe
 ```
 
@@ -541,13 +541,13 @@ Run as Administrator.
 
 In batch {{i:files}} use:
 
-```
+```plaintext
 %%f
 ```
 
 In interactive {{i:shell}} use:
 
-```
+```plaintext
 %f
 ```
 
@@ -703,7 +703,7 @@ Setup:
 Mixed tabs/spaces:
 
 Fix:
-```
+```plaintext
 Convert tabs to spaces
 Set indent to 4 spaces
 ```
@@ -855,7 +855,7 @@ Fix:
 Multiple parts don't fit.
 
 Analysis:
-```
+```plaintext
 Part A: +0.15mm error
 Part B: +0.12mm error
 Total: +0.27mm
@@ -907,7 +907,7 @@ echo Build succeeded.
 ## N.1 Font Not Found
 
 Symptom:
-```
+```plaintext
 WARNING: No match for font family
 ```
 
@@ -2038,7 +2038,7 @@ Example:
 
 Proper heading hierarchy:
 
-```
+```plaintext
 # Title
 ## Section
 ### Subsection
@@ -2286,13 +2286,13 @@ Prevents overwhelming students with complexity.
 
 Iterative process:
 
-```
+```plaintext
 Define -> Ideate -> Prototype -> Test -> Refine -> Repeat
 ```
 
 ### In 3dMake Context
 
-```
+```plaintext
 Edit .scad -> 3dm build -> 3dm info -> Measure print -> Adjust parameters
 ```
 

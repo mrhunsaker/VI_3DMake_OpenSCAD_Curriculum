@@ -497,7 +497,7 @@ The exact number doesn't matter as long as something prints. When {{i:you}} {{i:
 
 **"{{i:command}} not found" or "is not recognized as an internal or external {{i:command}}"**
 
-This is the most {{i:common}} issue and it almost always has the same cause: your terminal session started {{i:before}} the installer ran. When the installer finishes, it adds the 3dMake folder to a system setting called the **{{i:PATH}}** — a list of folders your computer searches when {{i:you}} type a {{i:command}} {{i:name}}. But a terminal that was already open when the installer ran doesn't know about the change. The fix is simple: **close your terminal completely and open a {{i:new}} {{i:one}}**, then try the verification {{i:commands}} again.
+This is the most {{i:common}} issue and it almost always has the same cause: your terminal session started {{i:before}} the installer ran. When the installer finishes, it adds the 3dMake folder to a system setting called the **{{i:PATH}}** — a list of folders your computer searches when {{i:you}} type a {{i:command}} {{i:name}}. But a terminal that was already open when the installer ran doesn't know about the change. The fix is simple: **close your terminal completely and open a {{```i:new}} {{i:one}}**, then try the verification {{i:commands}} again.
 
 **What is {{i:PATH}}?** When {{i:you}} type `3dm` at the {{i:command}} line, your computer doesn't search your entire hard drive — that would take forever. Instead, it searches only the folders listed in {{i:PATH}}. If 3dMake's folder isn't in that list, the computer genuinely {{i:can}}'t find the program even though it's installed. Closing and reopening the terminal forces it to reload the {{i:PATH}} list.
 
@@ -598,7 +598,7 @@ Done.
 
 Here is what a project folder looks like:
 
-```
+```plaintext
 my_project/
   src/          ← your .scad source files live here (YOU write and edit these when you call `3dm edit-model`)
   build/        ← generated STL files go here (3dMake creates these when you call `3dm build`)
@@ -708,7 +708,7 @@ Now {{i:run}}:
 
 This analyzes your built model and prints a report. You'll see something like this:
 
-```
+```plaintext
 File:         build/main.stl
 Bounding Box: 30.0 x 20.0 x 10.0 mm
 Volume:       6000.0 mm³
@@ -733,14 +733,14 @@ Let's understand {{i:each}} piece.
 
 Before {{i:printing}} anything — especially something that might take hours — it's professional practice to estimate the cost. Here is the formula:
 
-```
+```plaintext
 mass (grams) = (volume_mm³ ÷ 1000) × filament_density_g_per_cm³
 cost ($)     = mass_g × (spool_price_$ ÷ spool_weight_g)
 ```
 
 For our 6,000 mm³ box {{i:using}} PLA {{i:filament}}:
 
-```
+```plaintext
 mass = (6000 ÷ 1000) × 1.24 = 7.44 grams
 cost = 7.44 × (20 ÷ 1000)   = $0.15
 ```
@@ -1278,7 +1278,7 @@ cd my_project
 
 `3dm setup` creates this project structure:
 
-```
+```plaintext
 my_project/
 ├── src/
 │   └── main.scad      ← Your {{i:design}} {{i:code}} goes here
@@ -7464,7 +7464,7 @@ translate([(base_w - beam_w) / 2, 0, base_h])
 
 **Flexibility ratio check:**
 
-```
+```plaintext
 beam_t / beam_l = ___ / ___ = ___
 Target: < 0.1 for PLA, < 0.08 for PETG
 Result: [ ] Pass   [ ] Fail — adjusted to: ___
@@ -8666,7 +8666,7 @@ Traditional CSG modeling works from the outside in: you define shapes geometrica
 
 Save the matrix below as `terrain.dat` in the same folder as your `.scad` file, then run the `surface()` call. No external image editor required.
 
-```
+```plaintext
  0  10  20  10   0
 10  40  60  40  10
 20  60 100  60  20
@@ -9127,7 +9127,7 @@ Object description: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Notes / sketches:
 
-```
+```plaintext
 (describe the object here — label which direction is X, Y, Z)
 ```
 
@@ -9147,7 +9147,7 @@ Object description: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Notes / sketches:
 
-```
+```plaintext
 (describe the object here)
 ```
 
@@ -9266,7 +9266,7 @@ E-steps control how many stepper-motor steps produce 1 mm of filament movement. 
 
 **Formula:**
 
-```
+```plaintext
 New E-steps = Current E-steps × (100 mm / Actual distance moved)
 
 Example:
@@ -9304,7 +9304,7 @@ Print at 100% flow rate. Allow complete cooling (2+ hours). Measure the _interna
 
 **Calibration formula:**
 
-```
+```plaintext
 Flow rate adjustment = (Expected internal / Actual internal) × 100%
 
 Example:
@@ -9401,7 +9401,7 @@ _Use this checklist to systematically diagnose and troubleshoot printing issues 
 
 ### Quick Diagnosis Flowchart
 
-```
+```plaintext
 Print Problem?
 |
 +---- [Before Print] Issues?
@@ -9500,7 +9500,7 @@ When extrusion stops during a print:
 2. Listen for extruder grinding sounds (indicates jam).
 3. Observe whether filament is still feeding into the extruder.
 
-```
+```plaintext
 Is filament stuck in the extruder?
 +---- YES  -->  Nozzle clog likely
 |               Try: cold pull, retract, then clean nozzle
@@ -9537,7 +9537,7 @@ Let the print cool for at least 2 hours before measuring.
 
 _Fill this out before seeking help — it ensures you've systematically checked the most common causes._
 
-```
+```plaintext
 DIAGNOSTIC REPORT
 =================
 Printer Model:
@@ -10331,7 +10331,7 @@ Print a tolerance test coupon for every critical interface before printing the f
 
 **2.4 — Revision Log (first entries)**
 
-```
+```plaintext
 v0.1 → v0.2 (YYYY-MM-DD) or YYYY.MM-prototype → YYYY.MM-prototype2
   - Changed wall thickness from 1.5 to 2.0 mm: v0.1 cracked during snap-fit test
   - Increased lid clearance from 0.1 to 0.25 mm: lid was too tight to open one-handed

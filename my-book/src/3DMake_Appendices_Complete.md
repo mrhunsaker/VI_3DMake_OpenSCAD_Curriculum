@@ -388,7 +388,7 @@ Below is a national omnibus index generated from directories that explicitly lis
 
 ## Basic Syntax
 
-```
+```plaintext
 3dm ACTIONS... [OPTIONS]... [INPUT_FILE]
 ```
 
@@ -898,7 +898,7 @@ cd my-project
 
 ## Configuration Directory Structure
 
-```
+```plaintext
 ~/.config/3dmake/         (or $3DMAKE_CONFIG_DIR)
 ├── defaults.toml          Global settings (printer, API keys, etc.)
 ├── profiles/
@@ -1244,7 +1244,7 @@ overlays = ["strong"]
 
 Some actions automatically trigger prerequisite actions. You never need to spell these out manually — {{i:3DMake}} inserts them for {{i:you}}.
 
-```
+```plaintext
 print
   └── slice (implied)
         └── build (implied, if scad source exists)
@@ -1308,7 +1308,7 @@ A separate category called **isolated** means the action cannot be combined with
 
 When {{i:you}} request multiple actions, they always execute in this fixed internal order regardless of how {{i:you}} type them on the {{i:command}} line:
 
-```
+```plaintext
 setup -> new -> build -> load-mesh* -> measure-mesh* -> info -> orient ->
 image -> preview -> slice -> print -> list-profiles -> list-overlays ->
 edit-model -> edit-overlay -> edit-profile -> edit-profile-gcode ->
@@ -1328,7 +1328,7 @@ A single {{i:3DMake}} project {{i:can}} contain multiple {{i:OpenSCAD}} models. 
 
 ### Directory Layout
 
-```
+```plaintext
 my-project/
 ├── 3dmake.toml
 ├── src/
@@ -1368,14 +1368,14 @@ model_name = "bracket"    # Everyone on this project defaults to the bracket mod
 
 Output G-{{i:code}} {{i:files}} are named {{i:using}} the pattern:
 
-```
+```plaintext
 <project_name>-<model_name>.gcode          # 1 copy
 <project_name>-<model_name>-x3.gcode       # 3 copies (--copies 3)
 ```
 
 For example, a project named `pi-case` building the `lid` model with 2 copies produces:
 
-```
+```plaintext
 build/pi-case-lid-x2.gcode
 ```
 
@@ -1385,7 +1385,7 @@ If `project_name` is not set in `3dmake.toml`, it is auto-detected from the dire
 
 A {{i:common}} {{i:OpenSCAD}} pattern is a shared `params.scad` {{i:file}} included by all models:
 
-```
+```plaintext
 src/
 ├── params.scad      ← shared dimensions, tolerances, material choices
 ├── main.scad        ← include <params.scad>
@@ -1434,7 +1434,7 @@ The `info` action sends rendered images of your model to an AI (Gemini or OpenRo
 
 The prompt {{i:file}} lives at:
 
-```
+```plaintext
 ~/.config/3dmake/prompt.txt    (or $3DMAKE_CONFIG_DIR/prompt.txt)
 ```
 
@@ -1448,7 +1448,7 @@ The AI receives your prompt {{i:text}} **plus six rendered PNG images** of the m
 
 **Default-style — general physical description:**
 
-```
+```plaintext
 You are analyzing a 3D model for 3D printing. Describe the object's physical
 shape, identifying any notable geometric features, symmetry, overhangs, thin
 walls, or small details that might affect printability. Be concise and factual.
@@ -1456,7 +1456,7 @@ walls, or small details that might affect printability. Be concise and factual.
 
 **Printability review — focused on {{i:print}} problems:**
 
-```
+```plaintext
 You are a 3D printing expert reviewing a model before printing. Examine these
 views and identify:
 1. Any overhangs greater than 45 degrees that will need supports
@@ -1469,7 +1469,7 @@ Be specific about locations (e.g. "the underside of the lip on the left side").
 
 **Dimensional estimation — for sanity-checking scale:**
 
-```
+```plaintext
 Based on the shape and proportions of this 3D model, estimate what real-world
 object it most resembles and what its approximate dimensions might be in
 millimeters. Note any features that suggest a specific scale (screw holes,
@@ -1478,7 +1478,7 @@ finger clearances, standard hardware interfaces, etc.).
 
 **{{i:Design}} feedback — for iterating on a model:**
 
-```
+```plaintext
 You are reviewing a 3D model for functional and aesthetic design quality.
 Comment on: whether the design looks structurally sound, any places where
 the geometry looks unintentional or messy, whether any features look like
@@ -1786,7 +1786,7 @@ Referenced in: Lessons 5 (Safety), 8 ({{i:Design}}), 10 (Verification)
 
 Slicing converts a 3D model {{i:into}} {{i:printer}} instructions:
 
-```
+```plaintext
 SCAD Design (bracelet_holder.scad)
    v
 Export to STL (3D shape file)
@@ -1828,7 +1828,7 @@ Physical part
 
 Step 1: Install & Select Your Printer
 
-```
+```plaintext
 1. Open PrusaSlicer
 2. Go to "Help" -> "Check for Updates"
 3. When prompted, select your printer model
@@ -1837,7 +1837,7 @@ Step 1: Install & Select Your Printer
 
 Step 2: Load Your {{i:STL}}
 
-```
+```plaintext
 1. Click "File" -> "Open STL Model"
 2. Select your bracelet_holder.stl
 3. Model appears in 3D view
@@ -1858,7 +1858,7 @@ These are the most important adjustments:
 
 Step 4: {{i:Preview}} & Export
 
-```
+```plaintext
 1. Click "Slice now" (or G-code icon)
 2. Left panel shows preview of each layer
 3. Look for issues:
@@ -2822,7 +2822,7 @@ Impurities
 
 1. Weight Check
 
-   ```
+   ```plaintext
    Known: 1kg spool
    Weigh spool + filament
    Calculate remaining filament
@@ -2831,7 +2831,7 @@ Impurities
 
 2. Diameter Check
 
-   ```
+   ```plaintext
    Use caliper to measure multiple points
    Should be consistent +/- 0.03mm
    If varying, likely lower quality
@@ -2839,14 +2839,14 @@ Impurities
 
 3. Dryness Test
 
-   ```
+   ```plaintext
    Feel texture: Should be smooth, not tacky
    Smell: Should be neutral (not musty)
    If wet, store in sealed container with desiccant
    ```
 
 4. Print Test
-   ```
+   ```plaintext
    Print small cube (20mm x 20mm x 20mm)
    Inspect surface: Smooth or bubbly?
    Weight: Does it match expected weight?
@@ -2885,7 +2885,7 @@ Organization
 
 ### Cost per Project
 
-```
+```plaintext
 Material cost = (Filament weight used) x (Cost per kg)
 
 Example: Bracelet holder

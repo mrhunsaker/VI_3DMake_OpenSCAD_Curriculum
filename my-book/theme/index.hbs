@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="{{ resource "css/general.css" }}">
   <link rel="stylesheet" href="{{ resource "css/chrome.css" }}">
 
-
   <script>
     const path_to_root = "{{ path_to_root }}";
   </script>
@@ -21,7 +20,6 @@
 
 <div id="mdbook-body-container">
 
-  <!-- Sidebar -->
   <nav id="mdbook-sidebar" class="sidebar">
     <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
   </nav>
@@ -32,13 +30,10 @@
 
       <div class="left-buttons">
 
-        <!-- Sidebar toggle (mdBook handles logic) -->
         <label id="mdbook-sidebar-toggle" class="icon-button">☰</label>
 
-        <!-- Theme toggle (mdBook handles logic) -->
         <button id="mdbook-theme-toggle" class="icon-button">🎨</button>
 
-        <!-- Theme list -->
         <ul id="mdbook-theme-list" class="theme-popup">
           <li><button class="theme" id="light">Light</button></li>
           <li><button class="theme" id="rust">Rust</button></li>
@@ -58,12 +53,13 @@
   </div>
 </div>
 
-<!-- mdBook core -->
+<!-- JS: correct order -->
 <script src="{{ resource "clipboard.min.js" }}"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
 <link rel="stylesheet" href="{{ resource "highlight.css" }}">
-<script src="{{ resource "book.js" }}"></script>
+
 <script src="{{ resource "book.js" }}"></script>
 
 </body>

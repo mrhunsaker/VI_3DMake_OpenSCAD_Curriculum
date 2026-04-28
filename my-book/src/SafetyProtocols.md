@@ -145,7 +145,7 @@ Sending a model to {{i:print}} without checking the cost is like placing a resta
 
 The estimate formula from Lesson 1 applies here:
 
-```
+```plaintext
 mass (grams)  = (volume_mm³ ÷ 1000) × filament_density_g_per_cm³
 cost ($)      = mass × (spool_price_$ ÷ spool_weight_g)
 ```
@@ -227,7 +227,7 @@ Write-Host "Approved. Send to slicer."
 
 Use this checklist {{i:before}} starting any {{i:print}}. It takes about 5 minutes and prevents the most {{i:common}} causes of {{i:print}} failure.
 
-```
+```plaintext
 PRINTER STARTUP CHECKLIST
 □ Bed level verified (run auto-level, or manually check at all four corners)
 □ Build plate clean (wipe with IPA — remove finger oils and dust)

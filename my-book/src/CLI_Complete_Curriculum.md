@@ -734,7 +734,7 @@ When {{i:PowerShell}} opens, your screen {{i:reader}} will announce the window t
 
 What {{i:you}}'ll hear:
 
-```
+```plaintext
 PS C:\Users\YourName>
 ```
 
@@ -764,7 +764,7 @@ Press Enter
 What {{i:you}}'ll hear:
 Your screen {{i:reader}} will announce the current path, something like:
 
-```
+```plaintext
 C:\Users\YourName
 ```
 
@@ -789,7 +789,7 @@ Press Enter
 What {{i:you}}'ll hear:
 Your screen {{i:reader}} will announce {{i:each}} {{i:file}} and folder {{i:name}}, {{i:one}} per line:
 
-```
+```plaintext
 Desktop
 Documents
 Downloads
@@ -818,7 +818,7 @@ Press Enter
 What {{i:you}}'ll hear:
 The prompt changes to show your {{i:new}} location. You might hear something like:
 
-```
+```plaintext
 PS C:\Users\YourName\Documents>
 ```
 
@@ -908,7 +908,7 @@ cat hello.txt
 What {{i:you}}'ll hear:
 Your screen {{i:reader}} announces:
 
-```
+```plaintext
 Hello, PowerShell!
 ```
 
@@ -2231,7 +2231,7 @@ Breaking it down:
 
 Screen reader output:
 
-```
+```plaintext
 Processing SCAD {{i:files}} in: C:\Users\YourName\Documents\3D_Projects
 Found 10 {{i:files}}
 
@@ -6511,7 +6511,7 @@ When {{i:Git}} {{i:Bash}} opens, your screen {{i:reader}} will announce the wind
 
 What {{i:you}}'ll hear (typical example):
 
-```
+```plaintext
 user@computer MINGW64 ~
 $
 ```
@@ -6544,7 +6544,7 @@ Press Enter
 What {{i:you}}'ll hear:
 Your screen {{i:reader}} will announce the current path, something like:
 
-```
+```plaintext
 /c/Users/YourName
 ```
 
@@ -6585,7 +6585,7 @@ Press Enter
 What {{i:you}}'ll hear:
 The prompt changes to show your {{i:new}} location. You might hear something like:
 
-```
+```plaintext
 user@computer MINGW64 ~/Documents
 $
 ```
@@ -6625,7 +6625,7 @@ cat hello.txt
 What {{i:you}}'ll hear:
 Your screen {{i:reader}} announces:
 
-```
+```plaintext
 Hello, Git Bash!
 ```
 
@@ -8028,7 +8028,7 @@ echo "Batch processing complete!"
 
 **Screen reader output:**
 
-```
+```plaintext
 Processing SCAD {{i:files}} in: /c/Users/YourName/Documents/3D_Projects
 
   Found: model1.scad
