@@ -12,6 +12,7 @@ docs/
 *.backup
 *.tmp
 *.swp
+*.txt
 
 # Exclude scripts folder
 scripts/
