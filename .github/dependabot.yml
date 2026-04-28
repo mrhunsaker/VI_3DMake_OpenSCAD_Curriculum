@@ -14,4 +14,3 @@ updates:
     directory: /
     schedule:
       interval: weekly
-# Note: lualatex and system binaries are not supported by dependabot, but cargo will cover mdbook and its plugins if managed as Rust crates.

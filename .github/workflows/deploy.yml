@@ -24,111 +24,35 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Pandoc 3.6.4
-        run: |
-          wget -q https://github.com/jgm/pandoc/releases/download/3.6.4/pandoc-3.6.4-1-amd64.deb
-          sudo dpkg -i pandoc-3.6.4-1-amd64.deb
-          pandoc --version
-
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
       - name: Add cargo bin to PATH
         run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Install mdBook and mdbook-pandoc
+      - name: Install mdBook and mdbook-indexing
         run: |
           cargo install mdbook --locked
-          cargo install mdbook-pandoc --locked
+          cargo install mdbook-indexing --locked
 
-      - name: Install TeX Live
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-fonts-extra \
-            texlive-luatex \
-            texlive-xetex \
-            lmodern \
-            fonts-dejavu
-
-      - name: Install Atkinson Hyperlegible fonts
-        run: |
-          FONT_DIR=~/.local/share/fonts/atkinson-hyperlegible
-          mkdir -p "$FONT_DIR"
-
-          # --- Atkinson Hyperlegible (regular family) ---
-          BASE="https://github.com/googlefonts/atkinson-hyperlegible-next/raw/main/fonts/otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Bold.otf"       -O "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Italic.otf"     -O "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-BoldItalic.otf" -O "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"
-
-          # --- Atkinson Hyperlegible Mono (separate repo) ---
-          MONO="https://github.com/googlefonts/atkinson-hyperlegible-next-mono/raw/main/fonts/otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"    \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"         "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Bold.otf"        -O "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"       \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"            "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Italic.otf"      -O "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"     \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"          "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-BoldItalic.otf"  -O "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf" \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"      "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf"
-
-          fc-cache -fv || true
-          fc-list | grep -i atkinson || echo "Warning: Atkinson fonts may not be properly installed"
-
-      # mdbook build triggers ALL backends defined in book.toml in one shot:
-      #   output.html   → docs/html/
-      #   output.pandoc → docs/pandoc/epub/  and  docs/pandoc/latex/
-      # Never call mdbook-pandoc directly — it only works when piped from mdbook.
-      - name: Build book (all backends)
+      # mdbook build triggers all backends defined in book.toml:
+      #   output.html     → docs/html/
+      #   output.markdown → docs/markdown/
+      - name: Build book (HTML + Markdown)
         run: |
           cd my-book
           mdbook build
-
-      # Pandoc writes the .tex file but does NOT copy images alongside it.
-      # lualatex resolves \includegraphics relative to the .tex file's directory,
-      # so we mirror the repo's src/ tree into the latex output dir first.
-      - name: Copy source assets into latex output directory
-        run: |
-          cp -r my-book/src my-book/docs/pandoc/latex/src
-
-      # lualatex MUST run from the directory containing the .tex file so that
-      # relative \includegraphics paths (e.g. src/assets/images/bio-photo.jpg)
-      # resolve correctly.
-      - name: Compile LaTeX → PDF
-        run: |
-          OUT_DIR="my-book/docs/pandoc/latex"
-          TEX="OpenSCAD_Curriculum.tex"
-
-          cd "$OUT_DIR"
-
-          # Pass 1 — generates .aux, .toc, .idx
-          lualatex --interaction=nonstopmode "$TEX"
-
-          # Build index from .idx produced in pass 1
-          makeindex "OpenSCAD_Curriculum.idx" || true
-
-          # Pass 2 — embeds TOC, cross-references, and index
-          lualatex --interaction=nonstopmode "$TEX"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: my-book/docs/html
 
-      - name: Upload pandoc outputs
+      - name: Upload Markdown output
         uses: actions/upload-artifact@v4
         with:
-          name: pandoc-outputs
-          path: |
-            my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub
-            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex
-            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf
+          name: markdown-output
+          path: my-book/docs/markdown/
           if-no-files-found: warn
 
   deploy:

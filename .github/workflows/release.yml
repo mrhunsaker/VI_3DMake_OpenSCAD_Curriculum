@@ -17,101 +17,39 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Pandoc 3.6.4
-        run: |
-          wget -q https://github.com/jgm/pandoc/releases/download/3.6.4/pandoc-3.6.4-1-amd64.deb
-          sudo dpkg -i pandoc-3.6.4-1-amd64.deb
-          pandoc --version
-
       - name: Install Rust toolchain
         uses: dtolnay/rust-toolchain@stable
 
       - name: Add cargo bin to PATH
         run: echo "$HOME/.cargo/bin" >> $GITHUB_PATH
 
-      - name: Install mdBook and mdbook-pandoc
+      - name: Install mdBook and mdbook-indexing
         run: |
           cargo install mdbook --locked
-          cargo install mdbook-pandoc --locked
+          cargo install mdbook-indexing --locked
 
-      - name: Install TeX Live
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends \
-            texlive-latex-base \
-            texlive-latex-recommended \
-            texlive-latex-extra \
-            texlive-fonts-recommended \
-            texlive-fonts-extra \
-            texlive-luatex \
-            texlive-xetex \
-            lmodern\
-            fonts-dejavu
-
-      - name: Install Atkinson Hyperlegible fonts
-        run: |
-          FONT_DIR=~/.local/share/fonts/atkinson-hyperlegible
-          mkdir -p "$FONT_DIR"
-
-          # --- Atkinson Hyperlegible (regular family) ---
-          BASE="https://github.com/googlefonts/atkinson-hyperlegible-next/raw/main/fonts/otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Bold.otf"       -O "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-Italic.otf"     -O "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"
-          wget -q "${BASE}/AtkinsonHyperlegibleNext-BoldItalic.otf" -O "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"
-
-          # --- Atkinson Hyperlegible Mono (separate repo) ---
-          MONO="https://github.com/googlefonts/atkinson-hyperlegible-next-mono/raw/main/fonts/otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Regular.otf"    -O "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"    \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Regular.otf"         "$FONT_DIR/AtkinsonHyperlegibleMono-Regular.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Bold.otf"        -O "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"       \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Bold.otf"            "$FONT_DIR/AtkinsonHyperlegibleMono-Bold.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-Italic.otf"      -O "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"     \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-Italic.otf"          "$FONT_DIR/AtkinsonHyperlegibleMono-Italic.otf"
-          wget -q "${MONO}/AtkinsonHyperlegibleMono-BoldItalic.otf"  -O "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf" \
-            || cp "$FONT_DIR/AtkinsonHyperlegibleNext-BoldItalic.otf"      "$FONT_DIR/AtkinsonHyperlegibleMono-BoldItalic.otf"
-
-          fc-cache -fv || true
-          fc-list | grep -i atkinson || echo "Warning: Atkinson fonts may not be properly installed"
-
-      # IDENTICAL to deploy.yml
-      - name: Build book (all backends)
+      # mdbook build triggers all backends defined in book.toml:
+      #   output.html     → docs/html/
+      #   output.markdown → docs/markdown/
+      - name: Build book (HTML + Markdown)
         run: |
           cd my-book
           mdbook build
 
-      - name: Copy source assets into latex output directory
-        run: |
-          cp -r my-book/src my-book/docs/pandoc/latex/src
-
-      - name: Compile LaTeX → PDF
-        run: |
-          OUT_DIR="my-book/docs/pandoc/latex"
-          TEX="OpenSCAD_Curriculum.tex"
-
-          cd "$OUT_DIR"
-
-          # Pass 1
-          lualatex --interaction=nonstopmode "$TEX"
-
-          # Build index
-          makeindex "OpenSCAD_Curriculum.idx" || true
-
-          # Pass 2
-          lualatex --interaction=nonstopmode "$TEX"
-
       - name: Verify release artifacts exist
         run: |
-          test -f my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub
-          test -f my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex
-          test -f my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf
+          test -d my-book/docs/html
+          test -d my-book/docs/markdown
+
+      - name: Package Markdown output
+        run: |
+          cd my-book/docs
+          zip -r markdown-output.zip markdown/
 
       - name: Upload release assets
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            my-book/docs/pandoc/epub/OpenSCAD_Curriculum.epub
-            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.tex
-            my-book/docs/pandoc/latex/OpenSCAD_Curriculum.pdf
+            my-book/docs/markdown-output.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
