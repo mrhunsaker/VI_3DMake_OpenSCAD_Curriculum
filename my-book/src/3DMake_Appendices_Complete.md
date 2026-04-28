@@ -1,24 +1,20 @@
 # 3dMake and OpenSCAD Appendices — Complete Reference
 
-Comprehensive reference materials for the 3dMake Foundation and OpenSCAD curriculum, including makerspace locators, tool references, slicing guides, material science, quality assurance procedures, and advanced design concepts.
+Comprehensive reference materials for the 3dMake Foundation and OpenSCAD curriculum, including makerspace locators, tool references, {{hi:Slicing Guides}}slicing guides, material science, quality assurance procedures, and advanced design concepts.
 
 ---
 
 ## Contents
 
-| Appendix | Title |
-|---|---|
-| [Makerspace Index: Utah](#makerspace-utah) | Utah Makerspace Index (By County) |
+| Appendix                                                | Title                                            |
+| ------------------------------------------------------- | ------------------------------------------------ |
+| [Makerspace Index: Utah](#makerspace-utah)              | Utah Makerspace Index (By County)                |
 | [Makerspace Index: United States](#makerspace-national) | National Makerspace Guide — State-by-State Index |
-| [Appendix A](#appendix-a) | 3DMake CLI Cheat Sheet |
-| [Appendix B](#appendix-b) | Comprehensive Slicing Guide — All Major Slicers |
-| [Appendix C](#appendix-c) | Material Properties and Selection Guide |
-| [Appendix D](#appendix-d) | Tolerance Testing and Quality Assurance Matrix |
-| [Appendix E](#appendix-e) | Advanced OpenSCAD Concepts |
-
----
-
-
+| [Appendix A](#appendix-a)                               | 3DMake {{hi:CLI}}CLI Cheat Sheet                           |
+| [Appendix B](#appendix-b)                               | Comprehensive Slicing Guide — All Major Slicers  |
+| [Appendix C](#appendix-c)                               | {{hi:Material Properties}}Material Properties and Selection Guide          |
+| [Appendix D](#appendix-d)                               | Tolerance Testing and Quality Assurance Matrix   |
+| [Appendix E](#appendix-e)                               | Advanced OpenSCAD Concepts                       |
 
 ---
 
@@ -29,57 +25,82 @@ Comprehensive reference materials for the 3dMake Foundation and OpenSCAD curricu
 ---
 
 ## Beaver County
-*(No makerspace info discovered.)*
+
+_(No makerspace info discovered.)_
 
 ## Box Elder County
-*(No makerspace info discovered.)*
+
+_(No makerspace info discovered.)_
 
 ## Cache County
+
 ### Logan Library – Cytiva STEM Makerspace
-Bambu 3D printers, mini printers, vinyl cutter, sublimation printer, laser engraver, heat presses, craft cutters, and media digitization tools.[^turn1search10]
+
+{{hi:Bambu}}Bambu 3D printers, mini printers, vinyl cutter, sublimation printer, laser engraver, heat presses, craft cutters, and media digitization tools.[^turn1search10]
 
 ## Carbon County
+
 ### Southeast Education Service Center (SESC)
+
 STEM kits with coaching, curriculum, and project materials for regional schools.[^turn1search9]
 
 ## Iron County
+
 ### Southern Utah University – Thunderworks Makerspace
+
 Campus/community fabrication lab with CNC tools, 3D printers, and electronics benches.[^turn1search9]
 
 ## Salt Lake County
+
 ### Salt Lake City Public Library – Creative Lab
+
 3D printers, Cricut cutters, photography/film tools, Adobe Creative Cloud, recording booth.[^turn1search11]
 
 ### Salt Lake County Library – Create Spaces
+
 3D printers, VR, robotics, A/V studios, DIY repair tools across six branches.[^turn1search12]
 
 ### Make Salt Lake
+
 Community makerspace with woodshop, metal shop, laser cutters, electronics benches, and 3D printer lab.[^turn1search9]
 
 ### University of Utah – Marriott Library ProtoSpace
+
 Prusa MK4/XL 3D printers, 3D scanning, prototyping tools.[^turn1search15]
 
 ## Washington County
+
 ### Washington County Library – Sid Atkin Makerspace
+
 3D printers, CNC cutter, sewing machines, woodworking tools, electronics kits, VR.[^turn1search14]
 
 ### Utah Tech University – Jr. Makerspace
+
 K–12 and community maker training and fabrication tools.[^turn1search9]
 
 ## Weber County
+
 ### Weber County Library Makerspaces
+
 Laser cutters, vinyl cutters, laminators, embroidery machines, scanners, and design software stations.[^turn1search8]
 
 ---
-# Endnotes
-[^turn1search10]: Logan Library Cytiva STEM Makerspace.
-[^turn1search9]: Utah STEM Action Center – Innovation Hub Network.
-[^turn1search11]: Salt Lake City Public Library Creative Lab.
-[^turn1search12]: Salt Lake County Library Create Spaces.
-[^turn1search15]: University of Utah – Marriott Library ProtoSpace & 3D Printing.
-[^turn1search14]: Washington County Library – Sid Atkin Makerspace.
-[^turn1search8]: Weber County Library Makerspaces.
 
+# Endnotes
+
+[^turn1search10]: Logan Library Cytiva STEM Makerspace.
+
+[^turn1search9]: Utah STEM Action Center – Innovation Hub Network.
+
+[^turn1search11]: Salt Lake City Public Library Creative Lab.
+
+[^turn1search12]: Salt Lake County Library Create Spaces.
+
+[^turn1search15]: University of Utah – Marriott Library ProtoSpace & {{hi:3D printing}}3D Printing.
+
+[^turn1search14]: Washington County Library – Sid Atkin Makerspace.
+
+[^turn1search8]: Weber County Library Makerspaces.
 
 ---
 
@@ -353,7 +374,6 @@ Below is a national omnibus index generated from directories that explicitly lis
 
 [^turn6search23]: [https://www.maker-works.com/local-makerspaces](https://www.maker-works.com/local-makerspaces)
 
-
 ---
 
 <a id="appendix-a"></a>
@@ -414,7 +434,7 @@ These actions can be chained together in sequence:
 | -------- | ------------------------------------------------------------------------------ |
 | `build`  | Compile the OpenSCAD `.scad` source file into a `.stl` model                   |
 | `orient` | Auto-orient the model to minimize the need for supports (uses Tweaker3)        |
-| `slice`  | Slice the model into printer-ready G-code using PrusaSlicer                    |
+| `slice`  | Slice the model into printer-ready G-code using {{hi:PrusaSlicer}}PrusaSlicer                    |
 | `print`  | Send the sliced G-code to the printer (OctoPrint, Bambu LAN, or Bambu Connect) |
 
 ```bash
@@ -542,6 +562,17 @@ These are all isolated actions (cannot be combined with other actions):
 3dm version               # Show version info
 ```
 
+`3dm version` returns the following (as of April 2026)
+
+```pwsh
+3DMake version 0.9
+Program location: C:\Users\Ryan Hunsaker\3dmake_windows\3dm.exe
+Configuration dir: C:\Users\Ryan Hunsaker\AppData\Local\3dmake\3dmake
+Created by Troy Deck
+
+Thanks for trying 3DMake!
+```
+
 ---
 
 ## All Options
@@ -560,6 +591,7 @@ These are all isolated actions (cannot be combined with other actions):
 | `--image-size`   | —     | `WxH`             | Image dimensions in pixels (e.g. `1920x1080`, default: `1080x720`)                |
 | `--debug`        | —     | flag              | Enable debug output (shows full subprocess logs, raises exceptions)               |
 | `--help` / `--h` | `-h`  | flag              | Display help and exit                                                             |
+| `--version`      | —     | flag              | Displays version number as `3DMake v0.9`                                          |
 
 ---
 
@@ -676,10 +708,10 @@ auto_start_prints = true
 
 Used when `print_mode = "octoprint"`. Test with `3dm test-connect`.
 
-| Key              | Type   | Default  | Description                                                                                                     |
-| ---------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------- |
+| Key              | Type   | Default  | Description                                                                                                                                                   |
+| ---------------- | ------ | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `octoprint_host` | string | _(none)_ | Full URL to your OctoPrint server, including protocol (e.g. `"[http://octopi.local](http://octopi.local)"` or `"[http://192.168.1.50](http://192.168.1.50)"`) |
-| `octoprint_key`  | string | _(none)_ | OctoPrint Application API key. Generate in OctoPrint > Settings > Application Keys                              |
+| `octoprint_key`  | string | _(none)_ | OctoPrint Application API key. Generate in OctoPrint > Settings > Application Keys                                                                            |
 
 ```toml
 # OctoPrint connection (set in defaults.toml, not project toml)
@@ -1481,7 +1513,7 @@ Either you are not in a 3DMake project directory, or `model_name` in your `3dmak
 Run `3dm install-libraries` to download and install the missing libraries listed in your `3dmake.toml` `libraries` key. Run `3dm list-libraries` to verify the library name is spelled correctly (names are lowercase).
 
 **OpenSCAD prints warnings but does not fail.**
-Add `strict_warnings = true` to your `3dmake.toml` to treat warnings as errors. This is recommended for all projects to catch issues like undefined variables and deprecated syntax early.
+Add `strict_warnings = true` to your `3dmake.toml` to treat warnings as errors. This is recommended for all projects to catch issues like undefined {{hi:Variables}}variables and deprecated syntax early.
 
 **Build succeeds but STL looks wrong / has missing geometry.**
 Run with `--debug` to see the full OpenSCAD output including all warnings:
@@ -1689,7 +1721,7 @@ hull() {
 
 **Orientation matters.** Layer lines are weakest in tension perpendicular to the print direction. Design critical stress paths to run parallel to layer lines, or use the `orient` action to auto-optimize placement.
 
-**Tolerance for fits.** PLA typically needs 0.2–0.3mm clearance for a sliding fit between printed parts. PETG and ABS may need slightly more. Build a quick tolerance test into your workflow:
+**Tolerance for fits.** {{hi:PLA}}PLA typically needs 0.2–0.3mm clearance for a sliding fit between printed parts. {{hi:PETG}}PETG and {{hi:ABS}}ABS may need slightly more. Build a quick tolerance test into your workflow:
 
 ```openscad
 // Tolerance test — print this and measure which gap fits your printer
@@ -1732,7 +1764,6 @@ use <threads.scad>
 metric_thread(diameter=8, pitch=1.25, length=20);
 ```
 
-
 ---
 
 <a id="appendix-b"></a>
@@ -1742,11 +1773,12 @@ metric_thread(diameter=8, pitch=1.25, length=20);
 ---
 
 This appendix covers settings, workflows, and troubleshooting for 7 major 3D printer slicers. Each slicer is represented with:
+
 - Recommended settings for beginners
 - Screen-reader-accessible settings explanation
 - Common troubleshooting
 - Accessibility features built-in
-- Command-line usage (for PowerShell integration)
+- Command-line usage (for {{hi:PowerShell}}PowerShell integration)
 
 Referenced in: Lessons 5 (Safety), 8 (Design), 10 (Verification)
 
@@ -1773,7 +1805,7 @@ Physical part
 ### Core Slicing Parameters (All Slicers Share These)
 
 | Parameter    | What It Does           | Typical Range   | Impact                                    |
-|--------------|------------------------|-----------------|-------------------------------------------|
+| ------------ | ---------------------- | --------------- | ----------------------------------------- |
 | Nozzle Temp  | Filament melting heat  | 200-250C        | Too cold -> weak; too hot -> oozing       |
 | Bed Temp     | Build plate heat       | 50-110C         | Helps adhesion; prevents warping          |
 | Layer Height | Z-axis precision       | 0.1-0.4mm       | Finer = slower, better detail             |
@@ -1785,6 +1817,7 @@ Physical part
 ## 1. PrusaSlicer (Prusa)
 
 ### Overview
+
 - Developer: Prusa Research (Czech company)
 - Platforms: Windows, Mac, Linux (open-source)
 - Best For: Beginner-friendly, excellent support, strong community
@@ -1815,7 +1848,7 @@ Step 3: Essential Settings
 These are the most important adjustments:
 
 | Setting      | Location          | Beginner Value  | Why                         |
-|--------------|-------------------|-----------------|-----------------------------|
+| ------------ | ----------------- | --------------- | --------------------------- |
 | Layer Height | Print Settings    | 0.15mm          | Balance speed & quality     |
 | Infill       | Print Settings    | 20%             | Enough strength; fast print |
 | Support      | Print Settings    | Yes (if needed) | For overhangs >45           |
@@ -1841,22 +1874,26 @@ Step 4: Preview & Export
 When adjusting settings, use these descriptions to understand what each does:
 
 Layer Height (0.1-0.4mm)
+
 - Lower (0.1mm): Smoother surface, more layers, slower (best for detail)
 - Higher (0.4mm): Faster, rougher surface (best for speed)
 - Recommendation: 0.15mm for balanced quality
 
 Infill Percentage (10-100%)
+
 - 10%: Fast, uses less filament, weaker (good for prototypes)
 - 20%: Good balance (recommended for most prints)
 - 50%: Stronger, slower, heavier
 - 100%: Solid interior, strongest, slowest (waste of plastic)
 
 Support Type
+
 - None: Fast, good surface finish, but risky if overhangs exist
 - Linear (Default): Good balance-easy to remove, provides support
 - Grid: Extra strong support, takes longer to remove
 
 First Layer
+
 - Brim: Adds border to help adhesion (recommended for beginners)
 - Raft: Sacrificial platform (good if bed isn't level)
 - Skirt: Just outline, doesn't help adhesion (fastest)
@@ -1879,7 +1916,7 @@ Write-Host "Slicing complete: $output"
 ### Troubleshooting
 
 | Problem                      | Cause                    | Solution                                 |
-|------------------------------|--------------------------|------------------------------------------|
+| ---------------------------- | ------------------------ | ---------------------------------------- |
 | First layer not sticking     | Bed not level            | Bed leveling procedure in printer manual |
 | Supports everywhere          | No support type selected | Change to "Linear" or "Grid"             |
 | Nozzle drags through model   | Z-offset too low         | Raise Z-offset +0.1mm                    |
@@ -1889,6 +1926,7 @@ Write-Host "Slicing complete: $output"
 ## 2. Bambu Studio (Bambu Lab)
 
 ### Overview
+
 - Developer: Bambu Lab (printer manufacturer)
 - Platforms: Windows, Mac, Linux
 - Best For: Modern X1-series printers, excellent speed, AMS support
@@ -1910,11 +1948,10 @@ Step 2: Load Model & Configure
 2. Auto-arranges on bed plate
 3. Default profile applied automatically
 
-
 Step 3: Key Settings (Bambu-Specific)
 
 | Setting         | Default | Adjustment            | Why                         |
-|-----------------|---------|-----------------------|-----------------------------|
+| --------------- | ------- | --------------------- | --------------------------- |
 | AMS Multi-Color | Off     | On (if AMS attached)  | Auto-switch filament        |
 | Auto-Leveling   | Enabled | Keep On               | Bambu feature-very reliable |
 | Nozzle Temp     | 220C    | Keep unless specified | Bambu-optimized             |
@@ -1923,27 +1960,28 @@ Step 3: Key Settings (Bambu-Specific)
 
 Step 4: Send to Printer
 
-
 1. Click "Prepare" (bottom right)
 2. Review preview
 3. Click "Send to Device"
 4. Printer receives over WiFi
 5. Start print from printer screen
 
-
 ### Accessible Parameter Explanations
 
 Auto-Leveling
+
 - Bambu printers automatically level the nozzle before every print
 - Explanation: Saves manual calibration; extremely reliable
 - For VI users: Provides confidence that bed is properly prepared
 
 Filament Calibration
+
 - Before first use of new filament color, run "Filament Calibration"
 - This optimizes temperature and speed for that specific filament
 - Explanation: Ensures consistent color and strength
 
 Multi-Material (AMS)
+
 - If you have Auto Material System (AMS):
   - Load up to 4 filament colors
   - Studio auto-switches during print
@@ -1967,7 +2005,7 @@ Write-Host "Slice saved: $output"
 ### Troubleshooting
 
 | Problem                       | Cause                 | Solution                            |
-|-------------------------------|-----------------------|-------------------------------------|
+| ----------------------------- | --------------------- | ----------------------------------- |
 | WiFi not connecting           | Network issue         | Restart printer WiFi; check SSID    |
 | AMS not switching             | Filament not detected | Load filament into AMS; recalibrate |
 | Print quality inconsistent    | Wrong filament type   | Run filament calibration            |
@@ -1976,6 +2014,7 @@ Write-Host "Slice saved: $output"
 ## 3. Cura (Ultimaker)
 
 ### Overview
+
 - Developer: Ultimaker (Dutch company, open-source)
 - Platforms: Windows, Mac, Linux
 - Best For: Broad printer support, user-friendly, good documentation
@@ -1986,7 +2025,7 @@ Write-Host "Slice saved: $output"
 
 Step 1: Add Your Printer
 
-1. Launch Cura
+1. Launch {{hi:Cura}}Cura
 2. Go to "Settings" (top-right)
 3. Click "Printers" -> "Add Printer"
 4. Select your printer model from list
@@ -2001,7 +2040,7 @@ Step 2: Load & Prepare Model
 Step 3: Recommended Settings
 
 | Setting              | Value    | Notes                                |
-|----------------------|----------|--------------------------------------|
+| -------------------- | -------- | ------------------------------------ |
 | Profile              | Standard | Good balance for most prints         |
 | Layer Height         | 0.2mm    | Default; change to 0.15mm for detail |
 | Infill               | 20%      | 100% waste for solid parts           |
@@ -2020,18 +2059,21 @@ Step 4: Print
 ### Accessible Settings Explanation
 
 Combing Mode
+
 - Off: Nozzle retracts on every travel (quality)
 - All: Never retracts (faster, possible stringing)
 - Not in Skin: Smart compromise
 - For VI users: Retraction prevents nozzle oozing on visible surfaces
 
 Z-Offset (Z Clearance)
+
 - Adjusts first-layer distance
 - Too low -> nozzle scrapes bed (bad)
 - Too high -> filament doesn't stick (bad)
 - Correct -> thin line of plastic sticks to bed
 
 Gradual Infill
+
 - Automatically reduces infill strength away from surface
 - Saves filament while maintaining strength
 - Explanation: The core doesn't need to be solid
@@ -2054,7 +2096,7 @@ Write-Host "Sliced: $output"
 ### Troubleshooting
 
 | Problem                        | Cause               | Solution                       |
-|--------------------------------|---------------------|--------------------------------|
+| ------------------------------ | ------------------- | ------------------------------ |
 | Model appears too small on bed | Scale wrong         | Right-click -> Scale to fit    |
 | Stringing between parts        | Retraction disabled | Enable retraction in settings  |
 | Support doesn't generate       | Auto-support off    | Enable "Generate Support"      |
@@ -2063,6 +2105,7 @@ Write-Host "Sliced: $output"
 ## 4. SuperSlicer (Modification of Prusa)
 
 ### Overview
+
 - Developer: Community fork of PrusaSlicer
 - Platforms: Windows, Mac, Linux
 - Best For: Advanced users wanting more control than Prusa offers
@@ -2072,7 +2115,7 @@ Write-Host "Sliced: $output"
 ### Key Differences from Prusa
 
 | Feature               | PrusaSlicer     | SuperSlicer                |
-|-----------------------|-----------------|----------------------------|
+| --------------------- | --------------- | -------------------------- |
 | Arachne Engine        | No              | Yes-better edges           |
 | Seam Position         | Limited options | Full control               |
 | Pressure Equalization | No              | Yes-better bridging        |
@@ -2088,22 +2131,25 @@ Write-Host "Sliced: $output"
 
 1. Download SuperSlicer from GitHub
 2. Export profile from PrusaSlicer (if you have it)
-3. Import into SuperSlicer
+3. {{hi:Import}}Import into SuperSlicer
 4. All settings are compatible with PrusaSlicer
 
 ### Advanced Settings for SuperSlicer
 
 Arachne Engine
+
 - Enables finer edges on walls
 - Results in cleaner, more accurate prints
 - Takes slightly longer to slice but worth it
 
 Seam Positioning
+
 - Random: Hides seams (good for aesthetic)
-- Aligned: Consistent location (good for debugging)
+- Aligned: Consistent location (good for {{hi:Debugging}}debugging)
 - Rear: Always at back (recommended)
 
 Pressure Equalization
+
 - Helps with bridging (printing across gaps)
 - Reduces sagging on overhangs
 - Recommended: Enable for complex designs
@@ -2111,6 +2157,7 @@ Pressure Equalization
 ## 5. OrcaSlicer (Modern Bamboo Alternative)
 
 ### Overview
+
 - Developer: Community (independent open-source)
 - Platforms: Windows, Mac, Linux
 - Best For: Users who want Bambu features without Bambu printer
@@ -2120,6 +2167,7 @@ Pressure Equalization
 ### Why Orca?
 
 OrcaSlicer brings Bambu Studio's best features to any printer:
+
 - Excellent defaults
 - Fast slicing
 - Good preview
@@ -2135,7 +2183,7 @@ OrcaSlicer brings Bambu Studio's best features to any printer:
 ### Key Settings
 
 | Setting              | Value   | Why                              |
-|----------------------|---------|----------------------------------|
+| -------------------- | ------- | -------------------------------- |
 | Wall Loops           | 2       | Strong walls, visible detail     |
 | Internal Solid Layer | 4       | Strength for brackets/connectors |
 | Infill Pattern       | Grid    | Balanced strength                |
@@ -2145,20 +2193,24 @@ OrcaSlicer brings Bambu Studio's best features to any printer:
 ### Accessible Features
 
 Filament Manager
+
 - Track filament type, color, weight used
 - Explanation: Know when to buy new filament
 
 Print Time Estimation
+
 - Accurate prediction of print duration
 - Updates during slicing
 
 Material Presets
+
 - Pre-configured settings for common filaments
 - Just select material type; settings auto-apply
 
 ## 6. IdeaMaker (Raise3D)
 
 ### Overview
+
 - Developer: Raise3D
 - Platforms: Windows, Mac, Linux
 - Best For: Raise3D printer users; advanced features
@@ -2182,21 +2234,25 @@ Material Presets
 ### Key Features
 
 Dual Extrusion
+
 - Two nozzles = two colors in one print
 - Useful for: Bracelets (core + colored rim)
 - Requires: Coordinating two materials
 
 Advanced Support
+
 - Tree support (uses less material)
 - Grid support (stronger for larger parts)
 
 Print Balancing
+
 - Optimizes nozzle movement for efficiency
 - Reduces print time without sacrificing quality
 
 ## 7. Fusion 360 (CAD + Slicer)
 
 ### Overview
+
 - Developer: Autodesk
 - Platforms: Windows, Mac
 - Best For: If you already use Fusion 360 for CAD
@@ -2206,11 +2262,13 @@ Print Balancing
 ### Why Integrate CAD + Slicing?
 
 Traditional workflow:
+
 ```plaintext
 Design in CAD -> Export to STL -> Open in Slicer -> Slice -> Print
 ```
 
 Fusion 360 workflow:
+
 ```plaintext
 Design in Fusion -> Run Print Preparation -> Slice -> Print
 ```
@@ -2239,7 +2297,7 @@ If using Fusion 360 for CAD:
 ## Universal Troubleshooting Guide
 
 | Problem                                  | Diagnosis                   | Solution                                   |
-|------------------------------------------|-----------------------------|--------------------------------------------|
+| ---------------------------------------- | --------------------------- | ------------------------------------------ |
 | Print won't stick to bed                 | Bed temperature too low     | Raise bed temp +5C; check bed level        |
 |                                          | Bed not level               | Manual leveling procedure (printer manual) |
 |                                          | Build plate dirty           | Clean with isopropyl alcohol               |
@@ -2258,7 +2316,7 @@ If using Fusion 360 for CAD:
 ## Recommended Slicer for Each Situation
 
 | Scenario                   | Best Slicer           | Why                                   |
-|----------------------------|-----------------------|---------------------------------------|
+| -------------------------- | --------------------- | ------------------------------------- |
 | I'm a beginner             | PrusaSlicer           | Clear defaults, excellent UI          |
 | I have a Bambu printer     | Bambu Studio          | Native, best features                 |
 | I have an Ultimaker        | Cura                  | Official support, broad compatibility |
@@ -2333,8 +2391,8 @@ Write-Host "Time remaining: $($status.progress.printTimeLeft) seconds"
    - Indicates if infill is correct
 
 2. Dimensional Check:
-   - Use calipers to verify critical dimensions
-   - Compare to SCAD parameters
+   - Use {{hi:Calipers}}calipers to verify critical dimensions
+   - Compare to SCAD {{hi:Parameters}}parameters
    - Check tolerance stack-up
 
 3. Functional Test:
@@ -2345,6 +2403,7 @@ Write-Host "Time remaining: $($status.progress.printTimeLeft) seconds"
 ## Summary
 
 This appendix provides:
+
 - [YES] 7 slicer workflows, settings, and troubleshooting
 - [YES] Accessible parameter explanations
 - [YES] Command-line integration for PowerShell
@@ -2353,12 +2412,12 @@ This appendix provides:
 - [YES] Accessibility best practices
 
 Use this guide whenever you:
+
 - Start a new print
 - Switch slicers
 - Encounter quality issues
 - Want to automate slicing workflows
 - Need troubleshooting help
-
 
 ---
 
@@ -2369,6 +2428,7 @@ Use this guide whenever you:
 ---
 
 This appendix covers material properties, characteristics, and selection criteria for 3D printing filaments. Each material includes:
+
 - Physical properties (strength, flexibility, temperature tolerance)
 - Printing parameters (nozzle temp, bed temp, speed)
 - Suitability for different projects
@@ -2380,6 +2440,7 @@ Referenced in: Lessons 5 (Safety), 6-10 (Projects), 11 (Customer Requirements)
 ## Overview: Why Material Matters
 
 The material you choose affects:
+
 - Strength: Can the part hold weight?
 - Flexibility: Will it bend or break?
 - Temperature: Can it withstand heat?
@@ -2412,7 +2473,7 @@ What's the primary requirement?
 ### Properties at a Glance
 
 | Property               | Rating | Notes                                         |
-|------------------------|--------|-----------------------------------------------|
+| ---------------------- | ------ | --------------------------------------------- |
 | Strength               | [3/5]  | Good for most projects; not for dynamic loads |
 | Flexibility            | [1/5]  | Brittle; will snap under stress               |
 | Temperature Resistance | [2/5]  | Softens around 60C; bad for hot environments  |
@@ -2435,7 +2496,7 @@ What's the primary requirement?
 ### Printing Parameters
 
 | Parameter    | Value            | Tolerance                     |
-|--------------|------------------|-------------------------------|
+| ------------ | ---------------- | ----------------------------- |
 | Nozzle Temp  | 200C             | 190-210C (varies by brand)    |
 | Bed Temp     | 60C              | 50-65C                        |
 | Print Speed  | 50 mm/s          | 40-60 mm/s                    |
@@ -2447,20 +2508,24 @@ What's the primary requirement?
 ### PLA Variants
 
 Standard PLA
+
 - Most common, reliable
 - Best for beginners
 
 PLA Pro / Enhanced PLA
+
 - Slightly stronger than standard PLA
 - Same temperature parameters
 - ~10% cost premium
 
 Silk PLA
+
 - Glossy finish instead of matte
 - Same strength as standard PLA
 - Slightly slower to print
 
 Marble or Color-Changing PLA
+
 - Visual effects
 - Same printing parameters
 - Mostly for aesthetics
@@ -2468,7 +2533,7 @@ Marble or Color-Changing PLA
 ### Common Issues & Solutions
 
 | Problem                    | Cause                           | Solution                                                |
-|----------------------------|---------------------------------|---------------------------------------------------------|
+| -------------------------- | ------------------------------- | ------------------------------------------------------- |
 | Warping on corners         | Bed too hot or cooling too fast | Reduce bed temp to 50C; disable cooling for first layer |
 | Stringing                  | Temp too high                   | Lower nozzle temp 5C                                    |
 | Poor layer adhesion        | Nozzle too high                 | Lower Z-offset 0.1mm                                    |
@@ -2478,6 +2543,7 @@ Marble or Color-Changing PLA
 ### Why PLA for This Course
 
 PLA is recommended for all Lessons 1-11 because:
+
 1. Beginner-friendly: Most forgiving material
 2. Predictable: Consistent across different printers
 3. Cost-effective: Maximize printing volume on student budget
@@ -2490,7 +2556,7 @@ PLA is recommended for all Lessons 1-11 because:
 ### Properties at a Glance
 
 | Property               | Rating | Notes                                           |
-|------------------------|--------|-------------------------------------------------|
+| ---------------------- | ------ | ----------------------------------------------- |
 | Strength               | [4/5]  | Tougher than PLA; better for load-bearing       |
 | Flexibility            | [2/5]  | Better than PLA but still primarily rigid       |
 | Temperature Resistance | [3/5]  | Softens around 85C; better than PLA             |
@@ -2510,7 +2576,7 @@ PLA is recommended for all Lessons 1-11 because:
 ### Printing Parameters
 
 | Parameter    | Value            | Tolerance                 |
-|--------------|------------------|---------------------------|
+| ------------ | ---------------- | ------------------------- |
 | Nozzle Temp  | 235C             | 230-245C                  |
 | Bed Temp     | 80C              | 75-85C                    |
 | Print Speed  | 50 mm/s          | 40-60 mm/s (same as PLA)  |
@@ -2522,7 +2588,7 @@ PLA is recommended for all Lessons 1-11 because:
 ### Comparison: PETG vs. PLA
 
 | Aspect         | PLA       | PETG                  |
-|----------------|-----------|-----------------------|
+| -------------- | --------- | --------------------- |
 | Nozzle Temp    | 200C      | 235C                  |
 | Bed Temp       | 60C       | 80C                   |
 | Strength       | Good      | Better (20% stronger) |
@@ -2547,7 +2613,7 @@ PLA is recommended for all Lessons 1-11 because:
 ### Properties at a Glance
 
 | Property               | Rating | Notes                                         |
-|------------------------|--------|-----------------------------------------------|
+| ---------------------- | ------ | --------------------------------------------- |
 | Strength               | [4/5]  | Similar to PETG; good impact resistance       |
 | Flexibility            | [3/5]  | More flexible than PETG                       |
 | Temperature Resistance | [5/5]  | Softens around 105C; best of common materials |
@@ -2567,6 +2633,7 @@ PLA is recommended for all Lessons 1-11 because:
 ### Why ABS is Challenging
 
 ABS requires:
+
 1. Enclosed environment: Minimize temperature fluctuations
 2. Heated bed: 100C+ (much higher than PLA)
 3. Controlled cooling: Too-fast cooling causes warping
@@ -2575,7 +2642,7 @@ ABS requires:
 ### Printing Parameters
 
 | Parameter   | Value          | Tolerance                        |
-|-------------|----------------|----------------------------------|
+| ----------- | -------------- | -------------------------------- |
 | Nozzle Temp | 240C           | 230-250C                         |
 | Bed Temp    | 100C           | 95-105C                          |
 | Enclosure   | Required       | Maintains heat (reduces warping) |
@@ -2597,6 +2664,7 @@ ABS requires:
 ### Accessibility Note
 
 ABS is not recommended for this course because:
+
 1. Requires enclosed printer (expensive for beginners)
 2. High failure rate for inexperienced users
 3. Strong odor (ventilation concerns for some users)
@@ -2607,7 +2675,7 @@ ABS is not recommended for this course because:
 ### Properties at a Glance
 
 | Property               | Rating | Notes                                         |
-|------------------------|--------|-----------------------------------------------|
+| ---------------------- | ------ | --------------------------------------------- |
 | Strength               | [3/5]  | Good; impact-resistant                        |
 | Flexibility            | [5/5]  | Very flexible; rubber-like                    |
 | Temperature Resistance | [3/5]  | Softens around 80C; moderate                  |
@@ -2618,7 +2686,8 @@ ABS is not recommended for this course because:
 
 ### What is TPU?
 
-TPU is a flexible rubber-like plastic that:
+{{hi:TPU}}TPU is a flexible rubber-like plastic that:
+
 - Doesn't crack when bent
 - Absorbs impact
 - Returns to original shape
@@ -2627,7 +2696,7 @@ TPU is a flexible rubber-like plastic that:
 ### Printing Parameters
 
 | Parameter   | Value          | Tolerance                                      |
-|-------------|----------------|------------------------------------------------|
+| ----------- | -------------- | ---------------------------------------------- |
 | Nozzle Temp | 215C           | 210-225C                                       |
 | Bed Temp    | 60C            | 50-70C                                         |
 | Print Speed | 20-30 mm/s     | VERY SLOW (flexibility needs time)             |
@@ -2656,6 +2725,7 @@ TPU is a flexible rubber-like plastic that:
 ### Why TPU for Accessibility
 
 TPU is excellent for accessibility because:
+
 - Can create tactile buttons/indicators
 - Flexible grips for ergonomic handles
 - Gaskets that don't damage delicate equipment
@@ -2666,7 +2736,7 @@ TPU is excellent for accessibility because:
 ### Properties at a Glance
 
 | Property               | Rating | Notes                              |
-|------------------------|--------|------------------------------------|
+| ---------------------- | ------ | ---------------------------------- |
 | Strength               | [5/5]  | Extremely strong; impact-resistant |
 | Flexibility            | [2/5]  | Rigid; similar to PETG             |
 | Temperature Resistance | [5/5]  | Best; softens around 130C          |
@@ -2694,7 +2764,7 @@ TPU is excellent for accessibility because:
 ### Properties at a Glance
 
 | Property               | Rating | Notes                                 |
-|------------------------|--------|---------------------------------------|
+| ---------------------- | ------ | ------------------------------------- |
 | Strength               | [5/5]  | Very strong; can be flexible          |
 | Flexibility            | [4/5]  | More flexible than ABS                |
 | Temperature Resistance | [4/5]  | Good; softens around 120C             |
@@ -2714,7 +2784,7 @@ TPU is excellent for accessibility because:
 ## Material Comparison Table
 
 | Material | Nozzle | Bed  | Strength | Flexibility | Heat  | Ease  | Cost | Best For             |
-|----------|--------|------|----------|-------------|-------|-------|------|----------------------|
+| -------- | ------ | ---- | -------- | ----------- | ----- | ----- | ---- | -------------------- |
 | PLA      | 200C   | 60C  | [3/5]    | [1/5]       | [2/5] | [5/5] | $    | Beginners, detail    |
 | PETG     | 235C   | 80C  | [4/5]    | [2/5]       | [3/5] | [4/5] | $$   | Functional parts     |
 | ABS      | 240C   | 100C | [4/5]    | [3/5]       | [5/5] | [2/5] | $$   | High-temp/mechanical |
@@ -2727,26 +2797,31 @@ TPU is excellent for accessibility because:
 ### Why Not All PLA is the Same
 
 Diameter Tolerance
+
 - Good filament: +/- 0.03mm
 - Poor filament: +/- 0.1mm or worse
 - Impact: Inconsistent extrusion, layer quality varies
 
 Dryness
+
 - PLA absorbs moisture from air
 - Wet filament = weak prints + bubbles
 - Solution: Store in sealed container with desiccant
 
 Color Consistency
+
 - Good brands: Same color throughout
 - Poor brands: Color varies spool-to-spool
 
 Impurities
+
 - Good: Minimal impurities
 - Poor: Visible specs/contaminants -> possible clogs
 
 ### How to Check Filament Quality (Non-Visually)
 
 1. Weight Check
+
    ```
    Known: 1kg spool
    Weigh spool + filament
@@ -2755,6 +2830,7 @@ Impurities
    ```
 
 2. Diameter Check
+
    ```
    Use caliper to measure multiple points
    Should be consistent +/- 0.03mm
@@ -2762,6 +2838,7 @@ Impurities
    ```
 
 3. Dryness Test
+
    ```
    Feel texture: Should be smooth, not tacky
    Smell: Should be neutral (not musty)
@@ -2780,22 +2857,25 @@ Impurities
 ### Proper Filament Storage
 
 Temperature
+
 - Store between 15-25C
 - Avoid direct sunlight (fades color, degrades material)
 
 Humidity
+
 - Keep below 40% humidity
 - Use desiccant packets in sealed containers
 - Change desiccant every 2-3 months
 
 Organization
+
 - Label spools with: Material, color, date opened, approx. remaining
 - Store vertically or on spindle (prevents kinking)
 
 ### Filament Degradation Signs
 
 | Sign                          | Cause                      | Solution                    |
-|-------------------------------|----------------------------|-----------------------------|
+| ----------------------------- | -------------------------- | --------------------------- |
 | Weak prints / breaking easily | Filament aged or wet       | Replace with fresh filament |
 | Discoloration or spots        | Oxidation or contamination | Not usable; discard safely  |
 | Brittle or crumbly            | Overheated or UV damage    | Not usable; discard         |
@@ -2827,7 +2907,7 @@ vs. ABS at $30/kg: $0.75
 ### Recommended Brands (Ranked by Beginner-Friendliness)
 
 | Rank | Brand         | Known For                        | Cost | Notes                        |
-|------|---------------|----------------------------------|------|------------------------------|
+| ---- | ------------- | -------------------------------- | ---- | ---------------------------- |
 | 1    | Prusament     | Reliability, Prusa compatibility | $$$  | Best; excellent support      |
 | 2    | MatterHackers | Quality, variety                 | $$   | Very good; educational focus |
 | 3    | Fillamentum   | European quality                 | $$   | Excellent; eco-friendly      |
@@ -2903,11 +2983,11 @@ Key Takeaways:
 6. Test before committing: Print small test on new filament
 
 Recommended Progression:
+
 - Lessons 6-7: PLA (simplest)
 - Lessons 8-9: PLA or PETG (functional parts)
 - Lesson 10: PETG or TPU (testing materials)
 - Lesson 11: Student choice (depends on stakeholder requirements)
-
 
 ---
 
@@ -2945,6 +3025,7 @@ or            7.2mm [NO] (exceeds tolerance)
 ### 1. Digital Calipers
 
 What they measure:
+
 - Outside diameter (part width)
 - Inside diameter (hole width)
 - Depth
@@ -2962,6 +3043,7 @@ Accuracy: +/-0.05mm (very precise for 3D printing)
 ### 2. Digital Scale (Kitchen Scale)
 
 What it measures:
+
 - Part weight (indicates infill, material type)
 
 How to use non-visually:
@@ -2974,12 +3056,14 @@ How to use non-visually:
 Accuracy: +/-1g (good enough for verification)
 
 Why it matters:
+
 - Too light = infill too low or void inside part
 - Expected weight = indicates proper slicing
 
 ### 3. Test Jig / Go/No-Go Gauge
 
 What it measures:
+
 - Pass/fail tolerance testing without calipers
 
 How to make:
@@ -3007,6 +3091,7 @@ union() {
 ```
 
 Use non-visually:
+
 - Try inserting peg into go-gauge -> Should slide easily
 - Try inserting peg into no-go-gauge -> Should NOT fit
 - If both tests pass = tolerance correct
@@ -3018,7 +3103,7 @@ Use non-visually:
 Create a Test Plan before printing:
 
 | Part            | Dimension        | Spec  | Tolerance | How to Test                             |
-|-----------------|------------------|-------|-----------|-----------------------------------------|
+| --------------- | ---------------- | ----- | --------- | --------------------------------------- |
 | Bracelet Holder | Base width       | 127mm | +/-2mm    | Measure with calipers (multiple points) |
 |                 | Peg diameter     | 6mm   | +/-0.5mm  | Test fit with go/no-go gauge            |
 |                 | Peg spacing      | 8mm   | +/-1mm    | Measure distance between pegs           |
@@ -3042,22 +3127,27 @@ Example Plan for Phone Stand:
 # Phone Stand - Quality Assurance Plan
 
 ## Critical Dimensions
+
 1. Slope angle: 20 +/-3
 2. Base width: 80mm +/-1mm
 3. Stand height: 60mm +/-2mm
 
 ## Functional Tests
+
 1. Stability: Hold 200g for 1 hour without tipping
 2. Grip: Phone doesn't slide during tilt
 3. Assembly: Back brace attaches without force
 
 ## Pass/Fail Criteria
+
 [YES] PASS if:
+
 - All dimensions within tolerance
 - Phone holds weight for 1 hour
 - No cracks or layer separation
 
 [NO] FAIL if:
+
 - Any dimension >2mm off spec
 - Phone slides or part tips
 - Visible cracks
@@ -3118,16 +3208,16 @@ Method B: Go/No-Go Gauge
 Example: Peg Diameter
 
 Design spec: 6.0mm
-Tolerance:   +/-0.5mm (acceptable: 5.5-6.5mm)
+Tolerance: +/-0.5mm (acceptable: 5.5-6.5mm)
 Method A (Direct):
-  Measurement 1: 5.9mm
-  Measurement 2: 6.0mm
-  Measurement 3: 5.8mm
-  Average: 5.9mm [YES]
+Measurement 1: 5.9mm
+Measurement 2: 6.0mm
+Measurement 3: 5.8mm
+Average: 5.9mm [YES]
 Method B (Go/No-Go):
-  Slides through go-gauge (5.5mm) -> [YES]
-  Doesn't fit no-go-gauge (6.5mm) -> [YES]
-  Result: PASS
+Slides through go-gauge (5.5mm) -> [YES]
+Doesn't fit no-go-gauge (6.5mm) -> [YES]
+Result: PASS
 
 ### Procedure 3: Surface Finish / Layer Quality
 
@@ -3136,16 +3226,16 @@ Equipment needed: Caliper, ruler, touch/texture assessment
 Step 1: Surface Texture
 
 Run fingers/hand over surface:
-  [YES] Smooth -> Good quality
-   Slightly rough -> Acceptable
-  [NO] Very rough/bumpy -> Quality issue
+[YES] Smooth -> Good quality
+Slightly rough -> Acceptable
+[NO] Very rough/bumpy -> Quality issue
 
 Step 2: Layer Line Visibility
 
 Feel horizontal ridges (layer lines):
-  [YES] Barely perceptible -> Good (0.2mm layers)
-   Noticeable but even -> OK (0.25mm layers)
-  [NO] Very pronounced -> Quality issue
+[YES] Barely perceptible -> Good (0.2mm layers)
+Noticeable but even -> OK (0.25mm layers)
+[NO] Very pronounced -> Quality issue
 
 Step 3: Dimensional Consistency
 
@@ -3173,7 +3263,7 @@ Step 1: Calculate Expected Weight
 Expected weight = Volume x Density x Infill%
 For bracelet holder (PLA):
 Volume = 127mm x 80mm x 120mm = 1,219,200 mm
-       = 1,219.2 cm
+= 1,219.2 cm
 PLA density = 1.24 g/cm
 Infill = 20%
 Expected weight = 1,219.2 x 1.24 x 0.20 = 302.4g
@@ -3189,7 +3279,7 @@ Step 2: Measure Actual Weight
 Step 3: Interpret Result
 
 | Actual Weight | Interpretation                               |
-|---------------|----------------------------------------------|
+| ------------- | -------------------------------------------- |
 | 290-315g      | [YES] Correct infill, no internal voids      |
 | <280g         | Infill too low or significant voids          |
 | >320g         | Infill too high (was it supposed to be 20%?) |
@@ -3201,6 +3291,7 @@ Step 3: Interpret Result
 Purpose: Verify part can hold weight without failure
 
 Equipment needed:
+
 - Digital scale
 - Test weights (or books, water jugs)
 - Calipers (to check for deflection)
@@ -3221,37 +3312,40 @@ Procedure:
 7. Measure dimensions again (should return to baseline)
    Height after unload: 60.0mm
    Recovery: Complete [YES]
-Result: PASS (part handles load without permanent deformation)
-
+   Result: PASS (part handles load without permanent deformation)
 
 Acceptance Criteria for Phone Stand:
 
 [YES] PASS if:
-  - Deflection <0.5mm under 200g load
-  - No cracks visible/felt
-  - Full recovery after load removed
-[NO] FAIL if:
-  - Deflection >1mm
-  - Visible cracks
-  - Permanent deformation after unload
+
+- Deflection <0.5mm under 200g load
+- No cracks visible/felt
+- Full recovery after load removed
+  [NO] FAIL if:
+- Deflection >1mm
+- Visible cracks
+- Permanent deformation after unload
 
 ### Test 2: Assembly Testing
 
 Purpose: Verify parts fit together as designed
 
 Equipment needed:
+
 - Calipers
 - Go/No-Go gauges
 
 Procedure for Multi-Part Assembly (e.g., Stackable Bins):
 
 Part A (Bin body) dimensions:
-  - Top opening: 50mm x 50mm +/-1mm
-  - Wall thickness: 2mm +/-0.2mm
-Part B (Stacking rim) dimensions:
-  - Base diameter: 50mm +/-0.5mm
-  - Should nest inside Part A
-Test procedure:
+
+- Top opening: 50mm x 50mm +/-1mm
+- Wall thickness: 2mm +/-0.2mm
+  Part B (Stacking rim) dimensions:
+- Base diameter: 50mm +/-0.5mm
+- Should nest inside Part A
+  Test procedure:
+
 1. Measure Part A opening: 50.1mm [YES]
 2. Measure Part B base: 49.8mm [YES]
 3. Attempt to nest Part B into Part A
@@ -3273,23 +3367,23 @@ Example: Phone Stand Tilt Cycles
 4. Repeat cycle 10 times
 5. Measure dimensions again
 6. Compare to baseline: Should be <0.1mm change
-If no damage after 10 cycles -> Durable [YES]
+   If no damage after 10 cycles -> Durable [YES]
 
 ## Tolerance Stack-Up (Multi-Part Designs)
 
 When multiple parts are assembled, tolerances add:
 
 Design:
-  Part A opening: 50mm +/-0.5mm
-  Part B base: 50mm +/-0.5mm
+Part A opening: 50mm +/-0.5mm
+Part B base: 50mm +/-0.5mm
 Worst-case fit:
-  Part A minimum: 49.5mm
-  Part B maximum: 50.5mm
-  Difference: 1.0mm (VERY TIGHT or won't fit!)
+Part A minimum: 49.5mm
+Part B maximum: 50.5mm
+Difference: 1.0mm (VERY TIGHT or won't fit!)
 Solution: Increase tolerance on Part B to +/-0.3mm
-  Part B minimum: 49.7mm
-  Part B maximum: 50.3mm
-  Now fits inside Part A: 49.5-50.5mm [YES]
+Part B minimum: 49.7mm
+Part B maximum: 50.3mm
+Now fits inside Part A: 49.5-50.5mm [YES]
 
 ### Tolerance Stack-Up Calculation
 
@@ -3306,7 +3400,7 @@ Total = (0.5 + 0.5 + 0.5)
 ## Common Dimensional Problems & Fixes
 
 | Problem                             | Typical Cause             | How to Fix                                       | Prevent Next Time                   |
-|-------------------------------------|---------------------------|--------------------------------------------------|-------------------------------------|
+| ----------------------------------- | ------------------------- | ------------------------------------------------ | ----------------------------------- |
 | Part too small (all dimensions off) | Scale wrong in slicer     | Scale STL up in CAD or slicer                    | Verify scale before slicing         |
 | Holes too small                     | Compensation shrinkage    | Increase hole diameter +0.5mm                    | Add shrinkage factor to design      |
 | Walls too thin                      | Layer squishing           | Check first layer height; may need recalibration | Measure first layer thickness       |
@@ -3323,18 +3417,21 @@ Print this checklist before starting a new project:
 # Quality Assurance Checklist: [Project Name]
 
 ## Design Specs
-- [ ] Part A width:  mm +/-  mm
-- [ ] Part B height:  mm +/-  mm
-- [ ] Hole diameter:  mm +/-  mm
-- [ ] Assembly fit tolerance:  mm
+
+- [ ] Part A width: mm +/- mm
+- [ ] Part B height: mm +/- mm
+- [ ] Hole diameter: mm +/- mm
+- [ ] Assembly fit tolerance: mm
 
 ## Pre-Print
+
 - [ ] STL exported correctly
 - [ ] Scale verified
 - [ ] Supports configured
 - [ ] Slice file reviewed
 
 ## Post-Print (Dimensional)
+
 - [ ] Part A width measured (3 points): mm, mm, mm
   - [ ] Within tolerance? YES/NO
 - [ ] Part B height measured (3 points): mm, mm, mm
@@ -3344,17 +3441,20 @@ Print this checklist before starting a new project:
   - [ ] Within expected weight? YES/NO
 
 ## Post-Print (Functional)
+
 - [ ] Load test (if applicable): PASS/FAIL
 - [ ] Assembly test: PASS/FAIL
 - [ ] Surface quality acceptable: YES/NO
 - [ ] No cracks or voids: YES/NO
 
 ## Result
+
 - [ ] ACCEPT (all tests pass)
 - [ ] REWORK (minor issue, can fix)
 - [ ] REJECT (major issue, reprint)
 
 ## Notes
+
 [Space for observations]
 ```
 
@@ -3413,18 +3513,21 @@ When documenting QA results:
 ## Part: Bracelet Holder Peg (Test Date: Jan 15, 2024)
 
 ### Dimensional Verification
+
 | Dimension    | Specification  | Measurement 1 | Measurement 2 | Measurement 3 | Average | Result     |
-|--------------|----------------|---------------|---------------|---------------|---------|------------|
+| ------------ | -------------- | ------------- | ------------- | ------------- | ------- | ---------- |
 | Peg Diameter | 6.0 +/- 0.5mm  | 5.9mm         | 6.0mm         | 5.8mm         | 5.9mm   | [YES] PASS |
 | Peg Length   | 25.0 +/- 0.5mm | 25.1mm        | 25.0mm        | 25.0mm        | 25.03mm | [YES] PASS |
 
 ### Functional Test
+
 - [x] Slides into bracelet loop easily (no forcing)
 - [x] No cracks visible or felt
 - [x] Survives 1-hour load test with 20 bracelets
 - [x] No permanent deformation after load removed
 
 ### Overall Result
+
 [YES] PASS - All dimensions within tolerance; functionally sound
 ```
 
@@ -3441,7 +3544,7 @@ Key Principles:
 When to Use Each Test:
 
 | Situation                 | Recommended Test            |
-|---------------------------|-----------------------------|
+| ------------------------- | --------------------------- |
 | Prototype/mockup          | Linear dimensions only      |
 | Assembly with other parts | Tolerance stack-up analysis |
 | Load-bearing part         | Functional load test        |
@@ -3451,7 +3554,6 @@ When to Use Each Test:
 Accessibility Reminder:
 
 All QA testing in this appendix is measurement-based and non-visual, making it equally accessible to all users. The goal is objective, quantifiable verification-not subjective assessment.
-
 
 ---
 
@@ -3666,20 +3768,20 @@ for wall in 1.0 1.5 2.0 2.5 3.0; do
     # Generate model
     SCAD_FILE="part_${size}_wall${wall}.scad"
     STL_FILE="$OUTPUT_DIR/${SCAD_FILE%.scad}.stl"
-    
+
     # Export to STL
     openscad -D "part_size=$size" -D "wall=$wall" \
       -o "$STL_FILE" src/main.scad
-    
+
     # Get file size
     FILE_SIZE=$(stat -c%s "$STL_FILE" 2>/dev/null | awk '{print $1/1024}')
-    
+
     # Estimate print time (rough: 1 hour per MB)
     EST_TIME=$((FILE_SIZE / 1024 * 60))
-    
+
     # Estimate weight (rough: 1g per MB for PLA)
     EST_WEIGHT=$((FILE_SIZE / 1024))
-    
+
     # Log results
     echo "part_${size}_wall${wall},$wall,$size,$FILE_SIZE,$EST_TIME,$EST_WEIGHT" >> "$REPORT_FILE"
   done
@@ -3811,7 +3913,7 @@ echo "Profiling render performance..."
 for fn_value in 8 16 32 64 128; do
   echo ""
   echo "Testing with \$fn=$fn_value..."
-  
+
   /usr/bin/time -v openscad -D "fn=$fn_value" \
     -o test_$fn_value.stl src/main.scad 2>&1 | \
     grep "Maximum resident set size"
@@ -4068,7 +4170,7 @@ cable_tray(40, 10, 5, 3, 30);  // 3-level branching cable tray
 ## Summary: When to Use Each Advanced Technique
 
 | Technique                | Use Case                      | Complexity | Performance      |
-|--------------------------|-------------------------------|------------|------------------|
+| ------------------------ | ----------------------------- | ---------- | ---------------- |
 | Gears                    | Mechanical power transmission | High       | Medium           |
 | Batch Processing         | Design space exploration      | Medium     | Depends on scope |
 | Performance Optimization | Reducing render time          | Medium     | High payoff      |
@@ -4081,19 +4183,21 @@ cable_tray(40, 10, 5, 3, 30);  // 3-level branching cable tray
 - Gear Design Theory: [https://www.mekanizmalar.com/](https://www.mekanizmalar.com/)
 - 3D Print Orientation Optimization: [https://stratasys.com/](https://stratasys.com/)
 - Fractal Geometry: [https://en.wikipedia.org/wiki/Fractal](https://en.wikipedia.org/wiki/Fractal)
-- Recursive Algorithms: [https://www.khanacademy.org/computing/computer-science/algorithms](https://www.khanacademy.org/computing/computer-science/algorithms)
+- Recursive {{hi:Algorithms}}Algorithms: [https://www.khanacademy.org/computing/computer-science/algorithms](https://www.khanacademy.org/computing/computer-science/algorithms)
 
 For Educators and Students
 
 These advanced topics are intended for:
+
 - Experienced users tackling professional applications
 - Specialized problem domains (robotics, mechanical design, etc.)
 - Research and optimization work
 - Custom library and framework development
 
 For accessibility:
+
 - All recursive examples include base cases clearly marked
 - Each section provides simplified versions before advanced variants
-- Code comments explain both "what" and "why"
+- Code {{hi:Comments}}comments explain both "what" and "why"
 - Practical examples show real-world applications
 - Performance considerations documented to prevent frustration

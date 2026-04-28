@@ -1,6 +1,6 @@
 # Back Matter — Complete Reference
 
-Supplementary reference material for *Accessible 3D Printing with OpenSCAD and 3dMake*. These sections are designed for lookup rather than linear reading — consult them as needed throughout the curriculum.
+Supplementary reference material for *Accessible {{hi:3D printing}}3D Printing with OpenSCAD and 3dMake*. These sections are designed for lookup rather than linear reading — consult them as needed throughout the curriculum.
 
 ---
 
@@ -8,9 +8,9 @@ Supplementary reference material for *Accessible 3D Printing with OpenSCAD and 3
 
 | Section | Title | Purpose |
 |---|---|---|
-| [Technical Reference and Troubleshooting](#troubleshooting) | Systems architecture, CLI reference, and fault-by-fault troubleshooting compendium | Diagnose and resolve errors in OpenSCAD, 3dMake, CMD, PowerShell, Git Bash, slicers, and printers |
+| [Technical Reference and Troubleshooting](#troubleshooting) | Systems architecture, {{hi:CLI}}CLI reference, and fault-by-fault troubleshooting compendium | Diagnose and resolve errors in OpenSCAD, 3dMake, {{hi:CMD}}CMD, {{hi:PowerShell}}PowerShell, {{hi:Git Bash}}Git Bash, slicers, and printers |
 | [Student Glossary](#student-glossary) | Terms, definitions, and code examples across all curriculum systems | Look up any term encountered in lessons, with syntax examples for each shell |
-| [Teacher Glossary](#teacher-glossary) | Pedagogical frameworks, instructional strategies, and assessment rubrics | Instructors: curriculum design, scaffolding, computational thinking, and cross-curricular connections |
+| [Teacher Glossary](#teacher-glossary) | Pedagogical frameworks, instructional strategies, and assessment rubrics | Instructors: curriculum design, scaffolding, {{hi:Computational thinking}}computational thinking, and cross-curricular connections |
 | [Further Reading and References](#further-reading) | Scholarly works, official documentation, industry resources, and community links | Continue learning; cite sources; find community support |
 
 ---
@@ -422,7 +422,7 @@ Invalid multiline comment:
 */
 ```
 
-Single-line comments use `//`
+Single-line {{hi:Comments}}comments use `//`
 Multiline comments use `/* */`
 
 ---
@@ -684,7 +684,7 @@ Symptom:
 
 Fix:
 1. Install "OpenSCAD" extension
-2. Restart VS Code
+2. Restart {{hi:VS Code}}VS Code
 3. Check file extension is `.scad`
 
 ---
@@ -721,7 +721,7 @@ Settings:
 ### Indent Announcement
 
 NVDA:
-- Document Formatting > Report line indentation
+- Document Formatting > Report line {{hi:Indentation}}indentation
 
 JAWS:
 - Settings Center > Reading > Report Indentation
@@ -780,7 +780,7 @@ Fix:
 
 ### Warping
 
-- Rare with PLA
+- Rare with {{hi:PLA}}PLA
 - Add brim if occurs
 
 ---
@@ -789,7 +789,7 @@ Fix:
 
 ### Stringing
 
-Common with PETG.
+Common with {{hi:PETG}}PETG.
 
 Fix:
 - Increase retraction distance
@@ -1194,7 +1194,7 @@ Official site:
 
 ## Constructive Solid Geometry (CSG)
 
-Modeling technique combining primitives using Boolean operations.
+Modeling technique combining primitives using {{hi:Boolean operations}}Boolean operations.
 
 ---
 
@@ -1376,7 +1376,7 @@ Warning: Computationally expensive.
 
 ### Linear Extrude
 
-Extends 2D shapes into 3D.
+Extends {{hi:2D shapes}}2D shapes into 3D.
 
 ```openscad
 linear_extrude(height=10)
@@ -1409,7 +1409,7 @@ cube([width,10,5]);
 
 ## Parametric Design
 
-Geometry controlled by variables.
+Geometry controlled by {{hi:Variables}}variables.
 
 Advantages:
 - Rapid iteration
@@ -1530,7 +1530,7 @@ Highlights geometry in transparent red during preview.
 #cube([10,10,10]);
 ```
 
-Used for debugging geometry positions.
+Used for {{hi:Debugging}}debugging geometry positions.
 
 ---
 
@@ -1960,7 +1960,7 @@ User-friendly slicer by Ultimaker.
 
 ### Bambu Studio
 
-Slicer for Bambu Lab printers.
+Slicer for {{hi:Bambu}}Bambu Lab printers.
 
 ---
 
@@ -1996,7 +1996,7 @@ Process of finding and fixing errors in code.
 Techniques:
 - Use `echo()` statements
 - Use `#` modifier to highlight geometry
-- Test modules independently
+- Test {{hi:Modules}}modules independently
 - Check console for warnings
 
 ---
@@ -2128,7 +2128,7 @@ Example:
 Precision measurement tool for verifying printed dimensions.
 
 Types:
-- Digital calipers (recommended)
+- Digital {{hi:Calipers}}calipers (recommended)
 - Vernier calipers
 
 Accuracy: ±0.01mm typical
@@ -2173,7 +2173,7 @@ Example:
 
 ---
 
-*Pedagogical Concepts for 3D Design & Computational Thinking Instruction*
+*Pedagogical Concepts for {{hi:3D design}}3D Design & Computational Thinking Instruction*
 
 This glossary provides instructors with:
 - Pedagogical frameworks
@@ -2191,13 +2191,13 @@ This glossary provides instructors with:
 Problem-solving approach using concepts fundamental to computer science.
 
 Core pillars:
-- **Decomposition** — Breaking problems into smaller parts
+- **{{hi:Decomposition}}Decomposition** — Breaking problems into smaller parts
 - **Pattern Recognition** — Identifying similarities
-- **Abstraction** — Focusing on relevant details
-- **Algorithms** — Creating step-by-step solutions
+- **{{hi:Abstraction}}Abstraction** — Focusing on relevant details
+- **{{hi:Algorithms}}Algorithms** — Creating step-by-step solutions
 
 Application in OpenSCAD:
-Students decompose complex models into primitive shapes, recognize geometric patterns, abstract parameters, and write algorithmic module definitions.
+Students decompose complex models into primitive shapes, recognize geometric patterns, abstract {{hi:Parameters}}parameters, and write algorithmic module definitions.
 
 ---
 
@@ -2429,7 +2429,7 @@ Critical for understanding OpenSCAD block structure.
 Guide blind/low-vision students through:
 
 1. CLI navigation (`pwd`, `ls`, `cd`)
-2. Text editor setup (VS Code with extensions)
+2. Text {{hi:Editor Setup}}editor setup (VS Code with extensions)
 3. `3dm build` command
 4. `3dm info` for validation
 5. Caliper measurement techniques (tactile)
@@ -2471,13 +2471,13 @@ Design philosophy where dimensions are variables, not fixed values.
 
 ## Geometric Primitives
 
-Basic 3D shapes that combine to form complex objects.
+Basic {{hi:3D shapes}}3D shapes that combine to form complex objects.
 
 ### Teaching Sequence
 
 1. Cube
 2. Sphere
-3. Cylinder (including cones)
+3. Cylinder (including {{hi:Cones}}cones)
 4. Boolean operations
 5. Transformations
 6. Compound models
@@ -2515,7 +2515,7 @@ Examples:
 
 Requires understanding of:
 - Clearance tolerances
-- Material properties
+- {{hi:Material Properties}}Material properties
 - Force analysis
 
 ---
@@ -2525,8 +2525,8 @@ Requires understanding of:
 ## Design Mode vs Print Mode
 
 OpenSCAD workflows:
-- **Design Mode** (F5) — Fast preview
-- **Print Mode** (F6) — Full render for STL export
+- **{{hi:Design mode}}Design Mode** (F5) — Fast preview
+- **{{hi:Print mode}}Print Mode** (F6) — Full render for STL export
 
 Teach distinction early to avoid confusion.
 
@@ -2641,7 +2641,7 @@ Start here:
 
 Intermediate:
 - Stronger
-- More forgiving than ABS
+- More forgiving than {{hi:ABS}}ABS
 
 ### TPU
 
@@ -2698,7 +2698,7 @@ spacing = width * 1.5;  // Arithmetic
 
 | Criterion | Novice | Developing | Proficient | Advanced |
 |-----------|--------|------------|------------|----------|
-| Parameterization | Hard-coded values | Some parameters | Most values parameterized | Full parametric architecture |
+| Parameterization | Hard-coded values | Some parameters | Most values parameterized | Full {{hi:Parametric Architecture}}parametric architecture |
 | Documentation | No comments | Minimal comments | Clear parameter docs | Comprehensive documentation |
 | Modularity | No modules | Basic modules | Reusable modules | Library-quality modules |
 | Functionality | Doesn't build | Builds with errors | Meets requirements | Exceeds requirements |
@@ -2825,7 +2825,7 @@ IDEA Maker (Raise3D). (n.d.). *ideaMaker.* [https://www.raise3d.com/ideamaker](h
 
 MatterHackers. (n.d.). *3D printer filament comparison.* [https://www.matterhackers.com/3d-printer-filament-compare](https://www.matterhackers.com/3d-printer-filament-compare)  
 
-Prusa Research. (n.d.). *PrusaSlicer 4.2.4.* [https://www.prusa3d.com/page/prusaslicer424/](https://www.prusa3d.com/page/prusaslicer424/)  
+Prusa Research. (n.d.). *{{hi:PrusaSlicer}}PrusaSlicer 4.2.4.* [https://www.prusa3d.com/page/prusaslicer424/](https://www.prusa3d.com/page/prusaslicer424/)  
 
 Prusa Research. (n.d.). *PrusaSlicer 4.1.0.* [https://www.prusa3d.com/page/prusaslicer_410/](https://www.prusa3d.com/page/prusaslicer_410/)  
 
@@ -2835,7 +2835,7 @@ Stratasys. (n.d.). *Stratasys.* [https://stratasys.com/](https://stratasys.com/)
 
 UL Research Institutes. (n.d.). *3D printing emissions study.* [https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study](https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study)  
 
-Ultimaker. (n.d.). *Ultimaker Cura.* [https://ultimaker.com/software/ultimaker-cura](https://ultimaker.com/software/ultimaker-cura)  
+Ultimaker. (n.d.). *Ultimaker {{hi:Cura}}Cura.* [https://ultimaker.com/software/ultimaker-cura](https://ultimaker.com/software/ultimaker-cura)  
 
 ZenML. (n.d.). *LLM-powered 3D model generation for 3D printing.* [https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing](https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing)  
 

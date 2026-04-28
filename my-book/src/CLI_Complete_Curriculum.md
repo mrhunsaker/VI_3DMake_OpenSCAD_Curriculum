@@ -2,7 +2,7 @@
 
 ## Command-Line Fundamentals — Choose Your Path
 
-Welcome! Before diving into 3D design with OpenSCAD, you'll master command-line fundamentals. This page will help you understand what command-line interfaces are and choose the best path for you.
+Welcome! Before diving into {{hi:3D design}}3D design with OpenSCAD, you'll master command-line fundamentals. This page will help you understand what command-line interfaces are and choose the best path for you.
 
 ## What is a Command-Line Interface (CLI)?
 
@@ -10,11 +10,11 @@ A command-line interface is a text-based way to control your computer by typing 
 
 ### Why learn it?
 
-- Speed: Text commands are often faster than clicking through menus
+- Speed: {{hi:Text commands}}Text commands are often faster than clicking through menus
 - Precision: Exact control over what your computer does
 - Accessibility: Perfect for screen readers - text is naturally readable
 - Automation: Repeat tasks automatically
-- 3D Printing: Essential for batch processing models and integrating tools
+- {{hi:3D printing}}3D Printing: Essential for batch processing models and integrating tools
 
 ### Real-world example
 
@@ -77,7 +77,7 @@ Pros:
 
 Cons:
 
-- Steeper learning curve than CMD
+- Steeper learning curve than {{hi:CMD}}CMD
 - More complex syntax
 - More "wordy" commands
 - Overkill for simple tasks
@@ -120,7 +120,7 @@ cp myfile.txt backup/
 
 Here's how common tasks compare across the three options:
 
-| Task                  | Command Prompt            | PowerShell                      | Git Bash                 |
+| Task                  | Command Prompt            | {{hi:PowerShell}}PowerShell                      | {{hi:Git Bash}}Git Bash                 |
 |-----------------------|---------------------------|---------------------------------|--------------------------|
 | Show current location | `cd`                      | `pwd`                           | `pwd`                    |
 | List files            | `dir /B`                  | `ls -n`                         | `ls`                     |
@@ -344,7 +344,7 @@ This combined curriculum covers three command-line environments taught in parall
 | [Lesson 2: File and Folder Manipulation](#ps-lesson-2) | Create, copy, move, delete files and folders | 2.5–3 hrs |
 | [Lesson 3: Input, Output, and Piping](#ps-lesson-3) | Chain commands together, redirect output | 2.5–3 hrs |
 | [Lesson 4: Environment Variables and Aliases](#ps-lesson-4) | Automate settings, create shortcuts | 2–2.5 hrs |
-| [Lesson 5: Filling in the Gaps](#ps-lesson-5) | Profiles, history, debugging | 2–2.5 hrs |
+| [Lesson 5: Filling in the Gaps](#ps-lesson-5) | Profiles, history, {{hi:Debugging}}debugging | 2–2.5 hrs |
 | [Lesson 6: Advanced Techniques](#ps-lesson-6) | Scripts, functions, loops, professional workflows | 4–4.5 hrs |
 | [Unit Exam](#ps-unit-exam) | Comprehensive assessment — Lessons 0 through 6 | 60–90 min |
 
@@ -391,7 +391,7 @@ This combined curriculum covers three command-line environments taught in parall
 | Lesson 1: Navigation | [PS](#ps-lesson-1) | [CMD](#cmd-lesson-1) | [Git Bash](#gb-lesson-1) |
 | Lesson 2: File & Folder Manipulation | [PS](#ps-lesson-2) | [CMD](#cmd-lesson-2) | [Git Bash](#gb-lesson-2) |
 | Lesson 3: Input, Output & Piping | [PS](#ps-lesson-3) | [CMD](#cmd-lesson-3) | [Git Bash](#gb-lesson-3) |
-| Lesson 4: Environment Variables | [PS](#ps-lesson-4) | [CMD](#cmd-lesson-4) | [Git Bash](#gb-lesson-4) |
+| Lesson 4: Environment {{hi:Variables}}Variables | [PS](#ps-lesson-4) | [CMD](#cmd-lesson-4) | [Git Bash](#gb-lesson-4) |
 | Lesson 5: Filling in the Gaps | [PS](#ps-lesson-5) | [CMD](#cmd-lesson-5) | [Git Bash](#gb-lesson-5) |
 | Lesson 6: Advanced Techniques | [PS](#ps-lesson-6) | [CMD](#cmd-lesson-6) | [Git Bash](#gb-lesson-6) |
 | Unit Exam | [PS](#ps-unit-exam) | [CMD](#cmd-unit-exam) | [Git Bash](#gb-unit-exam) |
@@ -1202,7 +1202,7 @@ By the end of this lesson, you will be able to:
 Materials
 
 - PowerShell
-- Text editor (Notepad or VS Code)
+- Text editor (Notepad or {{hi:VS Code}}VS Code)
 
 ## Commands Covered in This Lesson
 
@@ -1509,7 +1509,7 @@ Checkpoints
 ---
 
 Duration: 1 class period
-Prerequisite: Lesson 2 (File and Folder Manipulation)
+Prerequisite: Lesson 2 ({{hi:File and Folder Manipulation}}File and Folder Manipulation)
 
 ## Learning Objectives
 
@@ -1589,7 +1589,7 @@ Piping and redirection are essential for working with 3DMake's output accessibly
 
 ```powershell
 # Build and save the full log to a file so you can read it in Notepad
-3dm build > build_log.txt
+{{hi:3dm build}}3dm build > build_log.txt
 notepad.exe build_log.txt
 
 # Build and slice, keeping only lines with errors or warnings
@@ -1607,7 +1607,7 @@ notepad.exe profiles.txt
 notepad.exe overlays.txt
 
 # Get an AI description of your model and save it
-3dm info > model_description.txt
+{{hi:3dm info}}3dm info > model_description.txt
 notepad.exe model_description.txt
 ```
 
@@ -4605,7 +4605,7 @@ REM HKCU\Software\Microsoft\Command Processor\AutoRun = %USERPROFILE%\cmd_startu
 7. Build a "project profile" batch script that sets environment variables for CAD, slicing, and print directories; switch between profiles for different projects.
 8. Write a batch script that audits your current environment variables and creates a summary report of what's set and why.
 9. Design a custom alias system using doskey for common 3D printing commands; document the aliases and their purposes.
-10. Create a profile migration guide: document how to export and import your CMD aliases and variables across machines for consistent workflows.
+10. Create a profile migration guide: document how to export and {{hi:Import}}import your CMD aliases and variables across machines for consistent workflows.
 11. Implement a safe PATH modification script: create a utility that allows you to add/remove directories from PATH for the current session only; show how to make it permanent with `setx`.
 12. Build a comprehensive autorun framework: create separate `.bat` files for aliases, environment variables, and helper macros; have your main autorun load all of them.
 13. Develop an environment validation tool: write a batch script that checks whether all required programs (OpenSCAD, slicers, etc.) are accessible via PATH; report findings and suggest fixes.
@@ -4763,7 +4763,7 @@ This lesson extends CMD skills to professional-level workflows. You'll learn to 
 By the end of this lesson, you will be able to:
 
 - Create and run batch files (.bat files)
-- Write subroutines that accept parameters
+- Write subroutines that accept {{hi:Parameters}}parameters
 - Use loops to repeat tasks automatically
 - Automate batch processing of 3D models
 - Debug batch scripts when something goes wrong
@@ -5399,7 +5399,7 @@ echo All %count% files processed!
 - **Always test scripts on small sets of files first** before running them on important data
 - **Save your work regularly** — use version naming if possible
 - **Test error handling** — make sure errors don't crash silently
-- **Document your scripts** — use `::` comments so you remember what each part does
+- **Document your scripts** — use `::` {{hi:Comments}}comments so you remember what each part does
 - **Backup before batch operations** — if something goes wrong, you have the original
 
 ---
@@ -5408,7 +5408,7 @@ echo All %count% files processed!
 
 - **Microsoft CMD Batch Scripting Guide:** [https://example.com](https://example.com)
 - **FOR Loop Documentation:** [https://example.com](https://example.com)
-- **IF Statement Reference:** [https://example.com](https://example.com)
+- **{{hi:If statement}}IF Statement Reference:** [https://example.com](https://example.com)
 - **SET Variable Reference:** [https://example.com](https://example.com)
 
 ---
@@ -6155,7 +6155,7 @@ Materials
 Git Bash is a free terminal application for Windows that provides a Bash (Unix shell) environment. It is installed as part of Git for Windows. When you open Git Bash, you can use Unix commands like `ls`, `cat`, `grep`, and `echo` - the same commands used on Linux and macOS - right on your Windows computer.
 
 Git Bash is useful for:
-- Running CLI programs (like OpenSCAD, slicers, or 3DMake)
+- Running {{hi:CLI}}CLI programs (like OpenSCAD, slicers, or 3DMake)
 - Navigating the filesystem with keyboard-only commands
 - Automating repetitive tasks with scripts
 - Accessibility: works cleanly with NVDA, JAWS, and other screen readers

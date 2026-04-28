@@ -59,7 +59,7 @@ pwd
 ls -n
 ```
 
-**Q7.** Add comments explaining what each part of this file-creation workflow does.
+**Q7.** Add {{hi:Comments}}comments explaining what each part of this file-creation workflow does.
 ```powershell
 echo "Test content" > test.txt
 cat test.txt
@@ -97,7 +97,7 @@ ls -n | findstr "scad"
 
 ### Fix the Code (Questions 1–5)
 
-**Q1.** This script navigates to a nested folder but uses wrong path notation for Windows PowerShell.
+**Q1.** This script navigates to a nested folder but uses wrong path notation for Windows {{hi:PowerShell}}PowerShell.
 ```powershell
 cd ~/Documents/Projects
 cd ../
@@ -596,7 +596,7 @@ for $file in $files {
 }
 ```
 
-**Q2.** The function definition is missing the `param` block syntax, making parameters inaccessible.
+**Q2.** The function definition is missing the `param` block syntax, making {{hi:Parameters}}parameters inaccessible.
 ```powershell
 function Process-Project {
     $projectPath = $args[0]
@@ -741,7 +741,7 @@ function New-PrintProject {
 
 ### Fix the Code (Questions 1–5)
 
-**Q1.** These two commands should show the current location and list files, but both commands are wrong for CMD.
+**Q1.** These two commands should show the current location and list files, but both commands are wrong for {{hi:CMD}}CMD.
 ```cmd
 pwd
 ls
@@ -1329,7 +1329,7 @@ echo Starting build...
 ```
 *(Hint: `:build_project` needs to be invoked correctly.)*
 
-**Q4.** The `setlocal` / `endlocal` block is in the wrong order, so local variables leak out.
+**Q4.** The `setlocal` / `endlocal` block is in the wrong order, so local {{hi:Variables}}variables leak out.
 ```cmd
 @echo off
 set TEMP_VAR=hello
@@ -1449,7 +1449,7 @@ dir /B %ARCHIVE%
 
 ### Fix the Code (Questions 1–5)
 
-**Q1.** The user tries to print the current directory and list files, but one command is wrong for Git Bash.
+**Q1.** The user tries to print the current directory and list files, but one command is wrong for {{hi:Git Bash}}Git Bash.
 ```bash
 pwd
 dir
@@ -2486,7 +2486,7 @@ difference() {
 }
 ```
 
-**Q9.** Add comments to this `use` vs `include` example showing correct library import.
+**Q9.** Add comments to this `use` vs `include` example showing correct library {{hi:Import}}import.
 ```openscad
 use <../lib/hardware.scad>
 
@@ -2609,7 +2609,7 @@ Description:  A small rectangular box measuring 30mm wide by 20mm deep by 10mm t
 
 ### Fix the Code (Questions 1–5)
 
-**Q1.** The cost-estimation formula uses the wrong density for PLA.
+**Q1.** The cost-estimation formula uses the wrong density for {{hi:PLA}}PLA.
 ```openscad
 // Cost estimate for PLA
 volume_mm3 = 8500;
@@ -2622,7 +2622,7 @@ cost = mass * (spool_cost / spool_g);
 echo("Est. cost: $", cost);
 ```
 
-**Q2.** The safety checklist incorrectly marks ABS as safe to print in an open classroom without a fume enclosure.
+**Q2.** The safety checklist incorrectly marks {{hi:ABS}}ABS as safe to print in an open classroom without a fume enclosure.
 ```
 Pre-print safety check:
 [x] Filament loaded: ABS
@@ -3008,7 +3008,7 @@ module socket(nominal=10, plate_t=3) {
 }
 ```
 
-**Q2.** The snap-fit beam parameters are specified for PLA but the comment says PETG. Fix the comment to match the geometry (do not change the numbers — assume PLA values are correct).
+**Q2.** The snap-fit beam parameters are specified for PLA but the comment says {{hi:PETG}}PETG. Fix the comment to match the geometry (do not change the numbers — assume PLA values are correct).
 ```openscad
 // PETG snap arm — thicker beam for stiffer material
 module snap_arm_pla(beam_l=18, beam_t=1.8, beam_w=8) {

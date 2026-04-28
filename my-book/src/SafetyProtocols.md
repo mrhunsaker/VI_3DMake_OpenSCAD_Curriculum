@@ -1,15 +1,12 @@
 # Safety Protocols and the Physical Fabrication Interface
 
-**Estimated Time:** 90–120 minutes  
-**Course:** 3D Printing for the Blind
-
 ---
 
 ## Before You Start
 
-Every lesson so far has been entirely digital: code on a screen, commands in a terminal, virtual geometry. Now we're moving into the physical world. 3D printers are machines that get very hot, draw substantial electrical current, and produce airborne particles and vapors. This lesson exists because these machines are genuinely safe when you know what you're doing, and genuinely dangerous when you don't.
+3D printers are machines that get very hot, draw substantial electrical current, and produce airborne particles and vapors. This lesson exists because these machines are genuinely safe when you know what you're doing, and genuinely dangerous when you don't.
 
-The good news is that 3D printing safety is not complicated. The hazards are well-understood, the mitigations are straightforward, and the incidents that do happen are almost always caused by ignoring simple rules. The goal of this lesson is to make sure you know the rules and understand _why_ they exist — not just as things to memorize for a quiz, but as habits you can apply in any shop or makerspace you ever work in.
+The good news is that {{hi:3D printing}}3D printing safety is not complicated. The hazards are well-understood, the mitigations are straightforward, and the incidents that do happen are almost always caused by ignoring simple rules. The goal of this lesson is to make sure you know the rules and understand _why_ they exist — not just as things to memorize for a quiz, but as habits you can apply in any shop or makerspace you ever work in.
 
 ---
 
@@ -39,7 +36,7 @@ The five levels, from most to least effective:
 
 **1. Elimination** — Remove the hazard entirely. If a filament requires a sealed enclosure with active filtration and you're in an open classroom, the safest choice is simply not to use that filament. If a print requires supports made from difficult material, redesign the print to not need supports. Elimination always wins.
 
-**2. Substitution** — Replace the hazard with a less dangerous one. Use PLA instead of ABS. Use a PEI spring steel bed instead of a glass bed that can shatter. Substitution keeps the functionality while reducing the risk.
+**2. Substitution** — Replace the hazard with a less dangerous one. Use {{hi:PLA}}PLA instead of {{hi:ABS}}ABS. Use a PEI spring steel bed instead of a glass bed that can shatter. Substitution keeps the functionality while reducing the risk.
 
 **3. Engineering Controls** — Build protection into the environment. A fume enclosure with a HEPA + activated carbon filter. Thermal runaway protection in the printer firmware. A smoke detector mounted above the printer. These controls work automatically without relying on human behavior.
 
@@ -90,10 +87,10 @@ All FDM printing produces some airborne emissions. These fall into two categorie
 | Material         | Fume Risk  | Required Mitigation                                                                                 |
 | ---------------- | ---------- | --------------------------------------------------------------------------------------------------- |
 | PLA              | Low        | Good room ventilation (open window or HVAC on)                                                      |
-| PETG             | Low–Medium | Active ventilation; avoid enclosed spaces without air exchange                                      |
+| {{hi:PETG}}PETG             | Low–Medium | Active ventilation; avoid enclosed spaces without air exchange                                      |
 | ABS              | High       | Dedicated fume enclosure with HEPA + activated carbon filter required; NOT safe for open classrooms |
 | ASA              | High       | Same as ABS                                                                                         |
-| TPU              | Medium     | Active ventilation; keep nozzle temperature at the minimum needed                                   |
+| {{hi:TPU}}TPU              | Medium     | Active ventilation; keep nozzle temperature at the minimum needed                                   |
 | Resin (SLA/MSLA) | Very High  | Full enclosure; nitrile gloves; UV-blocking goggles; no open-workspace use                          |
 
 ### The Safe Choice: PLA
@@ -195,7 +192,7 @@ fi
 echo "Approved. Send to slicer."
 ```
 
-**Windows (PowerShell):**
+**Windows ({{hi:PowerShell}}PowerShell):**
 
 ```powershell
 3dm build
@@ -365,10 +362,10 @@ printable_box(50, 40, 30);
 2. Conduct a ventilation assessment of your classroom or makerspace. Document air exchange methods, window locations, and any existing filtration.
 3. Write a Standard Operating Procedure (SOP) for ABS printing that includes all required safety equipment and ventilation infrastructure.
 4. Design and describe a "first layer test tile" — a 100 × 100 × 0.4 mm flat tile — and explain how you'd use it to verify bed leveling.
-5. Build a parametric filament storage clip in OpenSCAD: a clip that holds the free end of a filament spool. Parameters: filament diameter, clip width.
+5. Build a parametric filament storage clip in OpenSCAD: a clip that holds the free end of a filament spool. {{hi:Parameters}}Parameters: filament diameter, clip width.
 6. Research OSHA's published guidance on VOC exposure in 3D printing environments. Summarize the key recommendations.
 7. Compare the Safety Data Sheets (SDS) for PLA and ABS filament from two manufacturers. Document differences in recommended exposure limits and PPE.
-8. Design a simple printer enclosure in OpenSCAD: four walls, a front door opening, and a top panel with a circular vent hole. Document the parametric variables.
+8. Design a simple printer enclosure in OpenSCAD: four walls, a front door opening, and a top panel with a circular vent hole. Document the parametric {{hi:Variables}}variables.
 9. Create a safety poster covering the five most important 3D printing safety rules, organized using the Hierarchy of Controls framework.
 10. Write a one-page risk assessment for a new FDM printer being added to a classroom.
 11. Design and describe a parametric filament moisture indicator holder: a small box that holds a humidity indicator card inside a resealable filament storage bag.
@@ -384,7 +381,7 @@ printable_box(50, 40, 30);
 - OSHA Hierarchy of Controls — [https://www.osha.gov/hierarchy-of-controls](https://www.osha.gov/hierarchy-of-controls) / NIOSH — [https://www.cdc.gov/niosh/topics/hierarchy/default.html](https://www.cdc.gov/niosh/topics/hierarchy/default.html)
 - UL Research Institutes — 3D Printing Emissions Study — [https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study](https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study)
 - NIOSH Science Blog — Health and Safety Considerations for 3D Printing — [https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/](https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/)
-- PrusaSlicer Documentation — [https://docs.prusa3d.com/en/](https://docs.prusa3d.com/en/)
+- {{hi:PrusaSlicer}}PrusaSlicer Documentation — [https://docs.prusa3d.com/en/](https://docs.prusa3d.com/en/)
 - All3DP Filament Types — [https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/](https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/)
 - MatterHackers Filament Compare — [https://www.matterhackers.com/3d-printer-filament-compare](https://www.matterhackers.com/3d-printer-filament-compare)
 - Prusa Research Materials Guide — [https://help.prusa3d.com/materials](https://help.prusa3d.com/materials)

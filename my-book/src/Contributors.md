@@ -20,7 +20,7 @@ His specialization in teaching blind and visually impaired students, particularl
 
 ### Creator of Accessible Educational Resources
 
-Motivated by observing persistent gaps in affordable, practical, and culturally responsive accessible educational materials, Dr. Hunsaker created TVI Resources, a collection of free, openly licensed instructional materials designed to meet the real needs of educators and students. This commitment to accessible education informed his development of this curriculum: a comprehensive, text-based approach to 3D design and digital fabrication specifically engineered for blind and visually impaired learners, emphasizing independence, technical mastery, and real-world application.
+Motivated by observing persistent gaps in affordable, practical, and culturally responsive accessible educational materials, Dr. Hunsaker created TVI Resources, a collection of free, openly licensed instructional materials designed to meet the real needs of educators and students. This commitment to accessible education informed his development of this curriculum: a comprehensive, text-based approach to {{hi:3D design}}3D design and digital fabrication specifically engineered for blind and visually impaired learners, emphasizing independence, technical mastery, and real-world application.
 
 ## Acknowledgements
 
@@ -32,7 +32,7 @@ Special thanks to Troy Deck, the creator and maintainer of [3DMake](https://gith
 
 ### Texas School for the Blind and Visually Impaired (TSBVI)
 
-This curriculum was directly inspired by the innovative work at TSBVI, a pioneer in accessible education for blind and visually impaired students. The foundational idea of using text-driven tools and command-line workflows for technical education originated from  collaboration with TSBVI educators. Their commitment to demonstrating that blind and visually impaired students can excel in technical fields provided the vision for this project.
+This curriculum was directly inspired by the innovative work at TSBVI, a pioneer in accessible education for blind and visually impaired students. The foundational idea of using text-driven tools and command-line workflows for technical education originated from collaboration with TSBVI educators. Their commitment to demonstrating that blind and visually impaired students can excel in technical fields provided the vision for this project.
 
 ### OpenSCAD Community
 

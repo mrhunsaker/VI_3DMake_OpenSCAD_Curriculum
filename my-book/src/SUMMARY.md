@@ -2,8 +2,7 @@
 
 - [Accessible 3D Printing with OpenSCAD and 3DMake](README.md)
   - [Syllabus](Syllabus.md)
-  - [Setup & Accessibility Fundamentals](Setup_Accessibility_Complete.md)
-  - [3D Printing Safety Protocols and the Physical Fabrication Interface](3dMake_Foundation/Lessons_3dMake_5/Lessons_3dMake_5.md)
+  - [3D Printing Safety Protocols and the Physical Fabrication Interface](SafetyProtocols.md)
 - [Foundation of Command Line Tools](Command_Line_Interface_Selection/Command_Line_Interface_Selection.md)
   - [Command Line Interface Curriculum](CLI_Complete_Curriculum.md)
 - [3dMake Foundation & Design](3dMake_Foundation/Part_2.md)
@@ -13,4 +12,5 @@
   - [Command Line Appendices](CLI_Appendices_Complete.md)
   - [3D Make and OpenSCAD Appendices](3DMake_Appendices_Complete.md)
   - [Technical References and Troubleshooting](Backmatter_Complete.md)
+  - [Index](indexing.md)
   - [About the Author](Contributors.md)

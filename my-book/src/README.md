@@ -1,6 +1,6 @@
 # Introduction {#readme}
 
-This course teaches 3D design and digital fabrication using a fully accessible, command-line-driven toolchain centered on OpenSCAD (text-based CAD), 3DMake (non-visual build automation), and accessible editors (VS Code, Notepad++, command-line editors) with screen reader support.
+This course teaches {{hi:3D design}}3D design and digital fabrication using a fully accessible, command-line-driven toolchain centered on OpenSCAD (text-based CAD), 3DMake (non-visual build automation), and accessible editors ({{hi:VS Code}}VS Code, {{hi:Notepad++}}Notepad++, command-line editors) with screen reader support.
 
 The curriculum is explicitly designed for blind and visually impaired learners who use screen readers (NVDA, JAWS, Orca, VoiceOver). It eliminates GUI navigation and visual feedback in favor of keyboard-driven, text-based workflows that screen readers can fully access. Accessibility is not an add-on. It is the foundation of every tool, workflow, and lesson in this curriculum.
 
@@ -12,12 +12,12 @@ Before choosing a command-line pathway, students learn to optimize their screen 
 
 What's Included:
 
-- [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) - Comprehensive NVDA & JAWS reference with terminal tips for PowerShell, CMD, and Git Bash
+- [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) - Comprehensive NVDA & JAWS reference with terminal tips for {{hi:PowerShell}}PowerShell, {{hi:CMD}}CMD, and {{hi:Git Bash}}Git Bash
 - [Screen Reader Choice: Windows CLI](Setup_Accessibility_Complete.md#screen-reader-choice) - Help choosing between NVDA and JAWS
 - [Braille Display & Terminal Mode](Setup_Accessibility_Complete.md#braille-displays) - Advanced accessibility setup with refreshable braille displays
 - [Editor Selection and Setup](Setup_Accessibility_Complete.md#editor-setup) - Choosing and configuring an accessible text editor
 
-Why start here? Screen reader optimization is the foundation for all command-line work. Students learn keyboard shortcuts, navigation techniques, and terminal-specific accessibility before diving into any CLI pathway.
+Why start here? Screen reader optimization is the foundation for all command-line work. Students learn keyboard shortcuts, navigation techniques, and terminal-specific accessibility before diving into any {{hi:CLI}}CLI pathway.
 
 ### Command-Line Foundation (Choose Your Path)
 
@@ -44,9 +44,9 @@ Lessons Included:
 - Powershell Lesson Pre: Your First Terminal - Opening PowerShell, first commands, screen reader tricks
 - Powershell Lesson 0: Getting Started - Paths, shortcuts, tab completion
 - Powershell Lesson 1: Navigation - Moving around the file system confidently
-- Powershell Lesson 2: File and Folder Manipulation - Creating, editing, moving files
-- Powershell Lesson 3: Input, Output, and Piping - Redirecting output, piping commands
-- Powershell Lesson 4: Environment Variables and Aliases - Setting variables, creating shortcuts
+- Powershell Lesson 2: {{hi:File and Folder Manipulation}}File and Folder Manipulation - Creating, editing, moving files
+- Powershell Lesson 3: {{hi:Input, Output, and Piping}}Input, Output, and Piping - Redirecting output, piping commands
+- Powershell Lesson 4: Environment {{hi:Variables}}Variables and Aliases - Setting variables, creating shortcuts
 - Powershell Lesson 5: Filling in the Gaps - Control flow, profiles, useful tricks
 - Powershell Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows
 - PowerShell Unit Test & Practice - Comprehensive self-assessment
@@ -89,7 +89,7 @@ Lessons Included:
 - Bash Lesson 2: File and Folder Manipulation - Creating, editing, moving files
 - Bash Lesson 3: Input, Output & Piping - Redirecting output, piping commands
 - Bash Lesson 4: Environment Variables & Aliases - Setting variables, creating shortcuts
-- Bash Lesson 5: Filling in the Gaps - Shell profiles, history, debugging
+- Bash Lesson 5: Filling in the Gaps - Shell profiles, history, {{hi:Debugging}}debugging
 - Bash Lesson 6: Advanced Terminal Techniques - Scripts, functions, professional workflows
 - GitBash Unit Test & Practice - Comprehensive self-assessment
 
@@ -114,7 +114,7 @@ Students build parametric 3D designs using OpenSCAD and automate the workflow wi
 | Verification & Safety | 4-5     | AI verification, safety protocols, materials                                  | 2-3 hours |
 | Applied Projects      | 6-8     | Practical commands, text functions, transforms, assembly patterns             | 5-6 hours |
 | Advanced Topics       | 9-10    | Automation with file I/O, troubleshooting, mastery                            | 3-4 hours |
-| Leadership            | 11      | Stakeholder-centric design                                                    | 2-3 hours |
+| Leadership            | 11      | {{hi:Stakeholder-Centric Design}}Stakeholder-centric design                                                    | 2-3 hours |
 
 Total: 45-55 hours instruction + practice projects
 
@@ -127,7 +127,7 @@ Total: 45-55 hours instruction + practice projects
 
 **3dMake:**  
 - [3DMake CLI Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) - Quick reference for 3dm command-line tool
-- [Appendix A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b) - Complete reference for PrusaSlicer, Bambu Studio, Cura, and OrcaSlicer configuration
+- [Appendix A: Comprehensive Slicing Guide](3DMake_Appendices_Complete.md#appendix-b) - Complete reference for {{hi:PrusaSlicer}}PrusaSlicer, {{hi:Bambu}}Bambu Studio, {{hi:Cura}}Cura, and OrcaSlicer configuration
 - [Appendix B: Material Properties & Selection Guide](3DMake_Appendices_Complete.md#appendix-c) - Detailed material reference including shrinkage data, print settings, and properties
 - [Appendix C: Tolerance Testing & Quality Assurance Matrix](3DMake_Appendices_Complete.md#appendix-d) - Comprehensive QA procedures and tolerance validation methods
 - [Appendix D: Advanced OpenSCAD Concepts](3DMake_Appendices_Complete.md#appendix-e) - Specialized topics including gears, batch processing, performance, print orientation, and recursion
@@ -158,7 +158,7 @@ See [Appendix A: 3DMake Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a) f
 
 - No GUI navigation needed
 - Automation eliminates repetitive manual steps
-- Configuration files store parameters as human-readable text
+- Configuration files store {{hi:Parameters}}parameters as human-readable text
 - Error reporting is text-based (screen reader accessible)
 - Works with command-line slicers
 
@@ -168,7 +168,7 @@ Students learn to design through code and testing, not visual previews:
 
 - Write parametric OpenSCAD code in accessible editors
 - Run `3dm build` to compile to printable file
-- Use measurement-based verification (calipers, scales, functional testing)
+- Use measurement-based verification ({{hi:Calipers}}calipers, scales, functional testing)
 - Iterate by editing parameters and rebuilding
 - No reliance on 3D preview or visual feedback
 
@@ -177,7 +177,7 @@ Students learn to design through code and testing, not visual previews:
 3dMake lessons include hands-on projects:
 
 - Lesson 6: Keychain with embossed text (3dm commands)
-- Lesson 7: Phone stand (parametric transforms)
+- Lesson 7: Phone stand ({{hi:Parametric Transforms}}parametric transforms)
 - Lesson 8: Stackable bins (interlocking features, tolerances)
 - Lesson 9: Build automation (PowerShell batch processing)
 - Lesson 10: QA testing + accessibility audit (measurement, troubleshooting)
@@ -223,7 +223,7 @@ Each project requires:
 
 ### Glossaries & Terminology
 
-[Student Glossary](Backmatter_Complete.md#student-glossary) - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI  
+[Student Glossary](Backmatter_Complete.md#student-glossary) - Complete terminology reference for OpenSCAD, 3dMake, {{hi:3D printing}}3D Printing, and CLI  
 [Teacher Glossary](Backmatter_Complete.md#teacher-glossary) - Pedagogical framework and instructional design terminology  
 
 ### Command Line Integration Appendices
@@ -258,7 +258,7 @@ Each project requires:
 - [Programming with OpenSCAD: A Beginner's Guide to Coding 3D-Printable Objects](https://nostarch.com/programmingopenscad) by Justin Gohde and Marius Kintel - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Ideal for deep dives into specific topics and as a reference guide throughout the course. Available in EPUB format (screen reader accessible).
 - [Simplifying 3D Printing with OpenSCAD](https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174) by Alicia Noors - Focused on practical workflows, optimization, and real-world printing scenarios. Available in EPUB/PDF formats.
 - [OpenSCAD for 3D Printing](https://www.apress.com/gp/book/9781484213292) by Al Williams - Hands-on introduction to OpenSCAD with practical 3D printing projects. Covers basics through intermediate topics with step-by-step tutorials.
-- [Mastering OpenSCAD](https://www.amazon.com/Mastering-OpenSCAD-Jochen-Kerdels/dp/1803243538) by Jochen Kerdels - Project-based learning approach with emphasis on parametric design and reusable code modules.
+- [Mastering OpenSCAD](https://www.amazon.com/Mastering-OpenSCAD-Jochen-Kerdels/dp/1803243538) by Jochen Kerdels - Project-based learning approach with emphasis on parametric design and reusable code {{hi:Modules}}modules.
 
 **Free Online Resources:**
 
@@ -270,9 +270,9 @@ Each project requires:
 
 **Curriculum-Specific Materials:**
 
-[Practice Worksheets](https://programmingwithopenscad.github.io/learning.html) - Printable worksheets for visualization practice, decomposition exercises, vocabulary building, and assessment.  
+[Practice Worksheets](https://programmingwithopenscad.github.io/learning.html) - Printable worksheets for visualization practice, {{hi:Decomposition}}decomposition exercises, vocabulary building, and assessment.  
 [Visual Quick Reference](https://programmingwithopenscad.github.io/quick-reference.html) - Command syntax guides and geometry reference.  
-[Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) - Working OpenSCAD examples organized by topic (3D shapes, transformations, loops, modules, if-statements, advanced techniques).
+[Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) - Working OpenSCAD examples organized by topic ({{hi:3D shapes}}3D shapes, transformations, loops, modules, if-statements, advanced techniques).
 
 **Community Resources:**
 

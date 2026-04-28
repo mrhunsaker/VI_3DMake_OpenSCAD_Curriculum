@@ -1,6 +1,6 @@
 # 3dMake Foundation & Design — Complete Course Compendium
 
-> **Course:** Accessible 3D Printing with OpenSCAD and 3DMake
+> **Course:** Accessible {{hi:3D printing}}3D Printing with OpenSCAD and 3DMake
 > **Track:** 3dMake Certification — High School Distance Learning
 > **Contents:** Instructional Framework · Curriculum Guide · All 11 Lessons · Final Exam · Quick Reference Guide
 
@@ -12,7 +12,7 @@ _A pedagogical overview of the 3DMake and OpenSCAD ecosystem for secondary STEM 
 
 ## The Architecture of Programmatic Design
 
-Programmatic CAD differs from standard industry tools like Fusion 360 or SolidWorks by utilizing a "code-as-model" philosophy. OpenSCAD, the primary engine supported by 3DMake, uses a functional programming language to define three-dimensional volumes.[^3] This approach is particularly robust for parametric design, where the dimensions of an object are defined as variables, allowing for instantaneous reconfiguration without manual rebuilding.[^4] 3DMake enhances this by providing a unified command-line interface (CLI) to manage the entire process, from editing source files to triggering remote print jobs through interfaces like OctoPrint or Bambu Connect.[^1]
+Programmatic CAD differs from standard industry tools like Fusion 360 or SolidWorks by utilizing a "code-as-model" philosophy. OpenSCAD, the primary engine supported by 3DMake, uses a functional programming language to define three-dimensional volumes.[^3] This approach is particularly robust for parametric design, where the dimensions of an object are defined as {{hi:Variables}}variables, allowing for instantaneous reconfiguration without manual rebuilding.[^4] 3DMake enhances this by providing a unified command-line interface ({{hi:CLI}}CLI) to manage the entire process, from editing source files to triggering remote print jobs through interfaces like OctoPrint or {{hi:Bambu}}Bambu Connect.[^1]
 
 The educational value of this toolchain lies in its transparency. Students are not hidden behind a proprietary user interface; they interact directly with the file system, configuration files, and API integrations. This exposure fosters a deeper understanding of how modern software interacts with hardware — a skill set increasingly vital in robotics and aerospace engineering.[^6] However, the shift to a terminal-based environment requires a structured instructional approach to overcome initial barriers to entry.
 
@@ -41,7 +41,7 @@ Safety in the 3DMake workflow extends to the physical act of printing, which inv
 
 ### Chemical and Particulate Emissions
 
-The melting of plastic filament is a thermal degradation process. ABS releases styrene, a known respiratory irritant and potential carcinogen.[^12] Even PLA emits millions of ultrafine particles (UFPs) per minute during extrusion — particles smaller than 100 nanometers that can penetrate deep into the lungs.[^12]
+The melting of plastic filament is a thermal degradation process. {{hi:ABS}}ABS releases styrene, a known respiratory irritant and potential carcinogen.[^12] Even {{hi:PLA}}PLA emits millions of ultrafine particles (UFPs) per minute during extrusion — particles smaller than 100 nanometers that can penetrate deep into the lungs.[^12]
 
 | Emission Component         | Primary Source Filaments | Mitigation Strategy                                   |
 | :------------------------- | :----------------------- | :---------------------------------------------------- |
@@ -93,7 +93,7 @@ OpenSCAD has no concept of relative constraints — every object is positioned i
 > AI features (`3dm info` descriptions, `3dm orient`) require an active internet connection and a configured API key. These features will fail silently on offline school networks — plan accordingly.
 
 > [!CAUTION]
-> **Non-manifold geometry** (zero-thickness walls or improperly closed polyhedrons) will generate an STL without warning from `3dm build`, but the `slice` command may then fail or produce corrupt G-code. Always verify mesh integrity before printing.[^24] Students must learn mesh verification skills using tools like MeshLab or PrusaSlicer's repair functions.[^28]
+> **Non-manifold geometry** (zero-thickness walls or improperly closed polyhedrons) will generate an STL without warning from `3dm build`, but the `slice` command may then fail or produce corrupt G-code. Always verify mesh integrity before printing.[^24] Students must learn mesh verification skills using tools like MeshLab or {{hi:PrusaSlicer}}PrusaSlicer's repair functions.[^28]
 
 ## Local Resources — Utah Makerspaces
 
@@ -141,71 +141,71 @@ The **Utah STEM Action Center's Innovation Hub Network** maintains a statewide d
 
 ## References
 
-Deck, T. (2025). _3DMake: A command-line tool for 3D printing workflows_. GitHub. <https://github.com/tdeck/3dmake>
+Deck, T. (2025). _3DMake: A command-line tool for 3D printing workflows_. GitHub. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
 Gohde, J., & Kintel, M. (2021). _Programming with OpenSCAD: A beginner's guide to coding 3D-printable objects_. No Starch Press.
 
 Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). _Understanding the challenges of OpenSCAD users for 3D printing_. ACM UIST.
 
-NIOSH. (2024). _Approaches to safe 3D printing_. <https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html>
+NIOSH. (2024). _Approaches to safe 3D printing_. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html)
 
-Ohio State University EHS. (2026). _3D printer safety concerns and ventilation_. <https://ehs.osu.edu/kb/3d-printer-safety>
+Ohio State University EHS. (2026). _3D printer safety concerns and ventilation_. [https://ehs.osu.edu/kb/3d-printer-safety](https://ehs.osu.edu/kb/3d-printer-safety)
 
-Washington State Department of Health. (2026). _3D printer and filament selection for safe school environments_. <https://doh.wa.gov/community-and-environment/schools/3d-printers>
+Washington State Department of Health. (2026). _3D printer and filament selection for safe school environments_. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)
 
-[^1]: Deck, T. (2025). _3DMake_. GitHub. <https://github.com/tdeck/3dmake>
+[^1]: Deck, T. (2025). _3DMake_. GitHub. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
-[^3]: Programming with OpenSCAD. <https://programmingwithopenscad.github.io/>
+[^3]: Programming with OpenSCAD. [https://programmingwithopenscad.github.io/](https://programmingwithopenscad.github.io/)
 
-[^4]: CadHub. _OpenSCAD Review_. <https://learn.cadhub.xyz/blog/openscad-review/>
+[^4]: CadHub. _OpenSCAD Review_. [https://learn.cadhub.xyz/blog/openscad-review/](https://learn.cadhub.xyz/blog/openscad-review/)
 
-[^6]: Class Central. _OpenSCAD Courses_. <https://www.classcentral.com/subject/openscad>
+[^6]: Class Central. _OpenSCAD Courses_. [https://www.classcentral.com/subject/openscad](https://www.classcentral.com/subject/openscad)
 
-[^9]: Hacker News. <https://news.ycombinator.com/item?id=46338565>
+[^9]: Hacker News. [https://news.ycombinator.com/item?id=46338565](https://news.ycombinator.com/item?id=46338565)
 
-[^10]: ZenML. _LLM-Powered 3D Model Generation_. <https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing>
+[^10]: ZenML. _LLM-Powered 3D Model Generation_. [https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing](https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing)
 
-[^12]: Ohio State University EHS. <https://ehs.osu.edu/kb/3d-printer-safety>
+[^12]: Ohio State University EHS. [https://ehs.osu.edu/kb/3d-printer-safety](https://ehs.osu.edu/kb/3d-printer-safety)
 
-[^13]: RIT EHS. <https://www.rit.edu/ehs/3-d-printer-safety>
+[^13]: RIT EHS. [https://www.rit.edu/ehs/3-d-printer-safety](https://www.rit.edu/ehs/3-d-printer-safety)
 
-[^14]: CDC/NIOSH. <https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html>
+[^14]: CDC/NIOSH. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html)
 
-[^15]: Washington State DoH. <https://doh.wa.gov/community-and-environment/schools/3d-printers>
+[^15]: Washington State DoH. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)
 
-[^16]: UTK EHS. <https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/>
+[^16]: UTK EHS. [https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/](https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/)
 
-[^19]: Gonzalez Avila et al. <https://thomaspietrzak.com/bibliography/gonzalez24.pdf>
+[^19]: Gonzalez Avila et al. [https://thomaspietrzak.com/bibliography/gonzalez24.pdf](https://thomaspietrzak.com/bibliography/gonzalez24.pdf)
 
-[^20]: Reddit. <https://www.reddit.com/r/openscad/comments/1fxj8xv/>
+[^20]: Reddit. [https://www.reddit.com/r/openscad/comments/1fxj8xv/](https://www.reddit.com/r/openscad/comments/1fxj8xv/)
 
-[^21]: OpenSCAD Issue #6297. <https://github.com/openscad/openscad/issues/6297>
+[^21]: OpenSCAD Issue #6297. [https://github.com/openscad/openscad/issues/6297](https://github.com/openscad/openscad/issues/6297)
 
-[^24]: OpenSCAD Issue #6114. <https://github.com/openscad/openscad/issues/6114>
+[^24]: OpenSCAD Issue #6114. [https://github.com/openscad/openscad/issues/6114](https://github.com/openscad/openscad/issues/6114)
 
-[^28]: Tom's Hardware. <https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab>
+[^28]: Tom's Hardware. [https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab](https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab)
 
-[^turn1search8]: <https://www.weberpl.lib.ut.us/use-your-library/makerspaces>
+[^turn1search8]: [https://www.weberpl.lib.ut.us/use-your-library/makerspaces](https://www.weberpl.lib.ut.us/use-your-library/makerspaces)
 
-[^turn1search9]: <https://stem.utah.gov/innovationhubnetwork/>
+[^turn1search9]: [https://stem.utah.gov/innovationhubnetwork/](https://stem.utah.gov/innovationhubnetwork/)
 
-[^turn1search10]: <https://library.loganutah.org/about_us/services/makerspace.php>
+[^turn1search10]: [https://library.loganutah.org/about_us/services/makerspace.php](https://library.loganutah.org/about_us/services/makerspace.php)
 
-[^turn1search11]: <https://services.slcpl.org/creativelab>
+[^turn1search11]: [https://services.slcpl.org/creativelab](https://services.slcpl.org/creativelab)
 
-[^turn1search12]: <https://www.slcolibrary.org/what-we-have/create>
+[^turn1search12]: [https://www.slcolibrary.org/what-we-have/create](https://www.slcolibrary.org/what-we-have/create)
 
-[^turn1search14]: <https://library.washco.utah.gov/st-george/makerspace/>
+[^turn1search14]: [https://library.washco.utah.gov/st-george/makerspace/](https://library.washco.utah.gov/st-george/makerspace/)
 
-[^turn1search15]: <https://www.lib.utah.edu/services/3d-printing.php>
+[^turn1search15]: [https://www.lib.utah.edu/services/3d-printing.php](https://www.lib.utah.edu/services/3d-printing.php)
 
-- <https://www.nationofmakers.us/find-a-maker-organization>
+- [https://www.nationofmakers.us/find-a-maker-organization](https://www.nationofmakers.us/find-a-maker-organization)
 
-- <https://makerspace.com/directory/>
+- [https://makerspace.com/directory/](https://makerspace.com/directory/)
 
-- <https://makerspacedir.com/>
+- [https://makerspacedir.com/](https://makerspacedir.com/)
 
-- <https://workmakecreate.com/>
+- [https://workmakecreate.com/](https://workmakecreate.com/)
 
 ---
 
@@ -225,16 +225,16 @@ This 11-lesson curriculum (plus 4 reference appendices) teaches non-visual 3D mo
 | #   | Title                         | Duration    | Level         | Key Project         |
 | --- | ----------------------------- | ----------- | ------------- | ------------------- |
 | 1   | Environmental Configuration   | 2.5–3.5 hrs | Beginner      | Project scaffold    |
-| 2   | Geometric Primitives & CSG    | 1 hr        | Beginner      | 3 CSG examples      |
-| 3   | Parametric Architecture       | 2.5 hrs     | Beginner+     | Parametric bracket  |
+| 2   | {{hi:Geometric Primitives}}Geometric Primitives & CSG    | 1 hr        | Beginner      | 3 CSG examples      |
+| 3   | {{hi:Parametric Architecture}}Parametric Architecture       | 2.5 hrs     | Beginner+     | Parametric bracket  |
 | 4   | AI Verification               | 2–2.5 hrs   | Intermediate  | AI-notes.md         |
 | 5   | Safety & Physical Interface   | 2.5–3.5 hrs | Intermediate  | Pre-print checklist |
-| 6   | 3dm Commands & Text Embossing | 2.5–3.5 hrs | Intermediate  | Keycap variants     |
-| 7   | Parametric Transforms         | 3–3.5 hrs   | Intermediate+ | Phone Stand         |
+| 6   | 3dm Commands & {{hi:Text Embossing}}Text Embossing | 2.5–3.5 hrs | Intermediate  | Keycap variants     |
+| 7   | {{hi:Parametric Transforms}}Parametric Transforms         | 3–3.5 hrs   | Intermediate+ | Phone Stand         |
 | 8   | Advanced Parametric Design    | 1.5-2 hrs   | Advanced      | Stackable Bins      |
 | 9   | Automation & Workflows        | 2.5–3.5 hrs | Advanced      | Batch build script  |
 | 10  | Troubleshooting & Mastery     | 5–6 hrs     | Advanced      | 3 complete projects |
-| 11  | Stakeholder-Centric Design    | 3.5–4.5 hrs | Advanced+     | Jewelry Holder      |
+| 11  | {{hi:Stakeholder-Centric Design}}Stakeholder-Centric Design    | 3.5–4.5 hrs | Advanced+     | Jewelry Holder      |
 
 ## Learning Paths
 
@@ -254,11 +254,11 @@ Install and configure 3dMake, create a project scaffold, and run your first buil
 
 ### Lesson 2: Geometric Primitives and Constructive Solid Geometry (CSG)
 
-Combine basic shapes using boolean operations. Covers `cube()`, `sphere()`, `cylinder()`; CSG operations (`union()`, `difference()`, `intersection()`); the 0.001 offset rule for non-manifold geometry; and low-resolution renders for faster debugging. **Checkpoint:** You understand CSG operations and can diagnose common geometry issues.
+Combine basic shapes using {{hi:Boolean operations}}boolean operations. Covers `cube()`, `sphere()`, `cylinder()`; CSG operations (`union()`, `difference()`, `intersection()`); the 0.001 offset rule for non-manifold geometry; and low-resolution renders for faster {{hi:Debugging}}debugging. **Checkpoint:** You understand CSG operations and can diagnose common geometry issues.
 
 ### Lesson 3: Parametric Architecture and Modular Libraries
 
-Create reusable modules and organize code into libraries using the DRY principle. Covers module definitions, derived calculations, library organization (`lib/` folder), BOSL2, and low-resolution testing with `$fn`. **Checkpoint:** You can create parametric modules and organize code into libraries.
+Create reusable {{hi:Modules}}modules and organize code into libraries using the DRY principle. Covers module definitions, derived calculations, library organization (`lib/` folder), BOSL2, and low-resolution testing with `$fn`. **Checkpoint:** You can create parametric modules and organize code into libraries.
 
 ### Lesson 4: AI-Enhanced Verification and Multimodal Feedback
 
@@ -306,16 +306,16 @@ Each lesson includes learning objectives, step-by-step tasks, checkpoints, a 10-
 
 **Lesson completion criteria:** Watched/read entire lesson · Completed all step-by-step tasks · Reached all checkpoints · Answered quiz questions · Attempted at least 3 extension problems · Documented findings.
 
-**Project completion criteria:** Code builds without errors · All parameters functional · STL generated and inspected · Measurements documented · Assembly tested (if multi-part) · README or documentation included.
+**Project completion criteria:** Code builds without errors · All {{hi:Parameters}}parameters functional · STL generated and inspected · Measurements documented · Assembly tested (if multi-part) · README or documentation included.
 
 ## Appendices Overview
 
 | Appendix                           | Focus                                                                           | Use When                                     |
 | ---------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------- |
-| A: Comprehensive Slicing Guide     | PrusaSlicer, Bambu Studio, Cura, OrcaSlicer, and more                           | Slicing questions, slicer reference          |
-| B: Material Properties & Selection | PLA, PETG, ABS, TPU, Polycarbonate, Nylon — properties, settings, decision tree | Choosing material, troubleshooting prints    |
+| A: Comprehensive Slicing Guide     | PrusaSlicer, Bambu Studio, {{hi:Cura}}Cura, OrcaSlicer, and more                           | Slicing questions, slicer reference          |
+| B: {{hi:Material Properties}}Material Properties & Selection | PLA, {{hi:PETG}}PETG, ABS, {{hi:TPU}}TPU, Polycarbonate, Nylon — properties, settings, decision tree | Choosing material, troubleshooting prints    |
 | C: Tolerance Testing & QA Matrix   | Measurement procedures, functional testing, stack-up calculations               | Quality verification, measurement techniques |
-| D: PowerShell Integration          | Batch processing, automation scripts, workflow integration                      | Building automation, batch processing        |
+| D: {{hi:PowerShell}}PowerShell Integration          | Batch processing, automation scripts, workflow integration                      | Building automation, batch processing        |
 | E: Advanced OpenSCAD Concepts      | Gears, batch/statistical analysis, performance optimization, recursion          | Optional                                     | Specialized/advanced applications |
 
 ## Accessibility Features
@@ -393,11 +393,11 @@ Here is the basic idea: the command line is a text box where you type an instruc
 
 For example, if you type `3dm build` and press Enter, the computer finds the 3dMake program, tells it to build your project, and then prints either a success message with your model's dimensions, or an error message with a line number pointing to the problem. This feedback loop is tight, fast, and precise — which is exactly what you want when you're designing and testing.
 
-The command line has another advantage: it's repeatable. If you type a command that works, you can type it again. You can save it in a script and run it automatically. You can share it with someone else, and they can run the same command and get the same result. Clicking around menus is difficult to document and impossible to automate; text commands are both.
+The command line has another advantage: it's repeatable. If you type a command that works, you can type it again. You can save it in a script and run it automatically. You can share it with someone else, and they can run the same command and get the same result. Clicking around menus is difficult to document and impossible to automate; {{hi:Text commands}}text commands are both.
 
 ### Which Terminal to Use
 
-**Windows users:** You have three options, two are built-in and one you have to install. **PowerShell** is the modern choice and the one we recommend — it's more powerful and consistent with what you'll find in professional environments. To open it, press the Windows key, type `PowerShell`, and press Enter. Alternatively, **Command Prompt (CMD)** is an older option that still works for basic tasks. There also is a version of `bash` that has been poreted from Linux to Windows as part of using a program called `git`. This course provides code examples and curriculum paths for each.
+**Windows users:** You have three options, two are built-in and one you have to install. **PowerShell** is the modern choice and the one we recommend — it's more powerful and consistent with what you'll find in professional environments. To open it, press the Windows key, type `PowerShell`, and press Enter. Alternatively, **Command Prompt ({{hi:CMD}}CMD)** is an older option that still works for basic tasks. There also is a version of `bash` that has been poreted from Linux to Windows as part of using a program called `git`. This course provides code examples and curriculum paths for each.
 
 **macOS users:** Open **Terminal** by going to Applications → Utilities → Terminal. It runs a shell called `bash` (`zsh` is default on newer Macs — both `bash` and `zsh` work for this course and at the level we are working the syntax is the same).
 
@@ -405,7 +405,7 @@ The command line has another advantage: it's repeatable. If you type a command t
 
 ### A Few Things to Know Before We Start
 
-- On macOS, Linux, and Git Bash on Windows, **file paths use forward slashes**: `src/main.scad`
+- On macOS, Linux, and {{hi:Git Bash}}Git Bash on Windows, **file paths use forward slashes**: `src/main.scad`
 - On Windows Powershell and COmmand Line, **file paths use backslashes**: `src\main.scad`
 - Commands are **case-sensitive on macOS and Linux** — `3DM` and `3dm` are different things, and only the lowercase version will work.
   - On Windows some commands are case sensitive and some are not. So common sense is to treat them as all case sensitive.
@@ -672,7 +672,7 @@ echo cube([width, depth, height]); >> src\main.scad
 
 This small file introduces the core pattern you'll use for the entire course. Let's read every line carefully.
 
-`// My First Parametric Model` — this is a **comment**. In OpenSCAD, anything following `//` on a line is ignored by the computer — it's a note for human readers. Comments are essential. They explain what the code does, what the units are, and what you were thinking when you wrote it.
+`// My First Parametric Model` — this is a **comment**. In OpenSCAD, anything following `//` on a line is ignored by the computer — it's a note for human readers. {{hi:Comments}}Comments are essential. They explain what the code does, what the units are, and what you were thinking when you wrote it.
 
 `width = 30;` — this **declares a variable** named `width` and sets it equal to 30. The semicolon at the end is required — it tells OpenSCAD "this statement is finished." The comment `// mm` reminds anyone reading the file that this value is in millimeters.
 
@@ -789,13 +789,13 @@ As each layer is deposited, it needs to cool and bond to the layer below it. Thi
 
 ### The Fundamental Loop
 
-Professional software development runs on a tight feedback cycle: write some code, run it, check the result, fix any problems, and repeat. The shorter each cycle is, the faster you learn and the fewer problems pile up. Parametric 3D design works exactly the same way:
+Professional software development runs on a tight feedback cycle: write some code, run it, check the result, fix any problems, and repeat. The shorter each cycle is, the faster you learn and the fewer problems pile up. Parametric {{hi:3D design}}3D design works exactly the same way:
 
 EDIT → BUILD → VERIFY → repeat
 
 - Edit: Change src/main.scad in any text editor. Save the file.
-- Build: 3dm build → compiles your .scad code into build/main.stl
-- Verify: 3dm info → confirms bounding box and volume match your design intent
+- Build: {{hi:3dm build}}3dm build → compiles your .scad code into build/main.stl
+- Verify: {{hi:3dm info}}3dm info → confirms bounding box and volume match your design intent
   - (optional) → open build/main.stl in your slicer for a visual check
 
 ````
@@ -1004,20 +1004,20 @@ This header comment takes about two minutes to write and saves many minutes of c
 
 ## References and Helpful Resources
 
-- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
-- OpenSCAD Manual — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual>
-- OpenSCAD Parametric Design — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#Variables>
-- OpenSCAD Review — CadHub — <https://learn.cadhub.xyz/blog/openscad-review/>
-- PrusaSlicer Validation Tools — <https://docs.prusa3d.com/en/guide/39012-validation-tools/>
-- 3dmake e2e_test.py — <https://github.com/tdeck/3dmake/blob/main/e2e_test.py>
-- PrusaSlicer Documentation — <https://docs.prusa3d.com/en/>
-- OpenSCAD Non-Manifold FAQ — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/FAQ#Why_is_my_model_not_manifold.3F>
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+- OpenSCAD Manual — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
+- OpenSCAD Parametric Design — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#Variables](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#Variables)
+- OpenSCAD Review — CadHub — [https://learn.cadhub.xyz/blog/openscad-review/](https://learn.cadhub.xyz/blog/openscad-review/)
+- PrusaSlicer Validation Tools — [https://docs.prusa3d.com/en/guide/39012-validation-tools/](https://docs.prusa3d.com/en/guide/39012-validation-tools/)
+- 3dmake e2e_test.py — [https://github.com/tdeck/3dmake/blob/main/e2e_test.py](https://github.com/tdeck/3dmake/blob/main/e2e_test.py)
+- PrusaSlicer Documentation — [https://docs.prusa3d.com/en/](https://docs.prusa3d.com/en/)
+- OpenSCAD Non-Manifold FAQ — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/FAQ#Why_is_my_model_not_manifold.3F](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/FAQ#Why_is_my_model_not_manifold.3F)
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub
-- CodeSolutions Repository — <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions>
-- OpenSCAD Quick Reference — <https://programmingwithopenscad.github.io/quick-reference.html>
+- CodeSolutions Repository — [https://github.com/ProgrammingWithOpenSCAD/CodeSolutions](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions)
+- OpenSCAD Quick Reference — [https://programmingwithopenscad.github.io/quick-reference.html](https://programmingwithopenscad.github.io/quick-reference.html)
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -1574,10 +1574,10 @@ You write code in VSCode. OpenSCAD runs in the background to render the preview.
 
 ### Install Required Software
 
-**Install VSCode** — download from <https://code.visualstudio.com/>
+**Install VSCode** — download from [https://code.visualstudio.com/](https://code.visualstudio.com/)
 During installation: check "Add to PATH" and "Register Code as an editor for supported file types."
 
-**Install OpenSCAD** — download from <https://openscad.org/downloads.html>
+**Install OpenSCAD** — download from [https://openscad.org/downloads.html](https://openscad.org/downloads.html)
 Use the installer version (not portable). After installing, verify it's in your PATH:
 
 ```powershell
@@ -2188,17 +2188,17 @@ Try changing `hole_r`, `slot_w`, or `width` and rebuilding. Watch how every feat
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Primitive Solids and Boolean Operations — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Primitive_Solids>
-- OpenSCAD User Manual — CSG Modelling — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling>
-- OpenSCAD User Manual — Transformations and Extrusions — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_the_2D_Subsystem>
-- OpenSCAD User Manual — Modifier Characters — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Modifier_Characters>
+- OpenSCAD User Manual — Primitive Solids and Boolean Operations — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Primitive_Solids](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Primitive_Solids)
+- OpenSCAD User Manual — CSG Modelling — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling)
+- OpenSCAD User Manual — Transformations and Extrusions — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_the_2D_Subsystem](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Using_the_2D_Subsystem)
+- OpenSCAD User Manual — Modifier Characters — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Modifier_Characters](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Modifier_Characters)
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub — Chapters on CSG and primitives
-- CodeSolutions Repository — <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions> — Worked examples for CSG, hull, and extrusions
-- OpenSCAD Quick Reference — <https://programmingwithopenscad.github.io/quick-reference.html> — All primitive and CSG syntax at a glance
-- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake> — Build workflow reference
+- CodeSolutions Repository — [https://github.com/ProgrammingWithOpenSCAD/CodeSolutions](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) — Worked examples for CSG, hull, and extrusions
+- OpenSCAD Quick Reference — [https://programmingwithopenscad.github.io/quick-reference.html](https://programmingwithopenscad.github.io/quick-reference.html) — All primitive and CSG syntax at a glance
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake) — Build workflow reference
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -2211,7 +2211,7 @@ _All supporting documents for Lesson 2 are included below. You do not need to op
 
 ## Appendix A: OpenSCAD Quick Reference — Cheat Sheet
 
-_Keep this handy during all OpenSCAD work. For full documentation: <https://openscad.org/documentation.html>_
+_Keep this handy during all OpenSCAD work. For full documentation: [https://openscad.org/documentation.html](https://openscad.org/documentation.html)_
 
 ---
 
@@ -2408,7 +2408,7 @@ If adapting a model using OpenSCAD, use this scaling scaffold as a starting poin
 
 ```openscad
 // Bonus Print Modification Scaffold
-// Import an STL and apply modifications parametrically.
+// {{hi:Import}}Import an STL and apply modifications parametrically.
 
 // ---- Parameters ----
 scale_factor  = 1.5;        // 1.0 = original, 1.5 = 50% larger, 0.75 = 25% smaller
@@ -3301,13 +3301,13 @@ $fs = 0.5;  // minimum 0.5mm face size (more faces on small features)
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Modules — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules>
+- OpenSCAD User Manual — Modules — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/User-Defined_Functions_and_Modules)
 
-- OpenSCAD User Manual — For Loops and Conditionals — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#for_loop>
+- OpenSCAD User Manual — For Loops and Conditionals — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#for_loop](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language#for_loop)
 
-- BOSL2 Library Documentation — <https://github.com/BelfrySCAD/BOSL2/wiki>
+- BOSL2 Library Documentation — [https://github.com/BelfrySCAD/BOSL2/wiki](https://github.com/BelfrySCAD/BOSL2/wiki)
 
-- OpenSCAD User Manual — Include and Use — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement>
+- OpenSCAD User Manual — Include and Use — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Include_Statement)
 
 ### Supplemental Resources
 
@@ -3486,7 +3486,7 @@ Feature: USB-C charging slot
   Level 1 — Bounding box of isolated slot_module(): 9.5 × 3.5mm ✓
   Level 2 — Slicer layer view: rectangular hole visible at Z=5–8.5mm ✓
   Level 3 (AI): "rectangular cutout, approximately 10mm wide" (too vague for precision)
-  Level 4 — Calipers after first test print: 9.4mm wide (0.1mm under — acceptable) ✓
+  Level 4 — {{hi:Calipers}}Calipers after first test print: 9.4mm wide (0.1mm under — acceptable) ✓
 
 Feature: Rubber foot posts (4×)
   Designed: 3.0mm diameter × 2.0mm tall
@@ -3707,20 +3707,20 @@ For the purposes of this certification course, all your projects are learning wo
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Manifold and Geometry Validation — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language>
+- OpenSCAD User Manual — Manifold and Geometry Validation — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language)
 
-- Anthropic Prompt Engineering Guide — <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview>
+- Anthropic Prompt Engineering Guide — [https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
 
 - Data Privacy — Review your AI provider's terms of service and data retention policy before submitting proprietary design files.
 
-- NIST AI Risk Management Framework (AI RMF 1.0) — <https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf>
+- NIST AI Risk Management Framework (AI RMF 1.0) — [https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf](https://www.nist.gov/system/files/documents/2023/01/26/AI%20RMF%201.0.pdf)
 
 ### Supplemental Resources
 
-- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
-- Anthropic Prompt Engineering Overview — <https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview>
-- NIST AI RMF — <https://airc.nist.gov/Home>
-- PrusaSlicer Documentation — <https://docs.prusa3d.com/en/>
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+- Anthropic Prompt Engineering Overview — [https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
+- NIST AI RMF — [https://airc.nist.gov/Home](https://airc.nist.gov/Home)
+- PrusaSlicer Documentation — [https://docs.prusa3d.com/en/](https://docs.prusa3d.com/en/)
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -4729,24 +4729,24 @@ printable_box(50, 40, 30);
 
 ## References and Helpful Resources
 
-- OSHA Hierarchy of Controls — <https://www.osha.gov/hierarchy-of-controls> / NIOSH — <https://www.cdc.gov/niosh/topics/hierarchy/default.html>
+- OSHA Hierarchy of Controls — [https://www.osha.gov/hierarchy-of-controls> / NIOSH — [https://www.cdc.gov/niosh/topics/hierarchy/default.html](https://www.osha.gov/hierarchy-of-controls](https://www.cdc.gov/niosh/topics/hierarchy/default.html](https://www.osha.gov/hierarchy-of-controls)
 
-- UL Research Institutes — 3D Printing Emissions Study — <https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study>
+- UL Research Institutes — 3D Printing Emissions Study — [https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study](https://www.ul.com/news/ul-research-institutes-releases-3d-printing-emissions-study)
 
-- NIOSH Science Blog — Health and Safety Considerations for 3D Printing — <https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/>
+- NIOSH Science Blog — Health and Safety Considerations for 3D Printing — [https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/](https://blogs.cdc.gov/niosh-science-blog/2020/05/14/3d-printing/)
 
-- PrusaSlicer Documentation — <https://docs.prusa3d.com/en/>
+- PrusaSlicer Documentation — [https://docs.prusa3d.com/en/](https://docs.prusa3d.com/en/)
 
-- All3DP Filament Types — <https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/>
+- All3DP Filament Types — [https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/](https://all3dp.com/1/3d-printer-filament-types-3d-printing-3d-filament/)
 
-- MatterHackers Filament Compare — <https://www.matterhackers.com/3d-printer-filament-compare>
+- MatterHackers Filament Compare — [https://www.matterhackers.com/3d-printer-filament-compare](https://www.matterhackers.com/3d-printer-filament-compare)
 
-- Prusa Research Materials Guide — <https://help.prusa3d.com/materials>
+- Prusa Research Materials Guide — [https://help.prusa3d.com/materials](https://help.prusa3d.com/materials)
 
 ### Supplemental Resources
 
-- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
-- OpenSCAD User Manual — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual>
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+- OpenSCAD User Manual — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -6755,11 +6755,11 @@ echo("Cross:", c);   // [0, 0, 1] — the Z axis
 
 ## References and Helpful Resources
 
-- OpenSCAD User Manual — Transformations — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Transformations>
+- OpenSCAD User Manual — Transformations — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Transformations](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Transformations)
 
-- OpenSCAD User Manual — Mathematical Functions — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Mathematical_Functions>
+- OpenSCAD User Manual — Mathematical Functions — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Mathematical_Functions](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Mathematical_Functions)
 
-- OpenSCAD User Manual — Minkowski and Hull — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull>
+- OpenSCAD User Manual — Minkowski and Hull — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull)
 
 ### Supplemental Resources
 
@@ -7257,16 +7257,16 @@ translate([60, 0, 0])
 
 ## References and Helpful Resources
 
-- Snap-Fit Design Principles — Bayer Material Science Snap-Fit Design Manual — <https://solutions.covestro.com/-/media/covestro/solution-center/brands/downloads/imported/1556891135.pdf>
+- Snap-Fit Design Principles — Bayer Material Science Snap-Fit Design Manual — [https://solutions.covestro.com/-/media/covestro/solution-center/brands/downloads/imported/1556891135.pdf](https://solutions.covestro.com/-/media/covestro/solution-center/brands/downloads/imported/1556891135.pdf)
 
-- OpenSCAD User Manual — Difference and Boolean Operations — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling>
+- OpenSCAD User Manual — Difference and Boolean Operations — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling)
 
-- Tolerance and Fit in FDM Printing — All3DP Guide — <https://all3dp.com/2/fdm-3d-printing-tolerances/>
+- Tolerance and Fit in FDM Printing — All3DP Guide — [https://all3dp.com/2/fdm-3d-printing-tolerances/](https://all3dp.com/2/fdm-3d-printing-tolerances/)
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub — Assemblies and interlocking features
-- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -8252,19 +8252,19 @@ When this is set up, every push to the repository triggers a fresh build in GitH
 
 ## References and Helpful Resources
 
-- Bash Reference Manual — <https://www.gnu.org/software/bash/manual/bash.html>
+- Bash Reference Manual — [https://www.gnu.org/software/bash/manual/bash.html](https://www.gnu.org/software/bash/manual/bash.html)
 
-- PowerShell Documentation — <https://docs.microsoft.com/en-us/powershell/>
+- PowerShell Documentation — [https://docs.microsoft.com/en-us/powershell/](https://docs.microsoft.com/en-us/powershell/)
 
-- GitHub Actions Documentation — <https://docs.github.com/en/actions>
+- GitHub Actions Documentation — [https://docs.github.com/en/actions](https://docs.github.com/en/actions)
 
-- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub
-- 3DMake GitHub Repository — <https://github.com/tdeck/3dmake>
-- OpenSCAD User Manual — <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual>
+- 3DMake GitHub Repository — [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+- OpenSCAD User Manual — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
 
 ---
 
@@ -9071,19 +9071,19 @@ rounded_hull();
 ## References and Helpful Resources
 
 - OpenSCAD User Manual — Hull and Minkowski.
-  <https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull>
+  [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Minkowski_and_Hull)
 
 [^111]: Digital Calipers Measurement Technique — see Appendix B of this document.
 
 [^112]:
     3DMake GitHub Repository — Command reference including `3dm info`.
-    <https://github.com/tdeck/3dmake>
+    [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
 ### Supplemental Resources
 
 - Programming with OpenSCAD EPUB Textbook — assets/Programming_with_OpenSCAD.epub
-- CodeSolutions Repository: <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions>
-- OpenSCAD Quick Reference: <https://programmingwithopenscad.github.io/quick-reference.html>
+- CodeSolutions Repository: [https://github.com/ProgrammingWithOpenSCAD/CodeSolutions](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions)
+- OpenSCAD Quick Reference: [https://programmingwithopenscad.github.io/quick-reference.html](https://programmingwithopenscad.github.io/quick-reference.html)
 - All other reference documents are embedded as appendices below — no separate files needed.
 
 ---
@@ -9850,7 +9850,6 @@ Answer in complete sentences:
 
 # Lesson 11 — Stakeholder-Centric Design and the Final Project
 
-**Course:** 3dMake Certification — Leadership Level
 **Estimated Time:** 3–6 weeks (iterative; worked in phases)
 
 ---
@@ -10083,7 +10082,7 @@ module bead_A(size=bead_size, fn=detail) {
 // ---- Bead B: Bicone/Diamond Variant ----
 module bead_B(size=bead_size, fn=detail) {
   difference() {
-    // Bicone: hull of two cones meeting at midpoint
+    // Bicone: hull of two {{hi:Cones}}cones meeting at midpoint
     hull() {
       translate([0, 0, size/4])  cylinder(r=size/2, h=0.1, $fn=fn, center=true);
       translate([0, 0, -size/2]) cylinder(r=0.1,    h=0.1, $fn=fn, center=true);
@@ -10166,7 +10165,10 @@ See the Master Rubric in Part 3 of this document for the full scoring framework.
 6. True or False: Once your first bead prints successfully, all subsequent iterations will print exactly the same.
 7. Explain what "wearability" means for a jewelry design. Name two specific checks you would perform to confirm a necklace is comfortable.
 8. Your bead design uses a 3 mm hole. When strung on cord, it's too tight to slide. What are two OpenSCAD-level solutions?
-9. When documenting your design for reproducibility, should you record (A) final bead dimensions only, (B) all iterations including failed attempts, or (C) just the most recent version?
+9. When documenting your design for reproducibility, should you record
+   A. final bead dimensions only
+   B. all iterations including failed attempts
+   C. just the most recent version?
 10. Why does the Stakeholder Interview happen _before_ you write any code?
 11. Write a User Story for the following requirement: the cord hole must accommodate a 1.5 mm nylon cord.
 12. What is an Acceptance Criterion, and how does it differ from a Functional Requirement?
@@ -10272,6 +10274,7 @@ Draw your design by hand (or any drawing tool). Label all key dimensions. Identi
 
 | Part | Material | Est. print time | Est. filament (g) | Qty |
 | ---- | -------- | :-------------: | :---------------: | :-: |
+|      |          |                 |                   |     |
 
 Include both printed and non-printed components.
 
@@ -10295,7 +10298,7 @@ A prototype is a physical question: "Does this work?" Print fast, test aggressiv
 // [Project Name] — Main Source File
 // Author: [Your Name]
 // Date: [YYYY-MM-DD]
-// Version: 0.1 (prototype)
+// Version: 0.1 (prototype) or YYYY.MM-prototype
 // ============================================================
 
 // ---- Key Parameters (change these to adapt the design) ----
@@ -10329,7 +10332,7 @@ Print a tolerance test coupon for every critical interface before printing the f
 **2.4 — Revision Log (first entries)**
 
 ```
-v0.1 → v0.2 (YYYY-MM-DD)
+v0.1 → v0.2 (YYYY-MM-DD) or YYYY.MM-prototype → YYYY.MM-prototype2
   - Changed wall thickness from 1.5 to 2.0 mm: v0.1 cracked during snap-fit test
   - Increased lid clearance from 0.1 to 0.25 mm: lid was too tight to open one-handed
   - Added 2 mm chamfer to all interior edges: test part showed stress fracture at sharp corners
@@ -10462,6 +10465,7 @@ A design that only works because you know all the tricks isn't finished.
 
 | Part | File / Source | Material | Print Settings | Est. Time | Est. Weight (g) | Qty |
 | ---- | ------------- | -------- | -------------- | :-------: | :-------------: | :-: |
+|      |               |          |                |           |                 |     |
 
 **4.3 — Final STL Files**
 Export one STL per printable component. Name them: `[project]-[component]-v[X.Y].stl`
@@ -10582,11 +10586,10 @@ Use this checklist to verify you've applied required curriculum concepts:
 
 ## Supplemental Resources
 
-- Master Rubric: Part 3 of this document / `assets/3dMake_Foundation/master-rubric.md`
-- Programming with OpenSCAD EPUB Textbook: `assets/Programming_with_OpenSCAD.epub`
-- OpenSCAD Quick Reference: <https://programmingwithopenscad.github.io/quick-reference.html>
-- 3DMake GitHub Repository: <https://github.com/tdeck/3dmake>
-- CodeSolutions Repository: <https://github.com/ProgrammingWithOpenSCAD/CodeSolutions>
+- Programming with OpenSCAD EPUB Textbook: [../assets/Programming_with_OpenSCAD.epub](../assets/Programming_with_OpenSCAD.epub)
+- OpenSCAD Quick Reference: [https://programmingwithopenscad.github.io/quick-reference.html](https://programmingwithopenscad.github.io/quick-reference.html)
+- 3DMake GitHub Repository: [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+- CodeSolutions Repository: [https://github.com/ProgrammingWithOpenSCAD/CodeSolutions](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions)
 
 ---
 
@@ -11154,15 +11157,11 @@ Students may resubmit any project as many times as needed to improve their score
 
 ---
 
----
-
----
-
 # Part IV — Final Exam
 
 # 3dMake Foundation — Final Exam
 
-Name: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Date:
+Name: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ Date: \_\_\_\_\_\_\_\_\_\_\_\_
 
 **Total Points: 100 (4 points per problem)**
 
@@ -11654,10 +11653,6 @@ _End of Final Exam_
 5. Scoring will be based on correctness, clarity, and depth of understanding
 
 _Good luck!_
-
----
-
----
 
 ---
 

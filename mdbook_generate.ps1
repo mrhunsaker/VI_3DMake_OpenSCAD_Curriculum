@@ -28,15 +28,6 @@ if (-not (Test-Path $BuildOutput)) {
     New-Item -ItemType Directory -Path $BuildOutput | Out-Null
 }
 
-# Remove previous LaTeX build artifacts generated in the repository root
-$RootDir = $ScriptDir
-Write-Host "Cleaning previous LaTeX build artifacts in $RootDir..."
-$exts = @('aux','ent','idx','log','out','pdf','toc')
-foreach ($e in $exts) {
-    $f = Join-Path $RootDir "OpenSCAD_Curriculum.$e"
-    if (Test-Path $f) { Remove-Item $f -Force -ErrorAction SilentlyContinue }
-}
-
 # Build the book
 Write-Host "Building mdbook..."
 Write-Host "  Source: $BookDir\src\"
@@ -48,12 +39,6 @@ $env:RUST_BACKTRACE = 'full'
 mdbook build --dest-dir "$BuildOutput"
 Pop-Location
 
-Write-Host "building pdf in root directory with lualatex"
-Push-Location $ScriptDir
-lualatex "$BuildOutput/pandoc/latex/OpenSCAD_Curriculum.tex"
-# makeindex "$BuildOutput/pandoc/latex/OpenSCAD_Curriculum.idx"
-lualatex "$BuildOutput/pandoc/latex/OpenSCAD_Curriculum.tex"
-Pop-Location
 
 Write-Host ""
 Write-Host "All Builds complete!"

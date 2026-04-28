@@ -4,7 +4,7 @@ Author: Michael Ryan Hunsaker, M.Ed., Ph.D.
 Last Updated: 2026-03-04  
 ## Overview
 
-This curriculum teaches 3D design and digital fabrication using a fully accessible, command-line-driven toolchain centered on OpenSCAD (text-based CAD), 3DMake (non-visual build automation), and accessible editors (VS Code, Notepad++, command-line editors) with screen reader support. Students progress from foundational command-line skills through guided projects to real-world, stakeholder-driven design challenges.
+This curriculum teaches {{hi:3D design}}3D design and digital fabrication using a fully accessible, command-line-driven toolchain centered on OpenSCAD (text-based CAD), 3DMake (non-visual build automation), and accessible editors ({{hi:VS Code}}VS Code, {{hi:Notepad++}}Notepad++, command-line editors) with screen reader support. Students progress from foundational command-line skills through guided projects to real-world, stakeholder-driven design challenges.
 
 ### Who This Course Is For
 
@@ -34,7 +34,7 @@ Before choosing a command-line pathway, students optimize their screen reader se
 
 | Component                                                                                                         | Duration    | Content                                                                   |
 |-------------------------------------------------------------------------------------------------------------------|-------------|---------------------------------------------------------------------------|
-| [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) | 1-1.5 hours | NVDA/JAWS reference for PowerShell, CMD, and Git Bash; keyboard shortcuts |
+| [Screen Reader Accessibility Guide](Setup_Accessibility_Complete.md#accessibility-guide) | 1-1.5 hours | NVDA/JAWS reference for {{hi:PowerShell}}PowerShell, {{hi:CMD}}CMD, and {{hi:Git Bash}}Git Bash; keyboard shortcuts |
 | [Screen Reader Choice: Windows CLI](Setup_Accessibility_Complete.md#screen-reader-choice)                           | 30 min      | Comparing NVDA, JAWS, Narrator, and Dolphin; choosing the right tool      |
 | [Braille Display & Terminal Mode](Setup_Accessibility_Complete.md#braille-displays)                                     | 30 min      | Optional: configuring refreshable braille displays for terminal work      |
 | [Editor Selection and Setup](Setup_Accessibility_Complete.md#editor-setup)                              | 30 min      | Choosing Notepad, Notepad++, or VS Code; configuring indent announcement  |
@@ -62,7 +62,7 @@ Start here: [PowerShell Curriculum Overview](PS_Complete_Curriculum.md#part-1-po
 | [Powershell Lesson 1: Navigation](PS_Complete_Curriculum.md#ps-lesson-1)                                                                       | 2-2.5 hours | Moving around the file system confidently                                   |
 | [Powershell Lesson 2: File & Folder Manipulation](PS_Complete_Curriculum.md#ps-lesson-2) | 2.5-3 hours | Creating, editing, moving, copying, deleting files and directories          |
 | [Powershell Lesson 3: Input, Output & Piping](PS_Complete_Curriculum.md#ps-lesson-3)                                         | 2.5-3 hours | Redirecting output, piping commands, understanding data flow                |
-| [Powershell Lesson 4: Environment Variables & Aliases](PS_Complete_Curriculum.md#ps-lesson-4)            | 2-2.5 hours | Setting variables, creating shortcuts, persistent configurations            |
+| [Powershell Lesson 4: Environment Variables & Aliases](PS_Complete_Curriculum.md#ps-lesson-4)            | 2-2.5 hours | Setting {{hi:Variables}}variables, creating shortcuts, persistent configurations            |
 | [Powershell Lesson 5: Filling in the Gaps](PS_Complete_Curriculum.md#ps-lesson-5)                                            | 2.5-3 hours | Control flow, profiles, useful tricks, scripting fundamentals               |
 | [Powershell Lesson 6: Advanced Terminal Techniques](PS_Complete_Curriculum.md#ps-lesson-6)                                   | 4-4.5 hours | Scripts, functions, loops, professional workflows, automation patterns      |
 | [PowerShell Unit Test & Practice](PS_Complete_Curriculum.md#ps-unit-exam)                                                              | 2-3 hours   | Practice exercises, assessment, reinforcement                               |
@@ -104,7 +104,7 @@ Start here: [Git Bash Curriculum Overview](GitBash_Complete_Curriculum.md#part-3
 | [Bash Lesson 2: File and Folder Manipulation](GitBash_Complete_Curriculum.md#gb-lesson-2) | 2-2.5 hours   | Creating, editing, moving, copying, deleting files and directories       |
 | [Bash Lesson 3: Input, Output & Piping](GitBash_Complete_Curriculum.md#gb-lesson-3)                                           | 2-2.5 hours   | Redirecting output, piping with grep/sort/wc, understanding data flow    |
 | [Bash Lesson 4: Environment Variables & Aliases](GitBash_Complete_Curriculum.md#gb-lesson-4)              | 1.5-2 hours   | Setting variables, creating aliases, editing .bashrc                     |
-| [Bash Lesson 5: Filling in the Gaps](GitBash_Complete_Curriculum.md#gb-lesson-5)                                              | 2-2.5 hours   | Shell profiles, command history, debugging                               |
+| [Bash Lesson 5: Filling in the Gaps](GitBash_Complete_Curriculum.md#gb-lesson-5)                                              | 2-2.5 hours   | Shell profiles, command history, {{hi:Debugging}}debugging                               |
 | [Bash Lesson 6: Advanced Terminal Techniques](GitBash_Complete_Curriculum.md#gb-lesson-6)                                     | 2.5-3.5 hours | Shell scripts, functions, loops, professional workflows                  |
 | [GitBash Unit Test & Practice](GitBash_Complete_Curriculum.md#gb-unit-exam)                                                                        | 2-2.5 hours   | Practice exercises, assessment, reinforcement                            |
 
@@ -129,8 +129,8 @@ Start here: [3dMake Introduction](3dMake_Foundation/3dMake_Intro/3dMake_Intro.md
 | Lesson                                                             | Focus                                                           | Duration   | Project |
 |--------------------------------------------------------------------|-----------------------------------------------------------------|------------|---------|
 | [Lesson 1](3dMake_All_Lessons.md) | Environmental Configuration + Code Documentation Standards      | 60-90 min  | None    |
-| [Lesson 2](3dMake_All_Lessons.md) | Primitives & Boolean Operations + Modifier Characters Debugging | 75-90 min  | None    |
-| [Lesson 3](3dMake_All_Lessons.md) | Parametric Architecture + Advanced Programming Concepts         | 90-120 min | None    |
+| [Lesson 2](3dMake_All_Lessons.md) | Primitives & {{hi:Boolean operations}}Boolean Operations + Modifier Characters Debugging | 75-90 min  | None    |
+| [Lesson 3](3dMake_All_Lessons.md) | {{hi:Parametric Architecture}}Parametric Architecture + Advanced Programming Concepts         | 90-120 min | None    |
 
 #### Verification & Safety (Lessons 4-5 | ~2 hours)
 
@@ -144,21 +144,21 @@ Start here: [3dMake Introduction](3dMake_Foundation/3dMake_Intro/3dMake_Intro.md
 | Lesson                                                             | Focus                                     | Duration    | Project             |
 |--------------------------------------------------------------------|-------------------------------------------|-------------|---------------------|
 | [Lesson 6](3dMake_All_Lessons.md) | Practical 3dm Commands + String Functions | 75-105 min  | Customizable Keycap |
-| [Lesson 7](3dMake_All_Lessons.md) | Parametric Transforms + Math Functions    | 90-120 min  | Phone Stand         |
+| [Lesson 7](3dMake_All_Lessons.md) | {{hi:Parametric Transforms}}Parametric Transforms + Math Functions    | 90-120 min  | Phone Stand         |
 | [Lesson 8](3dMake_All_Lessons.md) | Advanced Design + Assembly Best Practices | 105-150 min | Stackable Bins      |
 
 #### Advanced Topics (Lessons 9-10 | ~3-4 hours)
 
 | Lesson                                                                | Focus                                                     | Duration    | Project                          |
 |-----------------------------------------------------------------------|-----------------------------------------------------------|-------------|----------------------------------|
-| [Lesson 9](3dMake_All_Lessons.md)    | Automation + File Import/Export (requires CLI Foundation) | 75-105 min  | Batch Processing Automation      |
+| [Lesson 9](3dMake_All_Lessons.md)    | Automation + File Import/Export (requires {{hi:CLI}}CLI Foundation) | 75-105 min  | Batch Processing Automation      |
 | [Lesson 10](3dMake_All_Lessons.md) | Troubleshooting & Mastery with Measurement                | 120-150 min | QA Testing + Accessibility Audit |
 
 #### Leadership (Lesson 11 | ~2 hours)
 
 | Lesson                                                                | Focus                                        | Duration   | Project               |
 |-----------------------------------------------------------------------|----------------------------------------------|------------|-----------------------|
-| [Lesson 11](3dMake_All_Lessons.md) | Stakeholder-Centric Design & Design Thinking | 90-120 min | Beaded Jewelry Holder |
+| [Lesson 11](3dMake_All_Lessons.md) | {{hi:Stakeholder-Centric Design}}Stakeholder-Centric Design & Design Thinking | 90-120 min | Beaded Jewelry Holder |
 
 Total: 16-20 hours of instruction + projects
 
@@ -175,7 +175,7 @@ Located in `Command_Line_Interface_Selection/`:
 
 | Appendix                                                                                                                | Title                                           | Use When                                                     |
 |-------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------|--------------------------------------------------------------|
-| [Appendix A](CLI_Appendices_Complete.md#appendix-a)                                    | CMD/Batch Integration for SCAD Workflows        | Automating with Windows Command Prompt and batch files       |
+| [Appendix A](CLI_Appendices_Complete.md#appendix-a)                                    | CMD/Batch Integration for SCAD Workflows        | Automating with {{hi:Windows Command Prompt}}Windows Command Prompt and batch files       |
 | [Appendix B](CLI_Appendices_Complete.md#appendix-b)                                     | PowerShell Integration for SCAD Workflows       | Automating with PowerShell scripts and advanced workflows    |
 | [Appendix C](CLI_Appendices_Complete.md#appendix-c)                                        | Git Bash / POSIX Shell Integration for SCAD     | Automating with Unix/bash shell scripts for cross-platform   |
 
@@ -187,7 +187,7 @@ Located in `3dMake_Foundation/`:
 |-----------------------------------------------------------------------------------------|----------------------------------------------|----------------------------------------------------------|
 | [3DMake Cheat Sheet](3DMake_Appendices_Complete.md#appendix-a)                | Complete 3dm CLI Reference                   | Quick command lookup, troubleshooting 3dm commands       |
 | [Appendix A](3DMake_Appendices_Complete.md#appendix-b)               | Comprehensive Slicing Guide                  | Slicing questions, switching slicers, quality issues     |
-| [Appendix B](3DMake_Appendices_Complete.md#appendix-c)                       | Material Properties & Selection Guide        | Choosing material, troubleshooting prints, cost analysis |
+| [Appendix B](3DMake_Appendices_Complete.md#appendix-c)                       | {{hi:Material Properties}}Material Properties & Selection Guide        | Choosing material, troubleshooting prints, cost analysis |
 | [Appendix C](3DMake_Appendices_Complete.md#appendix-d)                              | Tolerance Testing & Quality Assurance Matrix | Starting a project, verifying dimensions, quality issues |
 | [Appendix D](3DMake_Appendices_Complete.md#appendix-e)                | Advanced OpenSCAD Concepts                   | Building mechanical systems, optimizing complex models   |
 | [Code Examples & Assets](assets/3dMake_Foundation/README.md)                            | 3dMake Code Examples & Assets                | Reference designs, working code examples                 |
@@ -247,7 +247,7 @@ Questions include error identification, code explanation, behavioral analysis, a
 
 #### Glossaries
 
-- **[Student Glossary](Backmatter_Complete.md#student-glossary)** - Complete terminology reference for OpenSCAD, 3dMake, 3D Printing, and CLI  
+- **[Student Glossary](Backmatter_Complete.md#student-glossary)** - Complete terminology reference for OpenSCAD, 3dMake, {{hi:3D printing}}3D Printing, and CLI  
 - **[Teacher Glossary](Backmatter_Complete.md#teacher-glossary)** - Pedagogical framework, instructional design strategies, assessment concepts, and accessibility terminology
 
 #### Technical References
@@ -299,7 +299,7 @@ Why 3DMake?
 
 - No GUI navigation: All interaction is keyboard-driven and text-based.
 - Automation: Eliminates repetitive manual steps.
-- Metadata tracking: Configuration files store parameters as human-readable text.
+- Metadata tracking: Configuration files store {{hi:Parameters}}parameters as human-readable text.
 - Error reporting: Diagnostic output is text that screen readers can read aloud.
 
 ### Accessible Editors
@@ -347,7 +347,7 @@ OpenSCAD code is central to this course. We evaluate the clarity, structure, and
 | Score | Description                                                                                                                                                                                          |
 |-------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 3     | Code is clean, well-organized, and thoroughly commented. Variables/modules are used appropriately. Print quality is excellent. Design shows original thinking and at least one meaningful iteration. |
-| 2     | Code works but lacks clear structure or comments. Variables are used but could be better named. Print quality is acceptable. Some iteration evident.                                                 |
+| 2     | Code works but lacks clear structure or {{hi:Comments}}comments. Variables are used but could be better named. Print quality is acceptable. Some iteration evident.                                                 |
 | 1     | Code is functional but poorly organized. Comments are minimal or missing. Print quality has defects. Little or no iteration.                                                                         |
 | 0     | Code does not work, is not submitted, or shows no original thinking. Print is not functional.                                                                                                        |
 
@@ -429,7 +429,7 @@ Accessibility Configuration
 - [Programming with OpenSCAD: A Beginner's Guide to Coding 3D-Printable Objects](https://nostarch.com/programmingopenscad) by Justin Gohde and Marius Kintel - Comprehensive reference covering OpenSCAD syntax, geometry concepts, and design patterns. Available in EPUB format (screen reader accessible).
 - [Simplifying 3D Printing with OpenSCAD](https://www.packtpub.com/en-us/product/simplifying-3d-printing-with-openscad-9781801813174) by Alicia Noors - Focused on practical workflows, optimization, and real-world printing scenarios. Available in EPUB/PDF formats.
 - [OpenSCAD for 3D Printing](https://www.apress.com/gp/book/9781484213292) by Al Williams - Hands-on introduction to OpenSCAD with practical 3D printing projects. Covers basics through intermediate topics.
-- [Mastering OpenSCAD](https://www.amazon.com/Mastering-OpenSCAD-Jochen-Kerdels/dp/1803243538) by Jochen Kerdels - Project-based learning approach with emphasis on parametric design and reusable code modules.
+- [Mastering OpenSCAD](https://www.amazon.com/Mastering-OpenSCAD-Jochen-Kerdels/dp/1803243538) by Jochen Kerdels - Project-based learning approach with emphasis on parametric design and reusable code {{hi:Modules}}modules.
 
 **Free Online Resources:**
 
@@ -439,9 +439,9 @@ Accessibility Configuration
 
 **Curriculum-Specific Resources:**
 
-- [Programming with OpenSCAD Companion Resources](https://programmingwithopenscad.github.io/learning.html) - Practice worksheets for visualization, decomposition exercises, vocabulary building, and assessment.
+- [Programming with OpenSCAD Companion Resources](https://programmingwithopenscad.github.io/learning.html) - Practice worksheets for visualization, {{hi:Decomposition}}decomposition exercises, vocabulary building, and assessment.
 - [Visual Quick Reference](https://programmingwithopenscad.github.io/quick-reference.html) - Command syntax guides and geometry reference.
-- [Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) - Working OpenSCAD examples organized by topic (3D shapes, transformations, loops, modules, if-statements, advanced techniques).
+- [Code Solutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) - Working OpenSCAD examples organized by topic ({{hi:3D shapes}}3D shapes, transformations, loops, modules, if-statements, advanced techniques).
 
 **Community Resources:**
 

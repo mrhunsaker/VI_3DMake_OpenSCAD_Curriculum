@@ -1,6 +1,6 @@
 # Command Line Appendices — Complete Reference
 
-Supplemental automation references for integrating OpenSCAD and 3dMake workflows with the three command-line environments covered in this curriculum. Each appendix is self-contained and maps directly to the corresponding CLI foundation curriculum.
+Supplemental automation references for integrating OpenSCAD and 3dMake workflows with the three command-line environments covered in this curriculum. Each appendix is self-contained and maps directly to the corresponding {{hi:CLI}}CLI foundation curriculum.
 
 ---
 
@@ -8,15 +8,11 @@ Supplemental automation references for integrating OpenSCAD and 3dMake workflows
 
 | Appendix | Shell | Title |
 |---|---|---|
-| [Appendix A](#appendix-a) | CMD / Batch | Command Line (CMD/Batch) Integration for SCAD Workflows |
-| [Appendix B](#appendix-b) | PowerShell | PowerShell Integration for SCAD Workflows |
-| [Appendix C](#appendix-c) | Git Bash / POSIX | Git Bash / POSIX Shell Integration for SCAD Workflows |
+| [Appendix A](#appendix-a) | {{hi:CMD}}CMD / Batch | Command Line (CMD/Batch) Integration for SCAD Workflows |
+| [Appendix B](#appendix-b) | {{hi:PowerShell}}PowerShell | PowerShell Integration for SCAD Workflows |
+| [Appendix C](#appendix-c) | {{hi:Git Bash}}Git Bash / POSIX | Git Bash / POSIX Shell Integration for SCAD Workflows |
 
 All three appendices cover the same workflow stages — single-file build, batch directory build, parametric sweeps, logging, USB transfer, and network printer monitoring — using the idioms and tools native to each shell.
-
----
-
-
 
 ---
 
@@ -26,7 +22,7 @@ All three appendices cover the same workflow stages — single-file build, batch
 
 ---
 
-This appendix shows how traditional command-line (Windows CMD / batch) scripting automates SCAD workflows without requiring PowerShell. It mirrors the patterns in Appendix D but provides examples and idioms for `cmd` / batch files and systems that prefer native Windows command prompt scripts.
+This appendix shows how traditional command-line (Windows CMD / batch) scripting automates SCAD workflows without requiring PowerShell. It mirrors the patterns in Appendix D but provides examples and idioms for `cmd` / batch files and systems that prefer native {{hi:Windows Command Prompt}}Windows command prompt scripts.
 
 ## Overview: Why Automate with CMD/Batch?
 
@@ -158,7 +154,7 @@ copy "%GCODEPATH%" E:\
 
 ---
 
-This appendix shows how PowerShell (command-line scripting) streamlines 3D design workflows, automating the repetitive tasks from design through printing. It bridges PowerShell_Foundation concepts with 3dMake_Foundation practical applications.
+This appendix shows how PowerShell (command-line scripting) streamlines {{hi:3D design}}3D design workflows, automating the repetitive tasks from design through printing. It bridges PowerShell_Foundation concepts with 3dMake_Foundation practical applications.
 
 Referenced in: Lessons 9 (Automation), 10 (Mastery), and any lesson requiring batch operations
 
@@ -168,7 +164,7 @@ Prerequisites: Completion of PowerShell_Foundation (Lessons 1-6)
 
 ### Manual Workflow (Time-Consuming)
 
-1. Open SCAD manually -> Edit parameters -> Save -> Export STL
+1. Open SCAD manually -> Edit {{hi:Parameters}}parameters -> Save -> Export STL
 2. Open Slicer manually -> Load STL -> Adjust settings -> Slice -> Export G-code
 3. Transfer G-code to printer via USB
 4. Record results in notebook
@@ -699,8 +695,8 @@ Usage:
 | PS 1: Navigation          | Working with project directories | Using `cd` to navigate src/ -> stl/ -> gcode/    |
 | PS 2: File Manipulation   | Copying, organizing SCAD files   | Copy design files, organize variants by date     |
 | PS 3: Piping & Objects    | Pass data between scripts        | `$results \| Export-Csv` exports analysis        |
-| PS 4: Variables & Aliases | Parameterize SCAD workflows      | Variables store file paths, material types, etc. |
-| PS 5: Functions & Modules | Reusable automation blocks       | Build, slice, log = functions in one script      |
+| PS 4: {{hi:Variables}}Variables & Aliases | Parameterize SCAD workflows      | Variables store file paths, material types, etc. |
+| PS 5: Functions & {{hi:Modules}}Modules | Reusable automation blocks       | Build, slice, log = functions in one script      |
 | PS Unit Test              | Verify workflow correctness      | Test that STL file exists before slicing         |
 
 ### Example: File Navigation with SCAD Projects
