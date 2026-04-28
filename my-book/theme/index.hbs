@@ -18,7 +18,7 @@
         <meta name="description" content="{{ description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
-
+<link rel="stylesheet" href="catppuccin.css">
         {{#if favicon_svg}}
         <link rel="icon" href="{{ resource "favicon.svg" }}">
         {{/if}}
@@ -94,16 +94,14 @@
         </script>
 
         <!-- Set the theme before any content is loaded, prevents flash -->
-        <script>
-            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
-            let theme;
-            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
-            if (theme === null || theme === undefined) { theme = default_theme; }
-            const html = document.documentElement;
-            html.classList.remove('{{ default_theme }}')
-            html.classList.add(theme);
-            html.classList.add("js");
-        </script>
+<script>
+    const themes = ["latte", "frappe", "macchiato", "mocha"];
+
+    const stored = window.localStorage.getItem("mdbook-theme");
+    const theme = themes.includes(stored) ? stored : "latte";
+
+    document.documentElement.classList.add(theme);
+</script>
 
         <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
 
@@ -151,9 +149,9 @@
                         </button>
                         <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
                             <li role="none"><button role="menuitem" class="theme" id="latte">Latte</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="frappe">Frappé</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
+<li role="none"><button role="menuitem" class="theme" id="frappe">Frappe</button></li>
+<li role="none"><button role="menuitem" class="theme" id="macchiato">Macchiato</button></li>
+<li role="none"><button role="menuitem" class="theme" id="mocha">Mocha</button></li>
                         </ul>
                         {{#if search_enabled}}
                         <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
