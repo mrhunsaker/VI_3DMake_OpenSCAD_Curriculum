@@ -1,1 +1,1 @@
-# 3dMake Foundation &amp; {{i:Design}}
+# 3dMake Foundation &amp; Design

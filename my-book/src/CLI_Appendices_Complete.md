@@ -1,18 +1,18 @@
 # Command Line Appendices — Complete Reference
 
-Supplemental automation references for integrating {{i:OpenSCAD}} and 3dMake workflows with the three {{i:command}}-line environments covered in this curriculum. Each appendix is self-contained and maps directly to the corresponding {{hi:CLI}}CLI foundation curriculum.
+Supplemental automation references for integrating OpenSCAD and 3dMake workflows with the three command-line environments covered in this curriculum. Each appendix is self-contained and maps directly to the corresponding {{hi:CLI}}CLI foundation curriculum.
 
 ---
 
 ## Contents
 
-| Appendix | {{i:Shell}} | Title |
+| Appendix | Shell | Title |
 |---|---|---|
 | [Appendix A](#appendix-a) | {{hi:CMD}}CMD / Batch | Command Line (CMD/Batch) Integration for SCAD Workflows |
-| [Appendix B](#appendix-b) | {{hi:{{i:PowerShell}}}}{{i:PowerShell}} | {{i:PowerShell}} Integration for SCAD Workflows |
-| [Appendix C](#appendix-c) | {{hi:{{i:Git}} {{i:Bash}}}}{{i:Git}} {{i:Bash}} / POSIX | {{i:Git}} {{i:Bash}} / POSIX {{i:Shell}} Integration for SCAD Workflows |
+| [Appendix B](#appendix-b) | {{hi:PowerShell}}PowerShell | PowerShell Integration for SCAD Workflows |
+| [Appendix C](#appendix-c) | {{hi:Git Bash}}Git Bash / POSIX | Git Bash / POSIX Shell Integration for SCAD Workflows |
 
-All three appendices cover the same {{i:workflow}} stages — single-{{i:file}} {{i:build}}, batch directory {{i:build}}, {{i:parametric}} sweeps, logging, USB transfer, and network {{i:printer}} monitoring — {{i:using}} the idioms and tools native to {{i:each}} {{i:shell}}.
+All three appendices cover the same workflow stages — single-file build, batch directory build, parametric sweeps, logging, USB transfer, and network printer monitoring — using the idioms and tools native to each shell.
 
 ---
 
@@ -22,13 +22,13 @@ All three appendices cover the same {{i:workflow}} stages — single-{{i:file}} 
 
 ---
 
-This appendix shows how traditional {{i:command}}-line ({{i:Windows}} CMD / batch) scripting automates SCAD workflows without requiring {{i:PowerShell}}. It mirrors the patterns in Appendix D but provides examples and idioms for `cmd` / batch {{i:files}} and systems that prefer native {{hi:{{i:Windows}} Command Prompt}}{{i:Windows}} {{i:command}} prompt {{i:scripts}}.
+This appendix shows how traditional command-line (Windows CMD / batch) scripting automates SCAD workflows without requiring PowerShell. It mirrors the patterns in Appendix D but provides examples and idioms for `cmd` / batch files and systems that prefer native {{hi:Windows Command Prompt}}Windows command prompt scripts.
 
 ## Overview: Why Automate with CMD/Batch?
 
-- Minimal dependencies: works on basic {{i:Windows}} installations.
+- Minimal dependencies: works on basic Windows installations.
 - Easy to call from other tools and CI systems that expect `.bat` helpers.
-- Useful for environments where {{i:PowerShell}} policy restrictions exist.
+- Useful for environments where PowerShell policy restrictions exist.
 
 ## Prerequisites & Setup
 
@@ -40,7 +40,7 @@ where prusa-slicer  :: PrusaSlicer (or your slicer)
 where python        :: Python (optional)
 ```
 
-### Directory Structure ({{i:Windows}} style)
+### Directory Structure (Windows style)
 
 ```cmd
 C:\Projects\3dMake\
@@ -53,12 +53,12 @@ C:\Projects\3dMake\
        +------ batch_build.bat
 ```
 
-### Notes on CMD vs {{i:PowerShell}}
+### Notes on CMD vs PowerShell
 
-- CMD/batch has more limited {{i:error}} handling and no structured objects; rely on return codes and {{i:file}} checks.
-- Use full executable paths to avoid {{i:PATH}} surprises.
+- CMD/batch has more limited error handling and no structured objects; rely on return codes and file checks.
+- Use full executable paths to avoid PATH surprises.
 
-## Basic Workflow: Single-{{i:file}} {{i:build}} (batch)
+## Basic Workflow: Single-file build (batch)
 
 Create `build.bat` (simple example):
 
@@ -94,9 +94,9 @@ echo BUILD COMPLETE: %GCODEPATH%
 endlocal
 ```
 
-## Batch (directory) {{i:build}}
+## Batch (directory) build
 
-`batch_build.bat` {{i:can}} iterate {{i:files}} and call `build.bat`:
+`batch_build.bat` can iterate files and call `build.bat`:
 
 ```cmd
 @echo off
@@ -109,7 +109,7 @@ for /r "%PROJECTROOT%src" %%f in (*.scad) do (
 
 ## Parametric Sweeps (simple templating)
 
-Because batch is limited for {{i:text}} templating, a {{i:common}} pattern is to use small helper {{i:scripts}} with `sed`/`python` or {{i:write}} a minimal templating helper in a language such as Python. Example invocation in batch:
+Because batch is limited for text templating, a common pattern is to use small helper scripts with `sed`/`python` or write a minimal templating helper in a language such as Python. Example invocation in batch:
 
 ```cmd
 rem Example: call a Python script to generate variants, then build
@@ -117,30 +117,30 @@ python "%~dp0/generate_variants.py" "%PROJECTROOT%src\bracelet_holder.scad"
 call "%~dp0/batch_build.bat"
 ```
 
-## Logging and CSV {{i:output}}
+## Logging and CSV output
 
-Batch {{i:scripts}} {{i:can}} append simple CSV lines {{i:using}} `echo` redirection:
+Batch scripts can append simple CSV lines using `echo` redirection:
 
 ```cmd
 echo %DATE% %TIME%,%~n1,Success >> "%PROJECTROOT%logs\build_history.csv"
 ```
 
-## Send to Printer (USB {{i:copy}})
+## Send to Printer (USB copy)
 
 ```cmd
 rem Copy gcode to removable drive (E: example)
 copy "%GCODEPATH%" E:\
 ```
 
-## Monitoring (networked {{i:printer}}) - {{i:using}} curl or {{i:PowerShell}} helper
+## Monitoring (networked printer) - using curl or PowerShell helper
 
-`curl` on {{i:Windows}} or a small {{i:PowerShell}} {{i:one}}-liner may be used to query APIs. For pure CMD, ship a small helper .exe (curl) or call `powershell -Command "Invoke-RestMethod ..."`.
+`curl` on Windows or a small PowerShell one-liner may be used to query APIs. For pure CMD, ship a small helper .exe (curl) or call `powershell -Command "Invoke-RestMethod ..."`.
 
 ## Best Practices
 
 - Use full paths for all tools.
-- Check return codes (`if errorlevel 1`) after {{i:each}} step.
-- Keep batch {{i:scripts}} small; delegate complex {{i:text}} processing to Python/{{i:PowerShell}}.
+- Check return codes (`if errorlevel 1`) after each step.
+- Keep batch scripts small; delegate complex text processing to Python/PowerShell.
 - Log to simple CSVs for human and machine parsing.
 
 ---
@@ -150,11 +150,11 @@ copy "%GCODEPATH%" E:\
 
 <a id="appendix-b"></a>
 
-# Appendix B: {{i:PowerShell}} Integration for SCAD Workflows
+# Appendix B: PowerShell Integration for SCAD Workflows
 
 ---
 
-This appendix shows how {{i:PowerShell}} ({{i:command}}-line scripting) streamlines {{hi:3D {{i:design}}}}3D {{i:design}} workflows, automating the repetitive tasks from {{i:design}} through {{i:printing}}. It bridges PowerShell_Foundation concepts with 3dMake_Foundation practical applications.
+This appendix shows how PowerShell (command-line scripting) streamlines {{hi:3D design}}3D design workflows, automating the repetitive tasks from design through printing. It bridges PowerShell_Foundation concepts with 3dMake_Foundation practical applications.
 
 Referenced in: Lessons 9 (Automation), 10 (Mastery), and any lesson requiring batch operations
 
@@ -164,36 +164,36 @@ Prerequisites: Completion of PowerShell_Foundation (Lessons 1-6)
 
 ### Manual Workflow (Time-Consuming)
 
-1. Open SCAD manually -> Edit {{hi:Parameters}}{{i:parameters}} -> Save -> Export {{i:STL}}
-2. Open {{i:Slicer}} manually -> Load {{i:STL}} -> Adjust settings -> Slice -> Export G-{{i:code}}
-3. Transfer G-{{i:code}} to {{i:printer}} via USB
+1. Open SCAD manually -> Edit {{hi:Parameters}}parameters -> Save -> Export STL
+2. Open Slicer manually -> Load STL -> Adjust settings -> Slice -> Export G-code
+3. Transfer G-code to printer via USB
 4. Record results in notebook
 5. Repeat for next variation (variant 2, variant 3, etc.)
 
-Time: ~20-30 minutes per {{i:design}} iteration
+Time: ~20-30 minutes per design iteration
 
 ### Automated Workflow (Fast & Reproducible)
 
-1. Create {{i:PowerShell}} {{i:script}} with {{i:design}} {{i:parameters}}
+1. Create PowerShell script with design parameters
 2. Script automatically:
-   - Generates SCAD {{i:code}}
-   - Exports to {{i:STL}}
-   - Slices to G-{{i:code}}
-   - Transfers to {{i:printer}}
+   - Generates SCAD code
+   - Exports to STL
+   - Slices to G-code
+   - Transfers to printer
    - Logs results
-3. Run {{i:script}} once, walk away
+3. Run script once, walk away
 4. Check results later
 
-Time: 2-3 minutes per iteration (plus {{i:print}} {{i:time}})
+Time: 2-3 minutes per iteration (plus print time)
 
 ### Benefits of Automation
 
 - [YES] Speed: 10x faster for batch operations
 - [YES] Consistency: No manual errors
-- [YES] Reproducibility: Same settings every {{i:time}}
+- [YES] Reproducibility: Same settings every time
 - [YES] Scalability: Test 5, 10, or 100 variations easily
 - [YES] Logging: Automatic documentation
-- [YES] Accessibility: {{i:Screen}} {{i:reader}} captures {{i:script}} {{i:output}} (not UI clicks)
+- [YES] Accessibility: Screen reader captures script output (not UI clicks)
 
 ## Prerequisites & Setup
 
@@ -233,7 +233,7 @@ C:\Projects\3dMake\
     +------ monitor.ps1    (monitor printer)
 ```
 
-### {{i:PowerShell}} Execution Policy
+### PowerShell Execution Policy
 
 ```powershell
 # Check current policy
@@ -248,7 +248,7 @@ Get-ExecutionPolicy
 
 ### Script 1: Single-File Build
 
-This {{i:script}} takes a SCAD {{i:file}} and converts it through the entire {{i:workflow}}:
+This script takes a SCAD file and converts it through the entire workflow:
 
 ```powershell
 # build.ps1 - Convert SCAD -> STL -> G-code
@@ -370,21 +370,21 @@ Usage:
 # Processes all .scad files automatically
 ```
 
-## Parametric {{i:Design}} Variation Testing
+## Parametric Design Variation Testing
 
 ### The Problem: Testing Multiple Parameter Values
 
-You want to {{i:test}} the same {{i:design}} with different {{i:parameters}} (e.g., peg diameter: 5mm, 6mm, 7mm):
+You want to test the same design with different parameters (e.g., peg diameter: 5mm, 6mm, 7mm):
 
 Manually:
 
 1. Open bracelet_holder.scad
 2. Change peg_diameter = 5
-3. Save, export, slice, {{i:print}}
+3. Save, export, slice, print
 4. Change peg_diameter = 6
-5. Save, export, slice, {{i:print}}
+5. Save, export, slice, print
 6. Change peg_diameter = 7
-7. Save, export, slice, {{i:print}}
+7. Save, export, slice, print
 Time: 30 minutes
 
 ### Automated Solution: Parametric Sweep
@@ -552,7 +552,7 @@ Usage:
 
 ## Printer Communication & Monitoring
 
-### Script: Send G-{{i:code}} to Printer (USB)
+### Script: Send G-code to Printer (USB)
 
 ```powershell
 # send_to_printer.ps1 - Copy G-code to printer USB
@@ -635,7 +635,7 @@ Usage:
 
 ## Complete Workflow Integration
 
-### Master Script: {{i:Design}} -> Print -> Log
+### Master Script: Design -> Print -> Log
 
 ```powershell
 # full_workflow.ps1 - Complete automation from design to printing
@@ -686,18 +686,18 @@ Usage:
     -PrinterUSBLetter "E"
 ```
 
-## {{i:PowerShell}} Skills Applied to SCAD
+## PowerShell Skills Applied to SCAD
 
-### Lesson Mapping: {{i:PowerShell}} -> SCAD Workflows
+### Lesson Mapping: PowerShell -> SCAD Workflows
 
-| {{i:PowerShell}} Lesson         | SCAD Application                 | Example                                          |
+| PowerShell Lesson         | SCAD Application                 | Example                                          |
 |---------------------------|----------------------------------|--------------------------------------------------|
 | PS 1: Navigation          | Working with project directories | Using `cd` to navigate src/ -> stl/ -> gcode/    |
-| PS 2: File Manipulation   | Copying, organizing SCAD {{i:files}}   | Copy {{i:design}} {{i:files}}, organize variants by date     |
-| PS 3: Piping & Objects    | Pass data {{i:between}} {{i:scripts}}        | `$results \| Export-Csv` exports analysis        |
-| PS 4: {{hi:Variables}}Variables & Aliases | Parameterize SCAD workflows      | Variables store {{i:file}} paths, {{i:material}} types, etc. |
-| PS 5: Functions & {{hi:Modules}}Modules | Reusable automation blocks       | Build, slice, log = functions in {{i:one}} {{i:script}}      |
-| PS Unit Test              | Verify {{i:workflow}} correctness      | Test that {{i:STL}} {{i:file}} exists {{i:before}} slicing         |
+| PS 2: File Manipulation   | Copying, organizing SCAD files   | Copy design files, organize variants by date     |
+| PS 3: Piping & Objects    | Pass data between scripts        | `$results \| Export-Csv` exports analysis        |
+| PS 4: {{hi:Variables}}Variables & Aliases | Parameterize SCAD workflows      | Variables store file paths, material types, etc. |
+| PS 5: Functions & {{hi:Modules}}Modules | Reusable automation blocks       | Build, slice, log = functions in one script      |
+| PS Unit Test              | Verify workflow correctness      | Test that STL file exists before slicing         |
 
 ### Example: File Navigation with SCAD Projects
 
@@ -733,13 +733,13 @@ Get-ChildItem -Path "$ProjectRoot\src" -Filter "*.scad" |
 
 ## Accessibility Considerations
 
-### Why {{i:PowerShell}} for SCAD?
+### Why PowerShell for SCAD?
 
-1. {{i:Screen}} Reader Friendly: Console {{i:output}} = {{i:text}} (not UI clicks)
-2. Scriptable: Can {{i:run}} overnight, results logged
-3. Auditable: Every step written to log {{i:file}}
+1. Screen Reader Friendly: Console output = text (not UI clicks)
+2. Scriptable: Can run overnight, results logged
+3. Auditable: Every step written to log file
 4. Shareable: Scripts document the process for others
-5. Testable: Can verify {{i:each}} step independently
+5. Testable: Can verify each step independently
 
 ### Example: Accessible Build Output
 
@@ -755,7 +755,7 @@ Get-ChildItem -Path "$ProjectRoot\src" -Filter "*.scad" |
 Ready to print: C:\Projects\3dMake\gcode\bracelet_holder.gcode
 ```
 
-All information is {{i:text}}-based and sequential-perfectly accessible to screen readers.
+All information is text-based and sequential-perfectly accessible to screen readers.
 
 ## Best Practices & Tips
 
@@ -820,67 +820,67 @@ $Config = @{
 
 | Problem            | Cause                       | Solution                                                            |
 |--------------------|-----------------------------|---------------------------------------------------------------------|
-| Scripts won't {{i:run}}  | Execution policy            | `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`                 |
-| Command not found  | Tool not in {{i:PATH}}            | Specify full path: `& "C:\Program Files\OpenSCAD\openscad.exe"`     |
+| Scripts won't run  | Execution policy            | `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned`                 |
+| Command not found  | Tool not in PATH            | Specify full path: `& "C:\Program Files\OpenSCAD\openscad.exe"`     |
 | Files not created  | Wrong working directory     | Use absolute paths with `Join-Path`                                 |
 | Script hangs       | Waiting for user input      | Disable UI input; use `-o` flag for batch operations                |
 | CSV data corrupted | Special characters in notes | Properly quote strings in CSV export                                |
-| No {{i:output}}/logging  | Path doesn't exist          | Create directory {{i:first}}: `New-Item -Type Directory -Path ... -Force` |
+| No output/logging  | Path doesn't exist          | Create directory first: `New-Item -Type Directory -Path ... -Force` |
 
-## Summary: {{i:PowerShell}} + SCAD Integration Benefits
+## Summary: PowerShell + SCAD Integration Benefits
 
 ### Time Savings
 
 | Task                         | Manual  | Automated | Savings |
 |------------------------------|---------|-----------|---------|
-| Single {{i:design}} {{i:build}}          | 5 min   | 2.5 min   | 50%     |
-| Test 10 {{i:parameter}} variations | 50 min  | 5 min     | 90%     |
+| Single design build          | 5 min   | 2.5 min   | 50%     |
+| Test 10 parameter variations | 50 min  | 5 min     | 90%     |
 | Batch processing 20 designs  | 100 min | 10 min    | 90%     |
 
 ### Consistency
 
-- [YES] Same process every {{i:time}} (no missed steps)
+- [YES] Same process every time (no missed steps)
 - [YES] Reproducible results (exact same settings)
 - [YES] Comprehensive logging (documentation automatic)
 
 ### Scalability
 
-- [YES] 1 {{i:design}} or 1,000 designs = same {{i:time}} commitment
+- [YES] 1 design or 1,000 designs = same time commitment
 - [YES] Run overnight for batch operations
-- [YES] Easy to expand with {{i:new}} features
+- [YES] Easy to expand with new features
 
 ### Accessibility
 
-- [YES] All interaction is {{i:text}}-based (screen {{i:reader}} friendly)
+- [YES] All interaction is text-based (screen reader friendly)
 - [YES] Results logged in CSV (machine-readable, sortable)
-- [YES] Repeatable ({{i:can}} verify steps later)
+- [YES] Repeatable (can verify steps later)
 
 ## Next Steps
 
-1. Try the basic {{i:build}} {{i:script}} (Script 1) with {{i:one}} of your SCAD {{i:files}}
-2. Add logging (Script 3) to track what {{i:you}} {{i:create}}
-3. Test {{i:parametric}} sweeps (Script 2) with {{i:design}} variations
-4. Integrate full {{i:workflow}} (Script 5) for complete automation
-5. Customize config.ps1 for your {{i:specific}} setup
+1. Try the basic build script (Script 1) with one of your SCAD files
+2. Add logging (Script 3) to track what you create
+3. Test parametric sweeps (Script 2) with design variations
+4. Integrate full workflow (Script 5) for complete automation
+5. Customize config.ps1 for your specific setup
 
-Remember: Start simple, {{i:test}} {{i:each}} {{i:script}} individually, then combine them {{i:into}} larger workflows. {{i:PowerShell}} is most powerful when built incrementally!
+Remember: Start simple, test each script individually, then combine them into larger workflows. PowerShell is most powerful when built incrementally!
 
 
 ---
 
 <a id="appendix-c"></a>
 
-# Appendix C: {{i:Git}} {{i:Bash}} / POSIX {{i:Shell}} Integration for SCAD Workflows
+# Appendix C: Git Bash / POSIX Shell Integration for SCAD Workflows
 
 ---
 
-This appendix mirrors Appendix D ({{i:PowerShell}}) but provides examples for {{i:Git}} {{i:Bash}} (mingw) or other POSIX-compatible shells on {{i:Windows}}, macOS, and Linux. Use these {{i:scripts}} when {{i:you}} prefer {{i:shell}} utilities (`bash`, `sed`, `awk`, `curl`) and Unix-like tooling.
+This appendix mirrors Appendix D (PowerShell) but provides examples for Git Bash (mingw) or other POSIX-compatible shells on Windows, macOS, and Linux. Use these scripts when you prefer shell utilities (`bash`, `sed`, `awk`, `curl`) and Unix-like tooling.
 
-## Overview: Why {{i:Git}} {{i:Bash}} / POSIX {{i:Shell}}?
+## Overview: Why Git Bash / POSIX Shell?
 
-- Leverage standard Unix tools for {{i:text}} processing and automation.
-- Cross-platform: same {{i:scripts}} often {{i:work}} on Linux/macOS and {{i:Windows}} via {{i:Git}} {{i:Bash}}.
-- Good fit for containerized CI like {{i:GitHub}} Actions.
+- Leverage standard Unix tools for text processing and automation.
+- Cross-platform: same scripts often work on Linux/macOS and Windows via Git Bash.
+- Good fit for containerized CI like GitHub Actions.
 
 ## Prerequisites & Setup
 
@@ -906,7 +906,7 @@ command -v curl        # curl for API calls
   `- batch_build.sh
 ```
 
-## Basic Workflow: Single-{{i:file}} {{i:build}} (bash)
+## Basic Workflow: Single-file build (bash)
 
 `scripts/build.sh`:
 
@@ -930,7 +930,7 @@ echo "BUILD COMPLETE: $GCODE_PATH"
 
 Notes:
 
-- Paths to GUI apps on {{i:Windows}} may need the `/c/Program\ Files/...` form under {{i:Git}} {{i:Bash}}, or call the native `.exe` with full quoted path.
+- Paths to GUI apps on Windows may need the `/c/Program\ Files/...` form under Git Bash, or call the native `.exe` with full quoted path.
 - On Linux/macOS adjust executable paths accordingly.
 
 ## Batch Build (directory)
@@ -950,7 +950,7 @@ done
 
 ## Parametric Sweeps
 
-Use `sed` or `python` to template {{i:parameter}} changes, then call `build.sh` for {{i:each}} variant. Example (bash + python hybrid):
+Use `sed` or `python` to template parameter changes, then call `build.sh` for each variant. Example (bash + python hybrid):
 
 ```bash
 python3 scripts/gen_variants.py "$ROOT_DIR/src/bracelet_holder.scad" --out variants/
@@ -961,7 +961,7 @@ done
 
 ## Logging & CSV
 
-Append simple CSV lines {{i:using}} `printf`:
+Append simple CSV lines using `printf`:
 
 ```bash
 printf "%s,%s,Success\n" "$(date +'%Y-%m-%d %H:%M:%S')" "${SCAD_FILE%.*}" >> "$ROOT_DIR/logs/build_history.csv"
@@ -976,7 +976,7 @@ cp "$GCODE_PATH" "/media/usb/"
 
 ## Monitoring (network printers)
 
-Use `curl` to call a {{i:printer}} API (e.g., OctoPrint):
+Use `curl` to call a printer API (e.g., OctoPrint):
 
 ```bash
 curl -s "[https://example.com](https://example.com) -H "X-Api-Key: $API_KEY" | jq .
@@ -984,9 +984,9 @@ curl -s "[https://example.com](https://example.com) -H "X-Api-Key: $API_KEY" | j
 
 ## Best Practices
 
-- Use `set -euo pipefail` for safer {{i:scripts}}.
-- Use `mktemp` or a `variants/` directory for generated {{i:files}}.
-- Keep heavy {{i:text}} processing to `python` if logic becomes complex.
-- Make {{i:scripts}} executable (`chmod +x scripts/*.sh`).
+- Use `set -euo pipefail` for safer scripts.
+- Use `mktemp` or a `variants/` directory for generated files.
+- Keep heavy text processing to `python` if logic becomes complex.
+- Make scripts executable (`chmod +x scripts/*.sh`).
 
 ---

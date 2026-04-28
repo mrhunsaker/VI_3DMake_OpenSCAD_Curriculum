@@ -1,6 +1,6 @@
-# 3dMake Foundation & {{i:Design}} — Complete Course Compendium
+# 3dMake Foundation & Design — Complete Course Compendium
 
-> **Course:** Accessible {{hi:3D {{i:printing}}}}3D Printing with {{i:OpenSCAD}} and {{i:3DMake}}
+> **Course:** Accessible {{hi:3D printing}}3D Printing with OpenSCAD and 3DMake
 > **Track:** 3dMake Certification — High School Distance Learning
 > **Contents:** Instructional Framework · Curriculum Guide · All 11 Lessons · Final Exam · Quick Reference Guide
 
@@ -8,92 +8,92 @@
 
 # Part I — Instructional Framework
 
-_A pedagogical overview of the {{i:3DMake}} and {{i:OpenSCAD}} ecosystem for secondary STEM education._
+_A pedagogical overview of the 3DMake and OpenSCAD ecosystem for secondary STEM education._
 
-## The Architecture of Programmatic {{i:Design}}
+## The Architecture of Programmatic Design
 
-Programmatic CAD differs from standard industry tools like Fusion 360 or SolidWorks by utilizing a "{{i:code}}-as-model" philosophy. {{i:OpenSCAD}}, the primary engine supported by {{i:3DMake}}, uses a functional programming language to define three-dimensional volumes.[^3] This approach is particularly robust for {{i:parametric}} {{i:design}}, where the dimensions of an object are defined as {{hi:Variables}}{{i:variables}}, allowing for instantaneous reconfiguration without manual rebuilding.[^4] {{i:3DMake}} enhances this by providing a unified {{i:command}}-line interface ({{hi:CLI}}CLI) to manage the entire process, from editing source {{i:files}} to triggering remote {{i:print}} jobs through interfaces like OctoPrint or {{hi:Bambu}}Bambu Connect.[^1]
+Programmatic CAD differs from standard industry tools like Fusion 360 or SolidWorks by utilizing a "code-as-model" philosophy. OpenSCAD, the primary engine supported by 3DMake, uses a functional programming language to define three-dimensional volumes.[^3] This approach is particularly robust for parametric design, where the dimensions of an object are defined as {{hi:Variables}}variables, allowing for instantaneous reconfiguration without manual rebuilding.[^4] 3DMake enhances this by providing a unified command-line interface ({{hi:CLI}}CLI) to manage the entire process, from editing source files to triggering remote print jobs through interfaces like OctoPrint or {{hi:Bambu}}Bambu Connect.[^1]
 
-The educational value of this toolchain lies in its transparency. Students are not hidden behind a proprietary user interface; they interact directly with the {{i:file}} system, configuration {{i:files}}, and API integrations. This exposure fosters a deeper understanding of how modern software interacts with hardware — a skill set increasingly vital in robotics and aerospace engineering.[^6] However, the shift to a terminal-based {{i:environment}} requires a structured instructional approach to overcome initial barriers to entry.
+The educational value of this toolchain lies in its transparency. Students are not hidden behind a proprietary user interface; they interact directly with the file system, configuration files, and API integrations. This exposure fosters a deeper understanding of how modern software interacts with hardware — a skill set increasingly vital in robotics and aerospace engineering.[^6] However, the shift to a terminal-based environment requires a structured instructional approach to overcome initial barriers to entry.
 
-## AI Integration and {{i:Model}} Descriptive Feedback
+## AI Integration and Model Descriptive Feedback
 
-The integration of artificial intelligence {{i:into}} the {{i:3DMake}} {{i:workflow}} represents a significant advancement in democratizing CAD for students with varying levels of spatial reasoning skills. The `3dm info` {{i:command}} acts as a multimodal bridge {{i:between}} the deterministic world of {{i:OpenSCAD}} and the probabilistic world of LLMs.[^1]
+The integration of artificial intelligence into the 3DMake workflow represents a significant advancement in democratizing CAD for students with varying levels of spatial reasoning skills. The `3dm info` command acts as a multimodal bridge between the deterministic world of OpenSCAD and the probabilistic world of LLMs.[^1]
 
-When a student executes `3dm info`, the system initiates a rendering pipeline, generating multiple viewpoints of the current model, which are packaged as image data and sent to the configured AI (e.g., Gemini) along with a descriptive prompt. The AI's response provides a summary that {{i:can}} include the model's intended function, aesthetic qualities, and potential engineering failures.[^1]
+When a student executes `3dm info`, the system initiates a rendering pipeline, generating multiple viewpoints of the current model, which are packaged as image data and sent to the configured AI (e.g., Gemini) along with a descriptive prompt. The AI's response provides a summary that can include the model's intended function, aesthetic qualities, and potential engineering failures.[^1]
 
 ### The Limits of AI Spatial Reasoning
 
-While powerful, current LLMs do not possess a true "3D world model" — they are trained primarily on 2D images and {{i:text}}.[^10] {{i:Common}} failures include:
+While powerful, current LLMs do not possess a true "3D world model" — they are trained primarily on 2D images and text.[^10] Common failures include:
 
 - **Detached Geometry:** The AI might describe a "table" even if the legs are hovering below the tabletop.[^10]
-- **Scale Misinterpretation:** Without a {{i:reference}} object in the render, the AI may misjudge scale, leading to inappropriate feedback on wall thickness.[^1]
+- **Scale Misinterpretation:** Without a reference object in the render, the AI may misjudge scale, leading to inappropriate feedback on wall thickness.[^1]
 
 > [!CAUTION]
-> **Hallucination of Detail:** The AI may describe features it expects to see (like "engraved {{i:text}}") even if the student's {{i:code}} failed to render them.[^10]
+> **Hallucination of Detail:** The AI may describe features it expects to see (like "engraved text") even if the student's code failed to render them.[^10]
 
 > [!IMPORTANT]
-> **AI is a verification assistant, not a source of truth.** The deterministic rendering of {{i:OpenSCAD}} remains the final authority on {{i:geometry}}. AI is most useful as a "sanity check" to catch obvious mistakes {{i:before}} wasting {{i:filament}}.[^1]
+> **AI is a verification assistant, not a source of truth.** The deterministic rendering of OpenSCAD remains the final authority on geometry. AI is most useful as a "sanity check" to catch obvious mistakes before wasting filament.[^1]
 
 ## Occupational Health and Safety
 
-Safety in the {{i:3DMake}} {{i:workflow}} extends to the physical act of {{i:printing}}, which involves thermal, chemical, and mechanical risks. The National Institute for Occupational Safety and Health (NIOSH) provides a clear framework for these risks.[^12]
+Safety in the 3DMake workflow extends to the physical act of printing, which involves thermal, chemical, and mechanical risks. The National Institute for Occupational Safety and Health (NIOSH) provides a clear framework for these risks.[^12]
 
 ### Chemical and Particulate Emissions
 
-The melting of plastic {{i:filament}} is a thermal degradation process. {{hi:ABS}}ABS releases styrene, a known respiratory irritant and potential carcinogen.[^12] Even {{hi:PLA}}PLA emits millions of ultrafine particles (UFPs) per minute during extrusion — particles smaller than 100 nanometers that {{i:can}} penetrate deep {{i:into}} the lungs.[^12]
+The melting of plastic filament is a thermal degradation process. {{hi:ABS}}ABS releases styrene, a known respiratory irritant and potential carcinogen.[^12] Even {{hi:PLA}}PLA emits millions of ultrafine particles (UFPs) per minute during extrusion — particles smaller than 100 nanometers that can penetrate deep into the lungs.[^12]
 
 | Emission Component         | Primary Source Filaments | Mitigation Strategy                                   |
 | :------------------------- | :----------------------- | :---------------------------------------------------- |
-| Styrene                    | ABS, ASA                 | Enclosed {{i:printer}} with carbon filtration.[^12]         |
+| Styrene                    | ABS, ASA                 | Enclosed printer with carbon filtration.[^12]         |
 | Formaldehyde               | POM, Nylon               | High-efficiency external ventilation.[^12]            |
 | Ultrafine Particles        | All filaments            | HEPA filtration and "20-minute" settling period.[^14] |
 | Volatile Organic Compounds | All filaments            | Minimum 6 air changes per hour in the room.[^15]      |
 
 > [!WARNING]
-> ABS and ASA filaments release styrene — a respiratory irritant and potential carcinogen. Always use an enclosed {{i:printer}} with carbon filtration for these materials.
+> ABS and ASA filaments release styrene — a respiratory irritant and potential carcinogen. Always use an enclosed printer with carbon filtration for these materials.
 
 ### Physical and Mechanical Hazards
 
-The extruder nozzle {{i:can}} reach 260°C and the heated {{i:build}} plate {{i:can}} reach 110°C.[^13] Standard operating procedures for a student lab must include:
+The extruder nozzle can reach 260°C and the heated build plate can reach 110°C.[^13] Standard operating procedures for a student lab must include:
 
-- **Pre-use Inspection:** Check for frayed wires, loose belts, and a clear {{i:build}} surface.[^15]
-- **Environmental Controls:** Prohibit eating or drinking in the {{i:print}} area to avoid ingestion of contaminants.[^13]
+- **Pre-use Inspection:** Check for frayed wires, loose belts, and a clear build surface.[^15]
+- **Environmental Controls:** Prohibit eating or drinking in the print area to avoid ingestion of contaminants.[^13]
 - **Emergency Response:** Locate the nearest ABC fire extinguisher (Class D for metal prints).[^16]
-- **Post-Print Cooling:** Ensure the {{i:printer}} has cooled below 30°C {{i:before}} removing the model.[^15]
+- **Post-Print Cooling:** Ensure the printer has cooled below 30°C before removing the model.[^15]
 
-## Challenges Inherent in the {{i:OpenSCAD}} Language
+## Challenges Inherent in the OpenSCAD Language
 
-{{i:OpenSCAD}}'s declarative nature and unique rendering kernel present {{i:specific}} hurdles for students. Unlike imperative languages, {{i:OpenSCAD}} describes _what_ a shape is, not _how_ to {{i:build}} it step by step.[^19]
+OpenSCAD's declarative nature and unique rendering kernel present specific hurdles for students. Unlike imperative languages, OpenSCAD describes _what_ a shape is, not _how_ to build it step by step.[^19]
 
 ### Immutable State
 
 > [!NOTE]
-> Variables in {{i:OpenSCAD}} are more like constants within a scope. If a student writes `x = 5; x = 10;`, {{i:OpenSCAD}} will use the last assigned value (`x = 10`) for the entire {{i:script}}.[^20] This requires adopting a functional programming mindset where {{i:geometry}} is defined by its state rather than a sequence of movements.
+> Variables in OpenSCAD are more like constants within a scope. If a student writes `x = 5; x = 10;`, OpenSCAD will use the last assigned value (`x = 10`) for the entire script.[^20] This requires adopting a functional programming mindset where geometry is defined by its state rather than a sequence of movements.
 
 ### Performance Bottlenecks
 
 > [!NOTE]
-> {{i:OpenSCAD}}'s CGAL {{i:geometry}} kernel is highly accurate but slow for certain operations. **Minkowski sums** (used for rounding corners) {{i:can}} take minutes at high `$fn` values. Keep `$fn` low while developing and only raise it for final renders.[^21] {{i:OpenSCAD}} also has no native "fillet" {{i:command}} — students must construct these manually {{i:using}} boolean subtractions or libraries like BOSL2.[^4]
+> OpenSCAD's CGAL geometry kernel is highly accurate but slow for certain operations. **Minkowski sums** (used for rounding corners) can take minutes at high `$fn` values. Keep `$fn` low while developing and only raise it for final renders.[^21] OpenSCAD also has no native "fillet" command — students must construct these manually using boolean subtractions or libraries like BOSL2.[^4]
 
 ### The Absolute Coordinate Barrier
 
-{{i:OpenSCAD}} has no concept of relative constraints — every object is positioned in absolute (X, Y, Z) space.[^9] If a student moves {{i:one}} {{i:part}}, they must manually calculate and update the translation of every related {{i:part}}. This necessitates heavy use of {{i:variables}} and mathematical offsets.[^9]
+OpenSCAD has no concept of relative constraints — every object is positioned in absolute (X, Y, Z) space.[^9] If a student moves one part, they must manually calculate and update the translation of every related part. This necessitates heavy use of variables and mathematical offsets.[^9]
 
-## Technical Limitations of {{i:3DMake}}
+## Technical Limitations of 3DMake
 
 | Limitation       | Technical Root Cause                                | Educational Impact                                                   |
 | :--------------- | :-------------------------------------------------- | :------------------------------------------------------------------- |
 | CLI Barrier      | No graphical interface for configuration            | Steep learning curve for students with zero terminal experience.[^1] |
 | API Dependency   | AI features require external internet and API keys  | Advanced features fail in offline school networks.[^1]               |
-| {{i:Slicer}} Lock-in   | Reliant on external templates for G-{{i:code}} generation | Students may not learn the nuance of slicing settings.[^1]           |
-| Feedback Latency | No real-{{i:time}} "live" preview in the editor           | The edit-compile-view cycle is slower than GUI-based CAD.[^1]        |
+| Slicer Lock-in   | Reliant on external templates for G-code generation | Students may not learn the nuance of slicing settings.[^1]           |
+| Feedback Latency | No real-time "live" preview in the editor           | The edit-compile-view cycle is slower than GUI-based CAD.[^1]        |
 
 > [!CAUTION]
 > AI features (`3dm info` descriptions, `3dm orient`) require an active internet connection and a configured API key. These features will fail silently on offline school networks — plan accordingly.
 
 > [!CAUTION]
-> **Non-manifold {{i:geometry}}** (zero-thickness walls or improperly closed polyhedrons) will generate an {{i:STL}} without warning from `3dm build`, but the `slice` {{i:command}} may then fail or produce corrupt G-{{i:code}}. Always verify mesh integrity {{i:before}} {{i:printing}}.[^24] Students must learn mesh verification skills {{i:using}} tools like MeshLab or {{hi:PrusaSlicer}}PrusaSlicer's repair functions.[^28]
+> **Non-manifold geometry** (zero-thickness walls or improperly closed polyhedrons) will generate an STL without warning from `3dm build`, but the `slice` command may then fail or produce corrupt G-code. Always verify mesh integrity before printing.[^24] Students must learn mesh verification skills using tools like MeshLab or {{hi:PrusaSlicer}}PrusaSlicer's repair functions.[^28]
 
 ## Local Resources — Utah Makerspaces
 
@@ -105,7 +105,7 @@ Utah provides a broad network of makerspaces across public libraries, universiti
 
 **Salt Lake County Library – Create Spaces** (Daybreak, Granite, Holladay, Kearns, Magna, Sandy): Flashforge and LulzBot 3D printers, VR/robotics kits, audio/visual studios.[^turn1search12]
 
-**Weber County Library Makerspaces:** Laser cutters, vinyl cutters, embroidery machines, and {{i:design}} software stations.[^turn1search8]
+**Weber County Library Makerspaces:** Laser cutters, vinyl cutters, embroidery machines, and design software stations.[^turn1search8]
 
 **Washington County Library – Sid Atkin Makerspace (St. George):** Large-format 3D printers, CNC cutters, sewing machines, electronics kits, and woodworking tools.[^turn1search14]
 
@@ -121,7 +121,7 @@ Utah provides a broad network of makerspaces across public libraries, universiti
 
 ### Regional STEM Hubs
 
-**Make Salt Lake:** Nonprofit makerspace with woodshop, metal shop, laser cutters, 3D {{i:printer}} labs, and electronics benches.[^turn1search9]
+**Make Salt Lake:** Nonprofit makerspace with woodshop, metal shop, laser cutters, 3D printer labs, and electronics benches.[^turn1search9]
 
 The **Utah STEM Action Center's Innovation Hub Network** maintains a statewide directory across all counties: [stem.utah.gov/innovationhubnetwork](https://stem.utah.gov/innovationhubnetwork/).
 
@@ -130,32 +130,32 @@ The **Utah STEM Action Center's Innovation Hub Network** maintains a statewide d
 - [Nation of Makers](https://www.nationofmakers.us/find-a-maker-organization) — U.S. crowdsourced map of makerspaces and hackerspaces
 - [Makerspace.com Global Directory](https://makerspace.com/directory/) — Worldwide listing with search and filters
 - [Makerspace Directory (makerspacedir.com)](https://makerspacedir.com/) — U.S.-focused, covers Fab Labs, youth programs, and coworking hybrids
-- [WorkMakeCreate](https://workmakecreate.com/) — Find free and public makerspaces by ZIP {{i:code}}
+- [WorkMakeCreate](https://workmakecreate.com/) — Find free and public makerspaces by ZIP code
 
 ## Supplemental Learning Resources
 
-- [Programming with {{i:OpenSCAD}}: A Beginner's Guide to Coding 3D-Printable Objects](../../textbooks/Programming_with_OpenSCAD.epub) — Complete {{i:reference}} covering syntax, {{i:geometry}} concepts, {{i:design}} patterns, and best practices
-- [Simplifying 3D Printing with {{i:OpenSCAD}}](../../textbooks/Simplifying_3D_Printing_with_OpenSCAD.epub) — Focused guide to practical workflows, optimization, and real-world {{i:printing}}
-- [CodeSolutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) — Working {{i:OpenSCAD}} examples organized by topic and difficulty
+- [Programming with OpenSCAD: A Beginner's Guide to Coding 3D-Printable Objects](../../textbooks/Programming_with_OpenSCAD.epub) — Complete reference covering syntax, geometry concepts, design patterns, and best practices
+- [Simplifying 3D Printing with OpenSCAD](../../textbooks/Simplifying_3D_Printing_with_OpenSCAD.epub) — Focused guide to practical workflows, optimization, and real-world printing
+- [CodeSolutions Repository](https://github.com/ProgrammingWithOpenSCAD/CodeSolutions) — Working OpenSCAD examples organized by topic and difficulty
 - [Practice Worksheets and Guides](https://programmingwithopenscad.github.io/learning.html) — Printable materials for visualization practice and assessment
 
 ## References
 
-Deck, T. (2025). _3DMake: A {{i:command}}-line tool for 3D {{i:printing}} workflows_. {{i:GitHub}}. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+Deck, T. (2025). _3DMake: A command-line tool for 3D printing workflows_. GitHub. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
-Gohde, J., & Kintel, M. (2021). _Programming with {{i:OpenSCAD}}: A beginner's guide to coding 3D-printable objects_. No Starch Press.
+Gohde, J., & Kintel, M. (2021). _Programming with OpenSCAD: A beginner's guide to coding 3D-printable objects_. No Starch Press.
 
-Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). _Understanding the challenges of {{i:OpenSCAD}} users for 3D printing_. ACM UIST.
+Gonzalez Avila, J. F., Pietrzak, T., & Casiez, G. (2024). _Understanding the challenges of OpenSCAD users for 3D printing_. ACM UIST.
 
-NIOSH. (2024). _Approaches to safe 3D printing_. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-{{i:printing}}.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-{{i:printing}}.html)
+NIOSH. (2024). _Approaches to safe 3D printing_. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html)
 
-Ohio State University EHS. (2026). _3D {{i:printer}} safety concerns and ventilation_. [https://ehs.osu.edu/kb/3d-{{i:printer}}-safety](https://ehs.osu.edu/kb/3d-{{i:printer}}-safety)
+Ohio State University EHS. (2026). _3D printer safety concerns and ventilation_. [https://ehs.osu.edu/kb/3d-printer-safety](https://ehs.osu.edu/kb/3d-printer-safety)
 
-Washington State Department of Health. (2026). _3D {{i:printer}} and {{i:filament}} selection for safe school environments_. [https://doh.wa.gov/community-and-{{i:environment}}/schools/3d-printers](https://doh.wa.gov/community-and-{{i:environment}}/schools/3d-printers)
+Washington State Department of Health. (2026). _3D printer and filament selection for safe school environments_. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)
 
-[^1]: Deck, T. (2025). _3DMake_. {{i:GitHub}}. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
+[^1]: Deck, T. (2025). _3DMake_. GitHub. [https://github.com/tdeck/3dmake](https://github.com/tdeck/3dmake)
 
-[^3]: Programming with {{i:OpenSCAD}}. [https://programmingwithopenscad.github.io/](https://programmingwithopenscad.github.io/)
+[^3]: Programming with OpenSCAD. [https://programmingwithopenscad.github.io/](https://programmingwithopenscad.github.io/)
 
 [^4]: CadHub. _OpenSCAD Review_. [https://learn.cadhub.xyz/blog/openscad-review/](https://learn.cadhub.xyz/blog/openscad-review/)
 
@@ -163,27 +163,27 @@ Washington State Department of Health. (2026). _3D {{i:printer}} and {{i:filamen
 
 [^9]: Hacker News. [https://news.ycombinator.com/item?id=46338565](https://news.ycombinator.com/item?id=46338565)
 
-[^10]: ZenML. _LLM-Powered 3D {{i:Model}} Generation_. [https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-{{i:printing}}](https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-{{i:printing}})
+[^10]: ZenML. _LLM-Powered 3D Model Generation_. [https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing](https://www.zenml.io/llmops-database/llm-powered-3d-model-generation-for-3d-printing)
 
-[^12]: Ohio State University EHS. [https://ehs.osu.edu/kb/3d-{{i:printer}}-safety](https://ehs.osu.edu/kb/3d-{{i:printer}}-safety)
+[^12]: Ohio State University EHS. [https://ehs.osu.edu/kb/3d-printer-safety](https://ehs.osu.edu/kb/3d-printer-safety)
 
-[^13]: RIT EHS. [https://www.rit.edu/ehs/3-d-{{i:printer}}-safety](https://www.rit.edu/ehs/3-d-{{i:printer}}-safety)
+[^13]: RIT EHS. [https://www.rit.edu/ehs/3-d-printer-safety](https://www.rit.edu/ehs/3-d-printer-safety)
 
-[^14]: CDC/NIOSH. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-{{i:printing}}.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-{{i:printing}}.html)
+[^14]: CDC/NIOSH. [https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html](https://www.cdc.gov/niosh/blogs/2024/safe-3d-printing.html)
 
-[^15]: Washington State DoH. [https://doh.wa.gov/community-and-{{i:environment}}/schools/3d-printers](https://doh.wa.gov/community-and-{{i:environment}}/schools/3d-printers)
+[^15]: Washington State DoH. [https://doh.wa.gov/community-and-environment/schools/3d-printers](https://doh.wa.gov/community-and-environment/schools/3d-printers)
 
-[^16]: UTK EHS. [https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-{{i:printer}}-safety/](https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-{{i:printer}}-safety/)
+[^16]: UTK EHS. [https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/](https://ehs.utk.edu/index.php/table-of-policies-plans-procedures-guides/3d-printer-safety/)
 
 [^19]: Gonzalez Avila et al. [https://thomaspietrzak.com/bibliography/gonzalez24.pdf](https://thomaspietrzak.com/bibliography/gonzalez24.pdf)
 
 [^20]: Reddit. [https://www.reddit.com/r/openscad/comments/1fxj8xv/](https://www.reddit.com/r/openscad/comments/1fxj8xv/)
 
-[^21]: {{i:OpenSCAD}} Issue #6297. [https://github.com/openscad/openscad/issues/6297](https://github.com/openscad/openscad/issues/6297)
+[^21]: OpenSCAD Issue #6297. [https://github.com/openscad/openscad/issues/6297](https://github.com/openscad/openscad/issues/6297)
 
-[^24]: {{i:OpenSCAD}} Issue #6114. [https://github.com/openscad/openscad/issues/6114](https://github.com/openscad/openscad/issues/6114)
+[^24]: OpenSCAD Issue #6114. [https://github.com/openscad/openscad/issues/6114](https://github.com/openscad/openscad/issues/6114)
 
-[^28]: Tom's Hardware. [https://www.tomshardware.com/3d-{{i:printing}}/how-to-repair-stl-{{i:files}}-in-meshlab](https://www.tomshardware.com/3d-{{i:printing}}/how-to-repair-stl-{{i:files}}-in-meshlab)
+[^28]: Tom's Hardware. [https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab](https://www.tomshardware.com/3d-printing/how-to-repair-stl-files-in-meshlab)
 
 [^turn1search8]: [https://www.weberpl.lib.ut.us/use-your-library/makerspaces](https://www.weberpl.lib.ut.us/use-your-library/makerspaces)
 
@@ -193,11 +193,11 @@ Washington State Department of Health. (2026). _3D {{i:printer}} and {{i:filamen
 
 [^turn1search11]: [https://services.slcpl.org/creativelab](https://services.slcpl.org/creativelab)
 
-[^turn1search12]: [https://www.slcolibrary.org/what-we-have/{{i:create}}](https://www.slcolibrary.org/what-we-have/{{i:create}})
+[^turn1search12]: [https://www.slcolibrary.org/what-we-have/create](https://www.slcolibrary.org/what-we-have/create)
 
 [^turn1search14]: [https://library.washco.utah.gov/st-george/makerspace/](https://library.washco.utah.gov/st-george/makerspace/)
 
-[^turn1search15]: [https://www.lib.utah.edu/services/3d-{{i:printing}}.php](https://www.lib.utah.edu/services/3d-{{i:printing}}.php)
+[^turn1search15]: [https://www.lib.utah.edu/services/3d-printing.php](https://www.lib.utah.edu/services/3d-printing.php)
 
 - [https://www.nationofmakers.us/find-a-maker-organization](https://www.nationofmakers.us/find-a-maker-organization)
 
@@ -211,13 +211,13 @@ Washington State Department of Health. (2026). _3D {{i:printer}} and {{i:filamen
 
 # Part II — Curriculum Guide
 
-_Structure, learning paths, and {{i:reference}} {{i:material}} for the complete 11-lesson course._
+_Structure, learning paths, and reference material for the complete 11-lesson course._
 
 ## Overview
 
-This 11-lesson curriculum (plus 4 {{i:reference}} appendices) teaches non-visual 3D modeling, {{i:parametric}} {{i:design}} principles, and the complete 3D {{i:printing}} {{i:workflow}} through integrated projects. Each lesson builds on prior knowledge, introducing real-world examples and hands-on activities.
+This 11-lesson curriculum (plus 4 reference appendices) teaches non-visual 3D modeling, parametric design principles, and the complete 3D printing workflow through integrated projects. Each lesson builds on prior knowledge, introducing real-world examples and hands-on activities.
 
-**Target Audience:** High school and early undergraduate students, makers, and anyone interested in programmatic CAD and 3D {{i:printing}}
+**Target Audience:** High school and early undergraduate students, makers, and anyone interested in programmatic CAD and 3D printing
 **Estimated Total Time:** 30–40 hours (11 lessons + 4 appendices + projects)
 
 ## Lesson Structure at a Glance
@@ -228,77 +228,77 @@ This 11-lesson curriculum (plus 4 {{i:reference}} appendices) teaches non-visual
 | 2   | {{hi:Geometric Primitives}}Geometric Primitives & CSG    | 1 hr        | Beginner      | 3 CSG examples      |
 | 3   | {{hi:Parametric Architecture}}Parametric Architecture       | 2.5 hrs     | Beginner+     | Parametric bracket  |
 | 4   | AI Verification               | 2–2.5 hrs   | Intermediate  | AI-notes.md         |
-| 5   | Safety & Physical Interface   | 2.5–3.5 hrs | Intermediate  | Pre-{{i:print}} checklist |
+| 5   | Safety & Physical Interface   | 2.5–3.5 hrs | Intermediate  | Pre-print checklist |
 | 6   | 3dm Commands & {{hi:Text Embossing}}Text Embossing | 2.5–3.5 hrs | Intermediate  | Keycap variants     |
 | 7   | {{hi:Parametric Transforms}}Parametric Transforms         | 3–3.5 hrs   | Intermediate+ | Phone Stand         |
-| 8   | Advanced Parametric {{i:Design}}    | 1.5-2 hrs   | Advanced      | Stackable Bins      |
-| 9   | Automation & Workflows        | 2.5–3.5 hrs | Advanced      | Batch {{i:build}} {{i:script}}  |
+| 8   | Advanced Parametric Design    | 1.5-2 hrs   | Advanced      | Stackable Bins      |
+| 9   | Automation & Workflows        | 2.5–3.5 hrs | Advanced      | Batch build script  |
 | 10  | Troubleshooting & Mastery     | 5–6 hrs     | Advanced      | 3 complete projects |
-| 11  | {{hi:Stakeholder-Centric {{i:Design}}}}Stakeholder-Centric {{i:Design}}    | 3.5–4.5 hrs | Advanced+     | Jewelry Holder      |
+| 11  | {{hi:Stakeholder-Centric Design}}Stakeholder-Centric Design    | 3.5–4.5 hrs | Advanced+     | Jewelry Holder      |
 
 ## Learning Paths
 
-**Path 1 — Complete Mastery (30–40 hours):** Lessons 1–11 + all appendices. Best for {{i:first}}-{{i:time}} learners wanting comprehensive understanding.
+**Path 1 — Complete Mastery (30–40 hours):** Lessons 1–11 + all appendices. Best for first-time learners wanting comprehensive understanding.
 
-**Path 2 — {{i:Design}} Focus (Fast Track):** Lessons 1 → 2 → 3 → 6 → 7 → 8 → 9. Best for experienced designers {{i:new}} to programmatic CAD.
+**Path 2 — Design Focus (Fast Track):** Lessons 1 → 2 → 3 → 6 → 7 → 8 → 9. Best for experienced designers new to programmatic CAD.
 
 **Path 3 — Project-Based:** Lessons 1–3 → 6 (Keycap) → 7 (Phone Stand) → 8 (Bins) → 9 (Automation) → 10 (Troubleshooting) → 11 (Leadership). Best for learning by doing.
 
-**Path 4 — Safety & Printing Focus:** Lessons 1, 2, 5, 6, 10 + Appendices A, B, C. Best for practical {{i:printing}} and {{i:quality}} focus.
+**Path 4 — Safety & Printing Focus:** Lessons 1, 2, 5, 6, 10 + Appendices A, B, C. Best for practical printing and quality focus.
 
 ## Detailed Lesson Descriptions
 
 ### Lesson 1: Environmental Configuration and the Developer Workflow
 
-Install and configure 3dMake, {{i:create}} a project scaffold, and {{i:run}} your {{i:first}} {{i:build}}. Covers installation and tool verification, project structure (`src/`, `build/`, `3dmake.toml`), {{i:parametric}} {{i:design}} philosophy, and the `3dm build` {{i:command}}. **Checkpoint:** You {{i:can}} initialize a project, edit a {{i:parametric}} model, and generate an {{i:STL}} {{i:file}}.
+Install and configure 3dMake, create a project scaffold, and run your first build. Covers installation and tool verification, project structure (`src/`, `build/`, `3dmake.toml`), parametric design philosophy, and the `3dm build` command. **Checkpoint:** You can initialize a project, edit a parametric model, and generate an STL file.
 
 ### Lesson 2: Geometric Primitives and Constructive Solid Geometry (CSG)
 
-Combine basic shapes {{i:using}} {{hi:Boolean operations}}boolean operations. Covers `cube()`, `sphere()`, `cylinder()`; CSG operations (`union()`, `difference()`, `intersection()`); the 0.001 offset rule for non-manifold {{i:geometry}}; and low-resolution renders for faster {{hi:Debugging}}debugging. **Checkpoint:** You understand CSG operations and {{i:can}} diagnose {{i:common}} {{i:geometry}} issues.
+Combine basic shapes using {{hi:Boolean operations}}boolean operations. Covers `cube()`, `sphere()`, `cylinder()`; CSG operations (`union()`, `difference()`, `intersection()`); the 0.001 offset rule for non-manifold geometry; and low-resolution renders for faster {{hi:Debugging}}debugging. **Checkpoint:** You understand CSG operations and can diagnose common geometry issues.
 
 ### Lesson 3: Parametric Architecture and Modular Libraries
 
-Create reusable {{hi:Modules}}modules and organize {{i:code}} {{i:into}} libraries {{i:using}} the DRY principle. Covers {{i:module}} definitions, derived calculations, library organization (`lib/` folder), BOSL2, and low-resolution testing with `$fn`. **Checkpoint:** You {{i:can}} {{i:create}} {{i:parametric}} modules and organize {{i:code}} {{i:into}} libraries.
+Create reusable {{hi:Modules}}modules and organize code into libraries using the DRY principle. Covers module definitions, derived calculations, library organization (`lib/` folder), BOSL2, and low-resolution testing with `$fn`. **Checkpoint:** You can create parametric modules and organize code into libraries.
 
 ### Lesson 4: AI-Enhanced Verification and Multimodal Feedback
 
-Use `3dm info` to generate AI diagnostics and validate designs. Covers the `3dm info` {{i:command}}, AI-generated descriptions, AI limitations, privacy and governance, and prompt engineering basics. **Checkpoint:** You {{i:can}} use AI tools to supplement your {{i:design}} validation.
+Use `3dm info` to generate AI diagnostics and validate designs. Covers the `3dm info` command, AI-generated descriptions, AI limitations, privacy and governance, and prompt engineering basics. **Checkpoint:** You can use AI tools to supplement your design validation.
 
 ### Lesson 5: Safety Protocols and the Physical Fabrication Interface
 
-Transition from digital {{i:design}} to physical {{i:printing}}. Covers the Hierarchy of Controls, chemical and particulate emissions, pre-{{i:print}} environmental and equipment checks, post-{{i:print}} inspection, and spool metadata. **Checkpoint:** You understand safety procedures and {{i:can}} safely conduct supervised prints.
+Transition from digital design to physical printing. Covers the Hierarchy of Controls, chemical and particulate emissions, pre-print environmental and equipment checks, post-print inspection, and spool metadata. **Checkpoint:** You understand safety procedures and can safely conduct supervised prints.
 
 ### Lesson 6: Practical 3dm Commands and Text Embossing
 
-Master key 3dm {{i:commands}} by building a customizable keycap. Covers `3dm info`, `3dm preview`, `3dm orient`, `3dm slice`, and {{i:text}} embossing with `linear_extrude()` and `text()`. **Project:** Generate 3+ keycap variants (small, medium, large). **Checkpoint:** You {{i:can}} generate keycaps with embossed {{i:text}} and understand all major 3dm {{i:commands}}.
+Master key 3dm commands by building a customizable keycap. Covers `3dm info`, `3dm preview`, `3dm orient`, `3dm slice`, and text embossing with `linear_extrude()` and `text()`. **Project:** Generate 3+ keycap variants (small, medium, large). **Checkpoint:** You can generate keycaps with embossed text and understand all major 3dm commands.
 
 ### Lesson 7: Parametric Transforms and the Phone Stand Project
 
-Apply transforms to {{i:build}} a multi-{{i:part}} assembly. Covers `translate()`, `rotate()`, `scale()`, Minkowski sum for edge rounding, multi-{{i:part}} assemblies, and {{i:parametric}} angle variations. **Project:** Phone stand with configurations for phones, tablets, and documents. **Checkpoint:** You {{i:can}} {{i:design}} multi-{{i:part}} assemblies with positioned components.
+Apply transforms to build a multi-part assembly. Covers `translate()`, `rotate()`, `scale()`, Minkowski sum for edge rounding, multi-part assemblies, and parametric angle variations. **Project:** Phone stand with configurations for phones, tablets, and documents. **Checkpoint:** You can design multi-part assemblies with positioned components.
 
-### Lesson 8: Advanced Parametric {{i:Design}} and Interlocking Features
+### Lesson 8: Advanced Parametric Design and Interlocking Features
 
-{{i:Design}} tolerance-critical assemblies where parts snap together. Covers tolerance and clearance management, stack-up {{i:error}}, interlocking rims, snap-fit connectors, and chamfers. **Project:** Stackable storage bins — {{i:test}} different `stack_clear` values, {{i:create}} size variants, add optional dividers. **Checkpoint:** You understand tolerance management and {{i:can}} {{i:design}} stackable assemblies.
+Design tolerance-critical assemblies where parts snap together. Covers tolerance and clearance management, stack-up error, interlocking rims, snap-fit connectors, and chamfers. **Project:** Stackable storage bins — test different `stack_clear` values, create size variants, add optional dividers. **Checkpoint:** You understand tolerance management and can design stackable assemblies.
 
 ### Lesson 9: Automation and 3dm Workflows
 
-Automate {{i:design}} workflows {{i:using}} {{i:shell}} {{i:scripts}}. Covers chaining 3dm {{i:commands}} with `&&`, {{i:shell}} {{i:script}} batch processing, library management (`3dm lib`), variant testing matrices, and production {{i:build}} workflows. **Checkpoint:** You {{i:can}} automate {{i:design}} workflows and manage {{i:parametric}} variants at scale.
+Automate design workflows using shell scripts. Covers chaining 3dm commands with `&&`, shell script batch processing, library management (`3dm lib`), variant testing matrices, and production build workflows. **Checkpoint:** You can automate design workflows and manage parametric variants at scale.
 
 ### Lesson 10: Hands-On Practice Exercises and Troubleshooting
 
-Capstone lesson synthesizing all prior learning across three exercise sets: **Set A** (guided projects: Phone Stand, Keycap Set, Storage System), **Set B** (problem diagnosis: non-manifold {{i:geometry}}, {{i:print}} failure prevention, dimensional accuracy), and **Set C** (validation and documentation templates). **Checkpoint:** You {{i:can}} complete real projects from concept to verified {{i:print}}.
+Capstone lesson synthesizing all prior learning across three exercise sets: **Set A** (guided projects: Phone Stand, Keycap Set, Storage System), **Set B** (problem diagnosis: non-manifold geometry, print failure prevention, dimensional accuracy), and **Set C** (validation and documentation templates). **Checkpoint:** You can complete real projects from concept to verified print.
 
-### Lesson 11: Stakeholder-Centric {{i:Design}} and the Beaded Jewelry Project
+### Lesson 11: Stakeholder-Centric Design and the Beaded Jewelry Project
 
-{{i:Design}} for real users, not just yourself. Covers stakeholder identification and interview techniques, extracting functional requirements, defining measurable acceptance criteria, {{i:design}} iteration based on feedback, and documentation for reproducibility. **Project:** Beaded jewelry bracelet holder — interview a stakeholder, extract requirements, {{i:design}} parametrically, {{i:test}} with actual bracelets, iterate. **Checkpoint:** You {{i:can}} conduct a real interview, {{i:translate}} needs {{i:into}} measurable requirements, and iterate a {{i:design}} based on user feedback.
+Design for real users, not just yourself. Covers stakeholder identification and interview techniques, extracting functional requirements, defining measurable acceptance criteria, design iteration based on feedback, and documentation for reproducibility. **Project:** Beaded jewelry bracelet holder — interview a stakeholder, extract requirements, design parametrically, test with actual bracelets, iterate. **Checkpoint:** You can conduct a real interview, translate needs into measurable requirements, and iterate a design based on user feedback.
 
 ## Project Completion Tracking
 
 | Project      | Lessons | Output Files                | Est. Print Time |
 | ------------ | ------- | --------------------------- | --------------- |
-| Keycap Set   | 1–6     | 5+ SCAD {{i:files}}, 3+ {{i:STL}} {{i:files}} | 15–30 min total |
+| Keycap Set   | 1–6     | 5+ SCAD files, 3+ STL files | 15–30 min total |
 | Phone Stand  | 1–7     | 1 SCAD with 3+ variants     | 30–60 min total |
-| Storage Bins | 1–8     | 1 {{i:parametric}} SCAD, 3 sizes  | 60–90 min total |
+| Storage Bins | 1–8     | 1 parametric SCAD, 3 sizes  | 60–90 min total |
 
 ## Assessment and Completion
 
@@ -306,29 +306,29 @@ Each lesson includes learning objectives, step-by-step tasks, checkpoints, a 10-
 
 **Lesson completion criteria:** Watched/read entire lesson · Completed all step-by-step tasks · Reached all checkpoints · Answered quiz questions · Attempted at least 3 extension problems · Documented findings.
 
-**Project completion criteria:** Code builds without errors · All {{hi:Parameters}}{{i:parameters}} functional · {{i:STL}} generated and inspected · Measurements documented · Assembly tested (if multi-{{i:part}}) · README or documentation included.
+**Project completion criteria:** Code builds without errors · All {{hi:Parameters}}parameters functional · STL generated and inspected · Measurements documented · Assembly tested (if multi-part) · README or documentation included.
 
 ## Appendices Overview
 
 | Appendix                           | Focus                                                                           | Use When                                     |
 | ---------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------- | --------------------------------- |
-| A: Comprehensive Slicing Guide     | PrusaSlicer, Bambu Studio, {{hi:Cura}}Cura, OrcaSlicer, and more                           | Slicing questions, slicer {{i:reference}}          |
-| B: {{hi:Material Properties}}Material Properties & Selection | PLA, {{hi:PETG}}PETG, ABS, {{hi:TPU}}TPU, Polycarbonate, Nylon — properties, settings, decision tree | Choosing {{i:material}}, troubleshooting prints    |
+| A: Comprehensive Slicing Guide     | PrusaSlicer, Bambu Studio, {{hi:Cura}}Cura, OrcaSlicer, and more                           | Slicing questions, slicer reference          |
+| B: {{hi:Material Properties}}Material Properties & Selection | PLA, {{hi:PETG}}PETG, ABS, {{hi:TPU}}TPU, Polycarbonate, Nylon — properties, settings, decision tree | Choosing material, troubleshooting prints    |
 | C: Tolerance Testing & QA Matrix   | Measurement procedures, functional testing, stack-up calculations               | Quality verification, measurement techniques |
-| D: {{hi:{{i:PowerShell}}}}{{i:PowerShell}} Integration          | Batch processing, automation {{i:scripts}}, {{i:workflow}} integration                      | Building automation, batch processing        |
-| E: Advanced {{i:OpenSCAD}} Concepts      | Gears, batch/statistical analysis, performance optimization, recursion          | Optional                                     | Specialized/advanced applications |
+| D: {{hi:PowerShell}}PowerShell Integration          | Batch processing, automation scripts, workflow integration                      | Building automation, batch processing        |
+| E: Advanced OpenSCAD Concepts      | Gears, batch/statistical analysis, performance optimization, recursion          | Optional                                     | Specialized/advanced applications |
 
 ## Accessibility Features
 
-This curriculum is designed for non-visual learners: {{i:text}} descriptions of all models via `3dm info`, tactile 2D previews via `3dm preview`, structured written documentation, {{i:command}}-line based (no graphical interface required), and measurement-based validation without visual inspection.
+This curriculum is designed for non-visual learners: text descriptions of all models via `3dm info`, tactile 2D previews via `3dm preview`, structured written documentation, command-line based (no graphical interface required), and measurement-based validation without visual inspection.
 
 ## Next Steps After Completion
 
-Upon completing this curriculum, students are ready for: advanced BOSL2 library features and {{i:parametric}} assemblies; multi-{{i:material}} {{i:printing}} (TPU, Nylon, etc.); mechanical assemblies with bearings, gears, and mechanisms; community contribution via shared designs and libraries; and professional applications in product {{i:design}}, prototyping, and manufacturing.
+Upon completing this curriculum, students are ready for: advanced BOSL2 library features and parametric assemblies; multi-material printing (TPU, Nylon, etc.); mechanical assemblies with bearings, gears, and mechanisms; community contribution via shared designs and libraries; and professional applications in product design, prototyping, and manufacturing.
 
 ---
 
-# Part III — Using {{i:OpenSCAD}} for 3D Printing Curriculum
+# Part III — Using OpenSCAD for 3D Printing Curriculum
 
 # Lesson 1 — Environmental Configuration and the Developer Workflow
 
@@ -339,47 +339,47 @@ Upon completing this curriculum, students are ready for: advanced BOSL2 library 
 
 ## A Message to You Before We Begin
 
-Welcome to your {{i:first}} lesson. If {{i:you}}'ve never used a {{i:command}} line, never written {{i:code}}, or never sent a {{i:file}} to a 3D {{i:printer}} {{i:before}}, {{i:you}} are in exactly the right place. This lesson is designed so that someone who has done none of those things {{i:can}} follow every step.
+Welcome to your first lesson. If you've never used a command line, never written code, or never sent a file to a 3D printer before, you are in exactly the right place. This lesson is designed so that someone who has done none of those things can follow every step.
 
-If {{i:you}} _have_ done some of those things, {{i:you}}'ll still find this lesson useful — because the way 3D {{i:printing}} tools fit together is different from most software {{i:you}}'ve used {{i:before}}, and understanding the full picture from the start will save {{i:you}} real trouble later.
+If you _have_ done some of those things, you'll still find this lesson useful — because the way 3D printing tools fit together is different from most software you've used before, and understanding the full picture from the start will save you real trouble later.
 
-By the {{i:time}} {{i:you}} finish this lesson, {{i:you}} will have your tools installed and working, {{i:you}}'ll understand the basic logic of the coordinate system your designs live in, and {{i:you}}'ll have {{i:run}} your {{i:first}} {{i:parametric}} 3D model through the complete {{i:build}}-and-verify {{i:workflow}}.
+By the time you finish this lesson, you will have your tools installed and working, you'll understand the basic logic of the coordinate system your designs live in, and you'll have run your first parametric 3D model through the complete build-and-verify workflow.
 
-Take your {{i:time}} here. The concepts in this {{i:first}} lesson are the foundation everything else is built on.
+Take your time here. The concepts in this first lesson are the foundation everything else is built on.
 
 ---
 
 ## Learning Objectives
 
-By the end of this lesson {{i:you}} will be able to:
+By the end of this lesson you will be able to:
 
-- Install and verify the 3dMake toolchain on {{i:Windows}} and Linux (MacOS requires a {{i:build}} from scratch and official {{i:support}} is not yet finalized)
-- Understand the {{i:OpenSCAD}} coordinate system and unit conventions
-- Write and {{i:build}} your {{i:first}} {{i:parametric}} `.scad` {{i:file}}
-- Read and interpret `3dm info` {{i:output}} without a visual display
-- Use the core developer {{i:workflow}}: edit → {{i:build}} → verify
+- Install and verify the 3dMake toolchain on Windows and Linux (MacOS requires a build from scratch and official support is not yet finalized)
+- Understand the OpenSCAD coordinate system and unit conventions
+- Write and build your first parametric `.scad` file
+- Read and interpret `3dm info` output without a visual display
+- Use the core developer workflow: edit → build → verify
 
 ---
 
-## Concept 1: What Is Parametric 3D {{i:Design}}?
+## Concept 1: What Is Parametric 3D Design?
 
-### The Two Ways to {{i:Design}} for 3D Printing
+### The Two Ways to Design for 3D Printing
 
-There are two ways to {{i:design}} a 3D object for {{i:printing}}. The {{i:first}} way is to use a **visual editor** — a program where {{i:you}} click, drag, and push shapes around the screen until they look right. Programs like Tinkercad {{i:work}} this way. They're intuitive and fast for simple objects, but they have a limitation: if {{i:you}} want to change the size of something, {{i:you}} often have to go back and manually adjust every related dimension by hand.
+There are two ways to design a 3D object for printing. The first way is to use a **visual editor** — a program where you click, drag, and push shapes around the screen until they look right. Programs like Tinkercad work this way. They're intuitive and fast for simple objects, but they have a limitation: if you want to change the size of something, you often have to go back and manually adjust every related dimension by hand.
 
-The second way is to use **{{i:code}}**. You {{i:write}} instructions that describe your object mathematically. "Make a box that is 30 millimeters wide, 20 millimeters deep, and 10 millimeters tall." If {{i:you}} later decide that 30 mm is too narrow and 40 mm would be better, {{i:you}} change {{i:one}} number, and the model automatically updates everywhere that number is used. This is called **{{i:parametric}} {{i:design}}** — the word "{{i:parametric}}" means the {{i:design}} is controlled by _parameters_, which are the named values {{i:you}} {{i:can}} adjust.
+The second way is to use **code**. You write instructions that describe your object mathematically. "Make a box that is 30 millimeters wide, 20 millimeters deep, and 10 millimeters tall." If you later decide that 30 mm is too narrow and 40 mm would be better, you change one number, and the model automatically updates everywhere that number is used. This is called **parametric design** — the word "parametric" means the design is controlled by _parameters_, which are the named values you can adjust.
 
-Parametric {{i:design}} is how professional engineers {{i:create}} parts. An engineer designing a phone stand might {{i:create}} {{i:one}} {{i:file}} that works for phone models ranging from 60 to 90 mm wide just by changing a single variable. That single source {{i:file}} _is the {{i:design}} concept_, and {{i:specific}} values turn it {{i:into}} {{i:specific}} objects.
+Parametric design is how professional engineers create parts. An engineer designing a phone stand might create one file that works for phone models ranging from 60 to 90 mm wide just by changing a single variable. That single source file _is the design concept_, and specific values turn it into specific objects.
 
-**{{i:OpenSCAD}}** is the tool {{i:you}}'ll use for {{i:parametric}} {{i:design}} in this course. Instead of clicking and dragging, {{i:you}} {{i:write}} {{i:code}} that describes shapes and their relationships. The learning curve is steeper than a visual editor at the very beginning, but within a few lessons {{i:you}}'ll be creating things that would be extremely difficult or impossible in a drag-and-drop tool.
+**OpenSCAD** is the tool you'll use for parametric design in this course. Instead of clicking and dragging, you write code that describes shapes and their relationships. The learning curve is steeper than a visual editor at the very beginning, but within a few lessons you'll be creating things that would be extremely difficult or impossible in a drag-and-drop tool.
 
 ### What 3dMake Does
 
-{{i:OpenSCAD}} by itself is powerful, but its {{i:workflow}} has a lot of friction. To go from {{i:code}} to a printable {{i:file}}, {{i:you}}'d normally need to open {{i:OpenSCAD}}, manually trigger a render, export an {{i:STL}} {{i:file}}, open a separate slicer program, check for {{i:geometry}} errors, and save the {{i:output}}. That's a lot of steps just to see if your idea works.
+OpenSCAD by itself is powerful, but its workflow has a lot of friction. To go from code to a printable file, you'd normally need to open OpenSCAD, manually trigger a render, export an STL file, open a separate slicer program, check for geometry errors, and save the output. That's a lot of steps just to see if your idea works.
 
-**3dMake** is a tool that wraps around {{i:OpenSCAD}} and smooths out that friction. When {{i:you}} type `3dm build`, it runs the entire compile-and-export process for {{i:you}} automatically. When {{i:you}} type `3dm info`, it analyzes your model and tells {{i:you}} its dimensions, volume, and a description in plain language. The more {{i:time}} {{i:you}} spend designing rather than managing {{i:files}}, the faster {{i:you}} learn and the more {{i:you}} make.
+**3dMake** is a tool that wraps around OpenSCAD and smooths out that friction. When you type `3dm build`, it runs the entire compile-and-export process for you automatically. When you type `3dm info`, it analyzes your model and tells you its dimensions, volume, and a description in plain language. The more time you spend designing rather than managing files, the faster you learn and the more you make.
 
-Think of it this way: {{i:OpenSCAD}} is the engine, and 3dMake is the dashboard. You could use the engine directly, but the dashboard makes it dramatically easier to operate.
+Think of it this way: OpenSCAD is the engine, and 3dMake is the dashboard. You could use the engine directly, but the dashboard makes it dramatically easier to operate.
 
 ---
 
@@ -387,29 +387,29 @@ Think of it this way: {{i:OpenSCAD}} is the engine, and 3dMake is the dashboard.
 
 ### What It Is and Why We Use It
 
-You're going to be working with the **{{i:command}} line** throughout this course. If {{i:you}}'ve mostly used computers by clicking icons and menus, the {{i:command}} line {{i:can}} feel strange at {{i:first}} — but it's really just a different way to talk to your computer.
+You're going to be working with the **command line** throughout this course. If you've mostly used computers by clicking icons and menus, the command line can feel strange at first — but it's really just a different way to talk to your computer.
 
-Here is the basic idea: the {{i:command}} line is a {{i:text}} box where {{i:you}} type an instruction, press Enter, and the computer does something and prints a response. That's the whole interaction model. Type a {{i:command}}. Press Enter. Read the result. Repeat. The challenge is being sure that {{i:you}} and the {{i:command}} line are speaking the same language.
+Here is the basic idea: the command line is a text box where you type an instruction, press Enter, and the computer does something and prints a response. That's the whole interaction model. Type a command. Press Enter. Read the result. Repeat. The challenge is being sure that you and the command line are speaking the same language.
 
-For example, if {{i:you}} type `3dm build` and press Enter, the computer finds the 3dMake program, tells it to {{i:build}} your project, and then prints either a success message with your model's dimensions, or an {{i:error}} message with a line number pointing to the problem. This feedback loop is tight, fast, and precise — which is exactly what {{i:you}} want when {{i:you}}'re designing and testing.
+For example, if you type `3dm build` and press Enter, the computer finds the 3dMake program, tells it to build your project, and then prints either a success message with your model's dimensions, or an error message with a line number pointing to the problem. This feedback loop is tight, fast, and precise — which is exactly what you want when you're designing and testing.
 
-The {{i:command}} line has another advantage: it's repeatable. If {{i:you}} type a {{i:command}} that works, {{i:you}} {{i:can}} type it again. You {{i:can}} save it in a {{i:script}} and {{i:run}} it automatically. You {{i:can}} share it with someone else, and they {{i:can}} {{i:run}} the same {{i:command}} and get the same result. Clicking around menus is difficult to document and impossible to automate; {{hi:Text {{i:commands}}}}{{i:text}} {{i:commands}} are both.
+The command line has another advantage: it's repeatable. If you type a command that works, you can type it again. You can save it in a script and run it automatically. You can share it with someone else, and they can run the same command and get the same result. Clicking around menus is difficult to document and impossible to automate; {{hi:Text commands}}text commands are both.
 
 ### Which Terminal to Use
 
-**{{i:Windows}} users:** You have three options, two are built-in and {{i:one}} {{i:you}} have to install. **{{i:PowerShell}}** is the modern choice and the {{i:one}} we recommend — it's more powerful and consistent with what {{i:you}}'ll find in professional environments. To open it, press the {{i:Windows}} key, type `PowerShell`, and press Enter. Alternatively, **Command Prompt ({{hi:CMD}}CMD)** is an older option that still works for basic tasks. There also is a version of `bash` that has been poreted from Linux to {{i:Windows}} as {{i:part}} of {{i:using}} a program called `git`. This course provides {{i:code}} examples and curriculum paths for {{i:each}}.
+**Windows users:** You have three options, two are built-in and one you have to install. **PowerShell** is the modern choice and the one we recommend — it's more powerful and consistent with what you'll find in professional environments. To open it, press the Windows key, type `PowerShell`, and press Enter. Alternatively, **Command Prompt ({{hi:CMD}}CMD)** is an older option that still works for basic tasks. There also is a version of `bash` that has been poreted from Linux to Windows as part of using a program called `git`. This course provides code examples and curriculum paths for each.
 
-**macOS users:** Open **Terminal** by going to Applications → Utilities → Terminal. It runs a {{i:shell}} called `bash` (`zsh` is default on newer Macs — both `bash` and `zsh` {{i:work}} for this course and at the level we are working the syntax is the same).
+**macOS users:** Open **Terminal** by going to Applications → Utilities → Terminal. It runs a shell called `bash` (`zsh` is default on newer Macs — both `bash` and `zsh` work for this course and at the level we are working the syntax is the same).
 
-**Linux users:** You almost certainly already know how to open a terminal. If not, look for "Terminal" in your applications menu. This course assumes {{i:you}} are {{i:using}} `bash` or `zsh`. I do not cover dsh or fish in this course.
+**Linux users:** You almost certainly already know how to open a terminal. If not, look for "Terminal" in your applications menu. This course assumes you are using `bash` or `zsh`. I do not cover dsh or fish in this course.
 
 ### A Few Things to Know Before We Start
 
-- On macOS, Linux, and {{hi:{{i:Git}} {{i:Bash}}}}{{i:Git}} {{i:Bash}} on {{i:Windows}}, **{{i:file}} paths use forward slashes**: `src/main.scad`
-- On {{i:Windows}} Powershell and COmmand Line, **{{i:file}} paths use backslashes**: `src\main.scad`
-- Commands are **case-sensitive on macOS and Linux** — `3DM` and `3dm` are different things, and only the lowercase version will {{i:work}}.
-  - On {{i:Windows}} some {{i:commands}} are case sensitive and some are not. So {{i:common}} sense is to treat them as all case sensitive.
-- When a {{i:command}} says a program "isn't found" but {{i:you}} did install it, it does not mean the software isn't installed — it usually means the terminal opened {{i:before}} the installation updated its search path (we'll cover how to fix this in Step 1)
+- On macOS, Linux, and {{hi:Git Bash}}Git Bash on Windows, **file paths use forward slashes**: `src/main.scad`
+- On Windows Powershell and COmmand Line, **file paths use backslashes**: `src\main.scad`
+- Commands are **case-sensitive on macOS and Linux** — `3DM` and `3dm` are different things, and only the lowercase version will work.
+  - On Windows some commands are case sensitive and some are not. So common sense is to treat them as all case sensitive.
+- When a command says a program "isn't found" but you did install it, it does not mean the software isn't installed — it usually means the terminal opened before the installation updated its search path (we'll cover how to fix this in Step 1)
 
 ---
 
@@ -417,23 +417,23 @@ The {{i:command}} line has another advantage: it's repeatable. If {{i:you}} type
 
 ### Understanding What You're Installing
 
-You're installing two pieces of software that {{i:work}} together:
+You're installing two pieces of software that work together:
 
-**{{i:OpenSCAD}}** is the underlying 3D {{i:geometry}} engine. It reads your `.scad` {{i:code}} {{i:files}} and turns them {{i:into}} 3D model {{i:files}} (specifically `.stl` {{i:files}}). You {{i:can}} think of it like a compiler for 3D {{i:geometry}} — the same way a Python interpreter turns Python {{i:code}} {{i:into}} running behavior, {{i:OpenSCAD}} turns {{i:design}} {{i:code}} {{i:into}} physical {{i:geometry}}. You don't need to interact with {{i:OpenSCAD}} directly very often; 3dMake does it for {{i:you}}.
+**OpenSCAD** is the underlying 3D geometry engine. It reads your `.scad` code files and turns them into 3D model files (specifically `.stl` files). You can think of it like a compiler for 3D geometry — the same way a Python interpreter turns Python code into running behavior, OpenSCAD turns design code into physical geometry. You don't need to interact with OpenSCAD directly very often; 3dMake does it for you.
 
-**3dMake** is the project management {{i:layer}} that sits on top of {{i:OpenSCAD}}. It organizes your project {{i:files}}, runs {{i:OpenSCAD}} with the right settings, analyzes your model {{i:output}}, and provides the plain-English `3dm info` descriptions {{i:you}}'ll use to verify your {{i:work}}.
+**3dMake** is the project management layer that sits on top of OpenSCAD. It organizes your project files, runs OpenSCAD with the right settings, analyzes your model output, and provides the plain-English `3dm info` descriptions you'll use to verify your work.
 
-The installer sets up both. Run the appropriate {{i:command}} for your operating system below, let it finish completely, and then {{i:run}} the verification {{i:commands}} {{i:before}} doing anything else.
+The installer sets up both. Run the appropriate command for your operating system below, let it finish completely, and then run the verification commands before doing anything else.
 
 ### Installation Commands
 
 **Linux and macOS (bash terminal):**
 
-Download and {{i:run}} the most recent official insallation {{i:file}} from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
+Download and run the most recent official insallation file from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
 
-I recommend choosing a location like `~/Applications/3dmake` as the target for extracting the {{i:files}}
+I recommend choosing a location like `~/Applications/3dmake` as the target for extracting the files
 
-Do the following at the {{i:command}} line:
+Do the following at the command line:
 
 ```bash
 # Navigate to the file
@@ -446,13 +446,13 @@ cd ~/Applications/3dmake
 openscad --version
 ```
 
-**{{i:Windows}} ({{i:PowerShell}}):**
+**Windows (PowerShell):**
 
-Download and {{i:run}} the most recent official insallation {{i:file}} from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
+Download and run the most recent official insallation file from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
 
-I recommend choosing a location like `~/3dmake` as the target for extracting the {{i:files}}
+I recommend choosing a location like `~/3dmake` as the target for extracting the files
 
-Do the following at the {{i:command}} line:
+Do the following at the command line:
 
 ```powershell
 # Navigate to the file
@@ -465,13 +465,13 @@ cd ~/3dmake
 openscad --version
 ```
 
-**{{i:Windows}} (Command Prompt / CMD):**
+**Windows (Command Prompt / CMD):**
 
-Download and {{i:run}} the most recent official insallation {{i:file}} from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
+Download and run the most recent official insallation file from Github [https://github.com/tdeck/3dmake/releases](https://github.com/tdeck/3dmake/releases) or the project website [https://blindmakers.net/3dmake/](https://blindmakers.net/3dmake/)
 
-I recommend choosing a location like `~/3dmake` as the target for extracting the {{i:files}}
+I recommend choosing a location like `~/3dmake` as the target for extracting the files
 
-Do the following at the {{i:command}} line:
+Do the following at the command line:
 
 ```batch
 REM Navigate to the file
@@ -485,27 +485,27 @@ openscad --version
 
 ### What the Version Numbers Mean
 
-When {{i:you}} {{i:run}} `3dm --version`, {{i:you}} will see {{i:output}} like
+When you run `3dm --version`, you will see output like
 
 ```pwsh
 3dm v0.9
 ```
 
-The exact number doesn't matter as long as something prints. When {{i:you}} {{i:run}} `openscad --version`, {{i:you}} should see `OpenSCAD version 2021.01` or later. If either {{i:command}} produces an {{i:error}} instead of a version number, something went wrong with the installation. Read the troubleshooting section {{i:before}} moving on.
+The exact number doesn't matter as long as something prints. When you run `openscad --version`, you should see `OpenSCAD version 2021.01` or later. If either command produces an error instead of a version number, something went wrong with the installation. Read the troubleshooting section before moving on.
 
 ### Troubleshooting Installation
 
-**"{{i:command}} not found" or "is not recognized as an internal or external {{i:command}}"**
+**"command not found" or "is not recognized as an internal or external command"**
 
-This is the most {{i:common}} issue and it almost always has the same cause: your terminal session started {{i:before}} the installer ran. When the installer finishes, it adds the 3dMake folder to a system setting called the **{{i:PATH}}** — a list of folders your computer searches when {{i:you}} type a {{i:command}} {{i:name}}. But a terminal that was already open when the installer ran doesn't know about the change. The fix is simple: **close your terminal completely and open a {{```i:new}} {{i:one}}**, then try the verification {{i:commands}} again.
+This is the most common issue and it almost always has the same cause: your terminal session started before the installer ran. When the installer finishes, it adds the 3dMake folder to a system setting called the **PATH** — a list of folders your computer searches when you type a command name. But a terminal that was already open when the installer ran doesn't know about the change. The fix is simple: **close your terminal completely and open a new one**, then try the verification commands again.
 
-**What is {{i:PATH}}?** When {{i:you}} type `3dm` at the {{i:command}} line, your computer doesn't search your entire hard drive — that would take forever. Instead, it searches only the folders listed in {{i:PATH}}. If 3dMake's folder isn't in that list, the computer genuinely {{i:can}}'t find the program even though it's installed. Closing and reopening the terminal forces it to reload the {{i:PATH}} list.
+**What is PATH?** When you type `3dm` at the command line, your computer doesn't search your entire hard drive — that would take forever. Instead, it searches only the folders listed in PATH. If 3dMake's folder isn't in that list, the computer genuinely can't find the program even though it's installed. Closing and reopening the terminal forces it to reload the PATH list.
 
-If opening a {{i:new}} terminal doesn't fix it, {{i:you}} may need to add the folder manually. On {{i:Windows}}, search the Start menu for "Edit the system {{i:environment}} {{i:variables}}," click "Environment Variables," and add the 3dMake installation folder to the `Path` variable. On macOS/Linux, add the folder path to your `~/.bashrc` or `~/.zshrc` {{i:file}} and restart the terminal.
+If opening a new terminal doesn't fix it, you may need to add the folder manually. On Windows, search the Start menu for "Edit the system environment variables," click "Environment Variables," and add the 3dMake installation folder to the `Path` variable. On macOS/Linux, add the folder path to your `~/.bashrc` or `~/.zshrc` file and restart the terminal.
 
-**{{i:OpenSCAD}} version too old**
+**OpenSCAD version too old**
 
-3dMake requires {{i:OpenSCAD}} 2021 or later. If {{i:you}} have an older version from a previous installation, download the latest release from openscad.org, uninstall the old version, and install the {{i:new}} {{i:one}}.
+3dMake requires OpenSCAD 2021 or later. If you have an older version from a previous installation, download the latest release from openscad.org, uninstall the old version, and install the new one.
 
 ---
 
@@ -513,43 +513,43 @@ If opening a {{i:new}} terminal doesn't fix it, {{i:you}} may need to add the fo
 
 ### Why You Need to Understand This Before Writing Code
 
-Imagine {{i:you}}'re on the phone with a friend trying to tell them where to place a chair in an empty room. You'd need to agree on two things: where to measure from (a corner? the center of the room?), and which directions count as "forward," "sideways," and "up." Without that shared {{i:reference}}, your instructions are meaningless.
+Imagine you're on the phone with a friend trying to tell them where to place a chair in an empty room. You'd need to agree on two things: where to measure from (a corner? the center of the room?), and which directions count as "forward," "sideways," and "up." Without that shared reference, your instructions are meaningless.
 
-{{i:OpenSCAD}} works exactly the same way. Every object {{i:you}} {{i:create}} lives at a {{i:specific}} location in 3D space. That space has a fixed starting point called the **origin** and three directions called **axes**. If {{i:you}} don't know these, {{i:you}}'ll place objects and wonder why they appear where they do.
+OpenSCAD works exactly the same way. Every object you create lives at a specific location in 3D space. That space has a fixed starting point called the **origin** and three directions called **axes**. If you don't know these, you'll place objects and wonder why they appear where they do.
 
 ### The Three Axes
 
-{{i:OpenSCAD}} uses a **right-handed XYZ coordinate system** — a standard that's shared by engineering software worldwide, so learning it here transfers directly to other professional tools.
+OpenSCAD uses a **right-handed XYZ coordinate system** — a standard that's shared by engineering software worldwide, so learning it here transfers directly to other professional tools.
 
-Picture a 3D {{i:printer}}'s {{i:build}} plate in front of {{i:you}}:
+Picture a 3D printer's build plate in front of you:
 
-- **X axis** — points to the **right** across the {{i:build}} plate. Positive X is rightward; negative X is leftward.
-- **Y axis** — points **away from {{i:you}}**, toward the back of the {{i:build}} plate. Positive Y is away from {{i:you}}; negative Y is toward {{i:you}}.
-- **Z axis** — points **straight up**, perpendicular to the {{i:build}} plate. Positive Z is upward; negative Z would be underground.
+- **X axis** — points to the **right** across the build plate. Positive X is rightward; negative X is leftward.
+- **Y axis** — points **away from you**, toward the back of the build plate. Positive Y is away from you; negative Y is toward you.
+- **Z axis** — points **straight up**, perpendicular to the build plate. Positive Z is upward; negative Z would be underground.
 
-The **origin** — the point (0, 0, 0) — sits at the front-left corner of the {{i:build}} space, right at {{i:bed}} level. When {{i:you}} type `cube([20, 20, 10])` without any translation, it appears with its front-left-bottom corner at the origin, extending 20 mm to the right, 20 mm back, and 10 mm up.
+The **origin** — the point (0, 0, 0) — sits at the front-left corner of the build space, right at bed level. When you type `cube([20, 20, 10])` without any translation, it appears with its front-left-bottom corner at the origin, extending 20 mm to the right, 20 mm back, and 10 mm up.
 
 ### Why This Matters for Printing
 
-Because the Z axis points up and the origin is at {{i:bed}} level, any {{i:geometry}} with a negative Z coordinate would be "underground" — below the {{i:build}} plate. The {{i:printer}} {{i:can}}'t {{i:print}} there. Part of your job when designing is to make sure your entire model lives in positive Z space (Z ≥ 0) so it sits on the {{i:bed}} correctly.
+Because the Z axis points up and the origin is at bed level, any geometry with a negative Z coordinate would be "underground" — below the build plate. The printer can't print there. Part of your job when designing is to make sure your entire model lives in positive Z space (Z ≥ 0) so it sits on the bed correctly.
 
-If {{i:you}} use a negative Z in your {{i:build}}, slicing programs treat the lowest Z value as (Z = 0) by moving the entire model upwards in Z until the lowest Z value = 0.
+If you use a negative Z in your build, slicing programs treat the lowest Z value as (Z = 0) by moving the entire model upwards in Z until the lowest Z value = 0.
 
 ### Units: Always Millimeters
 
-{{i:OpenSCAD}} has no built-in concept of units — it just works with numbers. The convention in this course (and in the 3D {{i:printing}} community generally) is that **all dimensions are in millimeters**. This is not optional or adjustable — it's a universal agreement.
+OpenSCAD has no built-in concept of units — it just works with numbers. The convention in this course (and in the 3D printing community generally) is that **all dimensions are in millimeters**. This is not optional or adjustable — it's a universal agreement.
 
-When {{i:you}} {{i:write}} `cube([30, 20, 10])`, that means 30 mm × 20 mm × 10 mm. If {{i:you}} accidentally think in centimeters and {{i:write}} `cube([3, 2, 1])` meaning "3 cm by 2 cm by 1 cm," {{i:OpenSCAD}} will treat those as millimeters and your {{i:print}} will come out ten times too small. Always, always, always think in millimeters.
+When you write `cube([30, 20, 10])`, that means 30 mm × 20 mm × 10 mm. If you accidentally think in centimeters and write `cube([3, 2, 1])` meaning "3 cm by 2 cm by 1 cm," OpenSCAD will treat those as millimeters and your print will come out ten times too small. Always, always, always think in millimeters.
 
 ### The `center` Parameter: Where Does the Object Anchor?
 
-Every 3D primitive in {{i:OpenSCAD}} has a `center` {{i:parameter}}. This is {{i:one}} of the most important things to understand early, because it affects where objects appear and how easy your placement math is.
+Every 3D primitive in OpenSCAD has a `center` parameter. This is one of the most important things to understand early, because it affects where objects appear and how easy your placement math is.
 
-**`center=false`** (this is the default — it applies if {{i:you}} don't {{i:write}} anything): the object's **bottom-left-front corner** sits at the position {{i:you}} specify. A `cube([20, 20, 10])` with no translation occupies the space from X=0 to X=20, Y=0 to Y=20, Z=0 to Z=10. The object lives entirely in positive space and sits neatly on the {{i:build}} plate.
+**`center=false`** (this is the default — it applies if you don't write anything): the object's **bottom-left-front corner** sits at the position you specify. A `cube([20, 20, 10])` with no translation occupies the space from X=0 to X=20, Y=0 to Y=20, Z=0 to Z=10. The object lives entirely in positive space and sits neatly on the build plate.
 
-**`center=true`**: the object's **geometric center** sits at the position {{i:you}} specify. The same {{i:cube}} at the origin would extend from X=−10 to X=10, Y=−10 to Y=10, Z=−5 to Z=5. Half of it would be underground — which means if {{i:you}} {{i:print}} it without moving it up {{i:first}}, {{i:you}}'ll only get the top half.
+**`center=true`**: the object's **geometric center** sits at the position you specify. The same cube at the origin would extend from X=−10 to X=10, Y=−10 to Y=10, Z=−5 to Z=5. Half of it would be underground — which means if you print it without moving it up first, you'll only get the top half.
 
-Neither option is wrong. You choose based on which makes your math simpler. For parts that should sit on the {{i:build}} plate, `center=false` is more natural. For parts {{i:you}} want to rotate around their center, `center=true` is much cleaner.
+Neither option is wrong. You choose based on which makes your math simpler. For parts that should sit on the build plate, `center=false` is more natural. For parts you want to rotate around their center, `center=true` is much cleaner.
 
 ```openscad
 // "Note that in OpenSCAD code a "//" starts a comment. Any code to the right of this is ignored by the program
@@ -575,11 +575,11 @@ color("blue")  cylinder(r=0.5, h=25, $fn=8);                        // +Z
 ```
 
 > [!NOTE]
-> When {{i:using}} `center=true`, notice how the bounding box may show negative coordinates — that's {{i:geometry}} underground.
+> When using `center=true`, notice how the bounding box may show negative coordinates — that's geometry underground.
 
-Build this {{i:code}} usifn `3dm build` and {{i:run}} `3dm info` to read the bounding boxes.
+Build this code usifn `3dm build` and run `3dm info` to read the bounding boxes.
 
-You should get this result (AI description of the project has been turned off for this {{i:output}}):
+You should get this result (AI description of the project has been turned off for this output):
 
 ```pwsh
 Examining...
@@ -594,11 +594,11 @@ Done.
 
 ### What a "Project" Is
 
-3dMake organizes {{i:work}} {{i:into}} **projects** — folders with a {{i:specific}}, standard structure. This structure keeps your source {{i:code}} separate from generated {{i:output}}, which makes it easy to clean, rebuild, back up, and share your {{i:work}}.
+3dMake organizes work into **projects** — folders with a specific, standard structure. This structure keeps your source code separate from generated output, which makes it easy to clean, rebuild, back up, and share your work.
 
 Here is what a project folder looks like:
 
-```plaintext
+```
 my_project/
   src/          ← your .scad source files live here (YOU write and edit these when you call `3dm edit-model`)
   build/        ← generated STL files go here (3dMake creates these when you call `3dm build`)
@@ -606,7 +606,7 @@ my_project/
 ```
 
 > [!IMPORTANT]
-> Never manually edit {{i:files}} in the `build/` folder. Everything in there is generated automatically — changes will be overwritten the next {{i:time}} {{i:you}} {{i:run}} `3dm build`. All your actual {{i:work}} goes in `src/`.
+> Never manually edit files in the `build/` folder. Everything in there is generated automatically — changes will be overwritten the next time you run `3dm build`. All your actual work goes in `src/`.
 
 ### Creating the Project
 
@@ -633,7 +633,7 @@ cube([width, depth, height]);
 EOF
 ```
 
-**{{i:Windows}} ({{i:PowerShell}}):**
+**Windows (PowerShell):**
 
 ```powershell
 # Create project folder and subdirectories
@@ -654,7 +654,7 @@ cube([width, depth, height]);
 '@ | Out-File -FilePath "src\main.scad" -Encoding UTF8
 ```
 
-**{{i:Windows}} (CMD):**
+**Windows (CMD):**
 
 ```cmd
 mkdir my_first_project\src
@@ -670,17 +670,17 @@ echo cube([width, depth, height]); >> src\main.scad
 
 ### Reading the Code Line by Line
 
-This small {{i:file}} introduces the core pattern {{i:you}}'ll use for the entire course. Let's read every line carefully.
+This small file introduces the core pattern you'll use for the entire course. Let's read every line carefully.
 
-`// My First Parametric Model` — this is a **comment**. In {{i:OpenSCAD}}, anything following `//` on a line is ignored by the computer — it's a note for human readers. {{hi:Comments}}Comments are essential. They explain what the {{i:code}} does, what the units are, and what {{i:you}} were thinking when {{i:you}} wrote it.
+`// My First Parametric Model` — this is a **comment**. In OpenSCAD, anything following `//` on a line is ignored by the computer — it's a note for human readers. {{hi:Comments}}Comments are essential. They explain what the code does, what the units are, and what you were thinking when you wrote it.
 
-`width = 30;` — this **declares a variable** named `width` and sets it equal to 30. The semicolon at the end is required — it tells {{i:OpenSCAD}} "this statement is finished." The comment `// mm` reminds anyone reading the {{i:file}} that this value is in millimeters.
+`width = 30;` — this **declares a variable** named `width` and sets it equal to 30. The semicolon at the end is required — it tells OpenSCAD "this statement is finished." The comment `// mm` reminds anyone reading the file that this value is in millimeters.
 
-`depth = 20;` and `height = 10;` — same pattern. Each variable represents {{i:one}} dimension of the box.
+`depth = 20;` and `height = 10;` — same pattern. Each variable represents one dimension of the box.
 
-`cube([width, depth, height]);` — this creates a box. The brackets `[]` enclose a list of three values: the X size, the Y size, and the Z size. Instead of writing `cube([30, 20, 10])` with raw numbers, {{i:you}} use the variable names. This is the magic of {{i:parametric}} {{i:design}}: if {{i:you}} change `width = 30` to `width = 50` at the top, the {{i:cube}} automatically becomes 50 mm wide everywhere `width` is used — which might be {{i:one}} place in a simple {{i:file}}, but could be dozens of places in a complex {{i:one}}.
+`cube([width, depth, height]);` — this creates a box. The brackets `[]` enclose a list of three values: the X size, the Y size, and the Z size. Instead of writing `cube([30, 20, 10])` with raw numbers, you use the variable names. This is the magic of parametric design: if you change `width = 30` to `width = 50` at the top, the cube automatically becomes 50 mm wide everywhere `width` is used — which might be one place in a simple file, but could be dozens of places in a complex one.
 
-This pattern — declare named {{i:parameters}} at the top of the {{i:file}}, use them in {{i:geometry}} below — is the single most important habit this course will teach {{i:you}}.
+This pattern — declare named parameters at the top of the file, use them in geometry below — is the single most important habit this course will teach you.
 
 ---
 
@@ -688,19 +688,19 @@ This pattern — declare named {{i:parameters}} at the top of the {{i:file}}, us
 
 ### Running Your First Build
 
-With your terminal open inside the `my_first_project/` folder, {{i:run}}:
+With your terminal open inside the `my_first_project/` folder, run:
 
 ```bash
 3dm build
 ```
 
-This single {{i:command}} does several things: it finds your `src/main.scad` {{i:file}}, runs {{i:OpenSCAD}} on it to turn the {{i:code}} {{i:into}} {{i:geometry}}, checks the result for basic validity, and saves the {{i:output}} as `build/main.stl`.
+This single command does several things: it finds your `src/main.scad` file, runs OpenSCAD on it to turn the code into geometry, checks the result for basic validity, and saves the output as `build/main.stl`.
 
-If the {{i:build}} succeeds, {{i:you}}'ll see {{i:output}} indicating the {{i:file}} was written. If there's an {{i:error}} in your {{i:code}}, {{i:you}}'ll see an {{i:error}} message with a line number pointing to the problem. Error messages with line numbers are extremely helpful — they tell {{i:you}} exactly where to look to fix the issue.
+If the build succeeds, you'll see output indicating the file was written. If there's an error in your code, you'll see an error message with a line number pointing to the problem. Error messages with line numbers are extremely helpful — they tell you exactly where to look to fix the issue.
 
-### Understanding the {{i:Model}} Information
+### Understanding the Model Information
 
-Now {{i:run}}:
+Now run:
 
 ```bash
 3dm info
@@ -708,7 +708,7 @@ Now {{i:run}}:
 
 This analyzes your built model and prints a report. You'll see something like this:
 
-```plaintext
+```
 File:         build/main.stl
 Bounding Box: 30.0 x 20.0 x 10.0 mm
 Volume:       6000.0 mm³
@@ -716,38 +716,38 @@ Triangles:    12
 Description:  A small rectangular box measuring 30mm wide by 20mm deep by 10mm tall.
 ```
 
-Let's understand {{i:each}} piece.
+Let's understand each piece.
 
-**Bounding Box:** The bounding box is the smallest rectangular box that perfectly contains your entire model. `30.0 x 20.0 x 10.0 mm` means your model is 30 mm in X, 20 mm in Y, and 10 mm in Z. This number is your primary verification tool — if the bounding box doesn't match what {{i:you}} designed, something went wrong. Check it every single {{i:time}} {{i:you}} {{i:build}}.
+**Bounding Box:** The bounding box is the smallest rectangular box that perfectly contains your entire model. `30.0 x 20.0 x 10.0 mm` means your model is 30 mm in X, 20 mm in Y, and 10 mm in Z. This number is your primary verification tool — if the bounding box doesn't match what you designed, something went wrong. Check it every single time you build.
 
-**Volume:** This is how much solid {{i:material}} fills the model. A solid box that is 30 × 20 × 10 mm contains exactly 30 × 20 × 10 = 6,000 cubic millimeters of {{i:material}}. If your model were hollow, the volume would be less. Volume directly predicts how much {{i:filament}} {{i:you}}'ll need.
+**Volume:** This is how much solid material fills the model. A solid box that is 30 × 20 × 10 mm contains exactly 30 × 20 × 10 = 6,000 cubic millimeters of material. If your model were hollow, the volume would be less. Volume directly predicts how much filament you'll need.
 
-**Triangles:** {{i:STL}} {{i:files}} represent surfaces as a mesh of triangles. More triangles means more geometric detail (and a larger {{i:file}}). A simple box needs only 12 triangles. A sphere with smooth curves needs thousands.
+**Triangles:** STL files represent surfaces as a mesh of triangles. More triangles means more geometric detail (and a larger file). A simple box needs only 12 triangles. A sphere with smooth curves needs thousands.
 
-**Description:** The plain-English description comes from an AI analysis of the {{i:geometry}}. It's useful for a quick sanity check, but it's not a replacement for checking the bounding box numbers yourself.
+**Description:** The plain-English description comes from an AI analysis of the geometry. It's useful for a quick sanity check, but it's not a replacement for checking the bounding box numbers yourself.
 
 > [!CAUTION]
-> If the bounding box shows **0 × 0 × 0**, the {{i:build}} failed and no {{i:geometry}} was produced. Check the {{i:output}} from `3dm build` — {{i:error}} messages will point to the {{i:specific}} line in your {{i:code}}.
+> If the bounding box shows **0 × 0 × 0**, the build failed and no geometry was produced. Check the output from `3dm build` — error messages will point to the specific line in your code.
 
 ### Estimating Material Cost from Volume
 
-Before {{i:printing}} anything — especially something that might take hours — it's professional practice to estimate the cost. Here is the formula:
+Before printing anything — especially something that might take hours — it's professional practice to estimate the cost. Here is the formula:
 
-```plaintext
+```
 mass (grams) = (volume_mm³ ÷ 1000) × filament_density_g_per_cm³
 cost ($)     = mass_g × (spool_price_$ ÷ spool_weight_g)
 ```
 
-For our 6,000 mm³ box {{i:using}} PLA {{i:filament}}:
+For our 6,000 mm³ box using PLA filament:
 
-```plaintext
+```
 mass = (6000 ÷ 1000) × 1.24 = 7.44 grams
 cost = 7.44 × (20 ÷ 1000)   = $0.15
 ```
 
-**{{i:Common}} {{i:filament}} densities:** PLA = 1.24 g/cm³, PETG = 1.27 g/cm³, ABS = 1.05 g/cm³, TPU = 1.20 g/cm³.
+**Common filament densities:** PLA = 1.24 g/cm³, PETG = 1.27 g/cm³, ABS = 1.05 g/cm³, TPU = 1.20 g/cm³.
 
-This calculation won't be exact (slicer settings affect actual usage), but it gives {{i:you}} a reasonable estimate within about 20% of the actual cost.
+This calculation won't be exact (slicer settings affect actual usage), but it gives you a reasonable estimate within about 20% of the actual cost.
 
 ---
 
@@ -755,33 +755,33 @@ This calculation won't be exact (slicer settings affect actual usage), but it gi
 
 ### How Your Code Becomes a Physical Object
 
-Understanding how 3D {{i:printing}} actually works changes how {{i:you}} {{i:design}}. The {{i:printing}} process has physical constraints — things it {{i:can}} and {{i:can}}'t do — and every {{i:design}} decision {{i:you}} make either works with those constraints or fights against them. Here's the complete journey from your {{i:code}} to a finished {{i:print}}.
+Understanding how 3D printing actually works changes how you design. The printing process has physical constraints — things it can and can't do — and every design decision you make either works with those constraints or fights against them. Here's the complete journey from your code to a finished print.
 
-**Stage 1 — {{i:STL}} File**
-When {{i:you}} {{i:run}} `3dm build`, {{i:OpenSCAD}} converts your `.scad` {{i:code}} {{i:into}} an {{i:STL}} {{i:file}}. {{i:STL}} stands for **Standard Triangle Language** (sometimes called Standard Tessellation Language). An {{i:STL}} {{i:file}} describes the _surface_ of your 3D model as a mesh of tiny triangles — like wrapping a shape in a piece of paper made of triangles. It contains no color, no {{i:material}} information, no internal structure — just the outer surface {{i:geometry}}.
+**Stage 1 — STL File**
+When you run `3dm build`, OpenSCAD converts your `.scad` code into an STL file. STL stands for **Standard Triangle Language** (sometimes called Standard Tessellation Language). An STL file describes the _surface_ of your 3D model as a mesh of tiny triangles — like wrapping a shape in a piece of paper made of triangles. It contains no color, no material information, no internal structure — just the outer surface geometry.
 
 **Stage 2 — Slicing**
-A program called a **slicer** (PrusaSlicer and Cura are popular options, 3dm uses a CLI version of PrusaSlicer internally) reads the {{i:STL}} and slices the model {{i:into}} horizontal layers, like cutting through a loaf of bread to see the shape of {{i:each}} slice. The thickness of {{i:each}} slice is the **{{i:layer}} {{i:height}}** — typically 0.15 to 0.30 mm.
+A program called a **slicer** (PrusaSlicer and Cura are popular options, 3dm uses a CLI version of PrusaSlicer internally) reads the STL and slices the model into horizontal layers, like cutting through a loaf of bread to see the shape of each slice. The thickness of each slice is the **layer height** — typically 0.15 to 0.30 mm.
 
-**Stage 3 — G-{{i:code}}**
-The slicer converts those {{i:layer}} slices {{i:into}} a {{i:file}} of **G-{{i:code}}** — a language of machine instructions telling the {{i:printer}} exactly what to do. G-{{i:code}} {{i:commands}} look like: "move the {{i:print}} head to X=50, Y=30; heat the nozzle to 215°C; extrude 2.3 mm of {{i:filament}}." The {{i:printer}} reads these instructions literally and executes them in sequence.
+**Stage 3 — G-code**
+The slicer converts those layer slices into a file of **G-code** — a language of machine instructions telling the printer exactly what to do. G-code commands look like: "move the print head to X=50, Y=30; heat the nozzle to 215°C; extrude 2.3 mm of filament." The printer reads these instructions literally and executes them in sequence.
 
 **Stage 4 — Printing**
-The {{i:printer}} reads the G-{{i:code}} and executes it. The nozzle heats to {{i:between}} 200°C and 240°C (depending on the {{i:material}}), melts a thin strand of plastic {{i:filament}}, and deposits it in the shape of {{i:each}} {{i:layer}} — {{i:one}} {{i:layer}} on top of the last, slowly building up the 3D form.
+The printer reads the G-code and executes it. The nozzle heats to between 200°C and 240°C (depending on the material), melts a thin strand of plastic filament, and deposits it in the shape of each layer — one layer on top of the last, slowly building up the 3D form.
 
 **Stage 5 — Cooling and Bonding**
-As {{i:each}} {{i:layer}} is deposited, it needs to cool and bond to the {{i:layer}} below it. This inter-{{i:layer}} fusion is what holds the {{i:part}} together. However, it also means 3D-printed parts are slightly weaker in the vertical direction than in the horizontal direction — because the bond {{i:between}} layers is never quite as strong as the plastic itself. Good {{i:design}} takes this {{i:into}} account: parts that will experience stress should be oriented so the layers are perpendicular to the direction of that stress.
+As each layer is deposited, it needs to cool and bond to the layer below it. This inter-layer fusion is what holds the part together. However, it also means 3D-printed parts are slightly weaker in the vertical direction than in the horizontal direction — because the bond between layers is never quite as strong as the plastic itself. Good design takes this into account: parts that will experience stress should be oriented so the layers are perpendicular to the direction of that stress.
 
-### The Three Key {{i:Slicer}} Settings to Know
+### The Three Key Slicer Settings to Know
 
-**Layer Height** — how thick {{i:each}} printed {{i:layer}} is, typically 0.15 to 0.30 mm. Thinner layers produce smoother surfaces with more detail, but require more layers to reach the same total {{i:height}}, so prints take longer. For most classroom projects, 0.20 mm is a good starting point.
+**Layer Height** — how thick each printed layer is, typically 0.15 to 0.30 mm. Thinner layers produce smoother surfaces with more detail, but require more layers to reach the same total height, so prints take longer. For most classroom projects, 0.20 mm is a good starting point.
 
-**Infill Percentage** — the internal structure of a {{i:print}}. A 100% infill {{i:print}} is completely solid. A 0% {{i:print}} is just the outer walls (hollow). In practice, most parts {{i:work}} well at 15–20% infill — the slicer creates a grid-like internal structure that supports the walls without {{i:using}} much {{i:material}}. Structural parts that will bear loads or stress should use 40–50% infill.
+**Infill Percentage** — the internal structure of a print. A 100% infill print is completely solid. A 0% print is just the outer walls (hollow). In practice, most parts work well at 15–20% infill — the slicer creates a grid-like internal structure that supports the walls without using much material. Structural parts that will bear loads or stress should use 40–50% infill.
 
-**Supports** — if your {{i:design}} has overhanging {{i:geometry}} (parts that extend horizontally without anything underneath them), the slicer {{i:can}} add temporary scaffolding called supports. These get removed after {{i:printing}}. The problem is that supports {{i:can}} leave rough surfaces and add both {{i:print}} {{i:time}} and {{i:material}} cost. Good {{i:design}} minimizes overhangs, which reduces or eliminates the need for supports.
+**Supports** — if your design has overhanging geometry (parts that extend horizontally without anything underneath them), the slicer can add temporary scaffolding called supports. These get removed after printing. The problem is that supports can leave rough surfaces and add both print time and material cost. Good design minimizes overhangs, which reduces or eliminates the need for supports.
 
 > [!TIP]
-> You will almost never get a perfect-fitting {{i:part}} on the {{i:first}} {{i:print}}. Treat the {{i:first}} {{i:print}} of any {{i:new}} feature as a **{{i:test}} {{i:print}}**: a quick, small {{i:print}} specifically designed to tell {{i:you}} what needs to be adjusted. This saves {{i:time}} and {{i:material}} by testing deliberately rather than accidentally {{i:printing}} a large {{i:part}} only to find the hole is 0.3 mm too small.
+> You will almost never get a perfect-fitting part on the first print. Treat the first print of any new feature as a **test print**: a quick, small print specifically designed to tell you what needs to be adjusted. This saves time and material by testing deliberately rather than accidentally printing a large part only to find the hole is 0.3 mm too small.
 
 ---
 
@@ -789,14 +789,14 @@ As {{i:each}} {{i:layer}} is deposited, it needs to cool and bond to the {{i:lay
 
 ### The Fundamental Loop
 
-Professional software development runs on a tight feedback cycle: {{i:write}} some {{i:code}}, {{i:run}} it, check the result, fix any problems, and repeat. The shorter {{i:each}} cycle is, the faster {{i:you}} learn and the fewer problems pile up. Parametric {{hi:3D {{i:design}}}}3D {{i:design}} works exactly the same way:
+Professional software development runs on a tight feedback cycle: write some code, run it, check the result, fix any problems, and repeat. The shorter each cycle is, the faster you learn and the fewer problems pile up. Parametric {{hi:3D design}}3D design works exactly the same way:
 
 EDIT → BUILD → VERIFY → repeat
 
-- Edit: Change src/main.scad in any {{i:text}} editor. Save the {{i:file}}.
-- Build: {{hi:3dm {{i:build}}}}3dm {{i:build}} → compiles your .scad {{i:code}} {{i:into}} {{i:build}}/main.stl
-- Verify: {{hi:3dm info}}3dm info → confirms bounding box and volume match your {{i:design}} intent
-  - (optional) → open {{i:build}}/main.stl in your slicer for a visual check
+- Edit: Change src/main.scad in any text editor. Save the file.
+- Build: {{hi:3dm build}}3dm build → compiles your .scad code into build/main.stl
+- Verify: {{hi:3dm info}}3dm info → confirms bounding box and volume match your design intent
+  - (optional) → open build/main.stl in your slicer for a visual check
 
 ````
 
@@ -812,13 +812,13 @@ EDIT → BUILD → VERIFY → repeat
 Once your design uses variables for all its dimensions, you can generate different versions without editing the source file at all. The `-D` flag tells OpenSCAD to override a variable at build time:
 
 ```bash
-openscad -D "width=50" -o {{i:build}}/main_wide.stl src/main.scad
+openscad -D "width=50" -o build/main_wide.stl src/main.scad
 ````
 
 This builds a version with `width=50` instead of the `width=30` in the file — without changing the file. You can combine multiple overrides:
 
 ```bash
-openscad -D "width=50" -D "{{i:height}}=15" -o {{i:build}}/main_large.stl src/main.scad
+openscad -D "width=50" -D "height=15" -o build/main_large.stl src/main.scad
 ```
 
 ### Building Multiple Variants Automatically
@@ -831,10 +831,10 @@ You can use a shell loop to generate a whole family of variants automatically:
 > Use shell loops to generate multiple parametric variants automatically. Each run creates a separate STL file — a fast way to produce a tolerance test matrix without manually editing the source file.
 
 ```bash
-# Build four width variants — generates four separate {{i:STL}} {{i:files}}
+# Build four width variants — generates four separate STL files
 for w in 20 30 40 50; do
-  openscad -D "width=$w" -o "{{i:build}}/main_w${w}.stl" src/main.scad
-  echo "Built: width=${w}mm → {{i:build}}/main_w${w}.stl"
+  openscad -D "width=$w" -o "build/main_w${w}.stl" src/main.scad
+  echo "Built: width=${w}mm → build/main_w${w}.stl"
 done
 ```
 
@@ -843,8 +843,8 @@ done
 ```powershell
 $widths = @(20, 30, 40, 50)
 foreach ($w in $widths) {
-  openscad -D "width=$w" -o "{{i:build}}\main_w$w.stl" "src\main.scad"
-  Write-Host "Built: width=${w}mm → {{i:build}}\main_w$w.stl"
+  openscad -D "width=$w" -o "build\main_w$w.stl" "src\main.scad"
+  Write-Host "Built: width=${w}mm → build\main_w$w.stl"
 }
 ```
 
@@ -852,7 +852,7 @@ foreach ($w in $widths) {
 
 ```cmd
 FOR %%W IN (20 30 40 50) DO (
-  openscad -D "width=%%W" -o {{i:build}}\main_w%%W.stl src\main.scad
+  openscad -D "width=%%W" -o build\main_w%%W.stl src\main.scad
   echo Built width=%%W
 )
 ```
@@ -888,19 +888,19 @@ is dramatically more useful than just `wall = 2;`.
 // Parametric Box Lid
 // ==============================================================
 // Purpose:     Snap-fit lid for the storage box (box.scad)
-// Print {{i:time}}:  ~8 minutes at 0.20 mm layers
+// Print time:  ~8 minutes at 0.20 mm layers
 // Material:    ~6 g PLA
 //
 // PARAMETERS TO CUSTOMIZE:
 //   box_width:   width of the matching box (default: 60 mm)
 //   box_depth:   depth of the matching box (default: 40 mm)
-//   lip_height:  how deep the lid lip fits {{i:into}} the box (default: 3 mm)
+//   lip_height:  how deep the lid lip fits into the box (default: 3 mm)
 //
 // PRINT RECOMMENDATIONS:
-//   Layer {{i:height}}: 0.20 mm
+//   Layer height: 0.20 mm
 //   Infill:       15%
 //   Supports:     not needed
-//   Orientation:  {{i:print}} flat, face-down
+//   Orientation:  print flat, face-down
 // ==============================================================
 
 box_width  = 60;   // mm — must match box.scad box_width
@@ -908,7 +908,7 @@ box_depth  = 40;   // mm — must match box.scad box_depth
 lip_height = 3;    // mm — depth the lid lip extends downward (2–5 mm)
 wall       = 2;    // mm — lid wall thickness (1.5–3.0 mm)
 
-// (Geometry below this line — uses the {{i:parameters}} above)
+// (Geometry below this line — uses the parameters above)
 ```
 
 This header comment takes about two minutes to write and saves many minutes of confusion later. Make it a habit starting with your very first project.
@@ -1081,11 +1081,11 @@ If you want to build a simple printable object from scratch rather than download
 // ============================================
 // PROJECT CONFIGURATION
 // ============================================
-// Set your project dimensions here. All other {{i:geometry}} derives from these.
+// Set your project dimensions here. All other geometry derives from these.
 
 object_w  = 50;   // mm — overall width
 object_d  = 50;   // mm — overall depth
-object_h  = 20;   // mm — overall {{i:height}}
+object_h  = 20;   // mm — overall height
 wall      = 2.0;  // mm — wall thickness (2–3mm recommended for FDM)
 $fn       = 30;   // curve resolution (higher = smoother, slower to render)
 
@@ -1093,23 +1093,23 @@ $fn       = 30;   // curve resolution (higher = smoother, slower to render)
 // MAIN DESIGN
 // ============================================
 
-{{i:module}} base_shape() {
-  // Replace this {{i:cube}} with your own {{i:geometry}}
-  {{i:cube}}([object_w, object_d, object_h]);
+module base_shape() {
+  // Replace this cube with your own geometry
+  cube([object_w, object_d, object_h]);
 }
 
-{{i:module}} hollow_version() {
+module hollow_version() {
   // Creates a hollow version by removing an inner volume
-  {{i:difference}}() {
+  difference() {
     base_shape();
-    {{i:translate}}([wall, wall, wall])
-      {{i:cube}}([object_w - 2*wall,
+    translate([wall, wall, wall])
+      cube([object_w - 2*wall,
             object_d - 2*wall,
             object_h]);  // open top — no overhang needed
   }
 }
 
-// Render your {{i:design}}:
+// Render your design:
 hollow_version();
 ```
 
@@ -1268,7 +1268,7 @@ This is the first physical print extension project in the course. Its primary pu
 ### Creating Your First Project
 
 ```bash
-# Create a {{i:new}} folder for your project and enter it
+# Create a new folder for your project and enter it
 mkdir my_project
 cd my_project
 
@@ -1278,11 +1278,11 @@ cd my_project
 
 `3dm setup` creates this project structure:
 
-```plaintext
+```
 my_project/
 ├── src/
-│   └── main.scad      ← Your {{i:design}} {{i:code}} goes here
-├── {{i:build}}/             ← Generated {{i:STL}} {{i:files}} appear here (auto-created)
+│   └── main.scad      ← Your design code goes here
+├── build/             ← Generated STL files appear here (auto-created)
 └── 3dmake.toml        ← Project configuration
 ```
 
@@ -1301,7 +1301,7 @@ edit src/main.scad → 3dm build → 3dm info → review / repeat
 **`3dm build`** — compiles your `.scad` source into an STL file in the `build/` folder.
 
 ```bash
-3dm {{i:build}}              # standard {{i:build}}
+3dm build              # standard build
 ```
 
 **`3dm info`** — reports on the most recently built STL: bounding box, volume, triangle count, and an AI-generated description.
@@ -1321,39 +1321,39 @@ edit src/main.scad → 3dm build → 3dm info → review / repeat
 This returns information such as the following (note the recommendation I add supports as this file will not print correctly as designed without supports):
 
 ```pwsh
-Using {{i:3DMake}} project in parent directory...
+Using 3DMake project in parent directory...
 
 Slicing...
     10 => Processing triangulated mesh
     20 => Generating perimeters
     30 => Preparing infill
     45 => Making infill
-    65 => Searching {{i:support}} spots
+    65 => Searching support spots
     69 => Alert if supports needed
-    {{i:print}} warning: Detected {{i:print}} stability issues:
+    print warning: Detected print stability issues:
 
     main.stl
-    Floating object {{i:part}}, Floating bridge anchors, Loose extrusions, Long bridging extrusions
+    Floating object part, Floating bridge anchors, Loose extrusions, Long bridging extrusions
 
     Consider enabling supports.
     89 => Calculating overhanging perimeters
     88 => Generating skirt and brim
-    90 => Exporting G-{{i:code}} to C:\Users\Ryan Hunsaker\{{i:test}}\{{i:build}}\{{i:test}}-main.gcode
-    [2026-04-27 10:17:03.967105] [0x00007ffc] [{{i:error}}]   GCodeProcessor encountered an invalid toolchange (T1000).
-    [2026-04-27 10:17:03.967105] [0x00007ffc] [{{i:error}}]   GCodeProcessor encountered an invalid toolchange (T1000).
-    [2026-04-27 10:17:04.014849] [0x00007ffc] [{{i:error}}]   GCodeProcessor encountered an invalid toolchange, maybe from a custom gcode (T255).
-    Slicing result exported to C:\Users\Ryan Hunsaker\{{i:test}}\{{i:build}}\{{i:test}}-main.gcode
-    {{i:print}} warning: Detected {{i:print}} stability issues:
+    90 => Exporting G-code to C:\Users\Ryan Hunsaker\test\build\test-main.gcode
+    [2026-04-27 10:17:03.967105] [0x00007ffc] [error]   GCodeProcessor encountered an invalid toolchange (T1000).
+    [2026-04-27 10:17:03.967105] [0x00007ffc] [error]   GCodeProcessor encountered an invalid toolchange (T1000).
+    [2026-04-27 10:17:04.014849] [0x00007ffc] [error]   GCodeProcessor encountered an invalid toolchange, maybe from a custom gcode (T255).
+    Slicing result exported to C:\Users\Ryan Hunsaker\test\build\test-main.gcode
+    print warning: Detected print stability issues:
 
     main.stl
-    Floating object {{i:part}}, Floating bridge anchors, Loose extrusions, Long bridging extrusions
+    Floating object part, Floating bridge anchors, Loose extrusions, Long bridging extrusions
 
     Consider enabling supports.
 
     Hotend temperature: 220 Celsius
-    Estimated {{i:print}} {{i:time}}: 14 minutes 59 seconds
+    Estimated print time: 14 minutes 59 seconds
     Filament used: about 1.54 meters (4.66 grams)
-    Extrusion stats (longest {{i:time}} {{i:first}}):
+    Extrusion stats (longest time first):
         Internal infill               7 minutes 28 seconds (397 mm)
         Solid infill                  5 minutes 39 seconds (314 mm)
         Perimeter                     4 minutes 37 seconds (249 mm)
@@ -1596,7 +1596,7 @@ The task runner lets you open your `.scad` file in OpenSCAD or export an STL wit
 
 ```powershell
 cd ~/Documents/OpenSCAD_Projects
-{{i:code}} .
+code .
 ```
 
 **Create tasks.json:**
@@ -1612,24 +1612,24 @@ Replace the file's entire contents with:
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "{{i:Preview}} in {{i:OpenSCAD}}",
-      "type": "{{i:shell}}",
-      "{{i:command}}": "openscad",
-      "args": ["${{{i:file}}}"],
-      "group": { "kind": "{{i:build}}", "isDefault": true },
+      "label": "Preview in OpenSCAD",
+      "type": "shell",
+      "command": "openscad",
+      "args": ["${file}"],
+      "group": { "kind": "build", "isDefault": true },
       "presentation": { "reveal": "silent", "panel": "shared" },
       "problemMatcher": []
     },
     {
-      "label": "Export {{i:STL}}",
-      "type": "{{i:shell}}",
-      "{{i:command}}": "openscad",
+      "label": "Export STL",
+      "type": "shell",
+      "command": "openscad",
       "args": [
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}.stl",
-        "${{{i:file}}}"
+        "${file}"
       ],
-      "group": "{{i:build}}",
+      "group": "build",
       "presentation": { "reveal": "always", "panel": "shared" },
       "problemMatcher": []
     }
@@ -1757,29 +1757,29 @@ By itself, a `polygon()` is a flat 2D cutout. Combined with `linear_extrude(heig
 // All four primitives demonstrated:
 
 // 1. A simple box (already familiar from Lesson 1)
-{{i:cube}}([30, 20, 10]);
+cube([30, 20, 10]);
 
 // 2. A sphere — note it's centered on origin by default
-// Translate it sideways so it doesn't overlap the {{i:cube}}
-{{i:translate}}([40, 0, 10])
+// Translate it sideways so it doesn't overlap the cube
+translate([40, 0, 10])
   sphere(r=10, $fn=32);    // $fn=32 gives a smooth appearance
 
 // 3. A standard cylinder
-{{i:translate}}([70, 0, 0])
+translate([70, 0, 0])
   cylinder(h=20, r=8, $fn=32); //$fn=6 gives a hexagonal cylinder
 
 // 4. A tapered cylinder (cone) — wider at the bottom
-{{i:translate}}([100, 0, 0])
+translate([100, 0, 0])
   cylinder(h=20, r1=10, r2=3, $fn=32);
 
 // 5. A spike — r2=0 makes a pointed top
-{{i:translate}}([130, 0, 0])
+translate([130, 0, 0])
   cylinder(h=20, r1=8, r2=0, $fn=32);
 
-// 6. A polygon extruded {{i:into}} a prism
+// 6. A polygon extruded into a prism
 // This L-shape profile gets pushed up 5 mm to become a 3D L-bracket
-{{i:translate}}([0, 40, 0])
-  linear_extrude({{i:height}}=5)
+translate([0, 40, 0])
+  linear_extrude(height=5)
     polygon([[0,0],[40,0],[40,8],[8,8],[8,30],[0,30]]);
 ```
 
@@ -1824,11 +1824,11 @@ That's the power of CSG: you're building a vocabulary of operations that let you
 An important subtlety: `union()` isn't the same as just rendering two objects next to each other. If shapes overlap, `union()` properly merges them into a single watertight solid. Two overlapping objects without a CSG wrapper can cause problems for the slicer — it may not know whether the overlapping region should be treated as solid once or twice. Always use `union()` when shapes share space.
 
 ```openscad
-// union() — combines a {{i:cube}} and a sphere {{i:into}} {{i:one}} solid piece
-// The sphere sits on top of the {{i:cube}}, and the two are fused where they meet.
+// union() — combines a cube and a sphere into one solid piece
+// The sphere sits on top of the cube, and the two are fused where they meet.
 union() {
-  {{i:cube}}([20, 20, 5]);
-  {{i:translate}}([10, 10, 5])
+  cube([20, 20, 5]);
+  translate([10, 10, 5])
     sphere(r=10, $fn=32);
 }
 ```
@@ -1842,11 +1842,11 @@ Build this and notice: the cube and sphere are one object. You can't select them
 Think of a drill press: the block of material is the first child, and the drill bits are the shapes that follow. You position the drills where you want the holes, and `difference()` removes exactly the volume each drill bit occupies.
 
 ```openscad
-// {{i:difference}}() — a {{i:cube}} with a cylindrical hole drilled through it
-// The {{i:cube}} is the base. The cylinder is the cutting tool.
-{{i:difference}}() {
-  {{i:cube}}([20, 20, 20]);
-  {{i:translate}}([10, 10, -0.001])       // see Step 4 for why this -0.001 matters
+// difference() — a cube with a cylindrical hole drilled through it
+// The cube is the base. The cylinder is the cutting tool.
+difference() {
+  cube([20, 20, 20]);
+  translate([10, 10, -0.001])       // see Step 4 for why this -0.001 matters
     cylinder(h=20.002, r=5, $fn=32);
 }
 ```
@@ -1857,12 +1857,12 @@ Think of a drill press: the block of material is the first child, and the drill 
 Make this and identify the problem
 
 ```openscad
-// {{i:difference}}() — a {{i:cube}} with a cylindrical hole drilled through it
-// The {{i:cube}} is the base. The cylinder is the cutting tool.
-{{i:difference}}() {
-  {{i:translate}}([10, 10, -0.001])       // see Step 4 for why this -0.001 matters
+// difference() — a cube with a cylindrical hole drilled through it
+// The cube is the base. The cylinder is the cutting tool.
+difference() {
+  translate([10, 10, -0.001])       // see Step 4 for why this -0.001 matters
     cylinder(h=20.002, r=5, $fn=32);
-      {{i:cube}}([20, 20, 20]);
+      cube([20, 20, 20]);
 
 }
 ```
@@ -1875,9 +1875,9 @@ A practical mental model: `intersection()` is like a cookie cutter. The cookie c
 
 ```openscad
 // intersection() — keeps only the region inside both shapes
-// A {{i:cube}} intersected with a sphere = a {{i:cube}} with rounded corners
+// A cube intersected with a sphere = a cube with rounded corners
 intersection() {
-  {{i:cube}}([20, 20, 20], center=true);
+  cube([20, 20, 20], center=true);
   sphere(r=12, $fn=64);
 }
 ```
@@ -1918,7 +1918,7 @@ bracket_profile = [
 ];
 
 // Extrude 5 mm along Z — this produces a 3D L-bracket that is 5 mm tall
-linear_extrude({{i:height}}=5)
+linear_extrude(height=5)
   polygon(bracket_profile);
 ```
 
@@ -1955,10 +1955,10 @@ Counterexample and Example of the 0.001 mm rule.
 ```openscad
 // WRONG — co-planar faces: the cutting shape is exactly as tall as the base
 // This may produce rendering artifacts or slicer errors.
-{{i:difference}}() {
-  {{i:cube}}([20, 20, 10]);
-  {{i:translate}}([1, 1, 0])      // cutting shape's bottom at Z=0, same as base
-    {{i:cube}}([18, 18, 10]);     // cutting shape's top at Z=10, same as base's top
+difference() {
+  cube([20, 20, 10]);
+  translate([1, 1, 0])      // cutting shape's bottom at Z=0, same as base
+    cube([18, 18, 10]);     // cutting shape's top at Z=10, same as base's top
 }
 ```
 
@@ -1966,10 +1966,10 @@ Counterexample and Example of the 0.001 mm rule.
 // CORRECT — the 0.001 offset rule applied
 // The cutting shape starts 0.001 mm BELOW the base bottom
 // and extends 0.001 mm ABOVE the base top.
-{{i:difference}}() {
-  {{i:cube}}([20, 20, 10]);
-  {{i:translate}}([1, 1, -0.001])         // start 0.001 mm below the floor
-    {{i:cube}}([18, 18, 10 + 0.002]);     // 0.001 below + 0.001 above = 0.002 extra {{i:height}}
+difference() {
+  cube([20, 20, 10]);
+  translate([1, 1, -0.001])         // start 0.001 mm below the floor
+    cube([18, 18, 10 + 0.002]);     // 0.001 below + 0.001 above = 0.002 extra height
 }
 ```
 
@@ -1994,17 +1994,17 @@ OpenSCAD provides four **modifier characters** that you can prefix onto any shap
 ```openscad
 // USING MODIFIERS FOR DEBUGGING:
 
-{{i:difference}}() {
-  {{i:cube}}([30, 30, 20]);
+difference() {
+  cube([30, 30, 20]);
 
-  // # highlights the cutting shape so {{i:you}} {{i:can}} see where it's cutting
-  # {{i:translate}}([15, 15, -0.001])
+  // # highlights the cutting shape so you can see where it's cutting
+  # translate([15, 15, -0.001])
     cylinder(h=20.002, r=8, $fn=32);
 }
 
-// % ghost {{i:reference}} — helps position but doesn't {{i:print}}
-% {{i:translate}}([0, 0, 20])
-  {{i:cube}}([30, 30, 5]);   // ghost of a lid that will sit on top
+// % ghost reference — helps position but doesn't print
+% translate([0, 0, 20])
+  cube([30, 30, 5]);   // ghost of a lid that will sit on top
 ```
 
 > [!IMPORTANT]
@@ -2031,26 +2031,26 @@ The profile for `rotate_extrude()` must be positioned in **positive X space** �
 
 ```openscad
 // linear_extrude: circle extruded straight up = a cylinder
-linear_extrude({{i:height}}=20) {
+linear_extrude(height=20) {
   circle(r=10, $fn=32);
 }
 
 // linear_extrude with twist: a twisted square column
-{{i:translate}}([30, 0, 0])
-linear_extrude({{i:height}}=30, twist=90) {
+translate([30, 0, 0])
+linear_extrude(height=30, twist=90) {
   square([10, 10], center=true);
 }
 
 // linear_extrude with scale: a tapered shape (like a pyramid with a square base)
-{{i:translate}}([60, 0, 0])
-linear_extrude({{i:height}}=30, scale=0.1) {
+translate([60, 0, 0])
+linear_extrude(height=30, scale=0.1) {
   square([15, 15], center=true);
 }
 
 // rotate_extrude: a circle swept around the Z axis = a torus (donut)
-{{i:translate}}([0, 50, 0])
+translate([0, 50, 0])
 rotate_extrude(angle=360, $fn=64) {
-  {{i:translate}}([15, 0, 0]) circle(r=5, $fn=32);
+  translate([15, 0, 0]) circle(r=5, $fn=32);
 }
 ```
 
@@ -2082,18 +2082,18 @@ This makes `hull()` excellent for:
 ```openscad
 // hull() of three spheres — creates a smooth rounded triangle
 hull() {
-  {{i:translate}}([0,  0,  0]) sphere(r=5, $fn=32);
-  {{i:translate}}([30, 0,  0]) sphere(r=5, $fn=32);
-  {{i:translate}}([15, 20, 0]) sphere(r=5, $fn=32);
+  translate([0,  0,  0]) sphere(r=5, $fn=32);
+  translate([30, 0,  0]) sphere(r=5, $fn=32);
+  translate([15, 20, 0]) sphere(r=5, $fn=32);
 }
 
 // Practical use: a rounded box
 // Place small spheres at the eight corners of a box
 // The hull creates a box with perfectly rounded edges
-{{i:translate}}([0, 40, 0])
+translate([0, 40, 0])
 hull() {
   for (x = [3, 27], y = [3, 17], z = [3, 7]) {
-    {{i:translate}}([x, y, z]) sphere(r=3, $fn=16);
+    translate([x, y, z]) sphere(r=3, $fn=16);
   }
 }
 ```
@@ -2112,28 +2112,28 @@ Here is a complete practical example that uses nested CSG operations to create a
 // Parametric Mounting Bracket
 // Change these values to resize the bracket
 width  = 40;    // mm — total bracket width
-{{i:height}} = 30;    // mm — total bracket {{i:height}}
+height = 30;    // mm — total bracket height
 depth  = 8;     // mm — bracket thickness (front to back)
 hole_r = 4;     // mm — radius of mounting holes
 slot_w = 6;     // mm — width of top slot
-slot_h = 15;    // mm — {{i:height}} of top slot
-wall   = 3;     // mm — {{i:material}} remaining above slot
+slot_h = 15;    // mm — height of top slot
+wall   = 3;     // mm — material remaining above slot
 
-{{i:module}} bracket() {
-  {{i:difference}}() {
+module bracket() {
+  difference() {
     // Base: a solid rectangular block — this is what everything gets cut from
-    {{i:cube}}([width, depth, {{i:height}}]);
+    cube([width, depth, height]);
 
     // Two circular mounting holes drilled through the Y axis
     // The rotate([-90,0,0]) turns the cylinder to point in the Y direction
-    {{i:translate}}([10, -0.001, 10])
+    translate([10, -0.001, 10])
       rotate([-90, 0, 0]) cylinder(r=hole_r, h=depth + 0.002, $fn=32);
-    {{i:translate}}([30, -0.001, 10])
+    translate([30, -0.001, 10])
       rotate([-90, 0, 0]) cylinder(r=hole_r, h=depth + 0.002, $fn=32);
 
     // A slot cut through the top portion of the bracket
-    {{i:translate}}([width/2 - slot_w/2, -0.001, {{i:height}} - slot_h - wall])
-      {{i:cube}}([slot_w, depth + 0.002, slot_h]);
+    translate([width/2 - slot_w/2, -0.001, height - slot_h - wall])
+      cube([slot_w, depth + 0.002, slot_h]);
   }
 }
 
@@ -2218,15 +2218,15 @@ _Keep this handy during all OpenSCAD work. For full documentation: [https://open
 ### Basic Shapes (Primitives)
 
 ```openscad
-{{i:cube}}([length, width, {{i:height}}]);           // rectangular box at origin
-{{i:cube}}([l, w, h], center=true);           // box centered at origin
+cube([length, width, height]);           // rectangular box at origin
+cube([l, w, h], center=true);           // box centered at origin
 
 sphere(r=radius);                        // sphere by radius
 sphere(d=diameter);                      // sphere by diameter
 
-cylinder(h={{i:height}}, r=radius);            // cylinder
-cylinder(h={{i:height}}, d=diameter);          // by diameter
-cylinder(h={{i:height}}, r1=5, r2=2);         // cone (different top/bottom radii)
+cylinder(h=height, r=radius);            // cylinder
+cylinder(h=height, d=diameter);          // by diameter
+cylinder(h=height, r1=5, r2=2);         // cone (different top/bottom radii)
 
 $fn = 50;  // curve resolution — higher = smoother, slower to render
 ```
@@ -2236,8 +2236,8 @@ $fn = 50;  // curve resolution — higher = smoother, slower to render
 ### Transformations
 
 ```openscad
-{{i:translate}}([x, y, z]) shape;             // move
-rotate([x_deg, y_deg, z_deg]) shape;    // rotate around {{i:each}} axis
+translate([x, y, z]) shape;             // move
+rotate([x_deg, y_deg, z_deg]) shape;    // rotate around each axis
 scale([x, y, z]) shape;                 // scale (1.5 = 150%)
 mirror([1, 0, 0]) shape;               // mirror across YZ plane
                                         // use [0,1,0] for XZ, [0,0,1] for XY
@@ -2249,7 +2249,7 @@ mirror([1, 0, 0]) shape;               // mirror across YZ plane
 
 ```openscad
 union() { shape1; shape2; }             // combine shapes
-{{i:difference}}() { base; subtract; }        // remove {{i:one}} shape from another
+difference() { base; subtract; }        // remove one shape from another
 intersection() { shape1; shape2; }      // keep only the overlapping region
 ```
 
@@ -2257,9 +2257,9 @@ intersection() { shape1; shape2; }      // keep only the overlapping region
 
 ```openscad
 // Example — box with a through-hole:
-{{i:difference}}() {
-  {{i:cube}}([30, 30, 10]);
-  {{i:translate}}([15, 15, -0.001])           // extends past bottom face
+difference() {
+  cube([30, 30, 10]);
+  translate([15, 15, -0.001])           // extends past bottom face
     cylinder(h=10.002, r=5, $fn=32);   // extends past top face
 }
 ```
@@ -2271,10 +2271,10 @@ intersection() { shape1; shape2; }      // keep only the overlapping region
 ```openscad
 length = 70;      // define a variable
 width  = 16;
-{{i:height}} = 5;
+height = 5;
 
-{{i:cube}}([length, width, {{i:height}}]);          // use {{i:variables}}
-{{i:cube}}([length * 2, width, {{i:height}}]);      // math in expressions
+cube([length, width, height]);          // use variables
+cube([length * 2, width, height]);      // math in expressions
 ```
 
 ---
@@ -2283,8 +2283,8 @@ width  = 16;
 
 ```openscad
 // Define:
-{{i:module}} my_box(l=20, w=15, h=10) {
-  {{i:cube}}([l, w, h]);
+module my_box(l=20, w=15, h=10) {
+  cube([l, w, h]);
 }
 
 // Call:
@@ -2300,12 +2300,12 @@ my_box(l=50);           // named argument; others use defaults
 ```openscad
 // Repeat a shape N times:
 for (i = [0:4]) {                       // i goes 0, 1, 2, 3, 4
-  {{i:translate}}([i * 20, 0, 0]) {{i:cube}}([15, 15, 5]);
+  translate([i * 20, 0, 0]) cube([15, 15, 5]);
 }
 
 // With step size:
 for (i = [0:5:20]) {                    // i goes 0, 5, 10, 15, 20
-  {{i:translate}}([i, 0, 0]) sphere(r=3);
+  translate([i, 0, 0]) sphere(r=3);
 }
 ```
 
@@ -2318,12 +2318,12 @@ circle(r=10);                           // 2D circle
 square([w, h]);                         // 2D rectangle
 polygon([[0,0],[10,0],[5,10]]);         // arbitrary 2D shape
 
-// Extrude {{i:into}} 3D:
-linear_extrude({{i:height}}=5) circle(r=10); // cylinder from 2D circle
-linear_extrude({{i:height}}=10, twist=90)    // twisted extrusion
+// Extrude into 3D:
+linear_extrude(height=5) circle(r=10); // cylinder from 2D circle
+linear_extrude(height=10, twist=90)    // twisted extrusion
   square([10, 5]);
 rotate_extrude()                        // solid of revolution
-  {{i:translate}}([15, 0]) circle(r=3);      // torus
+  translate([15, 0]) circle(r=3);      // torus
 ```
 
 ---
@@ -2408,7 +2408,7 @@ If adapting a model using OpenSCAD, use this scaling scaffold as a starting poin
 
 ```openscad
 // Bonus Print Modification Scaffold
-// {{hi:Import}}Import an {{i:STL}} and apply modifications parametrically.
+// {{hi:Import}}Import an STL and apply modifications parametrically.
 
 // ---- Parameters ----
 scale_factor  = 1.5;        // 1.0 = original, 1.5 = 50% larger, 0.75 = 25% smaller
@@ -2416,23 +2416,23 @@ add_mount     = true;       // set false to skip the mount hole
 mount_r       = 2.5;        // mm — mount hole radius (for M5 screw: 2.75mm)
 mount_pos     = [25, 0, 0]; // mm — position of mount hole center
 
-// ---- Base {{i:Model}} ----
-// Replace "original.stl" with your actual {{i:file}} path
-{{i:module}} base_model() {
+// ---- Base Model ----
+// Replace "original.stl" with your actual file path
+module base_model() {
   scale([scale_factor, scale_factor, scale_factor])
     import("original.stl", convexity=10);
 }
 
 // ---- Mount Hole (optional) ----
-{{i:module}} mount_hole() {
+module mount_hole() {
   if (add_mount) {
-    {{i:translate}}(mount_pos)
+    translate(mount_pos)
       cylinder(h=100, r=mount_r, center=true, $fn=32);
   }
 }
 
 // ---- Assembly ----
-{{i:difference}}() {
+difference() {
   base_model();
   mount_hole();
 }
@@ -2772,27 +2772,27 @@ x = 5;
 echo("x =", x);   // This prints 10, NOT 5 — because the last assignment wins
 x = 10;
 
-// CORRECT PATTERN — {{i:each}} value gets its own {{i:name}}
+// CORRECT PATTERN — each value gets its own name
 base_size    = 20;          // 20
 padded_size  = base_size + 10;   // 30 — computed from base_size
 doubled_size = base_size * 2;    // 40 — computed from base_size
 echo(base_size, padded_size, doubled_size);  // 20, 30, 40
 
-// MODULE SCOPE — {{i:variables}} inside a {{i:module}} are completely separate
+// MODULE SCOPE — variables inside a module are completely separate
 wall_t = 3;   // global wall thickness
 
-{{i:module}} demo_box(size) {
-  wall_t = 1;           // This is a DIFFERENT variable — local to this {{i:module}}
-  {{i:cube}}([size, size, wall_t]);   // uses the local wall_t = 1
+module demo_box(size) {
+  wall_t = 1;           // This is a DIFFERENT variable — local to this module
+  cube([size, size, wall_t]);   // uses the local wall_t = 1
 }
 
 demo_box(20);
-echo("Global wall_t is still:", wall_t);  // Still 3 — unchanged by the {{i:module}}
+echo("Global wall_t is still:", wall_t);  // Still 3 — unchanged by the module
 
 // CHOOSING BETWEEN VALUES conditionally — use a ternary expression
 mode = "large";
 box_size = (mode == "large") ? 40 : 20;   // If mode is "large", 40; otherwise 20
-{{i:cube}}([box_size, box_size, 5]);
+cube([box_size, box_size, 5]);
 ```
 
 ### What This Means in Practice
@@ -2814,8 +2814,8 @@ A **module** is a named, reusable piece of geometry. When you find yourself writ
 The syntax is:
 
 ```openscad
-{{i:module}} {{i:name}}(param1, param2=default_value) {
-  // {{i:geometry}} {{i:code}} here
+module name(param1, param2=default_value) {
+  // geometry code here
   // uses param1 and param2
 }
 ```
@@ -2825,7 +2825,7 @@ Parameters with default values (`param2=default_value`) are optional — callers
 You call a module just like a statement:
 
 ```openscad
-{{i:name}}(value1, value2);
+name(value1, value2);
 ```
 
 ### The DRY Principle
@@ -2838,28 +2838,28 @@ If you need four mounting holes in a plate, you could write the cylinder code fo
 The DRY approach: write a module `mounting_hole(r, depth)` once, then call it four times. Now the hole geometry is defined in exactly one place. Change it once, every hole updates. Add more holes as easily as one line each.
 
 ```openscad
-// WRONG — {{i:copy}}-pasted, hard to maintain
-{{i:difference}}() {
-  {{i:cube}}([60, 40, 5]);
-  {{i:translate}}([5,  5,  -0.001]) cylinder(r=2, h=5.002, $fn=16);
-  {{i:translate}}([55, 5,  -0.001]) cylinder(r=2, h=5.002, $fn=16);
-  {{i:translate}}([5,  35, -0.001]) cylinder(r=2, h=5.002, $fn=16);
-  {{i:translate}}([55, 35, -0.001]) cylinder(r=2, h=5.002, $fn=16);
+// WRONG — copy-pasted, hard to maintain
+difference() {
+  cube([60, 40, 5]);
+  translate([5,  5,  -0.001]) cylinder(r=2, h=5.002, $fn=16);
+  translate([55, 5,  -0.001]) cylinder(r=2, h=5.002, $fn=16);
+  translate([5,  35, -0.001]) cylinder(r=2, h=5.002, $fn=16);
+  translate([55, 35, -0.001]) cylinder(r=2, h=5.002, $fn=16);
 }
 
-// CORRECT — DRY: {{i:one}} {{i:module}}, used multiple times
-{{i:module}} mounting_hole(r=2, depth=5) {
+// CORRECT — DRY: one module, used multiple times
+module mounting_hole(r=2, depth=5) {
   // The 0.001 offsets prevent co-planar face problems (Lesson 2)
-  {{i:translate}}([0, 0, -0.001])
+  translate([0, 0, -0.001])
     cylinder(r=r, h=depth + 0.002, $fn=16);
 }
 
-{{i:difference}}() {
-  {{i:cube}}([60, 40, 5]);
-  {{i:translate}}([5,  5,  0]) mounting_hole();
-  {{i:translate}}([55, 5,  0]) mounting_hole();
-  {{i:translate}}([5,  35, 0]) mounting_hole();
-  {{i:translate}}([55, 35, 0]) mounting_hole();
+difference() {
+  cube([60, 40, 5]);
+  translate([5,  5,  0]) mounting_hole();
+  translate([55, 5,  0]) mounting_hole();
+  translate([5,  35, 0]) mounting_hole();
+  translate([55, 35, 0]) mounting_hole();
 }
 ```
 
@@ -2886,16 +2886,16 @@ assert(condition, "message if condition is false");
 If `condition` evaluates to true, nothing happens — the code continues normally. If `condition` is false, the render stops and the message is printed. The message should be descriptive enough that anyone reading it immediately understands what went wrong.
 
 ```openscad
-{{i:module}} safe_cylinder(r, h, fn=32) {
-  // Validate all inputs {{i:before}} creating any {{i:geometry}}
+module safe_cylinder(r, h, fn=32) {
+  // Validate all inputs before creating any geometry
   assert(is_num(r) && r > 0,
     str("safe_cylinder: radius must be a positive number, got: ", r));
   assert(is_num(h) && h > 0,
-    str("safe_cylinder: {{i:height}} must be a positive number, got: ", h));
+    str("safe_cylinder: height must be a positive number, got: ", h));
   assert(fn >= 3,
     str("safe_cylinder: fn must be at least 3, got: ", fn));
   assert(r < 500,
-    str("safe_cylinder: radius ", r, "mm seems wrong — did {{i:you}} enter cm instead of mm?"));
+    str("safe_cylinder: radius ", r, "mm seems wrong — did you enter cm instead of mm?"));
 
   cylinder(r=r, h=h, $fn=fn);
 }
@@ -2908,12 +2908,12 @@ safe_cylinder(5, 20);          // fine
 If I run safe_cylinder(-3, 20) as the last line, I get the following in my Console:
 
 ```pwsh
-Compiling {{i:design}} (CSG Tree generation)...
-ERROR: Assertion '(is_num(r) && (r > 0))' failed: "safe_cylinder: radius must be a positive number, got: -5" in {{i:file}} ., line 3
-TRACE: called by 'assert' in {{i:file}} ., line 3
-TRACE: call of 'safe_cylinder(r = -5, h = 20, fn = 32)' in {{i:file}} ., line 1
-TRACE: called by 'safe_cylinder' in {{i:file}} ., line 15
-Compiling {{i:design}} (CSG Products generation)...
+Compiling design (CSG Tree generation)...
+ERROR: Assertion '(is_num(r) && (r > 0))' failed: "safe_cylinder: radius must be a positive number, got: -5" in file ., line 3
+TRACE: called by 'assert' in file ., line 3
+TRACE: call of 'safe_cylinder(r = -5, h = 20, fn = 32)' in file ., line 1
+TRACE: called by 'safe_cylinder' in file ., line 15
+Compiling design (CSG Products generation)...
 ```
 
 The `str()` function assembles a string from multiple values — very useful for error messages that include the bad value so the user knows exactly what to fix.
@@ -2944,25 +2944,25 @@ The file with definitions I will use later:
 // === lib/hardware.scad ===
 // A reusable hardware library. Load with: use <../lib/hardware.scad>
 
-{{i:module}} m3_bolt_hole(depth=10, countersink=false) {
+module m3_bolt_hole(depth=10, countersink=false) {
   // M3 clearance hole: 3.4mm diameter (ISO standard M3 clearance)
   assert(depth > 0, "m3_bolt_hole: depth must be positive");
-  {{i:translate}}([0, 0, -0.001]) {
+  translate([0, 0, -0.001]) {
     cylinder(d=3.4, h=depth + 0.002, $fn=16);
     if (countersink) {
       // Add a countersunk cone for flat-head screws
-      {{i:translate}}([0, 0, depth - 2.5])
+      translate([0, 0, depth - 2.5])
         cylinder(d1=3.4, d2=7.0, h=3, $fn=32);
     }
   }
 }
 
-{{i:module}} m3_standoff({{i:height}}=5, outer_d=6) {
+module m3_standoff(height=5, outer_d=6) {
   // Hollow cylindrical standoff with M3 hole through center
-  assert({{i:height}} > 2, "m3_standoff: {{i:height}} must be > 2mm");
-  {{i:difference}}() {
-    cylinder(d=outer_d, h={{i:height}}, $fn=16);
-    m3_bolt_hole(depth={{i:height}});  // Modules {{i:can}} call other modules from the library
+  assert(height > 2, "m3_standoff: height must be > 2mm");
+  difference() {
+    cylinder(d=outer_d, h=height, $fn=16);
+    m3_bolt_hole(depth=height);  // Modules can call other modules from the library
   }
 }
 ```
@@ -2971,13 +2971,13 @@ I call `use` to import the definitions from the above file without accidentally 
 
 ```openscad
 // === src/main.scad ===
-use <../lib/hardware.scad>   // loads definitions; no top-level {{i:geometry}} executes
+use <../lib/hardware.scad>   // loads definitions; no top-level geometry executes
 
 // Place M3 standoffs at all four corners of a mounting plate
-{{i:cube}}([60, 40, 5]);
+cube([60, 40, 5]);
 for (pos = [[5,5], [55,5], [5,35], [55,35]]) {
-  {{i:translate}}([pos[0], pos[1], 0])
-    m3_standoff({{i:height}}=8);
+  translate([pos[0], pos[1], 0])
+    m3_standoff(height=8);
 }
 ```
 
@@ -2992,17 +2992,17 @@ A well-organized library groups related modules, documents each one, and validat
 // All dimensions follow ISO metric standards.
 // ============================================================
 
-{{i:module}} m3_hole(depth=10) {
+module m3_hole(depth=10) {
   // M3 clearance hole: 3.2mm diameter
   cylinder(r=1.6, h=depth + 0.001, $fn=16);
 }
 
-{{i:module}} m4_hole(depth=10) {
+module m4_hole(depth=10) {
   // M4 clearance hole: 4.3mm diameter
   cylinder(r=2.15, h=depth + 0.001, $fn=16);
 }
 
-{{i:module}} m3_nut_trap(extra_depth=0) {
+module m3_nut_trap(extra_depth=0) {
   // M3 hex nut trap: 6.4mm across-flats, 2.4mm thick
   cylinder(r=3.2, h=2.4 + extra_depth, $fn=6);  // $fn=6 makes a hexagon
 }
@@ -3025,24 +3025,24 @@ Three forms:
 `for (variable = [start : step : end])` — iterates over a range with a specified step. `[0:45:315]` gives 0, 45, 90, 135, 180, 225, 270, 315.
 
 ```openscad
-// Place pegs at four {{i:specific}} positions
+// Place pegs at four specific positions
 peg_positions = [[0,0], [20,0], [40,0], [20,20]];
 
 for (pos = peg_positions) {
-  {{i:translate}}([pos[0], pos[1], 0]) cylinder(r=3, h=10, $fn=32);
+  translate([pos[0], pos[1], 0]) cylinder(r=3, h=10, $fn=32);
 }
 
 // Place cylinders every 45° around a circle (8 cylinders total)
 for (angle = [0 : 45 : 315]) {
   rotate([0, 0, angle])
-    {{i:translate}}([20, 0, 0])
+    translate([20, 0, 0])
       cylinder(r=2, h=5, $fn=16);
 }
 
 // Conditional: if show_lid is true, draw a lid
 show_lid = true;
 if (show_lid) {
-  {{i:translate}}([0, 0, 30]) {{i:cube}}([50, 30, 3]);
+  translate([0, 0, 30]) cube([50, 30, 3]);
 }
 ```
 
@@ -3055,7 +3055,7 @@ You can use multiple `for` clauses in a single statement to create grids:
 ```openscad
 // 4×4 grid of cylinders — nested for in a single statement
 for (x = [0:3], y = [0:3]) {
-  {{i:translate}}([x * 20, y * 20, 0]) cylinder(r=3, h=5, $fn=16);
+  translate([x * 20, y * 20, 0]) cylinder(r=3, h=5, $fn=16);
 }
 ```
 
@@ -3100,11 +3100,11 @@ function fib(n) = (n <= 1) ? n : fib(n-1) + fib(n-2);
 // Use the function to space pegs with Fibonacci spacing
 // fib(2)=1, fib(3)=2, fib(4)=3, fib(5)=5, fib(6)=8, fib(7)=13, fib(8)=21, fib(9)=34
 for (i = [2:9]) {
-  {{i:translate}}([fib(i) * 4, 0, 0])
+  translate([fib(i) * 4, 0, 0])
     cylinder(r=1.5, h=5, $fn=16);
 }
 
-// A useful function: generate N evenly-spaced values {{i:between}} start and stop
+// A useful function: generate N evenly-spaced values between start and stop
 function linspace(start, stop, n) =
   (n <= 1)
     ? [start]
@@ -3114,7 +3114,7 @@ positions = linspace(0, 50, 6);   // evaluates to [0, 10, 20, 30, 40, 50]
 echo("Positions:", positions);
 
 for (p = positions) {
-  {{i:translate}}([p, 0, 0]) sphere(r=2, $fn=16);
+  translate([p, 0, 0]) sphere(r=2, $fn=16);
 }
 ```
 
@@ -3156,8 +3156,8 @@ echo(heights);   // [5, 10, 15, 20, 25]
 // Generate 8 evenly-spaced positions along the X axis
 positions = [for (i = [0:7]) [i * 12, 0, 0]];
 for (pos = positions) {
-  {{i:translate}}(pos)
-    cylinder(h = 5 + pos[0] * 0.3, r=3, $fn=16);  // {{i:height}} increases with X position
+  translate(pos)
+    cylinder(h = 5 + pos[0] * 0.3, r=3, $fn=16);  // height increases with X position
 }
 
 // Filter: generate only even numbers from 0 to 18
@@ -3167,7 +3167,7 @@ echo(evens);   // [0, 4, 8, 12, 16]
 // 2D grid of points — nested comprehension generates a flat list of [x,y,0] vectors
 grid = [for (x = [0:3]) for (y = [0:3]) [x * 20, y * 20, 0]];
 for (pt = grid) {
-  {{i:translate}}(pt) cylinder(r=2, h=8, $fn=16);
+  translate(pt) cylinder(r=2, h=8, $fn=16);
 }
 ```
 
@@ -3187,7 +3187,7 @@ v2 = [3, 4, 0];
 
 sum    = v1 + v2;    // [13, 24, 5]  — add matching components
 diff   = v1 - v2;    // [7,  16, 5]  — subtract matching components
-scaled = v1 * 2;     // [20, 40, 10] — multiply {{i:each}} component by a scalar
+scaled = v1 * 2;     // [20, 40, 10] — multiply each component by a scalar
 dot    = v1 * v2;    // 110          — dot product: v1·v2 = 10*3 + 20*4 + 5*0
 length = norm(v1);   // ≈ 22.9       — Euclidean length (√(10² + 20² + 5²))
 ```
@@ -3204,7 +3204,7 @@ min(3, 7, 2)    // 2    — smallest of all arguments
 pow(2, 8)       // 256  — 2 raised to the power 8
 sqrt(144)       // 12   — square root
 
-// Trigonometry — CRITICAL: {{i:OpenSCAD}} uses DEGREES, not radians
+// Trigonometry — CRITICAL: OpenSCAD uses DEGREES, not radians
 sin(90)         // 1    — sine of 90 degrees
 cos(0)          // 1    — cosine of 0 degrees
 tan(45)         // 1    — tangent of 45 degrees
@@ -3235,10 +3235,10 @@ When all three are specified, OpenSCAD uses whichever produces the _most_ faces.
 sphere(r=10, $fn=8);     // rough but fast
 
 // For final export: high $fn for smooth curves
-{{i:translate}}([30, 0, 0])
-  sphere(r=10, $fn=64);  // smooth for {{i:printing}}
+translate([30, 0, 0])
+  sphere(r=10, $fn=64);  // smooth for printing
 
-// Set globally at the top of a {{i:file}}:
+// Set globally at the top of a file:
 $fa = 5;    // max 5 degrees per face
 $fs = 0.5;  // minimum 0.5mm face size (more faces on small features)
 ```
@@ -3375,22 +3375,22 @@ When you run `3dm info` after a build, you get two very different types of infor
 `3dm info` runs after `3dm build` and produces a report about your built STL file. It always includes deterministic data (bounding box, volume, triangle count) and optionally generates an AI description by rendering the model from a specific angle.
 
 ```bash
-# Standard usage — {{i:run}} after every {{i:build}}
-3dm {{i:build}}
+# Standard usage — run after every build
+3dm build
 3dm info
 
-# Request a description from a {{i:specific}} viewing angle
+# Request a description from a specific viewing angle
 3dm info --view front
 3dm info --view top
 3dm info --view isometric
 
-# Save the description to a log {{i:file}}
-3dm info --{{i:output}} description.txt
+# Save the description to a log file
+3dm info --output description.txt
 
-# {{i:Windows}} {{i:PowerShell}}
+# Windows PowerShell
 3dm info | Out-File -FilePath description.txt -Encoding UTF8
 
-# {{i:Windows}} CMD
+# Windows CMD
 3dm info > description.txt
 ```
 
@@ -3432,7 +3432,7 @@ The very first thing to check after every build. If these numbers don't match yo
 
 ```bash
 3dm info
-# Look for: Bounding Box: [expected width] × [expected depth] × [expected {{i:height}}] mm
+# Look for: Bounding Box: [expected width] × [expected depth] × [expected height] mm
 # Look for: Volume: [reasonable volume] mm³
 ```
 
@@ -3452,7 +3452,7 @@ The slicer layer view is the best non-physical verification tool available. Use 
 If your full model is complex and `3dm info` gives a vague or confusing description, temporarily modify your file to render only the specific module you're trying to verify:
 
 ```openscad
-// Temporarily comment out everything else, render only {{i:one}} {{i:module}}
+// Temporarily comment out everything else, render only one module
 // full_assembly();     // commented out
 // base_plate();        // commented out
 snap_clip();            // only this renders — easier for 3dm info to describe
@@ -3484,14 +3484,14 @@ Date: 2026-03-10
 Feature: USB-C charging slot
   Designed: 9.5mm wide × 3.5mm tall
   Level 1 — Bounding box of isolated slot_module(): 9.5 × 3.5mm ✓
-  Level 2 — {{i:Slicer}} {{i:layer}} view: rectangular hole visible at Z=5–8.5mm ✓
+  Level 2 — Slicer layer view: rectangular hole visible at Z=5–8.5mm ✓
   Level 3 (AI): "rectangular cutout, approximately 10mm wide" (too vague for precision)
-  Level 4 — {{hi:Calipers}}Calipers after {{i:first}} {{i:test}} {{i:print}}: 9.4mm wide (0.1mm under — acceptable) ✓
+  Level 4 — {{hi:Calipers}}Calipers after first test print: 9.4mm wide (0.1mm under — acceptable) ✓
 
 Feature: Rubber foot posts (4×)
   Designed: 3.0mm diameter × 2.0mm tall
   Level 1 — Bounding box of isolated foot_post(): 3.0 × 3.0 × 2.0mm ✓
-  Level 2 — {{i:Slicer}}: four small protrusions visible on bottom face ✓
+  Level 2 — Slicer: four small protrusions visible on bottom face ✓
   Level 3 (AI): "four small round protrusions" ✓
   Level 4 — Not yet printed
 ```
@@ -3524,26 +3524,26 @@ Apply these checks to every piece of AI-generated OpenSCAD code before treating 
 
 ```plaintext
 AI CODE VERIFICATION CHECKLIST
-Run {{i:each}} check in order. Do not proceed if a check fails.
+Run each check in order. Do not proceed if a check fails.
 
 [ ] 1. SYNTAX
-      3dm {{i:build}} → does it compile without errors?
+      3dm build → does it compile without errors?
 
 [ ] 2. DIMENSIONS
-      3dm info → does the bounding box match what {{i:you}} asked for?
+      3dm info → does the bounding box match what you asked for?
 
 [ ] 3. BOOLEAN OPERATIONS
-      Does every {{i:difference}}() use the 0.001 offset rule?
-      Look for: {{i:translate}}([*, *, 0]) inside {{i:difference}}()
-      Should be: {{i:translate}}([*, *, -0.001])
+      Does every difference() use the 0.001 offset rule?
+      Look for: translate([*, *, 0]) inside difference()
+      Should be: translate([*, *, -0.001])
 
 [ ] 4. PARAMETER BEHAVIOR
-      Change {{i:each}} {{i:parameter}} to an extreme value (minimum, maximum, zero).
+      Change each parameter to an extreme value (minimum, maximum, zero).
       Does the model change correctly? Are there any edge cases that break it?
 
 [ ] 5. MANIFOLD CHECK
-      Open {{i:build}}/main.stl in your slicer.
-      Are there any {{i:geometry}} warnings or errors?
+      Open build/main.stl in your slicer.
+      Are there any geometry warnings or errors?
 
 [ ] 6. PRINT FEASIBILITY
       Are all walls at least 1.2mm thick for your nozzle size?
@@ -3562,7 +3562,7 @@ The quality of AI output depends heavily on the quality of your input prompt. A 
 **Weak prompt:**
 
 ```plaintext
-Review my {{i:OpenSCAD}} {{i:code}}.
+Review my OpenSCAD code.
 ```
 
 This gives the AI almost no information about what to look for. The response will be generic and may miss exactly the issues you care about.
@@ -3570,16 +3570,16 @@ This gives the AI almost no information about what to look for. The response wil
 **Strong prompt:**
 
 ```plaintext
-I have an {{i:OpenSCAD}} model of a {{i:parametric}} mounting bracket with two M3 bolt holes.
-Parameters: width=40, {{i:height}}=30, depth=8, hole_r=3.2.
+I have an OpenSCAD model of a parametric mounting bracket with two M3 bolt holes.
+Parameters: width=40, height=30, depth=8, hole_r=3.2.
 
-Please review this {{i:code}} for:
-1. Correct use of the 0.001 offset rule in all {{i:difference}}() operations
-2. Manifold-safe {{i:geometry}} (no co-planar faces)
+Please review this code for:
+1. Correct use of the 0.001 offset rule in all difference() operations
+2. Manifold-safe geometry (no co-planar faces)
 3. Whether hole_r=3.2mm is the correct M3 clearance hole diameter per ISO standards
-4. {{i:Any}} {{i:parameter}} combinations that could produce invalid {{i:geometry}}
+4. Any parameter combinations that could produce invalid geometry
 
-For {{i:each}} issue found, provide:
+For each issue found, provide:
 - Severity: critical / warning / note
 - Line number (if applicable)
 - Explanation of the problem
@@ -3607,23 +3607,23 @@ This prompt tells the AI exactly what to look for, what standard to check agains
 In Lesson 3, you learned how to use `assert()` inside modules to validate parameters. You can also use `assert()` at the top level of your file to enforce the same constraints you'd put in your verification log. This turns manual checks into automatic ones.
 
 ```openscad
-// Top-level {{i:design}} constraints
-// These {{i:run}} {{i:before}} any {{i:geometry}} is computed.
+// Top-level design constraints
+// These run before any geometry is computed.
 width  = 30;
-{{i:height}} = 10;
+height = 10;
 wall_t = 2;
 
 assert(width  >= 10, str("width must be >= 10mm for structural integrity, got: ", width));
-assert({{i:height}} >= 5,  str("{{i:height}} must be >= 5mm to fit standard hardware, got: ", {{i:height}}));
-assert(wall_t >= 1.5, str("wall_t must be >= 1.5mm to {{i:print}} reliably with 0.4mm nozzle, got: ", wall_t));
+assert(height >= 5,  str("height must be >= 5mm to fit standard hardware, got: ", height));
+assert(wall_t >= 1.5, str("wall_t must be >= 1.5mm to print reliably with 0.4mm nozzle, got: ", wall_t));
 assert(wall_t < width / 2,
   str("wall_t (", wall_t, ") must be less than half of width (", width/2, ")"));
 
 // Geometry — guaranteed to be within valid bounds by the asserts above
-{{i:difference}}() {
-  {{i:cube}}([width, width, {{i:height}}]);
-  {{i:translate}}([wall_t, wall_t, -0.001])
-    {{i:cube}}([width - 2*wall_t, width - 2*wall_t, {{i:height}} + 0.002]);
+difference() {
+  cube([width, width, height]);
+  translate([wall_t, wall_t, -0.001])
+    cube([width - 2*wall_t, width - 2*wall_t, height + 0.002]);
 }
 ```
 
@@ -3787,14 +3787,14 @@ By completing this project, you will:
 
 ```openscad
 // Parametric Six-Sided Die
-// All critical dimensions are top-level {{i:parameters}}.
-// Change these to {{i:create}} your three variants.
+// All critical dimensions are top-level parameters.
+// Change these to create your three variants.
 
 // ---- Parameters ----
-die_size   = 16;     // mm — overall {{i:cube}} side length
+die_size   = 16;     // mm — overall cube side length
 wall       = 2.0;    // mm — wall thickness (increase for more durability)
 pip_r      = 1.0;    // mm — radius of pip hemispheres
-pip_depth  = 0.6;    // mm — how deep pips are pressed {{i:into}} the face
+pip_depth  = 0.6;    // mm — how deep pips are pressed into the face
 corner_r   = 1.2;    // mm — chamfer/rounding radius on die edges
 $fn        = 32;     // curve resolution
 
@@ -3806,7 +3806,7 @@ assert(pip_r > 0 && pip_r < die_size / 6,
 assert(pip_depth < wall,
   str("pip_depth (", pip_depth, "mm) must be less than wall (", wall, "mm)"));
 
-// ---- Pip Positions (for {{i:each}} face, relative to face center) ----
+// ---- Pip Positions (for each face, relative to face center) ----
 // Each face is a list of [x, y] offsets from center, in pip-spacing units.
 // spacing = die_size / 5 gives a comfortable pip layout.
 pip_spacing = die_size / 5;
@@ -3819,15 +3819,15 @@ face_5_pips = [[-1, -1], [1, -1], [0, 0], [-1, 1], [1, 1]];
 face_6_pips = [[-1, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [1, 1]];
 
 // ---- Single Pip (hemisphere subtracted from a face) ----
-{{i:module}} pip(depth=pip_depth, r=pip_r) {
+module pip(depth=pip_depth, r=pip_r) {
   sphere(r=r, $fn=16);
 }
 
 // ---- Pips on a face (2D positions, extruded onto face surface) ----
-// This {{i:module}} places pips at the given positions on the +Z face of the die.
-{{i:module}} place_pips(positions, face_z, r=pip_r, depth=pip_depth, spacing=pip_spacing) {
+// This module places pips at the given positions on the +Z face of the die.
+module place_pips(positions, face_z, r=pip_r, depth=pip_depth, spacing=pip_spacing) {
   for (pos = positions) {
-    {{i:translate}}([die_size/2 + pos[0]*spacing,
+    translate([die_size/2 + pos[0]*spacing,
                die_size/2 + pos[1]*spacing,
                face_z + r - depth])
       pip(depth, r);
@@ -3835,14 +3835,14 @@ face_6_pips = [[-1, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [1, 1]];
 }
 
 // ---- Die Body ----
-{{i:module}} die_body() {
-  // Simple {{i:cube}} — replace with minkowski sphere for rounded edges
-  {{i:cube}}([die_size, die_size, die_size]);
+module die_body() {
+  // Simple cube — replace with minkowski sphere for rounded edges
+  cube([die_size, die_size, die_size]);
 }
 
 // ---- Full Die with Pips Subtracted ----
-{{i:module}} die() {
-  {{i:difference}}() {
+module die() {
+  difference() {
     die_body();
 
     // Face +Z (top): 1 pip
@@ -3851,13 +3851,13 @@ face_6_pips = [[-1, -1], [1, -1], [-1, 0], [1, 0], [-1, 1], [1, 1]];
     mirror([0, 0, 1])
       place_pips(face_6_pips, 0);
     // Face +X (right): 2 pips (opposite of 5)
-    rotate([0, -90, 0]) {{i:translate}}([0, 0, -die_size])
+    rotate([0, -90, 0]) translate([0, 0, -die_size])
       place_pips(face_2_pips, die_size);
     // Face -X (left): 5 pips
     rotate([0, 90, 0])
       place_pips(face_5_pips, die_size);
     // Face +Y (front): 3 pips (opposite of 4)
-    rotate([90, 0, 0]) {{i:translate}}([0, 0, -die_size])
+    rotate([90, 0, 0]) translate([0, 0, -die_size])
       place_pips(face_3_pips, die_size);
     // Face -Y (back): 4 pips
     rotate([-90, 0, 0])
@@ -4108,10 +4108,10 @@ Use each example below as a debugging exercise. Identify the flaw, fix it, and v
 The AI claims OpenSCAD has a `rounded_cube()` built-in. It does not.
 
 ```openscad
-// FLAWED — rounded_cube() does not exist in {{i:OpenSCAD}}. Somewhere on {{i:GitHub}} someone has developed a personal project with that {{i:name}}
-{{i:module}} enclosure() {
+// FLAWED — rounded_cube() does not exist in OpenSCAD. Somewhere on GitHub someone has developed a personal project with that name
+module enclosure() {
   rounded_cube(size=[60, 40, 20], r=3);
-  {{i:translate}}([10, 10, 0]) cylinder(h=20, r=2, center=false);
+  translate([10, 10, 0]) cylinder(h=20, r=2, center=false);
 }
 enclosure();
 ```
@@ -4120,9 +4120,9 @@ enclosure();
 
 ```openscad
 // CORRECT — native minkowski approach for rounded corners
-{{i:module}} rounded_box(x=60, y=40, z=20, r=3) {
+module rounded_box(x=60, y=40, z=20, r=3) {
   minkowski() {
-    {{i:cube}}([x - 2*r, y - 2*r, z - 2*r]);
+    cube([x - 2*r, y - 2*r, z - 2*r]);
     sphere(r=r, $fn=32);
   }
 }
@@ -4139,9 +4139,9 @@ When the subtracted shape shares an exact face with the outer shape, some render
 
 ```openscad
 // FLAWED — bottom faces are coplanar (Z=0 on both shapes)
-{{i:difference}}() {
-  {{i:cube}}([30, 30, 10]);
-  {{i:translate}}([5, 5, 0]) {{i:cube}}([20, 20, 10]);
+difference() {
+  cube([30, 30, 10]);
+  translate([5, 5, 0]) cube([20, 20, 10]);
 }
 ```
 
@@ -4149,9 +4149,9 @@ When the subtracted shape shares an exact face with the outer shape, some render
 
 ```openscad
 // CORRECT — 0.001 overshoot on both Z faces
-{{i:difference}}() {
-  {{i:cube}}([30, 30, 10]);
-  {{i:translate}}([5, 5, -0.001]) {{i:cube}}([20, 20, 10 + 0.002]);
+difference() {
+  cube([30, 30, 10]);
+  translate([5, 5, -0.001]) cube([20, 20, 10 + 0.002]);
 }
 ```
 
@@ -4164,11 +4164,11 @@ _What to learn from this:_ Any time a `difference()` subtraction should go all t
 Rotate-then-translate and translate-then-rotate produce different results. AI often gets this wrong.
 
 ```openscad
-// FLAWED — rotate applied {{i:before}} {{i:translate}}; hole ends up in wrong position
-{{i:module}} bracket(width=40, {{i:height}}=20, th=3, hole_r=3) {
-  {{i:difference}}() {
-    {{i:cube}}([width, th, {{i:height}}]);
-    {{i:translate}}([width/2, th/2, {{i:height}}/2])
+// FLAWED — rotate applied before translate; hole ends up in wrong position
+module bracket(width=40, height=20, th=3, hole_r=3) {
+  difference() {
+    cube([width, th, height]);
+    translate([width/2, th/2, height/2])
       rotate([90, 0, 0])
         cylinder(h=th, r=hole_r, center=true);
   }
@@ -4179,11 +4179,11 @@ bracket();
 **Fixed version** — the translate sets the center, then the rotate orients correctly:
 
 ```openscad
-// CORRECT — {{i:translate}} to center, then rotate {{i:into}} the correct plane
-{{i:module}} bracket(width=40, {{i:height}}=20, th=3, hole_r=3) {
-  {{i:difference}}() {
-    {{i:cube}}([width, th, {{i:height}}]);
-    {{i:translate}}([width/2, th/2, {{i:height}}/2])
+// CORRECT — translate to center, then rotate into the correct plane
+module bracket(width=40, height=20, th=3, hole_r=3) {
+  difference() {
+    cube([width, th, height]);
+    translate([width/2, th/2, height/2])
       rotate([90, 0, 0])
         cylinder(h=th + 0.002, r=hole_r, center=true);
   }
@@ -4200,19 +4200,19 @@ _What to learn from this:_ Always check hole placement in the slicer layer view.
 OpenSCAD is a declarative language — variables are not mutable. AI trained on Python, JavaScript, or other imperative languages sometimes generates code that assumes variables can be updated.
 
 ```openscad
-// FLAWED — {{i:OpenSCAD}} does not allow reassignment of {{i:variables}}
+// FLAWED — OpenSCAD does not allow reassignment of variables
 width = 60;
-width = width + 10; // This silently uses the LAST assignment; the {{i:first}} is ignored
-{{i:cube}}([width, 20, 10]);
+width = width + 10; // This silently uses the LAST assignment; the first is ignored
+cube([width, 20, 10]);
 ```
 
 **Fixed version** — use distinct names for derived values:
 
 ```openscad
-// CORRECT — derive a {{i:new}} variable from the base value
+// CORRECT — derive a new variable from the base value
 base_w  = 60;
 final_w = base_w + 10;
-{{i:cube}}([final_w, 20, 10]);
+cube([final_w, 20, 10]);
 ```
 
 _What to learn from this:_ In OpenSCAD, a variable that appears assigned twice will use the last assignment for the entire file — including places that appear before the second assignment in the code. This is a source of subtle bugs. Always use a new name for derived values.
@@ -4224,12 +4224,12 @@ _What to learn from this:_ In OpenSCAD, a variable that appears assigned twice w
 AI-generated modules often lack parameter validation. When given edge-case values, the geometry inverts silently.
 
 ```openscad
-// FLAWED — no validation; wall=12 on a w=20 box inverts the {{i:geometry}}
-{{i:module}} box(w=30, d=30, h=20, wall=3) {
-  {{i:difference}}() {
-    {{i:cube}}([w, d, h]);
-    {{i:translate}}([wall, wall, -0.001])
-      {{i:cube}}([w - 2*wall, d - 2*wall, h + 0.002]);
+// FLAWED — no validation; wall=12 on a w=20 box inverts the geometry
+module box(w=30, d=30, h=20, wall=3) {
+  difference() {
+    cube([w, d, h]);
+    translate([wall, wall, -0.001])
+      cube([w - 2*wall, d - 2*wall, h + 0.002]);
   }
 }
 box(w=20, d=20, h=15, wall=12); // wall larger than half the width — silent failure
@@ -4238,18 +4238,18 @@ box(w=20, d=20, h=15, wall=12); // wall larger than half the width — silent fa
 **Fixed version** — add `assert()` to catch invalid combinations:
 
 ```openscad
-// CORRECT — assert() catches invalid {{i:parameters}} {{i:before}} {{i:geometry}} is computed
-{{i:module}} box(w=30, d=30, h=20, wall=3) {
+// CORRECT — assert() catches invalid parameters before geometry is computed
+module box(w=30, d=30, h=20, wall=3) {
   assert(w > 0 && d > 0 && h > 0, "All dimensions must be positive");
   assert(wall > 0 && wall < min(w, d) / 2,
     str("wall (", wall, "mm) must be less than min(w,d)/2 = ", min(w,d)/2, "mm"));
-  {{i:difference}}() {
-    {{i:cube}}([w, d, h]);
-    {{i:translate}}([wall, wall, -0.001])
-      {{i:cube}}([w - 2*wall, d - 2*wall, h + 0.002]);
+  difference() {
+    cube([w, d, h]);
+    translate([wall, wall, -0.001])
+      cube([w - 2*wall, d - 2*wall, h + 0.002]);
   }
 }
-box(w=20, d=20, h=15, wall=12); // will halt with a clear {{i:error}} message
+box(w=20, d=20, h=15, wall=12); // will halt with a clear error message
 ```
 
 _What to learn from this:_ `assert()` is your safety net for parametric designs. Any relationship between parameters that could produce invalid geometry should have an `assert()` checking it. This is especially important for designs you share with others.
@@ -4261,28 +4261,28 @@ _What to learn from this:_ `assert()` is your safety net for parametric designs.
 Two compound errors: a function that doesn't exist (`fillet_text()`), and a text position that extends outside the model face.
 
 ```openscad
-// FLAWED — fillet_text() does not exist; second {{i:translate}} puts {{i:text}} outside the body
-{{i:difference}}() {
-  {{i:cube}}([80, 40, 6]);
-  {{i:translate}}([0, 0, 0])
+// FLAWED — fillet_text() does not exist; second translate puts text outside the body
+difference() {
+  cube([80, 40, 6]);
+  translate([0, 0, 0])
     fillet_text("RYAN", size=10, radius=1); // bogus function
-  {{i:translate}}([70, 20, 3])
-    linear_extrude(2) {{i:text}}("RYAN", size=10); // misplaced — extends off the edge
+  translate([70, 20, 3])
+    linear_extrude(2) text("RYAN", size=10); // misplaced — extends off the edge
 }
 ```
 
 **Fixed version** — use standard `text()` with `linear_extrude()`, centered on the face:
 
 ```openscad
-// CORRECT — centered debossed {{i:text}} {{i:using}} standard {{i:OpenSCAD}} functions
-{{i:module}} top_deboss(txt="RYAN", size=10, depth=1) {
-  {{i:translate}}([40, 20, 6 + 0.001])  // position at center of top face
-    linear_extrude({{i:height}}=depth)
-      {{i:text}}(txt, size=size, halign="center", valign="center");
+// CORRECT — centered debossed text using standard OpenSCAD functions
+module top_deboss(txt="RYAN", size=10, depth=1) {
+  translate([40, 20, 6 + 0.001])  // position at center of top face
+    linear_extrude(height=depth)
+      text(txt, size=size, halign="center", valign="center");
 }
 
-{{i:difference}}() {
-  {{i:cube}}([80, 40, 6]);
+difference() {
+  cube([80, 40, 6]);
   top_deboss();
 }
 ```
@@ -4297,12 +4297,12 @@ AI-generated box and lid designs often omit clearance, making the lid impossible
 
 ```openscad
 // FLAWED — zero clearance means the lid walls will fuse to the box walls
-{{i:module}} box_outer(sz=[60, 40, 20], wall=2) { {{i:cube}}(sz); }
-{{i:module}} box_inner(sz=[60, 40, 20], wall=2) { {{i:cube}}([sz[0]-2*wall, sz[1]-2*wall, sz[2]]); }
+module box_outer(sz=[60, 40, 20], wall=2) { cube(sz); }
+module box_inner(sz=[60, 40, 20], wall=2) { cube([sz[0]-2*wall, sz[1]-2*wall, sz[2]]); }
 
-{{i:difference}}() {
+difference() {
   box_outer();
-  {{i:translate}}([2, 2, -0.001]) box_inner(); // clearance = 0; lid won't come off
+  translate([2, 2, -0.001]) box_inner(); // clearance = 0; lid won't come off
 }
 ```
 
@@ -4310,12 +4310,12 @@ AI-generated box and lid designs often omit clearance, making the lid impossible
 
 ```openscad
 // CORRECT — clearance creates the physical gap needed for the lid to fit and move
-{{i:module}} box_with_clearance(w=60, d=40, h=20, wall=2, clr=0.25) {
-  assert(clr > 0 && clr < 1.0, "Clearance should be {{i:between}} 0 and 1mm for most FDM fits");
-  {{i:difference}}() {
-    {{i:cube}}([w, d, h]);
-    {{i:translate}}([wall + clr, wall + clr, -0.001])
-      {{i:cube}}([w - 2*(wall + clr), d - 2*(wall + clr), h + 0.002]);
+module box_with_clearance(w=60, d=40, h=20, wall=2, clr=0.25) {
+  assert(clr > 0 && clr < 1.0, "Clearance should be between 0 and 1mm for most FDM fits");
+  difference() {
+    cube([w, d, h]);
+    translate([wall + clr, wall + clr, -0.001])
+      cube([w - 2*(wall + clr), d - 2*(wall + clr), h + 0.002]);
   }
 }
 box_with_clearance();
@@ -4504,14 +4504,14 @@ The preflight scripts below automate this calculation and require you to confirm
 #!/bin/bash
 set -e
 
-3dm {{i:build}}
+3dm build
 INFO=$(3dm info)
 echo "$INFO"
 
-# Extract volume from 3dm info {{i:output}}
+# Extract volume from 3dm info output
 VOLUME=$(echo "$INFO" | grep -oP '(?<=Volume:\s)\d+\.?\d*')
 if [ -z "$VOLUME" ]; then
-  echo "ERROR: Could not parse volume from 3dm info {{i:output}}"
+  echo "ERROR: Could not parse volume from 3dm info output"
   exit 1
 fi
 
@@ -4539,7 +4539,7 @@ echo "Approved. Send to slicer."
 **Windows (PowerShell):**
 
 ```powershell
-3dm {{i:build}}
+3dm build
 $info = 3dm info
 Write-Host $info
 
@@ -7464,7 +7464,7 @@ translate([(base_w - beam_w) / 2, 0, base_h])
 
 **Flexibility ratio check:**
 
-```plaintext
+```
 beam_t / beam_l = ___ / ___ = ___
 Target: < 0.1 for PLA, < 0.08 for PETG
 Result: [ ] Pass   [ ] Fail — adjusted to: ___
@@ -8666,7 +8666,7 @@ Traditional CSG modeling works from the outside in: you define shapes geometrica
 
 Save the matrix below as `terrain.dat` in the same folder as your `.scad` file, then run the `surface()` call. No external image editor required.
 
-```plaintext
+```
  0  10  20  10   0
 10  40  60  40  10
 20  60 100  60  20
@@ -9127,7 +9127,7 @@ Object description: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Notes / sketches:
 
-```plaintext
+```
 (describe the object here — label which direction is X, Y, Z)
 ```
 
@@ -9147,7 +9147,7 @@ Object description: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_
 
 Notes / sketches:
 
-```plaintext
+```
 (describe the object here)
 ```
 
@@ -9266,7 +9266,7 @@ E-steps control how many stepper-motor steps produce 1 mm of filament movement. 
 
 **Formula:**
 
-```plaintext
+```
 New E-steps = Current E-steps × (100 mm / Actual distance moved)
 
 Example:
@@ -9304,7 +9304,7 @@ Print at 100% flow rate. Allow complete cooling (2+ hours). Measure the _interna
 
 **Calibration formula:**
 
-```plaintext
+```
 Flow rate adjustment = (Expected internal / Actual internal) × 100%
 
 Example:
@@ -9401,7 +9401,7 @@ _Use this checklist to systematically diagnose and troubleshoot printing issues 
 
 ### Quick Diagnosis Flowchart
 
-```plaintext
+```
 Print Problem?
 |
 +---- [Before Print] Issues?
@@ -9500,7 +9500,7 @@ When extrusion stops during a print:
 2. Listen for extruder grinding sounds (indicates jam).
 3. Observe whether filament is still feeding into the extruder.
 
-```plaintext
+```
 Is filament stuck in the extruder?
 +---- YES  -->  Nozzle clog likely
 |               Try: cold pull, retract, then clean nozzle
@@ -9537,7 +9537,7 @@ Let the print cool for at least 2 hours before measuring.
 
 _Fill this out before seeking help — it ensures you've systematically checked the most common causes._
 
-```plaintext
+```
 DIAGNOSTIC REPORT
 =================
 Printer Model:
@@ -10331,7 +10331,7 @@ Print a tolerance test coupon for every critical interface before printing the f
 
 **2.4 — Revision Log (first entries)**
 
-```plaintext
+```
 v0.1 → v0.2 (YYYY-MM-DD) or YYYY.MM-prototype → YYYY.MM-prototype2
   - Changed wall thickness from 1.5 to 2.0 mm: v0.1 cracked during snap-fit test
   - Increased lid clearance from 0.1 to 0.25 mm: lid was too tight to open one-handed
@@ -12275,17 +12275,17 @@ Diagnosis:
 # Look for error messages
 ```
 
-{{i:Common}} Fixes:
+Common Fixes:
 
 - Check syntax (missing semicolons, parentheses)
-- Look for non-manifold {{i:geometry}}
-- Use `$fn=12` for faster {{i:test}} renders
+- Look for non-manifold geometry
+- Use `$fn=12` for faster test renders
 
 ### Problem: Parts don't fit together
 
 Diagnosis:
 
-- Print and {{i:test}} fit
+- Print and test fit
 - Measure with calipers
 
 Solution:
@@ -12294,7 +12294,7 @@ Solution:
 - Increase `wall` thickness
 - Test with tolerance matrix
 
-### Problem: Embossed {{i:text}} looks bad
+### Problem: Embossed text looks bad
 
 Diagnosis:
 
@@ -12311,14 +12311,14 @@ Solution:
 
 Diagnosis:
 
-- Check slicer {{i:layer}} preview
-- Verify {{i:bed}} adhesion and temperature
+- Check slicer layer preview
+- Verify bed adhesion and temperature
 
 Solution:
 
-- Check pre-{{i:print}} checklist (Lesson 5)
-- Adjust {{i:print}} temperature
-- Verify {{i:bed}} is level and clean
+- Check pre-print checklist (Lesson 5)
+- Adjust print temperature
+- Verify bed is level and clean
 
 ## Assessment Checklist
 
@@ -12334,10 +12334,10 @@ Solution:
 ### Project Completion Criteria
 
 - [ ] Code builds without errors
-- [ ] All {{i:parameters}} functional
-- [ ] {{i:STL}} generated and inspected
+- [ ] All parameters functional
+- [ ] STL generated and inspected
 - [ ] Measurements documented
-- [ ] Assembly tested (if multi-{{i:part}})
+- [ ] Assembly tested (if multi-part)
 - [ ] README or documentation included
 
 ### Quality Standards
@@ -12345,25 +12345,25 @@ Solution:
 - [ ] Code is well-commented
 - [ ] Parameters have clear names and units
 - [ ] Modules are reusable
-- [ ] {{i:Design}} follows DRY principle
+- [ ] Design follows DRY principle
 - [ ] Documentation is complete
 
 ## Resources & Links
 
 ### Official Docs
 
-- [{{i:OpenSCAD}} Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
-- [{{i:3DMake}} {{i:GitHub}}](https://github.com/tdeck/3dmake)
+- [OpenSCAD Manual](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual)
+- [3DMake GitHub](https://github.com/tdeck/3dmake)
 - [BOSL2 Library](https://github.com/revarbat/BOSL2)
 
 ### Tutorials
 
-- [{{i:OpenSCAD}} Basics](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language)
-- [3D Printing Guide](https://www.prusa3d.com/{{i:support}}/)
+- [OpenSCAD Basics](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/The_OpenSCAD_Language)
+- [3D Printing Guide](https://www.prusa3d.com/support/)
 
 ### Community
 
-- [{{i:OpenSCAD}} Forums](https://forum.openscad.org/)
+- [OpenSCAD Forums](https://forum.openscad.org/)
 - [r/3Dprinting](https://www.reddit.com/r/3Dprinting/)
 
 ## Tips & Tricks
@@ -12371,31 +12371,31 @@ Solution:
 ### Debugging
 
 > [!TIP]
-> Lower `$fn` to **8–12 during development** for fast renders, then raise it to 32–64 for final export. High `$fn` values (especially with Minkowski) {{i:can}} make renders take minutes.
+> Lower `$fn` to **8–12 during development** for fast renders, then raise it to 32–64 for final export. High `$fn` values (especially with Minkowski) can make renders take minutes.
 
 - Lower `$fn` to 8-12 for faster renders during development
 - Use `3dm info` frequently to catch issues early
-- Test components individually {{i:before}} assembling
+- Test components individually before assembling
 - Generate `3dm preview` for 2D tactile verification
 
-### {{i:Design}}
+### Design
 
-- Keep {{i:parameters}} at the top of {{i:file}} for easy modification
+- Keep parameters at the top of file for easy modification
 - Use descriptive names (not `w`, use `width`)
 - Include units in comments
-- Document {{i:parameter}} ranges (e.g., `// 0-100 mm`)
+- Document parameter ranges (e.g., `// 0-100 mm`)
 
 ### Organization
 
-- Use `src/` for SCAD {{i:files}}, `lib/` for modules, `build/` for outputs
-- Create variants by copying {{i:files}} and renaming
-- Use bash {{i:scripts}} for batch operations
+- Use `src/` for SCAD files, `lib/` for modules, `build/` for outputs
+- Create variants by copying files and renaming
+- Use bash scripts for batch operations
 - Archive successful builds with timestamps
 
 ### Accessibility
 
 > [!IMPORTANT]
-> For accessible {{i:design}}, always use `3dm info` to verify non-visual usability and `3dm preview` to generate a tactile inspection image. Document all measurements clearly and {{i:test}} assembly without visual guidance.
+> For accessible design, always use `3dm info` to verify non-visual usability and `3dm preview` to generate a tactile inspection image. Document all measurements clearly and test assembly without visual guidance.
 
 - Always use `3dm info` to verify non-visual usability
 - Generate `3dm preview` for tactile inspection
@@ -12406,34 +12406,34 @@ Solution:
 
 | Term       | Definition                                                            |
 | ---------- | --------------------------------------------------------------------- |
-| CSG        | Constructive Solid Geometry - combining shapes {{i:using}} union/{{i:difference}} |
-| Manifold   | Water-tight {{i:geometry}} with clear inside/outside                        |
-| Parametric | Driven by {{i:variables}}; changing {{i:parameters}} updates {{i:design}}               |
+| CSG        | Constructive Solid Geometry - combining shapes using union/difference |
+| Manifold   | Water-tight geometry with clear inside/outside                        |
+| Parametric | Driven by variables; changing parameters updates design               |
 | Tolerance  | Acceptable variation in dimensions                                    |
-| Stack-up   | Cumulative {{i:error}} from multiple tolerances                             |
-| {{i:Module}}     | Reusable {{i:code}} block in {{i:OpenSCAD}}                                       |
-| $fn        | Resolution {{i:parameter}} (higher = more detail but slower)                |
-| G-{{i:code}}     | Machine instructions for 3D {{i:printer}}                                   |
-| {{i:STL}}        | 3D model {{i:file}} format for {{i:printing}}                                     |
+| Stack-up   | Cumulative error from multiple tolerances                             |
+| Module     | Reusable code block in OpenSCAD                                       |
+| $fn        | Resolution parameter (higher = more detail but slower)                |
+| G-code     | Machine instructions for 3D printer                                   |
+| STL        | 3D model file format for printing                                     |
 
 ## Quick Answers
 
-Q: Where do I put my SCAD {{i:files}}?  
+Q: Where do I put my SCAD files?  
 A: In the `src/` folder of your 3dMake project
 
-Q: How do I {{i:test}} if my {{i:design}} will fit?  
-A: Use the tolerance testing matrix; {{i:print}} variants with different {{i:parameters}}
+Q: How do I test if my design will fit?  
+A: Use the tolerance testing matrix; print variants with different parameters
 
-Q: What should I measure after {{i:printing}}?  
-A: Critical dimensions and compare to {{i:design}} specifications
+Q: What should I measure after printing?  
+A: Critical dimensions and compare to design specifications
 
 > [!TIP]
-> **Non-manifold fix:** Use the 0.001 offset rule — `translate([0, 0, -0.001])` {{i:before}} subtracting and add 0.002 to the cutting shape's {{i:height}}.
+> **Non-manifold fix:** Use the 0.001 offset rule — `translate([0, 0, -0.001])` before subtracting and add 0.002 to the cutting shape's height.
 
-Q: How do I fix non-manifold {{i:geometry}}?  
-A: Use the 0.001 offset rule: `translate([0, 0, 0.001])` {{i:before}} subtracting
+Q: How do I fix non-manifold geometry?  
+A: Use the 0.001 offset rule: `translate([0, 0, 0.001])` before subtracting
 
-Q: Can I combine multiple SCAD {{i:files}}?  
+Q: Can I combine multiple SCAD files?  
 A: Yes, use `include <path/to/file.scad>` or `use <path/to/file.scad>`
 
 Q: How do I make designs accessible?  
