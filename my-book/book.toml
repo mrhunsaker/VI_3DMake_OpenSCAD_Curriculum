@@ -33,14 +33,13 @@ use-default-preprocessors = true
 
 [output.html]
 additional-css = [
-  "./theme/catppuccin.css",
-  "./theme/fonts.css"
+  "theme/catppuccin.css",
+  "theme/fonts.css"
 ]
 default-theme = "latte"
 preferred-dark-theme = "mocha"
 site-url = "https://mrhunsaker.github.io/VI_3DMake_OpenSCAD_Curriculum/"
 git-repository-url = "https://github.com/mrhunsaker/VI_3DMake_OpenSCAD_Curriculum"
-theme = "theme"
 
 [output.html.search]
 enable = true
