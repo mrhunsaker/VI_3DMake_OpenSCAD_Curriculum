@@ -7261,7 +7261,7 @@ translate([60, 0, 0])
 
 - OpenSCAD User Manual — Difference and Boolean Operations — [https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling](https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/CSG_Modelling)
 
-- Tolerance and Fit in FDM Printing — All3DP Guide — [https://all3dp.com/2/fdm-3d-printing-tolerances/](https://all3dp.com/2/fdm-3d-printing-tolerances/)
+- Tolerance and Fit in FDM Printing — OmniTechs Guide — [ https://omnitechs.nl/en/knowledge-base/3d-printing-tolerances-and-clearance]( https://omnitechs.nl/en/knowledge-base/3d-printing-tolerances-and-clearance)
 
 ### Supplemental Resources
 
@@ -12438,3 +12438,4 @@ A: Yes, use `include <path/to/file.scad>` or `use <path/to/file.scad>`
 
 Q: How do I make designs accessible?  
 A: Use `3dm info` and `3dm preview` and include written measurements/descriptions
+
