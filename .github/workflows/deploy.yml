@@ -52,7 +52,7 @@ jobs:
           path: my-book/docs/html
 
       - name: Upload Markdown output
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: markdown-output
           path: my-book/docs/markdown/
