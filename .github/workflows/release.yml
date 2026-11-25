@@ -49,7 +49,7 @@ jobs:
           zip -r markdown-output.zip markdown/
 
       - name: Upload release assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: |
             my-book/docs/markdown-output.zip
